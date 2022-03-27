@@ -5,6 +5,10 @@ spring:
     password: 159357@test
     hikari:
       maxLifetime: 20000
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
 
 server:
   port: ${port:8080}
