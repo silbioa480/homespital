@@ -9,11 +9,11 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/")
 public class RootController {
 
-  public RootController() {
-  }
+    public RootController() {
+    }
 
-  @GetMapping("/")
-  public ModelAndView index() {
-    return new ModelAndView("index");
-  }
+    @GetMapping("/")
+    public ModelAndView index() {
+        return new ModelAndView("main/index");
+    }
 }
