@@ -7,6 +7,7 @@
   content="width=device-width, initial-scale=1, shrink-to-fit=no"
 />
 <button>btn</button>
+<button>btn2</button>
 
 <div>
 
