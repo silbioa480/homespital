@@ -40,7 +40,7 @@
 <section id="one" class="main style2 right dark fullscreen">
     <div class="content box style2">
         <header>
-            <h2>What I Do</h2>
+            <h2>안내</h2>
         </header>
         <p>Lorem ipsum dolor sit amet et sapien sed elementum egestas dolore condimentum.
             Fusce blandit ultrices sapien, in accumsan orci rhoncus eu. Sed sodales venenatis arcu,
@@ -53,7 +53,7 @@
 <section id="two" class="main style2 left dark fullscreen">
     <div class="content box style2">
         <header>
-            <h2>Who I Am</h2>
+            <h2>편리함</h2>
         </header>
         <p>Lorem ipsum dolor sit amet et sapien sed elementum egestas dolore condimentum.
             Fusce blandit ultrices sapien, in accumsan orci rhoncus eu. Sed sodales venenatis arcu,
@@ -66,10 +66,8 @@
 <section id="work" class="main style3 primary">
     <div class="content">
         <header>
-            <h2>My Work</h2>
-            <p>Lorem ipsum dolor sit amet et sapien sed elementum egestas dolore condimentum.
-                Fusce blandit ultrices sapien, in accumsan orci rhoncus eu. Sed sodales venenatis
-                arcu, id varius justo euismod in. Curabitur egestas consectetur magna vitae.</p>
+            <h2>Service</h2>
+            <p>직접개발한 화상채팅으로 ~~~</p>
         </header>
 
         <!-- Gallery  -->
