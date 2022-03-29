@@ -25,5 +25,9 @@ public class RootController {
     public ModelAndView signUp() {
         return new ModelAndView("signUp");
     }
+    @GetMapping("/docterList")
+    public ModelAndView docterList() {
+        return new ModelAndView("docterList");
+    }
 
 }
