@@ -41,7 +41,7 @@
     <!-- One -->
     <section id="one" class="wrapper style2 spotlights">
         <section>
-            <a href="#" class="image"><img src="/resources/img/docterList/docter01.jpg" alt="" data-position="25% 25%" /></a>
+            <a href="#" class="image"><img src="/resources/img/docterList/docter04.jpg" alt="" data-position="25% 25%" /></a>
             <div class="content">
                 <div class="inner">
                     <h2>docter1</h2>
@@ -53,7 +53,7 @@
             </div>
         </section>
         <section>
-            <a href="#" class="image"><img src="/resources/img/docterList/docter02.jpg" alt="" data-position="25% 25%" /></a>
+            <a href="#" class="image"><img src="/resources/img/docterList/docter03.jpg" alt="" data-position="25% 25%" /></a>
             <div class="content">
                 <div class="inner">
                     <h2>docter2</h2>

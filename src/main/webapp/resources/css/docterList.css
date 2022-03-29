@@ -3319,10 +3319,10 @@ body.is-ie .wrapper.fullscreen {
     transition: opacity 1s ease, transform 1s ease;
     opacity: 1.0;
 }
-
+/*----------------------------------------------*/
 .wrapper.fade-up.inactive > .inner,
 body.is-preload .wrapper.fade-up > .inner {
-    opacity: 0;
+    opacity: 0.2;
     -moz-transform: translateY(1em);
     -webkit-transform: translateY(1em);
     -ms-transform: translateY(1em);
@@ -3874,7 +3874,7 @@ body.is-preload #sidebar nav ul li {
 
 #intro {
     background-attachment: fixed;
-    background-image: url("/resources/img/docterList/intro.svg");
+    background-image: url("/resources/img/docterList/docterListintro.svg");
     background-position: top right;
     background-repeat: no-repeat;
     background-size: 100% 100%;
