@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+
     <style>
         #headertitle:link, #headertitle:visited, #headertitle:hover, #headertitle:active {
             color: black;
@@ -61,6 +62,6 @@
 
 
 
-
+<script src="/resources/js/login/login.js"></script>
 </body>
 </html>
