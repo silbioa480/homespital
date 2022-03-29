@@ -16,4 +16,13 @@ public class RootController {
     public ModelAndView index() {
         return new ModelAndView("main/index");
     }
+
+    @GetMapping("/login")
+    public ModelAndView login() {
+        return new ModelAndView("login");
+    }
+    @GetMapping("/signUp")
+    public ModelAndView signUp() {
+        return new ModelAndView("signUp");
+    }
 }
