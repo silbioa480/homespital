@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: "jdbc:mysql://121.42.13.136:6603/daily-coorder"
-    username: test
-    password: 159357@test
+    url: "jdbc:mysql://127.0.0.1:3316/homespital?useSSL=false&autoReconnection=true"
+    username: mulcam2
+    password: 1234
     hikari:
       maxLifetime: 20000
   mvc:
