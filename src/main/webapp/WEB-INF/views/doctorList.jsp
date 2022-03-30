@@ -204,13 +204,13 @@
 </footer>
 
 <!-- Scripts -->
-<script src="/resources/js/docterList/jquery.min.js"></script>
-<script src="/resources/js/docterList/jquery.scrollex.min.js"></script>
-<script src="/resources/js/docterList/jquery.scrolly.min.js"></script>
-<script src="/resources/js/docterList/browser.min.js"></script>
-<script src="/resources/js/docterList/breakpoints.min.js"></script>
-<script src="/resources/js/docterList/util.js"></script>
-<script src="/resources/js/docterList/main.js"></script>
+<script src="/resources/js/doctorList/jquery.min.js"></script>
+<script src="/resources/js/doctorList/jquery.scrollex.min.js"></script>
+<script src="/resources/js/doctorList/jquery.scrolly.min.js"></script>
+<script src="/resources/js/doctorList/browser.min.js"></script>
+<script src="/resources/js/doctorList/breakpoints.min.js"></script>
+<script src="/resources/js/doctorList/util.js"></script>
+<script src="/resources/js/doctorList/main.js"></script>
 
 </body>
 </html>
