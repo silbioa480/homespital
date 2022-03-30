@@ -33,6 +33,9 @@ dependencies {
     providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
+    //문자보내기
+    implementation group: 'net.nurigo', name: 'javaSDK', version: '2.2'
+
     //mysql SSH 접속을 위한 의존성 라이브러리
     implementation 'com.jcraft:jsch:0.1.55'
 
