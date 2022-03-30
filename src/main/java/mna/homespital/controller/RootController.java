@@ -21,8 +21,10 @@ public class RootController {
     public ModelAndView login() {
         return new ModelAndView("login");
     }
-    @GetMapping("/signUp")
-    public ModelAndView signUp() {
-        return new ModelAndView("signUp");
+
+    @GetMapping("/signup")
+    public ModelAndView signup() {
+        return new ModelAndView("signup");
     }
+
 }
