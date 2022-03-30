@@ -205,7 +205,8 @@
                 <tr>
                     <th>증상 입력</th>
                     <td>
-                        <textarea name="symptom" style="width: 100%; min-height: 200px;"></textarea>
+                        <textarea name="symptom" placeholder="진료부위 / 증상 입력 최대한 자세하게 기입해 주시기 바랍니다.
+예) 감기 기운이 있고, 머리가 아파요! 증상을 구체적으로 적어주세요!" style="width: 100%; min-height: 200px;"></textarea>
                     </td>
                 </tr>
                 <tr>
