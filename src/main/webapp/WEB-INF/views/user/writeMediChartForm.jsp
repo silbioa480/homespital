@@ -9,6 +9,54 @@
 <html>
 <head>
     <title>Title</title>
+<%--  시간 선택 radio CSS  --%>
+    <style>
+        .box-radio-input input[type="radio"]{
+            display:none;
+        }
+
+        .box-radio-input input[type="radio"] + span{
+            display:inline-block;
+            background:none;
+            border:1px solid #dfdfdf;
+            padding:0px 10px;
+            text-align:center;
+            height:35px;
+            line-height:33px;
+            font-weight:500;
+            cursor:pointer;
+        }
+
+        .box-radio-input input[type="radio"]:checked + span{
+            border:1px solid #23a3a7;
+            background:#23a3a7;
+            color:#fff;
+        }
+
+        .timetable>tbody>tr>th{
+            width: 80px;
+        }
+    </style>
+<%--  시간 선택하기 영역의 의사 사진 CSS  --%>
+    <style>
+        .img-wrapper {
+            position: relative;
+            width: 200px;
+            height: 200px;
+        }
+        .img-wrapper img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform: translate(50, 50);
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            margin: auto;
+        }
+
+
+    </style>
     <style> <%-- 카카오맵 관련 기본 CSS --%>
     .map_wrap, .map_wrap * {
         margin: 0;
@@ -192,24 +240,85 @@
         color: #777;
     }
     </style>
+
 </head>
 <body>
 <div>
     <div class="card p-3">
         <h4><strong>시간 선택하기</strong></h4>
+        <div class="card p-3">
+            <div class="row g-0">
+                <div class="col-md-4" style="min-width: 200px; max-width: 200px;">
+                    <div class="img-wrapper">
+                        <img src="https://img.freepik.com/free-photo/portrait-of-asian-doctor-woman-cross-arms-standing-in-medical-uniform-and-stethoscope-smiling-at-camera-white-background_1258-83220.jpg?t=st=1648603208~exp=1648603808~hmac=d99da3c49b9463edbf93a1cf03e2d60b705bc0a6838fa849f27ba6b04e7ede8a&w=1800" alt="의사사진 영역" />
+                    </div>
+                </div>
+                <div class="col-md-8 card-body">
+                    <div class="card-title d-flex">
+                        <h4 class="mr-3 font-weight-bolder">김돌팔</h4>
+                        <span class="ml-3 font-weight-normal align-text-bottom">일반의/정신의학과</span>
+                    </div>
+                    <div class="card-text">
+                        <p class="card-text">
+                            <table class="table table-borderless timetable">
+                                <tr>
+                                    <th>병원이름:</th>
+                                    <td>el태그로 병원이름</td>
+                                </tr>
+                                <tr>
+                                    <th>진료분야:</th>
+                                    <td>el태그로 진료분야</td>
+                                </tr>
+                                <tr>
+                                    <th>휴진:</th>
+                                    <td>el태그로 휴진</td>
+                                </tr>
+                                <tr>
+                                    <th>시간:</th>
+                                    <td>
+                                        c:foreach로 넣을 영역. 예시
+                                        <label class="box-radio-input" data-bs-toggle="tooltip" data-bs-placement="top"
+                                               title="현재 시간에 예약한 인원 : 1/10">
+                                            <input type="radio" name="cp_item" value="10" checked="checked">
+                                            <span>10:00</span>
+                                        </label>
+                                        <label class="box-radio-input" data-bs-toggle="tooltip" data-bs-placement="top"
+                                               title="현재 시간에 예약한 인원 : 8/10">
+                                            <input type="radio" name="cp_item" value="11">
+                                            <span>11:00</span>
+                                        </label>
+                                        <label class="box-radio-input" data-bs-toggle="tooltip" data-bs-placement="top"
+                                               title="점심시간">
+                                            <input type="radio" name="cp_item" value="12" disabled>
+                                            <span class="text-muted">12:00</span>
+                                        </label>
+                                        <label class="box-radio-input" data-bs-toggle="tooltip" data-bs-placement="top"
+                                               title="현재 시간에 예약한 인원 : 10/10">
+                                            <input type="radio" name="cp_item" value="13"disabled>
+                                            <span class="text-muted">13:00</span>
+                                        </label>
+                                    </td>
+                                </tr>
+                            </table>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
     <div class="card p-3">
         <h4><strong>진료 차트 작성</strong></h4>
         <div class="card p-3">
             <table class="table table-borderless">
                 <tr>
-                    <th>증상 입력</th>
+                    <th style="max-width: 100px;">증상 입력</th>
                     <td>
                         <textarea name="symptom" style="width: 100%; min-height: 200px;"></textarea>
                     </td>
                 </tr>
                 <tr>
-                    <th>증상 이미지 첨부</th>
+                    <th style="max-width: 100px;">증상 이미지 첨부</th>
                     <td>
                         <div class="card p-3" style="width:100%;">
                             여기에 사진 관련 넣을 예정
@@ -348,7 +457,7 @@
     <div>
         <button class="btn rounded-0 btn-dark">예약하기</button>
     </div>
-
+</div>
     <script type="text/javascript"
             src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a69fc7ca725d20c3e61c5b6bb3d32242&libraries=services"></script>
     <script>
@@ -553,6 +662,13 @@
                 el.removeChild(el.lastChild);
             }
         }
+    </script>
+    <script>
+        //기본 bootstrap tooltip 설정
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
     </script>
 </body>
 </html>
