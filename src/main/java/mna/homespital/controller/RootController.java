@@ -13,8 +13,8 @@ public class RootController {
     }
 
     @GetMapping("/")
-    public ModelAndView index() {
-        return new ModelAndView("main/index");
+    public ModelAndView main() {
+        return new ModelAndView("main/main");
     }
 
     @GetMapping("/login")
@@ -25,4 +25,9 @@ public class RootController {
     public ModelAndView signUp() {
         return new ModelAndView("signUp");
     }
+    @GetMapping("/docterList")
+    public ModelAndView docterList() {
+        return new ModelAndView("docterList");
+    }
+
 }

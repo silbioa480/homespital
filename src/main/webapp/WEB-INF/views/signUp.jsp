@@ -12,16 +12,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="/resources/css/signUp.css" />
-</head>
+</head>/resources/css
 <body class="is-preload">
 
 <!-- Header -->
 <section id="header">
     <header>
         <span class="image avatar"><img src="/resources/img/signUp/avatar.jpg" alt="" /></span>
-        <h1 id="logo"><a href="#">Willis Corto</a></h1>
-        <p>I got reprogrammed by a rogue AI<br />
-            and now I'm totally cray</p>
+        <h1 id="logo"><a href="#">Homespital</a></h1>
+        <p>Hi</p>
     </header>
     <nav id="nav">
         <ul>
