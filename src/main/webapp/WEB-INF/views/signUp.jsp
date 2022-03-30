@@ -70,6 +70,8 @@
                         <label for="SocialSecurityNumber">주민등록번호</label>
                         <div id="SocialSecurityNumber" name="SocialSecurityNumber" style="display:flex">
                             <input type="text" required>&nbsp__&nbsp<input type="text" required>
+                            <div class="error"></div>
+
                         </div>
 
                         <div class="error"></div>
@@ -79,10 +81,17 @@
                         <div style="display:flex">
                             <input id="phone" type="text" name="phone" title="전화번호 입력" required/>
                             <input type="button" id="phoneChk" class="doubleChk" value="인증번호 받기">
+                            <div class="error"></div>
                         </div>
                         <br/>
-                        <input id="phone2" type="text" name="phone2" title="인증번호 입력" disabled required/>
+                        <div style="display:flex">
+                            <input id="phone2" type="text" name="phone2" title="인증번호 입력" disabled required/>
+                            <input type="button" id="phoneChk2" class="doubleChk" value="본인인증">
+                        </div>
+                        <span class="point successPhoneChk">휴대폰 번호 입력후 인증번호 보내기를 해주십시오.</span>
                         <input type="hidden" id="phoneDoubleChk"/>
+                        <div class="error"></div>
+
                     </div>
                 </div>
             </section>
@@ -170,35 +179,27 @@
                         <div class="">
                             <h5>약관동의</h5>
                             <hr>
-                            <input type="checkbox" id="check_all">
-                            <label for="check_all">전체동의</label>
+                            <label for="agree_all" style="display:block">
+                                <input type="checkbox" name="agree_all" id="agree_all">
+                                <span>모두 동의합니다</span>
+                            </label>
+                            <label for="agree" style="display:block">
+                                <input type="checkbox" name="agree" value="1">
+                                <span>이용약관 동의<strong>(필수)</strong></span>
+                            </label>
+                            <label for="agree" style="display:block">
+                                <input type="checkbox" name="agree" value="2">
+                                <span>개인정보 수집, 이용 동의<strong>(필수)</strong></span>
+                            </label>
+                            <label for="agree" style="display:block">
+                                <input type="checkbox" name="agree" value="3">
+                                <span>개인정보 이용 동의<strong>(필수)</strong></span>
+                            </label>
+                            <label for="agree" style="display:block;">
+                                <input type="checkbox" name="agree" value="4">
+                                <span>이벤트, 혜택정보 수신동의<strong class="select_disable">(선택)</strong></span>
+                            </label>
                         </div>
-                        <ul class="terms">
-                            <li>
-                            <span class="input_check">
-                                <input type="checkbox" id="aaa">
-                                <label for="aaa">만 14세 이상입니다(필수)</label>
-                            </span>
-                            </li>
-                            <li>
-                            <span class="input_check">
-                                <input type="checkbox" id="bbb">
-                                <label for="bbb"><a href="">이용약관(필수)</a> </label>
-                            </span>
-                            </li>
-                            <li>
-                            <span class="input_check">
-                                <input type="checkbox" id="ccc">
-                                <label for="ccc"><a href="">개인정보수집 및 이용동의(필수)</a></label>
-                            </span>
-                            </li>
-                            <li>
-                            <span class="input_check">
-                                <input type="checkbox" id="ddd">
-                                <label for="ddd">이벤트,프로모션 알림 메일 및 SMS 수신(선택)</label>
-                            </span>
-                            </li>
-                        </ul>
                     </div>
                     <br><br><br>
                     <input type="submit" value="회원가입" style="width: 100%;"></input>
@@ -229,7 +230,7 @@
 <script src="/resources/js/signUp/breakpoints.min.js"></script>
 <script src="/resources/js/signUp/util.js"></script>
 <script src="/resources/js/signUp/signUp.js"></script>
-<script src="/resources/js/signUp/signUp2.js"></script>
+<script src="/resources/js/signUp/signUpCheck.js"></script>
 
 </body>
 
