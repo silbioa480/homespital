@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Title</title>
@@ -213,13 +214,17 @@
                     <th>증상 이미지 첨부</th>
                     <td>
                         <div class="card p-3" style="width:100%;">
-                            여기에 사진 관련 넣을 예정
+                            <div align="center" id="image_container" >
+                                <img id="default_image" style="border-radius: 200px; width: 150px; height: 150px;"
+                                     src="<c:url value='/resources/img/QR.png'/>"/>
+                            </div>
+                            <div id="preview" align="center"></div>
+                            <div align="center" class="filebox" style="padding:10px">
+                                <label for="profileImg">사진 등록</label>
+                                <input type="file" id="profileImg" name="profileImg" class="inp-img" accept=".gif, .jpg, .png">
+                                <button type="button" id="cancelImg" name="cancelImg" class="btn-delete">사진 삭제</button>
+                            </div>
                         </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <button class="btn btn-primary">사진 삭제? 협의해보아요</button>
                     </td>
                 </tr>
             </table>
@@ -299,8 +304,6 @@
             <div>
                 <span>원하시는 약국을 직접 선택할 수도 있어요.</span>
                 <hr>
-
-
             </div>
 
             <div>
@@ -554,6 +557,8 @@
                 el.removeChild(el.lastChild);
             }
         }
+
+
     </script>
 </body>
 </html>
