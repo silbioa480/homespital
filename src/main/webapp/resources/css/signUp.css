@@ -20,13 +20,14 @@ section, summary, time, mark, audio, video {
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
     display: block;
+
 }
 
 body {
     line-height: 1;
 }
 
-ol, ul {
+ol, ul li {
     list-style: none;
 }
 
@@ -1702,7 +1703,7 @@ pre code {
 .container {
     margin: 0 auto;
     max-width: calc(100% - 4.5em);
-    width: 45em;
+    width: 700px;
 }
 
 .container.xsmall {
@@ -1797,16 +1798,45 @@ form {
 
 label {
     color: #777;
-    display: block;
     font-size: 0.9em;
     font-weight: 700;
     margin: 0 0 1.125em 0;
 }
 
-input::-moz-focus-inner {
-    border: 0;
-    padding: 0;
+.input-control {
+    padding: 10px 0px 0px 0px;
 }
+
+/*로그인정보*/
+/*주민등록번호*/
+#SocialSecurityNumber input {
+    width: 283px;
+}
+
+/*휴대폰번호*/
+#phone {
+    width: 370px;
+}
+
+.doubleChk {
+    margin-left: 30px;
+    border: none;
+    border: solid 2px #e4e4e4;
+    background-color: #989698;
+    color: #FFFFFF;
+}
+
+/*카드번호*/
+.creditCardNumber {
+    display: flex;
+}
+
+cardValidity {
+    position: relative;
+}
+
+/*카드유효기간*/
+
 
 input[type="text"],
 input[type="password"],
@@ -1825,8 +1855,9 @@ textarea {
     outline: 0;
     padding: 0 1em;
     text-decoration: none;
-    width: 100%;
+    width: 600px;
 }
+
 
 input[type="text"]:invalid,
 input[type="password"]:invalid,
@@ -1941,7 +1972,6 @@ input[type="radio"]:checked + label:before {
     background: #989898;
     border-color: #989898;
     color: #ffffff;
-    content: '\f00c';
 }
 
 input[type="checkbox"]:focus + label:before,
@@ -2812,7 +2842,8 @@ input[type="button"]:disabled,
 
 #wrapper {
     background: #fff;
-    margin-left: 200px;
+
+
 }
 
 /* Main */
@@ -3284,3 +3315,7 @@ input[type="button"]:disabled,
     }
 
 }
+
+/*.terms {*/
+/*    list-style: none;*/
+/*}*/
