@@ -15,6 +15,7 @@
 
     <definition name="baseLayout" template="/WEB-INF/views/main/layout/baseLayout.jsp">
         <put-attribute name="navbar" value="/WEB-INF/views/common/layout/navbar.jsp"/>
+<!--        <put-attribute name="header" value="/WEB-INF/views/common/layout/header.jsp"/>-->
         <put-attribute name="body" value=""/>
     </definition>
 
