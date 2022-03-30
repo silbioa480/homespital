@@ -35,10 +35,10 @@ blockquote, q {
     quotes: none;
 }
 
-blockquote:before, blockquote:after, q:before, q:after {
-    content: '';
-    content: none;
-}
+/*blockquote:before, blockquote:after, q:before, q:after {*/
+/*    content: '';*/
+/*    content: none;*/
+/*}*/
 
 table {
     border-collapse: collapse;
@@ -60,10 +60,10 @@ input::-moz-focus-inner {
 }
 
 input, select, textarea {
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    -ms-appearance: none;
-    appearance: none;
+    /*-moz-appearance: none;*/
+    /*-webkit-appearance: none;*/
+    /*-ms-appearance: none;*/
+    /*appearance: none;*/
 }
 
 /* Basic */
@@ -1818,6 +1818,14 @@ label {
     width: 370px;
 }
 
+#phone2 {
+    width: 370px;
+}
+
+.doubleChk {
+    width: 200px;
+}
+
 .doubleChk {
     margin-left: 30px;
     border: none;
@@ -1909,32 +1917,32 @@ textarea {
     padding: 0.75em 1em;
 }
 
-input[type="checkbox"],
-input[type="radio"] {
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    -ms-appearance: none;
-    appearance: none;
-    display: block;
-    float: left;
-    margin-right: -2em;
-    opacity: 0;
-    width: 1em;
-    z-index: -1;
-}
+/*input[type="checkbox"],*/
+/*input[type="radio"] {*/
+/*    -moz-appearance: none;*/
+/*    -webkit-appearance: none;*/
+/*    -ms-appearance: none;*/
+/*    appearance: none;*/
+/*    display: block;*/
+/*    float: left;*/
+/*    margin-right: -2em;*/
+/*    opacity: 0;*/
+/*    width: 1em;*/
+/*    z-index: -1;*/
+/*}*/
 
-input[type="checkbox"] + label,
-input[type="radio"] + label {
-    text-decoration: none;
-    color: #888;
-    cursor: pointer;
-    display: inline-block;
-    font-size: 1em;
-    font-weight: 400;
-    padding-left: 2.4em;
-    padding-right: 0.75em;
-    position: relative;
-}
+/*input[type="checkbox"] + label,*/
+/*input[type="radio"] + label {*/
+/*    text-decoration: none;*/
+/*    color: #888;*/
+/*    cursor: pointer;*/
+/*    display: inline-block;*/
+/*    font-size: 1em;*/
+/*    font-weight: 400;*/
+/*    padding-left: 2.4em;*/
+/*    padding-right: 0.75em;*/
+/*    position: relative;*/
+/*}*/
 
 input[type="checkbox"] + label:before,
 input[type="radio"] + label:before {
@@ -3314,6 +3322,28 @@ input[type="button"]:disabled,
         padding: 0;
     }
 
+}
+
+.error {
+    height: 13px;
+}
+
+.input-control input:focus {
+    outline: 0;
+}
+
+.input-control.success input {
+    border-color: #09c372;
+}
+
+.input-control.error input {
+    border-color: #ff3860;
+}
+
+.input-control.error {
+    color: #ff3860;
+    font-size: 9px;
+    height: 13px;
 }
 
 /*.terms {*/
