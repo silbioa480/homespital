@@ -23,7 +23,12 @@ public class RootController {
     }
     @GetMapping("/signUp")
     public ModelAndView signUp() {
-        return new ModelAndView("signUp");
+        return new ModelAndView("signup");
+    }
+
+    @GetMapping("/pwsearch")
+    public ModelAndView pwsearch() {
+        return new ModelAndView("pwsearch");
     }
     @GetMapping("/doctorList")
     public ModelAndView doctorList() {
