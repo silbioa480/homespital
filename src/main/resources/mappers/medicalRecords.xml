@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mna.homespital.dao.MedicalListDAO">
+    <!--    <select id="medicalRecordsList" resultType="Diagnosis" parameterType="int">-->
+    <!--        <![CDATA[-->
+    <!--        select *-->
+    <!--        from diagnosis-->
+    <!--        Where user_number = #{user_number}-->
+    <!--        order by create_date desc limit 10-->
+    <!--        ]]>-->
+    <!--    </select>-->
+
+
+    <select id="medicalRecordsList" resultType="HashMap" parameterType="int">
+	    <![CDATA[
+        select di.*, doc.*
+        from diagnosis di,
+             doctor doc
+        where di.user_number = #{user_number}
+          and di.doctor_number = doc.doctor_number
+        order by di.create_date desc limit 10
+        ]]>
+</select>
+
+</mapper>
