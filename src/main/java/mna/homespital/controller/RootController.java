@@ -21,6 +21,7 @@ public class RootController {
     public ModelAndView login() {
         return new ModelAndView("login");
     }
+    
     @GetMapping("/signUp")
     public ModelAndView signUp() {
         return new ModelAndView("signup");
@@ -35,4 +36,5 @@ public class RootController {
         return new ModelAndView("doctorList");
     }
 
+    
 }
