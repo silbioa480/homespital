@@ -23,6 +23,15 @@
           and di.doctor_number = doc.doctor_number
         order by di.create_date desc limit 10
         ]]>
-</select>
+    </select>
+
+    <delete id="deleteMedicalRecord" parameterType="int">
+        <![CDATA[
+        delete
+        from diagnosis
+        where diagnosis_number = #{diagnosis_number}
+        ]]>
+
+    </delete>
 
 </mapper>
