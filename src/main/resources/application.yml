@@ -9,7 +9,6 @@ spring:
   username: homespital77
   password: Ghomespital7!
   properties:
-  mail:
   smtp:
   auth: true
   timeout: 5000
