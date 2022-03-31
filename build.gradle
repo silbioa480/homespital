@@ -33,8 +33,7 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
-    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0'
+    
     runtimeOnly 'mysql:mysql-connector-java:8.0.25'
     //문자보내기
     implementation group: 'net.nurigo', name: 'javaSDK', version: '2.2'
