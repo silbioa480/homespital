@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mna.homespital.dao.DiagnosisDAO">
+    <insert id="insertDiag">
+        <![CDATA[
+        insert into diagnosis(user_number, doctor_number, diagnosis_type, diagnosis_time, diagnosis_wait_number,
+                              diagnosis_content,)
+        values (#{user_number}, #{doctor_number}, #{diagnosis_type},
+                #{diagnosis_time}, #{diagnosis_wait_number}, #{diagnosis_content}, #{diagnosis_image_name},
+                #{is_diagnosis_complete}, #{is_diagnosis_uploaded}, #{is_prescription_upload},
+                #{diagnosis_file_name}, #{prescription_file_name}, #{diagnosis_money}, #{prescription_file_name},
+                #{is_delivery}, #{billing_key})
+        ]]>
+    </insert>
+</mapper>
