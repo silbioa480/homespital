@@ -11,9 +11,9 @@
     <title>Title</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="/resources/css/docterList.css" />
+    <link rel="stylesheet" href="/resources/css/doctorList.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-    <noscript><link rel="stylesheet" href="/resources/css/docterList2.css" /></noscript>
+    <noscript><link rel="stylesheet" href="/resources/css/doctorList2.css" /></noscript>
 </head>
 <body class="is-preload">
 
@@ -48,7 +48,7 @@
     <!-- One -->
     <section id="one" class="wrapper style2 spotlights">
         <section>
-            <a href="#" class="image"><img src="/resources/img/docterList/docter04.jpg" alt="" data-position="25% 25%" /></a>
+            <a href="#" class="image"><img src="/resources/img/doctorList/docter04.jpg" alt="" data-position="25% 25%" /></a>
             <div class="content">
                 <div class="inner">
                     <h2>docter1</h2>
@@ -60,7 +60,7 @@
             </div>
         </section>
         <section>
-            <a href="#" class="image"><img src="/resources/img/docterList/docter03.jpg" alt="" data-position="25% 25%" /></a>
+            <a href="#" class="image"><img src="/resources/img/doctorList/docter03.jpg" alt="" data-position="25% 25%" /></a>
             <div class="content">
                 <div class="inner">
                     <h2>docter2</h2>
@@ -72,7 +72,7 @@
             </div>
         </section>
         <section>
-            <a href="#" class="image"><img src="/resources/img/docterList/docter03.jpg" alt="" data-position="25% 25%" /></a>
+            <a href="#" class="image"><img src="/resources/img/doctorList/docter03.jpg" alt="" data-position="25% 25%" /></a>
             <div class="content">
                 <div class="inner">
                     <h2>docter3</h2>
@@ -84,7 +84,7 @@
             </div>
         </section>
         <section>
-            <a href="#" class="image"><img src="/resources/img/docterList/docter04.jpg" alt="" data-position="25% 25%" /></a>
+            <a href="#" class="image"><img src="/resources/img/doctorList/docter04.jpg" alt="" data-position="25% 25%" /></a>
             <div class="content">
                 <div class="inner">
                     <h2>docter4</h2>
@@ -110,13 +110,13 @@
 </footer>
 
 
-<script src="/resources/js/docterList/jquery.min.js"></script>
-<script src="/resources/js/docterList/jquery.scrollex.min.js"></script>
-<script src="/resources/js/docterList/jquery.scrolly.min.js"></script>
-<script src="/resources/js/docterList/browser.min.js"></script>
-<script src="/resources/js/docterList/breakpoints.min.js"></script>
-<script src="/resources/js/docterList/util.js"></script>
-<script src="/resources/js/docterList/main.js"></script>
+<script src="/resources/js/doctorList/jquery.min.js"></script>
+<script src="/resources/js/doctorList/jquery.scrollex.min.js"></script>
+<script src="/resources/js/doctorList/jquery.scrolly.min.js"></script>
+<script src="/resources/js/doctorList/browser.min.js"></script>
+<script src="/resources/js/doctorList/breakpoints.min.js"></script>
+<script src="/resources/js/doctorList/util.js"></script>
+<script src="/resources/js/doctorList/main.js"></script>
 
 </body>
 </html>

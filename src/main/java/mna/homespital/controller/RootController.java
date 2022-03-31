@@ -27,33 +27,33 @@ public class RootController {
   }
 
   @GetMapping("/")
-  public ModelAndView main() {
-    return new ModelAndView("main/main");
+  public ModelAndView index() {
+    return new ModelAndView("user/main/index");
   }
 
   //로그인
   @GetMapping("/loginForm")
   public ModelAndView loginForm() {
-    return new ModelAndView("loginForm");
+    return new ModelAndView("user/main/loginForm");
   }
 
   //회원가입
   @GetMapping("/joinForm")
   public ModelAndView joinForm() {
-    return new ModelAndView("joinForm");
+    return new ModelAndView("user/userside/joinForm");
   }
 
   //비밀번호 찾기
   @GetMapping("/findpwForm")
   public ModelAndView findpwForm() {
-    return new ModelAndView("findpwForm");
+    return new ModelAndView("user/main/findpwForm");
   }
 
   //의료진 찾기
   //    @SuppressWarnings("deprecation") // 의사 목업코드를 넣을때 쓴 코드. DAO로 실제 DB를 받아올 수 있다면 떼도 됨
   @GetMapping("/doctorList")
   public ModelAndView doctorList() throws Exception {
-      ModelAndView mv = new ModelAndView("/user/doctorList");
+      ModelAndView mv = new ModelAndView("user/userside/doctorList");
       // 훈 : 의사 목업코드
   //        List<Doctor> doctorList = new ArrayList<Doctor>();
   //
@@ -73,7 +73,7 @@ public class RootController {
   //진료차트 쓰기
   @GetMapping("/appointmentForm")
   public ModelAndView appointmentForm() {
-    ModelAndView mv = new ModelAndView("/user/appointmentForm");
+    ModelAndView mv = new ModelAndView("/user/userside/appointmentForm");
     return mv;
   }
   //진료예약   -인성
@@ -104,6 +104,6 @@ public class RootController {
 //      diagnosisImg = "QR.png";
 //    }
 //    medicalListService.makeAppointment(diagnosis_time,diagnosis_content,diagnosis_image_name,diagnosisImg);
-//    return "redirect:/myMedicalRecords";
+//    return "redirect:/appointmentSuccess";
 //  }
 }

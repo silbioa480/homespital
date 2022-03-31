@@ -18,12 +18,12 @@ public class UserController {
 
     //나의진료내역 (준근)
     @GetMapping("/myMedicalList")
-    public String myMedicalRecords(Model m) {
+    public String myMedicalList(Model m) {
         Diagnosis diagnosis = new Diagnosis();
         diagnosis.setUser_number(1);
         m.addAttribute("diagnosis", diagnosis);
         System.out.println("myMedicalList");
-        return "user/myMedicalList";
+        return "user/main/myMedicalList";
     }
 
     //진료내역 리스트 출력 (준근)
