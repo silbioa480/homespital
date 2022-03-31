@@ -13,251 +13,7 @@
     <%--  파일 업로드 CSS  --%>
     <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css"/>
-    <%--  진료차트 CSS  --%>
-    <style>
-        .chartTable > tbody > tr > th {
-            min-width: 100px;
-            max-width: 100px;
-        }
-
-        .chartTable > tbody > tr > td {
-            min-width: 400px;
-        }
-    </style>
-    <%--  시간 선택 radio CSS  --%>
-    <style>
-        .box-radio-input input[type="radio"] {
-            display: none;
-        }
-
-        .box-radio-input input[type="radio"] + span {
-            display: inline-block;
-            background: none;
-            border: 1px solid #dfdfdf;
-            padding: 0px 10px;
-            text-align: center;
-            height: 35px;
-            line-height: 33px;
-            font-weight: 500;
-            cursor: pointer;
-        }
-
-        .box-radio-input input[type="radio"]:checked + span {
-            border: 1px solid #23a3a7;
-            background: #23a3a7;
-            color: #fff;
-        }
-
-        .timetable > tbody > tr > th {
-            width: 80px;
-        }
-    </style>
-    <%--  시간 선택하기 영역의 의사 사진 CSS  --%>
-    <style>
-        .img-wrapper {
-            position: relative;
-            width: 200px;
-            height: 200px;
-        }
-
-        .img-wrapper img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            transform: translate(50, 50);
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            margin: auto;
-        }
-
-
-    </style>
-    <%-- 카카오맵 관련 기본 CSS --%>
-    <style>
-        .map_wrap, .map_wrap * {
-            margin: 0;
-            padding: 0;
-            font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
-            font-size: 12px;
-        }
-
-        .map_wrap a, .map_wrap a:hover, .map_wrap a:active {
-            color: #000;
-            text-decoration: none;
-        }
-
-        .map_wrap {
-            position: relative;
-            width: 100%;
-            height: 500px;
-        }
-
-        #menu_wrap {
-            position: absolute;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            width: 250px;
-            margin: 10px 0 30px 10px;
-            padding: 5px;
-            overflow-y: auto;
-            background: rgba(255, 255, 255, 0.7);
-            z-index: 1;
-            font-size: 12px;
-            border-radius: 10px;
-        }
-
-        .bg_white {
-            background: #fff;
-        }
-
-        #menu_wrap hr {
-            display: block;
-            height: 1px;
-            border: 0;
-            border-top: 2px solid #5F5F5F;
-            margin: 3px 0;
-        }
-
-        #menu_wrap .option {
-            text-align: center;
-        }
-
-        #menu_wrap .option p {
-            margin: 10px 0;
-        }
-
-        #menu_wrap .option button {
-            margin-left: 5px;
-        }
-
-        #placesList li {
-            list-style: none;
-        }
-
-        #placesList .item {
-            position: relative;
-            border-bottom: 1px solid #888;
-            overflow: hidden;
-            cursor: pointer;
-            min-height: 65px;
-        }
-
-        #placesList .item span {
-            display: block;
-            margin-top: 4px;
-        }
-
-        #placesList .item h5, #placesList .item .info {
-            text-overflow: ellipsis;
-            overflow: hidden;
-            white-space: nowrap;
-        }
-
-        #placesList .item .info {
-            padding: 10px 0 10px 55px;
-        }
-
-        #placesList .info .gray {
-            color: #8a8a8a;
-        }
-
-        #placesList .info .jibun {
-            padding-left: 26px;
-            background: url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png) no-repeat;
-        }
-
-        #placesList .info .tel {
-            color: #009900;
-        }
-
-        #placesList .item .markerbg {
-            float: left;
-            position: absolute;
-            width: 36px;
-            height: 37px;
-            margin: 10px 0 0 10px;
-            background: url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png) no-repeat;
-        }
-
-        #placesList .item .marker_1 {
-            background-position: 0 -10px;
-        }
-
-        #placesList .item .marker_2 {
-            background-position: 0 -56px;
-        }
-
-        #placesList .item .marker_3 {
-            background-position: 0 -102px
-        }
-
-        #placesList .item .marker_4 {
-            background-position: 0 -148px;
-        }
-
-        #placesList .item .marker_5 {
-            background-position: 0 -194px;
-        }
-
-        #placesList .item .marker_6 {
-            background-position: 0 -240px;
-        }
-
-        #placesList .item .marker_7 {
-            background-position: 0 -286px;
-        }
-
-        #placesList .item .marker_8 {
-            background-position: 0 -332px;
-        }
-
-        #placesList .item .marker_9 {
-            background-position: 0 -378px;
-        }
-
-        #placesList .item .marker_10 {
-            background-position: 0 -423px;
-        }
-
-        #placesList .item .marker_11 {
-            background-position: 0 -470px;
-        }
-
-        #placesList .item .marker_12 {
-            background-position: 0 -516px;
-        }
-
-        #placesList .item .marker_13 {
-            background-position: 0 -562px;
-        }
-
-        #placesList .item .marker_14 {
-            background-position: 0 -608px;
-        }
-
-        #placesList .item .marker_15 {
-            background-position: 0 -654px;
-        }
-
-        #pagination {
-            margin: 10px auto;
-            text-align: center;
-        }
-
-        #pagination a {
-            display: inline-block;
-            margin-right: 10px;
-        }
-
-        #pagination .on {
-            font-weight: bold;
-            cursor: default;
-            color: #777;
-        }
-    </style>
-
+    <link rel="stylesheet" href="/resources/css/writeMediChartForm.css" />
 </head>
 <body>
 <div>
@@ -319,6 +75,15 @@
                             </p>
                         </div>
                     </div>
+                    <div class="card p-3">
+                        <p>*비대면 진료 예약의 특성 상 당일 진료만 가능 합니다.<br>
+                            *비대면 진료는 1시간 단위로 예약을 신청 받으며, 1시간 중 비대면 진료실이 개설되며 고객님의 핸드폰으로 비대면 진료실 링크를 문자로 보내 드립니다.<br>
+                            *비대면 진료실 개설후 5분 이내로 입장하지 않으시면 자동으로 예약이 취소되오니 이점 양해하시어 비대면 진료 예약 시간에 맞추어 준비 해 주시길 바랍니다.<br>
+                            *비대면 진료 예약 시간은 병원 현장 상황에 맞추어 유동적으로 조정되어 정확한 진료 예약 시간을 미리 정할 수 없는 점 양해 부탁 드립니다. </p>
+                    </div>
+                    <hr>
+                    <label><input type="checkbox" name="naebangChecked"> 확인 했어요</label>
+
                 </div>
             </div>
 
@@ -328,18 +93,28 @@
             <div class="card p-3">
                 <table class="table table-borderless chartTable">
                     <tr>
-                        <th style="max-width: 100px;">증상 입력</th>
+                        <th>증상 입력</th>
                         <td>
-                            <textarea name="diagnosis_content" style="width: 100%; min-height: 200px;"></textarea>
+                        <textarea name="diagnosis_content" placeholder="진료부위 / 증상 입력 최대한 자세하게 기입해 주시기 바랍니다.
+예) 감기 기운이 있고, 머리가 아파요! 증상을 구체적으로 적어주세요!" style="width: 100%; min-height: 200px;"></textarea>
                         </td>
                     </tr>
                     <tr>
-                        <th style="max-width: 100px;">증상 이미지 첨부</th>
+                        <th>증상 이미지 첨부</th>
                         <td>
-                            <div class="card p-3" style="width:100%;">
-                                <%-- 멀티파일 입력 CSS 소스 필요 --%>
-
+                            <div class="card p-3" >
+                                <div align="center" id="image_container" >
+                                    <img id="default_image" style="border-radius: 200px; width: 150px; height: 150px;"
+                                         src="<c:url value='/resources/img/QR.png'/>"/>
+                                </div>
+                                <div id="preview" align="center"></div>
+                                <div align="center" class="filebox" style="padding:10px">
+                                    <label for="diagnosisImgName">사진 등록</label>
+                                    <input type="file" multiple="multiple"  id="diagnosisImgName" name="diagnosisImgName" class="inp-img" accept=".gif, .jpg, .png">
+                                    <button type="button" id="cancelImg" name="cancelImg" class="btn-delete">사진 삭제</button>
+                                </div>
                             </div>
+                        </td>
                         </td>
                     </tr>
                 </table>
@@ -706,5 +481,6 @@
         }
     }
 </script>
+
 </body>
 </html>
