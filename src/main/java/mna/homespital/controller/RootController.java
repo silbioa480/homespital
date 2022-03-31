@@ -60,9 +60,24 @@ public class RootController {
   }
 
   //의료진 찾기
+  //    @SuppressWarnings("deprecation") // 의사 목업코드를 넣을때 쓴 코드. DAO로 실제 DB를 받아올 수 있다면 떼도 됨
   @GetMapping("/doctorList")
-  public ModelAndView doctorList() {
-    return new ModelAndView("doctorList");
+  public ModelAndView doctorList() throws Exception {
+      ModelAndView mv = new ModelAndView("/user/doctorList");
+      // 훈 : 의사 목업코드
+  //        List<Doctor> doctorList = new ArrayList<Doctor>();
+  //
+  //        doctorList.add(new Doctor(
+  //                1, "doctor@aaa.com", "", "서울특별시 서울의료원",
+  //                "서울 중랑구 신내로 156", "www.doctor.com", "김닥터",
+  //                "김닥터.jpg", "내과", "나는김닥터",
+  //                "중졸", "논문없음", "11", "12", "수",
+  //                new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2021-01-01 00:00:00"),
+  //                new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2022-02-02 00:00:00")
+  //        ));
+  //        // 여기까지
+  //        mv.addObject("doctorList", doctorList);
+      return mv;
   }
 
   //진료차트 쓰기
