@@ -39,6 +39,8 @@
                 <input class="validnum" type="text" name="validnum" id="vailidnum" placeholder="인증번호 6글자 입력해주세요" />
             </div>
 
+
+
             <div class="form-group" style="margin-top: 15px">
                 <button id="certificationBtn" onclick="emailCertification()"> 인증번호확인 </button>
                 <input type="hidden" id="certificationYN" value="false">
@@ -56,7 +58,7 @@
 
         <!-- Scripts -->
 
-<script src="/resources/js/login.js"></script>
+<script src="/resources/js/login/login.js"></script>
         <script>
             function emailSend() {
                 let clientEmail = document.getElementById('email').value;
