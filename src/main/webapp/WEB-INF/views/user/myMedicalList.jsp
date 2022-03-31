@@ -1,3 +1,4 @@
+<%-- 준근 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
@@ -62,7 +63,22 @@
                 "user_number": ${diagnosis.user_number}
             },
             success: function (data) {
+                console.log(data);
+
+
                 $.each(data, function (index, item) {
+
+                    //data에서 create_date를 받아와 해당날짜의 요일을 만들어준다.
+                    var old_date = data[index].create_date;
+                    var date = old_date.slice(0, 10)
+                    var week = ['일', '월', '화', '수', '목', '금', '토'];
+                    var dayOfWeek = week[new Date(date).getDay()];
+                    // console.log(week);
+                    // console.log(old_date);
+                    // console.log(date);
+                    // console.log(dayOfWeek);
+
+
                     //진료완료, 진료중 표시 및 대기/예약취소하기 버튼
                     let complete = "";
                     if (item.is_diagnosis_complete == 0) {
@@ -81,7 +97,7 @@
                         upload = "";
                     }
                     // 나의 진료 내역 테이블 생성
-                    $("#myMedicalList").append("<tr><td>" + item.create_date + "</td>" +
+                    $("#myMedicalList").append("<tr><td>" + date + " (" + dayOfWeek + ") <br>" + item.diagnosis_time + ":00</td>" +
                         "<td>" + item.diagnosis_type + "</td>" +
                         "<td>" + item.doctor_name + "</td>" +
                         "<td>" + item.hospital_name + "</td>" +

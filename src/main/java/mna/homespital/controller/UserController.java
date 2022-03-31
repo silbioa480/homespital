@@ -5,15 +5,13 @@ import mna.homespital.service.MedicalListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 @Controller
+@RequestMapping("/")
 public class UserController {
     @Autowired
     MedicalListService mls;
@@ -25,7 +23,7 @@ public class UserController {
         diagnosis.setUser_number(1);
         m.addAttribute("diagnosis", diagnosis);
         System.out.println("myMedicalRecords");
-        return "user/myMedicalRecords";
+        return "user/myMedicalList";
     }
 
     //진료내역 리스트 출력 (준근)
