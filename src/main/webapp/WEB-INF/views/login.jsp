@@ -104,7 +104,7 @@
 </footer>
 
 <!-- Scripts -->
-<script src="/resources/js/login.js"></script>
+<script src="/resources/js/login/login.js"></script>
 <script>
 
   $(function() {
