@@ -8,15 +8,11 @@
     <noscript><link rel="stylesheet" href="/resources/css/main2.css" /></noscript>
 </head>
 <body class="is-preload">
-
-
-
-
 <!-- Intro -->
 <section id="intro" class="main style1 dark fullscreen">
     <div class="content">
         <header>
-            <h2>Hey.</h2>
+            <h2>Homespital.</h2>
         </header>
         <p>Welcome to <strong>Big Picture</strong> a responsive site template designed by <a href="https://html5up.net">HTML5 UP</a><br />
             and released for free under the <a href="https://html5up.net/license">Creative Commons Attribution license</a>.</p>
