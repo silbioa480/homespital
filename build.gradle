@@ -35,6 +35,8 @@ dependencies {
 
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0'
     runtimeOnly 'mysql:mysql-connector-java:8.0.25'
+    //문자보내기
+    implementation group: 'net.nurigo', name: 'javaSDK', version: '2.2'
 
     //mysql SSH 접속을 위한 의존성 라이브러리
     implementation 'com.jcraft:jsch:0.1.55'
