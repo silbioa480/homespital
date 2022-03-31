@@ -27,7 +27,7 @@ public class RootController {
   //회원가입
   @GetMapping("/signUp")
   public ModelAndView signUp() {
-    return new ModelAndView("signup");
+    return new ModelAndView("signUp");
   }
 
   //비밀번호 찾기
