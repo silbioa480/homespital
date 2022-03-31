@@ -73,7 +73,7 @@ public class RootController {
   //진료차트 쓰기
   @GetMapping("/appointmentForm")
   public ModelAndView appointmentForm() {
-    ModelAndView mv = new ModelAndView("/user/userside/appointmentForm");
+    ModelAndView mv = new ModelAndView("user/userside/appointmentForm");
     return mv;
   }
   //진료예약   -인성
@@ -106,4 +106,9 @@ public class RootController {
 //    medicalListService.makeAppointment(diagnosis_time,diagnosis_content,diagnosis_image_name,diagnosisImg);
 //    return "redirect:/appointmentSuccess";
 //  }
+// 관리자 메인 페이지 임시로 만들어놈 (인성)
+  @GetMapping("/welcome")
+  public ModelAndView welcome() {
+    return new ModelAndView("admin/main/welcome");
+  }
 }
