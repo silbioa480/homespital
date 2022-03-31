@@ -74,7 +74,7 @@
 
 </form>
 
-    <span><a style="color:white; margin-left:45px" href="/pwsearch">비밀번호 찾기</a> </span><span><a style="color:white; margin-left:10px" href="/signUp">회원가입</a> </span>
+    <span><a style="color:white; margin-left:45px" href="/findpwForm">비밀번호 찾기</a> </span><span><a style="color:white; margin-left:10px" href="/joinForm">회원가입</a> </span>
 
     <div class="social">
       <p>SNS계정으로 간편 로그인/회원가입</p>
