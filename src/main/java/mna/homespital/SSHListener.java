@@ -30,7 +30,7 @@ public class SSHListener implements ServletContextListener {
 
     public class SSHConnection {
         private final static String HOST = "49.50.172.143";
-        private final static int PORT = 22; //기본포트는 22
+        private final static int PORT = 22;
         private final static String SSH_USER = "root"; //ex) root
         private final static String SSH_PW = "G4N@Fn7$En"; //ex) 1234
 
