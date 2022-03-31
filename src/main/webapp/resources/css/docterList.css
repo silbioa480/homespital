@@ -3082,7 +3082,8 @@ body.is-preload .spotlights > section > .content > .inner {
     -webkit-transform: translateX(-1em);
     -ms-transform: translateX(-1em);
     transform: translateX(-1em);
-    opacity: 0;
+    /*의사 1,2,3 애니메이션 안먹어서 1로 고정시킴*/
+    opacity: 1;
 }
 
 @media screen and (max-width: 1680px) {
@@ -3317,12 +3318,12 @@ body.is-ie .wrapper.fullscreen {
     -webkit-transition: opacity 1s ease, -webkit-transform 1s ease;
     -ms-transition: opacity 1s ease, -ms-transform 1s ease;
     transition: opacity 1s ease, transform 1s ease;
-    opacity: 1.0;
+    opacity: 1;
 }
 /*----------------------------------------------*/
 .wrapper.fade-up.inactive > .inner,
 body.is-preload .wrapper.fade-up > .inner {
-    opacity: 0.2;
+    opacity: 1;
     -moz-transform: translateY(1em);
     -webkit-transform: translateY(1em);
     -ms-transform: translateY(1em);
@@ -3338,12 +3339,12 @@ body.is-preload .wrapper.fade-up > .inner {
     -webkit-transition: opacity 1s ease, -webkit-transform 1s ease;
     -ms-transition: opacity 1s ease, -ms-transform 1s ease;
     transition: opacity 1s ease, transform 1s ease;
-    opacity: 1.0;
+    opacity: 1;
 }
 
 .wrapper.fade-down.inactive > .inner,
 body.is-preload .wrapper.fade-down > .inner {
-    opacity: 0;
+    opacity: 1;
     -moz-transform: translateY(-1em);
     -webkit-transform: translateY(-1em);
     -ms-transform: translateY(-1em);
@@ -3360,7 +3361,7 @@ body.is-preload .wrapper.fade-down > .inner {
 
 .wrapper.fade.inactive > .inner,
 body.is-preload .wrapper.fade > .inner {
-    opacity: 0;
+    opacity: 1;
 }
 
 /* Header */
@@ -3772,7 +3773,8 @@ body.is-ie #sidebar > .inner {
     -moz-transition: max-width 0.2s ease;
     -webkit-transition: max-width 0.2s ease;
     -ms-transition: max-width 0.2s ease;
-    transition: max-width 0.2s ease;
+    transition: max-width 0.8s ease;
+    /*보라색 라인 속도*/
     max-width: 0;
 }
 
@@ -3789,7 +3791,7 @@ body.is-ie #sidebar > .inner {
 }
 
 body.is-preload #sidebar > .inner {
-    opacity: 0;
+    opacity: 1;
 }
 
 body.is-preload #sidebar nav ul li {

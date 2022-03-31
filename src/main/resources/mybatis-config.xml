@@ -5,10 +5,7 @@
 
 <configuration>
     <mappers>
-        <!--	    <mapper resource="mybatis/mappers/User.xml"/>-->
-        <!--		<mapper resource="mybatis/mappers/share.xml"/>-->
-        <!--		<mapper resource="mybatis/mappers/brag.xml"/>-->
-        <!--	   	<mapper resource="mybatis/mappers/placereview.xml"/>-->
-        <!--	   	<mapper resource="mybatis/mappers/community.xml"/>-->
+        <mapper resource="mappers/medicalRecords.xml"/>
+
     </mappers>
 </configuration>
