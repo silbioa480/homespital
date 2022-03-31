@@ -3,6 +3,19 @@ mybatis:
   config-location: classpath:mybatis-config.xml
 
 spring:
+  mail:
+  host: smtp.gmail.com
+  port: 587
+  username: homespital77
+  password: Ghomespital7!
+  properties:
+  mail:
+  smtp:
+  auth: true
+  timeout: 5000
+  starttls:
+  enable: true
+
   datasource:
     url: "jdbc:mysql://127.0.0.1:3316/homespital?useSSL=false&autoReconnection=true"
     username: mulcam2
@@ -19,6 +32,8 @@ spring:
       location: C:/Temp
       max-file-size: 100MB
       max-request-size: 100MB
+
+
 
 server:
   port: ${port:8080}

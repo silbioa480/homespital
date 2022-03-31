@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
     <style>
         #headertitle:link, #headertitle:visited, #headertitle:hover, #headertitle:active {
             color: black;
@@ -51,15 +51,10 @@
 <body>
 <%--<div style="background-color:#1abc9c; position: absolute; width: 100%; height:400px;"></div>--%>
 <tiles:insertAttribute name="navbar"/>
-<div class="container px-4 px-lg-5 mt-5" style="max-width: 1200px;">
+<div class="container px-4 px-lg-5 mt-5">
     <tiles:insertAttribute name="body"/>
 
 </div>
-
-
-
-
-
 
 
 <script src="/resources/js/login/login.js"></script>
