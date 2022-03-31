@@ -57,7 +57,7 @@
 <div class="login_box">
   <div class="content">
 
-<form id="signup-form" method="post" action="#">
+<form id="signup-form" method="post" action="login">
 
   <div class="form-group" id="divEmail">
   <input class="signup-id" type="email" name="email" id="email" placeholder="Email Address" />
@@ -74,7 +74,7 @@
 
 </form>
 
-    <span><a style="color:white; margin-left:45px" href="#">비밀번호 찾기</a> </span><span><a style="color:white; margin-left:10px" href="#">회원가입</a> </span>
+    <span><a style="color:white; margin-left:45px" href="/pwsearch">비밀번호 찾기</a> </span><span><a style="color:white; margin-left:10px" href="/signUp">회원가입</a> </span>
 
     <div class="social">
       <p>SNS계정으로 간편 로그인/회원가입</p>
@@ -104,7 +104,7 @@
 </footer>
 
 <!-- Scripts -->
-<script src="/resources/js/login.js"></script>
+<script src="/resources/js/login/login.js"></script>
 <script>
 
   $(function() {
