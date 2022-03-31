@@ -1,4 +1,4 @@
-@import url(fontawesome-all.min.css);
+
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,700");
 @charset "UTF-8";
 /*
@@ -667,7 +667,7 @@ input[type="submit"],
 input[type="reset"],
 input[type="button"],
 button,
-.button {
+.btn-login {
   -moz-appearance: none;
   -webkit-appearance: none;
   -ms-appearance: none;
@@ -683,7 +683,7 @@ button,
   cursor: pointer;
   display: inline-block;
   font-weight: 700;
-  width: 263px;
+  width: 285px;
   height: 2.55em;
   line-height: 2.75em;
   padding: 0 1.125em;
