@@ -9,18 +9,8 @@
 </head>
 <body class="is-preload">
 
-<!-- Header -->
-<header id="header">
-    <h1>Homespital</h1>
-    <nav>
-        <ul>
-            <li><a href="#intro">안내</a></li>
-            <li><a href="#one">편리함</a></li>
-            <li><a href="#two">모두의 만족</a></li>
-            <li><a href="#work">화상진료</a></li>
-        </ul>
-    </nav>
-</header>
+
+
 
 <!-- Intro -->
 <section id="intro" class="main style1 dark fullscreen">
@@ -117,25 +107,7 @@
     </div>
 </section>
 
-<!-- Footer -->
-<footer id="footer">
 
-    <!-- Icons -->
-    <ul class="icons">
-        <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-        <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-        <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-        <li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-        <li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
-        <li><a href="#" class="icon brands fa-pinterest"><span class="label">Pinterest</span></a></li>
-    </ul>
-
-    <!-- Menu -->
-    <ul class="menu">
-        <li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
-    </ul>
-
-</footer>
 
 <!-- Scripts -->
 <script src="/resources/js/main/jquery.min.js"></script>

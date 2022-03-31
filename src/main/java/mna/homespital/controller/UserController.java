@@ -17,12 +17,12 @@ public class UserController {
     MedicalListService mls;
 
     //나의진료내역 (준근)
-    @GetMapping("/myMedicalRecords")
+    @GetMapping("/myMedicalList")
     public String myMedicalRecords(Model m) {
         Diagnosis diagnosis = new Diagnosis();
         diagnosis.setUser_number(1);
         m.addAttribute("diagnosis", diagnosis);
-        System.out.println("myMedicalRecords");
+        System.out.println("myMedicalList");
         return "user/myMedicalList";
     }
 
@@ -30,13 +30,13 @@ public class UserController {
     @ResponseBody
     @GetMapping("/medicalRecordsList")
     public ArrayList<HashMap<String, Object>> medicalRecordsList(@RequestParam int user_number) throws Exception {
-        ArrayList<HashMap<String, Object>> myMedicalRecordsList = new ArrayList<>();
+        ArrayList<HashMap<String, Object>> myMedicalList = new ArrayList<>();
         try {
-            myMedicalRecordsList = mls.medicalRecordsList(user_number);
+            myMedicalList = mls.medicalRecordsList(user_number);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return myMedicalRecordsList;
+        return myMedicalList;
     }
 
     //나의 진료내역 -> 대기/예약 취소하기 (준근)
