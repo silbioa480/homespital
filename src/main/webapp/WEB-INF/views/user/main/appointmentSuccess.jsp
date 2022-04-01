@@ -11,6 +11,6 @@
     <title>Title</title>
 </head>
 <body>
-
+    <h1>예약 완료</h1>
 </body>
 </html>
