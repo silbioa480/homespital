@@ -53,7 +53,7 @@
 
 </header>
 
-<!-- Signup Form -->
+<!-- login Form -->
 <div class="login_box">
   <div class="content">
 
@@ -74,8 +74,10 @@
 
 </form>
 
+<%--    비밀번호 찾기 및 회원가입 이동--%>
     <span><a style="color:white; margin-left:45px" href="/findpwForm">비밀번호 찾기</a> </span><span><a style="color:white; margin-left:10px" href="/joinForm">회원가입</a> </span>
 
+<%--    2안: 간편로그인 --%>
     <div class="social">
       <p>SNS계정으로 간편 로그인/회원가입</p>
       <a class="circle google" href="#">
@@ -105,6 +107,8 @@
 
 <!-- Scripts -->
 <script src="/resources/js/login/login.js"></script>
+
+<%--로그인 정규성검사 및 모달창내용--%>
 <script>
 
   $(function() {
