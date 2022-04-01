@@ -4,11 +4,15 @@ import mna.homespital.dao.MedicalListDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 @Service
 public class MedicalListServiceImpl implements MedicalListService {
+
+    @Autowired
+    HttpSession ss;
 
     @Autowired
     MedicalListDAO medicalListDAO;
@@ -30,6 +34,4 @@ public class MedicalListServiceImpl implements MedicalListService {
         System.out.println("ServiceImpl -> deleteMedicalRecord() init");
         medicalListDAO.deleteMedicalRecord(diagnosis_number);
     }
-
-
 }

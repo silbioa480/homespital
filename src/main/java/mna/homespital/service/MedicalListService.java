@@ -10,4 +10,6 @@ public interface MedicalListService {
 
     //진료 예약 취소(삭제) (준근)
     void deleteMedicalRecord(int diagnosis_number) throws Exception;
+
+
 }

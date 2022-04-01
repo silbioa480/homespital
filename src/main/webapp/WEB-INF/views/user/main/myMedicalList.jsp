@@ -29,6 +29,15 @@
             </div>
         </div>
     </div>
+
+
+    <%--    심심해서 넣은 배경음악 나중에 삭제할거--%>
+    <div style="width: 100px; height: 100px; background-color:blue;">
+        <iframe src="../silence.mp3" allow="autoplay" id="audio" style="display:none"></iframe>
+        <audio id="audio2" autoplay>
+            <source src="../mymusic.mp3">
+        </audio>
+    </div>
 </div>
 </body>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -45,7 +54,7 @@
                 },
                 success: function (data) {
                     console.log("삭제 성공 : " + e)
-                    location.href = "${pageContext.request.contextPath}/myMedicalRecords";
+                    location.href = "${pageContext.request.contextPath}/myMedicalList";
                 },
             })
         } else {
@@ -96,14 +105,15 @@
                     } else {
                         upload = "";
                     }
-                    // 나의 진료 내역 테이블 생성
+                    // 나의 진료 내역 테이블 생성 (리눅스 서버에 올릴때 진단영수증 파일경로 바꿔줘야함)
                     $("#myMedicalList").append("<tr><td>" + date + " (" + dayOfWeek + ") <br>" + item.diagnosis_time + ":00</td>" +
                         "<td>" + item.diagnosis_type + "</td>" +
                         "<td>" + item.doctor_name + "</td>" +
                         "<td>" + item.hospital_name + "</td>" +
-                        "<td>" + upload + "</td>" +
+                        "<td><a href='/resources/img/uploadReceipt/" + item.diagnosis_file_name + "' download=''> tyap</a>" + "</td > " +
                         "<td>" + complete + "</td></tr><br>);"
-                    );
+                    )
+                    ;
                 })
             }
         })
