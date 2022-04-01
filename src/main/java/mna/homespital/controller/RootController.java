@@ -28,7 +28,7 @@ public class RootController {
 
   @GetMapping("/")
   public ModelAndView index() {
-    return new ModelAndView("user/main/index");
+    return new ModelAndView("index");
   }
 
   //로그인
