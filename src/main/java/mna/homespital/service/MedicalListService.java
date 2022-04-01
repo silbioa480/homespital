@@ -2,6 +2,10 @@ package mna.homespital.service;
 
 import mna.homespital.dto.Diagnosis;
 
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.HashMap;
 
