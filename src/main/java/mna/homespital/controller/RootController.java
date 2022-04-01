@@ -47,6 +47,12 @@ public class RootController {
         return new ModelAndView("user/userside/joinForm");
     }
 
+    //회원정보수정
+    @GetMapping("/modifyForm")
+    public ModelAndView modifyForm() {
+        return new ModelAndView("user/userside/modifyForm");
+    }
+
     //비밀번호 찾기
     @GetMapping("/findpwForm")
     public ModelAndView findpwForm() {
