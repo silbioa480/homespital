@@ -1,11 +1,15 @@
+<%--용식: 유저 회원가입페이지--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Homespital</title>
     <meta charset="utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <link rel="stylesheet" href="/resources/css/signUp.css"/>
+
 </head>
+
 <body class="is-preload">
 
 <!-- Header -->
@@ -40,7 +44,7 @@
 
     <!-- Main -->
     <div id="main">
-        <form id="form" action="#" method="post">
+        <form id="form" name="form" action="/join.do" method="post">
             <!-- One -->
             <section id="one">
                 <div class="container">
@@ -48,49 +52,46 @@
                     <hr>
                     <diu class="input-control">
                         <label for="email">이메일</label>
-                        <input type="email" id="email" name="email" placeholder="이메일을 입력해주세요" required>
+                        <input type="email" id="email" name="email" placeholder="이메일을 입력해주세요">
                         <div class="error"></div>
                     </diu>
                     <div class="input-control">
                         <label for="password">비밀번호</label>
-                        <input type="password" id="password" name="password" placeholder="비밀번호를 입력해주세요" required>
+                        <input type="password" id="password" name="password" placeholder="비밀번호를 입력해주세요">
                         <div class="error"></div>
                     </div>
                     <div class="input-control">
                         <label for="password2">비밀번호 확인</label>
-                        <input type="password" id="password2" name="password2" placeholder="비밀번호를 입력해주세요" required>
+                        <input type="password" id="password2" name="password2" placeholder="비밀번호를 입력해주세요">
                         <div class="error"></div>
                     </div>
                     <div class="input-control">
                         <label for="name">이름</label>
-                        <input type="text" id="name" name="name" placeholder="이름을 입력해주세요" required>
+                        <input type="text" id="name" name="name" placeholder="이름을 입력해주세요">
                         <div class="error"></div>
                     </div>
                     <div class="input-control">
                         <label for="SocialSecurityNumber">주민등록번호</label>
-                        <div id="SocialSecurityNumber" name="SocialSecurityNumber" style="display:flex">
-                            <input type="text" required>&nbsp__&nbsp<input type="text" required>
-                            <div class="error"></div>
-
+                        <div style="display:flex">
+                            <input id="SocialSecurityNumber" name="SocialSecurityNumber1" type="text">&nbsp__&nbsp<input
+                                type="text" name="SocialSecurityNumber2">
                         </div>
-
                         <div class="error"></div>
                     </div>
                     <div class="input-control">
                         <label for="phone">휴대폰 번호</label>
                         <div style="display:flex">
-                            <input id="phone" type="text" name="phone" title="전화번호 입력" required/>
+                            <input id="phone" type="text" name="phone" title="전화번호 입력"/>
                             <input type="button" id="phoneChk" class="doubleChk" value="인증번호 받기">
-                            <div class="error"></div>
                         </div>
+                        <div class="error"></div>
                         <br/>
                         <div style="display:flex">
-                            <input id="phone2" type="text" name="phone2" title="인증번호 입력" disabled required/>
+                            <input id="phone2" type="text" name="phone2" title="인증번호 입력" disabled/>
                             <input type="button" id="phoneChk2" class="doubleChk" value="본인인증">
                         </div>
                         <span class="point successPhoneChk">휴대폰 번호 입력후 인증번호 보내기를 해주십시오.</span>
                         <input type="hidden" id="phoneDoubleChk"/>
-                        <div class="error"></div>
 
                     </div>
                 </div>
@@ -123,12 +124,12 @@
                             </tr>
                             <tr>
                                 <th>도로명주소</th>
-                                <td><input type="text" id="roadFullAddr" style="width:85%"></td>
+                                <td><input type="text" id="roadFullAddr" name="roadFullAddr" style="width:85%"></td>
                             </tr>
                             <tr>
                                 <th>상세주소</th>
                                 <td>
-                                    <input type="text" id="addrDetail" style="width:40%" value="">
+                                    <input type="text" id="addrDetail" name="addrDetail" style="width:40%" value="">
 
                                 </td>
                             </tr>
@@ -167,6 +168,8 @@
                         <h5>카드 비밀번호</h5>
                         <input type="text" class="" placeholder="앞에 두자리만 입력해주세요" maxlength="2">
                     </div>
+                    <button>Get</button>
+                    <input type="hidden" name="billing_key">
                 </div>
             </section>
             <br><br><br><br>
@@ -183,19 +186,19 @@
                                 <input type="checkbox" name="agree_all" id="agree_all">
                                 <span>모두 동의합니다</span>
                             </label>
-                            <label for="agree" style="display:block">
+                            <label style="display:block">
                                 <input type="checkbox" name="agree" value="1">
                                 <span>이용약관 동의<strong>(필수)</strong></span>
                             </label>
-                            <label for="agree" style="display:block">
+                            <label style="display:block">
                                 <input type="checkbox" name="agree" value="2">
                                 <span>개인정보 수집, 이용 동의<strong>(필수)</strong></span>
                             </label>
-                            <label for="agree" style="display:block">
+                            <label style="display:block">
                                 <input type="checkbox" name="agree" value="3">
                                 <span>개인정보 이용 동의<strong>(필수)</strong></span>
                             </label>
-                            <label for="agree" style="display:block;">
+                            <label style="display:block;">
                                 <input type="checkbox" name="agree" value="4">
                                 <span>이벤트, 혜택정보 수신동의<strong class="select_disable">(선택)</strong></span>
                             </label>
