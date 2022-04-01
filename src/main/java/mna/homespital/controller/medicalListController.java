@@ -9,10 +9,10 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 public class medicalListController {
 
-    @GetMapping("/list")
+    @GetMapping("/medicalList")
     public ModelAndView medicalList(){
 
-        return new ModelAndView("medicalList");
+        return new ModelAndView("user/userside/medicalList");
     }
 
 }

@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: lihea
-  Date: 2022-03-29
-  Time: 오후 4:30
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
@@ -17,6 +10,7 @@
 </head>
 <body>
 <div>
+<%--    인성      --%>
     <form method="post" class="file-uploader" action="" enctype="multipart/form-data">
         <div class="card p-3">
             <h4><strong>시간 선택하기</strong></h4>
@@ -120,7 +114,7 @@
                 </table>
             </div>
         </div>
-
+<%----------------------------------------------------------------------%>
         <div class="card p-3">
             <h4><strong>약제 배송 방식</strong></h4>
             <div class="m-3">

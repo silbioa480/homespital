@@ -23,8 +23,9 @@
 
 </style>
 <body>
-
 <header role="banner" style="z-index: 11111;">
+<!-- Header -->
+<header id="header">
     <nav class="navbar navbar-expand-md">
         <div class="container">
             <a class="navbar-brand" href="/">
@@ -51,13 +52,13 @@
 
                 <ul class="navbar-nav ml-auto ">
                     <li class="nav-item">
-                        <a class="nav-link" href="/login">로그인</a>
+                        <a class="nav-link" href="/loginForm">로그인</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/signUp">회원가입</a>
+                        <a class="nav-link" href="/joinForm">회원가입</a>
                     </li>
                     <li class="nav-item cta-btn btn-dark text-white">
-                        <a class="nav-link" href="#">의료 관계자 로그인</a>
+                        <a class="nav-link" href="/welcome">의료 관계자 로그인</a>
                     </li>
                 </ul>
 
