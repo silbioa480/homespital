@@ -16,14 +16,22 @@
         ]]>
     </insert>
 
-<!--( 인성 )-->
+    <!--( 인성 )-->
     <insert id="insertDiagnosis" parameterType="Diagnosis">
         <![CDATA[
-        insert into diagnosis(user_number, doctor_number, is_delivery,diagnosis_time, diagnosis_content, diagnosis_image_name, billing_key, doctor_opnion )
-        values (
-                   1, 2,1, 11, 'sdfsdfsdfsdf', 'qr.jpg', 'a', 'a'
-                );
-
+        insert into diagnosis(user_number, doctor_number, is_delivery, diagnosis_time, diagnosis_content,
+                              diagnosis_image_name, billing_key, doctor_opnion)
+        values (1, 2, 1, 11, 'sdfsdfsdfsdf', 'qr.jpg', 'a', 'a');
         ]]>
     </insert>
+
+
+    <!--  소연 : 진료차트 가져오기  -->
+    <select id="getDiagnosisNo" resultType="Diagnosis" parameterType="int">
+        <![CDATA[
+        select *
+        from diagnosis
+        where diagnosis_number = #{diagnosis_number}
+        ]]>
+    </select>
 </mapper>

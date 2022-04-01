@@ -10,7 +10,6 @@ import mna.homespital.service.allMedicalListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -58,12 +57,11 @@ public class medicalListController {
 
     //나의진료내역 보기 (소연)
     @GetMapping("/myMedicalDetail/{diagnosis_number}")
-    public ModelAndView myMedicalDetail(@PathVariable int diagnosis_number,
-                                        @RequestParam(required = false, defaultValue = "1")
-                                                HttpServletRequest request) {
+    public ModelAndView myMedicalDetail(@PathVariable String diagnosis_number, HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();
         try {
-            diagnosis = medicalListService.getDiagnosisNo(diagnosis_number); //내진료 내역 가져오기
+            int number = Integer.parseInt(diagnosis_number);
+            diagnosis = medicalListService.getDiagnosisNo(number); //내진료 내역 가져오기
             HttpSession session = request.getSession();
             User user = (User) session.getAttribute("user");
             User userinfo = memberService.getUserDetail(user.getUser_number()); //환자(User)정보 가져오기
