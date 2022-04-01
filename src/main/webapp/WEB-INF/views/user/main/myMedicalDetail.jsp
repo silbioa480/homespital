@@ -51,7 +51,7 @@
         </div>
         <div class="col-md-8 card-body">
             <div class="card-title d-flex">
-                <h4 class="pr-3 font-weight-bolder">김돌팔${doctor.doctor_name}</h4>
+                <h4 class="pr-3 font-weight-bolder">김돌팔${doc.doctor_name}</h4>
                 <span class="pl-3 font-weight-normal align-text-bottom">의사/${doctor.doctor_diagnosis_type}</span>
             </div>
             <div class="card-text">
@@ -97,7 +97,7 @@
 
 <%--진료 챠트-소제목 --%>
 <div><h4><strong>진료 차트</strong></h4></div>
-<%--(위와 for비슷하게) 환자의 정보 출력하는 창 만든다 from 환자의 정보 DB--%>
+<%--(위와 form비슷하게) 환자의 정보 출력하는 창 만든다 from 환자의 정보 DB--%>
 <div class="card p-3">
     <div class="row g-0">
         <div class="col-md-8 card-body">
@@ -169,7 +169,7 @@
             <hr>
             <div><h5><strong>약국주소</strong></h5></div>
 
-            
+
             <label>받으신 곳 주소</label>
             <hr>
             <div><h5><strong>환자이름 ${user.user_name}</strong></h5></div>

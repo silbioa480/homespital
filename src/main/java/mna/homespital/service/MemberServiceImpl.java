@@ -37,6 +37,7 @@ public class MemberServiceImpl implements MemberService {
         return user;
     }
 
+
     //소연 : 의사(Doctor)정보 가져오기
     @Override
     public Doctor getDoctorDetail(int doctor_number) throws Exception {

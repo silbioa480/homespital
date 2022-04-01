@@ -2,6 +2,7 @@ package mna.homespital.controller;
 
 import mna.homespital.dto.Diagnosis;
 import mna.homespital.service.MedicalListService;
+import mna.homespital.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +20,9 @@ public class UserController {
 
     @Autowired
     HttpSession session;
+
+    @Autowired
+    private MemberService memberService;
 
     //나의진료내역 (준근)
     @GetMapping("/myMedicalList")
@@ -58,19 +62,6 @@ public class UserController {
 //
 //
 //    }
-
-
-    //나의진료내역 보기 (소연)
-    @GetMapping("/myMedicalDetail/{diagnosis_number}")
-    public String myMedicalDetail() {
-//        User userInfo = (User) session.getAttribute("user");
-//    (Model m) {
-//        Diagnosis diagnosis = new Diagnosis();
-//        diagnosis.setUser_number(1);
-//        m.addAttribute("diagnosis", diagnosis);
-//        System.out.println("myMedicalList");
-        return "user/main/myMedicalDetail";
-    }
 
 
 }
