@@ -7,6 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -49,11 +53,37 @@ public class UserController {
     }
 
     //진료영수증 다운로드
-//    @GetMapping("/diagnosisDownload")
-//    public void diagnosisDownload(HttpservletResponse response) throws Exception {
-//
-//
-//    }
+    @GetMapping("/diagnosisDownload")
+    public void diagnosisDownload(HttpServletResponse response) throws Exception {
+        // DB에서 파일명 불러오기
+        String fileName;
+
+        String saveFileName = "경로 설정?";
+        String contentType = "image/jpg";
+
+        File file = new File(saveFileName);
+        long fileLength = file.length();
+
+        response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\";");
+        response.setHeader("Content-Transfer-Encoding", "binary");
+        response.setHeader("Content-Type", contentType);
+        response.setHeader("Content-Length", "" + fileLength);
+        response.setHeader("Pragma", "no-cache;");
+        response.setHeader("Expires", "-1;");
+
+        try (
+                FileInputStream fis = new FileInputStream(saveFileName);
+                OutputStream out = response.getOutputStream();
+        ) {
+            int readCount = 0;
+            byte[] buffer = new byte[1024];
+            while ((readCount = fis.read(buffer)) != -1) {
+                out.write(buffer, 0, readCount);
+            }
+        } catch (Exception ex) {
+            throw new RuntimeException("file Save Error");
+        }
+    }
 
 
 }
