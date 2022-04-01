@@ -55,7 +55,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           >
             <ul class="navbar-nav ml-auto pl-lg-5 pl-0">
               <li class="nav-item">
-                <a class="nav-link" href="#">예약하기</a>
+                <a class="nav-link" href="/appointmentForm">예약하기</a>
               </li>
             </ul>
 
@@ -63,18 +63,18 @@ uri="http://java.sun.com/jsp/jstl/core" %>
               <c:choose>
                 <c:when test="${not empty email}">
                   <li class="nav-item">
-                    <a class="nav-link" href="#">로그아웃</a>
+                    <a class="nav-link" href="/">로그아웃</a>
                   </li>
                 </c:when>
                 <c:otherwise>
                   <li class="nav-item">
-                    <a class="nav-link" href="/login">로그인</a>
+                    <a class="nav-link" href="/loginForm">로그인</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">회원가입</a>
+                    <a class="nav-link" href="/joinForm">회원가입</a>
                   </li>
                   <li class="nav-item cta-btn btn-dark text-white">
-                    <a class="nav-link" href="#">의료 관계자 로그인</a>
+                    <a class="nav-link" href="/welcome">의료 관계자 로그인</a>
                   </li>
                 </c:otherwise>
               </c:choose>
