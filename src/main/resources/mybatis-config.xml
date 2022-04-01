@@ -6,6 +6,7 @@
 <configuration>
     <mappers>
         <mapper resource="mappers/medicalRecords.xml"/>
-
+        <mapper resource="mappers/member.xml"/>
+        
     </mappers>
 </configuration>

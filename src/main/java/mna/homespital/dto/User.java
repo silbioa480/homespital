@@ -18,6 +18,17 @@ public class User {
     public User() {
     }
 
+    //용식: 빌링키발급전 회원가입test
+    public User(String user_email, String user_password, String user_name, String user_registration_number, String user_phone, String user_address) {
+        this.user_email = user_email;
+        this.user_password = user_password;
+        this.user_name = user_name;
+        this.user_registration_number = user_registration_number;
+        this.user_phone = user_phone;
+        this.user_address = user_address;
+
+    }
+
     public User(int user_number, String user_email, String user_password, String user_name, String user_registration_number, String user_phone, String user_address, String billing_key, Date create_date, Date update_date) {
         this.user_number = user_number;
         this.user_email = user_email;
