@@ -56,4 +56,16 @@ public class UserController {
 //    }
 
 
+    //나의진료내역 보기 (소연)
+    @GetMapping("/myMedicalDetail")
+    public String myMedicalDetail() {
+//    (Model m) {
+//        Diagnosis diagnosis = new Diagnosis();
+//        diagnosis.setUser_number(1);
+//        m.addAttribute("diagnosis", diagnosis);
+//        System.out.println("myMedicalList");
+        return "user/main/myMedicalDetail";
+    }
+
+
 }
