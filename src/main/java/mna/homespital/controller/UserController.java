@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+
 @Controller
 @RequestMapping("/")
 public class UserController {
@@ -55,13 +56,6 @@ public class UserController {
         mls.deleteMedicalRecord(diagnosis_number);
         return "success";
     }
-
-    //진료영수증 다운로드
-//    @GetMapping("/diagnosisDownload")
-//    public void diagnosisDownload(HttpservletResponse response) throws Exception {
-//
-//
-//    }
 
 
 }

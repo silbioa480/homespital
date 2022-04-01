@@ -13,7 +13,7 @@
     <!--        ]]>-->
     <!--    </select>-->
 
-
+    <!--  나의 진료내역 리스트 보기(준근)  -->
     <select id="medicalRecordsList" resultType="HashMap" parameterType="int">
 	    <![CDATA[
         select di.*, doc.*
@@ -21,17 +21,17 @@
              doctor doc
         where di.user_number = #{user_number}
           and di.doctor_number = doc.doctor_number
-        order by di.create_date desc limit 10
+        order by di.create_date desc
         ]]>
     </select>
-
+    <!-- 예약된 진료 취소하기 (준근)-->
     <delete id="deleteMedicalRecord" parameterType="int">
         <![CDATA[
         delete
         from diagnosis
         where diagnosis_number = #{diagnosis_number}
         ]]>
-
     </delete>
+
 
 </mapper>
