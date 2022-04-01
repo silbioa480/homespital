@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -15,6 +16,9 @@ import java.util.HashMap;
 public class UserController {
     @Autowired
     MedicalListService mls;
+
+    @Autowired
+    HttpSession session;
 
     //나의진료내역 (준근)
     @GetMapping("/myMedicalList")
@@ -57,8 +61,9 @@ public class UserController {
 
 
     //나의진료내역 보기 (소연)
-    @GetMapping("/myMedicalDetail")
+    @GetMapping("/myMedicalDetail/{diagnosis_number}")
     public String myMedicalDetail() {
+//        User userInfo = (User) session.getAttribute("user");
 //    (Model m) {
 //        Diagnosis diagnosis = new Diagnosis();
 //        diagnosis.setUser_number(1);
