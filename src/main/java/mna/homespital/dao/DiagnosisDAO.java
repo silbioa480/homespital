@@ -8,4 +8,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DiagnosisDAO {
   public void insertDiag(Diagnosis diag) throws Exception;
+
+  // 소연 : 나의진료내역(User) 볼때, 환자 진료 내역 diagnosis_number 가져오는 것.
+  public Diagnosis getDiagnosisNo(int diagnosis_number);
+
+  //  진료차트폼 ( 인성 )
+  void insertDiagnosis(Diagnosis diagnosis) throws Exception;
 }

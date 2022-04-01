@@ -1,6 +1,7 @@
 package mna.homespital.dao;
 
 
+import mna.homespital.dto.Diagnosis;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 

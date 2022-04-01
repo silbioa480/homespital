@@ -2,19 +2,28 @@ package mna.homespital.controller;
 
 import mna.homespital.dto.Diagnosis;
 import mna.homespital.service.MedicalListService;
+import mna.homespital.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
+
 
 @Controller
 @RequestMapping("/")
 public class UserController {
     @Autowired
     MedicalListService mls;
+
+    @Autowired
+    HttpSession session;
+
+    @Autowired
+    private MemberService memberService;
 
     //나의진료내역 (준근)
     @GetMapping("/myMedicalList")
@@ -47,13 +56,6 @@ public class UserController {
         mls.deleteMedicalRecord(diagnosis_number);
         return "success";
     }
-
-    //진료영수증 다운로드
-//    @GetMapping("/diagnosisDownload")
-//    public void diagnosisDownload(HttpservletResponse response) throws Exception {
-//
-//
-//    }
 
 
 }

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mna.homespital.dao.MemberDAO">
+    <insert id="insertMember" parameterType="user">
+        <![CDATA[
+        insert into `user`(user_email, user_password, user_name, user_registration_number,
+                           user_phone, user_address)
+        values (#{user_email}, #{user_password}, #{user_name}, #{user_registration_number},
+                #{user_phone}, #{user_address})
+        ]]>
+    </insert>
+
+    <select id="queryMember" resultType="user" parameterType="String">
+        <![CDATA[
+        select *
+        from `user`
+        where user_email = #{user_email}
+        ]]>
+    </select>
+</mapper>
