@@ -19,16 +19,9 @@
         <put-attribute name="footer" value="/WEB-INF/views/common/layout/footer.jsp"/>
     </definition>
 
-    <definition name="main" extends="baseLayout">
-        <put-attribute name="title" value="메인페이지"/>
-        <put-attribute name="body"
-                       value="/WEB-INF/views/user/main/index.jsp"/>
-    </definition>
-
-
     <definition name="*" extends="baseLayout">
         <put-attribute name="body"
-                       value="/WEB-INF/views/user/main/index.jsp"/>
+                       value="/WEB-INF/views/user/main/{1}.jsp"/>
     </definition>
     <definition name="*/*/*" extends="baseLayout">
         <put-attribute name="body"
