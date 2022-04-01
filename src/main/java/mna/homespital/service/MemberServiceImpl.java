@@ -26,4 +26,14 @@ public class MemberServiceImpl implements MemberService {
             throw new Exception("로그인 오류");
         }
     }
+
+    @Override
+    public User join(User user) throws Exception {
+        User mem = memberDAO.queryMember(user.getUser_email());
+        if (mem != null) throw new Exception("이미 있는 이메일입니다.");
+        memberDAO.insertMember(user);
+        return memberDAO.queryMember(user.getUser_email());
+    }
+
+
 }
