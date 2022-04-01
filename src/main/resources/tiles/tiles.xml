@@ -16,7 +16,6 @@
     <definition name="userSideLayout" template="/WEB-INF/views/common/userSideLayout.jsp">
         <put-attribute name="navbar" value="/WEB-INF/views/common/layout/navbar.jsp"/>
         <put-attribute name="sidebar" value="/WEB-INF/views/common/layout/sidebar.jsp"/>
-        <!--        <put-attribute name="sidebar" value="/WEB-INF/views/common/layout/sidebar2.jsp"/>-->
         <put-attribute name="body" value=""/>
         <put-attribute name="footer" value="/WEB-INF/views/common/layout/footer.jsp"/>
     </definition>
