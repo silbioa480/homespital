@@ -2,6 +2,8 @@ package mna.homespital.service;
 
 import lombok.RequiredArgsConstructor;
 import mna.homespital.dao.MemberDAO;
+import mna.homespital.dto.Doctor;
+import mna.homespital.dto.Pharmacy;
 import mna.homespital.dto.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,5 +37,28 @@ public class MemberServiceImpl implements MemberService {
         return memberDAO.queryMember(user.getUser_email());
     }
 
+    //소연 : 환자(User)정보 가져오기
+    @Override
+    public User getUserDetail(int user_number) throws Exception {
+        User user = memberDAO.selectUserDetail(user_number);
+        user.setUser_password("");
+        return user;
+    }
+
+    //소연 : 의사(Doctor)정보 가져오기
+    @Override
+    public Doctor getDoctorDetail(int doctor_number) throws Exception {
+        Doctor doctor = memberDAO.selectDoctorDetail(doctor_number);
+        doctor.setDoctor_password("");
+        return doctor;
+    }
+
+    //소연 : 약사(Pharmacy)정보 가져오기
+    @Override
+    public Pharmacy getPharDetail(int pharmacy_number) throws Exception {
+        Pharmacy pharmacy = memberDAO.selectPharmacyDetail(pharmacy_number);
+        pharmacy.setPharmacy_password("");
+        return pharmacy;
+    }
 
 }

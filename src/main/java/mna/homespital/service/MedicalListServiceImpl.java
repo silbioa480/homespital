@@ -31,4 +31,6 @@ public class MedicalListServiceImpl implements MedicalListService {
         medicalListDAO.deleteMedicalRecord(diagnosis_number);
 
     }
+
+
 }
