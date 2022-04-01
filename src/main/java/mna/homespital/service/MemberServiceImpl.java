@@ -12,6 +12,7 @@ public class MemberServiceImpl implements MemberService {
     @Autowired
     MemberDAO memberDAO;
 
+    //가영: 로그인
     @Override
     public boolean login(String user_email, String user_password) throws Exception {
         try {
