@@ -64,12 +64,8 @@
                 <ul class="navbar-nav ml-auto">
                     <c:choose>
                         <c:when test="${not empty email}">
-                            <li class="nav-item" class="dropdown-submenu">
+                            <li class="nav-item">
                                 <a class="nav-link" href="#">마이페이지</a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">나의진료내역</a></li>
-                                    <li><a href="#">내정보수정</a></li>
-                                </ul>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">로그아웃</a>
