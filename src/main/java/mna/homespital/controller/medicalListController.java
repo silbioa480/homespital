@@ -58,6 +58,7 @@ public class medicalListController {
     //나의진료내역 보기 (소연)
     @GetMapping("/myMedicalDetail/{diagnosis_number}")
     public ModelAndView myMedicalDetail(@PathVariable String diagnosis_number, HttpServletRequest request) {
+        System.out.println("gifjgfdigjfldgjfjgld");
         ModelAndView mav = new ModelAndView();
         try {
             int number = Integer.parseInt(diagnosis_number);
@@ -65,6 +66,7 @@ public class medicalListController {
             HttpSession session = request.getSession();
             User user = (User) session.getAttribute("user");
             User userinfo = memberService.getUserDetail(user.getUser_number()); //환자(User)정보 가져오기
+            System.out.println(userinfo);
 
             if (user != null) {
                 System.out.println("유저 정보 인식");

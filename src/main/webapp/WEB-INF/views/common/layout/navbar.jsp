@@ -39,6 +39,7 @@
                         class="navbar-toggler border-dark"
                         type="button"
                         data-toggle="collapse"
+                <%--                        data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown"--%>
                         data-target="#navbars"
                         aria-controls="navbars"
                         aria-expanded="false"
@@ -57,15 +58,14 @@
                     <ul class="navbar-nav ml-auto">
                         <c:choose>
                             <c:when test="${not empty email}">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#" data-bs-toggle="dropdown"
-                                       id="dropdownMenuLink">마이페이지</a>
-                                    <div class="collapse navbar-collapse">
-                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                            <li><a href="#">나의진료내역</a></li>
-                                            <li><a href="#">내정보수정</a></li>
-                                        </ul>
-                                    </div>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                       id="DropdownMenuLink">마이페이지</a>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink"
+                                        aria-expanded="false">
+                                        <li><a class="dropdown-item" href="#">나의진료내역</a></li>
+                                        <li><a class="dropdown-item" href="#">내정보수정</a></li>
+                                    </ul>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">로그아웃</a>
