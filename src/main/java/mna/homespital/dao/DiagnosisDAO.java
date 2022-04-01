@@ -8,4 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DiagnosisDAO {
   public void insertDiag(Diagnosis diag) throws Exception;
+
+//  진료차트폼 ( 인성 )
+  void insertDiagnosis(Diagnosis diagnosis) throws Exception;
 }
