@@ -5,7 +5,7 @@
 <tiles-definitions>
 
 
-    <definition name="default" template="/WEB-INF/views/admin/main/layout/baseLayout.jsp">
+    <definition name="default" template="/WEB-INF/views/common/baseLayout.jsp">
         <put-attribute name="content" value=""/>
     </definition>
 
@@ -13,7 +13,18 @@
         <put-attribute name="content" value="/WEB-INF/views/user/{1}.jsp"/>
     </definition>
 
-    <definition name="baseLayout" template="/WEB-INF/views/admin/main/layout/baseLayout.jsp">
+    <definition name="userSideLayout" template="/WEB-INF/views/common/userSideLayout.jsp">
+        <put-attribute name="navbar" value="/WEB-INF/views/common/layout/navbar.jsp"/>
+        <put-attribute name="sidebar" value="/WEB-INF/views/common/layout/sidebar.jsp"/>
+        <put-attribute name="body" value=""/>
+        <put-attribute name="footer" value="/WEB-INF/views/common/layout/footer.jsp"/>
+    </definition>
+    <definition name="user/userside/*" extends="userSideLayout">
+        <put-attribute name="body"
+                       value="/WEB-INF/views/user/userside/{1}.jsp"/>
+    </definition>
+
+    <definition name="baseLayout" template="/WEB-INF/views/common/baseLayout.jsp">
         <put-attribute name="navbar" value="/WEB-INF/views/common/layout/navbar.jsp"/>
         <put-attribute name="body" value=""/>
         <put-attribute name="footer" value="/WEB-INF/views/common/layout/footer.jsp"/>
@@ -21,8 +32,14 @@
 
     <definition name="*" extends="baseLayout">
         <put-attribute name="body"
-                       value="/WEB-INF/views/user/main/{1}.jsp"/>
+                       value="/WEB-INF/views/{1}.jsp"/>
     </definition>
+
+    <definition name="*/*" extends="baseLayout">
+        <put-attribute name="body"
+                       value="/WEB-INF/views/{1}/{2}.jsp"/>
+    </definition>
+
     <definition name="*/*/*" extends="baseLayout">
         <put-attribute name="body"
                        value="/WEB-INF/views/{1}/{2}/{3}.jsp"/>
