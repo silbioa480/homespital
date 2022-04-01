@@ -1,5 +1,7 @@
 package mna.homespital.dto;
 
+import java.util.Date;
+
 //소연 : Doctor dto
 public class Doctor {
     private int doctor_number;
@@ -17,6 +19,9 @@ public class Doctor {
     private String working_time;
     private String lunch_time;
     private String holiday;
+    private Date create_date;
+    private Date update_date;
+
 
     public int getDoctor_number() {
         return doctor_number;
@@ -141,7 +146,24 @@ public class Doctor {
     public Doctor() {
     }
 
-    public Doctor(int doctor_number, String doctor_email, String doctor_password, String doctor_name, String hospital_name, String hospital_address, String hospital_url, String doctor_profile_image_name, String doctor_diagnosis_type, String doctor_introduction, String doctor_education, String doctor_thesis, String working_time, String lunch_time, String holiday) {
+    public Doctor(String doctor_email, String doctor_password, String doctor_name, String hospital_name, String hospital_address, String hospital_url, String doctor_profile_image_name, String doctor_diagnosis_type, String doctor_introduction, String doctor_education, String doctor_thesis, String working_time, String lunch_time, String holiday) {
+        this.doctor_email = doctor_email;
+        this.doctor_password = doctor_password;
+        this.doctor_name = doctor_name;
+        this.hospital_name = hospital_name;
+        this.hospital_address = hospital_address;
+        this.hospital_url = hospital_url;
+        this.doctor_profile_image_name = doctor_profile_image_name;
+        this.doctor_diagnosis_type = doctor_diagnosis_type;
+        this.doctor_introduction = doctor_introduction;
+        this.doctor_education = doctor_education;
+        this.doctor_thesis = doctor_thesis;
+        this.working_time = working_time;
+        this.lunch_time = lunch_time;
+        this.holiday = holiday;
+    }
+
+    public Doctor(int doctor_number, String doctor_email, String doctor_password, String doctor_name, String hospital_name, String hospital_address, String hospital_url, String doctor_profile_image_name, String doctor_diagnosis_type, String doctor_introduction, String doctor_education, String doctor_thesis, String working_time, String lunch_time, String holiday, Date create_date, Date update_date) {
         this.doctor_number = doctor_number;
         this.doctor_email = doctor_email;
         this.doctor_password = doctor_password;
@@ -157,5 +179,7 @@ public class Doctor {
         this.working_time = working_time;
         this.lunch_time = lunch_time;
         this.holiday = holiday;
+        this.create_date = create_date;
+        this.update_date = update_date;
     }
 }

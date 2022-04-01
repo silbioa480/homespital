@@ -1,6 +1,8 @@
 package mna.homespital.service;
 
+import mna.homespital.dao.DiagnosisDAO;
 import mna.homespital.dao.MedicalListDAO;
+import mna.homespital.dto.Diagnosis;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,9 @@ public class MedicalListServiceImpl implements MedicalListService {
 
     @Autowired
     MedicalListDAO medicalListDAO;
+
+    @Autowired
+    DiagnosisDAO diagnosisDAO;
 
 
     //    @Override
@@ -33,6 +38,13 @@ public class MedicalListServiceImpl implements MedicalListService {
     public void deleteMedicalRecord(int diagnosis_number) throws Exception {
         System.out.println("ServiceImpl -> deleteMedicalRecord() init");
         medicalListDAO.deleteMedicalRecord(diagnosis_number);
+    }
+
+    // 소연 : 나의진료내역(User) 볼때, 환자 진료 내역 diagnosis_number 가져오는 것.
+    @Override
+    public Diagnosis getDiagnosisNo(int diagnosis_number) throws Exception {
+        Diagnosis myMedicalDetail = diagnosisDAO.getDiagnosisNo(diagnosis_number);
+        return myMedicalDetail;
     }
 
 
