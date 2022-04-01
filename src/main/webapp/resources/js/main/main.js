@@ -199,7 +199,7 @@
 
 					// Update scrolly links.
 						$('a[href^="#"]').scrolly({
-							speed: 1500,
+							speed: 100,
 							offset: $header.outerHeight() - 1
 						});
 

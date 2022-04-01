@@ -2,6 +2,7 @@ package mna.homespital.dto;
 
 import java.util.Date;
 
+
 public class User {
     private int user_number;
     private String user_email;
