@@ -13,52 +13,47 @@ import java.util.HashMap;
 @Controller
 @RequestMapping("/")
 public class UserController {
-
     @Autowired
     MedicalListService mls;
 
-    //나의진료내역
-    @GetMapping("/myMedicalRecords")
-    public String myMedicalRecords(Model m) {
+    //나의진료내역 (준근)
+    @GetMapping("/myMedicalList")
+    public String myMedicalList(Model m) {
         Diagnosis diagnosis = new Diagnosis();
         diagnosis.setUser_number(1);
         m.addAttribute("diagnosis", diagnosis);
-        return "user/myMedicalRecords";
-
+        System.out.println("myMedicalList");
+        return "user/main/myMedicalList";
     }
 
-//    //진료내역 리스트 출력
-//    @ResponseBody
-//    @PostMapping("/medicalRecordsList")
-//    public List<Diagnosis> medicalRecordsList(@RequestParam int user_number) throws Exception {
-//        List<Diagnosis> myMedicalRecordsList = null;
-//        try {
-//            myMedicalRecordsList = mls.medicalRecordsList(user_number);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return myMedicalRecordsList;
-//    }
-
-    //진료내역 리스트 출력
+    //진료내역 리스트 출력 (준근)
     @ResponseBody
-    @PostMapping("/medicalRecordsList")
+    @GetMapping("/medicalRecordsList")
     public ArrayList<HashMap<String, Object>> medicalRecordsList(@RequestParam int user_number) throws Exception {
-        System.out.println(user_number);
-        ArrayList<HashMap<String, Object>> myMedicalRecordsList = new ArrayList<>();
-
+        ArrayList<HashMap<String, Object>> myMedicalList = new ArrayList<>();
         try {
-            myMedicalRecordsList = mls.medicalRecordsList(user_number);
+            myMedicalList = mls.medicalRecordsList(user_number);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return myMedicalRecordsList;
+        return myMedicalList;
     }
 
-
-    //나의 진료내역 -> 대기/예약 취소하기
-    @PostMapping("/cancelReservation")
-    public String cancelReservation() {
-        return "redirect:/myMedicalRecords";
+    //나의 진료내역 -> 대기/예약 취소하기 (준근)
+    @ResponseBody
+    @PostMapping("/deleteMedicalRecord")
+    public String deleteReservation(int diagnosis_number) throws Exception {
+        System.out.println("delete : " + diagnosis_number);
+        mls.deleteMedicalRecord(diagnosis_number);
+        return "success";
     }
+
+    //진료영수증 다운로드
+//    @GetMapping("/diagnosisDownload")
+//    public void diagnosisDownload(HttpservletResponse response) throws Exception {
+//
+//
+//    }
+
+
 }

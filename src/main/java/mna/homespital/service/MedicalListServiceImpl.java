@@ -14,13 +14,21 @@ public class MedicalListServiceImpl implements MedicalListService {
     MedicalListDAO medicalListDAO;
 
 
-//    @Override
+    //    @Override
 //    public List<Diagnosis> medicalRecordsList(int user_number) throws Exception {
 //        return medicalListDAO.medicalRecordsList(user_number);
 //    }
-
+    //환자 진료내역 출력 (준근)
     @Override
     public ArrayList<HashMap<String, Object>> medicalRecordsList(int user_number) throws Exception {
         return medicalListDAO.medicalRecordsList(user_number);
+    }
+
+    //진료 예약 취소(삭제) (준근)
+    @Override
+    public void deleteMedicalRecord(int diagnosis_number) throws Exception {
+        System.out.println("ServiceImpl -> deleteMedicalRecord() init");
+        medicalListDAO.deleteMedicalRecord(diagnosis_number);
+
     }
 }
