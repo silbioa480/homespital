@@ -1,5 +1,6 @@
 package mna.homespital.controller;
 
+import mna.homespital.dto.Doctor;
 import mna.homespital.service.MedicalListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,74 +10,86 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/")
 public class RootController {
 
-  @Autowired
-  private ServletContext servletContext;
+    @Autowired
+    private ServletContext servletContext;
 
-  @Autowired
-  HttpSession session;
+    @Autowired
+    HttpSession session;
 
-  @Autowired
-  MedicalListService medicalListService;
+    @Autowired
+    MedicalListService medicalListService;
 
-  public RootController() {
-  }
+    public RootController() {
+    }
 
-  @GetMapping("/")
-  public ModelAndView index() {
-    return new ModelAndView("index");
-  }
+    @GetMapping("/")
+    public ModelAndView index() {
+        return new ModelAndView("user/main/index");
+    }
 
-  //로그인
-  @GetMapping("/loginForm")
-  public ModelAndView loginForm() {
-    return new ModelAndView("user/main/loginForm");
-  }
+    //로그인
+    @GetMapping("/loginForm")
+    public ModelAndView loginForm() {
+        return new ModelAndView("user/main/loginForm");
+    }
 
-  //회원가입
-  @GetMapping("/joinForm")
-  public ModelAndView joinForm() {
-    return new ModelAndView("user/userside/joinForm");
-  }
+    //회원가입
+    @GetMapping("/joinForm")
+    public ModelAndView joinForm() {
+        return new ModelAndView("user/userside/joinForm");
+    }
 
-  //비밀번호 찾기
-  @GetMapping("/findpwForm")
-  public ModelAndView findpwForm() {
-    return new ModelAndView("user/main/findpwForm");
-  }
+    //비밀번호 찾기
+    @GetMapping("/findpwForm")
+    public ModelAndView findpwForm() {
+        return new ModelAndView("user/main/findpwForm");
+    }
 
-  //의료진 찾기
-  //    @SuppressWarnings("deprecation") // 의사 목업코드를 넣을때 쓴 코드. DAO로 실제 DB를 받아올 수 있다면 떼도 됨
-  @GetMapping("/doctorList")
-  public ModelAndView doctorList() throws Exception {
-      ModelAndView mv = new ModelAndView("user/userside/doctorList");
-      // 훈 : 의사 목업코드
-  //        List<Doctor> doctorList = new ArrayList<Doctor>();
-  //
-  //        doctorList.add(new Doctor(
-  //                1, "doctor@aaa.com", "", "서울특별시 서울의료원",
-  //                "서울 중랑구 신내로 156", "www.doctor.com", "김닥터",
-  //                "김닥터.jpg", "내과", "나는김닥터",
-  //                "중졸", "논문없음", "11", "12", "수",
-  //                new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2021-01-01 00:00:00"),
-  //                new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2022-02-02 00:00:00")
-  //        ));
-  //        // 여기까지
-  //        mv.addObject("doctorList", doctorList);
-      return mv;
-  }
+    //의료진 찾기
+    //    @SuppressWarnings("deprecation") // 의사 목업코드를 넣을때 쓴 코드. DAO로 실제 DB를 받아올 수 있다면 떼도 됨
+    @GetMapping("/doctorList")
+    public ModelAndView doctorList() throws Exception {
+        ModelAndView mv = new ModelAndView("user/userside/doctorList");
+        // 훈 : 의사 목업코드
+        List<Doctor> doctorList = new ArrayList<Doctor>();
 
-  //진료차트 쓰기
-  @GetMapping("/appointmentForm")
-  public ModelAndView appointmentForm() {
-    ModelAndView mv = new ModelAndView("user/userside/appointmentForm");
-    return mv;
-  }
-  //진료예약   -인성
+        doctorList.add(new Doctor(
+                1, "doctor@aaa.com", "", "김닥터",
+                "서울특별시 서울의료원", "서울 중랑구 신내로 156", "www.doctor.com",
+                null, "내과", "나는김닥터",
+                "중졸", "논문없음", "11", "12", "수",
+                new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2021-01-01 00:00:00"),
+                new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2022-02-02 00:00:00")
+        ));
+        doctorList.add(new Doctor(
+                2, "doctor2@aaa.com", "", "이닥터",
+                "세브란스병원", "서울 서대문구 연세로 50-1", "www.doctor2.com",
+                null, "정형외과", "나는이닥터",
+                "고졸", "논문없음", "11", "12", "수",
+                new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2021-01-01 00:00:00"),
+                new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2022-02-02 00:00:00")
+        ));
+        // 여기까지
+        mv.addObject("doctorList", doctorList);
+        return mv;
+    }
+
+    //진료차트 쓰기
+    @GetMapping("/appointmentForm")
+    public ModelAndView appointmentForm() {
+        ModelAndView mv = new ModelAndView("user/userside/appointmentForm");
+        return mv;
+    }
+
+    //진료예약   -인성
 //  @PostMapping("/appointmentForm")
 //  public List<String> appointment(int diagnosis_time, String diagnosis_content, String diagnosis_image_name, MultipartFile diagnosisImgName,
 //                                  Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -107,8 +120,8 @@ public class RootController {
 //    return "redirect:/appointmentSuccess";
 //  }
 // 관리자 메인 페이지 임시로 만들어놈 (인성)
-  @GetMapping("/welcome")
-  public ModelAndView welcome() {
-    return new ModelAndView("admin/main/welcome");
-  }
+    @GetMapping("/welcome")
+    public ModelAndView welcome() {
+        return new ModelAndView("admin/main/welcome");
+    }
 }
