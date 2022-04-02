@@ -31,6 +31,7 @@ public class SignUpController {
         return Integer.toString(randomNumber);
     }
 
+
     //용식:주수검색API 팝업창
     @RequestMapping(value = "/jusoPopup", method = {RequestMethod.GET, RequestMethod.POST})
     public String jusoPopup() {
@@ -50,6 +51,14 @@ public class SignUpController {
         }
 
     }
+
+    //용식: 로그아웃
+    @GetMapping("/logout.do")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/";
+    }
+
 
     //용식:유저회원가입
     @PostMapping("/join.do")
