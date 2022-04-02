@@ -98,8 +98,10 @@ public class RootController {
   }
 
   //진료차트 쓰기
-  @GetMapping("/appointmentForm/{doc}")
-  public ModelAndView appointmentForm(@PathVariable int doc) {
+//  @GetMapping("/appointmentForm/{doc}")
+//  public ModelAndView appointmentForm(@PathVariable int doc) {
+  @GetMapping("/appointmentForm")
+  public ModelAndView appointmentForm(@RequestParam(required = false) int doc) {
     ModelAndView mv = new ModelAndView("user/userside/appointmentForm");
 
     // page
