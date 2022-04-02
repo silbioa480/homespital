@@ -1,20 +1,22 @@
 package mna.homespital.service;
 
 
-import mna.homespital.dao.allMedicalListDAO;
-import mna.homespital.dto.allMedical;
+import mna.homespital.dao.AllMedicalListDAO;
+import mna.homespital.dto.AllMedical;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class allMedicalListServiceimpl implements allMedicalListService{
+public class AllMedicalListServiceimpl implements AllMedicalListService {
     @Autowired
-    allMedicalListDAO allmdDAO;
+    AllMedicalListDAO allmdDAO;
+
+    //모든진료항목 출력 태영
 
     @Override
-    public List<allMedical> allMedList() throws Exception {
+    public List<AllMedical> allMedList() throws Exception {
         return allmdDAO.allMedicalList();
     }
 }
