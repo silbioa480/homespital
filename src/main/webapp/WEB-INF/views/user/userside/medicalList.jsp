@@ -2,6 +2,9 @@
 change this template use File | Settings | File Templates. --%> <%@ page
 contentType="text/html;charset=UTF-8" language="java" %> <%@ taglib prefix="c"
 uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%--모든 진료항 목 출력페이지 view 태영--%>
+
 <html>
   <head>
     <title>Title</title>
@@ -53,7 +56,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
       <div class="inner">
         <ul class="menu">
           <li>&copy; Untitled. All rights reserved.</li>
-          <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+          <li>Design: <a href="#">HTML5 UP</a></li>
         </ul>
       </div>
     </footer>
