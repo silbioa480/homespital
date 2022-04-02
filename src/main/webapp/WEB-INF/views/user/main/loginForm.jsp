@@ -11,27 +11,16 @@ contentType="text/html;charset=UTF-8" language="java" %>
     />
     <link rel="stylesheet" href="/resources/css/login.css" />
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <%--
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    --%>
-    <!-- Bootstrap -->
+<%--    <!-- Bootstrap -->--%>
     <link
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
       rel="stylesheet"
       type="text/css"
     />
-    <!-- jQuery 정규성검사에서 씀 -->
-    <script src="http://code.jquery.com/jquery.js"></script>
-    <!-- 모달창 띄우려면 필요 -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <!-- Respond.js   -->
-    <%--
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    --%>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
   </head>
   <body class="is-preload">
     <!-- 모달창 -->
@@ -57,7 +46,7 @@ contentType="text/html;charset=UTF-8" language="java" %>
               type="button"
               class="btn-modal"
               style="width: 100%"
-              data-dismiss="modal"
+              data-bs-dismiss="modal"
             >
               닫기
             </button>
