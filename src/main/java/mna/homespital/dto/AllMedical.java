@@ -1,15 +1,15 @@
 package mna.homespital.dto;
 
+//모든 진료항목 dto 태영
 
-
-public class allMedical {
+public class AllMedical {
     int medical_code;
     String medical_name;
     String medical_image;
 
-    public allMedical(){}
+    public AllMedical(){}
 
-    public allMedical(int medical_code, String medical_name, String medical_image) {
+    public AllMedical(int medical_code, String medical_name, String medical_image) {
         this.medical_code = medical_code;
         this.medical_name = medical_name;
         this.medical_image = medical_image;

@@ -1,13 +1,13 @@
 package mna.homespital.controller;
 
-
 import mna.homespital.dto.Diagnosis;
 import mna.homespital.dto.User;
 import mna.homespital.dto.allMedical;
 import mna.homespital.service.MedicalListService;
-import mna.homespital.service.MemberService;
-import mna.homespital.service.allMedicalListService;
+import mna.homespital.dto.AllMedical;
+import mna.homespital.service.AllMedicalListService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,10 +17,11 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.logging.Logger;
 
 
 @RestController
-public class medicalListController {
+public class MedicalListController {
 
     @Autowired
     HttpSession session;
@@ -29,7 +30,7 @@ public class medicalListController {
     private ServletContext servletContext;
 
     @Autowired
-    allMedicalListService allMedicalListService;
+    AllMedicalListService allmedListService;
 
     @Autowired
     private MemberService memberService;
@@ -41,17 +42,19 @@ public class medicalListController {
     Diagnosis diagnosis;
 
 
+    //모든 진료항목 출력 (태영)
+
     @GetMapping("/list")
-    public ModelAndView medicalList() {
+    public ModelAndView allmedicalList(){
         ModelAndView mv = new ModelAndView();
-        try {
-            List<allMedical> amd = allMedicalListService.allMedList();
-            mv.addObject("list", amd);
-            mv.setViewName("medicalList");
-        } catch (Exception e) {
+        try{
+            List<AllMedical> amd= allmedListService.allMedList();
+
+            mv.addObject("list",amd);
+            mv.setViewName("user/userside/medicalList");
+        }catch(Exception e){
             e.printStackTrace();
         }
-
         return mv;
     }
 
@@ -89,6 +92,8 @@ public class medicalListController {
         }
         return mav;
     }
+
+
 
 
 }

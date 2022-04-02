@@ -3,8 +3,9 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="mna.homespital.dao.allMedicalListDAO">
-    <select id="allMedicalList" resultType="allMedical">
+<mapper namespace="mna.homespital.dao.AllMedicalListDAO">
+<!--  모든진료항목출력  태영-->
+    <select id="allMedicalList" resultType="AllMedical">
         <![CDATA[
             select * from all_medical;
         ]]>
