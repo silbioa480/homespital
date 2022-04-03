@@ -13,9 +13,20 @@
     <!--        ]]>-->
     <!--    </insert>-->
 
-    <select id="queryDoctor" resultType="Doctor" parameterType="String">
+    <select id="queryDoctor" resultType="Doctor" parameterType="int">
         <![CDATA[
+        select *
+        from (select @rownum:=@rownum+1 rnum, tot.*
+              from (select * from doctor) tot,
+                  (select @rownum := 0) temp) sub
+        where rnum between #{startrow} and #{startrow} + 9
+        ]]>
+    </select>
 
+    <select id="doctorAmount" resultType="Integer">
+        <![CDATA[
+        select count(doctor_number)
+        from doctor;
         ]]>
     </select>
 </mapper>
