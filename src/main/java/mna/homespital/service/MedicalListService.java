@@ -2,14 +2,14 @@ package mna.homespital.service;
 
 import mna.homespital.dto.Diagnosis;
 
-import org.springframework.web.multipart.MultipartFile;
-
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public interface MedicalListService {
+    //이메일 값으로 user_number 가져오기
+    int searchId(String user_email) throws Exception;
+
+
     //나의 진료내역 리스트 출력 (준근)
 //    List<Diagnosis> medicalRecordsList(int user_number) throws Exception;
     ArrayList<HashMap<String, Object>> medicalRecordsList(int user_number) throws Exception;
@@ -19,4 +19,5 @@ public interface MedicalListService {
 
     // 소연 : 나의진료내역(User) 볼때, 환자 진료 내역 diagnosis_number 가져오는 것.
     Diagnosis getDiagnosisNo(int diagnosis_number) throws Exception;
+
 }

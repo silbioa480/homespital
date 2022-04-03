@@ -1,4 +1,33 @@
 
+a{
+    text-decoration: none;
+}
+
 .link-text{
     color:white;
+}
+
+.medicalList{
+    height :auto;
+    width:50%;
+    position:absolute;
+    right:10%;
+    display:flex;
+    justify-content:space-around;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    padding:1vw;
+}
+
+.databox{
+    width:20%;
+    height:auto;
+    box-sizing: border-box;
+    box-shadow:5px 5px 5px gray;
+    border-radius:20px;
+}
+
+.medicalLink{
+    color:black;
+    text-align:center;
 }
