@@ -71,7 +71,7 @@
                         </div>
                     </div>
                     <div class="card p-3">
-                        <p>*비대면 진료 예약의 특성 상 당일 진료만 가능 합니다.<br>
+                        <p class="appointmentNotice">*비대면 진료 예약의 특성 상 당일 진료만 가능 합니다.<br>
                             *비대면 진료는 1시간 단위로 예약을 신청 받으며, 1시간 중 비대면 진료실이 개설되며 고객님의 핸드폰으로 비대면 진료실 링크를 문자로 보내 드립니다.<br>
                             *비대면 진료실 개설후 5분 이내로 입장하지 않으시면 자동으로 예약이 취소되오니 이점 양해하시어 비대면 진료 예약 시간에 맞추어 준비 해 주시길 바랍니다.<br>
                             *비대면 진료 예약 시간은 병원 현장 상황에 맞추어 유동적으로 조정되어 정확한 진료 예약 시간을 미리 정할 수 없는 점 양해 부탁 드립니다. </p>
@@ -106,7 +106,7 @@
                                 <div align="center" class="filebox" style="padding:10px">
                                     <label for="diagnosisImgName">사진 등록</label>
                                     <input type="file" multiple="multiple"  id="diagnosisImgName" name="diagnosisImgName" class="inp-img" accept=".gif, .jpg, .png">
-                                    <input type="hidden" name="doctor_number" value="${doctor_number}">
+                                    <input type="hidden" name="doctor_number" value="${not empty doctor_number? doctor_number : 1}">
                                     <button type="button" id="cancelImg" name="cancelImg" class="btn-delete">사진 삭제</button>
                                 </div>
                             </div>
@@ -120,7 +120,7 @@
         <div class="card p-3">
             <h4><strong>약제 배송 방식</strong></h4>
             <div class="m-3">
-                <input type="hidden" name="is_delivery" id="is_delivery" value=false>
+                <input type="hidden" name="is_delivery" id="is_delivery" value=0>
                 <button class="btn btn-warning rounded-pill"
                         onclick="toggleDelivery('false'); return false;">약국으로 직접 방문
                 </button>
