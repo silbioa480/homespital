@@ -2,210 +2,137 @@ package mna.homespital.dto;
 
 import java.util.Date;
 
+//소연 : Doctor dto
 public class Doctor {
-    /* doctor_number */
-    private Integer doctorNumber;
-
-    /* doctor_email */
-    private String doctorEmail;
-
-    /* doctor_password */
-    private String doctorPassword;
-
-    /* hospital_name */
-    private String hospitalName;
-
-    /* hospital_address */
-    private String hospitalAddress;
-
-    /* hospital_url */
-    private String hospitalUrl;
-
-    /* doctor_name */
-    private String doctorName;
-
-    /* doctor_profile_image_name */
-    private String doctorProfileImageName;
-
-    /* doctor_diagnosis_type */
-    private String doctorDiagnosisType;
-
-    /* doctor_introduction */
-    private String doctorIntroduction;
-
-    /* doctor_education */
-    private String doctorEducation;
-
-    /* doctor_thesis */
-    private String doctorThesis;
-
-    /* working_time */
-    private String workingTime;
-
-    /* lunch_time */
-    private String lunchTime;
-
-    /* holiday */
+    private int doctor_number;
+    private String doctor_email;
+    private String doctor_password;
+    private String doctor_name;
+    private String hospital_name;
+    private String hospital_address;
+    private String hospital_url;
+    private String doctor_profile_image_name;
+    private String doctor_diagnosis_type;
+    private String doctor_introduction;
+    private String doctor_education;
+    private String doctor_thesis;
+    private String working_time;
+    private String lunch_time;
     private String holiday;
+    private Date create_date;
+    private Date update_date;
 
-    /* create_date */
-    private Date createDate;
 
-    /* update_date */
-    private Date updateDate;
-
-    public Doctor() {
+    public int getDoctor_number() {
+        return doctor_number;
     }
 
-    public Doctor(String doctorEmail, String doctorPassword, String hospitalName, String hospitalAddress, String hospitalUrl, String doctorName, String doctorProfileImageName, String doctorDiagnosisType, String doctorIntroduction, String doctorEducation, String doctorThesis, String workingTime, String lunchTime, String holiday, Date createDate, Date updateDate) {
-        this.doctorEmail = doctorEmail;
-        this.doctorPassword = doctorPassword;
-        this.hospitalName = hospitalName;
-        this.hospitalAddress = hospitalAddress;
-        this.hospitalUrl = hospitalUrl;
-        this.doctorName = doctorName;
-        this.doctorProfileImageName = doctorProfileImageName;
-        this.doctorDiagnosisType = doctorDiagnosisType;
-        this.doctorIntroduction = doctorIntroduction;
-        this.doctorEducation = doctorEducation;
-        this.doctorThesis = doctorThesis;
-        this.workingTime = workingTime;
-        this.lunchTime = lunchTime;
-        this.holiday = holiday;
-        this.createDate = createDate;
-        this.updateDate = updateDate;
+    public void setDoctor_number(int doctor_number) {
+        this.doctor_number = doctor_number;
     }
 
-    public Doctor(Integer doctorNumber, String doctorEmail, String doctorPassword, String hospitalName, String hospitalAddress, String hospitalUrl, String doctorName, String doctorProfileImageName, String doctorDiagnosisType, String doctorIntroduction, String doctorEducation, String doctorThesis, String workingTime, String lunchTime, String holiday, Date createDate, Date updateDate) {
-        this.doctorNumber = doctorNumber;
-        this.doctorEmail = doctorEmail;
-        this.doctorPassword = doctorPassword;
-        this.hospitalName = hospitalName;
-        this.hospitalAddress = hospitalAddress;
-        this.hospitalUrl = hospitalUrl;
-        this.doctorName = doctorName;
-        this.doctorProfileImageName = doctorProfileImageName;
-        this.doctorDiagnosisType = doctorDiagnosisType;
-        this.doctorIntroduction = doctorIntroduction;
-        this.doctorEducation = doctorEducation;
-        this.doctorThesis = doctorThesis;
-        this.workingTime = workingTime;
-        this.lunchTime = lunchTime;
-        this.holiday = holiday;
-        this.createDate = createDate;
-        this.updateDate = updateDate;
+    public String getDoctor_email() {
+        return doctor_email;
     }
 
-    public Integer getDoctorNumber() {
-        return doctorNumber;
+    public void setDoctor_email(String doctor_email) {
+        this.doctor_email = doctor_email;
     }
 
-    public void setDoctorNumber(Integer doctorNumber) {
-        this.doctorNumber = doctorNumber;
+    public String getDoctor_password() {
+        return doctor_password;
     }
 
-    public String getDoctorEmail() {
-        return doctorEmail;
+    public void setDoctor_password(String doctor_password) {
+        this.doctor_password = doctor_password;
     }
 
-    public void setDoctorEmail(String doctorEmail) {
-        this.doctorEmail = doctorEmail;
+    public String getDoctor_name() {
+        return doctor_name;
     }
 
-    public String getDoctorPassword() {
-        return doctorPassword;
+    public void setDoctor_name(String doctor_name) {
+        this.doctor_name = doctor_name;
     }
 
-    public void setDoctorPassword(String doctorPassword) {
-        this.doctorPassword = doctorPassword;
+    public String getHospital_name() {
+        return hospital_name;
     }
 
-    public String getHospitalName() {
-        return hospitalName;
+    public void setHospital_name(String hospital_name) {
+        this.hospital_name = hospital_name;
     }
 
-    public void setHospitalName(String hospitalName) {
-        this.hospitalName = hospitalName;
+    public String getHospital_address() {
+        return hospital_address;
     }
 
-    public String getHospitalAddress() {
-        return hospitalAddress;
+    public void setHospital_address(String hospital_address) {
+        this.hospital_address = hospital_address;
     }
 
-    public void setHospitalAddress(String hospitalAddress) {
-        this.hospitalAddress = hospitalAddress;
+    public String getHospital_url() {
+        return hospital_url;
     }
 
-    public String getHospitalUrl() {
-        return hospitalUrl;
+    public void setHospital_url(String hospital_url) {
+        this.hospital_url = hospital_url;
     }
 
-    public void setHospitalUrl(String hospitalUrl) {
-        this.hospitalUrl = hospitalUrl;
+    public String getDoctor_profile_image_name() {
+        return doctor_profile_image_name;
     }
 
-    public String getDoctorName() {
-        return doctorName;
+    public void setDoctor_profile_image_name(String doctor_profile_image_name) {
+        this.doctor_profile_image_name = doctor_profile_image_name;
     }
 
-    public void setDoctorName(String doctorName) {
-        this.doctorName = doctorName;
+    public String getDoctor_diagnosis_type() {
+        return doctor_diagnosis_type;
     }
 
-    public String getDoctorProfileImageName() {
-        return doctorProfileImageName;
+    public void setDoctor_diagnosis_type(String doctor_diagnosis_type) {
+        this.doctor_diagnosis_type = doctor_diagnosis_type;
     }
 
-    public void setDoctorProfileImageName(String doctorProfileImageName) {
-        this.doctorProfileImageName = doctorProfileImageName;
+    public String getDoctor_introduction() {
+        return doctor_introduction;
     }
 
-    public String getDoctorDiagnosisType() {
-        return doctorDiagnosisType;
+    public void setDoctor_introduction(String doctor_introduction) {
+        this.doctor_introduction = doctor_introduction;
     }
 
-    public void setDoctorDiagnosisType(String doctorDiagnosisType) {
-        this.doctorDiagnosisType = doctorDiagnosisType;
+    public String getDoctor_education() {
+        return doctor_education;
     }
 
-    public String getDoctorIntroduction() {
-        return doctorIntroduction;
+    public void setDoctor_education(String doctor_education) {
+        this.doctor_education = doctor_education;
     }
 
-    public void setDoctorIntroduction(String doctorIntroduction) {
-        this.doctorIntroduction = doctorIntroduction;
+    public String getDoctor_thesis() {
+        return doctor_thesis;
     }
 
-    public String getDoctorEducation() {
-        return doctorEducation;
+    public void setDoctor_thesis(String doctor_thesis) {
+        this.doctor_thesis = doctor_thesis;
     }
 
-    public void setDoctorEducation(String doctorEducation) {
-        this.doctorEducation = doctorEducation;
+    public String getWorking_time() {
+        return working_time;
     }
 
-    public String getDoctorThesis() {
-        return doctorThesis;
+    public void setWorking_time(String working_time) {
+        this.working_time = working_time;
     }
 
-    public void setDoctorThesis(String doctorThesis) {
-        this.doctorThesis = doctorThesis;
+    public String getLunch_time() {
+        return lunch_time;
     }
 
-    public String getWorkingTime() {
-        return workingTime;
-    }
-
-    public void setWorkingTime(String workingTime) {
-        this.workingTime = workingTime;
-    }
-
-    public String getLunchTime() {
-        return lunchTime;
-    }
-
-    public void setLunchTime(String lunchTime) {
-        this.lunchTime = lunchTime;
+    public void setLunch_time(String lunch_time) {
+        this.lunch_time = lunch_time;
     }
 
     public String getHoliday() {
@@ -216,19 +143,43 @@ public class Doctor {
         this.holiday = holiday;
     }
 
-    public Date getCreateDate() {
-        return createDate;
+    public Doctor() {
     }
 
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
+    public Doctor(String doctor_email, String doctor_password, String doctor_name, String hospital_name, String hospital_address, String hospital_url, String doctor_profile_image_name, String doctor_diagnosis_type, String doctor_introduction, String doctor_education, String doctor_thesis, String working_time, String lunch_time, String holiday) {
+        this.doctor_email = doctor_email;
+        this.doctor_password = doctor_password;
+        this.doctor_name = doctor_name;
+        this.hospital_name = hospital_name;
+        this.hospital_address = hospital_address;
+        this.hospital_url = hospital_url;
+        this.doctor_profile_image_name = doctor_profile_image_name;
+        this.doctor_diagnosis_type = doctor_diagnosis_type;
+        this.doctor_introduction = doctor_introduction;
+        this.doctor_education = doctor_education;
+        this.doctor_thesis = doctor_thesis;
+        this.working_time = working_time;
+        this.lunch_time = lunch_time;
+        this.holiday = holiday;
     }
 
-    public Date getUpdateDate() {
-        return updateDate;
-    }
-
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
+    public Doctor(int doctor_number, String doctor_email, String doctor_password, String doctor_name, String hospital_name, String hospital_address, String hospital_url, String doctor_profile_image_name, String doctor_diagnosis_type, String doctor_introduction, String doctor_education, String doctor_thesis, String working_time, String lunch_time, String holiday, Date create_date, Date update_date) {
+        this.doctor_number = doctor_number;
+        this.doctor_email = doctor_email;
+        this.doctor_password = doctor_password;
+        this.doctor_name = doctor_name;
+        this.hospital_name = hospital_name;
+        this.hospital_address = hospital_address;
+        this.hospital_url = hospital_url;
+        this.doctor_profile_image_name = doctor_profile_image_name;
+        this.doctor_diagnosis_type = doctor_diagnosis_type;
+        this.doctor_introduction = doctor_introduction;
+        this.doctor_education = doctor_education;
+        this.doctor_thesis = doctor_thesis;
+        this.working_time = working_time;
+        this.lunch_time = lunch_time;
+        this.holiday = holiday;
+        this.create_date = create_date;
+        this.update_date = update_date;
     }
 }

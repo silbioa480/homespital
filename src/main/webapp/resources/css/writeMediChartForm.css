@@ -24,7 +24,10 @@
     font-weight: 500;
     cursor: pointer;
 }
-
+.appointmentNotice {
+    color: #757575;
+    font-size: 15px;
+}
 .box-radio-input input[type="radio"]:checked + span {
     border: 1px solid #23a3a7;
     background: #23a3a7;
