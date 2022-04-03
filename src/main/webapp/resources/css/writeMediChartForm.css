@@ -7,6 +7,32 @@
 .chartTable > tbody > tr > td {
     min-width: 400px;
 }
+#image_container img {
+    width:150px;
+    height: 150px;
+
+}
+
+/*#multiple-container .image {*/
+/*    width:150px;*/
+/*    height: 150px;*/
+
+/*}*/
+/*#multiple-container {*/
+/*    display: grid;*/
+/*    grid-template-columns: 1fr 1fr 1fr;*/
+/*}*/
+/*.image {*/
+/*    display: block;*/
+/*    width: 100%;*/
+/*}*/
+/*.image-label {*/
+/*    position: relative;*/
+/*    bottom: 22px;*/
+/*    left: 5px;*/
+/*    color: black;*/
+/*    text-shadow: 2px 2px 2px black;*/
+/*}*/
 
 /*시간 선택 radio CSS*/
 .box-radio-input input[type="radio"] {
@@ -24,10 +50,7 @@
     font-weight: 500;
     cursor: pointer;
 }
-.appointmentNotice {
-    color: #757575;
-    font-size: 15px;
-}
+
 .box-radio-input input[type="radio"]:checked + span {
     border: 1px solid #23a3a7;
     background: #23a3a7;
@@ -37,6 +60,13 @@
 .timetable > tbody > tr > th {
     width: 80px;
 }
+
+/* 안내사항 CSS  ( 인성 )*/
+.appointmentNotice {
+    color: #757575;
+    font-size: 15px;
+}
+
 
 /*시간 선택하기 영역의 의사 사진 CSS*/
 .img-wrapper {
