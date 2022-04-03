@@ -31,6 +31,7 @@ public class SignUpController {
         return Integer.toString(randomNumber);
     }
 
+
     //용식:주수검색API 팝업창
     @RequestMapping(value = "/jusoPopup", method = {RequestMethod.GET, RequestMethod.POST})
     public String jusoPopup() {
@@ -43,12 +44,19 @@ public class SignUpController {
         try {
             memberService.login(user_email, user_password);
             session.setAttribute("email", user_email);
+            
             return "user/main/index";
         } catch (Exception e) {
             model.addAttribute("err", e.getMessage());
             return "redirect:user/main/loginForm";
         }
+    }
 
+    //용식: 로그아웃
+    @GetMapping("/logout.do")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/";
     }
 
     //용식:유저회원가입
