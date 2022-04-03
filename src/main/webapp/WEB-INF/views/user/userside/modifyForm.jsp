@@ -1,11 +1,28 @@
+-<%--
+  Created by IntelliJ IDEA.
+  User: InSung
+  Date: 2022-04-01
+  Time: 오전 12:23
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <title>Title</title>
     <title>Homespital</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <link rel="stylesheet" href="/resources/css/signUp.css"/>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+<%--    <script src="./jquery-3.4.1.min.js"></script>--%>
+<%--    <link rel="stylesheet" href="./bootstrapt/css/bootstrap.min.css" />--%>
+<%--    <script src="./bootstrapt/js/bootstrap.min.js"></script>--%>
+
 </head>
+<body>
 <body class="is-preload">
 
 <!-- Header -->
@@ -40,10 +57,10 @@
 
     <!-- Main -->
     <div id="main">
-        <form id="form" action="joinForm.jsp" method="post">
+        <form id="form" style="margin-left: 100px" action="joinForm.jsp" method="post">
             <!-- One -->
             <section id="one">
-                <div class="container">
+                <div class="container" style="margin-top: 150px">
                     <h3>필수 회원정보 수정</h3>
                     <hr>
                     <div class="input-control">
@@ -54,9 +71,36 @@
                     <div class="input-control">
                         <label for="password">비밀번호</label>
                         <div style="display: flex">
-                        <input class="modi-input" type="password" id="password" name="password" placeholder="비밀번호를 입력해주세요" required>
-                            <a class="btn-modal" style="margin-left: 30px" data-toggle="modal" href="javascript:void(0)" onclick="passwordModal();">비밀번호수정</a>
-                        <div class="error"></div>
+                            <input class="modi-input" style="width: 100%" type="password" id="password" name="password" placeholder="비밀번호를 입력해주세요" required>
+                            <input type="button" id="pwBtn" class="doubleChk" value="비밀번호수정">
+                            <div class="modal fade" id="pwModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="pwModalLabel">비밀번호수정</h5>
+
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="input-control">
+                                                <label for="password3">새로운 비밀번호</label>
+                                                <input type="password" style="width: 100%" id="password3" name="password" placeholder="비밀번호를 입력해주세요" value="" minlength="4" maxlength="12" size="15" pattern="[a-zA-Z0-9]{4,12}" title="4~12자의 영문 대소문자와 숫자로만 입력."required/>
+
+                                            </div>
+                                            <div class="input-control">
+                                                <label for="password4">비밀번호 확인</label>
+                                                <input type="password" style="width: 100%" id="password4" name="password2" placeholder="비밀번호를 입력해주세요" onkeyup="check_pw()" value="" maxlength="12" size="15" required>
+                                                <span id="pw_check_msg" style="color: #1abc9c"></span>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a class="btn" id="modalY" href="#">수정</a>
+                                            <button class="btn" type="button" data-bs-dismiss="modal">취소</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="error"></div>
                         </div>
                     </div>
 
@@ -76,8 +120,40 @@
                     <div class="input-control">
                         <label for="phone">휴대폰 번호</label>
                         <div style="display:flex">
-                            <input class="modi-input" style="width: 100%" id="phone" type="text" name="phone" value="${User.user_phone}" readonly="readonly"/>
-                            <input type="button" id="phoneChk" class="doubleChk" value="휴대폰번호변경">
+                            <input class="modi-input" style="width:100%" id="phone" type="text" name="phone" value="${User.user_phone}" readonly="readonly"/>
+                            <input type="button" id="phoneBtn" class="doubleChk" value="휴대폰번호변경">
+
+                            <div class="modal fade" id="phoneModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="phoneModalLabel">휴대폰번호 수정</h5>
+
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="input-control">
+                                                <div style="display:flex">
+                                                <input style="width: 100%" id="phone3" type="text" name="phone" placeholder="휴대폰번호를 입력해주세요" title="전화번호 입력"/>
+                                                <input type="button" id="phoneChk" class="doubleChk" value="인증번호 받기">
+                                            </div>
+                                            <div class="error"></div>
+                                            </div>
+                                            <div class="input-control">
+                                                <div style="display:flex">
+                                                    <input style="width: 100%" id="phone4" type="text" name="phone2" title="인증번호 입력" disabled/>
+                                                    <input style="width: 220px" type="button" id="phoneChk2" class="doubleChk" value="본인인증">
+                                                </div>
+                                            </div>
+
+                                       </div>
+                                        <div class="modal-footer">
+                                            <a class="btn" id="modalY2" href="#">수정</a>
+                                            <button class="btn" type="button" data-bs-dismiss="modal">취소</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="error"></div>
                         </div>
                     </div>
@@ -92,38 +168,40 @@
                     <h3>배송지 정보 수정</h3>
                     <hr>
 
-                                    <div class="input-control">
-                                        <label for="SocialSecurityNumber">주소</label>
-                                    <div style="display:flex">
-                                        <input type="hidden" id="confmKey" name="confmKey" value="">
-                                        <input type="text" id="zipNo" name="zipNo" readonly style="width:100%">
-                                        <input type="button" value="주소변경" onclick="goPopup()"
-                                               style=" margin-left:30px;">
-                                    </div>
+                    <div class="input-control">
+                        <label for="SocialSecurityNumber">주소</label>
+                        <div style="display:flex">
+                            <input type="hidden" id="confmKey" name="confmKey" value="">
+                            <input type="text" id="zipNo" name="zipNo" readonly style="width:100%">
+                            <input type="button" value="주소변경" onclick="goPopup()"
+                                   style=" margin-left:30px;">
+                        </div>
 
                     </div>
                 </div>
             </section>
-<br><br>
+            <br><br>
+
             <!-- Three -->
             <section id="three">
                 <div class="container">
 
-                    <hr>
+
                     <h3>결제 정보 수정</h3>
                     <hr>
 
                     <div class="input-control">
                         <label for="creditCardNumber">결제정보</label>
-                    <div class="creditCardNumber" style="display:flex">
-                        <input type="text" class="moveNumber" onKeyup="inputMoveNumber(this);" maxlength="4"
-                               style="width:100%; margin-bottom: 10px"/>
-                        <input type="button" id="cardChange" class="doubleChk" value="변경">
-                    </div>
-                    <h5> * 본인명의 카드만 등록 가능 합니다.</h5>
-                    <br><br>
+                        <div class="creditCardNumber" style="display:flex">
+                            <input type="text" class="moveNumber" onKeyup="inputMoveNumber(this);" maxlength="4"
+                                   style="width:100%; margin-bottom: 10px"/>
+                            <input type="button" id="cardChange" class="doubleChk" value="변경">
+                        </div>
+                        <h5> * 본인명의 카드만 등록 가능 합니다.</h5>
+                        <br><br>
 
-                    <input type="submit" value="수정" style="width: 100%;"></input>
+                        <input type="submit" value="수정" style="width: 100%;"></input>
+                    </div>
                 </div>
             </section>
             <br><br><br><br>
@@ -148,64 +226,48 @@
 
 </div>
 
-<!-- 모달창1: 비밀번호 변경 -->
-<div class="modal fade password in" id="pwModal" aria-hidden="false" style="display: block;">
-    <div class="modal-dialog pwchange animated">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title">비밀번호변경</h4>
-            </div>
-            <div class="modal-body">
-                <div class="box">
-                    <div class="content">
-
-                        <div class="error"></div>
-                        <div class="form passwordBox">
-                            <form method="" action="" accept-charset="UTF-8">
-                                <input id="pre-password" class="form-control" type="password" placeholder="기존비밀번호" name="password">
-                                <input id="new-password" class="form-control" type="password" placeholder="변경할비밀번호" name="password">
-                                <input id="chk-password" class="form-control" type="password" placeholder="변경할비밀번호확인" name="password">
-                                <input class="btn btn-default btn-login" type="button" value="수정" onclick="pwChangeAjax()">
-                            </form>
-                        </div>
-                    </div>
-                </div>
-<!--// 모달창 -->
 
 
 
-<!-- Scripts -->
-<script src="/resources/js/signUp/jquery.min.js"></script>
-<script src="/resources/js/signUp/jquery.scrollex.min.js"></script>
-<script src="/resources/js/signUp/jquery.scrolly.min.js"></script>
-<script src="/resources/js/signUp/browser.min.js"></script>
-<script src="/resources/js/signUp/breakpoints.min.js"></script>
-<script src="/resources/js/signUp/util.js"></script>
-<script src="/resources/js/signUp/signUp.js"></script>
-<script src="/resources/js/signUp/signUpCheck.js"></script>
+
+                <!-- Scripts -->
+                <script src="/resources/js/signUp/jquery.min.js"></script>
+                <script src="/resources/js/signUp/jquery.scrollex.min.js"></script>
+                <script src="/resources/js/signUp/jquery.scrolly.min.js"></script>
+                <script src="/resources/js/signUp/browser.min.js"></script>
+                <script src="/resources/js/signUp/breakpoints.min.js"></script>
+                <script src="/resources/js/signUp/util.js"></script>
+                <script src="/resources/js/signUp/signUp.js"></script>
+                <script src="/resources/js/signUp/signUpCheck.js"></script>
 
 <script>
+    $('#pwBtn').click(function(e){
+        e.preventDefault();
+        $('#pwModal').modal("show");
+    });
 
-    function showPasswordForm(){
-        $('#passwordModal').fadeOut('fast',function(){
-            $('.passwordBox').fadeIn('fast');
+    $('#phoneBtn').click(function(e){
+        e.preventDefault();
+        $('#phoneModal').modal("show");
+    });
 
+    function check_pw(){  //비밀번호 확인
+        var pw3 = document.getElementById('password3').value;
+        var pw4 = document.getElementById('password4').value;
 
-            $('.modal-title').html('비밀번호 수정');
-        });
-        $('.error').removeClass('alert alert-danger').html('');
-    }
-
-    function passwordModal(){
-        showPasswordForm();
-        setTimeout(function(){
-            $('#pwModal').modal('show');
-        }, 230);
-
+        if (pw3!=pw4) {
+            document.getElementById('pw_check_msg').innerHTML = "비밀번호가 다릅니다. 다시 확인해 주세요.";
+        }
+        else {
+            document.getElementById('pw_check_msg').innerHTML = "";
+        }
+        if (pw4=="") {
+            document.getElementById('pw_check_msg').innerHTML = "";
+        }
     }
 
 </script>
+
 
 </body>
 

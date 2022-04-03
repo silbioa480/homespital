@@ -26,17 +26,17 @@ public class UserController {
 
     //나의진료내역 (준근)
     @GetMapping("/myMedicalList")
-    public String myMedicalList(HttpSession session, Model m) {
+    public String myMedicalList(HttpSession session, Model m) throws Exception {
         System.out.println("myMedicalList() join");
+        System.out.println("현재 로그인 중인 이메일 : " + session.getAttribute("email"));
 
-        System.out.println(session.getAttribute("email"));
-        
+        String email = (String) session.getAttribute("email");
+        int searchNumber = mls.searchId(email);
 
+        System.out.println("이메일로 가져온 user_number 값//searchNumber = " + searchNumber);
         Diagnosis diagnosis = new Diagnosis();
-        diagnosis.setUser_number(1);
-        System.out.println("diagnosisNumber = " + diagnosis.getUser_number());
+        diagnosis.setUser_number(searchNumber);
         m.addAttribute("diagnosis", diagnosis);
-        System.out.println("myMedicalList");
         return "user/main/myMedicalList";
     }
 
