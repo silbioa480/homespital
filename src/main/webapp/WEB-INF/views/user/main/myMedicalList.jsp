@@ -111,17 +111,11 @@
 
 
                 $.each(data, function (index, item) {
-
                     //data에서 create_date를 받아와 해당날짜의 요일을 만들어준다.
                     var old_date = data[index].create_date;
                     var date = old_date.slice(0, 10)
                     var week = ['일', '월', '화', '수', '목', '금', '토'];
                     var dayOfWeek = week[new Date(date).getDay()];
-                    // console.log(week);
-                    // console.log(old_date);
-                    // console.log(date);
-                    // console.log(dayOfWeek);
-
 
                     //진료완료, 진료중 표시 및 대기/예약취소하기 버튼
                     let complete = "";

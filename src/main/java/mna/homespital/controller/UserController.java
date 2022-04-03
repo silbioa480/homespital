@@ -29,14 +29,18 @@ public class UserController {
     public String myMedicalList(HttpSession session, Model m) throws Exception {
         System.out.println("myMedicalList() join");
         System.out.println("현재 로그인 중인 이메일 : " + session.getAttribute("email"));
-
-        String email = (String) session.getAttribute("email");
-        int searchNumber = mls.searchId(email);
-
-        System.out.println("이메일로 가져온 user_number 값//searchNumber = " + searchNumber);
-        Diagnosis diagnosis = new Diagnosis();
-        diagnosis.setUser_number(searchNumber);
-        m.addAttribute("diagnosis", diagnosis);
+        try {
+            String email = (String) session.getAttribute("email");
+            int searchNumber = mls.searchId(email);
+            System.out.println("이메일로 가져온 user_number 값//searchNumber = " + searchNumber);
+            Diagnosis diagnosis = new Diagnosis();
+            diagnosis.setUser_number(searchNumber);
+            m.addAttribute("diagnosis", diagnosis);
+        } catch (Exception e) {
+            System.out.println("Catch() join");
+            e.printStackTrace();
+            return "common/err";
+        }
         return "user/main/myMedicalList";
     }
 
