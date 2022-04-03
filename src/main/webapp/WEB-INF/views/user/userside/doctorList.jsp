@@ -38,7 +38,15 @@
 <%--</section>--%>
 
 <!-- Wrapper -->
-<div id="wrapper">
+<div style="background:#34495e; color: white;">
+    <h3>최고의 의료진을 소개합니다!</h3>
+    <p>약국 내방을 할 예정 이신가요 ? -> 거리순으로<br>
+        지금 당장 비대면 진료가 가능한 선생님을 찾으시나요 ?-> 실시간 진료순<br>
+        원하시는 병원이 있으신가요 ? 검색도 있어야 ??<br>
+        그럼 처음에 병원을 서치 할수 있어야 하네 순서가 동일 선상에 있음<br>
+        지금 대면 진료일것 같다고 예상? 거리순 </p>
+</div>
+<div style="padding-right: 40px;">
     <div class="d-flex m-3 justify-content-between">
         <span class="my-auto">총
             <c:if test="${not empty doctorList}">${fn:length(doctorList)}</c:if>명</span>
@@ -60,12 +68,19 @@
                         </div>
                     </div>
                     <div class="col-md-8 card-body">
-                        <div class="card-title d-flex">
-                            <h4 class="pr-3 font-weight-bolder">${doctor.doctor_name}</h4>
-                            <span class="pl-3 font-weight-normal align-text-bottom">의사/${doctor.doctor_diagnosis_type}</span>
-                            <button class="btn btn-secondary ml-auto">
-                                <i class="fa-solid fa-magnifying-glass">의료진 상세보기</i>
-                            </button>
+                        <div class="card-title d-flex justify-content-between">
+                            <div class="d-flex">
+                                <h4 class="pr-3 font-weight-bolder">${doctor.doctor_name}</h4>
+                                <span class="pl-3 font-weight-normal align-text-bottom">의사 / ${doctor.doctor_diagnosis_type}</span>
+                            </div>
+                            <div class="d-flex">
+                                <button class="btn btn-secondary ml-auto" onclick="">
+                                    <i class="fa-solid fa-magnifying-glass">의료진 상세보기</i>
+                                </button>
+                                <button class="btn ml-auto" style="background-color: #1abc9c; color: white;">
+                                    <i class="fa fa-check">비대면 진료 예약하기</i>
+                                </button>
+                            </div>
                         </div>
                         <div class="card-text">
                             <p class="card-text">
