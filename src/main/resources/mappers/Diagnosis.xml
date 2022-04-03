@@ -5,6 +5,7 @@
 
 <mapper namespace="mna.homespital.dao.DiagnosisDAO">
     <insert id="insertDiag">
+        <!-- 훈 : 진단차트 입력 예시 -->
         <![CDATA[
         insert into diagnosis(user_number, doctor_number, diagnosis_type, diagnosis_time, diagnosis_wait_number,
                               diagnosis_content,)
@@ -13,6 +14,16 @@
                 #{is_diagnosis_complete}, #{is_diagnosis_uploaded}, #{is_prescription_upload},
                 #{diagnosis_file_name}, #{prescription_file_name}, #{diagnosis_money}, #{prescription_file_name},
                 #{is_delivery}, #{billing_key})
+        ]]>
+    </insert>
+
+<!--( 인성 )-->
+    <insert id="insertDiagnosis" parameterType="Diagnosis">
+        <![CDATA[
+        insert into diagnosis(user_number, doctor_number, is_delivery,diagnosis_time, diagnosis_content, diagnosis_image_name, billing_key, doctor_opnion )
+        values (
+                   1, 2, 1, 11, '머리가 아파요 선생님', 'qr.jpg', 'a', 'a'
+                )
         ]]>
     </insert>
 </mapper>

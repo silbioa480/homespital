@@ -3,12 +3,20 @@ package mna.homespital.service;
 import mna.homespital.dao.DiagnosisDAO;
 import mna.homespital.dao.MedicalListDAO;
 import mna.homespital.dto.Diagnosis;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 @Service
 public class MedicalListServiceImpl implements MedicalListService {

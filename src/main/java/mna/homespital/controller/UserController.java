@@ -12,7 +12,6 @@ import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-
 @Controller
 @RequestMapping("/")
 public class UserController {
@@ -27,9 +26,15 @@ public class UserController {
 
     //나의진료내역 (준근)
     @GetMapping("/myMedicalList")
-    public String myMedicalList(Model m) {
+    public String myMedicalList(HttpSession session, Model m) {
+        System.out.println("myMedicalList() join");
+
+        System.out.println(session.getAttribute("email"));
+        
+
         Diagnosis diagnosis = new Diagnosis();
         diagnosis.setUser_number(1);
+        System.out.println("diagnosisNumber = " + diagnosis.getUser_number());
         m.addAttribute("diagnosis", diagnosis);
         System.out.println("myMedicalList");
         return "user/main/myMedicalList";
@@ -56,6 +61,4 @@ public class UserController {
         mls.deleteMedicalRecord(diagnosis_number);
         return "success";
     }
-
-
 }
