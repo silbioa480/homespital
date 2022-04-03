@@ -44,12 +44,12 @@ public class SignUpController {
         try {
             memberService.login(user_email, user_password);
             session.setAttribute("email", user_email);
+            
             return "user/main/index";
         } catch (Exception e) {
             model.addAttribute("err", e.getMessage());
             return "redirect:user/main/loginForm";
         }
-
     }
 
     //용식: 로그아웃
@@ -58,7 +58,6 @@ public class SignUpController {
         session.invalidate();
         return "redirect:/";
     }
-
 
     //용식:유저회원가입
     @PostMapping("/join.do")
