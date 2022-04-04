@@ -46,6 +46,7 @@
     <div class="col mt-5">
         <div class="list-header bg-info text-right">
             <h1 id="logo">Homespital</h1>
+
         </div>
 
         <p class="text-right">마이페이지 > 나의진료내역</p>
@@ -119,9 +120,9 @@
 
                     //진료완료, 진료중 표시 및 대기/예약취소하기 버튼
                     let complete = "";
-                    if (item.is_diagnosis_complete == 0) {
+                    if (item.diagnosis_status == 0) {
                         complete = "<button type='button' id='completeBtn' class='btn btn-info btn-sm' onclick='deleteBtn(" + item.diagnosis_number + ");'>예약취소하기</button>";
-                    } else if (item.is_diagnosis_complete == 1) {
+                    } else if (item.diagnosis_status == 1) {
                         complete = "진료완료";
                     } else {
                         complete = "진료중";
