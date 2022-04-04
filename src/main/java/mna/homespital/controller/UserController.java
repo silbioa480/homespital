@@ -2,6 +2,7 @@ package mna.homespital.controller;
 
 import mna.homespital.dto.Diagnosis;
 import mna.homespital.dto.Doctor;
+import mna.homespital.service.DoctorService;
 import mna.homespital.service.MedicalListService;
 import mna.homespital.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,12 @@ public class UserController {
 
     @Autowired
     private MemberService memberService;
+
+    @Autowired
+    private MedicalListService medicalListService;
+
+    @Autowired
+    private DoctorService doctorService;
 
     //나의진료내역 (준근)
     @GetMapping("/myMedicalList")
