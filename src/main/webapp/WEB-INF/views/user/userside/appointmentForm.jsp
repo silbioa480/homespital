@@ -26,7 +26,7 @@
                     </div>
                     <div class="col-md-8 card-body">
                         <div class="card-title d-flex">
-                            <h4 class="pr-3 font-weight-bolder">김돌팔${doctor.doctor_name}</h4>
+                            <h4 class="pr-3 font-weight-bolder">김돌팔 &nbsp&nbsp&nbsp&nbsp ${doctor.doctor_name}</h4>
                             <span class="pl-3 font-weight-normal align-text-bottom">의사/${doctor.doctor_diagnosis_type}</span>
                         </div>
                         <div class="card-text">
@@ -71,10 +71,10 @@
                         </div>
                     </div>
                     <div class="card p-3">
-                        <p class="appointmentNotice">*비대면 진료 예약의 특성 상 당일 진료만 가능 합니다.<br>
-                            *비대면 진료는 1시간 단위로 예약을 신청 받으며, 1시간 중 비대면 진료실이 개설되며 고객님의 핸드폰으로 비대면 진료실 링크를 문자로 보내 드립니다.<br>
-                            *비대면 진료실 개설후 5분 이내로 입장하지 않으시면 자동으로 예약이 취소되오니 이점 양해하시어 비대면 진료 예약 시간에 맞추어 준비 해 주시길 바랍니다.<br>
-                            *비대면 진료 예약 시간은 병원 현장 상황에 맞추어 유동적으로 조정되어 정확한 진료 예약 시간을 미리 정할 수 없는 점 양해 부탁 드립니다. </p>
+                        <p class="appointmentNotice">- 비대면 진료 예약의 특성 상 당일 진료만 가능 합니다.<br>
+                            - 비대면 진료는 1시간 단위로 예약을 신청 받으며, 1시간 중 비대면 진료실이 개설되며 고객님의 핸드폰으로 비대면 진료실 링크를 문자로 보내 드립니다.<br>
+                            - 비대면 진료실 개설후 5분 이내로 입장하지 않으시면 자동으로 예약이 취소되오니 이점 양해하시어 비대면 진료 예약 시간에 맞추어 준비 해 주시길 바랍니다.<br>
+                            - 비대면 진료 예약 시간은 병원 현장 상황에 맞추어 유동적으로 조정되어 정확한 진료 예약 시간을 미리 정할 수 없는 점 양해 부탁 드립니다. </p>
                     </div>
                     <hr>
                     <label><input type="checkbox" name="naebangChecked"> 확인 했어요</label>
@@ -98,16 +98,19 @@
                         <th>증상 이미지 첨부</th>
                         <td>
                             <div class="card p-3" >
-                                <div align="center" id="image_container" >
-                                    <img id="default_image" style="border-radius: 200px; width: 150px; height: 150px;"
-                                         src="<c:url value='/resources/img/QR.png'/>"/>
-                                </div>
+<%--                                <div align="center" id="image_container" >--%>
+<%--                                    <img id="default_image" style="border-radius: 200px; width: 150px; height: 150px;"--%>
+<%--                                         src="<c:url value='/resources/img/QR.png'/>"/>--%>
+<%--                                </div>--%>
                                 <div id="preview" align="center"></div>
                                 <div align="center" class="filebox" style="padding:10px">
-                                    <label for="diagnosisImgName">사진 등록</label>
-                                    <input type="file" multiple="multiple"  id="diagnosisImgName" name="diagnosisImgName" class="inp-img" accept=".gif, .jpg, .png">
+                                    <label for="btnAtt">사진 등록</label>
+                                    <input type='file' id="btnAtt" name="diagnosisImgName" multiple='multiple' accept=".gif, .jpg, .png" />
+                                    <div id='att_zone'></div>
+<%--                                    <input type="file" onchange="setThumbnail(event);" style="display: block;" id="diagnosisImgName" name="diagnosisImgName" class="inp-img" accept=".gif, .jpg, .png" multiple>--%>
+<%--                                    <div id="image_container">--%>
+<%--                                    </div>--%>
                                     <input type="hidden" name="doctor_number" value="${not empty doctor_number? doctor_number : 1}">
-                                    <button type="button" id="cancelImg" name="cancelImg" class="btn-delete">사진 삭제</button>
                                 </div>
                             </div>
                         </td>
@@ -476,6 +479,107 @@
 
         }
     }
+</script>
+<%-- 증상 사진 미리보기, 삭제, 드래그 앤 드롭  ( 인성 ) --%>
+<script>
+    ( /* att_zone : 이미지들이 들어갈 위치 id, btn : file tag id */
+        imageView = function imageView(att_zone, btn){
+
+            var attZone = document.getElementById(att_zone);
+            var btnAtt = document.getElementById(btn)
+            var sel_files = [];
+
+            // 이미지와 체크 박스를 감싸고 있는 div 속성
+            var div_style = 'display:inline-block;position:relative;'
+                + 'width:150px;height:120px;margin:5px;border:1px solid #b4b4b4;z-index:1';
+            // 미리보기 이미지 속성
+            var img_style = 'width:100%;height:100%;z-index:none';
+            // 이미지안에 표시되는 체크박스의 속성
+            var chk_style = 'width:30px;height:30px;position:absolute;font-size:24px;'
+                + 'right:0px;bottom:0px;z-index:999;background-color:rgba(0,67,50,0);color:#d52a2a';
+
+            btnAtt.onchange = function(e){
+                var files = e.target.files;
+                var fileArr = Array.prototype.slice.call(files)
+                for(f of fileArr){
+                    imageLoader(f);
+                }
+            }
+
+
+            // 탐색기에서 드래그앤 드롭 사용
+            attZone.addEventListener('dragenter', function(e){
+                e.preventDefault();
+                e.stopPropagation();
+            }, false)
+
+            attZone.addEventListener('dragover', function(e){
+                e.preventDefault();
+                e.stopPropagation();
+
+            }, false)
+
+            attZone.addEventListener('drop', function(e){
+                var files = {};
+                e.preventDefault();
+                e.stopPropagation();
+                var dt = e.dataTransfer;
+                files = dt.files;
+                for(f of files){
+                    imageLoader(f);
+                }
+
+            }, false)
+
+
+
+            /*첨부된 이미리즐을 배열에 넣고 미리보기 */
+            imageLoader = function(image){
+                sel_files.push(image);
+                var reader = new FileReader();
+                reader.onload = function(ee){
+                    let img = document.createElement('img')
+                    img.setAttribute('style', img_style)
+                    img.src = ee.target.result;
+                    attZone.appendChild(makeDiv(img));
+                }
+
+                reader.readAsDataURL(image);
+            }
+
+            /*첨부된 파일이 있는 경우 checkbox와 함께 attZone에 추가할 div를 만들어 반환 */
+            makeDiv = function(img){
+                var div = document.createElement('div')
+                div.setAttribute('style', div_style)
+
+                var btn = document.createElement('img')
+                btn.setAttribute('src', '/resources/img/delete.png')
+                btn.setAttribute('delFile', img.name);
+                btn.setAttribute('style', chk_style);
+                btn.onclick = function(ev){
+                    var ele = ev.srcElement;
+                    var delFile = ele.getAttribute('delFile');
+                    for(var i=0 ;i<sel_files.length; i++){
+                        if(delFile== sel_files[i].name){
+                            sel_files.splice(i, 1);
+                        }
+                    }
+
+                    dt = new DataTransfer();
+                    for(f in sel_files) {
+                        var file = sel_files[f];
+                        dt.items.add(file);
+                    }
+                    btnAtt.files = dt.files;
+                    var p = ele.parentNode;
+                    attZone.removeChild(p)
+                }
+                div.appendChild(img)
+                div.appendChild(btn)
+                return div
+            }
+        }
+    )('att_zone', 'btnAtt')
 </script>
 
 </body>

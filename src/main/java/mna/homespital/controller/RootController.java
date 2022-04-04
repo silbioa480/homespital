@@ -106,9 +106,10 @@ public class RootController {
     //진료차트 쓰기
 //  @GetMapping("/appointmentForm/{doc}")
 //  public ModelAndView appointmentForm(@PathVariable int doc) {
-    @GetMapping("/appointmentForm")
-    public ModelAndView appointmentForm(@RequestParam(required = false) int doc) {
-        ModelAndView mv = new ModelAndView("user/userside/appointmentForm");
+
+  @GetMapping("/appointmentForm")
+  public ModelAndView appointmentForm() {
+    ModelAndView mv = new ModelAndView("user/userside/appointmentForm");
 
         // page
 //    Doctor doctor = docService.searchdoctorInfoByNumber(doc);
@@ -133,15 +134,15 @@ public class RootController {
             // 사진 업로드
             String diagnosisImg = diagnosisImgName.getOriginalFilename();
 
-            if (!diagnosisImg.equals("")) {
-                String path = servletContext.getRealPath("/resources/img/");
-                String filename = UUID.randomUUID().toString() + "." + diagnosisImgName.getOriginalFilename().substring(diagnosisImgName.getOriginalFilename().lastIndexOf('.') + 1);
-                File destFile = new File(path + filename);
-                diagnosisImgName.transferTo(destFile);
-                diagnosisImg = filename;
-            } else if (diagnosisImg.equals("")) {
-                diagnosisImg = "QR.png";
-            }
+//            if (!diagnosisImg.equals("")) {
+//                String path = servletContext.getRealPath("/resources/img/");
+//                String filename = UUID.randomUUID().toString() + "." + diagnosisImgName.getOriginalFilename().substring(diagnosisImgName.getOriginalFilename().lastIndexOf('.') + 1);
+//                File destFile = new File(path + filename);
+//                diagnosisImgName.transferTo(destFile);
+//                diagnosisImg = filename;
+//            } else if (diagnosisImg.equals("")) {
+//                diagnosisImg = "QR.png";
+//            }
             // DB insert
             System.out.println(diagnosis.getDiagnosis_image_name());
             diagnosis.setDiagnosis_image_name(diagnosisImg);
@@ -161,5 +162,5 @@ public class RootController {
     @GetMapping("/welcome")
     public ModelAndView welcome() {
         return new ModelAndView("admin/main/welcome");
-    }
+  }
 }
