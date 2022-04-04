@@ -1,12 +1,14 @@
 package mna.homespital.controller;
 
 import mna.homespital.dto.Diagnosis;
+import mna.homespital.dto.Doctor;
 import mna.homespital.service.MedicalListService;
 import mna.homespital.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
@@ -61,4 +63,23 @@ public class UserController {
         mls.deleteMedicalRecord(diagnosis_number);
         return "success";
     }
+
+    //나의진료내역 보기 (소연)
+    @GetMapping("/myMedicalDetail/{diagnosis_number}")
+    public ModelAndView myMedicalDetail(@PathVariable int diagnosis_number) {
+        ModelAndView mav = new ModelAndView();
+        try {
+            Diagnosis diagnosis = medicalListService.getDiagnosisNo(diagnosis_number); //내진료 내역 가져오기
+            Doctor doctor = doctorService.getDocInfo(diagnosis.getDoctor_number());
+            mav.addObject("diagnosis", diagnosis);
+            mav.addObject("doctor", doctor);
+            mav.setViewName("/user/main/myMedicalDetail");
+        } catch (Exception e) {
+            e.printStackTrace();
+            mav.addObject("err", e.getMessage());
+            mav.setViewName("/common/err");
+        }
+        return mav;
+    }
+
 }
