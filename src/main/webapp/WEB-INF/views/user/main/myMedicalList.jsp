@@ -46,6 +46,7 @@
     <div class="col mt-5">
         <div class="list-header bg-info text-right">
             <h1 id="logo">Homespital</h1>
+
         </div>
 
         <p class="text-right">마이페이지 > 나의진료내역</p>
@@ -77,6 +78,82 @@
 </body>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
+
+
+    $(document).ready(function () {
+        let page = 0;
+        let loading = false;
+        let list = null;
+
+        $.ajax({
+            url: '/medicalRecordsList',
+            type: 'GET',
+            datatype: "json",
+            data: {
+                "user_number": ${diagnosis.user_number}
+            },
+            success: function (data) {
+                list = data;
+                next_load(list);
+            }
+        })
+
+        function next_load(list) {
+            $.each(list, function (index, item) {
+                if (index >= page * 5 && index < page * 5 + 5) {
+                    console.log(index);
+                    //data에서 create_date를 받아와 해당날짜의 요일을 만들어준다.
+                    var old_date = list[index].create_date;
+                    var date = old_date.slice(0, 10)
+                    var week = ['일', '월', '화', '수', '목', '금', '토'];
+                    var dayOfWeek = week[new Date(date).getDay()];
+
+                    //진료완료, 진료중 표시 및 대기/예약취소하기 버튼
+                    let complete = "";
+                    if (item.diagnosis_status == 0) {
+                        complete = "<button type='button' id='completeBtn' class='btn btn-info btn-sm' onclick='deleteBtn(" + item.diagnosis_number + ");'>예약취소하기</button>";
+                    } else if (item.diagnosis_status == 1) {
+                        complete = "진료완료";
+                    } else {
+                        complete = "진료중";
+                    }
+
+                    // 진료영수증이 있으면 내려받기 버튼 생성, 없으면 공백
+                    let upload = "";
+                    if (item.is_prescription_upload == true) {
+                        upload = "<button type='button' id ='uploadBtn' class='uploadBtn'>내려받기</button>"
+                    } else {
+                        upload = "";
+                    }
+
+                    // 나의 진료 내역 테이블 생성 (리눅스 서버에 올릴때 진단영수증 파일경로 바꿔줘야함)
+                    $("#myMedicalList").append("<tr><td>" + date + " (" + dayOfWeek + ") " + item.diagnosis_time + ":00</td>" +
+                        "<td>" + item.diagnosis_type + "</td>" +
+                        "<td>" + item.doctor_name + "</td>" +
+                        "<td>" + item.hospital_name + "</td>" +
+                        "<td><a href='/resources/img/uploadReceipt/" + item.diagnosis_file_name + "' download=''><span class='material-icons'>file_download</span></a>" + "</td > " +
+                        "<td>" + complete + "</td>" +
+                        "<td><a href='/myMedicalDetail/" + item.diagnosis_number + "'><span class='material-icons'>search</span></a>" + "</td></tr><br>);"
+                    )
+                    ;
+                }
+
+            })
+            loading = false;
+        }
+
+        $(window).scroll(function () {
+            if ($(window).scrollTop() + 200 >= $(document).height() - $(window).height()) {
+                if (!loading) {     //실행 가능 상태라면?
+                    loading = true; //실행 불가능 상태로 변경
+                    page += 1;
+                    next_load(list);
+                }
+            }
+        });
+    })
+
+
     // 예약 취소
     function deleteBtn(e) {
         if (confirm("예약 취소하시겠습니까?") == true) {
@@ -96,58 +173,6 @@
             return;
         }
     }
-
-    //나의 진료 내역 출력
-    $(function () {
-        $.ajax({
-            url: '/medicalRecordsList',
-            type: 'GET',
-            datatype: "json",
-            data: {
-                "user_number": ${diagnosis.user_number}
-            },
-            success: function (data) {
-                console.log(data);
-
-
-                $.each(data, function (index, item) {
-                    //data에서 create_date를 받아와 해당날짜의 요일을 만들어준다.
-                    var old_date = data[index].create_date;
-                    var date = old_date.slice(0, 10)
-                    var week = ['일', '월', '화', '수', '목', '금', '토'];
-                    var dayOfWeek = week[new Date(date).getDay()];
-
-                    //진료완료, 진료중 표시 및 대기/예약취소하기 버튼
-                    let complete = "";
-                    if (item.is_diagnosis_complete == 0) {
-                        complete = "<button type='button' id='completeBtn' class='btn btn-info btn-sm' onclick='deleteBtn(" + item.diagnosis_number + ");'>예약취소하기</button>";
-                    } else if (item.is_diagnosis_complete == 1) {
-                        complete = "진료완료";
-                    } else {
-                        complete = "진료중";
-                    }
-
-                    // 진료영수증이 있으면 내려받기 버튼 생성, 없으면 공백
-                    let upload = "";
-                    if (item.is_prescription_upload == true) {
-                        upload = "<button type='button' id ='uploadBtn' class='uploadBtn'>내려받기</button>"
-                    } else {
-                        upload = "";
-                    }
-                    // 나의 진료 내역 테이블 생성 (리눅스 서버에 올릴때 진단영수증 파일경로 바꿔줘야함)
-                    $("#myMedicalList").append("<tr><td>" + date + " (" + dayOfWeek + ") " + item.diagnosis_time + ":00</td>" +
-                        "<td>" + item.diagnosis_type + "</td>" +
-                        "<td>" + item.doctor_name + "</td>" +
-                        "<td>" + item.hospital_name + "</td>" +
-                        "<td><a href='/resources/img/uploadReceipt/" + item.diagnosis_file_name + "' download=''><span class='material-icons'>file_download</span></a>" + "</td > " +
-                        "<td>" + complete + "</td>" +
-                        "<td><a href='/myMedicalDetail/" + item.diagnosis_number + "'><span class='material-icons'>search</span></a>" + "</td></tr><br>);"
-                    )
-                    ;
-                })
-            }
-        })
-    })
 
 
 </script>
