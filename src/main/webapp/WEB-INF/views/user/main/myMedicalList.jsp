@@ -78,28 +78,13 @@
 </body>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
-    // 예약 취소
-    function deleteBtn(e) {
-        if (confirm("예약 취소하시겠습니까?") == true) {
-            $.ajax({
-                url: "/deleteMedicalRecord",
-                type: "POST",
-                datatype: "json",
-                data: {
-                    "diagnosis_number": e,
-                },
-                success: function (data) {
-                    console.log("삭제 성공 : " + e)
-                    location.href = "${pageContext.request.contextPath}/myMedicalList";
-                },
-            })
-        } else {
-            return;
-        }
-    }
 
-    //나의 진료 내역 출력
-    $(function () {
+
+    $(document).ready(function () {
+        let page = 0;
+        let loading = false;
+        let list = null;
+
         $.ajax({
             url: '/medicalRecordsList',
             type: 'GET',
@@ -108,12 +93,17 @@
                 "user_number": ${diagnosis.user_number}
             },
             success: function (data) {
-                console.log(data);
+                list = data;
+                next_load(list);
+            }
+        })
 
-
-                $.each(data, function (index, item) {
+        function next_load(list) {
+            $.each(list, function (index, item) {
+                if (index >= page * 5 && index < page * 5 + 5) {
+                    console.log(index);
                     //data에서 create_date를 받아와 해당날짜의 요일을 만들어준다.
-                    var old_date = data[index].create_date;
+                    var old_date = list[index].create_date;
                     var date = old_date.slice(0, 10)
                     var week = ['일', '월', '화', '수', '목', '금', '토'];
                     var dayOfWeek = week[new Date(date).getDay()];
@@ -135,6 +125,7 @@
                     } else {
                         upload = "";
                     }
+
                     // 나의 진료 내역 테이블 생성 (리눅스 서버에 올릴때 진단영수증 파일경로 바꿔줘야함)
                     $("#myMedicalList").append("<tr><td>" + date + " (" + dayOfWeek + ") " + item.diagnosis_time + ":00</td>" +
                         "<td>" + item.diagnosis_type + "</td>" +
@@ -145,10 +136,43 @@
                         "<td><a href='/myMedicalDetail/" + item.diagnosis_number + "'><span class='material-icons'>search</span></a>" + "</td></tr><br>);"
                     )
                     ;
-                })
+                }
+
+            })
+            loading = false;
+        }
+
+        $(window).scroll(function () {
+            if ($(window).scrollTop() + 200 >= $(document).height() - $(window).height()) {
+                if (!loading) {     //실행 가능 상태라면?
+                    loading = true; //실행 불가능 상태로 변경
+                    page += 1;
+                    next_load(list);
+                }
             }
-        })
+        });
     })
+
+
+    // 예약 취소
+    function deleteBtn(e) {
+        if (confirm("예약 취소하시겠습니까?") == true) {
+            $.ajax({
+                url: "/deleteMedicalRecord",
+                type: "POST",
+                datatype: "json",
+                data: {
+                    "diagnosis_number": e,
+                },
+                success: function (data) {
+                    console.log("삭제 성공 : " + e)
+                    location.href = "${pageContext.request.contextPath}/myMedicalList";
+                },
+            })
+        } else {
+            return;
+        }
+    }
 
 
 </script>
