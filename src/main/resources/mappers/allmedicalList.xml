@@ -10,4 +10,11 @@
             select * from all_medical;
         ]]>
     </select>
+
+<!--   진료과 검색 태영-->
+    <select id="searchMedical" resultType="AllMedical" parameterType="String">
+        <![CDATA[
+                select * from all_medical where like
+        ]]>
+    </select>
 </mapper>

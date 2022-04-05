@@ -1,16 +1,19 @@
-
-
-$.ajax({
-    url:"https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=xxxxxx",
-    type:"post",
-    data:JSON.stringify(data),
-    dataType:"JSON",
-    contentType:"application/json",
-    accept:"application/json",
-    success:function(result){
-        console.log(result);
-    },
-    error:function(result){
-        console.log(result.responseText);
-    }
+//사업자번호 api 태영
+$(function(){
+    $('#ceoNumberCheck').click(function(){
+        $.ajax({
+            url:"https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=hunQbLgLfNhS7rBnuNmzbozqoy%2BwiWmoC9FxN89Q4Msl8A0TSUrba6VQ9wLaEaYqtWuk0X4d1OjFrenbTpJODA%3D%3D",
+            type:"post",
+            data:JSON.stringify(data),
+            dataType:"JSON",
+            contentType:"application/json",
+            accept:"application/json",
+            success:function(result){
+                console.log(result);
+            },
+            error:function(result){
+                console.log(result.responseText);
+            }
+        });
+    });
 })
