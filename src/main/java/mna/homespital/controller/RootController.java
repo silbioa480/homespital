@@ -139,19 +139,6 @@ public class RootController {
       } catch (Exception e) {
           e.printStackTrace();
       }
-
-
-
-
-//         session
-//    User user = new User();
-//    user.setUser_number(1);
-//    HttpSession session = request.getSession(false);
-//    User user = (User) session.getAttribute("user");
-
-
-//    mv.addObject("doctor", doctor);
-//    mv.addObject("user", user);
         return mv;
     }
 
