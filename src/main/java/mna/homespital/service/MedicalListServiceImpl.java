@@ -34,11 +34,18 @@ public class MedicalListServiceImpl implements MedicalListService {
         return medicalListDAO.medicalRecordsList(user_number);
     }
 
-    //진료 예약 취소(삭제) (준근)
+    //진료 예약 취소, 취소 시 diagnosis_status 2로 변경  (준근)
     @Override
-    public void deleteMedicalRecord(int diagnosis_number) throws Exception {
+    public void cancelMedicalRecord(int diagnosis_number) throws Exception {
         System.out.println("ServiceImpl -> deleteMedicalRecord() init");
-        medicalListDAO.deleteMedicalRecord(diagnosis_number);
+        medicalListDAO.cancelMedicalRecord(diagnosis_number);
+    }
+
+    // 약 수령 확인, 확인 시 diagnosis_status 7로 변경(준근)
+    @Override
+    public void successMedicalRecord(int diagnosis_number) throws Exception {
+        System.out.println("ServiceImpl -> successMedicalRecord() init");
+        medicalListDAO.successMedicalRecord(diagnosis_number);
     }
 
     // 소연 : 나의진료내역(User) 볼때, 환자 진료 내역 diagnosis_number 가져오는 것.

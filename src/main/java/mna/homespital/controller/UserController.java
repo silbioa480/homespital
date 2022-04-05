@@ -42,11 +42,9 @@ public class UserController {
     @GetMapping("/myMedicalList")
     public String myMedicalList(HttpSession session, Model m) throws Exception {
         System.out.println("myMedicalList() join");
-        System.out.println("현재 로그인 중인 이메일 : " + session.getAttribute("email"));
         try {
             String email = (String) session.getAttribute("email");
             int searchNumber = mls.searchId(email);
-            System.out.println("이메일로 가져온 user_number 값//searchNumber = " + searchNumber);
             Diagnosis diagnosis = new Diagnosis();
             diagnosis.setUser_number(searchNumber);
             m.addAttribute("diagnosis", diagnosis);
@@ -61,7 +59,7 @@ public class UserController {
     //진료내역 리스트 출력 (준근)
     @ResponseBody
     @GetMapping("/medicalRecordsList")
-    public ArrayList<HashMap<String, Object>> medicalRecordsList(@RequestParam int user_number) throws Exception {
+    public ArrayList<HashMap<String, Object>> medicalRecordsList(@RequestParam int user_number) {
         ArrayList<HashMap<String, Object>> myMedicalList = new ArrayList<>();
         try {
             myMedicalList = mls.medicalRecordsList(user_number);
@@ -71,14 +69,32 @@ public class UserController {
         return myMedicalList;
     }
 
-    //나의 진료내역 -> 대기/예약 취소하기 (준근)
+    //진료 예약 취소하기 (준근)
     @ResponseBody
-    @PostMapping("/deleteMedicalRecord")
-    public String deleteReservation(int diagnosis_number) throws Exception {
-        System.out.println("delete : " + diagnosis_number);
-        mls.deleteMedicalRecord(diagnosis_number);
+    @PostMapping("/cancelMedicalRecord")
+    public String cancelReservation(int diagnosis_number) {
+        System.out.println("cancel : " + diagnosis_number);
+        try {
+            mls.cancelMedicalRecord(diagnosis_number);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return "success";
     }
+
+    //약제 배송 완료하기(준근)
+    @ResponseBody
+    @PostMapping("/successMedicalRecord")
+    public String successMedicalRecord(int diagnosis_number) {
+        System.out.println("successMedicalRecord() Join");
+        try {
+            mls.successMedicalRecord(diagnosis_number);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "success";
+    }
+
 
     //나의진료내역 보기 (소연, 준근)
     @GetMapping("/myMedicalDetail/{diagnosis_number}")
@@ -107,7 +123,7 @@ public class UserController {
                 mav.setViewName("/common/err");
                 return mav;
             }
-            
+
             //환자의 주민번호를 가공해서 모델로 넘긴다.(view에서 생년월일, 만 나이를 나타내기 위함)
             String JuminNo = user.getUser_registration_number();
             JuminNo = JuminNo.replaceAll("-", ""); //주민번호 - 빼고 숫자만 나오게

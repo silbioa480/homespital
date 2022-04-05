@@ -27,13 +27,22 @@
         ]]>
     </select>
     <!-- 예약된 진료 취소하기 (준근)-->
-    <delete id="deleteMedicalRecord" parameterType="int">
+    <update id="cancelMedicalRecord" parameterType="int">
         <![CDATA[
-        delete
-        from diagnosis
-        where diagnosis_number = #{diagnosis_number}
+        update diagnosis
+        set diagnosis_status = 2
+        where diagnosis_number = #{diagnosis_number};
         ]]>
-    </delete>
+    </update>
+
+    <!-- 약 수령 확인/비대면진료서비스 완료 (준근)-->
+    <update id="successMedicalRecord" parameterType="int">
+        <![CDATA[
+        update diagnosis
+        set diagnosis_status = 7
+        where diagnosis_number = #{diagnosis_number};
+        ]]>
+    </update>
 
 
 </mapper>
