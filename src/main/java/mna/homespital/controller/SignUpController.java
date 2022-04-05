@@ -2,7 +2,6 @@ package mna.homespital.controller;
 
 import mna.homespital.dto.User;
 import mna.homespital.service.MemberService;
-import mna.homespital.service.SendMailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,9 +21,6 @@ public class SignUpController {
     @Autowired
     MemberService memberService;
 
-    @Autowired
-    SendMailService sendMailService;
-
     @ResponseBody
     @RequestMapping(value = "/phoneCheck", method = RequestMethod.GET)
     //용식: 회원가입 문자전송API
@@ -33,6 +29,20 @@ public class SignUpController {
         PhoneCheckService phoneCheckService = new PhoneCheckService();
         phoneCheckService.certifiedPhoneNumber(userPhoneNumber, randomNumber);
         return Integer.toString(randomNumber);
+    }
+
+    //용식:회원가입 이메일중복체크
+    @ResponseBody
+    @PostMapping("/emailoverlap")
+    public boolean emailOverLap(@RequestParam String email) {
+        boolean result = false;
+        try {
+            result = memberService.emailCheck(email);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return result;
     }
 
     //용식:비밀번호찾기 이메일보내기
@@ -92,7 +102,7 @@ public class SignUpController {
         String phone = params.get("phone");
         String address = "[" + params.get("zipNo") + "] " + params.get("roadFullAddr") + params.get("addrDetail");
         User user = new User(email, password, name, SocialSecurityNumber, phone, address);
-
+        
 //        String billing_key = params.get("billing_key");
 //
 //        if (!billing_key.isEmpty()) {
@@ -101,8 +111,9 @@ public class SignUpController {
 
         try {
             memberService.join(user);
-            mv.setViewName("user/main/loginForm");
+            mv.setViewName("redirect:/loginForm");
         } catch (Exception e) {
+            e.printStackTrace();
             mv.setViewName("user/main/index");
         }
         return mv;

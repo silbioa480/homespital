@@ -1,26 +1,22 @@
 // //==============================================================================
 // //회원가입 정규성 검사
+//
 // const form = document.getElementById('form');
 // const email = document.getElementById('email');
 // const password = document.getElementById('password');
 // const password2 = document.getElementById('password2');
 // const name = document.getElementById('name');
 // const SocialSecurityNumber = document.getElementById('SocialSecurityNumber').parentElement;
+// const SocialSecurityNumber2 = document.getElementById('SocialSecurityNumber2').parentElement;
 // const phone = document.getElementById('phone').parentElement;
-//
-// form.addEventListener('submit', e => {
-//     e.preventDefault();
-//     validateInput();
-// })
-// //에러메세지
-// const setError = (element, message) => {
-//     console.log(message);
+// // 에러메세지
+// const setError = (element, message, e) => {
 //     const inputControl = element.parentElement;
 //     const errorDisplay = inputControl.querySelector('.error');
-//     console.log(errorDisplay);
 //     errorDisplay.innerText = message;
 //     inputControl.classList.add('error');
 //     inputControl.classList.remove('success');
+//     e.preventDefault();
 // }
 // //성공시 에러메시지 삭제
 // const setSuccess = element => {
@@ -46,60 +42,93 @@
 // }
 //
 // const isValidSocialSecurityNumber = SocialSecurityNumber => {
-//     const reg = /d{2}([0]\d|[1][0-2])([0][1-9]|[1-2]\d|[3][0-1])[-]*[1-4]\d{6}$/;
+//     const reg = /^[a-zA-Z0-9]{4,12}$/;
 //     return reg.test(SocialSecurityNumber);
 // }
-// const validateInput = () => {
+//
+// const isValidSocialSecurityNumber2 = SocialSecurityNumber2 => {
+//     const reg = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+//     return reg.test(SocialSecurityNumber2);
+// }
+//
+// form.addEventListener('change', e => {
+//     e.preventDefault();
+//     validateInput(e);
+// })
+//
+// form.addEventListener('submit', e => {
+//     validateInput(e);
+// })
+//
+// // trim: 양끝의 공백을 제거한다.
+// const validateInput = (e) => {
 //     const emailValue = email.value.trim();
 //     const passwordValue = password.value.trim();
 //     const password2Value = password2.value.trim();
 //     const nameValue = name.value.trim();
 //     const SocialSecurityNumberValue = document.getElementById('SocialSecurityNumber').value.trim();
+//     const SocialSecurityNumberValue2 = document.getElementById('SocialSecurityNumber2').value.trim();
 //     const phoneValue = document.getElementById('phone').value.trim();
 // //이메일
 //     if (emailValue === "") {
-//         setError(email, "필수 정보입니다.");
+//         setError(email, "필수 정보입니다.", e);
+//         email.focus();
 //     } else if (!isValidEmail(emailValue)) {
-//         setError(email, "올바른 형식으로 입력해주세요.");
+//         setError(email, "올바른 형식으로 입력해주세요.", e);
+//         email.focus();
 //     } else {
 //         setSuccess(email);
 //     }
 // //비밀번호
 //     if (passwordValue === "") {
-//         setError(password, "필수 정보입니다.");
+//         setError(password, "필수 정보입니다.", e);
+//         password.focus();
 //     } else if (!isVaildPassword(passwordValue)) {
-//         setError(password, "비밀번호는 8자 이상이어야 하며, 숫자/영문/특수문자를 모두 포함해야 합니다.");
+//         setError(password, "비밀번호는 8자 이상이어야 하며, 숫자/영문/특수문자를 모두 포함해야 합니다.", e);
+//         password.focus();
 //     } else {
-//         setSuccess(password)
+//         setSuccess(password);
 //     }
 // //비밀번호 확인
 //     if (password2Value === "") {
-//         setError(password2, "필수 정보입니다.");
+//         setError(password2, "필수 정보입니다.", e);
 //     } else if (password2Value !== passwordValue) {
-//         setError(password2, "비밀번호가 일치하지 않습니다.");
+//         setError(password2, "비밀번호가 일치하지 않습니다.", e);
+//     } else {
+//         setSuccess(password2);
 //     }
+//
 // //이름
 //     if (nameValue === "") {
-//         setError(name, "이름을 입력해주세요.");
+//         setError(name, "이름을 입력해주세요.", e);
 //     } else if (!isValidName(nameValue)) {
-//         setError(name, "2글자이상 한글만 입력해주세요");
+//         setError(name, "2글자이상 한글만 입력해주세요", e);
 //     } else {
 //         setSuccess(name);
 //     }
-// //주민등록번호
+// //주민등록번호 앞자리
 //     if (SocialSecurityNumberValue === "") {
-//         setError(SocialSecurityNumber, "필수 정보입니다.");
-//     } else if (!isValidSocialSecurityNumber(SocialSecurityNumber)) {
-//         setError(SocialSecurityNumber, "숫자 6개를 입력해주세요.");
+//         setError(SocialSecurityNumber, "필수 정보입니다.", e);
+//         // } else if (!isValidSocialSecurityNumber(SocialSecurityNumber)) {
+//         //     setError(SocialSecurityNumber, "숫자 6개를 입력해주세요.",e);
 //     } else {
 //         setSuccess(SocialSecurityNumber);
 //     }
-// //후대폰
-//     if (phoneValue === "") {
-//         setError(phone, "필수 정보입니다.");
+// //주민등록번호 뒷자리
+//     if (SocialSecurityNumberValue2 === "") {
+//         setError(SocialSecurityNumber2, "필수 정보입니다.", e);
+//         // } else if (!isValidSocialSecurityNumber2(SocialSecurityNumber2)) {
+//         //     setError(SocialSecurityNumber2, "숫자 7개를 입력해주세요.",e);
 //     } else {
-//         setSuccess(phone);
+//         setSuccess(SocialSecurityNumber2);
 //     }
+//     // 후대폰
+//     // if (phoneValue === "") {
+//     //     setError(phone, "필수 정보입니다.", e);
+//     //     phone.focus();
+//     // } else {
+//     //     setSuccess(phone);
+//     // }
 // }
 //
 //
@@ -181,45 +210,45 @@
 // }
 //
 // //후대폰 문자보내기
-// var code2 = "";
-// $("#phoneChk").click(function () {
-//     alert("인증번호 발송이 완료되었습니다.\n휴대폰에서 인증번호 확인을 해주십시오.");
-//     var phone = $("#phone").val();
-//     $.ajax({
-//         type: "GET",
-//         url: "phoneCheck?phone=" + phone,
-//         cache: false,//cache옵션은 브라우저 캐시를 방지하는 옵션입니다.
-//         success: function (data) {
-//             if (data == "error") {
-//                 alert("휴대폰 번호가 올바르지 않습니다.")
-//                 $(".successPhoneChk").text("유효한 번호를 입력해주세요.");
-//                 $(".successPhoneChk").css("color", "red");
-//                 $("#phone").attr("autofocus", true);
-//             } else {
-//                 $("#phone2").attr("disabled", false);
-//                 $("#phoneChk2").css("display", "inline-block");
-//                 $(".successPhoneChk").text("인증번호를 입력한 뒤 본인인증을 눌러주십시오.");
-//                 $(".successPhoneChk").css("color", "green");
-//                 $("#phone").attr("readonly", true);
-//                 code2 = data;
-//             }
-//         }
-//     });
-// });
-//휴대폰 인증번호 대조
-// $("#phoneChk2").click(function () {
-//     if ($("#phone2").val() == code2) {
-//         $(".successPhoneChk").text("인증번호가 일치합니다.");
-//         $(".successPhoneChk").css("color", "green");
-//         $("#phoneDoubleChk").val("true");
-//         $("#phone2").attr("disabled", true);
-//     } else {
-//         $(".successPhoneChk").text("인증번호가 일치하지 않습니다. 확인해주시기 바랍니다.");
-//         $(".successPhoneChk").css("color", "red");
-//         $("#phoneDoubleChk").val("false");
-//         $(this).attr("autofocus", true);
-//     }
-// });
+var code2 = "";
+$("#phoneChk").click(function () {
+    alert("인증번호 발송이 완료되었습니다.\n휴대폰에서 인증번호 확인을 해주십시오.");
+    var phone = $("#phone").val();
+    $.ajax({
+        type: "GET",
+        url: "phoneCheck?phone=" + phone,
+        cache: false,//cache옵션은 브라우저 캐시를 방지하는 옵션입니다.
+        success: function (data) {
+            if (data == "error") {
+                alert("휴대폰 번호가 올바르지 않습니다.")
+                $(".successPhoneChk").text("유효한 번호를 입력해주세요.");
+                $(".successPhoneChk").css("color", "red");
+                $("#phone").attr("autofocus", true);
+            } else {
+                $("#phone2").attr("disabled", false);
+                $("#phoneChk2").css("display", "inline-block");
+                $(".successPhoneChk").text("인증번호를 입력한 뒤 본인인증을 눌러주십시오.");
+                $(".successPhoneChk").css("color", "green");
+                $("#phone").attr("readonly", true);
+                code2 = data;
+            }
+        }
+    });
+});
+// 휴대폰 인증번호 대조
+$("#phoneChk2").click(function () {
+    if ($("#phone2").val() == code2) {
+        $(".successPhoneChk").text("인증번호가 일치합니다.");
+        $(".successPhoneChk").css("color", "green");
+        $("#phoneDoubleChk").val("true");
+        $("#phone2").attr("disabled", true);
+    } else {
+        $(".successPhoneChk").text("인증번호가 일치하지 않습니다. 확인해주시기 바랍니다.");
+        $(".successPhoneChk").css("color", "red");
+        $("#phoneDoubleChk").val("false");
+        $(this).attr("autofocus", true);
+    }
+});
 
 // 동의 모두선택 / 해제
 const agreeChkAll = document.querySelector('input[name=agree_all]');
