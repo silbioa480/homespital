@@ -25,7 +25,7 @@
     <div class="d-flex flex-column align-items-center">
         <%--        <span class="image avatar"><img src="/resources/img/doctorList/doctor01.jpg" alt=""/></span>--%>
         <h1 id="logo"><a href="/">Homespital</a></h1>
-        <p>Hi</p>
+        <p>${name}님 환영</p>
 
     </div>
     <nav id="nav">
@@ -33,7 +33,6 @@
             <li><a href="#one" class="active">필수정보입력</a></li>
             <li><a href="#two">주소 입력</a></li>
             <li><a href="#three">결제 정보 입력</a></li>
-            <li><a href="#four">약관동의</a></li>
         </ul>
     </nav>
     <footer>

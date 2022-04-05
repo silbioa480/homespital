@@ -10,13 +10,15 @@ import java.util.List;
 
 @Service
 public class AllMedicalListServiceimpl implements AllMedicalListService {
-    @Autowired
-    AllMedicalListDAO allmdDAO;
 
-    //모든진료항목 출력 태영
+  @Autowired
+  AllMedicalListDAO allmdDAO;
+
+  //모든진료항목 출력 태영
 
     @Override
     public List<AllMedical> allMedList() throws Exception {
         return allmdDAO.allMedicalList();
     }
+
 }

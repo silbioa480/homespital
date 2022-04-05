@@ -9,8 +9,8 @@
 <html>
 <head>
     <title>Homespital</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <link rel="stylesheet" href="/resources/css/pwsearch.css"/>
 </head>
 <body class="is-preload">
@@ -20,32 +20,30 @@
 
 </header>
 
-<div class="pw_box" >
+<div class="pw_box">
     <div class="content">
 
-        <form id="pw-form" method="post" action="#">
+        <form id="pw-form" method="post">
             <hr style="margin-bottom: 30px; width: 280px;">
 
             <div class="form-group" id="divEmail">
-                <input class="pw-email" type="email" name="email" id="email" placeholder="Email Address" />
+                <input class="pw-email" type="email" name="email" id="email" placeholder="Email Address"/>
             </div>
 
             <div class="form-group" style="margin-top: 15px">
-                <button id="emailCheck" onclick="emailSend()"> 인증번호전송 </button>
+                <input type="button" id="emailCheck" value="인증번호 받기">
 
             </div>
 
             <div class="form-group" id="divVaildnum" style="margin-top: 30px">
-                <input class="validnum" type="text" name="validnum" id="vailidnum" placeholder="인증번호 6글자 입력해주세요" />
+                <input class="validnum" type="text" name="validnum" id="vailidnum" placeholder="인증번호 6글자 입력해주세요"/>
             </div>
-
 
 
             <div class="form-group" style="margin-top: 15px">
-                <button id="certificationBtn" onclick="emailCertification()"> 인증번호확인 </button>
-                <input type="hidden" id="certificationYN" value="false">
-
+                <input type="button" id="certificationBtn" value="인증번호 확인" disabled/>
             </div>
+
 
         </form>
 
@@ -56,68 +54,108 @@
     </div>
 </div>
 
-        <!-- Scripts -->
+<!-- Scripts -->
 
 <script src="/resources/js/login/login.js"></script>
-        <script>
-            function emailSend() {
-                let clientEmail = document.getElementById('email').value;
-                let emailYN = isEmail(clientEmail);
-
-                console.log('입력한 메일' + clientEmail);
-
-                if (emailYN == true) {
-                    alert('이메일로 전송되었습니다.');
-
-                    $.ajax({
-                        type: "post",
-                        url: "/api/user/email",
-                        data: {userEmail: clientEmail},
-                        success: function (data) {
-                        }, error: function (e) {
-                            alert('다시 시도해주세요.');
-                        }
-                    });
-
-                } else {
-                    alert('이메일 형식에 알맞게 작성해주세요.')
+<script>
+    let email = null;
+    //이메일 보내기
+    var code = "";
+    $("#emailCheck").click(function () {
+        email = $("#email").val();
+        if (email != "") {
+            $.ajax({
+                type: "GET",
+                url: "/sendMail?email=" + encodeURIComponent(email),
+                cache: false,
+                success: function (data) {
+                    console.log("data:" + data);
+                    if (data == "noUserErr") {
+                        alert("사용자로 등록되지 않은 이메일 입니다.")
+                    } else if (data == "error") {
+                        alert("이메일이 전송되지 않았습니다. 잠시 후 다시 시도해보세요.")
+                    } else {
+                        alert("인증번호 발송이 완료되었습니다.\n이메일을 확인해주세요.");
+                        $("#certificationBtn").attr("disabled", false);
+                        code = data;
+                    }
                 }
+            })
+        } else {
+            alert("이메일을 입력해주세요");
+        }
+    })
+    //이메일 인증번호 대조
+    $("#certificationBtn").click(function (e) {
+            e.preventDefault();
+            if ($("#vailidnum").val() == code) {
+                alert("인증번호가 일치합니다.");
+                location.href = "modifyPasswordForm?email=" + email;
+            } else {
+                alert("인증번호가 일치하지 않습니다.");
             }
-
-            function isEmail(asValue) {
-                var regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-                return regExp.test(asValue);
-            }
-
-            function emailCertification() {
-                let clientEmail = document.getElementById('email').value;
-                let inputCode = document.getElementById('vailidnum').value;
-
-                console.log('입력한 메일' + clientEmail);
-                console.log('인증코드' + inputCode);
-
-                    $.ajax({
-                        type: "post",
-                        url: "/api/user/email/certification",
-                        data: {userEmail:clientEmail, inputCode:inputCode},
-                        success: function (result) {
-                            console.log(result);
-                            if(result==true){
-                                alert('인증완료');
-                                document.getElementById('certificationYN').value ="true";
-                                clientEmail.onchange = function(){
-                                    document.getElementById('certificationYN').value="false";
-                                }
-                            }else{
-                                alert('다시시도해주세요');
-                            }
-
-                        }
-                    });
-            }
+        }
+    );
 
 
-        </script>
+    // function emailSend() {
+    //     let clientEmail = document.getElementById('email').value;
+    //     let emailYN = isEmail(clientEmail);
+    //
+    //     console.log('입력한 메일' + clientEmail);
+    //
+    //     if (emailYN == true) {
+    //         alert('이메일로 전송되었습니다.');
+    //
+    //         $.ajax({
+    //             type: "post",
+    //             url: "/api/user/email",
+    //             data: {userEmail: clientEmail},
+    //             success: function (data) {
+    //             }, error: function (e) {
+    //                 alert('다시 시도해주세요.');
+    //             }
+    //         });
+    //
+    //     } else {
+    //         alert('이메일 형식에 알맞게 작성해주세요.')
+    //     }
+    // }
+    //
+    // function isEmail(asValue) {
+    //     var regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+    //     return regExp.test(asValue);
+    // }
+    //
+    // function emailCertification() {
+    //     let clientEmail = document.getElementById('email').value;
+    //     let inputCode = document.getElementById('vailidnum').value;
+    //
+    //     console.log('입력한 메일' + clientEmail);
+    //     console.log('인증코드' + inputCode);
+    //
+    //         $.ajax({
+    //             type: "post",
+    //             url: "/api/user/email/certification",
+    //             data: {userEmail:clientEmail, inputCode:inputCode},
+    //             success: function (result) {
+    //                 console.log(result);
+    //                 if(result==true){
+    //                     alert('인증완료');
+    //                     document.getElementById('certificationYN').value ="true";
+    //                     clientEmail.onchange = function(){
+    //                         document.getElementById('certificationYN').value="false";
+    //                     }
+    //                 }else{
+    //                     alert('다시시도해주세요');
+    //                 }
+    //
+    //             }
+    //         });
+    // }
+
+
+</script>
 
 </body>
 </html>
