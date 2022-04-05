@@ -12,7 +12,6 @@
     <!--                #{user_phone}, #{user_address})-->
     <!--        ]]>-->
     <!--    </insert>-->
-
     <select id="queryDoctor" resultType="Doctor" parameterType="int">
         <![CDATA[
         select *
@@ -29,4 +28,13 @@
         from doctor;
         ]]>
     </select>
+<!--    인성 : 선택한 의사 넘버 가져와서 의사 정보 get  -->
+<!--    <select id="selectDoctorByNumber" resultType="Doctor" parameterType="int">-->
+<!--        <![CDATA[-->
+<!--        select *-->
+<!--        from doctor-->
+<!--        where doctor_number = #{doctor_number}-->
+<!--        ]]>-->
+<!--    </select>-->
+
 </mapper>
