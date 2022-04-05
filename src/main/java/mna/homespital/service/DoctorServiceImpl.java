@@ -40,4 +40,10 @@ public class DoctorServiceImpl implements DoctorService {
         return doctorDAO.queryDoctor(startrow);
         //return list;
     }
+
+//    선택한 의사 가져오기 ( 인성 )
+    @Override
+    public Doctor getDoctor(int doctor_number) throws Exception {
+        return doctorDAO.selectDoctorByNumber(doctor_number);
+    }
 }
