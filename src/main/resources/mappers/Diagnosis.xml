@@ -27,7 +27,7 @@
     </insert>
 
 
-    <!--  소연 : 진료차트 가져오기  -->
+    <!--  소연 : diagnosis번호로 해당 진료차트내용 가져오기  -->
     <select id="getDiagnosisNo" resultType="Diagnosis" parameterType="int">
         <![CDATA[
         select *

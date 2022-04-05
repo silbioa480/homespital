@@ -8,7 +8,6 @@ import mna.homespital.service.DiagnosisService;
 import mna.homespital.service.DoctorService;
 import mna.homespital.service.MedicalListService;
 import mna.homespital.service.MemberService;
-import org.apache.catalina.connector.Request;
 import org.apache.maven.model.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +19,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -62,6 +60,7 @@ public class RootController {
         return new ModelAndView("user/main/loginForm");
     }
 
+
     //회원가입
     @GetMapping("/joinForm")
     public ModelAndView joinForm() {
@@ -72,6 +71,23 @@ public class RootController {
     @GetMapping("/modifyForm")
     public ModelAndView modifyForm() {
         return new ModelAndView("user/userside/modifyForm");
+    }
+
+//  //비밀번호확인(정보수정 전)
+//  @GetMapping("/pwCheck")
+//  public ModelAndView pwCheck() {
+//    return new ModelAndView("user/userside/pwCheck");
+//  }
+
+    //회원탈퇴
+    @GetMapping("/delete")
+    public ModelAndView deleteForm() {
+        String email = (String) session.getAttribute("email");
+
+        if(email == null) {
+            return new ModelAndView("user/main/index");
+        }
+        return new ModelAndView("user/userside/deleteForm");
     }
 
     //비밀번호 찾기
@@ -85,28 +101,9 @@ public class RootController {
     @GetMapping("/doctorList")
     public ModelAndView doctorList(@RequestParam(required = false, defaultValue = "1") int page) throws Exception {
         ModelAndView mv = new ModelAndView("user/userside/doctorList");
-        // 훈 : 의사 목업코드
-//        List<Doctor> doctorList = new ArrayList<Doctor>();
         PageInfo pageInfo = new PageInfo();
         List<Doctor> doctorList = doctorService.getDocList(page, pageInfo);
 
-//    doctorList.add(new Doctor(
-//      1, "doctor@aaa.com", "", "김닥터",
-//      "서울특별시 서울의료원", "서울 중랑구 신내로 156", "www.doctor.com",
-//      null, "내과", "나는김닥터",
-//      "중졸", "논문없음", "11", "12", "수",
-//      new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2021-01-01 00:00:00"),
-//      new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2022-02-02 00:00:00")
-//    ));
-//    doctorList.add(new Doctor(
-//      2, "doctor2@aaa.com", "", "이닥터",
-//      "세브란스병원", "서울 서대문구 연세로 50-1", "www.doctor2.com",
-//      null, "정형외과", "나는이닥터",
-//      "고졸", "논문없음", "11", "12", "수",
-//      new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2021-01-01 00:00:00"),
-//      new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2022-02-02 00:00:00")
-//    ));
-        // 여기까지
         mv.addObject("doctorList", doctorList);
         mv.addObject("pageInfo", pageInfo);
         return mv;
@@ -121,9 +118,10 @@ public class RootController {
     ModelAndView mv = new ModelAndView("user/userside/appointmentForm");
     int doctor_number = 1;
 
+
         // page
       try {
-          Doctor doctor = doctorService.getDoctor(doctor_number);
+          Doctor doctor = doctorService.getDocInfo(doctor_number);
           doctor.setDoctor_password("");
 
           System.out.println(doctor.getDoctor_name());
@@ -170,8 +168,8 @@ public class RootController {
     }
 
     // 관리자 메인 페이지 임시로 만들어놈 ( 인성 )
-    @GetMapping("/welcome")
-    public ModelAndView welcome() {
-        return new ModelAndView("admin/main/welcome");
-  }
+    @GetMapping("/adminIndex")
+    public ModelAndView adminIndex() {
+        return new ModelAndView("admin/mian/adminIndex");
+    }
 }

@@ -28,8 +28,9 @@
         from doctor;
         ]]>
     </select>
-<!--    인성 : 선택한 의사 넘버 가져와서 의사 정보 get  -->
-    <select id="selectDoctorByNumber" resultType="Doctor" parameterType="int">
+
+    <!--   소연 : 의사 정보 가져오는 쿼리문  -->
+    <select id="docInfo" resultType="Doctor" parameterType="int">
         <![CDATA[
         select *
         from doctor

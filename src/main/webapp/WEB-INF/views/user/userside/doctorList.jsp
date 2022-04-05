@@ -62,9 +62,11 @@
                 <div class="row g-0">
                     <div class="col-md-4" style="min-width: 200px; max-width: 200px;">
                         <div class="img-wrapper">
-                            <img alt="의사사진 영역"
-                                 src="<c:choose><c:when test="${not empty doctor.doctor_profile_image_name }">/img/doctorImg/${doctor.doctor_profile_image_name}</c:when>
-                                            <c:otherwise>https://img.freepik.com/free-photo/portrait-of-asian-doctor-woman-cross-arms-standing-in-medical-uniform-and-stethoscope-smiling-at-camera-white-background_1258-83220.jpg</c:otherwise></c:choose>"/>
+                                <%--                            <img alt="의사사진 영역"--%>
+                                <%--                                 src="<c:choose><c:when test="${not empty doctor.doctor_profile_image_name || doctor.doctor_profile_image_name eq ''}">/img/doctorImg/${doctor.doctor_profile_image_name}</c:when>--%>
+                                <%--                                            <c:otherwise>https://img.freepik.com/free-photo/portrait-of-asian-doctor-woman-cross-arms-standing-in-medical-uniform-and-stethoscope-smiling-at-camera-white-background_1258-83220.jpg</c:otherwise></c:choose>"/>--%>
+                            <img alt="의사사진 영역" src="${doctor.doctor_profile_image_name}"
+                                 onerror="this.src='https://img.freepik.com/free-photo/portrait-of-asian-doctor-woman-cross-arms-standing-in-medical-uniform-and-stethoscope-smiling-at-camera-white-background_1258-83220.jpg'">
                         </div>
                     </div>
                     <div class="col-md-8 card-body">
@@ -108,18 +110,43 @@
             </c:forEach>
         </c:if>
     </div>
-    <nav aria-label="Page navigation example">
-        <%--    EL태그로 doctorList 받으면 처리    --%>
+    <nav class="text-center" id="pageList">
         <ul class="pagination justify-content-center">
-            <li class="page-item disabled">
-                <a class="page-link">Previous</a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-                <a class="page-link" href="#">Next</a>
-            </li>
+            <c:choose>
+                <c:when test="${pageInfo.page<=1}">
+                    <li class="page-item"><a class="page-link" href="#">이전</a></li>
+                    <!-- [이전]&nbsp; -->
+                </c:when>
+                <c:otherwise>
+                    <li class="page-item"><a class="page-link"
+                                             href="./${place.id }?place_name=${place.place_name }&page=${pageInfo.page-1}">이전</a>
+                    </li>
+                </c:otherwise>
+            </c:choose>
+            <c:forEach var="i" begin="${pageInfo.startPage }" end="${pageInfo.endPage }">
+                <c:choose>
+                    <c:when test="${pageInfo.page==i }">
+                        <li class="page-item active">
+                            <a class="page-link" href="#">${i }</a></li>
+                    </c:when>
+                    <c:otherwise>
+                        <li class="page-item"><a class="page-link"
+                                                 href="./${place.id }?place_name=${place.place_name }&page=${pageInfo.page}">${i }</a>
+                        </li>
+
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
+            <c:choose>
+                <c:when test="${pageInfo.page>=pageInfo.maxPage }">
+                    <li class="page-item"><a class="page-link" href="#">다음</a></li>
+                </c:when>
+                <c:otherwise>
+                    <li class="page-item"><a class="page-link"
+                                             href="./${place.id }?place_name=${place.place_name }&page=${pageInfo.page+1}">다음</a>
+                    </li>
+                </c:otherwise>
+            </c:choose>
         </ul>
     </nav>
 

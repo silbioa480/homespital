@@ -41,9 +41,10 @@ public class DoctorServiceImpl implements DoctorService {
         //return list;
     }
 
-//    선택한 의사 가져오기 ( 인성 )
+    // 소연 - 의사정보 가져오기
     @Override
-    public Doctor getDoctor(int doctor_number) throws Exception {
-        return doctorDAO.selectDoctorByNumber(doctor_number);
+    public Doctor getDocInfo(int doctor_number) throws Exception {
+        System.out.println("getDocInfo() join");
+        return doctorDAO.docInfo(doctor_number);
     }
 }

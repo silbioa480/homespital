@@ -1,16 +1,16 @@
 /*진료차트 CSS*/
 .chartTable > tbody > tr > th {
-    min-width: 100px;
-    max-width: 100px;
+  min-width: 100px;
+  max-width: 100px;
 }
 
 .chartTable > tbody > tr > td {
-    min-width: 400px;
+  min-width: 400px;
 }
 /* 증상 이미지 ( 인성 ) */
 #image_container img {
-    width:150px;
-    height: 150px;
+  width: 150px;
+  height: 150px;
 }
 /* 증상 이미지 첨부 btn ( 인성 ) */
 #filebtn {
@@ -66,231 +66,241 @@
 
 /*시간 선택 radio CSS*/
 .box-radio-input input[type="radio"] {
-    display: none;
+  display: none;
 }
 
 .box-radio-input input[type="radio"] + span {
-    display: inline-block;
-    background: none;
-    border: 1px solid #dfdfdf;
-    padding: 0px 10px;
-    text-align: center;
-    height: 35px;
-    line-height: 33px;
-    font-weight: 500;
-    cursor: pointer;
+  display: inline-block;
+  background: none;
+  border: 1px solid #dfdfdf;
+  padding: 0px 10px;
+  text-align: center;
+  height: 35px;
+  line-height: 33px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.appointmentNotice {
+  color: #757575;
+  font-size: 15px;
 }
 
 .box-radio-input input[type="radio"]:checked + span {
-    border: 1px solid #23a3a7;
-    background: #23a3a7;
-    color: #fff;
+  border: 1px solid #23a3a7;
+  background: #23a3a7;
+  color: #fff;
 }
 
 .timetable > tbody > tr > th {
-    width: 80px;
+  width: 80px;
 }
 
 /* 안내사항 CSS  ( 인성 )*/
 .appointmentNotice {
-    color: #757575;
-    font-size: 15px;
+  color: #757575;
+  font-size: 15px;
 }
-
 
 /*시간 선택하기 영역의 의사 사진 CSS*/
 .img-wrapper {
-    position: relative;
-    width: 200px;
-    height: 200px;
+  position: relative;
+  width: 200px;
+  height: 200px;
 }
 
 .img-wrapper img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    transform: translate(50, 50);
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  /*transform: translate(50, 50);*/
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin: auto;
 }
 
 /*-- 카카오맵 관련 기본 CSS --*/
-.map_wrap, .map_wrap * {
-    margin: 0;
-    padding: 0;
-    font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
-    font-size: 12px;
+.map_wrap,
+.map_wrap * {
+  margin: 0;
+  padding: 0;
+  font-family: "Malgun Gothic", dotum, "돋움", sans-serif;
+  font-size: 12px;
 }
 
-.map_wrap a, .map_wrap a:hover, .map_wrap a:active {
-    color: #000;
-    text-decoration: none;
+.map_wrap a,
+.map_wrap a:hover,
+.map_wrap a:active {
+  color: #000;
+  text-decoration: none;
 }
 
 .map_wrap {
-    position: relative;
-    width: 100%;
-    height: 500px;
+  position: relative;
+  width: 100%;
+  height: 500px;
 }
 
 #menu_wrap {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 250px;
-    margin: 10px 0 30px 10px;
-    padding: 5px;
-    overflow-y: auto;
-    background: rgba(255, 255, 255, 0.7);
-    z-index: 1;
-    font-size: 12px;
-    border-radius: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 250px;
+  margin: 10px 0 30px 10px;
+  padding: 5px;
+  overflow-y: auto;
+  background: rgba(255, 255, 255, 0.7);
+  z-index: 1;
+  font-size: 12px;
+  border-radius: 10px;
 }
 
 .bg_white {
-    background: #fff;
+  background: #fff;
 }
 
 #menu_wrap hr {
-    display: block;
-    height: 1px;
-    border: 0;
-    border-top: 2px solid #5F5F5F;
-    margin: 3px 0;
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 2px solid #5f5f5f;
+  margin: 3px 0;
 }
 
 #menu_wrap .option {
-    text-align: center;
+  text-align: center;
 }
 
 #menu_wrap .option p {
-    margin: 10px 0;
+  margin: 10px 0;
 }
 
 #menu_wrap .option button {
-    margin-left: 5px;
+  margin-left: 5px;
 }
 
 #placesList li {
-    list-style: none;
+  list-style: none;
 }
 
 #placesList .item {
-    position: relative;
-    border-bottom: 1px solid #888;
-    overflow: hidden;
-    cursor: pointer;
-    min-height: 65px;
+  position: relative;
+  border-bottom: 1px solid #888;
+  overflow: hidden;
+  cursor: pointer;
+  min-height: 65px;
 }
 
 #placesList .item span {
-    display: block;
-    margin-top: 4px;
+  display: block;
+  margin-top: 4px;
 }
 
-#placesList .item h5, #placesList .item .info {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
+#placesList .item h5,
+#placesList .item .info {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 #placesList .item .info {
-    padding: 10px 0 10px 55px;
+  padding: 10px 0 10px 55px;
 }
 
 #placesList .info .gray {
-    color: #8a8a8a;
+  color: #8a8a8a;
 }
 
 #placesList .info .jibun {
-    padding-left: 26px;
-    background: url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png) no-repeat;
+  padding-left: 26px;
+  background: url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png)
+    no-repeat;
 }
 
 #placesList .info .tel {
-    color: #009900;
+  color: #009900;
 }
 
 #placesList .item .markerbg {
-    float: left;
-    position: absolute;
-    width: 36px;
-    height: 37px;
-    margin: 10px 0 0 10px;
-    background: url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png) no-repeat;
+  float: left;
+  position: absolute;
+  width: 36px;
+  height: 37px;
+  margin: 10px 0 0 10px;
+  background: url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png)
+    no-repeat;
 }
 
 #placesList .item .marker_1 {
-    background-position: 0 -10px;
+  background-position: 0 -10px;
 }
 
 #placesList .item .marker_2 {
-    background-position: 0 -56px;
+  background-position: 0 -56px;
 }
 
 #placesList .item .marker_3 {
-    background-position: 0 -102px
+  background-position: 0 -102px;
 }
 
 #placesList .item .marker_4 {
-    background-position: 0 -148px;
+  background-position: 0 -148px;
 }
 
 #placesList .item .marker_5 {
-    background-position: 0 -194px;
+  background-position: 0 -194px;
 }
 
 #placesList .item .marker_6 {
-    background-position: 0 -240px;
+  background-position: 0 -240px;
 }
 
 #placesList .item .marker_7 {
-    background-position: 0 -286px;
+  background-position: 0 -286px;
 }
 
 #placesList .item .marker_8 {
-    background-position: 0 -332px;
+  background-position: 0 -332px;
 }
 
 #placesList .item .marker_9 {
-    background-position: 0 -378px;
+  background-position: 0 -378px;
 }
 
 #placesList .item .marker_10 {
-    background-position: 0 -423px;
+  background-position: 0 -423px;
 }
 
 #placesList .item .marker_11 {
-    background-position: 0 -470px;
+  background-position: 0 -470px;
 }
 
 #placesList .item .marker_12 {
-    background-position: 0 -516px;
+  background-position: 0 -516px;
 }
 
 #placesList .item .marker_13 {
-    background-position: 0 -562px;
+  background-position: 0 -562px;
 }
 
 #placesList .item .marker_14 {
-    background-position: 0 -608px;
+  background-position: 0 -608px;
 }
 
 #placesList .item .marker_15 {
-    background-position: 0 -654px;
+  background-position: 0 -654px;
 }
 
 #pagination {
-    margin: 10px auto;
-    text-align: center;
+  margin: 10px auto;
+  text-align: center;
 }
 
 #pagination a {
-    display: inline-block;
-    margin-right: 10px;
+  display: inline-block;
+  margin-right: 10px;
 }
 
 #pagination .on {
@@ -344,4 +354,147 @@
 }
 .appointBtn:hover:before {
     transform: translateY(0);
+    font-weight: bold;
+    cursor: default;
+    color: #777;
+}
+
+footer {
+  margin-top: 2em;
+}
+
+/* Footer */
+
+#footer {
+  display: -moz-flex;
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  -moz-align-items: center;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -moz-justify-content: space-between;
+  -webkit-justify-content: space-between;
+  -ms-justify-content: space-between;
+  justify-content: space-between;
+  position: relative;
+  margin: 0;
+  line-height: 1em;
+  padding: 2.25em;
+  background: #39454b;
+  color: rgba(185, 186, 187, 0.5);
+  overflow: hidden;
+}
+
+#footer > * {
+  margin-bottom: 0;
+}
+
+#footer a {
+  color: inherit;
+}
+
+#footer a:hover {
+  color: #b9babb;
+}
+
+#footer ul.menu {
+  margin: 0;
+}
+
+#footer ul.menu li {
+  border-left-color: rgba(185, 186, 187, 0.2);
+  font-size: 0.9em;
+}
+
+@media screen and (max-width: 1000px) {
+  #footer {
+    -moz-flex-direction: column;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -moz-justify-content: center;
+    -webkit-justify-content: center;
+    -ms-justify-content: center;
+    justify-content: center;
+    line-height: 1.5em;
+    text-align: center;
+    padding: 2em 1em 2em 1em;
+  }
+
+  #footer > * {
+    margin: 0 0 1em 0;
+  }
+}
+
+@media screen and (max-width: 736px) {
+  #footer ul.menu li {
+    border-left: none;
+    display: block;
+    line-height: inherit;
+    margin: 0.25em 0 0 0;
+    padding: 0.25em 0 0 0;
+  }
+
+  #footer ul.menu li:first-child {
+    margin-top: 0;
+    padding-top: 0;
+  }
+}
+
+/* Icon */
+
+.icon {
+  text-decoration: none;
+  position: relative;
+  text-decoration: none;
+}
+
+.icon:before {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+  text-transform: none !important;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 400;
+}
+
+.icon:before {
+  line-height: inherit;
+}
+
+.icon > .label {
+  display: none;
+}
+
+.icon.solid:before {
+  font-weight: 900;
+}
+
+.icon.brands:before {
+  font-family: "Font Awesome 5 Brands";
+}
+
+/* Icons */
+
+ul.icons {
+  cursor: default;
+}
+
+ul.icons li {
+  display: inline-block;
+}
+
+ul.icons a {
+  display: inline-block;
+  width: 2em;
+  height: 2em;
+  line-height: 2em;
+  text-align: center;
+  border: 0;
 }
