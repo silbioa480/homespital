@@ -51,7 +51,7 @@
 
                     <ul class="navbar-nav ml-auto pl-lg-5 pl-0">
                         <li class="nav-item">
-                            <a class="nav-link" href="/list">예약하기</a>
+                            <a class="nav-link" href="/appointmentForm">예약하기</a>
                         </li>
                     </ul>
 
