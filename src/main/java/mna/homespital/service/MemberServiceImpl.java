@@ -111,8 +111,8 @@ public class MemberServiceImpl implements MemberService {
         int checkNum = random.nextInt(999999);
         String setFrom = "dlsdydtlr@gmail.com";
         String toMail = email;
-        String title = ("인증이메일입니다.");
-        String content = "<h1>인증번호는" + checkNum + "입니다</h1>";
+        String title = ("[홈스피탈] 비밀번호 찾기를 위한 인증메일입니다.");
+        String content = "<h1 style='display:inline-block'>인증번호는 </h1>" + checkNum + "<h1 style='display:inline-block'> 입니다</h1>";
 
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, "utf-8");

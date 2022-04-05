@@ -3,11 +3,9 @@ package service;
 import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
 import org.json.simple.JSONObject;
-import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 
-@Service
 public class PhoneCheckService {
     public void certifiedPhoneNumber(String userPhoneNumber, int randomNumber) {
         String api_key = "NCSPV8YZMCKSQUYI";
