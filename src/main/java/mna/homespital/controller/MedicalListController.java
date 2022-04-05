@@ -1,23 +1,21 @@
 package mna.homespital.controller;
 
+
 import mna.homespital.dto.Diagnosis;
 import mna.homespital.dto.User;
-import mna.homespital.dto.allMedical;
 import mna.homespital.service.MedicalListService;
 import mna.homespital.dto.AllMedical;
 import mna.homespital.service.AllMedicalListService;
+import mna.homespital.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
-import java.util.logging.Logger;
+
 
 
 @RestController
@@ -56,6 +54,14 @@ public class MedicalListController {
             e.printStackTrace();
         }
         return mv;
+    }
+
+    //원하는 진료항목출력 태영
+    @ResponseBody
+    @PostMapping("/medicalSearch")
+    public String medicalSearch(@RequestParam String mediSearch, Model model){
+
+        return "user/userside/medicalList";
     }
 
     //나의진료내역 보기 (소연)
