@@ -109,50 +109,46 @@ public class SignUpController {
     }
 
     //가영: 회원탈퇴
-    @RequestMapping(value = "/deleteMember", method = RequestMethod.GET)
-    public String deleteView() throws Exception {
-        return "/user/main";
+    @ResponseBody
+    @RequestMapping(value="/delete", method = RequestMethod.POST)
+    public String submitDeleteMember(@RequestParam(value="password") String password, RedirectAttributes rttr, HttpSession session) {
+        System.out.println("입력한 비밀번호 값 : " + password);
+        try {
+            String email = (String) session.getAttribute("email");
+            User user = memberService.queryMember(email);
+            if (user==null) {
+                return "사용자없음";
+            }
+            System.out.println(user.toString());
+            String originPass = user.getUser_password();
+            String inputPass = password;
+
+            if (!(inputPass.equals(originPass))) {
+                rttr.addFlashAttribute("msg", false);
+
+                return "삭제실패";
+            } else {
+                memberService.deleteMember(email);
+                session.invalidate();
+                return "삭제성공";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "에러";
+        }
     }
 
-    @RequestMapping(value = "/delete", method = RequestMethod.POST)
-    public String delete(String user_email, RedirectAttributes rttr, HttpSession session) throws Exception {
-        memberService.deleteMember(user_email);
-        session.invalidate();
-        rttr.addFlashAttribute("msg", "이용해주셔서 감사합니다.");
-        return "redirect:/user/loginForm";
+    //가영: 회원정보수정
+    @PostMapping("modifyMember.do")
+    public String modifyMember(@RequestParam("email") String password, @RequestParam String email, @RequestParam String name, @RequestParam String registration_number, @RequestParam String phone, @RequestParam String address) {
+        try {
+            memberService.modifyMember(email, password, name, registration_number, phone, address);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "user/main/index";
     }
 
-//    @RequestMapping(value="/pwCheck" , method=RequestMethod.POST)
-//    @ResponseBody
-//    public int pwCheck(User user) throws Exception{
-//        String memberPw = memberService.pwCheck(User.getUser_email());
-//
-//        if(user == null || !memberService.pwCheck(User.getUser_password(), user_password)) {
-//            return 0;
-//        }
-//
-//        return 1;
-//    }
-//}
-
-
-    //비밀번호 수정
-//    @GetMapping("/modifyForm")
-//    public ModelAndView pwModify(){
-//        return new ModelAndView("user/main/modifyForm");
-//    }
-//
-//    public String pwModify(@RequestBody MemberDAO user_number, HttpSession session) throws Exception {
-//        logger.info("비밀번호 변경 요청");
-//
-//        //비밀번호 변경
-//        MemberService.pwModify(user_number);
-//
-//        //비밀번호 변경 성공하면 로그인 세션 객체 다시 담기
-//        MemberDAO pwModify = new
-//
-//
-//    }
 
     //비밀번호찾기: 비밀번호수정form
     @GetMapping("/modifyPasswordForm")

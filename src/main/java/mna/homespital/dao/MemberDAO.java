@@ -10,6 +10,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 @Mapper
 public interface MemberDAO {
+
+    //가영: 회원정보수정
+    void updateMember(String user_email, String user_password, String user_name, String user_registration_number, String user_phone, String user_address) throws Exception;
+
     //용식:회원가입 환자(User)정보 insert
     void insertMember(User user) throws Exception;
 
@@ -28,15 +32,7 @@ public interface MemberDAO {
     //소연 : 약사(Pharmacy)정보 가져오기
     Pharmacy selectPharmacyDetail(int pharmacy_number) throws Exception;
 
-//    //가영: 회원정보 수정
-//    void updateMember(User user) throws Exception;
-
     //가영: 회원탈퇴
-    public void deleteMember(String user_email) throws Exception;
-
-    //가영: 비밀번호수정
-    public String pwCheck(String user_email) throws Exception;
-
-    public void pwUpdate(String user_email, String user_password) throws Exception;
+    void deleteMember(String user_email) throws Exception;
 
 }

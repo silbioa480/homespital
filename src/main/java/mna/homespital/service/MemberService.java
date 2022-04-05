@@ -31,18 +31,8 @@ public interface MemberService {
     //가영: 회원탈퇴
     void deleteMember(String user_email) throws Exception;
 
-    //가영: 비밀번호수정
-    public String pwCheck(String user_id) throws Exception;
-
-    public void pwUpdate(String user_id, String user_password) throws Exception;
-
-    //    //가영: 비밀번호 수정
-//    public static void pwModify(MemberDAO user_number) throws Exception{
-//        BCryptPasswordEncoder encoder = new BCryptPassswordEncoder();
-//        System.out.println("암호화 전 비밀번호 : " + User.getUser_password());
-//
-//        String securePw = encoder.encode()
-//    }
+    //가영: 회원정보수정
+    void modifyMember(String user_email, String user_password, String user_name, String user_registration_number, String user_phone, String user_address) throws Exception;
 
     //용식 :유저정보 가져오기
     User queryMember(String email) throws Exception;

@@ -21,14 +21,12 @@
         ]]>
     </select>
 
-    <!--가영: 회원탈퇴-->
+<!--가영: 회원탈퇴-->
     <delete id="deleteMember" parameterType="String">
         <![CDATA[
         delete
-        *
         from `user`
-        where user_email =
-        #{user_email}
+        where user_email = #{user_email}
         ]]>
     </delete>
 
@@ -63,5 +61,5 @@
         where user_number = #{user_number}
         ]]>
     </select>
-
+    
 </mapper>
