@@ -103,6 +103,15 @@ public class MemberServiceImpl implements MemberService {
         return memberDAO.queryMember(email);
     }
 
+    //용식:이메일중복체크
+    @Override
+    public boolean emailCheck(String email) throws Exception {
+        User user = memberDAO.queryMember(email);
+        if (user == null) return false;
+        return true;
+    }
+
+
     //용식:비밀번호찾기: 이메일보내기 
     //return값: 인증번호
     @Override
