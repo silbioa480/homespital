@@ -103,6 +103,7 @@
         </div>
     </div>
     <%--appointmentForm에서 쓴 증상, 이미지 출력 --%>
+
     <div class="card-body">
         <div class="card border-right">
             <div class="card-header justify-content-between">
@@ -168,13 +169,6 @@
 </body>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
-    $(document).ready(function () {
-
-        let user = ${user.user_number};
-
-        console.log(user);
-        // $('#birthResult').append("")
-    })
-
+  
 </script>
 </html>
