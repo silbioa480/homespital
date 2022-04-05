@@ -31,3 +31,10 @@ a{
     color:black;
     text-align:center;
 }
+
+.search{
+    width:300px;
+    display:flex;
+    margin:10px auto;
+}
+
