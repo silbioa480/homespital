@@ -74,7 +74,7 @@ public class UserController {
         return "success";
     }
 
-    //나의진료내역 보기 (소연)
+    //나의진료내역 보기 (소연, 준근)
     @GetMapping("/myMedicalDetail/{diagnosis_number}")
     public ModelAndView myMedicalDetail(@PathVariable int diagnosis_number) {
         System.out.println("myMedicalDetail() join");
@@ -86,7 +86,22 @@ public class UserController {
             Doctor doctor = doctorService.getDocInfo(diagnosis.getDoctor_number());
             //diagnosis객체에 있는 환자번호로 환자정보 가져와서 User타입의 참조변수 user에 객체 저장
             User user = userService.getUserInfo(diagnosis.getUser_number());
-            
+
+
+            String emailCheck = (String) session.getAttribute("email");
+            // emailCheck(세션에 이메일이 있는지(로그인 한 상태인지) 확인해서 NUll이 아니면,
+            if (emailCheck != null) {
+                //세션에 있는 이메일과 유저객체에 있는 이메일이 일치 하지 않는다면, 404 페이지
+                if (!emailCheck.equals(user.getUser_email())) {
+                    System.out.println("이프문 안에 들어왔네?");
+                    mav.setViewName("/common/err");
+                    return mav;
+                }
+            } else { //세션에 이메일이 없으면, 404페이지
+                mav.setViewName("/common/err");
+                return mav;
+            }
+
             //저장된 각 객체들 model에 전부 저장(diagnosis -진료내역, doctor - 의사정보, user - 환자정보)
             mav.addObject("diagnosis", diagnosis);
             mav.addObject("doctor", doctor);

@@ -40,7 +40,7 @@
 
         .table {
             height: 500px;
-            overflow: overlay;
+            overflow: auto;
         }
 
 

@@ -13,183 +13,168 @@
 <div class="container">
     <%--헤드라인--%>
     <div><h1><strong>나의 진료 내역 보기</strong></h1></div>
-
-    <%--        test--%>
-    <div
-    <h1>${diagnosis}</h1>>
-    <h1>${diagnosis_number}</h1>
-    <h1>${diagnosis.user_number}</h1>
-    <h1>${diagnosis.doctor_number}</h1>
-    <h1>${diagnosis.diagnosis_type}</h1>
-
-
-    <h1>${billing_key}</h1>
-
-
-</div>
-<%-- test--%>
-
-<%--진료 예약 내역 - 소제목--%>
-<div><h4><strong>진료 예약 내역</strong></h4></div>
-<%--doctor detail 넣고--%>
-<div class="card p-3">
-    <div class="row g-0">
-        <div class="col-md-4" style="min-width: 200px; max-width: 200px;">
-            <div class="img-wrapper">
-                <img alt="의사사진 영역"
-                     src="<c:choose><c:when test="${doctor.doctor_profile_image_name}">/img/doctorImg/${doctor.doctor_profile_image_name}</c:when>
+    <%--진료 예약 내역 - 소제목--%>
+    <div><h4><strong>진료 예약 내역</strong></h4></div>
+    <%--doctor detail 넣고--%>
+    <div class="card p-3">
+        <div class="row g-0">
+            <div class="col-md-4" style="min-width: 200px; max-width: 200px;">
+                <div class="img-wrapper">
+                    <img alt="의사사진 영역"
+                         src="<c:choose><c:when test="${doctor.doctor_profile_image_name}">/img/doctorImg/${doctor.doctor_profile_image_name}</c:when>
                                 <c:otherwise>https://img.freepik.com/free-photo/portrait-of-asian-doctor-woman-cross-arms-standing-in-medical-uniform-and-stethoscope-smiling-at-camera-white-background_1258-83220.jpg</c:otherwise></c:choose>"/>
-            </div>
-        </div>
-        <div class="col-md-8 card-body">
-            <div class="card-title d-flex">
-                <h4 class="pr-3 font-weight-bolder">김돌팔${doc.doctor_name}</h4>
-                <span class="pl-3 font-weight-normal align-text-bottom">의사/${doctor.doctor_diagnosis_type}</span>
-            </div>
-            <div class="card-text">
-                <p class="card-text">
-                <table class="table table-borderless timetable">
-                    <tr>
-                        <th>병원이름:</th>
-                        <td>el태그로 병원이름${doctor.hospital_name}</td>
-                    </tr>
-                    <tr>
-                        <th>주소 :</th>
-                        <td>el태그로 병원주소${doctor.hospital_address}</td>
-                    </tr>
-                    <tr>
-                        <th>진료시간:</th>
-                        <td>
-                            <%--오전9시~ 오전 6시 쿼리문~!!! ㅋㄷ--%>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>점심시간:</th>
-                        <td>
-                            <%--오전12시~오후 1시 쿼리문~!!! ㅋㄷ--%>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>휴진:</th>
-                        <td>매주 ${doctor.holiday}</td>
-                    </tr>
-                    <tr>
-                        <th>비대면 진료 시간:</th>
-                        <td>
-                            <%--여기에 비대면 진료 내가 한 시간 넣는다 --%>
-                        </td>
-                    </tr>
-                </table>
-                </p>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<%--진료 챠트-소제목 --%>
-<div><h4><strong>진료 차트</strong></h4></div>
-<%--(위와 form비슷하게) 환자의 정보 출력하는 창 만든다 from 환자의 정보 DB--%>
-<div class="card p-3">
-    <div class="row g-0">
-        <div class="col-md-8 card-body">
-            <div class="card-title d-flex">
-                <h4 class="pr-3 font-weight-bolder">환자이름 출력 부분${user.user_name}</h4>
-                <span class="pl-3 font-weight-normal align-text-bottom">만 ${user.user_registration_number}세(${user.user_registration_number}</span>
-                <%--만 나이 출력 쿼리 + 성별 출력 쿼리 from 주민등록번호 --%>
-            </div>
-            <div class="card-text">
-                <p class="card-text">
-                <table class="table table-borderless timetable">
-                    <tr>
-                        <th>생년월일:</th>
-                        <td>
-                            <%--주민등록 번호를 사용, YYYY-MM-DD 출력 쿼리 만들기 --%>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>주소 :</th>
-                        <td>el태그로 환자주소${user.user_address}</td>
-                    </tr>
-                    <tr>
-                        <th>핸드폰 번호:</th>
-                        <td>
-                            <%--핸드폰 번호에 하이픈 붙어 나오는 쿼리문 작성하기--%>
-                        </td>
-                    </tr>
-                </table>
-                </p>
-            </div>
-        </div>
-    </div>
-</div>
-<%--appointmentForm에서 쓴 증상, 이미지 출력 --%>
-<div class="card-body">
-    <div class="card border-right">
-        <div class="card-header justify-content-between">
-            <div>
-                <h4><strong>증상</strong></h4>
-                <p>${diagnosis.diagnosis_content}</p>
-            </div>
-            <%-- 증상 출력--%>
-
-            <div>
-                <h4><strong>증상 이미지</strong></h4>
-                
-
-            </div>
-            <%-- 증상 이미지 출력--%>
-
-        </div>
-    </div>
-</div>
-
-
-<%--의사가 쓴 진단 소견서 내용을 출력--%>
-<div><h4><strong>진단 소견서</strong></h4></div>
-<%--진단 소견서 출력--%>
-
-
-<%--약제 배송 방법-소제목--%>
-<div><h4><strong>약제 배송 방법</strong></h4></div>
-<%--약제 배송 방법 출력하기(+결제정보도) from appointmentForm--%>
-<div class="card-body">
-    <div class="card border-right">
-        <div class="card-header justify-content-between">
-            <div class="row mb-2">
-                <div class="col-sm-3">
-                    <button type="button" class="btn btn-secondary">
-                        ${bestbragList[0].is_delivery ? "배송" : "약국내방"}</button>
-                    <%--diagnosis.is_delivery  이부분 쿼리 있을껄 지금 배송 true/false 알아내는 쿼리 가져오기 list명 변경--%>
                 </div>
             </div>
-
-            <label>보내는 곳 주소</label>
-            <hr>
-            <div><h5><strong>약국주소</strong></h5></div>
-
-
-            <label>받으신 곳 주소</label>
-            <hr>
-            <div><h5><strong>환자이름 ${user.user_name}</strong></h5></div>
-
-
-            <div><h4><strong>결제정보</strong></h4></div>
-            <%-- 결제정보 출력--%>
-
+            <div class="col-md-8 card-body">
+                <div class="card-title d-flex">
+                    <h4 class="pr-3 font-weight-bolder">${doctor.doctor_name}</h4>
+                    <span class="pl-3 font-weight-normal align-text-bottom">의사/${doctor.doctor_diagnosis_type}</span>
+                </div>
+                <div class="card-text">
+                    <p class="card-text">
+                    <table class="table table-borderless timetable">
+                        <tr>
+                            <th>병원이름:</th>
+                            <td>${doctor.hospital_name}</td>
+                        </tr>
+                        <tr>
+                            <th>주소 :</th>
+                            <td>${doctor.hospital_address}</td>
+                        </tr>
+                        <tr>
+                            <th>진료시간:</th>
+                            <td>
+                                <%--오전9시~ 오전 6시 쿼리문~!!! ㅋㄷ--%>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>점심시간:</th>
+                            <td>
+                                ${doctor.lunch_time}시~ ${doctor.lunch_time + 1}시
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>휴진:</th>
+                            <td>매주 ${doctor.holiday}요일</td>
+                        </tr>
+                    </table>
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
-</div>
 
 
-<%--2nd pri 의사쌤 리뷰 부분--%>
-<%--2nd pri 사이트 리뷰 부분--%>
+    <%--진료 챠트-소제목 --%>
+    <div><h4><strong>진료 차트</strong></h4></div>
+    <%--(위와 form비슷하게) 환자의 정보 출력하는 창 만든다 from 환자의 정보 DB--%>
+    <div class="card p-3">
+        <div class="row g-0">
+            <div class="col-md-8 card-body">
+                <div class="card-title d-flex">
+                    <h4 class="pr-3 font-weight-bolder">환자이름 : ${user.user_name}</h4>
+
+                    <%--만 나이 출력 쿼리 + 성별 출력 쿼리 from 주민등록번호 --%>
+                </div>
+                <div class="card-text">
+                    <p class="card-text">
+                    <table class="table table-borderless timetable">
+                        <tr>
+                            <th>생년월일:</th>
+                            <td>
+                                ${user.user_registration_number}
+                                <%--주민등록 번호를 사용, YYYY-MM-DD 출력 쿼리 만들기 --%>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>주소 :</th>
+                            <td>${user.user_address}</td>
+                        </tr>
+                        <tr>
+                            <th>핸드폰 번호:</th>
+                            <td>
+                                ${user.user_phone}
+                            </td>
+                        </tr>
+                    </table>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%--appointmentForm에서 쓴 증상, 이미지 출력 --%>
+    <div class="card-body">
+        <div class="card border-right">
+            <div class="card-header justify-content-between">
+                <div>
+                    <h4><strong>증상</strong></h4>
+                    <p>${diagnosis.diagnosis_content}</p>
+                </div>
+                <%-- 증상 출력--%>
+
+                <div>
+                    <h4><strong>증상 이미지</strong></h4>
+
+
+                </div>
+                <%-- 증상 이미지 출력--%>
+
+            </div>
+        </div>
+    </div>
+
+
+    <%--의사가 쓴 진단 소견서 내용을 출력--%>
+    <div><h4><strong>진단 소견서</strong></h4></div>
+    <%--진단 소견서 출력--%>
+
+
+    <%--약제 배송 방법-소제목--%>
+    <div><h4><strong>약제 배송 방법</strong></h4></div>
+    <%--약제 배송 방법 출력하기(+결제정보도) from appointmentForm--%>
+    <div class="card-body">
+        <div class="card border-right">
+            <div class="card-header justify-content-between">
+                <div class="row mb-2">
+                    <div class="col-sm-3">
+                        <button type="button" class="btn btn-secondary">
+                            ${bestbragList[0].is_delivery ? "배송" : "약국내방"}</button>
+                        <%--diagnosis.is_delivery  이부분 쿼리 있을껄 지금 배송 true/false 알아내는 쿼리 가져오기 list명 변경--%>
+                    </div>
+                </div>
+
+                <label>보내는 곳 주소</label>
+                <hr>
+                <div><h5><strong>약국주소</strong></h5></div>
+
+
+                <label>받으신 곳 주소</label>
+                <hr>
+                <div><h5><strong>환자이름: ${user.user_name}</strong></h5></div>
+
+
+                <div><h4><strong>결제정보</strong></h4></div>
+                <%-- 결제정보 출력--%>
+
+            </div>
+        </div>
+    </div>
+
+
+    <%--2nd pri 의사쌤 리뷰 부분--%>
+    <%--2nd pri 사이트 리뷰 부분--%>
 
 </div>
 </body>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
+    $(document).ready(function () {
 
+        let user = ${user.user_number};
+
+        console.log(user);
+        // $('#birthResult').append("")
+    })
 
 </script>
 </html>
