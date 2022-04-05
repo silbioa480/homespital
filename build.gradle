@@ -47,7 +47,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-mail'
 
     //훈 : 아임포트 REST 클라이언트 API
-    implementation 'com.github.iamport:iamport-rest-client-java:Tag'
+//    implementation 'com.github.iamport:iamport-rest-client-java:Tag'
 }
 
 tasks.named('test') {
