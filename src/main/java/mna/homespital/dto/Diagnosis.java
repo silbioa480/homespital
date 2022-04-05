@@ -11,7 +11,7 @@ public class Diagnosis {
     private int diagnosis_time;
     private String diagnosis_content;
     private String diagnosis_image_name;
-    private int is_diagnosis_complete;
+    private int diagnosis_status;
     private int is_diagnosis_upload;
     private int is_prescription_upload;
     private String diagnosis_file_name;
@@ -91,12 +91,12 @@ public class Diagnosis {
         this.diagnosis_image_name = diagnosis_image_name;
     }
 
-    public int getIs_diagnosis_complete() {
-        return is_diagnosis_complete;
+    public int getDiagnosis_status() {
+        return diagnosis_status;
     }
 
-    public void setIs_diagnosis_complete(int is_diagnosis_complete) {
-        this.is_diagnosis_complete = is_diagnosis_complete;
+    public void setDiagnosis_status(int diagnosis_status) {
+        this.diagnosis_status = diagnosis_status;
     }
 
     public int getIs_diagnosis_upload() {
@@ -187,7 +187,7 @@ public class Diagnosis {
         this.update_date = update_date;
     }
 
-    public Diagnosis(int diagnosis_number, int user_number, int doctor_number, int pharmacy_number, String diagnosis_type, int diagnosis_time, String diagnosis_content, String diagnosis_image_name, int is_diagnosis_complete, int is_diagnosis_upload, int is_prescription_upload, String diagnosis_file_name, String prescription_file_name, int diagnosis_money, int prescription_money, int is_delivery, String billing_key, String doctor_opinion, Date create_date, Date update_date) {
+    public Diagnosis(int diagnosis_number, int user_number, int doctor_number, int pharmacy_number, String diagnosis_type, int diagnosis_time, String diagnosis_content, String diagnosis_image_name, int diagnosis_status, int is_diagnosis_upload, int is_prescription_upload, String diagnosis_file_name, String prescription_file_name, int diagnosis_money, int prescription_money, int is_delivery, String billing_key, String doctor_opinion, Date create_date, Date update_date) {
         this.diagnosis_number = diagnosis_number;
         this.user_number = user_number;
         this.doctor_number = doctor_number;
@@ -196,7 +196,7 @@ public class Diagnosis {
         this.diagnosis_time = diagnosis_time;
         this.diagnosis_content = diagnosis_content;
         this.diagnosis_image_name = diagnosis_image_name;
-        this.is_diagnosis_complete = is_diagnosis_complete;
+        this.diagnosis_status = diagnosis_status;
         this.is_diagnosis_upload = is_diagnosis_upload;
         this.is_prescription_upload = is_prescription_upload;
         this.diagnosis_file_name = diagnosis_file_name;

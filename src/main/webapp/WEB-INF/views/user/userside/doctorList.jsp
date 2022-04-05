@@ -38,7 +38,15 @@
 <%--</section>--%>
 
 <!-- Wrapper -->
-<div id="wrapper">
+<div style="background:#34495e; color: white;">
+    <h3>최고의 의료진을 소개합니다!</h3>
+    <p>약국 내방을 할 예정 이신가요 ? -> 거리순으로<br>
+        지금 당장 비대면 진료가 가능한 선생님을 찾으시나요 ?-> 실시간 진료순<br>
+        원하시는 병원이 있으신가요 ? 검색도 있어야 ??<br>
+        그럼 처음에 병원을 서치 할수 있어야 하네 순서가 동일 선상에 있음<br>
+        지금 대면 진료일것 같다고 예상? 거리순 </p>
+</div>
+<div style="padding-right: 40px;">
     <div class="d-flex m-3 justify-content-between">
         <span class="my-auto">총
             <c:if test="${not empty doctorList}">${fn:length(doctorList)}</c:if>명</span>
@@ -54,18 +62,27 @@
                 <div class="row g-0">
                     <div class="col-md-4" style="min-width: 200px; max-width: 200px;">
                         <div class="img-wrapper">
-                            <img alt="의사사진 영역"
-                                 src="<c:choose><c:when test="${not empty doctor.doctor_profile_image_name }">/img/doctorImg/${doctor.doctor_profile_image_name}</c:when>
-                                            <c:otherwise>https://img.freepik.com/free-photo/portrait-of-asian-doctor-woman-cross-arms-standing-in-medical-uniform-and-stethoscope-smiling-at-camera-white-background_1258-83220.jpg</c:otherwise></c:choose>"/>
+                                <%--                            <img alt="의사사진 영역"--%>
+                                <%--                                 src="<c:choose><c:when test="${not empty doctor.doctor_profile_image_name || doctor.doctor_profile_image_name eq ''}">/img/doctorImg/${doctor.doctor_profile_image_name}</c:when>--%>
+                                <%--                                            <c:otherwise>https://img.freepik.com/free-photo/portrait-of-asian-doctor-woman-cross-arms-standing-in-medical-uniform-and-stethoscope-smiling-at-camera-white-background_1258-83220.jpg</c:otherwise></c:choose>"/>--%>
+                            <img alt="의사사진 영역" src="${doctor.doctor_profile_image_name}"
+                                 onerror="this.src='https://img.freepik.com/free-photo/portrait-of-asian-doctor-woman-cross-arms-standing-in-medical-uniform-and-stethoscope-smiling-at-camera-white-background_1258-83220.jpg'">
                         </div>
                     </div>
                     <div class="col-md-8 card-body">
-                        <div class="card-title d-flex">
-                            <h4 class="pr-3 font-weight-bolder">${doctor.doctor_name}</h4>
-                            <span class="pl-3 font-weight-normal align-text-bottom">의사/${doctor.doctor_diagnosis_type}</span>
-                            <button class="btn btn-secondary ml-auto">
-                                <i class="fa-solid fa-magnifying-glass">의료진 상세보기</i>
-                            </button>
+                        <div class="card-title d-flex justify-content-between">
+                            <div class="d-flex">
+                                <h4 class="pr-3 font-weight-bolder">${doctor.doctor_name}</h4>
+                                <span class="pl-3 font-weight-normal align-text-bottom">의사 / ${doctor.doctor_diagnosis_type}</span>
+                            </div>
+                            <div class="d-flex">
+                                <button class="btn btn-secondary ml-auto" onclick="">
+                                    <i class="fa-solid fa-magnifying-glass">의료진 상세보기</i>
+                                </button>
+                                <button class="btn ml-auto" style="background-color: #1abc9c; color: white;">
+                                    <i class="fa fa-check">비대면 진료 예약하기</i>
+                                </button>
+                            </div>
                         </div>
                         <div class="card-text">
                             <p class="card-text">
@@ -93,18 +110,43 @@
             </c:forEach>
         </c:if>
     </div>
-    <nav aria-label="Page navigation example">
-        <%--    EL태그로 doctorList 받으면 처리    --%>
+    <nav class="text-center" id="pageList">
         <ul class="pagination justify-content-center">
-            <li class="page-item disabled">
-                <a class="page-link">Previous</a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-                <a class="page-link" href="#">Next</a>
-            </li>
+            <c:choose>
+                <c:when test="${pageInfo.page<=1}">
+                    <li class="page-item"><a class="page-link" href="#">이전</a></li>
+                    <!-- [이전]&nbsp; -->
+                </c:when>
+                <c:otherwise>
+                    <li class="page-item"><a class="page-link"
+                                             href="./${place.id }?place_name=${place.place_name }&page=${pageInfo.page-1}">이전</a>
+                    </li>
+                </c:otherwise>
+            </c:choose>
+            <c:forEach var="i" begin="${pageInfo.startPage }" end="${pageInfo.endPage }">
+                <c:choose>
+                    <c:when test="${pageInfo.page==i }">
+                        <li class="page-item active">
+                            <a class="page-link" href="#">${i }</a></li>
+                    </c:when>
+                    <c:otherwise>
+                        <li class="page-item"><a class="page-link"
+                                                 href="./${place.id }?place_name=${place.place_name }&page=${pageInfo.page}">${i }</a>
+                        </li>
+
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
+            <c:choose>
+                <c:when test="${pageInfo.page>=pageInfo.maxPage }">
+                    <li class="page-item"><a class="page-link" href="#">다음</a></li>
+                </c:when>
+                <c:otherwise>
+                    <li class="page-item"><a class="page-link"
+                                             href="./${place.id }?place_name=${place.place_name }&page=${pageInfo.page+1}">다음</a>
+                    </li>
+                </c:otherwise>
+            </c:choose>
         </ul>
     </nav>
 

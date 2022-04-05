@@ -6,13 +6,21 @@ import mna.homespital.dto.Doctor;
 import mna.homespital.dto.Pharmacy;
 import mna.homespital.dto.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
+
+import javax.mail.internet.MimeMessage;
+import java.util.Random;
 
 @Service
 @RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService {
     @Autowired
     MemberDAO memberDAO;
+
+    @Autowired
+    private JavaMailSender mailSender;
 
     //가영: 로그인
     @Override
@@ -30,12 +38,19 @@ public class MemberServiceImpl implements MemberService {
         }
     }
 
+    //용식: 회원가입
     @Override
     public User join(User user) throws Exception {
         User mem = memberDAO.queryMember(user.getUser_email());
         if (mem != null) throw new Exception("이미 있는 이메일입니다.");
         memberDAO.insertMember(user);
         return memberDAO.queryMember(user.getUser_email());
+    }
+
+    //용식:비밀번호 수정
+    @Override
+    public void modifyPassword(String user_email, String user_password) throws Exception {
+        memberDAO.updatePassword(user_email, user_password);
     }
 
     //소연 : 환자(User)정보 가져오기
@@ -62,5 +77,55 @@ public class MemberServiceImpl implements MemberService {
         pharmacy.setPharmacy_password("");
         return pharmacy;
     }
+
+
+    //가영: 회원탈퇴
+    @Override
+    public void deleteMember(String user_email) throws Exception {
+        memberDAO.deleteMember(user_email);
+    }
+
+    //가영: 비밀번호수정
+    @Override
+    public String pwCheck(String user_email) throws Exception {
+        return memberDAO.pwCheck(user_email);
+    }
+
+    @Override
+    public void pwUpdate(String user_email, String user_password) throws Exception {
+        memberDAO.pwUpdate(user_email, user_password);
+    }
+
+
+    //용식: 유저정보 가져오기
+    @Override
+    public User queryMember(String email) throws Exception {
+        return memberDAO.queryMember(email);
+    }
+
+    //용식:비밀번호찾기: 이메일보내기 
+    //return값: 인증번호
+    @Override
+    public String sendMailForFindPw(String email) throws Exception {
+        Random random = new Random();
+        int checkNum = random.nextInt(999999);
+        String setFrom = "dlsdydtlr@gmail.com";
+        String toMail = email;
+        String title = ("인증이메일입니다.");
+        String content = "<h1>인증번호는" + checkNum + "입니다</h1>";
+
+        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message, "utf-8");
+        helper.setFrom(setFrom);
+        helper.setTo(toMail);
+        helper.setSubject(title);
+        helper.setText(content, true);
+        mailSender.send(message);
+        System.out.println("메일보내기성공");
+
+        String num = Integer.toString(checkNum);
+        return num;
+    }
+
 
 }

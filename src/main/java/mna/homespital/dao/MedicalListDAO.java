@@ -1,7 +1,6 @@
 package mna.homespital.dao;
 
 
-import mna.homespital.dto.Diagnosis;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -17,4 +16,7 @@ public interface MedicalListDAO {
 
     //진료 예약 취소(삭제) (준근)
     void deleteMedicalRecord(int diagnosis_number) throws Exception;
+
+    //유저이메일로 유저넘버 가져오기(세션에 이메일만 저장되어있어서 db를 통해 가져와야함)(준근)
+    int searchId(String user_email) throws Exception;
 }
