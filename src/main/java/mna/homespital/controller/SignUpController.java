@@ -44,7 +44,8 @@ public class SignUpController {
         try {
             memberService.login(user_email, user_password);
             session.setAttribute("email", user_email);
-            
+            session.setAttribute("name", memberService.findByEmail(user_email).getUser_name());
+
             return "user/main/index";
         } catch (Exception e) {
             model.addAttribute("err", e.getMessage());
