@@ -78,22 +78,16 @@ public class MemberServiceImpl implements MemberService {
         return pharmacy;
     }
 
-
     //가영: 회원탈퇴
     @Override
     public void deleteMember(String user_email) throws Exception {
         memberDAO.deleteMember(user_email);
     }
 
-    //가영: 비밀번호수정
+    //가영: 회원정보수정
     @Override
-    public String pwCheck(String user_email) throws Exception {
-        return memberDAO.pwCheck(user_email);
-    }
-
-    @Override
-    public void pwUpdate(String user_email, String user_password) throws Exception {
-        memberDAO.pwUpdate(user_email, user_password);
+    public void modifyMember(String user_email, String user_password, String user_name, String user_registration_number, String user_phone, String user_address) throws Exception {
+        memberDAO.updateMember(user_email, user_password, user_name, user_registration_number, user_phone, user_address);
     }
 
 
