@@ -17,6 +17,8 @@ configurations {
 
 repositories {
     mavenCentral()
+    // 훈
+    maven { url 'https://jitpack.io' }
 }
 
 dependencies {
@@ -33,7 +35,7 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    
+
     runtimeOnly 'mysql:mysql-connector-java:8.0.25'
     //문자보내기
     implementation group: 'net.nurigo', name: 'javaSDK', version: '2.2'
@@ -44,6 +46,8 @@ dependencies {
     //이메일인증번호발송
     implementation 'org.springframework.boot:spring-boot-starter-mail'
 
+    //훈 : 아임포트 REST 클라이언트 API
+    implementation 'com.github.iamport:iamport-rest-client-java:Tag'
 }
 
 tasks.named('test') {
