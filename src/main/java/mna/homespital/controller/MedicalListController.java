@@ -28,7 +28,7 @@ public class MedicalListController {
   private ServletContext servletContext;
 
   @Autowired
-  AllMedicalListService allmedListService;
+  AllMedicalListService allMedicalListService;
 
   @Autowired
   private MemberService memberService;
@@ -46,7 +46,7 @@ public class MedicalListController {
   public ModelAndView allmedicalList() {
     ModelAndView mv = new ModelAndView();
     try {
-      List<AllMedical> amd = allmedListService.allMedList();
+      List<AllMedical> amd = allMedicalListService.allMedList();
 
       mv.addObject("list", amd);
       mv.setViewName("user/userside/medicalList");

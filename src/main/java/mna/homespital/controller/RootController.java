@@ -3,9 +3,12 @@ package mna.homespital.controller;
 import mna.homespital.dto.Diagnosis;
 import mna.homespital.dto.Doctor;
 import mna.homespital.dto.PageInfo;
+import mna.homespital.dto.User;
 import mna.homespital.service.DiagnosisService;
 import mna.homespital.service.DoctorService;
 import mna.homespital.service.MedicalListService;
+import mna.homespital.service.MemberService;
+import org.apache.catalina.connector.Request;
 import org.apache.maven.model.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,8 +20,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
+//import static jdk.internal.logger.DefaultLoggerFinder.SharedLoggers.system;
 
 @RestController
 @RequestMapping("/")
@@ -38,6 +44,9 @@ public class RootController {
 
     @Autowired
     DoctorService doctorService;
+
+    @Autowired
+    MemberService memberService;
 
     public RootController() {
     }
@@ -108,16 +117,36 @@ public class RootController {
 //  public ModelAndView appointmentForm(@PathVariable int doc) {
 
   @GetMapping("/appointmentForm")
-  public ModelAndView appointmentForm() {
+  public ModelAndView appointmentForm() throws Exception {
     ModelAndView mv = new ModelAndView("user/userside/appointmentForm");
+    int doctor_number = 1;
 
         // page
-//    Doctor doctor = docService.searchdoctorInfoByNumber(doc);
+      try {
+          Doctor doctor = doctorService.getDoctor(doctor_number);
+          doctor.setDoctor_password("");
 
-        // session
+          System.out.println(doctor.getDoctor_name());
+          mv.addObject("doctor", doctor);
+      } catch (Exception e) {
+          e.printStackTrace();
+      }
+      String email = (String) session.getAttribute("email");
+
+      try {
+          User user = memberService.findByEmail(email);
+
+      } catch (Exception e) {
+          e.printStackTrace();
+      }
+
+
+
+
+//         session
 //    User user = new User();
 //    user.setUser_number(1);
-//    HttpSession session = request.getSession();
+//    HttpSession session = request.getSession(false);
 //    User user = (User) session.getAttribute("user");
 
 
@@ -128,29 +157,24 @@ public class RootController {
 
     //진료예약   ( 인성 )
     @PostMapping("/appointmentForm")
-    public String appointment(Diagnosis diagnosis, MultipartFile diagnosisImgName,
+    public String appointment(Diagnosis diagnosis, MultipartFile[] diagnosisImgNames,
                               Model model, HttpServletRequest request, HttpServletResponse response) {
         try {
             // 사진 업로드
-            String diagnosisImg = diagnosisImgName.getOriginalFilename();
+            String fileNameArr = "";
 
-//            if (!diagnosisImg.equals("")) {
-//                String path = servletContext.getRealPath("/resources/img/");
-//                String filename = UUID.randomUUID().toString() + "." + diagnosisImgName.getOriginalFilename().substring(diagnosisImgName.getOriginalFilename().lastIndexOf('.') + 1);
-//                File destFile = new File(path + filename);
-//                diagnosisImgName.transferTo(destFile);
-//                diagnosisImg = filename;
-//            } else if (diagnosisImg.equals("")) {
-//                diagnosisImg = "QR.png";
-//            }
+            for (int i=0; i < diagnosisImgNames.length; i++) {
+                String diagnosisImg = diagnosisImgNames[i].getOriginalFilename();
+                String path = servletContext.getRealPath("/resources/img/");
+                String filename = UUID.randomUUID().toString() + "." + diagnosisImg.substring(diagnosisImg.lastIndexOf('.') + 1);
+                File destFile = new File(path + filename);
+                diagnosisImgNames[i].transferTo(destFile);
+                diagnosisImg = filename;
+                fileNameArr += (diagnosisImg + ", ");
+            }
+
             // DB insert
-            System.out.println(diagnosis.getDiagnosis_image_name());
-            diagnosis.setDiagnosis_image_name(diagnosisImg);
-
-            System.out.println(diagnosis.getDiagnosis_time());
-            System.out.println(diagnosis.getDiagnosis_content());
-            System.out.println(diagnosis.getDiagnosis_image_name());
-
+            diagnosis.setDiagnosis_image_name(fileNameArr.toString());
             diagnosisService.insertDiagnosis(diagnosis);
         } catch (Exception e) {
             e.printStackTrace();
