@@ -2,10 +2,11 @@ package mna.homespital.controller;
 
 import mna.homespital.dto.Diagnosis;
 import mna.homespital.dto.Doctor;
+import mna.homespital.dto.Pharmacy;
 import mna.homespital.dto.User;
 import mna.homespital.service.DoctorService;
 import mna.homespital.service.MedicalListService;
-import mna.homespital.service.MemberService;
+import mna.homespital.service.PharService;
 import mna.homespital.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,9 +27,9 @@ public class UserController {
     MedicalListService mls;
     @Autowired
     HttpSession session;
-    @Autowired
-    MemberService memberService;
 
+    @Autowired
+    PharService pharService;
     @Autowired
     UserService userService;
 
@@ -108,6 +109,8 @@ public class UserController {
             Doctor doctor = doctorService.getDocInfo(diagnosis.getDoctor_number());
             //diagnosis객체에 있는 환자번호로 환자정보 가져와서 User타입의 참조변수 user에 객체 저장
             User user = userService.getUserInfo(diagnosis.getUser_number());
+            //diagnosis객체에 있는 약사번호로 약사정보 가져와서 Pharmacy타입의 참조변수 pharmacy에 객체 저장 04/06
+            Pharmacy pharmacy = pharService.getPharInfo(diagnosis.getPharmacy_number());
 
 
             String emailCheck = (String) session.getAttribute("email");
