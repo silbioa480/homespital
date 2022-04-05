@@ -33,9 +33,9 @@ public class SignUpController {
 
 
     //용식:주수검색API 팝업창
-    @RequestMapping(value = "/jusoPopup", method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping("/jusoPopup")
     public String jusoPopup() {
-        return "jusoPopup";
+        return "/jusoPopup";
     }
 
     //용식:유저로그인
@@ -44,7 +44,7 @@ public class SignUpController {
         try {
             memberService.login(user_email, user_password);
             session.setAttribute("email", user_email);
-            
+
             return "user/main/index";
         } catch (Exception e) {
             model.addAttribute("err", e.getMessage());

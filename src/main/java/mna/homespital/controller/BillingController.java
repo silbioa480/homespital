@@ -1,5 +1,6 @@
 package mna.homespital.controller;
 
+import com.siot.IamportRestClient.IamportClient;
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,18 +27,20 @@ public class BillingController {
     @ResponseBody
     @PostMapping("/test-billingkey")
     public ResponseEntity<String> testbkey(@RequestParam Map<String, String> params) {
+        JSONObject authTokenResponseRAW = null;
         String authTokenResponse = "";
+        JSONObject billingKeyResponseRAW = null;
         String billingKeyResponse = "";
         HttpURLConnection conn = null;
 
         //여기에 대충 카드 정보를 담아주는 객체 생성
         //
         JSONObject cardData = new JSONObject();
-        cardData.append("card_number", params.get("card_number"));
-        cardData.append("expiry", params.get("expiry"));
-        cardData.append("birth", params.get("birth"));
-        cardData.append("pwd_2digit", params.get("pwd_2digit"));
-        cardData.append("customer_uid", 9);
+        cardData.put("card_number", params.get("card_number"));
+        cardData.put("expiry", params.get("expiry"));
+        cardData.put("birth", params.get("birth"));
+        cardData.put("pwd_2digit", params.get("pwd_2digit"));
+        cardData.put("customer_uid", Integer.toString(9));
 
 //                card_number, // 카드 번호
 //                expiry, // 카드 유효기간
@@ -54,11 +57,14 @@ public class BillingController {
             conn.setDoInput(true);
             conn.setDoOutput(true); //OutputStream을 사용해서 인증키 데이터 전송
             JSONObject authInfo = new JSONObject();
-            authInfo.append("imp_api", "1205515243185179");
-            authInfo.append("imp_secret", "76b56c6a7987b195fd8d6ad27a7ca825a452753f94920947d4a9169106e698ff41561dfc05479bd7");
+            authInfo.put("imp_key", "1205515243185179");
+            authInfo.put("imp_secret", "76b56c6a7987b195fd8d6ad27a7ca825a452753f94920947d4a9169106e698ff41561dfc05479bd7");
+            System.out.println(authInfo.toString());
             try (OutputStream os = conn.getOutputStream()) {
                 byte request_data[] = authInfo.toString().getBytes();
                 os.write(request_data);
+                os.flush();
+                os.close();
             } catch (Exception e) {
                 throw new Exception();
             }
@@ -68,17 +74,24 @@ public class BillingController {
 //            if(authTokenCode != 200) throw new Exception("RESPONSE NOT 200");
             System.out.println(authTokenCode);
             try { // 인증 토큰을 받아옴
+                StringBuilder sb = new StringBuilder();
                 BufferedReader br = new BufferedReader(
                         new InputStreamReader(
                                 conn.getInputStream(), "utf-8"));
                 String s = null;
                 while ((s = br.readLine()) != null) {
-                    authTokenResponse = authTokenResponse + s;
+//                    authTokenResponse = authTokenResponse + s;
+                    sb.append(s);
                 }
                 br.close();
+                authTokenResponseRAW = new JSONObject(sb.toString());
+                JSONObject r = authTokenResponseRAW.getJSONObject("response");
+                authTokenResponse = r.getString("access_token");
+
             } catch (Exception e) {
                 throw new Exception();
             }
+            System.out.println("authToken : " + authTokenResponse);
             conn.disconnect();
             conn = null;
 
@@ -88,7 +101,8 @@ public class BillingController {
             URL billingkeyUrl = new URL("https://api.iamport.kr/subscribe/customers/" + cardData.getString("customer_uid"));
             conn = (HttpURLConnection) billingkeyUrl.openConnection();
             conn.setRequestMethod("POST");
-            conn.setRequestProperty("Accept", "application/json");
+//            conn.setRequestProperty("Accept", "application/json");
+            conn.setRequestProperty("Content-Type", "application/json");
             conn.setRequestProperty("Authorization", authTokenResponse);
             conn.setDoInput(true);
             conn.setDoOutput(true); //OutputStream을 사용해서 카드정보 데이터 전송
@@ -100,6 +114,7 @@ public class BillingController {
             }
 
             int billingkeyCode = conn.getResponseCode();
+            System.out.println(billingkeyCode);
             if (billingkeyCode != 200) throw new Exception("BILLING KEY RESPONSE NOT 200");
 
             try { // 인증 토큰을 받아옴
@@ -124,6 +139,18 @@ public class BillingController {
             return new ResponseEntity<String>(billingKeyResponse, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
+            return new ResponseEntity<String>("ERROR", HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @ResponseBody
+    @PostMapping("/test-billingkey2")
+    public ResponseEntity<String> testbkey2() {
+        try {
+            IamportClient client = new IamportClient("1205515243185179", "76b56c6a7987b195fd8d6ad27a7ca825a452753f94920947d4a9169106e698ff41561dfc05479bd7");
+
+            return new ResponseEntity<String>("OK", HttpStatus.OK);
+        } catch (Exception e) {
             return new ResponseEntity<String>("ERROR", HttpStatus.BAD_REQUEST);
         }
     }
