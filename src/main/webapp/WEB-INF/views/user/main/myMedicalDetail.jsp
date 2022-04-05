@@ -10,32 +10,24 @@
     <link rel="stylesheet" href="/resources/css/writeMediChartForm.css"/>
 </head>
 <body>
-<%--헤드라인--%>
-<div><h1><strong>나의 진료 내역 보기</strong></h1></div>
-<%--표 상단의 제목 출력/JS--%>
-<div class="col mt-5">
-    <div class="card">
-        <div class="card-body p-4">
-            <div class="text-center table-responsive">
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>날짜/시간</th>
-                        <th>진료과</th>
-                        <th>의사이름</th>
-                        <th>병원이름</th>
-                        <th>진료영수증</th>
-                        <th>진료현황</th>
-                    </tr>
-                    </thead>
-                    <tbody id="myMedicalList">
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
+<div class="container">
+    <%--헤드라인--%>
+    <div><h1><strong>나의 진료 내역 보기</strong></h1></div>
 
+    <%--        test--%>
+    <div
+    <h1>${diagnosis}</h1>>
+    <h1>${diagnosis_number}</h1>
+    <h1>${diagnosis.user_number}</h1>
+    <h1>${diagnosis.doctor_number}</h1>
+    <h1>${diagnosis.diagnosis_type}</h1>
+
+
+    <h1>${billing_key}</h1>
+
+
+</div>
+<%-- test--%>
 
 <%--진료 예약 내역 - 소제목--%>
 <div><h4><strong>진료 예약 내역</strong></h4></div>
@@ -135,10 +127,17 @@
 <div class="card-body">
     <div class="card border-right">
         <div class="card-header justify-content-between">
-            <div><h4><strong>증상</strong></h4></div>
+            <div>
+                <h4><strong>증상</strong></h4>
+                <p>${diagnosis.diagnosis_content}</p>
+            </div>
             <%-- 증상 출력--%>
 
-            <div><h4><strong>증상 이미지</strong></h4></div>
+            <div>
+                <h4><strong>증상 이미지</strong></h4>
+                
+
+            </div>
             <%-- 증상 이미지 출력--%>
 
         </div>
@@ -186,67 +185,10 @@
 <%--2nd pri 의사쌤 리뷰 부분--%>
 <%--2nd pri 사이트 리뷰 부분--%>
 
-
+</div>
 </body>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
-
-
-    //나의 진료 내역 출력
-    $(function () {
-        $.ajax({
-            url: '/medicalRecordsList',
-            type: 'GET',
-            datatype: "json",
-            data: {
-                "user_number": ${diagnosis.user_number}
-            },
-            success: function (data) {
-                console.log(data);
-
-
-                $.each(data, function (index, item) {
-
-                    //data에서 create_date를 받아와 해당날짜의 요일을 만들어준다.
-                    var old_date = data[index].create_date;
-                    var date = old_date.slice(0, 10)
-                    var week = ['일', '월', '화', '수', '목', '금', '토'];
-                    var dayOfWeek = week[new Date(date).getDay()];
-                    // console.log(week);
-                    // console.log(old_date);
-                    // console.log(date);
-                    // console.log(dayOfWeek);
-
-
-                    //진료완료, 진료중 표시 및 대기/예약취소하기 버튼
-                    let complete = "";
-                    if (item.is_diagnosis_complete == 0) {
-                        complete = "<button type='button' id='completeBtn' class='completeBtn' onclick='deleteBtn(" + item.diagnosis_number + ");'>대기/예약취소하기</button>";
-                    } else if (item.is_diagnosis_complete == 1) {
-                        complete = "진료완료";
-                    } else {
-                        complete = "진료중";
-                    }
-
-                    // 진료영수증이 있으면 내려받기 버튼 생성, 없으면 공백
-                    let upload = "";
-                    if (item.is_prescription_upload == true) {
-                        upload = "<button type='button' id ='uploadBtn' class='uploadBtn'>내려받기</button>"
-                    } else {
-                        upload = "";
-                    }
-                    // 나의 진료 내역 테이블 생성
-                    $("#myMedicalList").append("<tr><td>" + date + " (" + dayOfWeek + ") <br>" + item.diagnosis_time + ":00</td>" +
-                        "<td>" + item.diagnosis_type + "</td>" +
-                        "<td>" + item.doctor_name + "</td>" +
-                        "<td>" + item.hospital_name + "</td>" +
-                        "<td>" + upload + "</td>" +
-                        "<td>" + complete + "</td></tr><br>);"
-                    );
-                })
-            }
-        })
-    })
 
 
 </script>

@@ -38,11 +38,16 @@
             padding: 10px;
         }
 
+        .table {
+            height: 500px;
+            overflow: overlay;
+        }
+
 
     </style>
 </head>
 <body>
-<div>
+<div class="container">
     <div class="col mt-5">
         <div class="list-header bg-info text-right">
             <h1 id="logo">Homespital</h1>
@@ -100,7 +105,7 @@
 
         function next_load(list) {
             $.each(list, function (index, item) {
-                if (index >= page * 5 && index < page * 5 + 5) {
+                if (index >= page * 30 && index < page * 30 + 30) {
                     console.log(index);
                     //data에서 create_date를 받아와 해당날짜의 요일을 만들어준다.
                     var old_date = list[index].create_date;
@@ -137,7 +142,6 @@
                     )
                     ;
                 }
-
             })
             loading = false;
         }

@@ -1,12 +1,17 @@
 package mna.homespital.controller;
 
 import mna.homespital.dto.Diagnosis;
+import mna.homespital.dto.Doctor;
+import mna.homespital.dto.User;
+import mna.homespital.service.DoctorService;
 import mna.homespital.service.MedicalListService;
 import mna.homespital.service.MemberService;
+import mna.homespital.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
@@ -17,12 +22,15 @@ import java.util.HashMap;
 public class UserController {
     @Autowired
     MedicalListService mls;
-
     @Autowired
     HttpSession session;
-
     @Autowired
-    private MemberService memberService;
+    MemberService memberService;
+    @Autowired
+    DoctorService doctorService;
+    @Autowired
+    UserService userService;
+
 
     //나의진료내역 (준근)
     @GetMapping("/myMedicalList")
@@ -65,4 +73,33 @@ public class UserController {
         mls.deleteMedicalRecord(diagnosis_number);
         return "success";
     }
+
+    //나의진료내역 보기 (소연)
+    @GetMapping("/myMedicalDetail/{diagnosis_number}")
+    public ModelAndView myMedicalDetail(@PathVariable int diagnosis_number) {
+        System.out.println("myMedicalDetail() join");
+        ModelAndView mav = new ModelAndView();
+        try {
+            //diagnosis_number(진료번호)에 해당되는 diagnosis(진료내역)을 가져와서 Diagnosis타입의 참조변수 diagnosis에 객체 저장
+            Diagnosis diagnosis = mls.getDiagnosisNo(diagnosis_number);
+            //diagnosis객체에 있는 의사번호로 의사정보 가져와서 Doctor타입의 참조변수 doctor에 객체 저장
+            Doctor doctor = doctorService.getDocInfo(diagnosis.getDoctor_number());
+            //diagnosis객체에 있는 환자번호로 환자정보 가져와서 User타입의 참조변수 user에 객체 저장
+            User user = userService.getUserInfo(diagnosis.getUser_number());
+            
+            //저장된 각 객체들 model에 전부 저장(diagnosis -진료내역, doctor - 의사정보, user - 환자정보)
+            mav.addObject("diagnosis", diagnosis);
+            mav.addObject("doctor", doctor);
+            mav.addObject("user", user);
+            mav.setViewName("/user/main/myMedicalDetail");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            mav.addObject("err", e.getMessage());
+            mav.setViewName("/common/err");
+        }
+        return mav;
+    }
+
+
 }
