@@ -20,4 +20,38 @@
         where user_email = #{user_email}
         ]]>
     </select>
+
+    <!--가영: 회원탈퇴-->
+    <delete id="deleteMember" parameterType="String">
+        <![CDATA[
+        delete
+        *
+        from `user`
+        where user_email =
+        #{user_email}
+        ]]>
+    </delete>
+
+    <!--    가영: 비밀번호 수정-->
+    <select id="pwCheck" resultType="String">
+        select *
+        from `user`
+        where user_email = #{user_email}
+    </select>
+
+    <update id="pwUpdate">
+        update `user`
+        set user_password = #{user_password}
+        where user_email = #{user_email}
+    </update>
+
+    <!--용식: 비밀번호변경-->
+    <update id="updatePassword" parameterType="user">
+        <![CDATA[
+        update `user`
+        set user_password=#{user_password}
+        where user_email = #{user_email}
+        ]]>
+
+        </update>
 </mapper>

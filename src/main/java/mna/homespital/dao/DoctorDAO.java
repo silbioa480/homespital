@@ -13,6 +13,8 @@ public interface DoctorDAO {
 
     Integer doctorAmount() throws Exception;
 
+    //    소연 : 의사 정보 1개 가져오기
+    Doctor docInfo(int doctor_number) throws Exception;
 
     // 거리순 검색 알고리즘
     // 현재 주소를 어떻게든 가져와. 이거는 geolocation = html5 https

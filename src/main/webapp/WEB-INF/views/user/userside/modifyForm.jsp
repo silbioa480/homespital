@@ -60,7 +60,8 @@
 
     <!-- Main -->
     <div id="main">
-        <form id="form" style="margin-left: 100px" action="joinForm.jsp" method="post">
+        <form id="form" style="margin-left: 100px" action="modifyForm.jsp" method="post">
+            <input type="hidden" id="user_email" name="user_email" value="${User.user_email}">
             <!-- One -->
             <section id="one">
                 <div class="container" style="margin-top: 150px">
@@ -73,47 +74,17 @@
                     </div>
 
                     <div class="input-control">
-                        <label for="password">비밀번호</label>
-                        <div style="display: flex">
-                            <input class="modi-input" style="width: 100%" type="password" id="password" name="password"
-                                   placeholder="비밀번호를 입력해주세요" required>
-                            <input type="button" id="pwBtn" class="doubleChk" value="비밀번호수정">
-                            <div class="modal fade" id="pwModal" tabindex="-1" role="dialog"
-                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="pwModalLabel">비밀번호수정</h5>
-
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="input-control">
-                                                <label for="password3">새로운 비밀번호</label>
-                                                <input type="password" style="width: 100%" id="password3"
-                                                       name="password" placeholder="비밀번호를 입력해주세요" value="" minlength="4"
-                                                       maxlength="12" size="15" pattern="[a-zA-Z0-9]{4,12}"
-                                                       title="4~12자의 영문 대소문자와 숫자로만 입력." required/>
-
-                                            </div>
-                                            <div class="input-control">
-                                                <label for="password4">비밀번호 확인</label>
-                                                <input type="password" style="width: 100%" id="password4"
-                                                       name="password2" placeholder="비밀번호를 입력해주세요" onkeyup="check_pw()"
-                                                       value="" maxlength="12" size="15" required>
-                                                <span id="pw_check_msg" style="color: #1abc9c"></span>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <a class="btn" id="modalY" href="#">수정</a>
-                                            <button class="btn" type="button" data-bs-dismiss="modal">취소</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="error"></div>
-                        </div>
+                        <label for="password">새 비밀번호</label>
+                        <input type="password" style="width: 100%" id="password" name="password" placeholder="비밀번호를 입력해주세요" value="" minlength="4" maxlength="12" size="15" pattern="[a-zA-Z0-9]{4,12}" title="4~12자의 영문 대소문자와 숫자로만 입력."required>
+                        <div class="error"></div>
                     </div>
+                    <div class="input-control">
+                        <label for="password2">새 비밀번호 확인</label>
+                        <input type="password" style="width: 100%" id="password2" name="password2" placeholder="비밀번호를 입력해주세요" onkeyup="check_pw()" value="" maxlength="12" size="15" required>
+                        <span id="pw_check_msg" style="color: #1abc9c"></span>
+                        <div class="error"></div>
+                    </div>
+
 
                     <div class="input-control">
                         <label for="name">이름</label>
@@ -136,6 +107,7 @@
                             <input class="modi-input" style="width:100%" id="phone" type="text" name="phone"
                                    value="${User.user_phone}" readonly="readonly"/>
                             <input type="button" id="phoneBtn" class="doubleChk" value="휴대폰번호변경">
+                        </div>
 
                             <div class="modal fade" id="phoneModal" tabindex="-1" role="dialog"
                                  aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -176,7 +148,7 @@
                             <div class="error"></div>
                         </div>
                     </div>
-                </div>
+
             </section>
 
             <br><br><br><br>
@@ -186,16 +158,37 @@
                 <div class="container">
                     <h3>배송지 정보 수정</h3>
                     <hr>
+                    <div>
+                        <table>
+                            <colgroup>
+                                <col style="width:20%">
+                                <col>
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <th>우편번호</th>
+                                <td>
+                                    <div style="display:flex">
+                                        <input type="hidden" id="confmKey" name="confmKey" value="">
+                                        <input type="text" id="zipNo" name="zipNo" readonly style="width:100%">
+                                        <input type="button" value="주소변경" onclick="goPopup()"
+                                               style=" margin-left:30px;">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>도로명주소</th>
+                                <td><input type="text" id="roadFullAddr" name="roadFullAddr" style="width:100%"></td>
+                            </tr>
+                            <tr>
+                                <th>상세주소</th>
+                                <td>
+                                    <input type="text" id="addrDetail" name="addrDetail" style="width:100%" value="">
 
-                    <div class="input-control">
-                        <label for="SocialSecurityNumber">주소</label>
-                        <div style="display:flex">
-                            <input type="hidden" id="confmKey" name="confmKey" value="">
-                            <input type="text" id="zipNo" name="zipNo" readonly style="width:100%">
-                            <input type="button" value="주소변경" onclick="goPopup()"
-                                   style=" margin-left:30px;">
-                        </div>
-
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </section>
@@ -209,29 +202,48 @@
                     <h3>결제 정보 수정</h3>
                     <hr>
 
-                    <div class="input-control">
-                        <label for="creditCardNumber">결제정보</label>
-                        <div class="creditCardNumber" style="display:flex">
-                            <input type="text" class="moveNumber" onKeyup="inputMoveNumber(this);" maxlength="4"
-                                   style="width:100%; margin-bottom: 10px"/>
+                    <h5>카드 번호</h5>
+                    <div class="creditCardNumber">
+                        <input type="text" class="moveNumber" onKeyup="inputMoveNumber(this);" maxlength="4"
+                               style="width:23%"/>&nbsp;-&nbsp;
+                        <input type="text" class="moveNumber" onKeyup="inputMoveNumber(this);" maxlength="4"
+                               style="width:23%"/>&nbsp;-&nbsp;
+                        <input type="text" class="moveNumber" onKeyup="inputMoveNumber(this);" maxlength="4"
+                               style="width:23%"/>&nbsp;-&nbsp;
+                        <input type="text" class="moveNumber" maxlength="4" style="width:23%"/>
+                    </div>
+                    <div class="creditCardValidity">
+                        <h5>카드 유효기간</h5>
+                        <input type="text" class="validThru" onKeyup="inputValidThru(this);" placeholder="MM/YY"
+                               maxlength="5" style="width: 100%"/>
+                    </div>
+                    <div class="creditCardBirth">
+                        <h5>생년월일</h5>
+                        <input type="text" class="" placeholder="생년월일" maxlength="6" style="width: 100%">
+                    </div>
+                    <div>
+                        <h5>카드 비밀번호</h5>
+                        <div style="display:flex">
+                        <input type="text" class="" placeholder="앞에 두자리만 입력해주세요" maxlength="2" style="width: 100%">
                             <input type="button" id="cardChange" class="doubleChk" value="변경">
-                        </div>
+                    </div>
+
+
                         <h5> * 본인명의 카드만 등록 가능 합니다.</h5>
                         <br><br>
 
                         <input type="submit" value="수정" style="width: 100%;"></input>
                     </div>
+
                 </div>
             </section>
             <br><br><br><br>
 
 
-            <!-- Four -->
-
         </form>
 
-
     </div>
+
 
     <!-- Footer -->
     <section id="footer">
@@ -245,8 +257,7 @@
 
 </div>
 
-
-<!-- Scripts -->
+                <!-- Scripts -->
 <script src="/resources/js/signUp/jquery.min.js"></script>
 <script src="/resources/js/signUp/jquery.scrollex.min.js"></script>
 <script src="/resources/js/signUp/jquery.scrolly.min.js"></script>
@@ -256,8 +267,8 @@
 <script src="/resources/js/signUp/signUp.js"></script>
 <script src="/resources/js/signUp/signUpCheck.js"></script>
 
-<script>
-    $('#pwBtn').click(function (e) {
+<script type="text/javascript">
+    $('#pwBtn').click(function(e){
         e.preventDefault();
         $('#pwModal').modal("show");
     });
@@ -267,16 +278,16 @@
         $('#phoneModal').modal("show");
     });
 
-    function check_pw() {  //비밀번호 확인
-        var pw3 = document.getElementById('password3').value;
-        var pw4 = document.getElementById('password4').value;
+    function check_pw(){  //비밀번호 확인
+        var password = document.getElementById('password').value;
+        var password2 = document.getElementById('password2').value;
 
-        if (pw3 != pw4) {
+        if (password!==password2) {
             document.getElementById('pw_check_msg').innerHTML = "비밀번호가 다릅니다. 다시 확인해 주세요.";
         } else {
             document.getElementById('pw_check_msg').innerHTML = "";
         }
-        if (pw4 == "") {
+        if (password2==="") {
             document.getElementById('pw_check_msg').innerHTML = "";
         }
     }
