@@ -22,16 +22,12 @@ public class MedicalListServiceImpl implements MedicalListService {
     @Autowired
     DiagnosisDAO diagnosisDAO;
 
-
+    //유저이메일로 유저넘버 가져오기(세션에 이메일만 저장되어있어서 db를 통해 가져와야함)(준근)
     @Override
     public int searchId(String user_email) throws Exception {
         return medicalListDAO.searchId(user_email);
     }
 
-    //    @Override
-//    public List<Diagnosis> medicalRecordsList(int user_number) throws Exception {
-//        return medicalListDAO.medicalRecordsList(user_number);
-//    }
     //환자 진료내역 출력 (준근)
     @Override
     public ArrayList<HashMap<String, Object>> medicalRecordsList(int user_number) throws Exception {

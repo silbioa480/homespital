@@ -1,4 +1,4 @@
-package service;
+package mna.homespital.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
@@ -10,6 +10,7 @@ public class SendMailService {
     @Autowired
     private JavaMailSender sender;
 
+    //용식 : 메일보내기
     public void sendMail(String toEamil, String subject, String body) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("dlsdydtlr@gmail.com");
