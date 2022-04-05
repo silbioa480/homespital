@@ -12,8 +12,11 @@ public interface MedicalListService {
     //나의 진료내역 리스트 출력 (준근)
     ArrayList<HashMap<String, Object>> medicalRecordsList(int user_number) throws Exception;
 
-    //진료 예약 취소(삭제) (준근)
-    void deleteMedicalRecord(int diagnosis_number) throws Exception;
+    //진료 예약 취소 (준근)
+    void cancelMedicalRecord(int diagnosis_number) throws Exception;
+
+    // 약 수령 확인(준근)
+    void successMedicalRecord(int diagnosis_number) throws Exception;
 
     // 소연 : diagnosis_number로 해당진료내역 가져오기
     Diagnosis getDiagnosisNo(int diagnosis_number) throws Exception;
