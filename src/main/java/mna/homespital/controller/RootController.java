@@ -53,6 +53,7 @@ public class RootController {
         return new ModelAndView("user/main/loginForm");
     }
 
+
     //회원가입
     @GetMapping("/joinForm")
     public ModelAndView joinForm() {
@@ -65,11 +66,28 @@ public class RootController {
         return new ModelAndView("user/userside/modifyForm");
     }
 
-    //회원정보수정
-    @GetMapping("/deleteForm")
+//  //비밀번호확인(정보수정 전)
+//  @GetMapping("/pwCheck")
+//  public ModelAndView pwCheck() {
+//    return new ModelAndView("user/userside/pwCheck");
+//  }
+
+
+
+
+    //회원탈퇴
+    @GetMapping("/delete")
     public ModelAndView deleteForm() {
-      return new ModelAndView("user/userside/deleteForm");
+        String email = (String) session.getAttribute("email");
+
+        if(email == null) {
+            return new ModelAndView("user/main/index");
+        }
+        return new ModelAndView("user/userside/deleteForm");
     }
+
+
+
 
     //비밀번호 찾기
     @GetMapping("/findpwForm")
@@ -94,9 +112,9 @@ public class RootController {
 //  @GetMapping("/appointmentForm/{doc}")
 //  public ModelAndView appointmentForm(@PathVariable int doc) {
 
-  @GetMapping("/appointmentForm")
-  public ModelAndView appointmentForm() {
-    ModelAndView mv = new ModelAndView("user/userside/appointmentForm");
+    @GetMapping("/appointmentForm")
+    public ModelAndView appointmentForm() {
+        ModelAndView mv = new ModelAndView("user/userside/appointmentForm");
 
         // page
 //    Doctor doctor = docService.searchdoctorInfoByNumber(doc);
@@ -149,5 +167,5 @@ public class RootController {
     @GetMapping("/welcome")
     public ModelAndView welcome() {
         return new ModelAndView("admin/main/welcome");
-  }
+    }
 }
