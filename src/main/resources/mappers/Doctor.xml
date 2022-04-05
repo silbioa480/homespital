@@ -30,7 +30,7 @@
         ]]>
     </select>
 
-    <!--   소연 : 의사 정보 가져오는 쿼리문  -->
+    <!--  소연 : 의사 정보 가져오는 쿼리문 -->
     <select id="docInfo" resultType="Doctor" parameterType="int">
         <![CDATA[
         select *
@@ -38,5 +38,4 @@
         where doctor_number = #{doctor_number}
         ]]>
     </select>
-
 </mapper>

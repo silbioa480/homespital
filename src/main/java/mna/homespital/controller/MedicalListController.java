@@ -53,40 +53,5 @@ public class MedicalListController {
         return mv;
     }
 
-//  //나의진료내역 보기 (소연)
-//  @GetMapping("/myMedicalDetail/{diagnosis_number}")
-//  public ModelAndView myMedicalDetail(@PathVariable String diagnosis_number, HttpServletRequest request) {
-//    System.out.println("gifjgfdigjfldgjfjgld");
-//    ModelAndView mav = new ModelAndView();
-//    try {
-//      int number = Integer.parseInt(diagnosis_number);
-//      diagnosis = medicalListService.getDiagnosisNo(number); //내진료 내역 가져오기
-//      HttpSession session = request.getSession();
-//      User user = (User) session.getAttribute("user");
-//      User userinfo = memberService.getUserDetail(user.getUser_number()); //환자(User)정보 가져오기
-//      System.out.println(userinfo);
-//
-//      if (user != null) {
-//        System.out.println("유저 정보 인식");
-//      }
-//
-//      mav.addObject("userInfo", userinfo);
-////            mav.addObject("dia", diagnosis);
-////            mav.addObject("doc", doctor);
-////            mav.addObject("sicker", user);
-////
-////            //업로드 된 img 가져오기
-////            //쿼리 아직 안씀 ㅎ
-////            mav.addObject("imgSrc", src); //mav에 넣기
-////            mav.setViewName("user/main/myMedicalDetail"); //경로이름 설정
-//
-//    } catch (Exception e) {
-//      e.printStackTrace();
-//      mav.addObject("err", e.getMessage());
-//      mav.setViewName("/common/err");
-//    }
-//    return mav;
-//  }
-
 
 }
