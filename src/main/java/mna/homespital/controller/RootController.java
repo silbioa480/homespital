@@ -76,28 +76,9 @@ public class RootController {
     @GetMapping("/doctorList")
     public ModelAndView doctorList(@RequestParam(required = false, defaultValue = "1") int page) throws Exception {
         ModelAndView mv = new ModelAndView("user/userside/doctorList");
-        // 훈 : 의사 목업코드
-//        List<Doctor> doctorList = new ArrayList<Doctor>();
         PageInfo pageInfo = new PageInfo();
         List<Doctor> doctorList = doctorService.getDocList(page, pageInfo);
 
-//    doctorList.add(new Doctor(
-//      1, "doctor@aaa.com", "", "김닥터",
-//      "서울특별시 서울의료원", "서울 중랑구 신내로 156", "www.doctor.com",
-//      null, "내과", "나는김닥터",
-//      "중졸", "논문없음", "11", "12", "수",
-//      new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2021-01-01 00:00:00"),
-//      new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2022-02-02 00:00:00")
-//    ));
-//    doctorList.add(new Doctor(
-//      2, "doctor2@aaa.com", "", "이닥터",
-//      "세브란스병원", "서울 서대문구 연세로 50-1", "www.doctor2.com",
-//      null, "정형외과", "나는이닥터",
-//      "고졸", "논문없음", "11", "12", "수",
-//      new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2021-01-01 00:00:00"),
-//      new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2022-02-02 00:00:00")
-//    ));
-        // 여기까지
         mv.addObject("doctorList", doctorList);
         mv.addObject("pageInfo", pageInfo);
         return mv;
