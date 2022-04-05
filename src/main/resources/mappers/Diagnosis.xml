@@ -17,12 +17,12 @@
         ]]>
     </insert>
 
-    <!--( 인성 )-->
+    <!-- 인성 : 예약하기 진료차트 폼 POST -->
     <insert id="insertDiagnosis" parameterType="Diagnosis">
         <![CDATA[
         insert into diagnosis(user_number, doctor_number, is_delivery, diagnosis_time, diagnosis_content,
                               diagnosis_image_name, billing_key, doctor_opnion)
-        values (1, 2, 1, 11, '머리가 아파요 선생님', 'qr.jpg', 'a', 'a');
+        values (1, 2, 1, ${diagnosis_time}, '다리', #{diagnosis_image_name}, 'a', 'a');
         ]]>
     </insert>
 
