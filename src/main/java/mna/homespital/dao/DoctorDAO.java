@@ -30,5 +30,4 @@ public interface DoctorDAO {
     //
     // 정렬
 
-
 }

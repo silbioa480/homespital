@@ -17,42 +17,41 @@ import java.util.List;
 @RestController
 public class MedicalListController {
 
-  @Autowired
-  HttpSession session;
+    @Autowired
+    HttpSession session;
 
-  @Autowired
-  private ServletContext servletContext;
+    @Autowired
+    private ServletContext servletContext;
 
-  @Autowired
-  AllMedicalListService allmedListService;
+    @Autowired
+    AllMedicalListService allmedListService;
 
-  @Autowired
-  private MemberService memberService;
+    @Autowired
+    private MemberService memberService;
 
-  @Autowired
-  private MedicalListService medicalListService;
+    @Autowired
+    private MedicalListService medicalListService;
 
-  @Autowired(required = false) // 매개변수 없어도 OK. 나중에 고쳐야?
-  Diagnosis diagnosis;
+    @Autowired(required = false) // 매개변수 없어도 OK. 나중에 고쳐야?
+    Diagnosis diagnosis;
 
 
-  //모든 진료항목 출력 (태영)
+    //모든 진료항목 출력 (태영)
 
-  @GetMapping("/list")
-  public ModelAndView allmedicalList() {
-    ModelAndView mv = new ModelAndView();
-    try {
-      List<AllMedical> amd = allmedListService.allMedicalList();
+    @GetMapping("/list")
+    public ModelAndView allmedicalList() {
+        ModelAndView mv = new ModelAndView();
+        try {
+            List<AllMedical> amd = allmedListService.allMedList();
 
-      mv.addObject("list", amd);
-      mv.setViewName("user/userside/medicalList");
-    } catch (Exception e) {
-      e.printStackTrace();
+            mv.addObject("list", amd);
+            mv.setViewName("user/userside/medicalList");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return mv;
     }
-    return mv;
-  }
-
-  //원하는 진료항목출력 태영
+    //원하는 진료항목출력 태영
   @ResponseBody
   @PostMapping("/medicalSearch")
   public String medicalSearch(@RequestParam String mediSearch, Model model){
@@ -91,5 +90,4 @@ public class MedicalListController {
     }
     return mav;
   }
-
 }

@@ -53,5 +53,15 @@
         where user_email = #{user_email}
         ]]>
 
-        </update>
+    </update>
+
+    <!--   준근 : user_number로 user(환자) 정보 가져오는 쿼리문  -->
+    <select id="selectUserDetail" resultType="User" parameterType="int">
+        <![CDATA[
+        select *
+        from user
+        where user_number = #{user_number}
+        ]]>
+    </select>
+
 </mapper>
