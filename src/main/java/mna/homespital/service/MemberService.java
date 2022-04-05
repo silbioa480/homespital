@@ -28,6 +28,8 @@ public interface MemberService {
     //소연 : 약사(Pharmacy)정보 가져오기
     Pharmacy getPharDetail(int pharmacy_number) throws Exception;
 
+    User findByEmail(String email) throws Exception;
+
     //가영: 회원탈퇴
     void deleteMember(String user_email) throws Exception;
 

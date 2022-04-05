@@ -42,7 +42,7 @@ public class MedicalListController {
   public ModelAndView allmedicalList() {
     ModelAndView mv = new ModelAndView();
     try {
-      List<AllMedical> amd = allmedListService.allMedicalList();
+      List<AllMedical> amd = allmedListService.allMedList();
 
       mv.addObject("list", amd);
       mv.setViewName("user/userside/medicalList");

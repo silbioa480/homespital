@@ -11,4 +11,5 @@ public interface DoctorService {
 
     // 의료진 정보 찾기 (소연)
     public Doctor getDocInfo(int doctor_number) throws Exception;
+
 }

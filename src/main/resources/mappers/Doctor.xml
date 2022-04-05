@@ -12,7 +12,6 @@
     <!--                #{user_phone}, #{user_address})-->
     <!--        ]]>-->
     <!--    </insert>-->
-
     <select id="queryDoctor" resultType="Doctor" parameterType="int">
         <![CDATA[
         select *

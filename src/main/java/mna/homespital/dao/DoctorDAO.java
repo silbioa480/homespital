@@ -9,6 +9,7 @@ import java.util.List;
 @Mapper
 @Repository
 public interface DoctorDAO {
+
     List<Doctor> queryDoctor(int startrow) throws Exception;
 
     Integer doctorAmount() throws Exception;

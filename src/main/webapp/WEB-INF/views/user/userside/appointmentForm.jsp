@@ -12,9 +12,8 @@
 <div>
 <%--    인성      --%>
     <form method="post" class="file-uploader" action="/appointmentForm" enctype="multipart/form-data">
-        <input type="submit" class="btn rounded-0 btn-dark">예약하기</input>
         <div class="card p-3">
-            <h4><strong>시간 선택하기</strong></h4>
+            <h4 id="one"><strong>시간 선택하기</strong></h4>
             <div class="card p-3">
                 <div class="row g-0">
                     <div class="col-md-4" style="min-width: 200px; max-width: 200px;">
@@ -26,19 +25,19 @@
                     </div>
                     <div class="col-md-8 card-body">
                         <div class="card-title d-flex">
-                            <h4 class="pr-3 font-weight-bolder">김돌팔 &nbsp&nbsp&nbsp&nbsp ${doctor.doctor_name}</h4>
-                            <span class="pl-3 font-weight-normal align-text-bottom">의사/${doctor.doctor_diagnosis_type}</span>
+                            <h4 class="pr-3 font-weight-bolder">${doctor.doctor_name} &nbsp&nbsp&nbsp&nbsp</h4>
+                            <span class="pl-3 font-weight-normal align-text-bottom">${doctor.doctor_diagnosis_type}</span>
                         </div>
                         <div class="card-text">
                             <p class="card-text">
                             <table class="table table-borderless timetable">
                                 <tr>
                                     <th>병원이름:</th>
-                                    <td>el태그로 병원이름${doctor.hospital_name}</td>
+                                    <td>${doctor.hospital_name}</td>
                                 </tr>
                                 <tr>
                                     <th>휴진:</th>
-                                    <td>el태그로 휴진${doctor.holiday}</td>
+                                    <td>${doctor.holiday}요일</td>
                                 </tr>
                                 <tr>
                                     <th>시간:</th>
@@ -98,22 +97,15 @@
                         <th>증상 이미지 첨부</th>
                         <td>
                             <div class="card p-3" >
-<%--                                <div align="center" id="image_container" >--%>
-<%--                                    <img id="default_image" style="border-radius: 200px; width: 150px; height: 150px;"--%>
-<%--                                         src="<c:url value='/resources/img/QR.png'/>"/>--%>
-<%--                                </div>--%>
                                 <div id="preview" align="center"></div>
                                 <div align="center" class="filebox" style="padding:10px">
-                                    <label for="btnAtt">사진 등록</label>
-                                    <input type='file' id="btnAtt" name="diagnosisImgName" multiple='multiple' accept=".gif, .jpg, .png" />
-                                    <div id='att_zone'></div>
-<%--                                    <input type="file" onchange="setThumbnail(event);" style="display: block;" id="diagnosisImgName" name="diagnosisImgName" class="inp-img" accept=".gif, .jpg, .png" multiple>--%>
-<%--                                    <div id="image_container">--%>
-<%--                                    </div>--%>
+                                    <label id="filebtn" for="btnAtt">사진 등록</label>
+                                    <input type='file' id="btnAtt" style="display: none;" name="diagnosisImgNames" accept=".gif, .jpg, .png"  multiple/>
+                                    <div id='att_zone'>
+                                    </div>
                                     <input type="hidden" name="doctor_number" value="${not empty doctor_number? doctor_number : 1}">
                                 </div>
                             </div>
-                        </td>
                         </td>
                     </tr>
                 </table>
@@ -121,7 +113,7 @@
         </div>
 <%----------------------------------------------------------------------%>
         <div class="card p-3">
-            <h4><strong>약제 배송 방식</strong></h4>
+            <h4 id="two"><strong>약제 배송 방식</strong></h4>
             <div class="m-3">
                 <input type="hidden" name="is_delivery" id="is_delivery" value=0>
                 <button class="btn btn-warning rounded-pill"
@@ -159,11 +151,11 @@
                             <%--                        </div>--%>
                             <div id="menu_wrap" class="bg_white">
                                 <div class="option">
-                                    <form class="input-group" onsubmit="searchPlaces(); return false;">
+
                                         <input type="text" class="form-control" placeholder="키워드 입력"
                                                id="searchKeyword" size="15">
-                                        <button type="submit" class="btn btn-primary">검색하기</button>
-                                    </form>
+                                        <button onclick="searchPlaces(); return false;" class="btn btn-primary">검색하기</button>
+
                                 </div>
                                 <hr>
                                 <ul id="placesList"></ul>
@@ -209,7 +201,7 @@
 
         </div>
         <div class="card p-3">
-            <h4><strong>결제 정보</strong></h4>
+            <h4 id="three"><strong>결제 정보</strong></h4>
             <div class="card p-3">
                 <div class="d-flex align-items-end">
                     <h4>황인성</h4>
@@ -247,8 +239,9 @@
                 <label><input type="checkbox" name="paymentConfirm">확인했어요</label>
             </div>
         </div>
-        <div>
-            <input type="submit" class="btn rounded-0 btn-dark">예약하기</input>
+        <div class="appoint-out">
+            <label for="appointDo" class="appointBtn">예약하기</label>
+            <input type="submit" id="appointDo" class="appointDo" style="display: none" />
         </div>
     </form>
 </div>
@@ -557,10 +550,10 @@
                 btn.setAttribute('delFile', img.name);
                 btn.setAttribute('style', chk_style);
                 btn.onclick = function(ev){
-                    var ele = ev.srcElement;
+                    var ele = ev.target;
                     var delFile = ele.getAttribute('delFile');
                     for(var i=0 ;i<sel_files.length; i++){
-                        if(delFile== sel_files[i].name){
+                        if(delFile === sel_files[i].name){
                             sel_files.splice(i, 1);
                         }
                     }

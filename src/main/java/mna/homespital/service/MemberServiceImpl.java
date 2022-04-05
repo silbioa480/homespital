@@ -77,6 +77,11 @@ public class MemberServiceImpl implements MemberService {
         pharmacy.setPharmacy_password("");
         return pharmacy;
     }
+//  이메일로 유저 정보 가져옴 ( 인성 )
+    @Override
+    public User findByEmail(String email) throws Exception {
+        return memberDAO.queryMember(email);
+    }
 
     //가영: 회원탈퇴
     @Override

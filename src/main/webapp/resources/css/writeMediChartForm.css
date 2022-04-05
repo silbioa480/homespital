@@ -7,57 +7,62 @@
 .chartTable > tbody > tr > td {
   min-width: 400px;
 }
+/* 증상 이미지 ( 인성 ) */
 #image_container img {
   width: 150px;
   height: 150px;
 }
+/* 증상 이미지 첨부 btn ( 인성 ) */
+#filebtn {
+    width: 100px;
+    height: 28px;
+    border-radius: 5px;
+    border: 1px solid #111;
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    position: relative;
+    overflow: hidden;
+    z-index: 5;
+    transition: all 0.4s ease-in-out;
+    transform: translateY(20%);
+}
 
-/*.div_style {*/
-/*    width:150px;*/
-/*    height: 150px;*/
-/*    margin: 5px;*/
-/*    border: 1px solid #111;*/
-/*    display: inline-block;*/
-/*    position: relative;*/
-/*}*/
+#filebtn:hover {
+    color: white;
+    z-index: 6;
+    transform: translateY(0);
+}
 
-/*.img_style {*/
-/*    width: 100%;*/
-/*    height: 100%;*/
+#filebtn::before,
+#filebtn::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: black;
+    transition: all 0.25s ease-in-out;
+    z-index: -1;
+}
 
-/*}*/
+#filebtn::before {
+    transform: translateX(-100%);
+}
 
-/*.chk_style {*/
-/*    width: 30px;*/
-/*    height:30px;*/
-/*    position: absolute;*/
-/*    font-size:24px;*/
-/*    right: 0px;*/
-/*    bottom: 0px;*/
-/*    z-index: 999;*/
-/*    background-color: #f00;*/
-/*}*/
+#filebtn::after {
+    transform: translateX(100%);
+}
 
-/*#multiple-container .image {*/
-/*    width:150px;*/
-/*    height: 150px;*/
+#filebtn:hover:before {
+    transform: translateX(-50%);
+}
 
-/*}*/
-/*#multiple-container {*/
-/*    display: grid;*/
-/*    grid-template-columns: 1fr 1fr 1fr;*/
-/*}*/
-/*.image {*/
-/*    display: block;*/
-/*    width: 100%;*/
-/*}*/
-/*.image-label {*/
-/*    position: relative;*/
-/*    bottom: 22px;*/
-/*    left: 5px;*/
-/*    color: black;*/
-/*    text-shadow: 2px 2px 2px black;*/
-/*}*/
+#filebtn:hover:after {
+    transform: translateX(50%);
+}
+
 
 /*시간 선택 radio CSS*/
 .box-radio-input input[type="radio"] {
@@ -299,9 +304,59 @@
 }
 
 #pagination .on {
-  font-weight: bold;
-  cursor: default;
-  color: #777;
+    font-weight: bold;
+    cursor: default;
+    color: #777;
+}
+/* 예약하기 btn ( 인성 ) */
+.appoint-out {
+    margin-top: 80px;
+    margin-bottom: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.appointBtn {
+    text-align: center;
+    background-color:white;
+    color: black;
+    border-radius: 5px;
+    border: 1px solid #111;
+    height: 35px;
+    width: 100px;
+    line-height: 35px;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    z-index: 5;
+    transition: all 0.4s ease-in-out;
+    transform: translateY(20%);
+    cursor: pointer;
+}
+
+.appointBtn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: black;
+    transition: all 0.25s ease-in-out;
+    z-index: -1;
+}
+.appointBtn::before {
+    transform: translateY(-100%);
+}
+.appointBtn:hover {
+    color: white;
+    transform: translateY(0);
+}
+.appointBtn:hover:before {
+    transform: translateY(0);
+    font-weight: bold;
+    cursor: default;
+    color: #777;
 }
 
 footer {
