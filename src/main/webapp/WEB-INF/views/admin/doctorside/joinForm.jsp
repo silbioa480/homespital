@@ -12,5 +12,11 @@
 </head>
 <body>
 
+<%--&lt;%&ndash;   사업자번호 조회 태영 &ndash;%&gt;--%>
+<%--    <input type="text" placeholder="사업자 번호 입력" name="ceoNumber" id="ceoNumber" />--%>
+<%--    <button type="button" id="ceoNumberCheck">번호 조회</button>--%>
+
+<%--<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>--%>
+<%--<script src="/WEB-INF/resources/js/BusinessNumberApi.js"></script>--%>
 </body>
 </html>
