@@ -15,6 +15,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 
 @Controller
@@ -101,6 +103,44 @@ public class UserController {
                 mav.setViewName("/common/err");
                 return mav;
             }
+            
+            //환자의 주민번호를 가공해서 모델로 넘긴다.(view에서 생년월일, 만 나이를 나타내기 위함)
+            String JuminNo = user.getUser_registration_number();
+            JuminNo = JuminNo.replaceAll("-", ""); //주민번호 - 빼고 숫자만 나오게
+            int year = 0;
+
+            // 주민번호 뒷자리가 1이나 2면 1900년대생, 아니면 2000년대생
+            if (Integer.parseInt(JuminNo.substring(6, 7)) <= 2) {
+                year = Integer.parseInt(JuminNo.substring(0, 2)) + 1900;
+            } else {
+                year = Integer.parseInt(JuminNo.substring(0, 2)) + 2000;
+            }
+
+            int month = Integer.parseInt(JuminNo.substring(2, 4));  //월
+            int date = Integer.parseInt(JuminNo.substring(4, 6));   //일
+            String gender = JuminNo.substring(6, 7);                //성별
+
+            //주민번호 뒷자리로 성별 지정
+            if (gender.equals("1") || gender.equals("3")) {
+                gender = "남";
+            } else if (gender.equals("2") || gender.equals("4")) {
+                gender = "여";
+            }
+            //만 나이
+            GregorianCalendar Gc = new GregorianCalendar();
+            int age = Gc.get(Calendar.YEAR) - year;
+
+            //모델에 각 계산결과 넣기
+            mav.addObject("year", year);
+            mav.addObject("month", month);
+            mav.addObject("date", date);
+            mav.addObject("age", age);
+            mav.addObject("gender", gender);
+
+            //환자,의사의 중요한 정보를 빈문자열로 준다.
+            user.setUser_registration_number("");
+            user.setUser_password("");
+            doctor.setDoctor_password("");
 
             //저장된 각 객체들 model에 전부 저장(diagnosis -진료내역, doctor - 의사정보, user - 환자정보)
             mav.addObject("diagnosis", diagnosis);

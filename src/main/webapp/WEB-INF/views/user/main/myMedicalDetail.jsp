@@ -72,7 +72,8 @@
         <div class="row g-0">
             <div class="col-md-8 card-body">
                 <div class="card-title d-flex">
-                    <h4 class="pr-3 font-weight-bolder">환자이름 : ${user.user_name}</h4>
+                    <h3 class="pr-3 font-weight-bolder">${user.user_name}</h3>
+                    <p>만 ${age}세/ ${gender}</p>
 
                     <%--만 나이 출력 쿼리 + 성별 출력 쿼리 from 주민등록번호 --%>
                 </div>
@@ -82,8 +83,8 @@
                         <tr>
                             <th>생년월일:</th>
                             <td>
-                                ${user.user_registration_number}
-                                <%--주민등록 번호를 사용, YYYY-MM-DD 출력 쿼리 만들기 --%>
+                                ${year}-${month}-${date}
+                                <%--주민등록 번호를 사용, YYYY-MM-DD 출력 만들기 --%>
                             </td>
                         </tr>
                         <tr>
@@ -169,6 +170,7 @@
 </body>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
-  
+
+
 </script>
 </html>
