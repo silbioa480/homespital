@@ -28,9 +28,9 @@ public class UserController {
     HttpSession session;
     @Autowired
     MemberService memberService;
+
     @Autowired
     UserService userService;
-
 
     @Autowired
     private MedicalListService medicalListService;
@@ -159,5 +159,6 @@ public class UserController {
         }
         return mav;
     }
+
 
 }

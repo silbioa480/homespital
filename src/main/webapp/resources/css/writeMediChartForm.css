@@ -14,55 +14,54 @@
 }
 /* 증상 이미지 첨부 btn ( 인성 ) */
 #filebtn {
-    width: 100px;
-    height: 28px;
-    border-radius: 5px;
-    border: 1px solid #111;
-    cursor: pointer;
-    background-color: white;
-    color: black;
-    position: relative;
-    overflow: hidden;
-    z-index: 5;
-    transition: all 0.4s ease-in-out;
-    transform: translateY(20%);
+  width: 100px;
+  height: 28px;
+  border-radius: 5px;
+  border: 1px solid #111;
+  cursor: pointer;
+  background-color: white;
+  color: black;
+  position: relative;
+  overflow: hidden;
+  z-index: 5;
+  transition: all 0.4s ease-in-out;
+  transform: translateY(20%);
 }
 
 #filebtn:hover {
-    color: white;
-    z-index: 6;
-    transform: translateY(0);
+  color: white;
+  z-index: 6;
+  transform: translateY(0);
 }
 
 #filebtn::before,
 #filebtn::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-color: black;
-    transition: all 0.25s ease-in-out;
-    z-index: -1;
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: black;
+  transition: all 0.25s ease-in-out;
+  z-index: -1;
 }
 
 #filebtn::before {
-    transform: translateX(-100%);
+  transform: translateX(-100%);
 }
 
 #filebtn::after {
-    transform: translateX(100%);
+  transform: translateX(100%);
 }
 
 #filebtn:hover:before {
-    transform: translateX(-50%);
+  transform: translateX(-50%);
 }
 
 #filebtn:hover:after {
-    transform: translateX(50%);
+  transform: translateX(50%);
 }
-
 
 /*시간 선택 radio CSS*/
 .box-radio-input input[type="radio"] {
@@ -304,59 +303,59 @@
 }
 
 #pagination .on {
-    font-weight: bold;
-    cursor: default;
-    color: #777;
+  font-weight: bold;
+  cursor: default;
+  color: #777;
 }
 /* 예약하기 btn ( 인성 ) */
 .appoint-out {
-    margin-top: 80px;
-    margin-bottom: 80px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  margin-top: 80px;
+  margin-bottom: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .appointBtn {
-    text-align: center;
-    background-color:white;
-    color: black;
-    border-radius: 5px;
-    border: 1px solid #111;
-    height: 35px;
-    width: 100px;
-    line-height: 35px;
-    padding: 0;
-    position: relative;
-    overflow: hidden;
-    z-index: 5;
-    transition: all 0.4s ease-in-out;
-    transform: translateY(20%);
-    cursor: pointer;
+  text-align: center;
+  background-color: white;
+  color: black;
+  border-radius: 5px;
+  border: 1px solid #111;
+  height: 35px;
+  width: 100px;
+  line-height: 35px;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  z-index: 5;
+  transition: all 0.4s ease-in-out;
+  transform: translateY(20%);
+  cursor: pointer;
 }
 
 .appointBtn::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-color: black;
-    transition: all 0.25s ease-in-out;
-    z-index: -1;
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: black;
+  transition: all 0.25s ease-in-out;
+  z-index: -1;
 }
 .appointBtn::before {
-    transform: translateY(-100%);
+  transform: translateY(-100%);
 }
 .appointBtn:hover {
-    color: white;
-    transform: translateY(0);
+  color: white;
+  transform: translateY(0);
 }
 .appointBtn:hover:before {
-    transform: translateY(0);
-    font-weight: bold;
-    cursor: default;
-    color: #777;
+  transform: translateY(0);
+  font-weight: bold;
+  cursor: default;
+  color: #777;
 }
 
 footer {
