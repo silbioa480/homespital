@@ -9,7 +9,7 @@
         <put-attribute name="body" value=""/>
     </definition>
 
-    <definition name="login" template="/WEB-INF/views/common/loginLayout.jsp">
+    <definition name="loginLayout" template="/WEB-INF/views/common/loginLayout.jsp">
         <put-attribute name="body" value=""/>
     </definition>
 
