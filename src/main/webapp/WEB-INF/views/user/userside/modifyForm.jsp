@@ -70,7 +70,7 @@
                     <div class="input-control">
                         <label for="email">이메일</label>
                         <input class="modi-input" style="width: 100%" type="text" id="email" name="email"
-                               value="${email}" readonly="readonly">
+                               value="${user.user_email}" readonly="readonly">
                     </div>
 
                     <div class="input-control">
