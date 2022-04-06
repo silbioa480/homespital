@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css"/>
     <link rel="stylesheet" href="/resources/css/writeMediChartForm.css"/>
 
-    
+
 </head>
 <body>
 <div class="container">
@@ -52,7 +52,7 @@
                         <tr>
                             <th>점심시간:</th>
                             <td>
-                                ${doctor.lunch_time}시~ ${doctor.lunch_time + 1}시
+                                ${doctor.lunch_time}
                             </td>
                         </tr>
                         <tr>
