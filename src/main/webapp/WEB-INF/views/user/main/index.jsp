@@ -14,8 +14,8 @@
         <header>
             <h2>Homespital.</h2>
         </header>
-        <p>Welcome to <strong>Big Picture</strong> a responsive site template designed by <a href="https://html5up.net">HTML5 UP</a><br />
-            and released for free under the <a href="https://html5up.net/license">Creative Commons Attribution license</a>.</p>
+        <p>우리집에서 한번에<hr><strong>비대면 진료 </strong><strong>| 처방 </strong><strong>| 약배송까지</strong><br />
+            </p>
         <footer>
             <a href="#one" class="button style2 down">More</a>
         </footer>

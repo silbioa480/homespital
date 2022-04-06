@@ -73,6 +73,7 @@ public class SignUpController {
     //가영:유저로그인
     @PostMapping("/login.do")
     public String login(@RequestParam("email") String user_email, @RequestParam("password") String user_password, Model model) {
+
         try {
             memberService.login(user_email, user_password);
             session.setAttribute("email", user_email);

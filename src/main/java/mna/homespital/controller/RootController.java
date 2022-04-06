@@ -4,10 +4,7 @@ import mna.homespital.dto.Diagnosis;
 import mna.homespital.dto.Doctor;
 import mna.homespital.dto.PageInfo;
 import mna.homespital.dto.User;
-import mna.homespital.service.DiagnosisService;
-import mna.homespital.service.DoctorService;
-import mna.homespital.service.MedicalListService;
-import mna.homespital.service.MemberService;
+import mna.homespital.service.*;
 import org.apache.maven.model.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -45,6 +42,9 @@ public class RootController {
 
     @Autowired
     MemberService memberService;
+
+    @Autowired
+    UserService userService;
 
     public RootController() {
     }
@@ -160,7 +160,7 @@ public class RootController {
 
             for (int i = 0; i < diagnosisImgNames.length; i++) {
                 String diagnosisImg = diagnosisImgNames[i].getOriginalFilename();
-                String path = servletContext.getRealPath("/resources/img/");
+                String path = servletContext.getRealPath("/resources/img/uploadImg/");
                 String filename = UUID.randomUUID().toString() + "." + diagnosisImg.substring(diagnosisImg.lastIndexOf('.') + 1);
                 File destFile = new File(path + filename);
                 diagnosisImgNames[i].transferTo(destFile);

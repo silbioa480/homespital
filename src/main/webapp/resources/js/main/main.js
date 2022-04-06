@@ -200,7 +200,7 @@
 					// Update scrolly links.
 						$('a[href^="#"]').scrolly({
 							speed: 100,
-							offset: $header.outerHeight() - 1
+							offset: $header.outerHeight()
 						});
 
 					// Re-enable animations/transitions.
