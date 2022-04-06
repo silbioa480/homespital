@@ -1,6 +1,9 @@
 package mna.homespital.service;
 
+import mna.homespital.dao.CardInformationDAO;
+import mna.homespital.dto.Card_Information;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
@@ -8,13 +11,15 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Random;
 
 @Service
 public class IamportServiceImpl implements IamportService {
-
-//    @Autowired
-
+    //    훈 - 결제 서비스
+    @Autowired
+    CardInformationDAO cardDAO;
 
     HttpURLConnection conn = null;
     final String imp_key = "1205515243185179";
@@ -77,6 +82,20 @@ public class IamportServiceImpl implements IamportService {
     public JSONObject getBillingKey(String authToken, JSONObject cardData) {
         JSONObject result = null;
 
+        //customer_uid 설정
+        int leftLimit = 48; // numeral '0'
+        int rightLimit = 122; // letter 'z'
+        int targetStringLength = 255;
+        Random random = new Random();
+        String generatedString = random.ints(leftLimit, rightLimit + 1)
+                .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
+                .limit(targetStringLength)
+                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+                .toString();
+        cardData.remove("customer_uid"); // test_billingkeyapi.jsp에서는 customer_uid를 임의로 정의함. 그거 빼주는 코드
+        cardData.put("customer_uid", generatedString);
+
+
         try {
             URL billingkeyUrl = new URL("https://api.iamport.kr/subscribe/customers/" + cardData.getString("customer_uid"));
             conn = (HttpURLConnection) billingkeyUrl.openConnection();
@@ -118,6 +137,20 @@ public class IamportServiceImpl implements IamportService {
         } finally {
             conn.disconnect();
             conn = null;
+        }
+
+
+        try {
+            Card_Information cardInfo = new Card_Information(
+                    cardData.getString("customer_uid"),
+                    cardData.getInt("card_owner_number"),
+                    new SimpleDateFormat("MMyy").parse(cardData.getString("expiry")),
+                    cardData.getString("card_nickname"),
+                    cardData.getString("card_number")
+            );
+            cardDAO.insertMyCard(cardInfo);
+        } catch (Exception e) {
+            //throw new Exception("결제 정보 오류");
         }
         return result.getJSONObject("response");
     }
