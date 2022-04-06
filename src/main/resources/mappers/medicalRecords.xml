@@ -4,14 +4,16 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mna.homespital.dao.MedicalListDAO">
-    <!--    <select id="medicalRecordsList" resultType="Diagnosis" parameterType="int">-->
-    <!--        <![CDATA[-->
-    <!--        select *-->
-    <!--        from diagnosis-->
-    <!--        Where user_number = #{user_number}-->
-    <!--        order by create_date desc limit 10-->
-    <!--        ]]>-->
-    <!--    </select>-->
+
+    <!-- email값으로 아이디 불러오기   -->
+    <select id="searchId" resultType="int" parameterType="String">
+	    <![CDATA[
+        select user_number
+        from user
+        where user_email = #{user_email}
+        ]]>
+    </select>
+
 
     <!--  나의 진료내역 리스트 보기(준근)  -->
     <select id="medicalRecordsList" resultType="HashMap" parameterType="int">
@@ -25,13 +27,22 @@
         ]]>
     </select>
     <!-- 예약된 진료 취소하기 (준근)-->
-    <delete id="deleteMedicalRecord" parameterType="int">
+    <update id="cancelMedicalRecord" parameterType="int">
         <![CDATA[
-        delete
-        from diagnosis
-        where diagnosis_number = #{diagnosis_number}
+        update diagnosis
+        set diagnosis_status = 2
+        where diagnosis_number = #{diagnosis_number};
         ]]>
-    </delete>
+    </update>
+
+    <!-- 약 수령 확인/비대면진료서비스 완료 (준근)-->
+    <update id="successMedicalRecord" parameterType="int">
+        <![CDATA[
+        update diagnosis
+        set diagnosis_status = 7
+        where diagnosis_number = #{diagnosis_number};
+        ]]>
+    </update>
 
 
 </mapper>

@@ -73,8 +73,8 @@
                     <div class="input-control">
                         <label for="SocialSecurityNumber">주민등록번호</label>
                         <div style="display:flex">
-                            <input id="SocialSecurityNumber" name="SocialSecurityNumber1" type="text">&nbsp__&nbsp<input
-                                type="text" name="SocialSecurityNumber2">
+                            <input id="SocialSecurityNumber" name="SocialSecurityNumber1" type="text" maxlength="6">&nbsp__&nbsp<input
+                                type="text" id="SocialSecurityNumber2" name="SocialSecurityNumber2" maxlength="7">
                         </div>
                         <div class="error"></div>
                     </div>
