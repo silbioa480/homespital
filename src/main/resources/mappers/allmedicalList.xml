@@ -14,7 +14,7 @@
 <!--   진료과 검색 태영-->
     <select id="searchMedical" resultType="AllMedical" parameterType="String">
         <![CDATA[
-                select * from all_medical where medical_name like '%내%'
+                select * from all_medical where replace(medical_name, ' ', '') like concat('%', #{keyward}, '%')
         ]]>
     </select>
 
