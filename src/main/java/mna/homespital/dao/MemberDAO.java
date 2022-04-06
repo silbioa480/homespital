@@ -36,7 +36,4 @@ public interface MemberDAO {
     //가영: 회원탈퇴
     void deleteMember(String user_email) throws Exception;
 
-    //가영: 비밀번호확인
-    void passwordMember(String user_email) throws Exception;
-
 }
