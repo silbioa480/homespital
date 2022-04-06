@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css"/>
     <link rel="stylesheet" href="/resources/css/writeMediChartForm.css"/>
 
-    
+
 </head>
 <body>
 <div class="container">
@@ -122,6 +122,7 @@
 
                 </div>
                 <%-- 증상 이미지 출력--%>
+                <p>${diagnosis.diagnosis_image_name}</p>
 
             </div>
         </div>

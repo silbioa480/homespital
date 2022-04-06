@@ -109,7 +109,7 @@ public class UserController {
             Doctor doctor = doctorService.getDocInfo(diagnosis.getDoctor_number());
             //diagnosis객체에 있는 환자번호로 환자정보 가져와서 User타입의 참조변수 user에 객체 저장
             User user = userService.getUserInfo(diagnosis.getUser_number());
-            //diagnosis객체에 있는 약사번호로 약사정보 가져와서 Pharmacy타입의 참조변수 pharmacy에 객체 저장 04/06
+            //diagnosis객체에 있는 약사번호로 약사정보 가져와서 Pharmacy타입의 참조변수 pharmacy에 객체 저장 - 04/06
             Pharmacy pharmacy = pharService.getPharInfo(diagnosis.getPharmacy_number());
 
 
@@ -118,7 +118,7 @@ public class UserController {
             if (emailCheck != null) {
                 //세션에 있는 이메일과 유저객체에 있는 이메일이 일치 하지 않는다면, 404 페이지
                 if (!emailCheck.equals(user.getUser_email())) {
-                    System.out.println("이프문 안에 들어왔네?");
+                    System.out.println("이프문 안에 들어왔네?ㅋㅋ");
                     mav.setViewName("/common/err");
                     return mav;
                 }
