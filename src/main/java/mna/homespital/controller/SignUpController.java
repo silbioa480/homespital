@@ -161,6 +161,34 @@ public class SignUpController {
         }
     }
 
+    //가영: 비밀번호확인
+    @ResponseBody
+    @RequestMapping(value="/pwCheck", method = RequestMethod.POST)
+    public String submitPasswordMember(@RequestParam(value="password") String password, RedirectAttributes rttr, HttpSession session) {
+        System.out.println("입력한 비밀번호 값 : " + password);
+        try {
+            String email = (String) session.getAttribute("email");
+            User user = memberService.queryMember(email);
+            if (user==null) {
+                return "사용자없음";
+            }
+            System.out.println(user.toString());
+            String originPass = user.getUser_password();
+            String inputPass = password;
+
+            if (!(inputPass.equals(originPass))) {
+                rttr.addFlashAttribute("msg", true);
+
+                return "비밀번호틀림";
+            } else {
+                return "비밀번호일치";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "에러";
+        }
+    }
+
     //가영: 회원정보수정
     @PostMapping("modifyMember.do")
     public String modifyMember(@RequestParam Map<String, String> params) {
