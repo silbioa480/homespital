@@ -166,7 +166,6 @@ public class UserController {
             user.setUser_password("");
             doctor.setDoctor_password("");
 
-
             //소연 : 진료 시간 출력
             String work_time = doctor.getWorking_time();
             String[] work_timeArr = work_time.split(",");
@@ -224,7 +223,6 @@ public class UserController {
             String confirmTime = strNowDate + " " + diagnosis.getDiagnosis_time();
 
             mav.addObject("confirmTime" + ":00", confirmTime);
-
 
             //저장된 각 객체들 model에 전부 저장(diagnosis -진료내역, doctor - 의사정보, user - 환자정보)
             mav.addObject("diagnosis", diagnosis);
