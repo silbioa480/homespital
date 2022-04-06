@@ -65,7 +65,7 @@
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink"
                                         aria-expanded="false">
                                         <li><a class="dropdown-item" href="/myMedicalList">나의진료내역</a></li>
-                                        <li><a class="dropdown-item" href="/modifyForm">내정보수정</a></li>
+                                        <li><a class="dropdown-item" href="/pwCheck">내정보수정</a></li>
                                     </ul>
                                 </li>
                                 <li class="nav-item">
