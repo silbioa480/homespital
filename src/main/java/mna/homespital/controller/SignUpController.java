@@ -77,6 +77,7 @@ public class SignUpController {
             memberService.login(user_email, user_password);
             session.setAttribute("email", user_email);
             session.setAttribute("name", memberService.findByEmail(user_email).getUser_name());
+            session.setAttribute("phone", memberService.findByEmail(user_email).getUser_phone());
             return "redirect:/";
         } catch (Exception e) {
             model.addAttribute("err", e.getMessage());
@@ -102,7 +103,7 @@ public class SignUpController {
         String phone = params.get("phone");
         String address = "[" + params.get("zipNo") + "] " + params.get("roadFullAddr") + params.get("addrDetail");
         User user = new User(email, password, name, SocialSecurityNumber, phone, address);
-        
+
 //        String billing_key = params.get("billing_key");
 //
 //        if (!billing_key.isEmpty()) {
@@ -111,7 +112,7 @@ public class SignUpController {
 
         try {
             memberService.join(user);
-            mv.setViewName("redirect:/loginForm");
+            mv.setViewName("redirect:/");
         } catch (Exception e) {
             e.printStackTrace();
             mv.setViewName("user/main/index");
@@ -121,13 +122,13 @@ public class SignUpController {
 
     //가영: 회원탈퇴
     @ResponseBody
-    @RequestMapping(value="/delete", method = RequestMethod.POST)
-    public String submitDeleteMember(@RequestParam(value="password") String password, RedirectAttributes rttr, HttpSession session) {
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    public String submitDeleteMember(@RequestParam(value = "password") String password, RedirectAttributes rttr, HttpSession session) {
         System.out.println("입력한 비밀번호 값 : " + password);
         try {
             String email = (String) session.getAttribute("email");
             User user = memberService.queryMember(email);
-            if (user==null) {
+            if (user == null) {
                 return "사용자없음";
             }
             System.out.println(user.toString());
@@ -151,13 +152,22 @@ public class SignUpController {
 
     //가영: 회원정보수정
     @PostMapping("modifyMember.do")
-    public String modifyMember(@RequestParam("email") String password, @RequestParam String email, @RequestParam String name, @RequestParam String registration_number, @RequestParam String phone, @RequestParam String address) {
+    public String modifyMember(@RequestParam Map<String, String> params) {
+        ModelAndView mv = new ModelAndView();
+        String email = params.get("email");
+        String password = params.get("password");
+        String name = params.get("name");
+        String SocialSecurityNumber = params.get("SocialSecurityNumber1") + "-" + params.get("SocialSecurityNumber2");
+        String phone = params.get("phone");
+        String address = "[" + params.get("zipNo") + "] " + params.get("roadFullAddr") + params.get("addrDetail");
         try {
-            memberService.modifyMember(email, password, name, registration_number, phone, address);
+            //보조강사님
+            memberService.modifyMember(email, password, name, SocialSecurityNumber, phone, address);
+            System.out.println("address:" + address);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "user/main/index";
+        return "redirect:/";
     }
 
 
@@ -178,7 +188,7 @@ public class SignUpController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "user/main/index";
+        return "redirect:/";
     }
 
 }
