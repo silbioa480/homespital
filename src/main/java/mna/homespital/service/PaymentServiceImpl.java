@@ -1,7 +1,9 @@
 package mna.homespital.service;
 
 import mna.homespital.dao.CardInformationDAO;
+import mna.homespital.dao.MemberDAO;
 import mna.homespital.dto.Card_Information;
+import mna.homespital.dto.User;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,14 +14,18 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 @Service
-public class IamportServiceImpl implements IamportService {
+public class PaymentServiceImpl implements PaymentService {
     //    훈 - 결제 서비스
     @Autowired
     CardInformationDAO cardDAO;
+    @Autowired
+    MemberDAO memberDAO;
 
     HttpURLConnection conn = null;
     final String imp_key = "1205515243185179";
@@ -79,7 +85,7 @@ public class IamportServiceImpl implements IamportService {
     } // https://docs.iamport.kr/tech/access-token?lang=ko
     // response는 "access_token", "now(아임포트 REST API 서버의 현재시간)", "expired_at(토큰의 만료시간(KST))"
 
-    public JSONObject getBillingKey(String authToken, JSONObject cardData) {
+    public JSONObject getBillingKey(String authToken, JSONObject cardData, int user_number, String card_nickname) {
         JSONObject result = null;
 
         //customer_uid 설정
@@ -143,16 +149,21 @@ public class IamportServiceImpl implements IamportService {
         try {
             Card_Information cardInfo = new Card_Information(
                     cardData.getString("customer_uid"),
-                    cardData.getInt("card_owner_number"),
-                    new SimpleDateFormat("MMyy").parse(cardData.getString("expiry")),
-                    cardData.getString("card_nickname"),
+                    user_number,
+                    new SimpleDateFormat("yyyy-MM").parse(cardData.getString("expiry")),
+                    card_nickname,
                     cardData.getString("card_number")
             );
+            Map<String, Object> param = new HashMap<>();
+            param.put("customer_uid", cardData.getString("customer_uid"));
+            param.put("card_owner_number", user_number);
             cardDAO.insertMyCard(cardInfo);
+            cardDAO.setThisCardMain(param);
+            return result.getJSONObject("response");
         } catch (Exception e) {
-            //throw new Exception("결제 정보 오류");
+            e.printStackTrace();
+            return null;
         }
-        return result.getJSONObject("response");
     }
 
     public JSONObject pay(String authToken, String customer_uid, String merchant_uid, int amount, String name) {
@@ -209,17 +220,22 @@ public class IamportServiceImpl implements IamportService {
             conn.disconnect();
             conn = null;
         }
+
+        try {
+
+        } catch (Exception e) {
+
+        }
         return result.getJSONObject("response");
     }
 
-    public String[] test() {
-        int start = 9;
-        int end = 18;
-        ArrayList<Integer> arr = new ArrayList<>();
-        for (int i = start; i < end; i++)
-            arr.add(i);
-        System.out.println(arr.toString());
-
-        return null;
+    @Override
+    public List<Card_Information> getPayments(String email) {
+        try {
+            User user = memberDAO.queryMember(email);
+            return cardDAO.queryMyCards(user.getUser_number());
+        } catch (Exception e) {
+            return null;
+        }
     }
 }

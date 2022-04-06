@@ -36,4 +36,14 @@
         ]]>
     </delete>
 
+    <update id="setThisCardMain" parameterType="Map">
+        <![CDATA[
+        update `user` u, `card_information` c
+        set u.billing_key = #{customer_uid}
+        where u.user_number = #{card_owner_number}
+          and c.customer_uid = #{customer_uid}
+          and u.user_number = c.card_owner_number
+        ]]>
+    </update>
+
 </mapper>

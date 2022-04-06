@@ -31,7 +31,17 @@ public class User {
         this.zip_code = zip_code;
         this.street_address = street_address;
         this.detail_address = detail_address;
+    }
 
+    //용식:마이페이지수정
+    public User(String user_email, String user_password, String user_name, String user_phone, String zip_code, String street_address, String detail_address) {
+        this.user_email = user_email;
+        this.user_password = user_password;
+        this.user_name = user_name;
+        this.user_phone = user_phone;
+        this.zip_code = zip_code;
+        this.street_address = street_address;
+        this.detail_address = detail_address;
     }
 
     public User(int user_number, String user_email, String user_password, String user_name, String user_registration_number, String user_phone, String zip_code, String street_address, String detail_address, String billing_key, Date create_date, Date update_date) {
@@ -48,6 +58,7 @@ public class User {
         this.create_date = create_date;
         this.update_date = update_date;
     }
+
 
     public int getUser_number() {
         return user_number;

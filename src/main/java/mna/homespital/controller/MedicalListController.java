@@ -8,7 +8,6 @@ import mna.homespital.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -66,5 +65,21 @@ public class MedicalListController {
             return mv;
     }
 
-
+//    //autocomplete controller 태영
+//    @ResponseBody
+//    @PostMapping("/mediSearch")
+//    public String mediSearch(Model model){
+//      try{
+//          List<AllMedical> schmd=allmedListService.allMedList();
+//
+//          String dataMd=String.valueOf(schmd);
+//          JSONArray jsa=new JSONArray();
+//          JSONObject jso=new JSONObject();
+//          jso.put("data",dataMd);
+//
+//      }catch(Exception e){
+//          e.printStackTrace();
+//      }
+//      return ;
+//    }
 }
