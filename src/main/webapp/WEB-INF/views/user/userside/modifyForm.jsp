@@ -277,6 +277,7 @@
                                 </div>
                                 <div class="modal-body">
                                     <div class="input-control">
+                                        <h6 class="modal-title">카드 별칭</h6>
                                         <div style="display:flex">
                                             <input style="width: 100%" id="cardNameModal" type="text"
                                                    name="cardNameModal"
@@ -314,7 +315,7 @@
                                         <div style="display:flex">
                                             <input style="width: 100%" id="cardPassword" type="password"
                                                    name="cardPassword"
-                                                   title="카드 비밀번호" placeholder="카드 비밀번호 4자리 입력하세요." maxlength="4" minlength="4"/>
+                                                   title="카드 비밀번호" placeholder="비밀번호 앞자리 2개 입력하세요." maxlength="2" minlength="2"/>
                                         </div>
                                     </div>
                                 </div>
@@ -459,8 +460,8 @@
             $("#cardMMYYNumModal").focus();
             return false;
         }
-        if($("#cardPassword").val().length != 4) {
-            alert("카드 비밀번호 숫자 4자리를 입력해주세요.");
+        if($("#cardPassword").val().length != 2) {
+            alert("카드 비밀번호 앞자리 2자리를 입력해주세요.");
             $("#cardPassword").focus();
             return false;
         }
