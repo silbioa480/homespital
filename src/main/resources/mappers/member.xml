@@ -30,5 +30,16 @@
         ]]>
     </delete>
 
-
+<!--가영: 회원정보수정-->
+    <update id="updateMember" parameterType="user">
+        <![CDATA[
+        update `user`
+        set user_password = #{user_password},
+            user_name = #{user_name},
+            user_registration_number = #{user_registration_number},
+            user_phone = #{user_phone},
+            user_address = #{user_address}
+        where user_email = #{user_email}
+        ]]>
+    </update>
 </mapper>
