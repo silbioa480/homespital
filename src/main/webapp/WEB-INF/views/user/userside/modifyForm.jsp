@@ -25,7 +25,7 @@
     <%--    <script src="./bootstrapt/js/bootstrap.min.js"></script>--%>
 
 </head>
-<body>
+
 <body class="is-preload">
 
 <!-- Header -->
@@ -60,8 +60,8 @@
 
     <!-- Main -->
     <div id="main">
-        <form id="form" style="margin-left: 100px" action="modifyForm.jsp" method="post">
-            <input type="hidden" id="user_email" name="user_email" value="${user.user_email}">
+        <form id="form" style="margin-left: 100px" action="/modifyMember.do" method="post">
+            <input type="hidden" id="user_email" name="user_email" value="${email}">
             <!-- One -->
             <section id="one">
                 <div class="container" style="margin-top: 150px">
@@ -124,6 +124,7 @@
                                                            placeholder="휴대폰번호를 입력해주세요" title="전화번호 입력"/>
                                                     <input type="button" id="phoneChk" class="doubleChk"
                                                            value="인증번호 받기">
+
                                                 </div>
                                                 <div class="error"></div>
                                             </div>
@@ -138,7 +139,7 @@
 
                                         </div>
                                         <div class="modal-footer">
-                                            <a class="btn" id="modalY2" href="/modifyForm">수정</a>
+                                            <a class="btn" id="modalY2" href="/modifyForm" onclick="getParentText()">수정</a>
                                             <button class="btn" type="button" data-bs-dismiss="modal">취소</button>
                                         </div>
                                     </div>
@@ -257,6 +258,7 @@
 
 </div>
 
+
                 <!-- Scripts -->
 <script src="/resources/js/signUp/jquery.min.js"></script>
 <script src="/resources/js/signUp/jquery.scrollex.min.js"></script>
@@ -278,7 +280,14 @@
     $('#phoneBtn').click(function (e) {
         e.preventDefault();
         $('#phoneModal').modal("show");
+
     });
+
+    function getParentText(){
+        document.getElementById("originphone").value = document.getElementById("phone").value
+
+    }
+
 
     function check_pw(){  //비밀번호 확인
         var password = document.getElementById('password').value;
