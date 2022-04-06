@@ -1,4 +1,4 @@
--<%--
+<%--
   Created by IntelliJ IDEA.
   User: InSung
   Date: 2022-04-01
@@ -34,90 +34,89 @@
 
 <div class="is-preload">
 
-<%--<!-- Header -->--%>
-<%--<section id="header">--%>
-<%--    <header>--%>
-<%--        <span class="image avatar"><img src="/resources/img/signUp/avatar.jpg" alt=""/></span>--%>
-<%--        <h1 id="logo"><a href="#">Homespital</a></h1>--%>
-<%--        <p>Hi</p>--%>
+    <!-- Header -->
+    <%--    <section id="header">--%>
+    <%--        <header>--%>
+    <%--            <span class="image avatar"><img src="/resources/img/signUp/avatar.jpg" alt=""/></span>--%>
+    <%--            <h1 id="logo"><a href="#">Homespital</a></h1>--%>
+    <%--            <p>Hi</p>--%>
 
-<%--    </header>--%>
-<%--    <nav id="nav">--%>
-<%--        <ul>--%>
-<%--            <li><a href="#one" class="active">필수정보수정</a></li>--%>
-<%--            <li><a href="#two">배송지 수정</a></li>--%>
-<%--            <li><a href="#three">결제 정보 수정</a></li>--%>
+    <%--        </header>--%>
+    <%--        <nav id="nav">--%>
+    <%--            <ul>--%>
+    <%--                <li><a href="#one" class="active">필수정보수정</a></li>--%>
+    <%--                <li><a href="#two">배송지 수정</a></li>--%>
+    <%--                <li><a href="#three">결제 정보 수정</a></li>--%>
 
-<%--        </ul>--%>
-<%--    </nav>--%>
-<%--    <footer>--%>
-<%--        <ul class="icons">--%>
-<%--            <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>--%>
-<%--            <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>--%>
-<%--            <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>--%>
-<%--            <li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>--%>
-<%--            <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>--%>
-<%--        </ul>--%>
-<%--    </footer>--%>
-<%--</section>--%>
+    <%--            </ul>--%>
+    <%--        </nav>--%>
+    <%--        <footer>--%>
+    <%--            <ul class="icons">--%>
+    <%--                <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>--%>
+    <%--                <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>--%>
+    <%--                <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>--%>
+    <%--                <li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>--%>
+    <%--                <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>--%>
+    <%--            </ul>--%>
+    <%--        </footer>--%>
+    <%--    </section>--%>
 
-<!-- Wrapper -->
-<div id="wrapper">
+    <!-- Wrapper -->
+    <div id="wrapper">
 
-    <!-- Main -->
-    <div id="main">
-        <form id="form" name="form" style="margin-left: 100px" action="/modifyMember.do" method="post">
-            <input type="hidden" id="user_email" name="user_email" value="${email}">
-            <!-- One -->
-            <section id="one">
-                <div class="container" style="margin-top: 150px">
-
-                    <h4>필수 회원정보 수정</h4>
-                    <hr>
-                    <div class="input-control">
-                        <label for="email">이메일</label>
-                        <input class="modi-input" style="width: 100%" type="text" id="email" name="email"
-                               value="${user.user_email}" readonly="readonly">
-                    </div>
-
-                    <div class="input-control">
-                        <label for="password">새 비밀번호</label>
-                        <input type="password" style="width: 100%" id="password" name="password"
-                               placeholder="비밀번호를 입력해주세요" value="" minlength="4" maxlength="12" size="15"
-                               pattern="[a-zA-Z0-9]{4,12}" title="4~12자의 영문 대소문자와 숫자로만 입력.">
-                        <div class="error"></div>
-                    </div>
-                    <div class="input-control">
-                        <label for="password2">새 비밀번호 확인</label>
-                        <input type="password" style="width: 100%" id="password2" name="password2"
-                               placeholder="비밀번호를 입력해주세요" onkeyup="check_pw()" value="" maxlength="12" size="15">
-                        <span id="pw_check_msg" style="color: #1abc9c"></span>
-                        <div class="error"></div>
-                    </div>
-
-
-                    <div class="input-control">
-                        <label for="name">이름</label>
-                        <input class="modi-input" style="width: 100%" type="text" id="name" name="name"
-                               value="${user.user_name}" readonly="readonly">
-                    </div>
-
-                    <div class="input-control">
-                        <label for="SocialSecurityNumber">주민등록번호</label>
-
-                        <div id="SocialSecurityNumber" name="SocialSecurityNumber" style="display:flex">
-                            <input class="modi-input" style="width: 100%" type="text"
-                                   value="${user.user_registration_number}" readonly="readonly">
-
+        <!-- Main -->
+        <div id="main">
+            <form id="form" style="margin-left: 100px" action="/modifyMember.do" method="post">
+                <input type="hidden" id="user_email" name="user_email" value="${email}">
+                <!-- One -->
+                <section id="one">
+                    <div class="container" style="margin-top: 150px">
+                        <h3>필수 회원정보 수정</h3>
+                        <hr>
+                        <div class="input-control">
+                            <label for="email">이메일</label>
+                            <input class="modi-input" style="width: 100%" type="text" id="email" name="id"
+                                   value="${email}" readonly="readonly">
                         </div>
-                    </div>
-                    <div class="input-control">
-                        <label for="phone">휴대폰 번호</label>
-                        <div style="display:flex">
-                            <input class="modi-input" style="width:100%" id="originphone" type="text" name="phone"
-                                   value="${phone}" readonly="readonly"/>
-                            <input type="button" id="phoneBtn" class="doubleChk" value="휴대폰번호변경">
+
+                        <div class="input-control">
+                            <label for="password">새 비밀번호</label>
+                            <input type="password" style="width: 100%" id="password" name="password"
+                                   placeholder="비밀번호를 입력해주세요" value="" minlength="4" maxlength="12" size="15"
+                                   pattern="[a-zA-Z0-9]{4,12}" title="4~12자의 영문 대소문자와 숫자로만 입력.">
+                            <div class="error"></div>
                         </div>
+                        <div class="input-control">
+                            <label for="password2">새 비밀번호 확인</label>
+                            <input type="password" style="width: 100%" id="password2" name="password2"
+                                   placeholder="비밀번호를 입력해주세요" onkeyup="check_pw()" value="" maxlength="12" size="15">
+                            <span id="pw_check_msg" style="color: #1abc9c"></span>
+                            <div class="error"></div>
+                        </div>
+
+
+                        <div class="input-control">
+                            <label for="name">이름</label>
+                            <input class="modi-input" style="width: 100%" type="text" id="name" name="name"
+                                   value="${name}" readonly="readonly">
+                        </div>
+
+                        <div class="input-control">
+                            <label for="SocialSecurityNumber">주민등록번호</label>
+
+                            <div id="SocialSecurityNumber" name="SocialSecurityNumber" style="display:flex">
+                                <input class="modi-input" style="width: 100%" type="text"
+                                       value="${registration_number}" readonly="readonly">
+
+                            </div>
+                        </div>
+                        <div class="input-control">
+                            <label for="phone">휴대폰 번호</label>
+                            <div style="display:flex">
+                                <input class="modi-input" style="width:100%" id="originphone" type="text" name="phone"
+                                       value="${user_phone}" readonly="readonly"/>
+                                <input type="button" id="phoneBtn" class="doubleChk" value="휴대폰번호변경">
+                            </div>
 
                                 <%--가영: 여기서부터 휴대폰 번호변경 인증번호 모달창 시작--%>
                             <div class="modal fade" id="phoneModal" tabindex="-1" role="dialog"
@@ -273,6 +272,7 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
 
                         <%--                        <span><input type="button" id="deleteCard" name="deleteCard" class="deleteCard" value="삭제" /></span>--%>
                     </div>
@@ -439,66 +439,70 @@
 
 
     function submitNewCardId() {
-        if($("#cardNameModal").val() == "") {
+        if ($("#cardNameModal").val() == "") {
             alert("카드 별칭을 입력해주세요.");
             $("#cardNameModal").focus();
             return false;
         }
 
-        if($("#cardNumModal1").val().length != 4){
+        if ($("#cardNumModal1").val().length != 4) {
             alert("1.4자리");
             $("#cardNumModal1").focus();
             return false;
-        }   else if($("#cardNumModal2").val().length != 4) {
+        } else if ($("#cardNumModal2").val().length != 4) {
             alert("2.4자리");
             $("#cardNumModal2").focus();
             return false;
-        }   else if($("#cardNumModal3").val().length != 4) {
+        } else if ($("#cardNumModal3").val().length != 4) {
             alert("3.4자리");
             $("#cardNumModal3").focus();
             return false;
-        }   else if($("#cardNumModal4").val().length != 4) {
+        } else if ($("#cardNumModal4").val().length != 4) {
             alert("4.4자리");
             $("#cardNumModal4").focus();
             return false;
         }
 
-        if($("#cardMMYYNumModal").val().length != 4) {
+        if ($("#cardMMYYNumModal").val().length != 4) {
             alert("유효기간 숫자 4자리를 입력해주세요.");
             $("#cardMMYYNumModal").focus();
             return false;
         }
-        if($("#cardPassword").val().length != 2) {
+        if ($("#cardPassword").val().length != 2) {
             alert("카드 비밀번호 앞자리 2자리를 입력해주세요.");
             $("#cardPassword").focus();
             return false;
         }
 
         card_number = $('#cardNumModal1').val() + '-' + $('#cardNumModal2').val() + '-' + $('#cardNumModal3').val() + '-' + $('#cardNumModal4').val();
-        expiry = '20' + $('#cardMMYYNumModal').val().substring(2, 2) + '-' + $('#cardMMYYNumModal').val().substring(0, 2);
-        pwd_2digit = $('#cardPWModal').val();
-
-        var formData = new FormData();
-        formData.append("card_number", card_number);
-        formData.append("expiry", expiry);
-        formData.append("pwd_2digit", pwd_2digit);
+        expiry = '20' + $('#cardMMYYNumModal').val().substr(2, 2) + '-' + $('#cardMMYYNumModal').val().substr(0, 2);
+        pwd_2digit = $('#cardPassword').val();
+        
+        // var formData = new FormData();
+        // formData.append("card_number", card_number);
+        // formData.append("expiry", expiry);
+        // formData.append("pwd_2digit", pwd_2digit);
         $.ajax({
-            url: "",
+            url: "/writeMyCard",
             type: "POST",
             cache: false,
-            data: formData,
+            data: {
+                "card_name": $("#cardNameModal").val(),
+                "card_number": card_number,
+                "expiry": expiry,
+                "pwd_2digit": pwd_2digit,
+            },
+            contentType: "application/x-www-form-urlencoded; charset=UTF-8;",
             success: function (data) {
                 alert("성공하였습니다.");
                 //$('#writeCardModal').modal("hide");
             },
             error: function (data) {
                 alert("에러가 발생했습니다.")
-
             }
         })
         return false;
     }
-
 
 
 </script>
