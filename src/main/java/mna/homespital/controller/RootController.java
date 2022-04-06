@@ -70,7 +70,17 @@ public class RootController {
     //회원정보수정
     @GetMapping("/modifyForm")
     public ModelAndView modifyForm() {
-        return new ModelAndView("user/userside/modifyForm");
+        ModelAndView mav = new ModelAndView("user/userside/modifyForm");
+        String email = (String) session.getAttribute("email");
+        try {
+            User user = memberService.queryMember(email);
+            if (user == null) {
+                mav.setViewName("user/main/loginForm");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return mav;
     }
 
 //  //비밀번호확인(정보수정 전)
@@ -84,7 +94,7 @@ public class RootController {
     public ModelAndView deleteForm() {
         String email = (String) session.getAttribute("email");
 
-        if(email == null) {
+        if (email == null) {
             return new ModelAndView("user/main/index");
         }
         return new ModelAndView("user/userside/deleteForm");
@@ -113,30 +123,30 @@ public class RootController {
 //  @GetMapping("/appointmentForm/{doc}")
 //  public ModelAndView appointmentForm(@PathVariable int doc) {
 
-  @GetMapping("/appointmentForm")
-  public ModelAndView appointmentForm() throws Exception {
-    ModelAndView mv = new ModelAndView("user/userside/appointmentForm");
-    int doctor_number = 1;
+    @GetMapping("/appointmentForm")
+    public ModelAndView appointmentForm() throws Exception {
+        ModelAndView mv = new ModelAndView("user/userside/appointmentForm");
+        int doctor_number = 1;
 
 
         // page
-      try {
-          Doctor doctor = doctorService.getDocInfo(doctor_number);
-          doctor.setDoctor_password("");
+        try {
+            Doctor doctor = doctorService.getDocInfo(doctor_number);
+            doctor.setDoctor_password("");
 
-          System.out.println(doctor.getDoctor_name());
-          mv.addObject("doctor", doctor);
-      } catch (Exception e) {
-          e.printStackTrace();
-      }
-      String email = (String) session.getAttribute("email");
+            System.out.println(doctor.getDoctor_name());
+            mv.addObject("doctor", doctor);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        String email = (String) session.getAttribute("email");
 
-      try {
-          User user = memberService.findByEmail(email);
+        try {
+            User user = memberService.findByEmail(email);
 
-      } catch (Exception e) {
-          e.printStackTrace();
-      }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return mv;
     }
 
@@ -148,7 +158,7 @@ public class RootController {
             // 사진 업로드
             String fileNameArr = "";
 
-            for (int i=0; i < diagnosisImgNames.length; i++) {
+            for (int i = 0; i < diagnosisImgNames.length; i++) {
                 String diagnosisImg = diagnosisImgNames[i].getOriginalFilename();
                 String path = servletContext.getRealPath("/resources/img/");
                 String filename = UUID.randomUUID().toString() + "." + diagnosisImg.substring(diagnosisImg.lastIndexOf('.') + 1);
