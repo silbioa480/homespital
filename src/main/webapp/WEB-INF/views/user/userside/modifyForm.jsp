@@ -232,8 +232,11 @@
 
                         <h5> * 본인명의 카드만 등록 가능 합니다.</h5>
                         <br><br>
+                        <div style="display:flex">
 
-                        <input type="submit" value="수정" style="width: 100%;"></input>
+                        <input type="submit" value="수정" style="width: 80%; margin-left:20px; margin-right: 20px;"></input>
+                        <a class="btn" id="deleteMem" href="/delete" style="margin-right: 0px">회원탈퇴</a>
+                        </div>
                     </div>
 
                 </div>
