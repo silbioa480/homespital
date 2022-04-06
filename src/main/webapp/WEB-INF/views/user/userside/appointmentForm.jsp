@@ -6,11 +6,11 @@
     <%--  파일 업로드 CSS  --%>
     <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css"/>
-    <link rel="stylesheet" href="/resources/css/writeMediChartForm.css" />
+    <link rel="stylesheet" href="/resources/css/writeMediChartForm.css"/>
 </head>
 <body>
 <div>
-<%--    인성      --%>
+    <%--    인성      --%>
     <form method="post" class="file-uploader" action="/appointmentForm" enctype="multipart/form-data">
         <div class="card p-3">
             <h4 id="one"><strong>시간 선택하기</strong></h4>
@@ -40,8 +40,10 @@
                                     <td>${doctor.holiday}요일</td>
                                 </tr>
                                 <tr>
-                                    <th>시간:</th>
+                                    <th>시간선택:</th>
                                     <td>
+
+
                                         c:foreach로 넣을 영역. 예시
                                         <label class="box-radio-input" data-bs-toggle="tooltip" data-bs-placement="top"
                                                title="현재 시간에 예약한 인원 : 1/10">
@@ -96,14 +98,16 @@
                     <tr>
                         <th>증상 이미지 첨부</th>
                         <td>
-                            <div class="card p-3" >
+                            <div class="card p-3">
                                 <div id="preview" align="center"></div>
                                 <div align="center" class="filebox" style="padding:10px">
                                     <label id="filebtn" for="btnAtt">사진 등록</label>
-                                    <input type='file' id="btnAtt" style="display: none;" name="diagnosisImgNames" accept=".gif, .jpg, .png"  multiple/>
+                                    <input type='file' id="btnAtt" style="display: none;" name="diagnosisImgNames"
+                                           accept=".gif, .jpg, .png" multiple/>
                                     <div id='att_zone'>
                                     </div>
-                                    <input type="hidden" name="doctor_number" value="${not empty doctor_number? doctor_number : 1}">
+                                    <input type="hidden" name="doctor_number"
+                                           value="${not empty doctor_number? doctor_number : 1}">
                                 </div>
                             </div>
                         </td>
@@ -111,7 +115,7 @@
                 </table>
             </div>
         </div>
-<%----------------------------------------------------------------------%>
+        <%----------------------------------------------------------------------%>
         <div class="card p-3">
             <h4 id="two"><strong>약제 배송 방식</strong></h4>
             <div class="m-3">
@@ -152,9 +156,10 @@
                             <div id="menu_wrap" class="bg_white">
                                 <div class="option">
 
-                                        <input type="text" class="form-control" placeholder="키워드 입력"
-                                               id="searchKeyword" size="15">
-                                        <button onclick="searchPlaces(); return false;" class="btn btn-primary">검색하기</button>
+                                    <input type="text" class="form-control" placeholder="키워드 입력"
+                                           id="searchKeyword" size="15">
+                                    <button onclick="searchPlaces(); return false;" class="btn btn-primary">검색하기
+                                    </button>
 
                                 </div>
                                 <hr>
@@ -241,7 +246,7 @@
         </div>
         <div class="appoint-out">
             <label for="appointDo" class="appointBtn">예약하기</label>
-            <input type="submit" id="appointDo" class="appointDo" style="display: none" />
+            <input type="submit" id="appointDo" class="appointDo" style="display: none"/>
         </div>
     </form>
 </div>
@@ -476,7 +481,7 @@
 <%-- 증상 사진 미리보기, 삭제, 드래그 앤 드롭  ( 인성 ) --%>
 <script>
     ( /* att_zone : 이미지들이 들어갈 위치 id, btn : file tag id */
-        imageView = function imageView(att_zone, btn){
+        imageView = function imageView(att_zone, btn) {
 
             var attZone = document.getElementById(att_zone);
             var btnAtt = document.getElementById(btn)
@@ -491,46 +496,45 @@
             var chk_style = 'width:30px;height:30px;position:absolute;font-size:24px;'
                 + 'right:0px;bottom:0px;z-index:999;background-color:rgba(0,67,50,0);color:#d52a2a';
 
-            btnAtt.onchange = function(e){
+            btnAtt.onchange = function (e) {
                 var files = e.target.files;
                 var fileArr = Array.prototype.slice.call(files)
-                for(f of fileArr){
+                for (f of fileArr) {
                     imageLoader(f);
                 }
             }
 
 
             // 탐색기에서 드래그앤 드롭 사용
-            attZone.addEventListener('dragenter', function(e){
+            attZone.addEventListener('dragenter', function (e) {
                 e.preventDefault();
                 e.stopPropagation();
             }, false)
 
-            attZone.addEventListener('dragover', function(e){
+            attZone.addEventListener('dragover', function (e) {
                 e.preventDefault();
                 e.stopPropagation();
 
             }, false)
 
-            attZone.addEventListener('drop', function(e){
+            attZone.addEventListener('drop', function (e) {
                 var files = {};
                 e.preventDefault();
                 e.stopPropagation();
                 var dt = e.dataTransfer;
                 files = dt.files;
-                for(f of files){
+                for (f of files) {
                     imageLoader(f);
                 }
 
             }, false)
 
 
-
             /*첨부된 이미리즐을 배열에 넣고 미리보기 */
-            imageLoader = function(image){
+            imageLoader = function (image) {
                 sel_files.push(image);
                 var reader = new FileReader();
-                reader.onload = function(ee){
+                reader.onload = function (ee) {
                     let img = document.createElement('img')
                     img.setAttribute('style', img_style)
                     img.src = ee.target.result;
@@ -541,7 +545,7 @@
             }
 
             /*첨부된 파일이 있는 경우 checkbox와 함께 attZone에 추가할 div를 만들어 반환 */
-            makeDiv = function(img){
+            makeDiv = function (img) {
                 var div = document.createElement('div')
                 div.setAttribute('style', div_style)
 
@@ -549,17 +553,17 @@
                 btn.setAttribute('src', '/resources/img/delete.png')
                 btn.setAttribute('delFile', img.name);
                 btn.setAttribute('style', chk_style);
-                btn.onclick = function(ev){
+                btn.onclick = function (ev) {
                     var ele = ev.target;
                     var delFile = ele.getAttribute('delFile');
-                    for(var i=0 ;i<sel_files.length; i++){
-                        if(delFile === sel_files[i].name){
+                    for (var i = 0; i < sel_files.length; i++) {
+                        if (delFile === sel_files[i].name) {
                             sel_files.splice(i, 1);
                         }
                     }
 
                     dt = new DataTransfer();
-                    for(f in sel_files) {
+                    for (f in sel_files) {
                         var file = sel_files[f];
                         dt.items.add(file);
                     }
@@ -573,6 +577,8 @@
             }
         }
     )('att_zone', 'btnAtt')
+
+
 </script>
 
 </body>
