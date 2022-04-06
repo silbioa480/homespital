@@ -74,8 +74,14 @@ public class RootController {
         String email = (String) session.getAttribute("email");
         try {
             User user = memberService.queryMember(email);
+            String juminNum = user.getUser_registration_number();
+            user.setUser_registration_number(juminNum.replaceAll(".{6}$", "******"));
+            
             if (user == null) {
                 mav.setViewName("user/main/loginForm");
+            } else {
+                mav.addObject("user", user);
+                System.out.println(user.toString());
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -83,16 +89,16 @@ public class RootController {
         return mav;
     }
 
-  //비밀번호확인(정보수정 전)
-  @GetMapping("/pwCheck")
-  public ModelAndView pwCheck() {
-      String email = (String) session.getAttribute("email");
+    //비밀번호확인(정보수정 전)
+    @GetMapping("/pwCheck")
+    public ModelAndView pwCheck() {
+        String email = (String) session.getAttribute("email");
 
-      if(email == null) {
-          return new ModelAndView("user/main/index");
-      }
-    return new ModelAndView("user/userside/pwCheck");
-  }
+        if (email == null) {
+            return new ModelAndView("user/main/index");
+        }
+        return new ModelAndView("user/userside/pwCheck");
+    }
 
     //회원탈퇴
     @GetMapping("/delete")
