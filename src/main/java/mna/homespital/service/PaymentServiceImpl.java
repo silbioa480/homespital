@@ -1,7 +1,9 @@
 package mna.homespital.service;
 
 import mna.homespital.dao.CardInformationDAO;
+import mna.homespital.dao.MemberDAO;
 import mna.homespital.dto.Card_Information;
+import mna.homespital.dto.User;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,14 +14,16 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 @Service
-public class IamportServiceImpl implements IamportService {
+public class PaymentServiceImpl implements PaymentService {
     //    훈 - 결제 서비스
     @Autowired
     CardInformationDAO cardDAO;
+    @Autowired
+    MemberDAO memberDAO;
 
     HttpURLConnection conn = null;
     final String imp_key = "1205515243185179";
@@ -209,17 +213,22 @@ public class IamportServiceImpl implements IamportService {
             conn.disconnect();
             conn = null;
         }
+
+        try {
+
+        } catch (Exception e) {
+
+        }
         return result.getJSONObject("response");
     }
 
-    public String[] test() {
-        int start = 9;
-        int end = 18;
-        ArrayList<Integer> arr = new ArrayList<>();
-        for (int i = start; i < end; i++)
-            arr.add(i);
-        System.out.println(arr.toString());
-
-        return null;
+    @Override
+    public List<Card_Information> getPayments(String email) {
+        try {
+            User user = memberDAO.queryMember(email);
+            return cardDAO.queryMyCards(user.getUser_number());
+        } catch (Exception e) {
+            return null;
+        }
     }
 }
