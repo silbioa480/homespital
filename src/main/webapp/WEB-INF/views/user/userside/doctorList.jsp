@@ -79,9 +79,11 @@
                                 <button class="btn btn-secondary ml-auto" onclick="">
                                     <i class="fa-solid fa-magnifying-glass">의료진 상세보기</i>
                                 </button>
-                                <button class="btn ml-auto" style="background-color: #1abc9c; color: white;">
+                                <button class="btn ml-auto" style="background-color: #1abc9c; color: white;"
+                                        onclick="location.href='/appointmentForm/${doctor.doctor_number}';">
                                     <i class="fa fa-check">비대면 진료 예약하기</i>
                                 </button>
+
                             </div>
                         </div>
                         <div class="card-text">
