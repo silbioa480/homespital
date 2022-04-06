@@ -132,6 +132,7 @@
     <%--의사가 쓴 진단 소견서 내용을 출력--%>
     <div><h4><strong>진단 소견서</strong></h4></div>
     <%--진단 소견서 출력--%>
+    <p>${diagnosis.diagnosis_file_name}</p>
 
 
     <%--약제 배송 방법-소제목--%>
@@ -151,11 +152,13 @@
                 <label>보내는 곳 주소</label>
                 <hr>
                 <div><h5><strong>약국주소</strong></h5></div>
+                <p>${pharmacy.pharmacy_address}</p> <br>
 
 
                 <label>받으신 곳 주소</label>
                 <hr>
-                <div><h5><strong>환자이름: ${user.user_name}</strong></h5></div>
+                <div><h5><strong>${user.user_name}</strong></h5></div>
+                <p>${user.street_address}</p> <br>
 
 
                 <div><h4><strong>결제정보</strong></h4></div>

@@ -10,5 +10,6 @@
         <mapper resource="mappers/Diagnosis.xml"/>
         <mapper resource="mappers/allmedicalList.xml"/>
         <mapper resource="mappers/Doctor.xml"/>
+        <mapper resource="mappers/pharmacy.xml"/>
     </mappers>
 </configuration>

@@ -66,11 +66,10 @@ public class MemberServiceImpl implements MemberService {
 
     //가영: 회원정보수정
     @Override
-    public void modifyMember(String user_email, String user_password, String user_name, String user_registration_number, String user_phone, String user_address) throws Exception {
+    public void modifyMember(String user_email, String user_password, String user_name, String user_registration_number, String user_phone, String zip_code, String street_address, String detail_address) throws Exception {
 
-        memberDAO.updateMember(user_email, user_password, user_name, user_registration_number, user_phone, user_address);
+        memberDAO.updateMember(user_email, user_password, user_name, user_registration_number, user_phone, zip_code, street_address, detail_address);
     }
-
 
     //용식: 유저정보 가져오기
     @Override
