@@ -49,7 +49,7 @@
             <section id="one">
                 <div class="container">
                     <h5>로그인 정보에 사용됩니다(필수)</h5>
-                    <hr>
+                    <hr style="height:4px">
                     <diu class="input-control">
                         <label for="email">이메일</label>
                         <input type="email" id="email" name="email" placeholder="이메일을 입력해주세요">
@@ -103,7 +103,7 @@
             <section id="two">
                 <div class="container">
                     <h5>배송 정보에 사용됩니다(선택)</h5>
-                    <hr>
+                    <hr style="height:4px">
                     <div>
                         <table>
                             <colgroup>
@@ -144,7 +144,7 @@
             <section id="three">
                 <div class="container">
                     <h5>결제 정보에 사용됩니다(선택)</h5>
-                    <hr>
+                    <hr style="height:4px">
                     <h5>카드 번호</h5>
                     <div class="creditCardNumber">
                         <input type="text" class="moveNumber" onKeyup="inputMoveNumber(this);" maxlength="4"
@@ -181,7 +181,7 @@
                     <div class="">
                         <div class="">
                             <h5>약관동의</h5>
-                            <hr>
+                            <hr style="height:4px">
                             <label for="agree_all" style="display:block">
                                 <input type="checkbox" name="agree_all" id="agree_all">
                                 <span>모두 동의합니다</span>
