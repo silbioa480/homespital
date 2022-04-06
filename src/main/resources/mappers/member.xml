@@ -6,10 +6,10 @@
 <mapper namespace="mna.homespital.dao.MemberDAO">
     <insert id="insertMember" parameterType="user">
         <![CDATA[
-        insert into `user`(user_email, user_password, user_name, user_registration_number,
-                           user_phone, zip_code, street_address, detail_address)
-        values (#{user_email}, #{user_password}, #{user_name}, #{user_registration_number},
-                #{user_phone}, #{zip_code}, #{user_name}, #{user_registration_number})
+        insert into `user`(user_email, user_password, user_name, user_registration_number, user_phone, zip_code,
+                           street_address, detail_address)
+        values (#{user_email}, #{user_password}, #{user_name}, #{user_registration_number}, #{user_phone}, #{zip_code},
+                #{street_address}, #{detail_address})
         ]]>
     </insert>
 
@@ -66,13 +66,12 @@
     <update id="updateMember">
         <![CDATA[
         update user
-        set user_password            = #{user_password},
-            user_name                = #{user_name},
-            user_registration_number = #{user_registration_number},
-            user_phone               = #{user_phone},
-            zip_code                 = #{zip_code},
-            street_address           = #{street_address},
-            detail_address           = #{detail_address}
+        set user_password  = #{user_password},
+            user_name      = #{user_name},
+            user_phone     = #{user_phone},
+            zip_code       = #{zip_code},
+            street_address = #{street_address},
+            detail_address = #{detail_address}
         where user_email = #{user_email}
         ]]>
     </update>
