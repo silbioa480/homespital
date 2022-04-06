@@ -113,13 +113,6 @@ public class MemberServiceImpl implements MemberService {
     }
 
 
-    //가영: 비밀번호확인
-    @Override
-    public void passwordMember(String user_email) throws Exception {
-        memberDAO.passwordMember(user_email);
-
-    }
-
     //용식:비밀번호찾기: 이메일보내기
     //return값: 인증번호
     @Override
