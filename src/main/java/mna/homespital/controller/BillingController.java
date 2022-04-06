@@ -1,6 +1,6 @@
 package mna.homespital.controller;
 
-import mna.homespital.service.IamportServiceImpl;
+import mna.homespital.service.PaymentServiceImpl;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,7 +17,7 @@ import java.util.Map;
 @Controller
 public class BillingController {
     @Autowired
-    IamportServiceImpl iamportService;
+    PaymentServiceImpl iamportService;
 
     @GetMapping("/billingkeyForm")
     public String billkeyForm() {
