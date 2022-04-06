@@ -20,40 +20,36 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-    <%--    <script src="./jquery-3.4.1.min.js"></script>--%>
-    <%--    <link rel="stylesheet" href="./bootstrapt/css/bootstrap.min.css" />--%>
-    <%--    <script src="./bootstrapt/js/bootstrap.min.js"></script>--%>
-
 </head>
 
 <body class="is-preload">
 
-<!-- Header -->
-<section id="header">
-    <header>
-        <span class="image avatar"><img src="/resources/img/signUp/avatar.jpg" alt=""/></span>
-        <h1 id="logo"><a href="#">Homespital</a></h1>
-        <p>Hi</p>
+<%--<!-- Header -->--%>
+<%--<section id="header">--%>
+<%--    <header>--%>
+<%--        <span class="image avatar"><img src="/resources/img/signUp/avatar.jpg" alt=""/></span>--%>
+<%--        <h1 id="logo"><a href="#">Homespital</a></h1>--%>
+<%--        <p>Hi</p>--%>
 
-    </header>
-    <nav id="nav">
-        <ul>
-            <li><a href="#one" class="active">필수정보수정</a></li>
-            <li><a href="#two">배송지 수정</a></li>
-            <li><a href="#three">결제 정보 수정</a></li>
+<%--    </header>--%>
+<%--    <nav id="nav">--%>
+<%--        <ul>--%>
+<%--            <li><a href="#one" class="active">필수정보수정</a></li>--%>
+<%--            <li><a href="#two">배송지 수정</a></li>--%>
+<%--            <li><a href="#three">결제 정보 수정</a></li>--%>
 
-        </ul>
-    </nav>
-    <footer>
-        <ul class="icons">
-            <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-            <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-            <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-            <li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
-            <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-        </ul>
-    </footer>
-</section>
+<%--        </ul>--%>
+<%--    </nav>--%>
+<%--    <footer>--%>
+<%--        <ul class="icons">--%>
+<%--            <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>--%>
+<%--            <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>--%>
+<%--            <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>--%>
+<%--            <li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>--%>
+<%--            <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>--%>
+<%--        </ul>--%>
+<%--    </footer>--%>
+<%--</section>--%>
 
 <!-- Wrapper -->
 <div id="wrapper">
@@ -65,7 +61,8 @@
             <!-- One -->
             <section id="one">
                 <div class="container" style="margin-top: 150px">
-                    <h3>필수 회원정보 수정</h3>
+
+                    <h4>필수 회원정보 수정</h4>
                     <hr>
                     <div class="input-control">
                         <label for="email">이메일</label>
@@ -105,10 +102,11 @@
                         <label for="phone">휴대폰 번호</label>
                         <div style="display:flex">
                             <input class="modi-input" style="width:100%" id="originphone" type="text" name="phone"
-                                   value="${user_phone}" readonly="readonly"/>
+                                   value="${phone}" readonly="readonly"/>
                             <input type="button" id="phoneBtn" class="doubleChk" value="휴대폰번호변경">
                         </div>
 
+                                <%--가영: 여기서부터 휴대폰 번호변경 인증번호 모달창 시작--%>
                             <div class="modal fade" id="phoneModal" tabindex="-1" role="dialog"
                                  aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
@@ -145,7 +143,7 @@
                                     </div>
                                 </div>
                             </div>
-
+                        <%--가영: 여기까지 휴대폰 번호변경 인증번호 모달창 시작--%>
                             <div class="error"></div>
                         </div>
                     </div>
@@ -157,7 +155,7 @@
             <!-- Two -->
             <section id="two">
                 <div class="container">
-                    <h3>배송지 정보 수정</h3>
+                    <h4>배송지 정보 수정</h4>
                     <hr>
                     <div>
                         <table>
@@ -200,7 +198,7 @@
                 <div class="container">
 
 
-                    <h3>결제 정보 수정</h3>
+                    <h4>결제 정보 수정</h4>
                     <hr>
 
                     <h5>카드 번호</h5>
@@ -234,7 +232,7 @@
                         <br><br>
                         <div style="display:flex">
 
-                        <input type="submit" value="수정" style="width: 80%; margin-left:20px; margin-right: 20px;"></input>
+                        <input type="submit" value="수정" style="width: 70%; margin-left:20px; margin-right: 20px;"></input>
                         <a class="btn" id="deleteMem" href="/delete" style="margin-right: 0px">회원탈퇴</a>
                         </div>
                     </div>
@@ -275,25 +273,22 @@
 <script src="/resources/js/signUp/signUpCheck.js"></script>
 
 <script type="text/javascript">
-    $('#pwBtn').click(function(e){
-        e.preventDefault();
-        $('#pwModal').modal("show");
-    });
 
+    //가영: 휴대폰번호 수정관련 모달창
     $('#phoneBtn').click(function (e) {
         e.preventDefault();
         $('#phoneModal').modal("show");
     })
 
-
+    //가영: 휴대폰인증 후 부모창으로 데이터전송하는 함수
     function getParentText(){
         $('#phoneModal').modal("hide");
         document.getElementById("originphone").value = document.getElementById("phone").value
 
     }
 
-
-    function check_pw(){  //비밀번호 확인
+    //새로운 비밀번호 입력시 정규성검사(아래에 에러메세지 뜸)
+    function check_pw(){
         var password = document.getElementById('password').value;
         var password2 = document.getElementById('password2').value;
 
