@@ -2,6 +2,8 @@ package mna.homespital.service;
 
 import lombok.RequiredArgsConstructor;
 import mna.homespital.dao.MemberDAO;
+import mna.homespital.dto.Doctor;
+import mna.homespital.dto.Pharmacy;
 import mna.homespital.dto.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -51,11 +53,29 @@ public class MemberServiceImpl implements MemberService {
         memberDAO.updatePassword(user_email, user_password);
     }
 
-
-    //  이메일로 유저 정보 가져옴 ( 인성 )
+    //소연 : 환자(User)정보 가져오기
     @Override
-    public User findByEmail(String email) throws Exception {
-        return memberDAO.queryMember(email);
+    public User getUserDetail(int user_number) throws Exception {
+        User user = memberDAO.selectUserDetail(user_number);
+        user.setUser_password("");
+        return user;
+    }
+
+
+    //소연 : 의사(Doctor)정보 가져오기
+    @Override
+    public Doctor getDoctorDetail(int doctor_number) throws Exception {
+        Doctor doctor = memberDAO.selectDoctorDetail(doctor_number);
+        doctor.setDoctor_password("");
+        return doctor;
+    }
+
+    //소연 : 약사(Pharmacy)정보 가져오기
+    @Override
+    public Pharmacy getPharDetail(int pharmacy_number) throws Exception {
+        Pharmacy pharmacy = memberDAO.selectPharmacyDetail(pharmacy_number);
+        pharmacy.setPharmacy_password("");
+        return pharmacy;
     }
 
     //가영: 회원탈퇴
@@ -86,8 +106,21 @@ public class MemberServiceImpl implements MemberService {
         return true;
     }
 
+    //  이메일로 유저 정보 가져옴 ( 인성 )
+    @Override
+    public User findByEmail(String email) throws Exception {
+        return memberDAO.queryMember(email);
+    }
 
-    //용식:비밀번호찾기: 이메일보내기 
+
+    //가영: 비밀번호확인
+    @Override
+    public void passwordMember(String user_email) throws Exception {
+        memberDAO.passwordMember(user_email);
+
+    }
+
+    //용식:비밀번호찾기: 이메일보내기
     //return값: 인증번호
     @Override
     public String sendMailForFindPw(String email) throws Exception {
@@ -95,8 +128,8 @@ public class MemberServiceImpl implements MemberService {
         int checkNum = random.nextInt(999999);
         String setFrom = "dlsdydtlr@gmail.com";
         String toMail = email;
-        String title = ("[홈스피탈] 비밀번호 찾기를 위한 인증메일입니다.");
-        String content = "<h1 style='display:inline-block'>인증번호는 </h1>" + checkNum + "<h1 style='display:inline-block'> 입니다</h1>";
+        String title = ("인증이메일입니다.");
+        String content = "<h1>인증번호는" + checkNum + "입니다</h1>";
 
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, "utf-8");

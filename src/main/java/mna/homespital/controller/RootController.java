@@ -83,11 +83,16 @@ public class RootController {
         return mav;
     }
 
-//  //비밀번호확인(정보수정 전)
-//  @GetMapping("/pwCheck")
-//  public ModelAndView pwCheck() {
-//    return new ModelAndView("user/userside/pwCheck");
-//  }
+  //비밀번호확인(정보수정 전)
+  @GetMapping("/pwCheck")
+  public ModelAndView pwCheck() {
+      String email = (String) session.getAttribute("email");
+
+      if(email == null) {
+          return new ModelAndView("user/main/index");
+      }
+    return new ModelAndView("user/userside/pwCheck");
+  }
 
     //회원탈퇴
     @GetMapping("/delete")
