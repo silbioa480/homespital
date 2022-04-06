@@ -21,4 +21,11 @@ public class AllMedicalListServiceimpl implements AllMedicalListService {
         return allmdDAO.allMedicalList();
     }
 
+<<<<<<< HEAD
+    @Override
+    public List<AllMedical> searchMed(String keyward) throws Exception {
+        return allmdDAO.searchMedical(keyward);
+    }
+=======
+>>>>>>> 2dfa99d49553e26f7ca30b4268d8839824508159
 }
