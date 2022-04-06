@@ -23,7 +23,13 @@
     <%--    <script src="./jquery-3.4.1.min.js"></script>--%>
     <%--    <link rel="stylesheet" href="./bootstrapt/css/bootstrap.min.css" />--%>
     <%--    <script src="./bootstrapt/js/bootstrap.min.js"></script>--%>
-
+    <style>
+        .addCard,
+        .deleteCard {
+            background-color: white;
+            color: black;
+        }
+    </style>
 </head>
 
 <body class="is-preload">
@@ -196,46 +202,92 @@
             <br><br>
 
             <!-- Three -->
-            <section id="three">
+            <div id="three">
                 <div class="container">
 
-
-                    <h3>결제 정보 수정</h3>
+                    <h3>카드 관리</h3>
                     <hr>
+                    <input type="text" id="default_card" value="****-****-****-1423" disabled="disabled"/>
+<%--                    <div>--%>
+<%--                        <h5>카드 별칭</h5>--%>
+<%--                        <div style="display:flex">--%>
+<%--                            <input type="text" id="cardName" placeholder="카드 별칭을 입력하세요." maxlength="8" style="width: 50%" readonly>--%>
+<%--                        </div>--%>
 
-                    <h5>카드 번호</h5>
-                    <div class="creditCardNumber">
-                        <input type="text" class="moveNumber" onKeyup="inputMoveNumber(this);" maxlength="4"
-                               style="width:23%"/>&nbsp;-&nbsp;
-                        <input type="text" class="moveNumber" onKeyup="inputMoveNumber(this);" maxlength="4"
-                               style="width:23%"/>&nbsp;-&nbsp;
-                        <input type="text" class="moveNumber" onKeyup="inputMoveNumber(this);" maxlength="4"
-                               style="width:23%"/>&nbsp;-&nbsp;
-                        <input type="text" class="moveNumber" maxlength="4" style="width:23%"/>
-                    </div>
-                    <div class="creditCardValidity">
-                        <h5>카드 유효기간</h5>
-                        <input type="text" class="validThru" onKeyup="inputValidThru(this);" placeholder="MM/YY"
-                               maxlength="5" style="width: 100%"/>
-                    </div>
-                    <div class="creditCardBirth">
-                        <h5>생년월일</h5>
-                        <input type="text" class="" placeholder="생년월일" maxlength="6" style="width: 100%">
-                    </div>
-                    <div>
-                        <h5>카드 비밀번호</h5>
-                        <div style="display:flex">
-                        <input type="text" class="" placeholder="앞에 두자리만 입력해주세요" maxlength="2" style="width: 100%">
-                            <input type="button" id="cardChange" class="doubleChk" value="변경">
-                    </div>
+<%--                    <h5>카드 뒷자리 번호</h5>--%>
+<%--                    <div class="creditCardNumber">--%>
+<%--                        <input type="text" class="moveNumber" id="lastCardNum" onKeyup="inputMoveNumber(this);" maxlength="4" placeholder="카드 번호 뒷자리 4개를 입력하세요."--%>
+<%--                               style="width:50%" readonly/>--%>
+<%--                    </div>--%>
 
+<%--                    <div class="creditCardValidity">--%>
+<%--                        <h5>카드 유효기간</h5>--%>
+<%--                        <input type="text" class="validThru" id="cardMMYYNum" onKeyup="inputValidThru(this);" placeholder="MMYY"--%>
+<%--                               maxlength="4" style="width: 50%" readonly/>--%>
+<%--                    </div>--%>
+                        <input type="button" id="addCard" name="addCard" class="addCard" value="관리"  >
+
+<%--                        모달 --%>
+                        <div class="modal fade" id="addCardModal" tabindex="-1" role="dialog"
+                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="addCardLabel">카드 등록</h5>
+
+                                    </div>
+                                    <div class="modal-body">
+                                        <div><input type="radio" name="cardCheck" class="card_list" value="1111" checked/><span> ****-****-****-1111</span></div><hr>
+                                        <div><input type="radio" name="cardCheck" class="card_list" value="2222" /><span> ****-****-****-2222</span></div><hr>
+                                        <div><input type="radio" name="cardCheck" class="card_list" value="3333" /><span> ****-****-****-3333</span></div><hr>
+                                        <div><input type="radio" name="cardCheck" class="card_list" value="4444"  /><span> ****-****-****-4444</span></div><hr>
+
+<%--                                        <div class="input-control">--%>
+<%--                                            <div style="display:flex">--%>
+<%--                                                <input style="width: 100%" id="cardNameModal" type="text" name="cardNameModal"--%>
+<%--                                                       placeholder="카드 별칭를 입력해주세요. ( 최대 8자 )" title="카드 별칭 입력" maxlength="8" />--%>
+
+<%--                                            </div>--%>
+<%--                                            <div class="error"></div>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="input-control">--%>
+<%--                                            <h6 class="modal-title">카드 번호</h6>--%>
+<%--                                            <div style="display:flex">--%>
+<%--                                                <input style="width: 23%; height:40px;" id="lastCardNumModal" type="text" name="lastCardNumModal"--%>
+<%--                                                       title="카드 뒷자리" maxlength="4" /><span style="line-height:40px;">-</span>--%>
+<%--                                                <input style="width: 23%; height:40px;" id="lastCardNumModal2" type="text" name="lastCardNumModal2"--%>
+<%--                                                       title="카드 뒷자리" maxlength="4" /><span style="line-height:40px;">-</span>--%>
+<%--                                                <input style="width: 23%; height:40px;" id="lastCardNumModal3" type="text" name="lastCardNumModal3"--%>
+<%--                                                       title="카드 뒷자리"  maxlength="4" /><span style="line-height:40px;">-</span>--%>
+<%--                                                <input style="width: 23%; height:40px;" id="lastCardNumModal4" type="text" name="lastCardNumModal4"--%>
+<%--                                                       title="카드 뒷자리"  maxlength="4" />--%>
+<%--                                            </div>--%>
+<%--                                        </div>--%>
+<%--                                        <h6 class="modal-title">카드 유효기간</h6>--%>
+<%--                                        <div class="input-control">--%>
+<%--                                            <div style="display:flex">--%>
+<%--                                                <input style="width: 100%" id="cardMMYYNumModal" type="text" name="cardMMYYNumModal"--%>
+<%--                                                       title="카드 유효기간" placeholder="MMYY" maxlength="4" />--%>
+<%--                                            </div>--%>
+<%--                                        </div>--%>
+
+<%--                                    </div>--%>
+                                    <div class="modal-footer">
+                                        <a class="btn" type="button"  >추가 등록</a>
+                                        <a class="btn" id="modalY3" onclick="">확인</a>
+                                        <button class="btn" type="button" data-bs-dismiss="modal">취소</button>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+
+<%--                        <span><input type="button" id="deleteCard" name="deleteCard" class="deleteCard" value="삭제" /></span>--%>
+                        </div>
 
                         <h5> * 본인명의 카드만 등록 가능 합니다.</h5>
                         <br><br>
-
-                        <input type="submit" value="수정" style="width: 100%;"></input>
+                        <input type="submit" value="수정" style="width: 100%;" />
                     </div>
-
                 </div>
             </section>
             <br><br><br><br>
@@ -283,8 +335,29 @@
 
     });
 
+    $('#addCard').click(function (e) {
+        e.preventDefault();
+        $('#addCardModal').modal("show");
+    });
+
+    $('#modalY3').click(function (e) {
+        e.preventDefault();
+        let radioV = $('input:radio[name="cardCheck"]:checked').val();
+        console.log(radioV);
+        $('#default_card').val("****-****-****-"+radioV);
+        $('#addCardModal').modal("hide");
+    });
+
+
     function getParentText(){
         document.getElementById("originphone").value = document.getElementById("phone").value
+
+    }
+
+    function getParentText(){
+        document.getElementById("cardName").value = document.getElementById("cardNameModal").value
+        document.getElementById("lastCardNum").value = document.getElementById("lastCardNumModal").value
+        document.getElementById("cardMMYYNum").value = document.getElementById("cardMMYYNumModal").value
 
     }
 

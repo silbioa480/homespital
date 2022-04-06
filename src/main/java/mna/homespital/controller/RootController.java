@@ -123,12 +123,10 @@ public class RootController {
 //  @GetMapping("/appointmentForm/{doc}")
 //  public ModelAndView appointmentForm(@PathVariable int doc) {
 
-    @GetMapping("/appointmentForm")
-    public ModelAndView appointmentForm() throws Exception {
+    @GetMapping("/appointmentForm/{doctor_number}")
+    public ModelAndView appointmentForm(@PathVariable int doctor_number) throws Exception {
         ModelAndView mv = new ModelAndView("user/userside/appointmentForm");
-        int doctor_number = 1;
-
-
+//        int doctor_number = 1;
         // page
         try {
             Doctor doctor = doctorService.getDocInfo(doctor_number);
