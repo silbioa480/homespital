@@ -4,11 +4,20 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mna.homespital.dao.CardInformationDAO">
-    <select id="queryMyCard" resultType="Card_Information" parameterType="int">
+    <select id="queryMyCards" resultType="Card_Information" parameterType="int">
         <![CDATA[
         select *
         from card_information
         where card_owner_number = #{card_owner_number}
+        ]]>
+    </select>
+
+    <select id="queryMyCard" resultType="Card_Information" parameterType="Map">
+        <![CDATA[
+        select *
+        from card_information
+        where card_owner_number = #{card_owner_number}
+          and customer_uid = #{customer_uid}
         ]]>
     </select>
 
@@ -18,5 +27,13 @@
         values (#{customer_uid}, #{card_owner_number}, #{card_exp}, #{card_nickname}, #{card_number})
         ]]>
     </insert>
+
+    <delete id="deleteMyCard" parameterType="String">
+        <![CDATA[
+        delete
+        from card_information
+        where customer_uid = #{customer_uid}
+        ]]>
+    </delete>
 
 </mapper>
