@@ -3,6 +3,7 @@ package mna.homespital.controller;
 import mna.homespital.dto.User;
 import mna.homespital.service.MemberService;
 import mna.homespital.service.SendMailService;
+import mna.homespital.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -63,6 +64,7 @@ public class SignUpController {
     //가영:유저로그인
     @PostMapping("/login.do")
     public String login(@RequestParam("email") String user_email, @RequestParam("password") String user_password, Model model) {
+
         try {
             memberService.login(user_email, user_password);
             session.setAttribute("email", user_email);

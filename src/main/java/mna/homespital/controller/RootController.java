@@ -4,10 +4,7 @@ import mna.homespital.dto.Diagnosis;
 import mna.homespital.dto.Doctor;
 import mna.homespital.dto.PageInfo;
 import mna.homespital.dto.User;
-import mna.homespital.service.DiagnosisService;
-import mna.homespital.service.DoctorService;
-import mna.homespital.service.MedicalListService;
-import mna.homespital.service.MemberService;
+import mna.homespital.service.*;
 import org.apache.maven.model.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -46,6 +43,9 @@ public class RootController {
     @Autowired
     MemberService memberService;
 
+    @Autowired
+    UserService userService;
+
     public RootController() {
     }
 
@@ -67,11 +67,7 @@ public class RootController {
         return new ModelAndView("user/userside/joinForm");
     }
 
-    //회원정보수정
-    @GetMapping("/modifyForm")
-    public ModelAndView modifyForm() {
-        return new ModelAndView("user/userside/modifyForm");
-    }
+
 
 //  //비밀번호확인(정보수정 전)
 //  @GetMapping("/pwCheck")
@@ -117,9 +113,7 @@ public class RootController {
   public ModelAndView appointmentForm() throws Exception {
     ModelAndView mv = new ModelAndView("user/userside/appointmentForm");
     int doctor_number = 1;
-
-
-        // page
+        // 의사 넘버로 의사 정보 가져오기 ( 인성 ) 
       try {
           Doctor doctor = doctorService.getDocInfo(doctor_number);
           doctor.setDoctor_password("");
@@ -129,16 +123,26 @@ public class RootController {
       } catch (Exception e) {
           e.printStackTrace();
       }
+      // 새션 가져오기 ( 인성 )
       String email = (String) session.getAttribute("email");
 
-      try {
-          User user = memberService.findByEmail(email);
-
-      } catch (Exception e) {
-          e.printStackTrace();
-      }
+//      try {
+//          User user = memberService.findByEmail(email);
+//
+//      } catch (Exception e) {
+//          e.printStackTrace();
+//      }
         return mv;
     }
+
+
+    //회원정보수정
+    @GetMapping("/modifyForm")
+    public ModelAndView modifyForm() {
+        ModelAndView mv = new ModelAndView("user/userside/modifyForm");
+        return mv;
+    }
+
 
     //진료예약   ( 인성 )
     @PostMapping("/appointmentForm")
@@ -150,7 +154,7 @@ public class RootController {
 
             for (int i=0; i < diagnosisImgNames.length; i++) {
                 String diagnosisImg = diagnosisImgNames[i].getOriginalFilename();
-                String path = servletContext.getRealPath("/resources/img/");
+                String path = servletContext.getRealPath("/resources/img/uploadImg/");
                 String filename = UUID.randomUUID().toString() + "." + diagnosisImg.substring(diagnosisImg.lastIndexOf('.') + 1);
                 File destFile = new File(path + filename);
                 diagnosisImgNames[i].transferTo(destFile);
