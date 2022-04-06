@@ -139,7 +139,7 @@
 
                                         </div>
                                         <div class="modal-footer">
-                                            <a class="btn" id="modalY2" href="/modifyForm">수정</a>
+                                            <a class="btn" id="modalY2" href="/modifyForm" onclick="getParentText()">수정</a>
                                             <button class="btn" type="button" data-bs-dismiss="modal">취소</button>
                                         </div>
                                     </div>
@@ -283,6 +283,10 @@
 
     });
 
+    function getParentText(){
+        document.getElementById("originphone").value = document.getElementById("phone").value
+
+    }
 
 
     function check_pw(){  //비밀번호 확인
