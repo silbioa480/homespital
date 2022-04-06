@@ -17,4 +17,6 @@ public interface CardInformationDAO {
     void insertMyCard(Card_Information param) throws Exception;
 
     void deleteMyCard(String customer_uid) throws Exception;
+
+    void setThisCardMain(Map<String, Object> param) throws Exception;
 }
