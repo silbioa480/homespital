@@ -28,7 +28,7 @@ public class TimeController {
     @Autowired
     DiagnosisService diagnosisService;
 
-
+    //준근/소연 예약 시간 선택 위한 컨트롤러
     @ResponseBody
     @GetMapping("/appointmentTime")
     public Doctor appointmentTime(int doctor_number, Model model) {
