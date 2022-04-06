@@ -169,7 +169,9 @@ public class UserController {
             mav.addObject("diagnosis", diagnosis);
             mav.addObject("doctor", doctor);
             mav.addObject("user", user);
+            mav.addObject("pharmacy", pharmacy);
             mav.setViewName("/user/main/myMedicalDetail");
+
 
         } catch (Exception e) {
             e.printStackTrace();

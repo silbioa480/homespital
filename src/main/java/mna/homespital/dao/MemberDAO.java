@@ -11,8 +11,9 @@ import org.springframework.stereotype.Repository;
 @Mapper
 public interface MemberDAO {
 
+
     //가영: 회원정보수정
-    void updateMember(String user_email, String user_password, String user_name, String user_registration_number, String user_phone, String user_address) throws Exception;
+    void updateMember(String user_email, String user_password, String user_name, String user_registration_number, String user_phone, String zip_code, String street_address, String detail_address) throws Exception;
 
     //용식:회원가입 환자(User)정보 insert
     void insertMember(User user) throws Exception;

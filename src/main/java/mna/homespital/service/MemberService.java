@@ -32,7 +32,7 @@ public interface MemberService {
     void deleteMember(String user_email) throws Exception;
 
     //가영: 회원정보수정
-    public void modifyMember(String user_email, String user_password, String user_name, String user_registration_number, String user_phone, String user_address) throws Exception;
+    public void modifyMember(String user_email, String user_password, String user_name, String user_registration_number, String user_phone, String zip_code, String street_address, String detail_address) throws Exception;
 
     //용식 :유저정보 가져오기
     User queryMember(String email) throws Exception;
