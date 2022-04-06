@@ -10,7 +10,8 @@ public class UserServiceImpl implements UserService {
     @Autowired
     MemberDAO memberDAO;
 
-    //user_number로 유저(환자)에 대한 정보 찾기 (준근)
+    //환자(User)정보 가져오기
+    // user_number로 유저(환자)에 대한 정보 찾기 (준근)
     @Override
     public User getUserInfo(int user_number) throws Exception {
         System.out.println("getUserInfo() join");
