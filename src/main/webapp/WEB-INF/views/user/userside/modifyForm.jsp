@@ -32,7 +32,7 @@
     </style>
 </head>
 
-<body class="is-preload">
+<div class="is-preload">
 
 <!-- Header -->
 <section id="header">
@@ -320,13 +320,12 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button class="btn border-dark" id="submitNewCard" onclick="return false;">추가
+                                    <button class="btn border-dark" type="button" id="submitNewCard" onclick="submitNewCardId(); return false;">추가
                                     </button>
                                     <button class="btn" type="button" data-bs-dismiss="modal">취소</button>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
 
@@ -338,10 +337,11 @@
                            style="width: 80%; margin-left:20px; margin-right: 20px;"></input>
                     <a class="btn" id="deleteMem" href="/delete" style="margin-right: 0px">회원탈퇴</a>
                 </div>
-    </div>
+        </div>
     </section>
     <br><br><br><br>
     </form>
+</div>
 </div>
 
 
@@ -400,20 +400,11 @@
         $('#addCardModal').modal("hide");
     });
 
-
     function getParentText() {
         $('#phoneModal').modal("hide");
         document.getElementById("originphone").value = document.getElementById("phone").value
 
     }
-
-    function getParentText() {
-        document.getElementById("cardName").value = document.getElementById("cardNameModal").value
-        document.getElementById("lastCardNum").value = document.getElementById("lastCardNumModal").value
-        document.getElementById("cardMMYYNum").value = document.getElementById("cardMMYYNumModal").value
-
-    }
-
 
     function check_pw() {  //비밀번호 확인
         var password = document.getElementById('password').value;
@@ -429,8 +420,8 @@
         }
     }
 
-    $("#submitNewCard").click(function() {
 
+    function submitNewCardId() {
         if($("#cardNameModal").val() == "") {
             alert("카드 별칭을 입력해주세요.");
             $("#cardNameModal").focus();
@@ -465,7 +456,33 @@
             $("#cardPassword").focus();
             return false;
         }
-    })
+
+        card_number = $('#cardNumModal1').val() + '-' + $('#cardNumModal2').val() + '-' + $('#cardNumModal3').val() + '-' + $('#cardNumModal4').val();
+        expiry = '20' + $('#cardMMYYNumModal').val().substring(2, 2) + '-' + $('#cardMMYYNumModal').val().substring(0, 2);
+        pwd_2digit = $('#cardPWModal').val();
+
+        var formData = new FormData();
+        formData.append("card_number", card_number);
+        formData.append("expiry", expiry);
+        formData.append("pwd_2digit", pwd_2digit);
+        $.ajax({
+            url: "",
+            type: "POST",
+            cache: false,
+            data: formData,
+            success: function (data) {
+                alert("성공하였습니다.");
+                //$('#writeCardModal').modal("hide");
+            },
+            error: function (data) {
+                alert("에러가 발생했습니다.")
+
+            }
+        })
+        return false;
+    }
+
+
 
 </script>
 
