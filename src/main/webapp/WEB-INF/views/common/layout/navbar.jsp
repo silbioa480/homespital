@@ -79,7 +79,7 @@
                                     <a class="nav-link" href="/joinForm">회원가입</a>
                                 </li>
                                 <li class="nav-item cta-btn btn-dark text-white">
-                                    <a class="nav-link" href="#">의료 관계자 로그인</a>
+                                    <a class="nav-link" href="/admin/">의료 관계자 로그인</a>
                                 </li>
                             </c:otherwise>
                         </c:choose>
