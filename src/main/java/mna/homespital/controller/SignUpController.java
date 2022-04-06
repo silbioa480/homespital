@@ -151,8 +151,9 @@ public class SignUpController {
 
     //가영: 회원정보수정
     @PostMapping("modifyMember.do")
-    public String modifyMember(@RequestParam("email") String password, @RequestParam String email, @RequestParam String name, @RequestParam String registration_number, @RequestParam String phone, @RequestParam String address) {
+    public String modifyMember(@RequestParam("email") String email, @RequestParam String password, @RequestParam String name, @RequestParam String registration_number, @RequestParam String phone, @RequestParam String address) {
         try {
+
             memberService.modifyMember(email, password, name, registration_number, phone, address);
         } catch (Exception e) {
             e.printStackTrace();
