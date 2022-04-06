@@ -29,7 +29,7 @@
             </div>
             <div class="col-md-8 card-body">
                 <div class="card-title d-flex">
-                    <h4 class="pr-3 font-weight-bolder">${doctor.doctor_name}</h4>
+                    <h4 class="pr-3 font-weight-bolder">${doctor.doctor_name}</h4> &nbsp;&nbsp;
                     <span class="pl-3 font-weight-normal align-text-bottom">의사/${doctor.doctor_diagnosis_type}</span>
                 </div>
                 <div class="card-text">
@@ -46,14 +46,14 @@
                         <tr>
                             <th>진료시간:</th>
                             <td>
-                                <%--오전9시~ 오전 6시 쿼리문~!!! ㅋㄷ--%>
+                                ${doctor.working_time}
 
                             </td>
                         </tr>
                         <tr>
                             <th>점심시간:</th>
                             <td>
-                                <%--                                ${doctor.lunch_time}--%>
+                                ${doctor.lunch_time}
                             </td>
                         </tr>
                         <tr>
@@ -66,20 +66,25 @@
             </div>
         </div>
     </div>
+    <br>
 
 
     <%--진료 챠트-소제목 --%>
     <div><h4><strong>진료 차트</strong></h4></div>
+
     <%--(위와 form비슷하게) 환자의 정보 출력하는 창 만든다 from 환자의 정보 DB--%>
     <div class="card p-3">
         <div class="row g-0">
             <div class="col-md-8 card-body">
                 <div class="card-title d-flex">
-                    <h3 class="pr-3 font-weight-bolder">${user.user_name}</h3>
-                    <p>만 ${age}세/ ${gender}</p>
-
-                    <%--만 나이 출력 쿼리 + 성별 출력 쿼리 from 주민등록번호 --%>
+                    <h5><strong>비대면 진료시간 : </strong></h5> &nbsp;&nbsp;
+                    <span><h5>${diagnosis.diagnosis_time}</h5></span>
                 </div>
+                <div class="card-title d-flex p-1">
+                    <h3 class="pr-3 font-weight-bolder">${user.user_name}</h3> &nbsp;&nbsp;
+                    <span class="pl-3 font-weight-normal align-text-bottom"> 만 ${age}세/ ${gender}</span>
+                </div>
+
                 <div class="card-text">
                     <p class="card-text">
                     <table class="table table-borderless timetable">
