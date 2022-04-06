@@ -578,6 +578,23 @@
         }
     )('att_zone', 'btnAtt')
 
+    // test
+    $(document).ready(function () {
+        $.ajax({
+            url: '/appointmentTime',
+            type: 'GET',
+            datatype: "json",
+            data: {
+                "doctor_number": ${doctor_number}
+            },
+            success: function (data) {
+                console.log(data);
+
+            }
+
+        })
+    })
+
 
 </script>
 
