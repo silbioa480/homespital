@@ -41,18 +41,19 @@
                         </tr>
                         <tr>
                             <th>주소 :</th>
-                            <td>${doctor.hospital_address}</td>
+                            <td>${doctor.zip_code} ${doctor.street_address} ${doctor.detail_address}</td>
                         </tr>
                         <tr>
                             <th>진료시간:</th>
                             <td>
                                 <%--오전9시~ 오전 6시 쿼리문~!!! ㅋㄷ--%>
+
                             </td>
                         </tr>
                         <tr>
                             <th>점심시간:</th>
                             <td>
-                                ${doctor.lunch_time}시~ ${doctor.lunch_time + 1}시
+                                <%--                                ${doctor.lunch_time}--%>
                             </td>
                         </tr>
                         <tr>
@@ -91,7 +92,7 @@
                         </tr>
                         <tr>
                             <th>주소 :</th>
-                            <td>${user.user_address}</td>
+                            <td>${user.zip_code} ${user.street_address} ${user.detail_address}</td>
                         </tr>
                         <tr>
                             <th>핸드폰 번호:</th>
@@ -132,6 +133,7 @@
     <%--의사가 쓴 진단 소견서 내용을 출력--%>
     <div><h4><strong>진단 소견서</strong></h4></div>
     <%--진단 소견서 출력--%>
+    <p>${diagnosis.diagnosis_file_name}</p>
 
 
     <%--약제 배송 방법-소제목--%>
@@ -151,11 +153,14 @@
                 <label>보내는 곳 주소</label>
                 <hr>
                 <div><h5><strong>약국주소</strong></h5></div>
+                <p>${pharmacy.zip_code} ${pharmacy.street_address} ${pharmacy.detail_address}</p>
+                <br>
 
 
                 <label>받으신 곳 주소</label>
                 <hr>
-                <div><h5><strong>환자이름: ${user.user_name}</strong></h5></div>
+                <div><h5><strong>${user.user_name}</strong></h5></div>
+                <p>${user.zip_code} ${user.street_address} ${user.detail_address}</p> <br>
 
 
                 <div><h4><strong>결제정보</strong></h4></div>

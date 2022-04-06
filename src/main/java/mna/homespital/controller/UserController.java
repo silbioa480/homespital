@@ -165,11 +165,29 @@ public class UserController {
             user.setUser_password("");
             doctor.setDoctor_password("");
 
+
+//            //준근 : 시간 출력에 관한
+//            int lunch_time = Integer.parseInt(doctor.getLunch_time());
+//            //13시 이후 일 때  =>  오후 1시 ~ 오후 2시, 오후 2시 ~ 오후 3시 ... 로 출력
+//            if (lunch_time >= 13) {
+//                lunch_time -= 12;
+//                doctor.setLunch_time("오후 " + lunch_time + "시 ~ 오후 " + (lunch_time + 1) + "시");
+//            } else if (lunch_time == 12) { // 12시 일 때, 오후 12시 ~ 오후 1시
+//                doctor.setLunch_time("오후 " + lunch_time + "시 ~ 오후 " + (lunch_time - 11) + "시");
+//            } else if (lunch_time == 11) { //11시 일 때, 오전 11시 ~ 오후 12시
+//                doctor.setLunch_time("오전 " + lunch_time + "시 ~ 오후 " + (lunch_time + 1) + "시");
+//            } else if (lunch_time < 11) { // 10시 이전 일 때, 오전 10시 ~ 오전 11시, 오전 9시 ~ 오전 10시 ...로 출력
+//                doctor.setLunch_time("오전 " + lunch_time + "시 ~ 오전 " + (lunch_time + 1) + "시");
+//            }
+
+
             //저장된 각 객체들 model에 전부 저장(diagnosis -진료내역, doctor - 의사정보, user - 환자정보)
             mav.addObject("diagnosis", diagnosis);
             mav.addObject("doctor", doctor);
             mav.addObject("user", user);
+            mav.addObject("pharmacy", pharmacy);
             mav.setViewName("/user/main/myMedicalDetail");
+
 
         } catch (Exception e) {
             e.printStackTrace();

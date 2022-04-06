@@ -9,7 +9,9 @@ public class Doctor {
     private String doctor_password;
     private String doctor_name;
     private String hospital_name;
-    private String hospital_address;
+    private String zip_code;
+    private String street_address;
+    private String detail_address;
     private String hospital_url;
     private String doctor_profile_image_name;
     private String doctor_diagnosis_type;
@@ -63,12 +65,28 @@ public class Doctor {
         this.hospital_name = hospital_name;
     }
 
-    public String getHospital_address() {
-        return hospital_address;
+    public String getZip_code() {
+        return zip_code;
     }
 
-    public void setHospital_address(String hospital_address) {
-        this.hospital_address = hospital_address;
+    public void setZip_code(String zip_code) {
+        this.zip_code = zip_code;
+    }
+
+    public String getStreet_address() {
+        return street_address;
+    }
+
+    public void setStreet_address(String street_address) {
+        this.street_address = street_address;
+    }
+
+    public String getDetail_address() {
+        return detail_address;
+    }
+
+    public void setDetail_address(String detail_address) {
+        this.detail_address = detail_address;
     }
 
     public String getHospital_url() {
@@ -143,15 +161,34 @@ public class Doctor {
         this.holiday = holiday;
     }
 
+    public Date getCreate_date() {
+        return create_date;
+    }
+
+    public void setCreate_date(Date create_date) {
+        this.create_date = create_date;
+    }
+
+    public Date getUpdate_date() {
+        return update_date;
+    }
+
+    public void setUpdate_date(Date update_date) {
+        this.update_date = update_date;
+    }
+
     public Doctor() {
     }
 
-    public Doctor(String doctor_email, String doctor_password, String doctor_name, String hospital_name, String hospital_address, String hospital_url, String doctor_profile_image_name, String doctor_diagnosis_type, String doctor_introduction, String doctor_education, String doctor_thesis, String working_time, String lunch_time, String holiday) {
+    public Doctor(int doctor_number, String doctor_email, String doctor_password, String doctor_name, String hospital_name, String zip_code, String street_address, String detail_address, String hospital_url, String doctor_profile_image_name, String doctor_diagnosis_type, String doctor_introduction, String doctor_education, String doctor_thesis, String working_time, String lunch_time, String holiday) {
+        this.doctor_number = doctor_number;
         this.doctor_email = doctor_email;
         this.doctor_password = doctor_password;
         this.doctor_name = doctor_name;
         this.hospital_name = hospital_name;
-        this.hospital_address = hospital_address;
+        this.zip_code = zip_code;
+        this.street_address = street_address;
+        this.detail_address = detail_address;
         this.hospital_url = hospital_url;
         this.doctor_profile_image_name = doctor_profile_image_name;
         this.doctor_diagnosis_type = doctor_diagnosis_type;
@@ -163,13 +200,15 @@ public class Doctor {
         this.holiday = holiday;
     }
 
-    public Doctor(int doctor_number, String doctor_email, String doctor_password, String doctor_name, String hospital_name, String hospital_address, String hospital_url, String doctor_profile_image_name, String doctor_diagnosis_type, String doctor_introduction, String doctor_education, String doctor_thesis, String working_time, String lunch_time, String holiday, Date create_date, Date update_date) {
+    public Doctor(int doctor_number, String doctor_email, String doctor_password, String doctor_name, String hospital_name, String zip_code, String street_address, String detail_address, String hospital_url, String doctor_profile_image_name, String doctor_diagnosis_type, String doctor_introduction, String doctor_education, String doctor_thesis, String working_time, String lunch_time, String holiday, Date create_date, Date update_date) {
         this.doctor_number = doctor_number;
         this.doctor_email = doctor_email;
         this.doctor_password = doctor_password;
         this.doctor_name = doctor_name;
         this.hospital_name = hospital_name;
-        this.hospital_address = hospital_address;
+        this.zip_code = zip_code;
+        this.street_address = street_address;
+        this.detail_address = detail_address;
         this.hospital_url = hospital_url;
         this.doctor_profile_image_name = doctor_profile_image_name;
         this.doctor_diagnosis_type = doctor_diagnosis_type;

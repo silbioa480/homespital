@@ -139,7 +139,7 @@
 
                                         </div>
                                         <div class="modal-footer">
-                                            <a class="btn" id="modalY2" href="/modifyForm" onclick="getParentText()">수정</a>
+                                            <a class="btn" id="modalY2" onclick="getParentText()">수정</a>
                                             <button class="btn" type="button" data-bs-dismiss="modal">취소</button>
                                         </div>
                                     </div>
@@ -232,8 +232,11 @@
 
                         <h5> * 본인명의 카드만 등록 가능 합니다.</h5>
                         <br><br>
+                        <div style="display:flex">
 
-                        <input type="submit" value="수정" style="width: 100%;"></input>
+                        <input type="submit" value="수정" style="width: 80%; margin-left:20px; margin-right: 20px;"></input>
+                        <a class="btn" id="deleteMem" href="/delete" style="margin-right: 0px">회원탈퇴</a>
+                        </div>
                     </div>
 
                 </div>
@@ -280,10 +283,11 @@
     $('#phoneBtn').click(function (e) {
         e.preventDefault();
         $('#phoneModal').modal("show");
+    })
 
-    });
 
     function getParentText(){
+        $('#phoneModal').modal("hide");
         document.getElementById("originphone").value = document.getElementById("phone").value
 
     }

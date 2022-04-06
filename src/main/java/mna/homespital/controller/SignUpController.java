@@ -100,11 +100,21 @@ public class SignUpController {
         String email = params.get("email");
         String password = params.get("password");
         String name = params.get("name");
-        String SocialSecurityNumber = params.get("SocialSecurityNumber1") + "-" + params.get("SocialSecurityNumber2");
+        String registration_number = params.get("SocialSecurityNumber1") + "-" + params.get("SocialSecurityNumber2");
         String phone = params.get("phone");
-        String address = "[" + params.get("zipNo") + "] " + params.get("roadFullAddr") + params.get("addrDetail");
-        User user = new User(email, password, name, SocialSecurityNumber, phone, address);
 
+
+        //준근 : 도로명 주소 api에 맞게 수정
+        String zip_code = params.get("zipNo");
+        String street_address = params.get("roadFullAddr");
+        String detail_address = params.get("addrDetail");
+
+//        String address = "[" + params.get("zipNo") + "] " + params.get("roadFullAddr") + params.get("addrDetail");
+//        User user = new User(email, password, name, SocialSecurityNumber, phone, address);
+
+        User user = new User(email, password, name, registration_number, phone, zip_code, street_address, detail_address);
+
+//        //소연 : 빌링키 일단 주석
 //        String billing_key = params.get("billing_key");
 //
 //        if (!billing_key.isEmpty()) {
@@ -151,6 +161,34 @@ public class SignUpController {
         }
     }
 
+    //가영: 비밀번호확인
+    @ResponseBody
+    @RequestMapping(value="/pwCheck", method = RequestMethod.POST)
+    public String submitPasswordMember(@RequestParam(value="password") String password, RedirectAttributes rttr, HttpSession session) {
+        System.out.println("입력한 비밀번호 값 : " + password);
+        try {
+            String email = (String) session.getAttribute("email");
+            User user = memberService.queryMember(email);
+            if (user==null) {
+                return "사용자없음";
+            }
+            System.out.println(user.toString());
+            String originPass = user.getUser_password();
+            String inputPass = password;
+
+            if (!(inputPass.equals(originPass))) {
+                rttr.addFlashAttribute("msg", true);
+
+                return "비밀번호틀림";
+            } else {
+                return "비밀번호일치";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "에러";
+        }
+    }
+
     //가영: 회원정보수정
     @PostMapping("modifyMember.do")
     public String modifyMember(@RequestParam Map<String, String> params) {
@@ -160,16 +198,28 @@ public class SignUpController {
         String name = params.get("name");
         String SocialSecurityNumber = params.get("SocialSecurityNumber1") + "-" + params.get("SocialSecurityNumber2");
         String phone = params.get("phone");
-        String address = "[" + params.get("zipNo") + "] " + params.get("roadFullAddr") + params.get("addrDetail");
+
+
+        //준근 : 도로명 주소 api에 맞게 수정
+        String zip_code = params.get("zipNo");
+        String street_address = params.get("roadFullAddr");
+        String detail_address = params.get("addrDetail");
+
+//        String address = "[" + params.get("zipNo") + "] " + params.get("roadFullAddr") + params.get("addrDetail");
         try {
             //보조강사님
-            memberService.modifyMember(email, password, name, SocialSecurityNumber, phone, address);
-            System.out.println("address:" + address);
+            memberService.modifyMember(email, password, name, SocialSecurityNumber, phone, zip_code, street_address, detail_address);
+//            System.out.println("address:" + address);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return "redirect:/";
     }
+
+
+//    private String zip_code;
+//    private String street_address;
+//    private String detail_address;
 
 
     //비밀번호찾기: 비밀번호수정form
