@@ -8,23 +8,24 @@
 <head>
     <meta charset="UTF-8"/>
     <title>홈스피탈</title>
-</head>
+    <link rel="stylesheet" href="../../../../resources/css/navbar.css" />
 <style>
-    .active {
-    }
-
+    a > i,
     a:link,
     a:visited,
     a:hover,
     a:active {
-        color: grey;
+        color: #111;
         text-decoration: none;
     }
 
     .cta-btn {
         align: "right";
     }
+
+
 </style>
+</head>
 <body>
 <!-- Header -->
 <div>
@@ -78,8 +79,8 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="/joinForm">회원가입</a>
                                 </li>
-                                <li class="nav-item cta-btn btn-dark text-white">
-                                    <a class="nav-link" href="/#">의료 관계자 로그인</a>
+                                <li class="nav-item cta-btn text-white">
+                                    <a class="nav-link" href="/#">의료 관계자</a>
                                 </li>
                             </c:otherwise>
                         </c:choose>
