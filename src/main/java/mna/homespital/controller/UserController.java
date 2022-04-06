@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -166,19 +167,63 @@ public class UserController {
             doctor.setDoctor_password("");
 
 
-//            //준근 : 시간 출력에 관한
-//            int lunch_time = Integer.parseInt(doctor.getLunch_time());
-//            //13시 이후 일 때  =>  오후 1시 ~ 오후 2시, 오후 2시 ~ 오후 3시 ... 로 출력
-//            if (lunch_time >= 13) {
-//                lunch_time -= 12;
-//                doctor.setLunch_time("오후 " + lunch_time + "시 ~ 오후 " + (lunch_time + 1) + "시");
-//            } else if (lunch_time == 12) { // 12시 일 때, 오후 12시 ~ 오후 1시
-//                doctor.setLunch_time("오후 " + lunch_time + "시 ~ 오후 " + (lunch_time - 11) + "시");
-//            } else if (lunch_time == 11) { //11시 일 때, 오전 11시 ~ 오후 12시
-//                doctor.setLunch_time("오전 " + lunch_time + "시 ~ 오후 " + (lunch_time + 1) + "시");
-//            } else if (lunch_time < 11) { // 10시 이전 일 때, 오전 10시 ~ 오전 11시, 오전 9시 ~ 오전 10시 ...로 출력
-//                doctor.setLunch_time("오전 " + lunch_time + "시 ~ 오전 " + (lunch_time + 1) + "시");
-//            }
+            //소연 : 진료 시간 출력
+            String work_time = doctor.getWorking_time();
+            String[] work_timeArr = work_time.split(",");
+
+            for (int i = 0; i < work_timeArr.length; i++) {
+                System.out.println("work_timeArr = " + work_timeArr[i]); //9~17까지 콘솔에 뜸 [0], [work_timeArr.length-1]
+            }
+
+            int start_time = Integer.parseInt(work_timeArr[0]);
+            int end_time = Integer.parseInt(work_timeArr[work_timeArr.length - 1]) + 1;
+
+            if (end_time >= 13) {
+                if (start_time >= 13) {
+                    start_time -= 12;
+                    end_time -= 12;
+                    work_time = "오후 " + start_time + "시 ~ 오후 " + end_time + "시";
+                    doctor.setWorking_time(work_time);
+                } else if (start_time == 12) {
+                    end_time -= 12;
+                    work_time = "오후 " + start_time + "시 ~ 오후 " + end_time + "시";
+                    doctor.setWorking_time(work_time);
+                    System.out.println("work_time else if() = " + work_time);
+                } else if (start_time < 12) {
+                    end_time -= 12;
+                    work_time = "오전 " + start_time + "시 ~ 오후 " + end_time + "시";
+                    doctor.setWorking_time(work_time);
+                    System.out.println("work_time else if() = " + work_time);
+                }
+
+            } else if (end_time <= 12) {
+                work_time = "오전 " + start_time + "시 ~ 오전 " + end_time + "시";
+                doctor.setWorking_time(work_time);
+            }
+
+            //준근 : 점심 시간 출력
+            int lunch_time = Integer.parseInt(doctor.getLunch_time());
+            //13시 이후 일 때  =>  오후 1시 ~ 오후 2시, 오후 2시 ~ 오후 3시 ... 로 출력
+            if (lunch_time >= 13) {
+                lunch_time -= 12;
+                doctor.setLunch_time("오후 " + lunch_time + "시 ~ 오후 " + (lunch_time + 1) + "시");
+            } else if (lunch_time == 12) { // 12시 일 때, 오후 12시 ~ 오후 1시
+                doctor.setLunch_time("오후 " + lunch_time + "시 ~ 오후 " + (lunch_time - 11) + "시");
+            } else if (lunch_time == 11) { //11시 일 때, 오전 11시 ~ 오후 12시
+                doctor.setLunch_time("오전 " + lunch_time + "시 ~ 오후 " + (lunch_time + 1) + "시");
+            } else if (lunch_time < 11) { // 10시 이전 일 때, 오전 10시 ~ 오전 11시, 오전 9시 ~ 오전 10시 ...로 출력
+                doctor.setLunch_time("오전 " + lunch_time + "시 ~ 오전 " + (lunch_time + 1) + "시");
+            }
+
+            //소연 : 비대면 진료시간
+
+
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일 E요일");
+            String strNowDate = simpleDateFormat.format(diagnosis.getCreate_date());
+
+            String confirmTime = strNowDate + " " + diagnosis.getDiagnosis_time();
+
+            mav.addObject("confirmTime" + ":00", confirmTime);
 
 
             //저장된 각 객체들 model에 전부 저장(diagnosis -진료내역, doctor - 의사정보, user - 환자정보)
