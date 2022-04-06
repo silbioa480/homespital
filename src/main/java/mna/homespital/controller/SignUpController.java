@@ -177,12 +177,10 @@ public class SignUpController {
             String inputPass = password;
 
             if (!(inputPass.equals(originPass))) {
-                rttr.addFlashAttribute("msg", false);
+                rttr.addFlashAttribute("msg", true);
 
                 return "비밀번호틀림";
             } else {
-                memberService.passwordMember(email);
-                session.invalidate();
                 return "비밀번호일치";
             }
         } catch (Exception e) {

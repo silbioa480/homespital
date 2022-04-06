@@ -24,13 +24,13 @@
         <input type="password" style="width: 100%" id="password" name="password" placeholder="비밀번호를 입력해주세요" value="" minlength="4" maxlength="12" size="15" pattern="[a-zA-Z0-9]{4,12}" title="4~12자의 영문 대소문자와 숫자로만 입력.">
         <div class="error"></div>
     </div>
-    <div class="input-control">
-        <label for="password2">비밀번호 확인</label>
-        <input type="password" style="width: 100%" id="password2" name="password2" placeholder="비밀번호를 입력해주세요" onkeyup="check_pw()" value="" maxlength="12" size="15" >
-        <span id="pw_check_msg" style="color: #1abc9c"></span>
-        <div class="error"></div>
-    </div>
-    <input type="submit" id="pwChecked" name="pwChecked" value="수정" style="width: 100%; margin-top: 20px"></input>
+<%--    <div class="input-control">--%>
+<%--        <label for="password2">비밀번호 확인</label>--%>
+<%--        <input type="password" style="width: 100%" id="password2" name="password2" placeholder="비밀번호를 입력해주세요" onkeyup="check_pw()" value="" maxlength="12" size="15" >--%>
+<%--        <span id="pw_check_msg" style="color: #1abc9c"></span>--%>
+<%--        <div class="error"></div>--%>
+<%--    </div>--%>
+    <input type="submit" id="pwChecked" name="pwChecked" value="확인" style="width: 100%; margin-top: 20px"></input>
 </div>
 
 
@@ -38,20 +38,20 @@
 
 <script type="text/javascript">
 
-    function check_pw(){  //비밀번호 확인
-        var password = document.getElementById('password').value;
-        var password2 = document.getElementById('password2').value;
-
-        if (password!==password2) {
-            document.getElementById('pw_check_msg').innerHTML = "비밀번호가 다릅니다. 다시 확인해 주세요.";
-        }
-        else {
-            document.getElementById('pw_check_msg').innerHTML = "";
-        }
-        if (password2==="") {
-            document.getElementById('pw_check_msg').innerHTML = "";
-        }
-    }
+    // function check_pw(){  //비밀번호 확인
+    //     var password = document.getElementById('password').value;
+    //     var password2 = document.getElementById('password2').value;
+    //
+    //     if (password!==password2) {
+    //         document.getElementById('pw_check_msg').innerHTML = "비밀번호가 다릅니다. 다시 확인해 주세요.";
+    //     }
+    //     else {
+    //         document.getElementById('pw_check_msg').innerHTML = "";
+    //     }
+    //     if (password2==="") {
+    //         document.getElementById('pw_check_msg').innerHTML = "";
+    //     }
+    // }
 
     $(document).ready(function(){
 
@@ -69,11 +69,12 @@
                     xhr.setRequestHeader("AJAX", "true");
                 },
                 success: function(response){
-                    if(response == '비밀번호맞음')
+                    console.log(response);
+                    if(response == '비밀번호일치')
                     {
                         location.href = "/modifyForm";
                     }
-                    else if(response != "비밀번호틀림")
+                    else if(response == "비밀번호틀림")
                     {
                         alert("비밀번호를 확인해주세요!");
                         location.href = "/pwCheck";

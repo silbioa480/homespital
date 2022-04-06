@@ -37,10 +37,6 @@ public interface MemberService {
     //용식 :유저정보 가져오기
     User queryMember(String email) throws Exception;
 
-    //가영: 비밀번호확인
-    void passwordMember(String user_email) throws Exception;
-
-
     //용식: 이메일중복체크
     boolean emailCheck(String email) throws Exception;
 

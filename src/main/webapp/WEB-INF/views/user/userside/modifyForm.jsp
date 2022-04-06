@@ -139,7 +139,7 @@
 
                                         </div>
                                         <div class="modal-footer">
-                                            <a class="btn" id="modalY2" href="/modifyForm" onclick="getParentText()">수정</a>
+                                            <a class="btn" id="modalY2" onclick="getParentText()">수정</a>
                                             <button class="btn" type="button" data-bs-dismiss="modal">취소</button>
                                         </div>
                                     </div>
@@ -280,10 +280,11 @@
     $('#phoneBtn').click(function (e) {
         e.preventDefault();
         $('#phoneModal').modal("show");
+    })
 
-    });
 
     function getParentText(){
+        $('#phoneModal').modal("hide");
         document.getElementById("originphone").value = document.getElementById("phone").value
 
     }
