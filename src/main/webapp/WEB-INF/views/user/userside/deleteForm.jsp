@@ -62,25 +62,6 @@
             if(confirm("정말 탈퇴 하시겠습니까?") == true)
             {
 
-                // if($("#password").val()==""){
-            //     alert("비밀번호를 입력해주세요");
-            //     $("#password").focus();
-            //     return false
-            // }
-
-            // if($("#password2").val()==""){
-            //     alert("비밀번호 확인을 입력해주세요");
-            //     $("#password2").focus();
-            //     return false
-            // }
-            //
-            // if ($("#password").val() != $("#password2").val()) {
-            //     alert("비밀번호가 일치하지 않습니다.");
-            //     $("#password").focus();
-            //
-            //     return false;
-            // }
-
             $.ajax({
                 url : "/delete",
                 type : "POST",
@@ -108,14 +89,7 @@
                         location.href = "/delete";
                     }
                 },
-                // complete:function(data)
-                // {
-                //     icia.common.log(data);
-                // },
-                // error:function(xhr, status, error)
-                // {
-                //     icia.common.error(error);
-                // }
+
             });
             }
         });
