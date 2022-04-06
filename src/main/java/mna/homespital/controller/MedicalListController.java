@@ -8,7 +8,6 @@ import mna.homespital.dto.AllMedical;
 import mna.homespital.service.AllMedicalListService;
 import mna.homespital.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.ServletContext;
@@ -57,11 +56,18 @@ public class MedicalListController {
     }
 
     //원하는 진료항목출력 태영
-    @ResponseBody
     @PostMapping("/medicalSearch")
-    public String medicalSearch(@RequestParam String mediSearch, Model model){
+    public ModelAndView medicalSearch(@RequestParam(value="mediSearch") String mediSearch){
+            ModelAndView mv = new ModelAndView();
+            try{
+                List<AllMedical> searchmd=allmedListService.searchMed(mediSearch);
 
-        return "user/userside/medicalList";
+                mv.addObject("list",searchmd);
+                mv.setViewName("user/userside/medicalList");
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+            return mv;
     }
 
     //나의진료내역 보기 (소연)
