@@ -41,30 +41,30 @@
                                 </tr>
                                 <tr>
                                     <th>시간선택:</th>
-                                    <td>
+                                    <td id="workBtn">
 
 
-                                        c:foreach로 넣을 영역. 예시
-                                        <label class="box-radio-input" data-bs-toggle="tooltip" data-bs-placement="top"
-                                               title="현재 시간에 예약한 인원 : 1/10">
-                                            <input type="radio" name="diagnosis_time" value="10" checked="checked">
-                                            <span>10:00</span>
-                                        </label>
-                                        <label class="box-radio-input" data-bs-toggle="tooltip" data-bs-placement="top"
-                                               title="현재 시간에 예약한 인원 : 8/10">
-                                            <input type="radio" name="diagnosis_time" value="11">
-                                            <span>11:00</span>
-                                        </label>
-                                        <label class="box-radio-input" data-bs-toggle="tooltip" data-bs-placement="top"
-                                               title="점심시간">
-                                            <input type="radio" name="diagnosis_time" value="12" disabled>
-                                            <span class="text-muted">12:00</span>
-                                        </label>
-                                        <label class="box-radio-input" data-bs-toggle="tooltip" data-bs-placement="top"
-                                               title="현재 시간에 예약한 인원 : 10/10">
-                                            <input type="radio" name="diagnosis_time" value="13" disabled>
-                                            <span class="text-muted">13:00</span>
-                                        </label>
+                                        <%--                                        c:foreach로 넣을 영역. 예시--%>
+                                        <%--                                        <label class="box-radio-input" data-bs-toggle="tooltip" data-bs-placement="top"--%>
+                                        <%--                                               title="현재 시간에 예약한 인원 : 1/10">--%>
+                                        <%--                                            <input type="radio" name="diagnosis_time" value="10" checked="checked">--%>
+                                        <%--                                            <span>10:00</span>--%>
+                                        <%--                                        </label>--%>
+                                        <%--                                        <label class="box-radio-input" data-bs-toggle="tooltip" data-bs-placement="top"--%>
+                                        <%--                                               title="현재 시간에 예약한 인원 : 8/10">--%>
+                                        <%--                                            <input type="radio" name="diagnosis_time" value="11">--%>
+                                        <%--                                            <span>11:00</span>--%>
+                                        <%--                                        </label>--%>
+                                        <%--                                        <label class="box-radio-input" data-bs-toggle="tooltip" data-bs-placement="top"--%>
+                                        <%--                                               title="점심시간">--%>
+                                        <%--                                            <input type="radio" name="diagnosis_time" value="12" disabled>--%>
+                                        <%--                                            <span class="text-muted">12:00</span>--%>
+                                        <%--                                        </label>--%>
+                                        <%--                                        <label class="box-radio-input" data-bs-toggle="tooltip" data-bs-placement="top"--%>
+                                        <%--                                               title="현재 시간에 예약한 인원 : 10/10">--%>
+                                        <%--                                            <input type="radio" name="diagnosis_time" value="13" disabled>--%>
+                                        <%--                                            <span class="text-muted">13:00</span>--%>
+                                        <%--                                        </label>--%>
                                     </td>
                                 </tr>
                             </table>
@@ -248,6 +248,17 @@
             <label for="appointDo" class="appointBtn">예약하기</label>
             <input type="submit" id="appointDo" class="appointDo" style="display: none"/>
         </div>
+
+
+        <%--        test--%>
+        <%--        <div>--%>
+
+        <%--            <div id="workBtn"></div>--%>
+
+
+        <%--        </div>--%>
+
+
     </form>
 </div>
 <%-- 카카오맵 관련 JS --%>
@@ -458,10 +469,14 @@
 </script>
 <%-- bootstrap tooltip 설정 --%>
 <script>
-    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-        return new bootstrap.Tooltip(tooltipTriggerEl)
-    })
+    function tooltipInitialing() {
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    }
+
+    tooltipInitialing();
 </script>
 <%-- 약국내방/배달받기 설정 --%>
 <script>
@@ -585,10 +600,35 @@
             type: 'GET',
             datatype: "json",
             data: {
-                "doctor_number": ${doctor_number}
+                "doctor_number": ${doctor.doctor_number}
             },
             success: function (data) {
                 console.log(data);
+                let time = data.working_time;
+                let timeArr = time.split(',');
+                timeArr.push(data.lunch_time);
+
+
+                console.log(timeArr);
+
+                let workTime = timeArr.filter((element) => element !== data.lunch_time);
+                console.log(workTime);
+                //dlrp akwsk
+                let btn = "";
+                for (let i = 0; i < workTime.length; i++) {
+                    //btn = "<input type='radio' name='Time'>workTime[" + i + "]</input>";
+                    btn = '<label class="box-radio-input" data-bs-toggle="tooltip" data-bs-placement="top" title="' + workTime[i] + ':00 ~ ' + (workTime[i] + 1) + ':00">'
+                        + '<input type="radio" name="diagnosis_time" value = "' + workTime[i] + '">'
+                        + '<span>' + workTime[i] + ':00</span></label>';
+                    $("#workBtn").html($("#workBtn").html() + btn);
+
+                }
+                tooltipInitialing();
+
+                // $.each(workTime, function (index, item) {
+                //     // $("#workBtn").append("")
+                //     $("#workBtn").html($("#workBtn") + btn);
+                // })
 
             }
 
