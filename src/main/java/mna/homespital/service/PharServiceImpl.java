@@ -16,4 +16,14 @@ public class PharServiceImpl implements PharService {
         System.out.println("getPharInfo() join");
         return pharmacyDAO.PharInfo(pharmacy_number);
     }
+
+    //용식: 약사 회원가입
+    @Override
+    public Pharmacy join(Pharmacy pharmacy) throws Exception {
+        System.out.println(pharmacy);
+        Pharmacy phar = pharmacyDAO.PharmacyQueryMember(pharmacy.getPharmacy_email());
+        if (phar != null) throw new Exception("이미 있는 이메일입니다.");
+        pharmacyDAO.insertPharmacyMember(pharmacy);
+        return pharmacy;
+    }
 }
