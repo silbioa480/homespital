@@ -38,4 +38,17 @@
         ]]>
     </select>
 
+
+    <!--   준근 : 의사 스케쥴에 대한 정보 가져오기 getDocScheduleInfo-->
+    <select id="getDocScheduleInfo" resultType="HashMap" parameterType="int">
+        <![CDATA[
+        SELECT @rownum:=@rownum+1 as waitingNum, s.*
+        FROM doctor_schedule s
+        WHERE (@rownum := 0)=0 and doctor_number = #{doctor_number};
+        ]]>
+    </select>
+
+
 </mapper>
+
+

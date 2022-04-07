@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -137,43 +138,45 @@ public class RootController {
         return mv;
     }
 
-    //진료차트 쓰기
-//  @GetMapping("/appointmentForm/{doc}")
-//  public ModelAndView appointmentForm(@PathVariable int doc) {
 
+    //진료차트 쓰기, 예약하기(인성 , 준근)
     @GetMapping("/appointmentForm/{doctor_number}")
     public ModelAndView appointmentForm(@PathVariable int doctor_number) throws Exception {
         ModelAndView mv = new ModelAndView("user/userside/appointmentForm");
-//        int doctor_number = 1;
-        // page
+        String email = (String) session.getAttribute("email");
         try {
+            //모델에 view 넣기
+            //의사 객체
             Doctor doctor = doctorService.getDocInfo(doctor_number);
             doctor.setDoctor_password("");
-
-            System.out.println(doctor.getDoctor_name());
             mv.addObject("doctor", doctor);
+
+            //의사 실제 진료시간(근무시간 - 점심시간)을 계산
             String work_time = doctor.getWorking_time();
             String[] work_timeArr = work_time.split(",");
             String lunch_time = doctor.getLunch_time();
 
             List<String> real_work_timeList = new ArrayList<>();
-
             for (String workTime : work_timeArr) {
                 if (!workTime.equals(lunch_time)) {
                     real_work_timeList.add(workTime);
                 }
             }
-
             mv.addObject("real_work_timeList", real_work_timeList);
 
+            //유저 객체
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        String email = (String) session.getAttribute("email");
-
-        try {
+            System.out.println("email = " + email);
             User user = memberService.findByEmail(email);
+            mv.addObject("user", user);
+
+            System.out.println("user = " + user);
+
+
+            //의사 스케쥴 객체
+            ArrayList<HashMap<String, Object>> ds = doctorService.getDocScheduleInfo(doctor_number);
+            mv.addObject("ds", ds);
+
 
         } catch (Exception e) {
             e.printStackTrace();

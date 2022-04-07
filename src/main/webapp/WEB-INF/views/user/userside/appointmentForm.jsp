@@ -10,6 +10,11 @@
 </head>
 <body>
 <div>
+    <c:forEach var="map" items="${ds}">
+
+    </c:forEach>
+
+
     <%--    인성      --%>
     <form method="post" class="file-uploader" action="/appointmentForm" enctype="multipart/form-data">
         <div class="card p-3">
@@ -41,13 +46,16 @@
                                 </tr>
                                 <tr>
                                     <th>시간:</th>
-                                    ㄴ
+
                                     <td>
                                         <div id="workBtn">
                                             현재 예약 현황 <br>
+                                            <div id="numberOfUser">
 
+                                            </div>
                                             <c:forEach var="wt" items="${real_work_timeList}">
-                                                <input type="radio" name="time" value="${wt}">${wt} 시</input>
+                                                <input class="radiohour" type="radio" name="time"
+                                                       value="${wt}">${wt} 시</input>
                                             </c:forEach>
 
 
@@ -204,11 +212,11 @@
             <div class="card p-3">
                 <div class="d-flex align-items-end">
                     <h4>황인성</h4>
-                    <span class="px-2 pb-2">만 ${user.age}세(남)</span>
+                    <span class="px-2 pb-2">만 세(남)</span>
                 </div>
-                <p>배송 방법 : 집으로 받아보기(배송)</p>
-                <p>약국 이름 : 어디어디</p>
-                <p>받으시는 곳 주소 : 경기도 고양시 어쩌고</p>
+                <p>배송 방법 : </p>
+                <p>약국 이름 : </p>
+                <p>받으시는 곳 주소 : </p>
                 <span>핸드폰 번호</span>
                 <div>
                     결제 정보
@@ -609,6 +617,13 @@
             }
         }
     )('att_zone', 'btnAtt')
+
+
+    // $('.radiohour').on('change', function () {
+    //     let a = this.value;
+    //     $.ajsx({})
+    // })
+
 
     // test
     <%--

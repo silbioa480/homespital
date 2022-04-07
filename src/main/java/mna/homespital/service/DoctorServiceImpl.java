@@ -6,6 +6,8 @@ import mna.homespital.dto.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -46,5 +48,10 @@ public class DoctorServiceImpl implements DoctorService {
     public Doctor getDocInfo(int doctor_number) throws Exception {
         System.out.println("getDocInfo() join");
         return doctorDAO.docInfo(doctor_number);
+    }
+
+    @Override
+    public ArrayList<HashMap<String, Object>> getDocScheduleInfo(int doctor_number) throws Exception {
+        return doctorDAO.getDocScheduleInfo(doctor_number);
     }
 }
