@@ -4,17 +4,47 @@ import mna.homespital.dto.Pharmacy;
 import mna.homespital.service.PharService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class PharmacyController {
 
     @Autowired
+    HttpSession session;
+
+    @Autowired
     PharService pharSerivce;
 
+    @GetMapping("/pharmacyMainForm")
+    public ModelAndView pharmacyMain() {
+        return new ModelAndView("admin/pharside/pharmacyIndex");
+    }
+
+    @GetMapping("/pharmacyLoginForm")
+    public ModelAndView pharmacyLogin() {
+        return new ModelAndView("admin/phar/pharmacyLoginForm");
+    }
+
+    //용식:약사 로그인
+    @PostMapping("PharmacyLogin.do")
+    public String pharmacyLogin(@RequestParam("email") String email, @RequestParam("password") String password) {
+        try {
+            pharSerivce.login(email, password);
+            session.setAttribute("email", email);
+            return "redirect:/pharmacyMainForm";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "redirect:/pharmacyLoginForm";
+        }
+    }
+
+    //용식:약사 회원가입
     @PostMapping("pharmacyJoin.do")
     public ModelAndView pharmacyJoin(HttpServletRequest request) {
         Pharmacy pharmacy = new Pharmacy();
