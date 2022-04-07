@@ -209,4 +209,10 @@ public class RootController {
     mv.setViewName("admin/pharside/pharmacyIndex");
     return mv;
   }
+
+  //가영: 의사 회원가입
+  @GetMapping("/doctorJoin")
+  public ModelAndView doctorJoin() {
+      return new ModelAndView("admin/doctorside/joinForm");
+  }
 }
