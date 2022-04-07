@@ -65,7 +65,7 @@
                     <c:choose>
                         <c:when test="${not empty email}">
                             <li class="nav-item">
-                                <a class="nav-link" href="#">마이페이지</a>
+                                <a class="nav-link" href="#">관리자 페이지</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">로그아웃</a>
