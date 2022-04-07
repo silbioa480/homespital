@@ -76,7 +76,7 @@
               - 비대면 진료 예약 시간은 병원 현장 상황에 맞추어 유동적으로 조정되어 정확한 진료 예약 시간을 미리 정할 수 없는 점 양해 부탁 드립니다. </p>
           </div>
           <hr>
-          <label><input type="checkbox" name="naebangChecked"> 확인 했어요</label>
+          <label><input type="checkbox" class="timeChecked" name="timeChecked"> 확인 했어요</label>
 
         </div>
       </div>
@@ -89,7 +89,7 @@
           <tr>
             <th>증상 입력</th>
             <td>
-                        <textarea name="diagnosis_content" placeholder="진료부위 / 증상 입력 최대한 자세하게 기입해 주시기 바랍니다.
+                        <textarea name="diagnosis_content" class="diagnosis_content" placeholder="진료부위 / 증상 입력 최대한 자세하게 기입해 주시기 바랍니다.
 예) 감기 기운이 있고, 머리가 아파요! 증상을 구체적으로 적어주세요!" style="width: 100%; min-height: 200px;"></textarea>
             </td>
           </tr>
@@ -182,7 +182,7 @@
             등등 내용 들어 가겠져
           </p>
           <hr>
-          <label><input type="checkbox" name="naebangChecked"> 확인 했어요</label>
+          <label><input type="checkbox" class="naebangChecked" name="naebangChecked"> 확인 했어요</label>
         </div>
       </div>
       <div id="delivery" class="card p-3" style="display:none;">
@@ -222,46 +222,8 @@
         <div>
           카드 정보
           <input type="text" id="default_card" value="****-****-****-1423" disabled="disabled"/>
-          <input type="button" id="addCard" name="addCard" class="addCard" value="관리">
-          <button id="writeCard" class="btn" onclick="return false;">카드 추가</button>
+          <button id="writeCard" class="btn" onclick="return false;">카드 변경</button>
           <%--                        모달 --%>
-          <div class="modal fade" id="addCardModal" tabindex="-1" role="dialog"
-               aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="addCardLabel">메인 카드 변경</h5>
-                </div>
-                <div class="modal-body">
-                  <div>
-                    <input type="radio" name="cardCheck" class="card_list" value="1111" checked/>
-                    <span> ****-****-****-1111</span>
-                  </div>
-                  <hr>
-                  <div>
-                    <input type="radio" name="cardCheck" class="card_list" value="2222"/>
-                    <span> ****-****-****-2222</span>
-                  </div>
-                  <hr>
-                  <div>
-                    <input type="radio" name="cardCheck" class="card_list" value="3333"/>
-                    <span> ****-****-****-3333</span>
-                  </div>
-                  <hr>
-                  <div>
-                    <input type="radio" name="cardCheck" class="card_list" value="4444"/>
-                    <span> ****-****-****-4444</span>
-                  </div>
-                  <hr>
-                </div>
-                <div class="modal-footer">
-                  <a class="btn" id="modalY3" onclick="">확인</a>
-                  <button class="btn" type="button" data-bs-dismiss="modal">취소</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
           <%--                        <span><input type="button" id="deleteCard" name="deleteCard" class="deleteCard" value="삭제" /></span>--%>
         </div>
         <div class="modal fade" id="writeCardModal" tabindex="-1" role="dialog">
@@ -325,20 +287,17 @@
         </div>
 
 
-
-
         </div>
 
-
-      </div>
-      <div>
+    <hr>
         <p>
           입력하신 결제 정보를 바탕으로 진료가 끝나면 진료비가 자동 결제 됩니다.<br>
           약 처방이 있는 경우에는 조제후 약제 비용이 자동으로 결제 됩니다.<br>
           진단에 따라 처방의 유무가 결정되기 때문에 진단 시/조제 시 결제가 두번 되는 부분을 양해 부탁 드립니다. 감사합니다.
         </p>
-        <label><input type="checkbox" name="paymentConfirm">확인했어요</label>
+        <label><input type="checkbox" class="paymentConfirm" name="paymentConfirm">확인했어요</label>
       </div>
+
     </div>
     <div class="appoint-out">
       <label for="appointDo" class="appointBtn">예약하기</label>
@@ -656,21 +615,17 @@
   )('att_zone', 'btnAtt')
 
 // 인성: 카드 관리 and 추가 모달
-  $('#addCard').click(function (e) {
-    e.preventDefault();
-    $('#addCardModal').modal("show");
-  });
   $('#writeCard').click(function (e) {
     e.preventDefault();
     $('#writeCardModal').modal("show");
   });
-  $('#modalY3').click(function (e) {
-    e.preventDefault();
-    let radioV = $('input:radio[name="cardCheck"]:checked').val();
-    console.log(radioV);
-    $('#default_card').val("****-****-****-" + radioV);
-    $('#addCardModal').modal("hide");
-  });
+  // $('#modalY3').click(function (e) {
+  //   e.preventDefault();
+  //   let radioV = $('input:radio[name="cardCheck"]:checked').val();
+  //   console.log(radioV);
+  //   $('#default_card').val("****-****-****-" + radioV);
+    // $('#addCardModal').modal("hide");
+  // });
 // 인성: 카드 추가 모달폼 정규성 검사
   function submitNewCardId() {
     if ($("#cardNameModal").val() == "") {
@@ -735,6 +690,19 @@
     })
     return false;
   }
+
+  $('.appointDo').click(function() {
+    if(!$("input:checked[id='timeChecked']").is(":checked")) {
+      alert("시간약관을 체크하세요.")
+      return false;
+    } else if(!$("input:checked[id='naebangChecked']").is(":checked")) {
+      alert("내방약관을 체크하세요.")
+      return false;
+    } else if(!$("input:checked[id='paymentConfirm']").is(":checked")) {
+      alert("결제약관을 체크하세요.")
+      return false;
+    }
+  })
 
 </script>
 

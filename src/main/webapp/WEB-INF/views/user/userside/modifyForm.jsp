@@ -246,7 +246,7 @@
                   </div>
                   <div class="modal-body">
                     <div>
-                      <input type="radio" name="cardCheck" class="card_list" value="1111" checked/>
+                      <input type="radio" name="cardCheck" class="card_list" value="1111"  checked/>
                       <span> ****-****-****-1111</span>
                     </div>
                     <hr>
