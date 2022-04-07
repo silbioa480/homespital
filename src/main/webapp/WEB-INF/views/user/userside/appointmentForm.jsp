@@ -713,12 +713,16 @@
         })
         return false;
     }
-
+    // 인성: 예약하기 버튼 정규성 검사
     $('.appointDo').click(function () {
         if (!$("input:checked[name='timeChecked']").is(":checked")) {
             alert("시간약관을 체크하세요.")
             $(".timeChecked").focus();
             return false;
+        } else if(!$("input:checked[name='is_delivery']").val() == 0) {
+            $(!$("input:checked[name='naebangChecked']").is(":checked"))
+            alert("내방약관을 체크하세요.");
+            $('#is_delivery').focus();
         } else if (!$("input:checked[name='naebangChecked']").is(":checked")) {
             alert("내방약관을 체크하세요.")
             $(".naebangChecked").focus();
