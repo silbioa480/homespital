@@ -158,6 +158,7 @@ public class RootController {
 
         try {
             User user = memberService.findByEmail(email);
+//            mv.addObject("user", user);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -189,7 +190,7 @@ public class RootController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "/appointmentSuccess";
+        return "/";
     }
 
     // 관리자 메인 페이지 임시로 만들어놈 ( 인성 )

@@ -212,31 +212,119 @@
       <h4 id="three"><strong>결제 정보</strong></h4>
       <div class="card p-3">
         <div class="d-flex align-items-end">
-          <h4>황인성</h4>
+          <h3>황인성${user.user_name}</h3>
           <span class="px-2 pb-2">만 ${user.age}세(남)</span>
         </div>
-        <p>배송 방법 : 집으로 받아보기(배송)</p>
-        <p>약국 이름 : 어디어디</p>
+        <div>약국 이름 :<p id="pharmacyNamePay"></p></div>
+        <div>약국 전화번호 : <p id="pharmacyPhonePay"></p></div>
+        <div>약국 주소 : <p id="pharmacyAddressPay"></p></div>
         <p>받으시는 곳 주소 : 경기도 고양시 어쩌고</p>
-        <span>핸드폰 번호</span>
-        <div>
-          결제 정보
-          <input type="text" placeholder="카드정보" readonly>
-          <button class="btn btn-primary">변경하기</button>
-          <select>
-            <option>KB국민카드</option>
-            <option>농협카드</option>
-            <option>신한카드</option>
-            <option>하나카드</option>
-            <option>삼성카드</option>
-            <option>현대카드</option>
-            <option>우리카드</option>
-            <option>BC카드</option>
-            <option>롯데카드</option>
-            <option>이거 이렇게 일일히 입력할리가 없는데</option>
-          </select>
-          <input type="text" value="일시불" disabled>
+        <span>핸드폰 번호 : </span>
+        <br>
+        <div class="card p-3">
+          <h4>카드 관리</h4>
+          <input type="text" id="default_card" value="****-****-****-1423" disabled="disabled" style="width: 15%;"/>
+          <input type="button" id="addCard" name="addCard" class="addCard" value="관리">
+          <button id="writeCard" class="btn" onclick="return false;">카드 추가</button>
+          <%--                        모달 --%>
+          <div class="modal fade" id="addCardModal" tabindex="-1" role="dialog"
+               aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="addCardLabel">메인 카드 변경</h5>
+                </div>
+                <div class="modal-body">
+                  <div>
+                    <input type="radio" name="cardCheck" class="card_list" id="cardCheck1" value="1111" checked/>
+                    <label for="cardCheck1"> ****-****-****-1111</label>
+                  </div>
+                  <hr>
+                  <div>
+                    <input type="radio" name="cardCheck" class="card_list" id="cardCheck2" value="2222"/>
+                    <label for="cardCheck2"> ****-****-****-2222</label>
+                  </div>
+                  <hr>
+                  <div>
+                    <input type="radio" name="cardCheck" class="card_list" id="cardCheck3" value="3333"/>
+                    <label for="cardCheck3"> ****-****-****-3333</label>
+                  </div>
+                  <hr>
+                  <div>
+                    <input type="radio" name="cardCheck" class="card_list" id="cardCheck4" value="4444"/>
+                    <label for="cardCheck4"> ****-****-****-4444</label>
+                  </div>
+                  <hr>
+                </div>
+                <div class="modal-footer">
+                  <a class="btn" id="modalY3" onclick="">확인</a>
+                  <button class="btn" type="button" data-bs-dismiss="modal">취소</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+
+        <%--                        <span><input type="button" id="deleteCard" name="deleteCard" class="deleteCard" value="삭제" /></span>--%>
+      </div>
+      <div class="modal fade" id="writeCardModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5>카드등록</h5>
+            </div>
+            <div class="modal-body">
+              <div class="input-control">
+                <h6 class="modal-title">카드 별칭</h6>
+                <div style="display:flex">
+                  <input style="width: 100%" id="cardNameModal" type="text"
+                         name="cardNameModal"
+                         placeholder="카드 별칭를 입력해주세요. ( 최대 8자 )" title="카드 별칭 입력"
+                         maxlength="8"/>
+                </div>
+                <div class="error"></div>
+              </div>
+              <div class="input-control">
+                <h6 class="modal-title">카드 번호</h6>
+                <div style="display:flex">
+                  <input style="width: 23%; height:40px;" id="cardNumModal1" type="text"
+                         name="cardNumModal1" maxlength="4" minlength="4"/>
+                  <span style="line-height:40px;">-</span>
+                  <input style="width: 23%; height:40px;" id="cardNumModal2" type="password"
+                         name="cardNumModal2" maxlength="4" minlength="4"/>
+                  <span style="line-height:40px;">-</span>
+                  <input style="width: 23%; height:40px;" id="cardNumModal3" type="password"
+                         name="cardNumModal3" maxlength="4" minlength="4"/>
+                  <span style="line-height:40px;">-</span>
+                  <input style="width: 23%; height:40px;" id="cardNumModal4" type="text"
+                         name="cardNumModal4" maxlength="4" minlength="4"/>
+                </div>
+              </div>
+              <h6 class="modal-title">카드 유효기간</h6>
+              <div class="input-control">
+                <div style="display:flex">
+                  <input style="width: 100%" id="cardMMYYNumModal" type="text"
+                         name="cardMMYYNumModal"
+                         title="카드 유효기간" placeholder="MMYY" maxlength="4" minlength="4"/>
+                </div>
+              </div>
+              <h6 class="modal-title">카드 비밀번호</h6>
+              <div class="input-control">
+                <div style="display:flex">
+                  <input style="width: 100%" id="cardPassword" type="password"
+                         name="cardPassword"
+                         title="카드 비밀번호" placeholder="비밀번호 앞자리 2개 입력하세요." maxlength="2" minlength="2"/>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button class="btn border-dark" type="button" id="submitNewCard" onclick="submitNewCardId(); return false;">추가
+              </button>
+              <button class="btn" type="button" data-bs-dismiss="modal">취소</button>
+            </div>
+          </div>
+        </div>
+      </div>
       </div>
       <div>
         <p>
@@ -385,7 +473,12 @@
     el.onclick = function () {
       document.getElementById("pharmacyName").innerText = places.place_name;
       document.getElementById("pharmacyPhone").innerText = places.phone;
-      document.getElementById("pharmacyAddress").innerText = places.road_address_name ? places.road_address_name + places.address_name : places.address_name;
+      document.getElementById("pharmacyAddress").innerText = places.road_address_name ? places.road_address_name : places.address_name;
+
+      document.getElementById("pharmacyNamePay").innerText = places.place_name;
+      document.getElementById("pharmacyPhonePay").innerText = places.phone;
+      document.getElementById("pharmacyAddressPay").innerText = places.road_address_name ? places.road_address_name : places.address_name;
+
     }
 
     return el;
@@ -614,6 +707,86 @@
       }
     }
   )('att_zone', 'btnAtt')
+// 인성: 카드 확인 and 추가 모달
+  $('#addCard').click(function (e) {
+    e.preventDefault();
+    $('#addCardModal').modal("show");
+  });
+  $('#writeCard').click(function (e) {
+    e.preventDefault();
+    $('#writeCardModal').modal("show");
+  });
+  $('#modalY3').click(function (e) {
+    e.preventDefault();
+    let radioV = $('input:radio[name="cardCheck"]:checked').val();
+    console.log(radioV);
+    $('#default_card').val("****-****-****-" + radioV);
+    $('#addCardModal').modal("hide");
+  });
+// 인성: 카드 추가 모달폼 정규성 검사
+  function submitNewCardId() {
+    if ($("#cardNameModal").val() == "") {
+      alert("카드 별칭을 입력해주세요.");
+      $("#cardNameModal").focus();
+      return false;
+    }
+    if ($("#cardNumModal1").val().length != 4) {
+      alert("1.4자리");
+      $("#cardNumModal1").focus();
+      return false;
+    } else if ($("#cardNumModal2").val().length != 4) {
+      alert("2.4자리");
+      $("#cardNumModal2").focus();
+      return false;
+    } else if ($("#cardNumModal3").val().length != 4) {
+      alert("3.4자리");
+      $("#cardNumModal3").focus();
+      return false;
+    } else if ($("#cardNumModal4").val().length != 4) {
+      alert("4.4자리");
+      $("#cardNumModal4").focus();
+      return false;
+    }
+    if ($("#cardMMYYNumModal").val().length != 4) {
+      alert("유효기간 숫자 4자리를 입력해주세요.");
+      $("#cardMMYYNumModal").focus();
+      return false;
+    }
+    if ($("#cardPassword").val().length != 2) {
+      alert("카드 비밀번호 앞자리 2자리를 입력해주세요.");
+      $("#cardPassword").focus();
+      return false;
+    }
+    // 훈: 카드 추가 ajax
+    card_number = $('#cardNumModal1').val() + '-' + $('#cardNumModal2').val() + '-' + $('#cardNumModal3').val() + '-' + $('#cardNumModal4').val();
+    expiry = '20' + $('#cardMMYYNumModal').val().substr(2, 2) + '-' + $('#cardMMYYNumModal').val().substr(0, 2);
+    pwd_2digit = $('#cardPassword').val();
+
+    // var formData = new FormData();
+    // formData.append("card_number", card_number);
+    // formData.append("expiry", expiry);
+    // formData.append("pwd_2digit", pwd_2digit);
+    $.ajax({
+      url: "/writeMyCard",
+      type: "POST",
+      cache: false,
+      data: {
+        "card_name": $("#cardNameModal").val(),
+        "card_number": card_number,
+        "expiry": expiry,
+        "pwd_2digit": pwd_2digit,
+      },
+      contentType: "application/x-www-form-urlencoded; charset=UTF-8;",
+      success: function (data) {
+        alert("성공하였습니다.");
+        //$('#writeCardModal').modal("hide");
+      },
+      error: function (data) {
+        alert("에러가 발생했습니다.")
+      }
+    })
+    return false;
+  }
 </script>
 
 </body>
