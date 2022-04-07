@@ -123,19 +123,6 @@ public class RootController {
         return new ModelAndView("user/main/findpwForm");
     }
 
-    //의료진 찾기
-    //    @SuppressWarnings("deprecation") // 의사 목업코드를 넣을때 쓴 코드. DAO로 실제 DB를 받아올 수 있다면 떼도 됨
-    @GetMapping("/doctorList")
-    public ModelAndView doctorList(@RequestParam(required = false, defaultValue = "1") int page) throws Exception {
-        ModelAndView mv = new ModelAndView("user/userside/doctorList");
-        PageInfo pageInfo = new PageInfo();
-        List<Doctor> doctorList = doctorService.getDocList(page, pageInfo);
-
-        mv.addObject("doctorList", doctorList);
-        mv.addObject("pageInfo", pageInfo);
-        return mv;
-    }
-
     //원하는 의사명 및 병원명 찾기 태영
     @PostMapping("/dohSearch")
     public ModelAndView dohSearch(@RequestParam(value="dhSearch") String dhSearch){
@@ -150,6 +137,30 @@ public class RootController {
         }
         return mv;
     }
+
+    //의료진 찾기(의사 리스트)
+    //    @SuppressWarnings("deprecation") // 의사 목업코드를 넣을때 쓴 코드. DAO로 실제 DB를 받아올 수 있다면 떼도 됨
+    @GetMapping("/doctorList")
+    public ModelAndView doctorList(@RequestParam(required = false, defaultValue = "1") int page) throws Exception {
+        ModelAndView mv = new ModelAndView("user/userside/doctorList");
+        PageInfo pageInfo = new PageInfo();
+        List<Doctor> doctorList = doctorService.getDocList(page, pageInfo);
+
+        mv.addObject("doctorList", doctorList);
+        mv.addObject("pageInfo", pageInfo);
+        return mv;
+    }
+
+    //소연 : 의료진 상세보기(의사 디테일)
+    @GetMapping("/doctorDetail/{doctor_number}")
+    public ModelAndView doctorDetail(@PathVariable int doctor_number)
+
+
+
+
+
+
+
     //진료차트 쓰기
 //  @GetMapping("/appointmentForm/{doc}")
 //  public ModelAndView appointmentForm(@PathVariable int doc) {
