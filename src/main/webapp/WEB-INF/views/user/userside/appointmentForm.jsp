@@ -137,6 +137,9 @@
               <div id="pharmacyPhone">
                 010-0000-0000
               </div>
+              <div id="pharmacyAddress">
+
+              </div>
             </div>
           </div>
           <div class="m-3">
@@ -382,6 +385,7 @@
     el.onclick = function () {
       document.getElementById("pharmacyName").innerText = places.place_name;
       document.getElementById("pharmacyPhone").innerText = places.phone;
+      document.getElementById("pharmacyAddress").innerText = places.road_address_name ? places.road_address_name + places.address_name : places.address_name;
     }
 
     return el;
