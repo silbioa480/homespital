@@ -119,6 +119,20 @@ public class RootController {
         return mv;
     }
 
+    //원하는 의사명 및 병원명 찾기 태영
+    @PostMapping("/dohSearch")
+    public ModelAndView dohSearch(@RequestParam(value="dhSearch") String dhSearch){
+        ModelAndView mv=new ModelAndView();
+        try{
+            List<Doctor> doc=doctorService.getSearchDoh(dhSearch);
+//            List<Doctor> docList = doctorService.getDocList(page, pageInfo);
+            mv.addObject("doctorList",doc);
+            mv.setViewName("user/userside/doctorList");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return mv;
+    }
     //진료차트 쓰기
 //  @GetMapping("/appointmentForm/{doc}")
 //  public ModelAndView appointmentForm(@PathVariable int doc) {
