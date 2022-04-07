@@ -42,8 +42,8 @@
     </div>
     <nav id="nav">
         <ul>
-            <li><a href="#one" class="active">진료과선택</a></li>
-            <li><a href="#two">의료진선택</a></li>
+            <li><a href="/list" class="active">진료과선택</a></li>
+            <li><a href="/doctorList">의료진선택</a></li>
         </ul>
     </nav>
     <footer>
@@ -61,7 +61,7 @@
 <%--진료과 검색 태영--%>
 <div id="searcharea">
     <div class="search">
-        <form action="medicalSearch" method="post">
+        <form action="list">
             <input type="search" placeholder="원하시는 진료과를 입력하세요" name="mediSearch" id="mediSearch"/>
             <button type="submit" id="searchMedical">검색</button>
         </form>

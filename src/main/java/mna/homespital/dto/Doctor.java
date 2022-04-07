@@ -16,14 +16,54 @@ public class Doctor {
     private String doctor_profile_image_name;
     private String doctor_diagnosis_type;
     private String doctor_introduction;
-    private String doctor_education;
-    private String doctor_thesis;
+    private String hospital_file_name;
     private String working_time;
     private String lunch_time;
     private String holiday;
     private Date create_date;
     private Date update_date;
 
+
+
+    public Doctor(int doctor_number, String doctor_email, String doctor_password, String doctor_name, String hospital_name, String zip_code, String street_address, String detail_address, String hospital_url, String doctor_profile_image_name, String doctor_diagnosis_type, String doctor_introduction, String hospital_file_name, String working_time, String lunch_time, String holiday, Date create_date, Date update_date) {
+        this.doctor_number = doctor_number;
+        this.doctor_email = doctor_email;
+        this.doctor_password = doctor_password;
+        this.doctor_name = doctor_name;
+        this.hospital_name = hospital_name;
+        this.zip_code = zip_code;
+        this.street_address = street_address;
+        this.detail_address = detail_address;
+        this.hospital_url = hospital_url;
+        this.doctor_profile_image_name = doctor_profile_image_name;
+        this.doctor_diagnosis_type = doctor_diagnosis_type;
+        this.doctor_introduction = doctor_introduction;
+        this.hospital_file_name = hospital_file_name;
+        this.working_time = working_time;
+        this.lunch_time = lunch_time;
+        this.holiday = holiday;
+        this.create_date = create_date;
+        this.update_date = update_date;
+    }
+
+    public Doctor(int doctor_number, String doctor_email, String doctor_password, String doctor_name, String hospital_name, String zip_code, String street_address, String detail_address, String hospital_url, String doctor_profile_image_name, String doctor_diagnosis_type, String doctor_introduction, String hospital_file_name, String working_time, String lunch_time, String holiday) {
+        this.doctor_number = doctor_number;
+        this.doctor_email = doctor_email;
+        this.doctor_password = doctor_password;
+        this.doctor_name = doctor_name;
+        this.hospital_name = hospital_name;
+        this.zip_code = zip_code;
+        this.street_address = street_address;
+        this.detail_address = detail_address;
+        this.hospital_url = hospital_url;
+        this.doctor_profile_image_name = doctor_profile_image_name;
+        this.doctor_diagnosis_type = doctor_diagnosis_type;
+        this.doctor_introduction = doctor_introduction;
+        this.hospital_file_name = hospital_file_name;
+        this.working_time = working_time;
+        this.lunch_time = lunch_time;
+        this.holiday = holiday;
+    }
 
     public int getDoctor_number() {
         return doctor_number;
@@ -121,20 +161,12 @@ public class Doctor {
         this.doctor_introduction = doctor_introduction;
     }
 
-    public String getDoctor_education() {
-        return doctor_education;
+    public String getHospital_file_name() {
+        return hospital_file_name;
     }
 
-    public void setDoctor_education(String doctor_education) {
-        this.doctor_education = doctor_education;
-    }
-
-    public String getDoctor_thesis() {
-        return doctor_thesis;
-    }
-
-    public void setDoctor_thesis(String doctor_thesis) {
-        this.doctor_thesis = doctor_thesis;
+    public void setHospital_file_name(String hospital_file_name) {
+        this.hospital_file_name = hospital_file_name;
     }
 
     public String getWorking_time() {
@@ -174,51 +206,6 @@ public class Doctor {
     }
 
     public void setUpdate_date(Date update_date) {
-        this.update_date = update_date;
-    }
-
-    public Doctor() {
-    }
-
-    public Doctor(int doctor_number, String doctor_email, String doctor_password, String doctor_name, String hospital_name, String zip_code, String street_address, String detail_address, String hospital_url, String doctor_profile_image_name, String doctor_diagnosis_type, String doctor_introduction, String doctor_education, String doctor_thesis, String working_time, String lunch_time, String holiday) {
-        this.doctor_number = doctor_number;
-        this.doctor_email = doctor_email;
-        this.doctor_password = doctor_password;
-        this.doctor_name = doctor_name;
-        this.hospital_name = hospital_name;
-        this.zip_code = zip_code;
-        this.street_address = street_address;
-        this.detail_address = detail_address;
-        this.hospital_url = hospital_url;
-        this.doctor_profile_image_name = doctor_profile_image_name;
-        this.doctor_diagnosis_type = doctor_diagnosis_type;
-        this.doctor_introduction = doctor_introduction;
-        this.doctor_education = doctor_education;
-        this.doctor_thesis = doctor_thesis;
-        this.working_time = working_time;
-        this.lunch_time = lunch_time;
-        this.holiday = holiday;
-    }
-
-    public Doctor(int doctor_number, String doctor_email, String doctor_password, String doctor_name, String hospital_name, String zip_code, String street_address, String detail_address, String hospital_url, String doctor_profile_image_name, String doctor_diagnosis_type, String doctor_introduction, String doctor_education, String doctor_thesis, String working_time, String lunch_time, String holiday, Date create_date, Date update_date) {
-        this.doctor_number = doctor_number;
-        this.doctor_email = doctor_email;
-        this.doctor_password = doctor_password;
-        this.doctor_name = doctor_name;
-        this.hospital_name = hospital_name;
-        this.zip_code = zip_code;
-        this.street_address = street_address;
-        this.detail_address = detail_address;
-        this.hospital_url = hospital_url;
-        this.doctor_profile_image_name = doctor_profile_image_name;
-        this.doctor_diagnosis_type = doctor_diagnosis_type;
-        this.doctor_introduction = doctor_introduction;
-        this.doctor_education = doctor_education;
-        this.doctor_thesis = doctor_thesis;
-        this.working_time = working_time;
-        this.lunch_time = lunch_time;
-        this.holiday = holiday;
-        this.create_date = create_date;
         this.update_date = update_date;
     }
 }

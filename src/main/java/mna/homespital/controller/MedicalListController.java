@@ -47,25 +47,12 @@ public class MedicalListController {
     //모든 진료항목 출력 (태영)
 
     @GetMapping("/list")
-    public ModelAndView allmedicalList() {
+    public ModelAndView medicalList(@RequestParam(required=false) String mediSearch) {
         ModelAndView mv = new ModelAndView();
         try {
-            List<AllMedical> amd = allmedListService.allMedList();
-
-            mv.addObject("list", amd);
-            mv.setViewName("user/userside/medicalList");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return mv;
-    }
-
-    //원하는 진료항목출력 태영
-    @PostMapping("/medicalSearch")
-    public ModelAndView medicalSearch(@RequestParam(value = "mediSearch") String mediSearch) {
-        ModelAndView mv = new ModelAndView();
-        try {
-            List<AllMedical> searchmd = allmedListService.searchMed(mediSearch);
+            List<AllMedical> searchmd;
+            if(mediSearch==null) searchmd = allmedListService.allMedList();
+            else searchmd = allmedListService.searchMed(mediSearch);
 
             mv.addObject("list", searchmd);
             mv.setViewName("user/userside/medicalList");
@@ -74,6 +61,21 @@ public class MedicalListController {
         }
         return mv;
     }
+
+    //원하는 진료항목출력 태영
+//    @PostMapping("/medicalSearch")
+//    public ModelAndView medicalSearch(@RequestParam(value = "mediSearch") String mediSearch) {
+//        ModelAndView mv = new ModelAndView();
+//        try {
+//            List<AllMedical> searchmd = allmedListService.searchMed();
+//
+//            mv.addObject("list", searchmd);
+//            mv.setViewName("user/userside/medicalList");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return mv;
+//    }
 
 //    //autocomplete controller 태영
 //    @ResponseBody
@@ -168,6 +170,24 @@ public class MedicalListController {
         mv.addObject("pageInfo", pageInfo);
         return mv;
     }
+
+    //훈 : 의료진 상세보기(doctor Detail) by 4/7
+    @GetMapping("/doctorDetail/{doctor_number}")
+    public ModelAndView doctorDetail(@PathVariable int doctor_number){
+        ModelAndView mv = new ModelAndView();
+        try{
+            Doctor doctor = doctorService.getDocInfo(doctor_number);
+            mv.addObject("doctor", doctor);
+            mv.setViewName("/user/userside/doctorDetail");
+        } catch(Exception e){
+            e.printStackTrace();
+            mv.setViewName("/common/err");
+        }
+
+        return mv;
+    }
+
+
 
     @GetMapping("/doctorList/distance")
     public ModelAndView doctorListByDistance(@RequestBody List<Doctor> doctorList) {
