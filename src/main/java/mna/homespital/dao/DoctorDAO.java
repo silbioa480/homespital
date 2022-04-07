@@ -17,6 +17,9 @@ public interface DoctorDAO {
     //    소연 : 의사 정보 1개 가져오기
     Doctor docInfo(int doctor_number) throws Exception;
 
+    // 의사명 및 병원명 검색 태영
+    List<Doctor> searchDoh(String keyword) throws Exception;
+
     // 거리순 검색 알고리즘
     // 현재 주소를 어떻게든 가져와. 이거는 geolocation = html5 https
     // 이 주소를 기반으로 현재 위치로부터 가까운 병원 순으로 카카오맵에서 병원 리스트를 가져옴

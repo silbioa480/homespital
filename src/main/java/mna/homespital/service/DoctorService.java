@@ -12,4 +12,6 @@ public interface DoctorService {
     //소연 : 의사(Doctor)정보 가져오기
     public Doctor getDocInfo(int doctor_number) throws Exception;
 
+    //의사명 및 병원명 검색 태영
+    public List<Doctor> getSearchDoh(String keyword) throws Exception;
 }

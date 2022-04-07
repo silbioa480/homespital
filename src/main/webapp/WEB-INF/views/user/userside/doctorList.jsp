@@ -46,6 +46,19 @@
         그럼 처음에 병원을 서치 할수 있어야 하네 순서가 동일 선상에 있음<br>
         지금 대면 진료일것 같다고 예상? 거리순 </p>
 </div>
+
+<%--의사 및 병원 검색 태영--%>
+<div id="searcharea">
+    <div class="search">
+        <form action="dohSearch" method="post">
+            <input type="search" placeholder="원하시는 의사 및 병원을 입력하세요" name="dhSearch" id="dhSearch" />
+            <button type="submit" id="searchMedical">검색</button>
+        </form>
+    </div>
+</div>
+
+
+
 <div style="padding-right: 40px;">
     <div class="d-flex m-3 justify-content-between">
         <span class="my-auto">총
