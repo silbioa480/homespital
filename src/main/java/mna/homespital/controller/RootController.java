@@ -16,6 +16,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.UUID;
 
@@ -138,14 +141,14 @@ public class RootController {
 
     //원하는 의사명 및 병원명 찾기 태영
     @PostMapping("/dohSearch")
-    public ModelAndView dohSearch(@RequestParam(value="dhSearch") String dhSearch){
-        ModelAndView mv=new ModelAndView();
-        try{
-            List<Doctor> doc=doctorService.getSearchDoh(dhSearch);
+    public ModelAndView dohSearch(@RequestParam(value = "dhSearch") String dhSearch) {
+        ModelAndView mv = new ModelAndView();
+        try {
+            List<Doctor> doc = doctorService.getSearchDoh(dhSearch);
 //            List<Doctor> docList = doctorService.getDocList(page, pageInfo);
-            mv.addObject("doctorList",doc);
+            mv.addObject("doctorList", doc);
             mv.setViewName("user/userside/doctorList");
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return mv;
@@ -165,6 +168,8 @@ public class RootController {
 
             System.out.println(doctor.getDoctor_name());
             mv.addObject("doctor", doctor);
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -172,7 +177,18 @@ public class RootController {
 
         try {
             User user = memberService.findByEmail(email);
+            if (user == null) mv.setViewName("redirect:/loginForm");
+            else {
+                String birth = user.getUser_registration_number().substring(0, 6);
+                String gender = user.getUser_registration_number().substring(7, 8);
 
+                if (Integer.parseInt(gender) < 3) birth = "19" + birth;
+                else birth = "20" + birth;
+                LocalDate birth_date = LocalDate.parse(birth, DateTimeFormatter.ofPattern("yyyyMMdd"));
+                LocalDate now = LocalDate.now(ZoneId.of("Asia/Seoul"));
+                int age = now.minusYears(birth_date.getYear()).getYear();
+                mv.addObject("age", age);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -214,8 +230,8 @@ public class RootController {
 
     //약국 메인페이지 태영
     @GetMapping("/pharmacyIndex")
-    public ModelAndView pharmacyIndex(){
-        ModelAndView mv =new ModelAndView();
+    public ModelAndView pharmacyIndex() {
+        ModelAndView mv = new ModelAndView();
         mv.setViewName("admin/pharside/pharmacyIndex");
         return mv;
     }
