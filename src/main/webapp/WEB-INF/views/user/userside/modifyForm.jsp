@@ -213,27 +213,9 @@
                 <!-- Three -->
                 <section id="three">
                     <div class="container">
-
                         <h3>카드 관리</h3>
                         <hr>
                         <input type="text" id="default_card" value="****-****-****-1423" disabled="disabled"/>
-                        <%--                    <div>--%>
-                        <%--                        <h5>카드 별칭</h5>--%>
-                        <%--                        <div style="display:flex">--%>
-                        <%--                            <input type="text" id="cardName" placeholder="카드 별칭을 입력하세요." maxlength="8" style="width: 50%" readonly>--%>
-                        <%--                        </div>--%>
-
-                        <%--                    <h5>카드 뒷자리 번호</h5>--%>
-                        <%--                    <div class="creditCardNumber">--%>
-                        <%--                        <input type="text" class="moveNumber" id="lastCardNum" onKeyup="inputMoveNumber(this);" maxlength="4" placeholder="카드 번호 뒷자리 4개를 입력하세요."--%>
-                        <%--                               style="width:50%" readonly/>--%>
-                        <%--                    </div>--%>
-
-                        <%--                    <div class="creditCardValidity">--%>
-                        <%--                        <h5>카드 유효기간</h5>--%>
-                        <%--                        <input type="text" class="validThru" id="cardMMYYNum" onKeyup="inputValidThru(this);" placeholder="MMYY"--%>
-                        <%--                               maxlength="4" style="width: 50%" readonly/>--%>
-                        <%--                    </div>--%>
                         <input type="button" id="addCard" name="addCard" class="addCard" value="관리">
                         <button id="writeCard" class="btn" onclick="return false;">카드 추가</button>
                         <%--                        모달 --%>
@@ -387,6 +369,7 @@
         e.preventDefault();
         $('#phoneModal').modal("show");
     })
+    // 인성: 카드 관련 모달
     $('#addCard').click(function (e) {
         e.preventDefault();
         $('#addCardModal').modal("show");
@@ -425,6 +408,7 @@
             document.getElementById('pw_check_msg').innerHTML = "";
         }
     }
+    // 인성: 카드 추가 모달폼 정규성 검사
     function submitNewCardId() {
         if ($("#cardNameModal").val() == "") {
             alert("카드 별칭을 입력해주세요.");
@@ -458,6 +442,7 @@
             $("#cardPassword").focus();
             return false;
         }
+        // 훈: 카드 추가 ajax
         card_number = $('#cardNumModal1').val() + '-' + $('#cardNumModal2').val() + '-' + $('#cardNumModal3').val() + '-' + $('#cardNumModal4').val();
         expiry = '20' + $('#cardMMYYNumModal').val().substr(2, 2) + '-' + $('#cardMMYYNumModal').val().substr(0, 2);
         pwd_2digit = $('#cardPassword').val();
