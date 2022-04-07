@@ -10,6 +10,11 @@
 </head>
 <body>
 <div>
+    <c:forEach var="map" items="${ds}">
+
+    </c:forEach>
+
+
     <%--    인성      --%>
     <form method="post" class="file-uploader" action="/appointmentForm" enctype="multipart/form-data">
         <div class="card p-3">
@@ -122,14 +127,16 @@
                         <h5>내방하실 약국</h5>
                         <span class="text-secondary">병원과 연계된 약국으로 자동 설정됩니다.</span>
                         <hr>
-                        <div id="pharmacyName">
-                            00약국
-                        </div>
-                        <div id="pharmacyPhone">
-                            00-0000-0000
-                        </div>
-                        <div id="pharmacyAddress">
+                        <div>
+                            <div id="pharmacyName">
+                                00약국
+                            </div>
+                            <div id="pharmacyPhone">
+                                010-0000-0000
+                            </div>
+                            <div id="pharmacyAddress">
 
+                            </div>
                         </div>
                     </div>
                     <div class="m-3">

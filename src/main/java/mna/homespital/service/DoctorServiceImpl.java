@@ -6,6 +6,8 @@ import mna.homespital.dto.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -78,5 +80,10 @@ public class DoctorServiceImpl implements DoctorService {
     @Override
     public List<Doctor> getSearchDoh(String keyword) throws Exception {
         return doctorDAO.searchDoh(keyword);
+    }
+    
+    @Override
+    public ArrayList<HashMap<String, Object>> getDocScheduleInfo(int doctor_number) throws Exception {
+        return doctorDAO.getDocScheduleInfo(doctor_number);
     }
 }

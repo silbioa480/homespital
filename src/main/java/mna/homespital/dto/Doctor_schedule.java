@@ -11,8 +11,11 @@ public class Doctor_schedule {
     int schedule_time;
     Date create_date;
     Date update_date;
+    int waitingNum;
 
-    public Doctor_schedule(){}
+
+    public Doctor_schedule() {
+    }
 
     public Doctor_schedule(int schedule_number, int doctor_number, int user_number, int schedule_time, Date create_date, Date update_date) {
         this.schedule_number = schedule_number;
@@ -69,5 +72,13 @@ public class Doctor_schedule {
 
     public void setUpdate_date(Date update_date) {
         this.update_date = update_date;
+    }
+
+    public int getWaitingNum() {
+        return waitingNum;
+    }
+
+    public void setWaitingNum(int waitingNum) {
+        this.waitingNum = waitingNum;
     }
 }
