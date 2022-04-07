@@ -19,6 +19,8 @@ import java.io.File;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -202,9 +204,24 @@ public class RootController {
                 String birth = user.getUser_registration_number().substring(0, 6);
                 String gender = user.getUser_registration_number().substring(7, 8);
                 mv.addObject("user", user);
-//
-//
-//                paymentService.
+
+                //모델에 view 넣기
+                //의사 객체
+                Doctor doctor = doctorService.getDocInfo(doctor_number);
+                doctor.setDoctor_password("");
+                mv.addObject("doctor", doctor);
+                //의사 실제 진료시간(근무시간 - 점심시간)을 계산
+                String work_time = doctor.getWorking_time();
+                String[] work_timeArr = work_time.split(",");
+                String lunch_time = doctor.getLunch_time();
+
+                List<String> real_work_timeList = new ArrayList<>();
+                for (String workTime : work_timeArr) {
+                    if (!workTime.equals(lunch_time)) {
+                        real_work_timeList.add(workTime);
+                    }
+                }
+                mv.addObject("real_work_timeList", real_work_timeList);
 
                 if (Integer.parseInt(gender) < 3) birth = "19" + birth;
                 else birth = "20" + birth;
@@ -212,6 +229,13 @@ public class RootController {
                 LocalDate now = LocalDate.now(ZoneId.of("Asia/Seoul"));
                 int age = now.minusYears(birth_date.getYear()).getYear();
                 mv.addObject("age", age);
+
+                //의사 스케쥴 객체
+//                ArrayList<HashMap<String, Object>> ds = doctorService.getDocScheduleInfo(doctor_number);
+//                mv.addObject("ds", ds);
+//                for (int i = 0; i < ds.size(); i++) {
+//                    System.out.println("ds[" + i + "] = " + ds.get(i));
+//                }
             }
         } catch (Exception e) {
             e.printStackTrace();
