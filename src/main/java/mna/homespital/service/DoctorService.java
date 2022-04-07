@@ -2,12 +2,15 @@ package mna.homespital.service;
 
 import mna.homespital.dto.Doctor;
 import mna.homespital.dto.PageInfo;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public interface DoctorService {
+
+    //가영 : 의사 회원가입
+    Doctor join(Doctor doctor) throws Exception;
+
     // 의료진 찾기 - 의료진 목록 보기 (훈)
     public List<Doctor> getDocList(int page, PageInfo pageInfo) throws Exception;
 
