@@ -22,7 +22,7 @@
         <![CDATA[
         insert into diagnosis(user_number, doctor_number, is_delivery, diagnosis_time, diagnosis_content,
                               diagnosis_wait_number, diagnosis_image_name, billing_key, diagnosis_type  )
-        values (#{user_number}, #{doctor_number}, 1, #{diagnosis_time}, #{diagnosis_content}, 11, #{diagnosis_image_name}, #{billing_key}, #{diagnosis_type});
+        values (#{user_number}, #{doctor_number}, 1, #{diagnosis_time}, #{diagnosis_content}, 11, #{diagnosis_image_name}, 'a', #{diagnosis_type});
         ]]>
     </insert>
 
