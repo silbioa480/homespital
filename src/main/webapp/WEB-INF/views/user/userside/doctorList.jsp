@@ -89,7 +89,7 @@
                                 <span class="pl-3 font-weight-normal align-text-bottom">의사 / ${doctor.doctor_diagnosis_type}</span>
                             </div>
                             <div class="d-flex">
-                                <button class="btn btn-secondary ml-auto" onclick="">
+                                <button class="btn btn-secondary ml-auto" onclick="location.href='/doctorDetail/${doctor.doctor_number}';">
                                     <i class="fa-solid fa-magnifying-glass">의료진 상세보기</i>
                                 </button>
                                 <button class="btn ml-auto" style="background-color: #1abc9c; color: white;"

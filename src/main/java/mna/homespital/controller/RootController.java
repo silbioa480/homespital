@@ -16,6 +16,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.UUID;
 
@@ -45,6 +48,9 @@ public class RootController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    PaymentService paymentService;
 
     public RootController() {
     }
@@ -123,7 +129,22 @@ public class RootController {
         return new ModelAndView("user/main/findpwForm");
     }
 
-    //의료진 찾기
+    //원하는 의사명 및 병원명 찾기 태영
+    @PostMapping("/dohSearch")
+    public ModelAndView dohSearch(@RequestParam(value = "dhSearch") String dhSearch) {
+        ModelAndView mv = new ModelAndView();
+        try {
+            List<Doctor> doc = doctorService.getSearchDoh(dhSearch);
+//            List<Doctor> docList = doctorService.getDocList(page, pageInfo);
+            mv.addObject("doctorList", doc);
+            mv.setViewName("user/userside/doctorList");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return mv;
+    }
+
+    //의료진 찾기(의사 리스트)
     //    @SuppressWarnings("deprecation") // 의사 목업코드를 넣을때 쓴 코드. DAO로 실제 DB를 받아올 수 있다면 떼도 됨
     @GetMapping("/doctorList")
     public ModelAndView doctorList(@RequestParam(required = false, defaultValue = "1") int page) throws Exception {
@@ -136,20 +157,21 @@ public class RootController {
         return mv;
     }
 
-    //원하는 의사명 및 병원명 찾기 태영
-    @PostMapping("/dohSearch")
-    public ModelAndView dohSearch(@RequestParam(value="dhSearch") String dhSearch){
-        ModelAndView mv=new ModelAndView();
-        try{
-            List<Doctor> doc=doctorService.getSearchDoh(dhSearch);
-//            List<Doctor> docList = doctorService.getDocList(page, pageInfo);
-            mv.addObject("doctorList",doc);
-            mv.setViewName("user/userside/doctorList");
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        return mv;
+    //소연 : 의료진 상세보기(의사 디테일)
+    @GetMapping("/doctorDetail/{doctor_number}")
+    public ModelAndView doctorDetail(@PathVariable int doctor_number) {
+        System.out.println("doctor_number = " + doctor_number);
+        ModelAndView mav = new ModelAndView();
+
+        return mav;
     }
+
+
+
+
+
+
+
     //진료차트 쓰기
 //  @GetMapping("/appointmentForm/{doc}")
 //  public ModelAndView appointmentForm(@PathVariable int doc) {
@@ -165,6 +187,8 @@ public class RootController {
 
             System.out.println(doctor.getDoctor_name());
             mv.addObject("doctor", doctor);
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -172,8 +196,23 @@ public class RootController {
 
         try {
             User user = memberService.findByEmail(email);
-            mv.addObject("user", user);
 
+            if (user == null) mv.setViewName("redirect:/loginForm");
+            else {
+                String birth = user.getUser_registration_number().substring(0, 6);
+                String gender = user.getUser_registration_number().substring(7, 8);
+                mv.addObject("user", user);
+//
+//
+//                paymentService.
+
+                if (Integer.parseInt(gender) < 3) birth = "19" + birth;
+                else birth = "20" + birth;
+                LocalDate birth_date = LocalDate.parse(birth, DateTimeFormatter.ofPattern("yyyyMMdd"));
+                LocalDate now = LocalDate.now(ZoneId.of("Asia/Seoul"));
+                int age = now.minusYears(birth_date.getYear()).getYear();
+                mv.addObject("age", age);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -182,8 +221,9 @@ public class RootController {
 
     //진료예약   ( 인성 )
     @PostMapping("/appointmentForm")
-    public String appointment(Diagnosis diagnosis, MultipartFile[] diagnosisImgNames,
+    public ModelAndView appointment(Diagnosis diagnosis, MultipartFile[] diagnosisImgNames,
                               Model model, HttpServletRequest request, HttpServletResponse response) {
+        ModelAndView mv = new ModelAndView();
         try {
             // 사진 업로드
             String fileNameArr = "";
@@ -201,10 +241,12 @@ public class RootController {
             // DB insert
             diagnosis.setDiagnosis_image_name(fileNameArr.toString());
             diagnosisService.insertDiagnosis(diagnosis);
+            mv.setViewName("redirect:/myMedicalList");
         } catch (Exception e) {
             e.printStackTrace();
+            //mv.setViewName();
         }
-        return "/";
+        return mv;
     }
 
     // 관리자 메인 페이지 임시로 만들어놈 ( 인성 )
@@ -215,8 +257,8 @@ public class RootController {
 
     //약국 메인페이지 태영
     @GetMapping("/pharmacyIndex")
-    public ModelAndView pharmacyIndex(){
-        ModelAndView mv =new ModelAndView();
+    public ModelAndView pharmacyIndex() {
+        ModelAndView mv = new ModelAndView();
         mv.setViewName("admin/pharside/pharmacyIndex");
         return mv;
     }

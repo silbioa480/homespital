@@ -27,6 +27,7 @@
             <div class="card-title d-flex">
               <h4 class="pr-3 font-weight-bolder">${doctor.doctor_name} &nbsp&nbsp&nbsp&nbsp</h4>
               <span class="pl-3 font-weight-normal align-text-bottom">${doctor.doctor_diagnosis_type}</span>
+              <input type="hidden" name="diagnosis_type" value="${doctor.doctor_diagnosis_type}">
             </div>
             <div class="card-text">
               <p class="card-text">
@@ -103,7 +104,8 @@
                   <input type='file' id="btnAtt" style="display: none;" name="diagnosisImgNames" accept=".gif, .jpg, .png"  multiple/>
                   <div id='att_zone'>
                   </div>
-                  <input type="hidden" name="doctor_number" value="${not empty doctor_number? doctor_number : 1}">
+                  <input type="hidden" name="doctor_number" value="${doctor.doctor_number}">
+                  <input type="hidden" name="user_number" value="${user.user_number}">
                 </div>
               </div>
             </td>
@@ -221,7 +223,7 @@
         <br>
         <div>
           카드 정보
-          <input type="text" id="default_card" value="****-****-****-1423" disabled="disabled"/>
+          <input type="text" id="default_card" value="${user.billing_key}" disabled="disabled"/>
           <button id="writeCard" class="btn" onclick="return false;">카드 변경</button>
           <%--                        모달 --%>
           <%--                        <span><input type="button" id="deleteCard" name="deleteCard" class="deleteCard" value="삭제" /></span>--%>
@@ -682,7 +684,8 @@
       contentType: "application/x-www-form-urlencoded; charset=UTF-8;",
       success: function (data) {
         alert("성공하였습니다.");
-        //$('#writeCardModal').modal("hide");
+        $('#writeCardModal').modal("hide");
+        data.customer_uid
       },
       error: function (data) {
         alert("에러가 발생했습니다.")
@@ -702,7 +705,7 @@
     } else if(!$("input:checked[name='paymentConfirm']").is(":checked")) {
       alert("결제약관을 체크하세요.")
       return false;
-    } else if($('.diagnosis_content') == "") {
+    } else if($('.diagnosis_content').val() == "") {
       alert("증상 내용을 입력해주세요.")
       return false;
     }
