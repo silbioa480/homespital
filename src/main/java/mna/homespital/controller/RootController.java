@@ -2,7 +2,6 @@ package mna.homespital.controller;
 
 import mna.homespital.dto.Diagnosis;
 import mna.homespital.dto.Doctor;
-import mna.homespital.dto.PageInfo;
 import mna.homespital.dto.User;
 import mna.homespital.service.*;
 import org.apache.maven.model.Model;
@@ -123,16 +122,6 @@ public class RootController {
   @GetMapping("/findpwForm")
   public ModelAndView findpwForm() {
     return new ModelAndView("user/main/findpwForm");
-  }
-
-  @GetMapping("/doctorList/distance")
-  public ModelAndView doctorListByDistance(@RequestBody List<Doctor> doctorList) {
-    ModelAndView mv = new ModelAndView("user/userside/doctorList");
-    PageInfo pageInfo = new PageInfo();
-
-    mv.addObject("doctorList", doctorList);
-    mv.addObject("pageInfo", pageInfo);
-    return mv;
   }
 
   //진료차트 쓰기, 예약하기(인성 , 준근)
