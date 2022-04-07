@@ -432,23 +432,22 @@
     }
   }
 
-    for (i = 1; i <= pagination.last; i++) {
-      var el = document.createElement('a');
-      el.href = "#";
-      el.innerHTML = i;
+  for (i = 1; i <= pagination.last; i++) {
+    var el = document.createElement('a');
+    el.href = "#";
+    el.innerHTML = i;
 
-      if (i === pagination.current) {
-        el.className = 'on';
-      } else {
-        el.onclick = (function (i) {
-          return function () {
-            pagination.gotoPage(i);
-          }
-        })(i);
-      }
-
-      fragment.appendChild(el);
+    if (i === pagination.current) {
+      el.className = 'on';
+    } else {
+      el.onclick = (function (i) {
+        return function () {
+          pagination.gotoPage(i);
+        }
+      })(i);
     }
+
+    fragment.appendChild(el);
     paginationEl.appendChild(fragment);
   }
 
@@ -496,14 +495,14 @@
 </script>
 <%-- bootstrap tooltip 설정 --%>
 <script>
-    function tooltipInitialing() {
-        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-            return new bootstrap.Tooltip(tooltipTriggerEl)
-        })
-    }
+  function tooltipInitialing() {
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+  }
 
-    tooltipInitialing();
+  tooltipInitialing();
 </script>
 <%-- 약국내방/배달받기 설정 --%>
 <script>
@@ -571,97 +570,96 @@
 
       }, false)
 
-      }, false)
+    }, false)
 
-      /*첨부된 이미리즐을 배열에 넣고 미리보기 */
-      imageLoader = function (image) {
-        sel_files.push(image);
-        var reader = new FileReader();
-        reader.onload = function (ee) {
-          let img = document.createElement('img')
-          img.setAttribute('style', img_style)
-          img.src = ee.target.result;
-          attZone.appendChild(makeDiv(img));
-        }
-
-        reader.readAsDataURL(image);
-      }
-
-      /*첨부된 파일이 있는 경우 checkbox와 함께 attZone에 추가할 div를 만들어 반환 */
-      makeDiv = function (img) {
-        var div = document.createElement('div')
-        div.setAttribute('style', div_style)
-
-        var btn = document.createElement('img')
-        btn.setAttribute('src', '/resources/img/delete.png')
-        btn.setAttribute('delFile', img.name);
-        btn.setAttribute('style', chk_style);
-        btn.onclick = function (ev) {
-          var ele = ev.target;
-          var delFile = ele.getAttribute('delFile');
-          for (var i = 0; i < sel_files.length; i++) {
-            if (delFile === sel_files[i].name) {
-              sel_files.splice(i, 1);
-            }
-          }
-
-          dt = new DataTransfer();
-          for (f in sel_files) {
-            var file = sel_files[f];
-            dt.items.add(file);
-          }
-          btnAtt.files = dt.files;
-          var p = ele.parentNode;
-          attZone.removeChild(p)
-        }
-        div.appendChild(img)
-        div.appendChild(btn)
-        return div
-      }
+  /*첨부된 이미리즐을 배열에 넣고 미리보기 */
+  imageLoader = function (image) {
+    sel_files.push(image);
+    var reader = new FileReader();
+    reader.onload = function (ee) {
+      let img = document.createElement('img')
+      img.setAttribute('style', img_style)
+      img.src = ee.target.result;
+      attZone.appendChild(makeDiv(img));
     }
-  )('att_zone', 'btnAtt')
+
+    reader.readAsDataURL(image);
+  }
+
+  /*첨부된 파일이 있는 경우 checkbox와 함께 attZone에 추가할 div를 만들어 반환 */
+  makeDiv = function (img) {
+    var div = document.createElement('div')
+    div.setAttribute('style', div_style)
+    var btn = document.createElement('img')
+    btn.setAttribute('src', '/resources/img/delete.png')
+    btn.setAttribute('delFile', img.name);
+    btn.setAttribute('style', chk_style);
+    btn.onclick = function (ev) {
+      var ele = ev.target;
+      var delFile = ele.getAttribute('delFile');
+      for (var i = 0; i < sel_files.length; i++) {
+        if (delFile === sel_files[i].name) {
+          sel_files.splice(i, 1);
+        }
+      }
+
+      dt = new DataTransfer();
+      for (f in sel_files) {
+        var file = sel_files[f];
+        dt.items.add(file);
+      }
+
+      btnAtt.files = dt.files;
+      var p = ele.parentNode;
+      attZone.removeChild(p);
+    }
+
+    div.appendChild(img)
+    div.appendChild(btn)
+    return div;
+  }('att_zone', 'btnAtt');
 
   // test
   $(document).ready(function () {
-        $.ajax({
-            url: '/appointmentTime',
-            type: 'GET',
-            datatype: "json",
-            data: {
-                "doctor_number": ${doctor.doctor_number}
-            },
-            success: function (data) {
-                console.log(data);
-                let time = data.working_time;
-                let timeArr = time.split(',');
-                timeArr.push(data.lunch_time);
+    $.ajax({
+      url: '/appointmentTime',
+      type: 'GET',
+      datatype: "json",
+      data: {
+        "doctor_number": ${doctor.doctor_number}
+      },
+      success: function (data) {
+        console.log(data);
+        let time = data.working_time;
+        let timeArr = time.split(',');
+        timeArr.push(data.lunch_time);
 
 
-                console.log(timeArr);
+        console.log(timeArr);
 
-                let workTime = timeArr.filter((element) => element !== data.lunch_time);
-                console.log(workTime);
-                //dlrp akwsk
-                let btn = "";
-                for (let i = 0; i < workTime.length; i++) {
-                    //btn = "<input type='radio' name='Time'>workTime[" + i + "]</input>";
-                    btn = '<label class="box-radio-input" data-bs-toggle="tooltip" data-bs-placement="top" title="' + workTime[i] + ':00 ~ ' + (workTime[i] + 1) + ':00">'
-                        + '<input type="radio" name="diagnosis_time" value = "' + workTime[i] + '">'
-                        + '<span>' + workTime[i] + ':00</span></label>';
-                    $("#workBtn").html($("#workBtn").html() + btn);
+        let workTime = timeArr.filter((element) => element !== data.lunch_time);
+        console.log(workTime);
+        //dlrp akwsk
+        let btn = "";
+        for (let i = 0; i < workTime.length; i++) {
+          //btn = "<input type='radio' name='Time'>workTime[" + i + "]</input>";
+          btn = '<label class="box-radio-input" data-bs-toggle="tooltip" data-bs-placement="top" title="' + workTime[i] + ':00 ~ ' + (workTime[i] + 1) + ':00">'
+            + '<input type="radio" name="diagnosis_time" value = "' + workTime[i] + '">'
+            + '<span>' + workTime[i] + ':00</span></label>';
+          $("#workBtn").html($("#workBtn").html() + btn);
 
-                }
-                tooltipInitialing();
+        }
+        tooltipInitialing();
 
-                // $.each(workTime, function (index, item) {
-                //     // $("#workBtn").append("")
-                //     $("#workBtn").html($("#workBtn") + btn);
-                // })
+        // $.each(workTime, function (index, item) {
+        //     // $("#workBtn").append("")
+        //     $("#workBtn").html($("#workBtn") + btn);
+        // })
 
-            }
+      }
 
-        })
     })
+  })
 </script>
 
 </body>
