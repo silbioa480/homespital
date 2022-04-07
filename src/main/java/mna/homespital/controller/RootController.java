@@ -164,7 +164,6 @@ public class RootController {
         return mav;
     }
 
-
     //진료차트 쓰기
 //  @GetMapping("/appointmentForm/{doc}")
 //  public ModelAndView appointmentForm(@PathVariable int doc) {
