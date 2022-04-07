@@ -94,12 +94,25 @@
                                     <td>${doctor.hospital_name}</td>
                                 </tr>
                                 <tr>
+                                    <th>주소 :</th>
+                                    <td>${doctor.zip_code} ${doctor.street_address} ${doctor.detail_address}</td>
+                                </tr>
+                                <tr>
                                     <th>진료시간:</th>
-                                    <td>${doctor.working_time}</td>
+                                    <td>
+                                            ${doctor.working_time}
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>점심시간:</th>
+                                    <td>
+                                            ${doctor.lunch_time}
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>휴진:</th>
-                                    <td>${doctor.holiday}</td>
+                                    <td>매주 ${doctor.holiday}요일</td>
                                 </tr>
                             </table>
                             </p>

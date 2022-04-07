@@ -491,10 +491,14 @@
 </script>
 <%-- bootstrap tooltip 설정 --%>
 <script>
-  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-  var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-    return new bootstrap.Tooltip(tooltipTriggerEl)
-  })
+    function tooltipInitialing() {
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    }
+
+    tooltipInitialing();
 </script>
 <%-- 약국내방/배달받기 설정 --%>
 <script>
@@ -610,6 +614,48 @@
       }
     }
   )('att_zone', 'btnAtt')
+
+  // test
+  $(document).ready(function () {
+        $.ajax({
+            url: '/appointmentTime',
+            type: 'GET',
+            datatype: "json",
+            data: {
+                "doctor_number": ${doctor.doctor_number}
+            },
+            success: function (data) {
+                console.log(data);
+                let time = data.working_time;
+                let timeArr = time.split(',');
+                timeArr.push(data.lunch_time);
+
+
+                console.log(timeArr);
+
+                let workTime = timeArr.filter((element) => element !== data.lunch_time);
+                console.log(workTime);
+                //dlrp akwsk
+                let btn = "";
+                for (let i = 0; i < workTime.length; i++) {
+                    //btn = "<input type='radio' name='Time'>workTime[" + i + "]</input>";
+                    btn = '<label class="box-radio-input" data-bs-toggle="tooltip" data-bs-placement="top" title="' + workTime[i] + ':00 ~ ' + (workTime[i] + 1) + ':00">'
+                        + '<input type="radio" name="diagnosis_time" value = "' + workTime[i] + '">'
+                        + '<span>' + workTime[i] + ':00</span></label>';
+                    $("#workBtn").html($("#workBtn").html() + btn);
+
+                }
+                tooltipInitialing();
+
+                // $.each(workTime, function (index, item) {
+                //     // $("#workBtn").append("")
+                //     $("#workBtn").html($("#workBtn") + btn);
+                // })
+
+            }
+
+        })
+    })
 </script>
 
 </body>

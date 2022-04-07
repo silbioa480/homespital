@@ -28,15 +28,12 @@ public class UserController {
     MedicalListService mls;
     @Autowired
     HttpSession session;
-
     @Autowired
     PharService pharService;
     @Autowired
     UserService userService;
-
     @Autowired
     private MedicalListService medicalListService;
-
     @Autowired
     private DoctorService doctorService;
 
