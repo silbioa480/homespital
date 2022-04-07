@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -151,6 +152,21 @@ public class RootController {
 
             System.out.println(doctor.getDoctor_name());
             mv.addObject("doctor", doctor);
+            String work_time = doctor.getWorking_time();
+            String[] work_timeArr = work_time.split(",");
+            String lunch_time = doctor.getLunch_time();
+
+            List<String> real_work_timeList = new ArrayList<>();
+
+            for (String workTime : work_timeArr) {
+                if (!workTime.equals(lunch_time)) {
+                    real_work_timeList.add(workTime);
+                }
+            }
+
+            mv.addObject("real_work_timeList", real_work_timeList);
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -200,8 +216,8 @@ public class RootController {
 
     //약국 메인페이지 태영
     @GetMapping("/pharmacyIndex")
-    public ModelAndView pharmacyIndex(){
-        ModelAndView mv =new ModelAndView();
+    public ModelAndView pharmacyIndex() {
+        ModelAndView mv = new ModelAndView();
         mv.setViewName("admin/pharside/pharmacyIndex");
         return mv;
     }
