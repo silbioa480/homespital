@@ -6,7 +6,7 @@
   <%--  파일 업로드 CSS  --%>
   <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
   <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css"/>
-  <link rel="stylesheet" href="/resources/css/writeMediChartForm.css"/>
+  <link rel="stylesheet" href="/resources/css/writeMediChartForm.css" />
 </head>
 <body>
 <div>
@@ -96,12 +96,11 @@
           <tr>
             <th>증상 이미지 첨부</th>
             <td>
-              <div class="card p-3">
+              <div class="card p-3" >
                 <div id="preview" align="center"></div>
                 <div align="center" class="filebox" style="padding:10px">
                   <label id="filebtn" for="btnAtt">사진 등록</label>
-                  <input type='file' id="btnAtt" style="display: none;" name="diagnosisImgNames"
-                         accept=".gif, .jpg, .png" multiple/>
+                  <input type='file' id="btnAtt" style="display: none;" name="diagnosisImgNames" accept=".gif, .jpg, .png"  multiple/>
                   <div id='att_zone'>
                   </div>
                   <input type="hidden" name="doctor_number" value="${not empty doctor_number? doctor_number : 1}">
@@ -130,16 +129,14 @@
             <h5>내방하실 약국</h5>
             <span class="text-secondary">병원과 연계된 약국으로 자동 설정됩니다.</span>
             <hr>
-            <div>
-              <div id="pharmacyName">
-                00약국
-              </div>
-              <div id="pharmacyPhone">
-                010-0000-0000
-              </div>
-              <div id="pharmacyAddress">
+            <div id="pharmacyName">
+              00약국
+            </div>
+            <div id="pharmacyPhone">
+              00-0000-0000
+            </div>
+            <div id="pharmacyAddress">
 
-              </div>
             </div>
           </div>
           <div class="m-3">
@@ -195,8 +192,8 @@
           <div>
             00약국<br>
             00-0000-0000
-          </div>
         </div>
+      </div>
         <div>
           <span>원하시는 약국을 직접 선택할 수도 있어요.</span>
           <hr>
@@ -212,18 +209,19 @@
       <h4 id="three"><strong>결제 정보</strong></h4>
       <div class="card p-3">
         <div class="d-flex align-items-end">
-          <h3>황인성${user.user_name}</h3>
-          <span class="px-2 pb-2">만 ${user.age}세(남)</span>
+          <h4>${user.user_name}</h4>
+          <span class="px-2 pb-2">만 세(남)</span>
         </div>
+        <p>배송 방법 : 집으로 받아보기(배송)</p>
         <div>약국 이름 :<p id="pharmacyNamePay"></p></div>
         <div>약국 전화번호 : <p id="pharmacyPhonePay"></p></div>
         <div>약국 주소 : <p id="pharmacyAddressPay"></p></div>
-        <p>받으시는 곳 주소 : 경기도 고양시 어쩌고</p>
-        <span>핸드폰 번호 : </span>
+        <p>받으시는 곳 주소 : [${user.zip_code}] ${user.street_address} ${user.detail_address}</p>
+        <span>핸드폰 번호 : ${user.user_phone}</span>
         <br>
-        <div class="card p-3">
-          <h4>카드 관리</h4>
-          <input type="text" id="default_card" value="****-****-****-1423" disabled="disabled" style="width: 15%;"/>
+        <div>
+          카드 정보
+          <input type="text" id="default_card" value="****-****-****-1423" disabled="disabled"/>
           <input type="button" id="addCard" name="addCard" class="addCard" value="관리">
           <button id="writeCard" class="btn" onclick="return false;">카드 추가</button>
           <%--                        모달 --%>
@@ -236,23 +234,23 @@
                 </div>
                 <div class="modal-body">
                   <div>
-                    <input type="radio" name="cardCheck" class="card_list" id="cardCheck1" value="1111" checked/>
-                    <label for="cardCheck1"> ****-****-****-1111</label>
+                    <input type="radio" name="cardCheck" class="card_list" value="1111" checked/>
+                    <span> ****-****-****-1111</span>
                   </div>
                   <hr>
                   <div>
-                    <input type="radio" name="cardCheck" class="card_list" id="cardCheck2" value="2222"/>
-                    <label for="cardCheck2"> ****-****-****-2222</label>
+                    <input type="radio" name="cardCheck" class="card_list" value="2222"/>
+                    <span> ****-****-****-2222</span>
                   </div>
                   <hr>
                   <div>
-                    <input type="radio" name="cardCheck" class="card_list" id="cardCheck3" value="3333"/>
-                    <label for="cardCheck3"> ****-****-****-3333</label>
+                    <input type="radio" name="cardCheck" class="card_list" value="3333"/>
+                    <span> ****-****-****-3333</span>
                   </div>
                   <hr>
                   <div>
-                    <input type="radio" name="cardCheck" class="card_list" id="cardCheck4" value="4444"/>
-                    <label for="cardCheck4"> ****-****-****-4444</label>
+                    <input type="radio" name="cardCheck" class="card_list" value="4444"/>
+                    <span> ****-****-****-4444</span>
                   </div>
                   <hr>
                 </div>
@@ -263,68 +261,75 @@
               </div>
             </div>
           </div>
-        </div>
 
-        <%--                        <span><input type="button" id="deleteCard" name="deleteCard" class="deleteCard" value="삭제" /></span>--%>
-      </div>
-      <div class="modal fade" id="writeCardModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5>카드등록</h5>
-            </div>
-            <div class="modal-body">
-              <div class="input-control">
-                <h6 class="modal-title">카드 별칭</h6>
-                <div style="display:flex">
-                  <input style="width: 100%" id="cardNameModal" type="text"
-                         name="cardNameModal"
-                         placeholder="카드 별칭를 입력해주세요. ( 최대 8자 )" title="카드 별칭 입력"
-                         maxlength="8"/>
-                </div>
-                <div class="error"></div>
+          <%--                        <span><input type="button" id="deleteCard" name="deleteCard" class="deleteCard" value="삭제" /></span>--%>
+        </div>
+        <div class="modal fade" id="writeCardModal" tabindex="-1" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5>카드등록</h5>
               </div>
-              <div class="input-control">
-                <h6 class="modal-title">카드 번호</h6>
-                <div style="display:flex">
-                  <input style="width: 23%; height:40px;" id="cardNumModal1" type="text"
-                         name="cardNumModal1" maxlength="4" minlength="4"/>
-                  <span style="line-height:40px;">-</span>
-                  <input style="width: 23%; height:40px;" id="cardNumModal2" type="password"
-                         name="cardNumModal2" maxlength="4" minlength="4"/>
-                  <span style="line-height:40px;">-</span>
-                  <input style="width: 23%; height:40px;" id="cardNumModal3" type="password"
-                         name="cardNumModal3" maxlength="4" minlength="4"/>
-                  <span style="line-height:40px;">-</span>
-                  <input style="width: 23%; height:40px;" id="cardNumModal4" type="text"
-                         name="cardNumModal4" maxlength="4" minlength="4"/>
+              <div class="modal-body">
+                <div class="input-control">
+                  <h6 class="modal-title">카드 별칭</h6>
+                  <div style="display:flex">
+                    <input style="width: 100%" id="cardNameModal" type="text"
+                           name="cardNameModal"
+                           placeholder="카드 별칭를 입력해주세요. ( 최대 8자 )" title="카드 별칭 입력"
+                           maxlength="8"/>
+                  </div>
+                  <div class="error"></div>
+                </div>
+                <div class="input-control">
+                  <h6 class="modal-title">카드 번호</h6>
+                  <div style="display:flex">
+                    <input style="width: 23%; height:40px;" id="cardNumModal1" type="text"
+                           name="cardNumModal1" maxlength="4" minlength="4"/>
+                    <span style="line-height:40px;">-</span>
+                    <input style="width: 23%; height:40px;" id="cardNumModal2" type="password"
+                           name="cardNumModal2" maxlength="4" minlength="4"/>
+                    <span style="line-height:40px;">-</span>
+                    <input style="width: 23%; height:40px;" id="cardNumModal3" type="password"
+                           name="cardNumModal3" maxlength="4" minlength="4"/>
+                    <span style="line-height:40px;">-</span>
+                    <input style="width: 23%; height:40px;" id="cardNumModal4" type="text"
+                           name="cardNumModal4" maxlength="4" minlength="4"/>
+                  </div>
+                </div>
+                <h6 class="modal-title">카드 유효기간</h6>
+                <div class="input-control">
+                  <div style="display:flex">
+                    <input style="width: 100%" id="cardMMYYNumModal" type="text"
+                           name="cardMMYYNumModal"
+                           title="카드 유효기간" placeholder="MMYY" maxlength="4" minlength="4"/>
+                  </div>
+                </div>
+                <h6 class="modal-title">카드 비밀번호</h6>
+                <div class="input-control">
+                  <div style="display:flex">
+                    <input style="width: 100%" id="cardPassword" type="password"
+                           name="cardPassword"
+                           title="카드 비밀번호" placeholder="비밀번호 앞자리 2개 입력하세요." maxlength="2" minlength="2"/>
+                  </div>
                 </div>
               </div>
-              <h6 class="modal-title">카드 유효기간</h6>
-              <div class="input-control">
-                <div style="display:flex">
-                  <input style="width: 100%" id="cardMMYYNumModal" type="text"
-                         name="cardMMYYNumModal"
-                         title="카드 유효기간" placeholder="MMYY" maxlength="4" minlength="4"/>
-                </div>
+              <div class="modal-footer">
+                <button class="btn border-dark" type="button" id="submitNewCard"
+                        onclick="submitNewCardId(); return false;">추가
+                </button>
+                <button class="btn" type="button" data-bs-dismiss="modal">취소</button>
               </div>
-              <h6 class="modal-title">카드 비밀번호</h6>
-              <div class="input-control">
-                <div style="display:flex">
-                  <input style="width: 100%" id="cardPassword" type="password"
-                         name="cardPassword"
-                         title="카드 비밀번호" placeholder="비밀번호 앞자리 2개 입력하세요." maxlength="2" minlength="2"/>
-                </div>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button class="btn border-dark" type="button" id="submitNewCard" onclick="submitNewCardId(); return false;">추가
-              </button>
-              <button class="btn" type="button" data-bs-dismiss="modal">취소</button>
             </div>
           </div>
         </div>
-      </div>
+
+
+
+
+        </div>
+
+
       </div>
       <div>
         <p>
@@ -337,7 +342,7 @@
     </div>
     <div class="appoint-out">
       <label for="appointDo" class="appointBtn">예약하기</label>
-      <input type="submit" id="appointDo" class="appointDo" style="display: none"/>
+      <input type="submit" id="appointDo" class="appointDo" style="display: none" />
     </div>
   </form>
 </div>
@@ -347,20 +352,16 @@
 <script>
   var markers = [];
   var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-    mapOption = {
-      center: new kakao.maps.LatLng(37.529521, 126.964540), // 지도의 중심좌표
-      level: 3 // 지도의 확대 레벨
-    };
+          mapOption = {
+            center: new kakao.maps.LatLng(37.529521, 126.964540), // 지도의 중심좌표
+            level: 3 // 지도의 확대 레벨
+          };
   var map = new kakao.maps.Map(mapContainer, mapOption);
-
   // 장소 검색 객체를 생성합니다
   var ps = new kakao.maps.services.Places();
-
   // 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
   var infowindow = new kakao.maps.InfoWindow({zIndex: 1});
-
   getCurrentPosBtn();
-
   // 키워드로 장소를 검색합니다
   function searchPlaces() {
     var keyword = document.getElementById('searchKeyword').value;
@@ -371,18 +372,14 @@
     // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
     ps.keywordSearch(keyword, placesSearchCB, {category_group_code: "PM9"});
   }
-
   // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
   function placesSearchCB(data, status, pagination) {
     if (status === kakao.maps.services.Status.OK) {
-
       // 정상적으로 검색이 완료됐으면
       // 검색 목록과 마커를 표출합니다
       displayPlaces(data);
-
       // 페이지 번호를 표출합니다
       displayPagination(pagination);
-
     } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
       alert('검색 결과가 존재하지 않습니다.');
       return;
@@ -391,32 +388,26 @@
       return;
     }
   }
-
   // 검색 결과 목록과 마커를 표출하는 함수입니다
   function displayPlaces(places) {
     var listEl = document.getElementById('placesList'),
-      menuEl = document.getElementById('menu_wrap'),
-      fragment = document.createDocumentFragment(),
-      bounds = new kakao.maps.LatLngBounds(),
-      listStr = '';
+            menuEl = document.getElementById('menu_wrap'),
+            fragment = document.createDocumentFragment(),
+            bounds = new kakao.maps.LatLngBounds(),
+            listStr = '';
     listEl.style.visibility = "visible";
     // 검색 결과 목록에 추가된 항목들을 제거합니다
     removeAllChildNods(listEl);
-
     // 지도에 표시되고 있는 마커를 제거합니다
     removeMarker();
-
     for (var i = 0; i < places.length; i++) {
-
       // 마커를 생성하고 지도에 표시합니다
       var placePosition = new kakao.maps.LatLng(places[i].y, places[i].x),
-        marker = addMarker(placePosition, i),
-        itemEl = getListItem(i, places[i]); // 검색 결과 항목 Element를 생성합니다
-
+              marker = addMarker(placePosition, i),
+              itemEl = getListItem(i, places[i]); // 검색 결과 항목 Element를 생성합니다
       // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
       // LatLngBounds 객체에 좌표를 추가합니다
       bounds.extend(placePosition);
-
       // 마커와 검색결과 항목에 mouseover 했을때
       // 해당 장소에 인포윈도우에 장소명을 표시합니다
       // mouseout 했을 때는 인포윈도우를 닫습니다
@@ -424,52 +415,40 @@
         kakao.maps.event.addListener(marker, 'mouseover', function () {
           displayInfowindow(marker, title);
         });
-
         kakao.maps.event.addListener(marker, 'mouseout', function () {
           infowindow.close();
         });
-
         itemEl.onmouseover = function () {
           displayInfowindow(marker, title);
         };
-
         itemEl.onmouseout = function () {
           infowindow.close();
         };
       })(marker, places[i].place_name);
-
       fragment.appendChild(itemEl);
     }
-
     // 검색결과 항목들을 검색결과 목록 Element에 추가합니다
     listEl.appendChild(fragment);
     menuEl.scrollTop = 0;
-
     // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
     map.setBounds(bounds);
   }
-
   // 검색결과 항목을 Element로 반환하는 함수입니다
   function getListItem(index, places) {
-
     var el = document.createElement('li'),
-      itemStr = '<span class="markerbg marker_' + (index + 1) + '"></span>' +
-        '<div class="info">' +
-        '   <h5>' + places.place_name + '</h5>';
-
+            itemStr = '<span class="markerbg marker_' + (index + 1) + '"></span>' +
+                    '<div class="info">' +
+                    '   <h5>' + places.place_name + '</h5>';
     if (places.road_address_name) {
       itemStr += '    <span>' + places.road_address_name + '</span>' +
-        '   <span class="jibun gray">' + places.address_name + '</span>';
+              '   <span class="jibun gray">' + places.address_name + '</span>';
     } else {
       itemStr += '    <span>' + places.address_name + '</span>';
     }
-
     itemStr += '  <span class="tel">' + places.phone + '</span>' +
-      '</div>';
-
+            '</div>';
     el.innerHTML = itemStr;
     el.className = 'item';
-
     el.onclick = function () {
       document.getElementById("pharmacyName").innerText = places.place_name;
       document.getElementById("pharmacyPhone").innerText = places.phone;
@@ -480,31 +459,26 @@
       document.getElementById("pharmacyAddressPay").innerText = places.road_address_name ? places.road_address_name : places.address_name;
 
     }
-
     return el;
   }
-
   // 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
   function addMarker(position, idx, title) {
     var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
-      imageSize = new kakao.maps.Size(36, 37),  // 마커 이미지의 크기
-      imgOptions = {
-        spriteSize: new kakao.maps.Size(36, 691), // 스프라이트 이미지의 크기
-        spriteOrigin: new kakao.maps.Point(0, (idx * 46) + 10), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표
-        offset: new kakao.maps.Point(13, 37) // 마커 좌표에 일치시킬 이미지 내에서의 좌표
-      },
-      markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imgOptions),
-      marker = new kakao.maps.Marker({
-        position: position, // 마커의 위치
-        image: markerImage
-      });
-
+            imageSize = new kakao.maps.Size(36, 37),  // 마커 이미지의 크기
+            imgOptions = {
+              spriteSize: new kakao.maps.Size(36, 691), // 스프라이트 이미지의 크기
+              spriteOrigin: new kakao.maps.Point(0, (idx * 46) + 10), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표
+              offset: new kakao.maps.Point(13, 37) // 마커 좌표에 일치시킬 이미지 내에서의 좌표
+            },
+            markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imgOptions),
+            marker = new kakao.maps.Marker({
+              position: position, // 마커의 위치
+              image: markerImage
+            });
     marker.setMap(map); // 지도 위에 마커를 표출합니다
     markers.push(marker);  // 배열에 생성된 마커를 추가합니다
-
     return marker;
   }
-
   // 지도 위에 표시되고 있는 마커를 모두 제거합니다
   function removeMarker() {
     for (var i = 0; i < markers.length; i++) {
@@ -512,75 +486,61 @@
     }
     markers = [];
   }
-
   // 검색결과 목록 하단에 페이지번호를 표시는 함수입니다
   function displayPagination(pagination) {
     var paginationEl = document.getElementById('pagination'),
-      fragment = document.createDocumentFragment(),
-      i;
-
+            fragment = document.createDocumentFragment(),
+            i;
     // 기존에 추가된 페이지번호를 삭제합니다
     while (paginationEl.hasChildNodes()) {
       paginationEl.removeChild(paginationEl.lastChild);
     }
-
-    for (i = 1; i <= pagination.last; i++) {
-      var el = document.createElement('a');
-      el.href = "#";
-      el.innerHTML = i;
-
-      if (i === pagination.current) {
-        el.className = 'on';
-      } else {
-        el.onclick = (function (i) {
-          return function () {
-            pagination.gotoPage(i);
-          }
-        })(i);
-      }
-
-      fragment.appendChild(el);
+  }
+  for (i = 1; i <= pagination.last; i++) {
+    var el = document.createElement('a');
+    el.href = "#";
+    el.innerHTML = i;
+    if (i === pagination.current) {
+      el.className = 'on';
+    } else {
+      el.onclick = (function (i) {
+        return function () {
+          pagination.gotoPage(i);
+        }
+      })(i);
     }
+    fragment.appendChild(el);
     paginationEl.appendChild(fragment);
   }
-
   // 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
   // 인포윈도우에 장소명을 표시합니다
   function displayInfowindow(marker, title) {
     var content = '<div style="padding:5px;z-index:1;">' + title + '</div>';
-
     infowindow.setContent(content);
     infowindow.open(map, marker);
   }
-
   // 검색결과 목록의 자식 Element를 제거하는 함수입니다
   function removeAllChildNods(el) {
     while (el.hasChildNodes()) {
       el.removeChild(el.lastChild);
     }
   }
-
   function locationLoadSuccess(pos) {
     // 현재 위치 받아오기
     var currentPos = new kakao.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
-
     // 지도 이동(기존 위치와 가깝다면 부드럽게 이동)
     map.panTo(currentPos);
-
     // 마커 생성
     var marker = new kakao.maps.Marker({
       position: currentPos
     });
-
     // 기존에 마커가 있다면 제거
     marker.setMap(null);
     marker.setMap(map);
   };
-
   function locationLoadError(pos) {
     alert('위치 정보를 가져오는데 실패했습니다.');
   };
-
   // 위치 가져오기 버튼 클릭시
   function getCurrentPosBtn() {
     navigator.geolocation.getCurrentPosition(locationLoadSuccess, locationLoadError);
@@ -588,10 +548,13 @@
 </script>
 <%-- bootstrap tooltip 설정 --%>
 <script>
-  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-  var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-    return new bootstrap.Tooltip(tooltipTriggerEl)
-  })
+  function tooltipInitialing() {
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+  }
+  tooltipInitialing();
 </script>
 <%-- 약국내방/배달받기 설정 --%>
 <script>
@@ -604,110 +567,95 @@
       document.getElementById('is_delivery').value = false;
       document.getElementById('delivery').style.display = "none";
       document.getElementById('naebang').style.display = "block";
-
     }
   }
 </script>
 <%-- 증상 사진 미리보기, 삭제, 드래그 앤 드롭  ( 인성 ) --%>
 <script>
   ( /* att_zone : 이미지들이 들어갈 위치 id, btn : file tag id */
-    imageView = function imageView(att_zone, btn) {
-
-      var attZone = document.getElementById(att_zone);
-      var btnAtt = document.getElementById(btn)
-      var sel_files = [];
-
-      // 이미지와 체크 박스를 감싸고 있는 div 속성
-      var div_style = 'display:inline-block;position:relative;'
-        + 'width:150px;height:120px;margin:5px;border:1px solid #b4b4b4;z-index:1';
-      // 미리보기 이미지 속성
-      var img_style = 'width:100%;height:100%;z-index:none';
-      // 이미지안에 표시되는 체크박스의 속성
-      var chk_style = 'width:30px;height:30px;position:absolute;font-size:24px;'
-        + 'right:0px;bottom:0px;z-index:999;background-color:rgba(0,67,50,0);color:#d52a2a';
-
-      btnAtt.onchange = function (e) {
-        var files = e.target.files;
-        var fileArr = Array.prototype.slice.call(files)
-        for (f of fileArr) {
-          imageLoader(f);
-        }
-      }
-
-
-      // 탐색기에서 드래그앤 드롭 사용
-      attZone.addEventListener('dragenter', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-      }, false)
-
-      attZone.addEventListener('dragover', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-
-      }, false)
-
-      attZone.addEventListener('drop', function (e) {
-        var files = {};
-        e.preventDefault();
-        e.stopPropagation();
-        var dt = e.dataTransfer;
-        files = dt.files;
-        for (f of files) {
-          imageLoader(f);
-        }
-
-      }, false)
-
-
-      /*첨부된 이미리즐을 배열에 넣고 미리보기 */
-      imageLoader = function (image) {
-        sel_files.push(image);
-        var reader = new FileReader();
-        reader.onload = function (ee) {
-          let img = document.createElement('img')
-          img.setAttribute('style', img_style)
-          img.src = ee.target.result;
-          attZone.appendChild(makeDiv(img));
-        }
-
-        reader.readAsDataURL(image);
-      }
-
-      /*첨부된 파일이 있는 경우 checkbox와 함께 attZone에 추가할 div를 만들어 반환 */
-      makeDiv = function (img) {
-        var div = document.createElement('div')
-        div.setAttribute('style', div_style)
-
-        var btn = document.createElement('img')
-        btn.setAttribute('src', '/resources/img/delete.png')
-        btn.setAttribute('delFile', img.name);
-        btn.setAttribute('style', chk_style);
-        btn.onclick = function (ev) {
-          var ele = ev.target;
-          var delFile = ele.getAttribute('delFile');
-          for (var i = 0; i < sel_files.length; i++) {
-            if (delFile === sel_files[i].name) {
-              sel_files.splice(i, 1);
+          imageView = function imageView(att_zone, btn){
+            var attZone = document.getElementById(att_zone);
+            var btnAtt = document.getElementById(btn)
+            var sel_files = [];
+            // 이미지와 체크 박스를 감싸고 있는 div 속성
+            var div_style = 'display:inline-block;position:relative;'
+                    + 'width:150px;height:120px;margin:5px;border:1px solid #b4b4b4;z-index:1';
+            // 미리보기 이미지 속성
+            var img_style = 'width:100%;height:100%;z-index:none';
+            // 이미지안에 표시되는 체크박스의 속성
+            var chk_style = 'width:30px;height:30px;position:absolute;font-size:24px;'
+                    + 'right:0px;bottom:0px;z-index:999;background-color:rgba(0,67,50,0);color:#d52a2a';
+            btnAtt.onchange = function(e){
+              var files = e.target.files;
+              var fileArr = Array.prototype.slice.call(files)
+              for(f of fileArr){
+                imageLoader(f);
+              }
+            }
+            // 탐색기에서 드래그앤 드롭 사용
+            attZone.addEventListener('dragenter', function(e){
+              e.preventDefault();
+              e.stopPropagation();
+            }, false)
+            attZone.addEventListener('dragover', function(e){
+              e.preventDefault();
+              e.stopPropagation();
+            }, false)
+            attZone.addEventListener('drop', function(e){
+              var files = {};
+              e.preventDefault();
+              e.stopPropagation();
+              var dt = e.dataTransfer;
+              files = dt.files;
+              for(f of files){
+                imageLoader(f);
+              }
+            }, false)
+            /*첨부된 이미리즐을 배열에 넣고 미리보기 */
+            imageLoader = function(image){
+              sel_files.push(image);
+              var reader = new FileReader();
+              reader.onload = function(ee){
+                let img = document.createElement('img')
+                img.setAttribute('style', img_style)
+                img.src = ee.target.result;
+                attZone.appendChild(makeDiv(img));
+              }
+              reader.readAsDataURL(image);
+            }
+            /*첨부된 파일이 있는 경우 checkbox와 함께 attZone에 추가할 div를 만들어 반환 */
+            makeDiv = function(img){
+              var div = document.createElement('div')
+              div.setAttribute('style', div_style)
+              var btn = document.createElement('img')
+              btn.setAttribute('src', '/resources/img/delete.png')
+              btn.setAttribute('delFile', img.name);
+              btn.setAttribute('style', chk_style);
+              btn.onclick = function(ev){
+                var ele = ev.target;
+                var delFile = ele.getAttribute('delFile');
+                for(var i=0 ;i<sel_files.length; i++){
+                  if(delFile === sel_files[i].name){
+                    sel_files.splice(i, 1);
+                  }
+                }
+                dt = new DataTransfer();
+                for(f in sel_files) {
+                  var file = sel_files[f];
+                  dt.items.add(file);
+                }
+                btnAtt.files = dt.files;
+                var p = ele.parentNode;
+                attZone.removeChild(p)
+              }
+              div.appendChild(img)
+              div.appendChild(btn)
+              return div
             }
           }
-
-          dt = new DataTransfer();
-          for (f in sel_files) {
-            var file = sel_files[f];
-            dt.items.add(file);
-          }
-          btnAtt.files = dt.files;
-          var p = ele.parentNode;
-          attZone.removeChild(p)
-        }
-        div.appendChild(img)
-        div.appendChild(btn)
-        return div
-      }
-    }
   )('att_zone', 'btnAtt')
-// 인성: 카드 확인 and 추가 모달
+
+// 인성: 카드 관리 and 추가 모달
   $('#addCard').click(function (e) {
     e.preventDefault();
     $('#addCardModal').modal("show");
@@ -757,7 +705,7 @@
       $("#cardPassword").focus();
       return false;
     }
-    // 훈: 카드 추가 ajax
+    // 훈:
     card_number = $('#cardNumModal1').val() + '-' + $('#cardNumModal2').val() + '-' + $('#cardNumModal3').val() + '-' + $('#cardNumModal4').val();
     expiry = '20' + $('#cardMMYYNumModal').val().substr(2, 2) + '-' + $('#cardMMYYNumModal').val().substr(0, 2);
     pwd_2digit = $('#cardPassword').val();
@@ -787,6 +735,7 @@
     })
     return false;
   }
+
 </script>
 
 </body>

@@ -47,4 +47,10 @@ public class DoctorServiceImpl implements DoctorService {
         System.out.println("getDocInfo() join");
         return doctorDAO.docInfo(doctor_number);
     }
+
+    //의사명 및 병원명 검색 태영
+    @Override
+    public List<Doctor> getSearchDoh(String keyword) throws Exception {
+        return doctorDAO.searchDoh(keyword);
+    }
 }
