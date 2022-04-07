@@ -12,6 +12,12 @@ import java.util.List;
 @Repository
 public interface DoctorDAO {
 
+    //가영: 이메일로 의사 정보 가져오기
+    Doctor DoctorQueryMember(String doctor_email) throws Exception;
+
+    //가영: 의사 정보 넣기
+    void insertDoctorMember(Doctor doctor) throws Exception;
+
     // 의료진 찾기 - 의료진 목록 보기 (훈)
     List<Doctor> queryDoctor(int startrow) throws Exception;
 
