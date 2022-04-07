@@ -1,13 +1,29 @@
+<%--의료진 보기 : 훈/소연/준근--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
 <head>
-  <title>Homespital</title>
+  <title>의료진 보기</title>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
   <link rel="stylesheet" href="/resources/css/doctorList.css"/>
+  <link rel="stylesheet" href="/resources/css/sidebar.css">
 </head>
+<style>
+  .active {
+
+  }
+
+  a:link, a:visited, a:hover, a:active {
+    color: grey;
+    text-decoration: none;
+  !important
+  }
+
+</style>
+
 <body class="is-preload">
 
 <!-- Header -->
