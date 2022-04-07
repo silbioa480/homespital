@@ -46,6 +46,19 @@
         그럼 처음에 병원을 서치 할수 있어야 하네 순서가 동일 선상에 있음<br>
         지금 대면 진료일것 같다고 예상? 거리순 </p>
 </div>
+
+<%--의사 및 병원 검색 태영--%>
+<div id="searcharea">
+    <div class="search">
+        <form action="dohSearch" method="post">
+            <input type="search" placeholder="원하시는 의사 및 병원을 입력하세요" name="dhSearch" id="dhSearch" />
+            <button type="submit" id="searchMedical">검색</button>
+        </form>
+    </div>
+</div>
+
+
+
 <div style="padding-right: 40px;">
     <div class="d-flex m-3 justify-content-between">
         <span class="my-auto">총
@@ -79,9 +92,11 @@
                                 <button class="btn btn-secondary ml-auto" onclick="">
                                     <i class="fa-solid fa-magnifying-glass">의료진 상세보기</i>
                                 </button>
-                                <button class="btn ml-auto" style="background-color: #1abc9c; color: white;">
+                                <button class="btn ml-auto" style="background-color: #1abc9c; color: white;"
+                                        onclick="location.href='/appointmentForm/${doctor.doctor_number}';">
                                     <i class="fa fa-check">비대면 진료 예약하기</i>
                                 </button>
+
                             </div>
                         </div>
                         <div class="card-text">
@@ -92,12 +107,25 @@
                                     <td>${doctor.hospital_name}</td>
                                 </tr>
                                 <tr>
+                                    <th>주소 :</th>
+                                    <td>${doctor.zip_code} ${doctor.street_address} ${doctor.detail_address}</td>
+                                </tr>
+                                <tr>
                                     <th>진료시간:</th>
-                                    <td>${doctor.working_time}</td>
+                                    <td>
+                                            ${doctor.working_time}
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>점심시간:</th>
+                                    <td>
+                                            ${doctor.lunch_time}
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>휴진:</th>
-                                    <td>${doctor.holiday}</td>
+                                    <td>매주 ${doctor.holiday}요일</td>
                                 </tr>
                             </table>
                             </p>

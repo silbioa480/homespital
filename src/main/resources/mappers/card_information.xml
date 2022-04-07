@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mna.homespital.dao.CardInformationDAO">
+    <select id="queryMyCards" resultType="Card_Information" parameterType="int">
+        <![CDATA[
+        select *
+        from card_information
+        where card_owner_number = #{card_owner_number}
+        ]]>
+    </select>
+
+    <select id="queryMyCard" resultType="Card_Information" parameterType="Map">
+        <![CDATA[
+        select *
+        from card_information
+        where card_owner_number = #{card_owner_number}
+          and customer_uid = #{customer_uid}
+        ]]>
+    </select>
+
+    <insert id="insertMyCard" parameterType="Map">
+        <![CDATA[
+        insert into card_information(customer_uid, card_owner_number, card_exp, card_nickname, card_number)
+        values (#{customer_uid}, #{card_owner_number}, #{card_exp}, #{card_nickname}, #{card_number})
+        ]]>
+    </insert>
+
+    <delete id="deleteMyCard" parameterType="String">
+        <![CDATA[
+        delete
+        from card_information
+        where customer_uid = #{customer_uid}
+        ]]>
+    </delete>
+
+    <update id="setThisCardMain" parameterType="Map">
+        <![CDATA[
+        update `user` u, `card_information` c
+        set u.billing_key = #{customer_uid}
+        where u.user_number = #{card_owner_number}
+          and c.customer_uid = #{customer_uid}
+          and u.user_number = c.card_owner_number
+        ]]>
+    </update>
+
+</mapper>

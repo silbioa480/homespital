@@ -39,6 +39,30 @@ blockquote, q {
 /*    content: '';*/
 /*    content: none;*/
 /*}*/
+#three
+.btn {
+    border: 1px solid #111;
+    height: 44px;
+    width: 100px;
+    background-color: white;
+    color: #111;
+}
+#three
+.btn:hover {
+    background-color: #111;
+    color: white;
+}
+
+#three
+.addCard {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100px;
+    height: 44px;
+    line-height: 44px;
+    text-color: black;
+    border: 1px solid #111;
+}
 
 table {
     border-collapse: collapse;
@@ -2549,15 +2573,16 @@ input[type="button"],
     -webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
     -ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
     transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-    background-color: #989898;
+    background-color: #fff;
     border-radius: 5px;
     border: 0;
-    color: #ffffff !important;
+    color: black !important;
     cursor: pointer;
     display: inline-block;
-    font-weight: 700;
-    height: 2.75em;
-    line-height: 2.75em;
+    font-weight: 520;
+    border: 1px solid #111;
+    height: 44px;
+    line-height:  44px;
     padding: 0 1.5em;
     text-align: center;
     text-decoration: none;
@@ -2568,7 +2593,7 @@ input[type="submit"]:hover,
 input[type="reset"]:hover,
 input[type="button"]:hover,
 .button:hover {
-    background-color: #a5a5a5;
+    background-color: #111;
     color: #ffffff !important;
 }
 
