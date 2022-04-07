@@ -148,14 +148,14 @@
                     <h5>결제 정보에 사용됩니다(선택)</h5>
                     <hr style="height:4px">
                     <div class="input-control">
-                    <h5 class="card-title">카드 별칭</h5>
+                        <h5 class="card-title">카드 별칭</h5>
                         <div style="display:flex">
-                        <input style="width: 100%" id="cardNameModal" type="text"
-                               name="cardNameModal"
-                               placeholder="카드 별칭를 입력해주세요. ( 최대 8자 )" title="카드 별칭 입력"
-                               maxlength="8"/>
-                    </div>
-                    <div class="error"></div>
+                            <input style="width: 100%" id="cardNameModal" type="text"
+                                   name="cardNameModal"
+                                   placeholder="카드 별칭를 입력해주세요. ( 최대 8자 )" title="카드 별칭 입력"
+                                   maxlength="8"/>
+                        </div>
+                        <div class="error"></div>
                     </div>
 
                     <div class="input-control">
@@ -200,7 +200,6 @@
                 </div>
 
 
-
             </section>
             <br><br><br><br>
 
@@ -235,7 +234,7 @@
                         </div>
                     </div>
                     <br><br><br>
-                    <input type="submit" value="회원가입" style="width: 100%;"></input>
+                    <input type="button" onClick="validateInput()" value="회원가입" style="width: 100%;"></input>
                 </div>
             </section>
         </form>
