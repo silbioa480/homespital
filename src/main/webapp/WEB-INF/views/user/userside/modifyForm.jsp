@@ -246,7 +246,7 @@
                   </div>
                   <div class="modal-body">
                     <div>
-                      <input type="radio" name="cardCheck" class="card_list" value="1111" checked/>
+                      <input type="radio" name="cardCheck" class="card_list" value="1111"  checked/>
                       <span> ****-****-****-1111</span>
                     </div>
                     <hr>
@@ -377,42 +377,49 @@
 <script src="/resources/js/signUp/signUpCheck.js"></script>
 
 <script type="text/javascript">
-  $('#pwBtn').click(function (e) {
+    $('#pwBtn').click(function (e) {
     e.preventDefault();
     $('#pwModal').modal("show");
-  });
-  //가영: 휴대폰번호 수정관련 모달창
-  $('#phoneBtn').click(function (e) {
+});
+//가영: 휴대폰번호 수정관련 모달창
+$('#phoneBtn').click(function (e) {
     e.preventDefault();
     $('#phoneModal').modal("show");
-  })
-  $('#addCard').click(function (e) {
+})
+$('#addCard').click(function (e) {
     e.preventDefault();
     $('#addCardModal').modal("show");
-  });
-  $('#writeCard').click(function (e) {
+});
+$('#writeCard').click(function (e) {
     e.preventDefault();
     $('#writeCardModal').modal("show");
-  });
-  $('#modalY3').click(function (e) {
+});
+$('#modalY3').click(function (e) {
     e.preventDefault();
     let radioV = $('input:radio[name="cardCheck"]:checked').val();
     console.log(radioV);
     $('#default_card').val("****-****-****-" + radioV);
     $('#addCardModal').modal("hide");
-  });
+});
+    //가영: 휴대폰인증 후 부모창으로 데이터전송하는 함수
+    function getParentText() {
+        $('#phoneModal').modal("hide");
+        document.getElementById("originphone").value = document.getElementById("phone").value
+    }
 
-  //가영: 휴대폰인증 후 부모창으로 데이터전송하는 함수
-  function getParentText() {
-    $('#phoneModal').modal("hide");
-    document.getElementById("originphone").value = document.getElementById("phone").value
-  }
-
-  function getParentText() {
-    document.getElementById("cardName").value = document.getElementById("cardNameModal").value
-    document.getElementById("lastCardNum").value = document.getElementById("lastCardNumModal").value
-    document.getElementById("cardMMYYNum").value = document.getElementById("cardMMYYNumModal").value
-  }
+    //새로운 비밀번호 입력시 정규성검사(아래에 에러메세지 뜸)
+    function check_pw() {
+        var password = document.getElementById('password').value;
+        var password2 = document.getElementById('password2').value;
+        if (password !== password2) {
+            document.getElementById('pw_check_msg').innerHTML = "비밀번호가 다릅니다. 다시 확인해 주세요.";
+        } else {
+            document.getElementById('pw_check_msg').innerHTML = "";
+        }
+        if (password2 === "") {
+            document.getElementById('pw_check_msg').innerHTML = "";
+        }
+    }
 
   //새로운 비밀번호 입력시 정규성검사(아래에 에러메세지 뜸)
   function check_pw() {
@@ -461,6 +468,7 @@
       $("#cardPassword").focus();
       return false;
     }
+      // 훈:
     card_number = $('#cardNumModal1').val() + '-' + $('#cardNumModal2').val() + '-' + $('#cardNumModal3').val() + '-' + $('#cardNumModal4').val();
     expiry = '20' + $('#cardMMYYNumModal').val().substr(2, 2) + '-' + $('#cardMMYYNumModal').val().substr(0, 2);
     pwd_2digit = $('#cardPassword').val();

@@ -49,6 +49,9 @@ public class RootController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    PaymentService paymentService;
+
     public RootController() {
     }
 
@@ -193,10 +196,15 @@ public class RootController {
 
         try {
             User user = memberService.findByEmail(email);
+
             if (user == null) mv.setViewName("redirect:/loginForm");
             else {
                 String birth = user.getUser_registration_number().substring(0, 6);
                 String gender = user.getUser_registration_number().substring(7, 8);
+                mv.addObject("user", user);
+//
+//
+//                paymentService.
 
                 if (Integer.parseInt(gender) < 3) birth = "19" + birth;
                 else birth = "20" + birth;
@@ -213,8 +221,9 @@ public class RootController {
 
     //진료예약   ( 인성 )
     @PostMapping("/appointmentForm")
-    public String appointment(Diagnosis diagnosis, MultipartFile[] diagnosisImgNames,
+    public ModelAndView appointment(Diagnosis diagnosis, MultipartFile[] diagnosisImgNames,
                               Model model, HttpServletRequest request, HttpServletResponse response) {
+        ModelAndView mv = new ModelAndView();
         try {
             // 사진 업로드
             String fileNameArr = "";
@@ -232,10 +241,12 @@ public class RootController {
             // DB insert
             diagnosis.setDiagnosis_image_name(fileNameArr.toString());
             diagnosisService.insertDiagnosis(diagnosis);
+            mv.setViewName("redirect:/myMedicalList");
         } catch (Exception e) {
             e.printStackTrace();
+            //mv.setViewName();
         }
-        return "/appointmentSuccess";
+        return mv;
     }
 
     // 관리자 메인 페이지 임시로 만들어놈 ( 인성 )
