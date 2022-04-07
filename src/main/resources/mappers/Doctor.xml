@@ -26,6 +26,7 @@
               from (select * from doctor) tot,
                   (select @rownum := 0) temp) sub
         where rnum between #{startrow} and #{startrow} + 9
+          and doctor_diagnosis_type = #{doctor_diagnosis_type}
         ]]>
     </select>
 
@@ -48,7 +49,10 @@
     <!--의사명 및 병원명 검색 태영   -->
     <select id="searchDoh" resultType="Doctor" parameterType="String">
         <![CDATA[
-            select * from doctor where doctor_name like concat('%', #{keyword}, '%') or replace(hospital_name,' ','') like concat('%', #{keyword}, '%')
+        select *
+        from doctor
+        where doctor_name like concat('%', #{keyword}, '%')
+           or replace(hospital_name, ' ', '') like concat('%', #{keyword}, '%')
         ]]>
     </select>
 
@@ -60,5 +64,6 @@
         WHERE (@rownum := 0)=0 and doctor_number = #{doctor_number};
         ]]>
     </select>
+
 
 </mapper>

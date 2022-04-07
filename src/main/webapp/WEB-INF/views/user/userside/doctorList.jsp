@@ -1,15 +1,52 @@
+<%--의료진 보기 : 훈/소연/준근--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
 <head>
-  <title>Homespital</title>
+  <title>의료진 보기</title>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
   <link rel="stylesheet" href="/resources/css/doctorList.css"/>
+  <link rel="stylesheet" href="/resources/css/sidebar.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css"/>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
-<body class="is-preload">
+<style>
+  a:link, a:visited, a:hover, a:active {
+    color: grey;
+    text-decoration: none;
+  !important
+  }
 
+</style>
+
+<body class="is-preload">
+<%--side-nav 시작 by 소연 4/7--%>
+<div id="sidebar">
+  <div class="d-flex flex-column align-items-center">
+    <%--        <span class="image avatar"><img src="/resources/img/doctorList/doctor01.jpg" alt=""/></span>--%>
+    <h1 id="logo"><a href="/">Homespital</a></h1>
+    <p>${name}님 안녕하세요.</p>
+  </div>
+  <nav id="nav">
+    <ul>
+      <li><a href="/list" >진료과선택</a></li>
+      <li><a href="#" class="active">의료진선택</a></li>
+    </ul>
+  </nav>
+  <footer>
+    <ul class="icons">
+      <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+      <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+      <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+      <li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+      <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+    </ul>
+  </footer>
+</div>
+<%--side-nav 끝 by 소연 4/7--%>
 <!-- Header -->
 <%--<section id="header">--%>
 <%--    <header>--%>
@@ -49,23 +86,23 @@
 
 <%--의사 및 병원 검색 태영--%>
 <div id="searcharea">
-  <div class="search">
-    <form action="dohSearch" method="post">
-      <input type="search" placeholder="원하시는 의사 및 병원을 입력하세요" name="dhSearch" id="dhSearch"/>
-      <button type="submit" id="searchMedical">검색</button>
-    </form>
-  </div>
+    <div class="search">
+        <form action="dohSearch" method="post">
+            <input type="search" placeholder="원하시는 의사 및 병원을 입력하세요" name="dhSearch" id="dhSearch"/>
+            <button type="submit" id="searchMedical" class="btn border-dark">검색</button>
+        </form>
+    </div>
 </div>
 
 
 <div style="padding-right: 40px;">
-  <div class="d-flex m-3 justify-content-between">
-        <span class="my-auto">총
-            <c:if test="${not empty doctorList}">${fn:length(doctorList)}</c:if>명</span>
-    <div>
-      <input type="hidden" name="docListSortOption" id="docListSortOption" value="false">
-      <button class="btn btn-secondary rounded-pill">실시간 진료</button>
-      <button class="btn btn-warning rounded-pill" onclick={sortByDistance();}>거리순</button>
+    <div class="d-flex m-3 justify-content-between">
+        <span class="my-auto">총<c:if test="${not empty doctorList}">${fn:length(doctorList)}</c:if>명</span>
+        <div>
+            <input type="hidden" name="docListSortOption" id="docListSortOption" value="false">
+            <button class="btn btn-secondary rounded-pill">실시간 진료</button>
+            <button class="btn btn-warning rounded-pill" onclick={sortByDistance();}>거리순</button>
+        </div>
     </div>
     <div class="card p-3">
       <c:if test="${not empty doctorList}">
