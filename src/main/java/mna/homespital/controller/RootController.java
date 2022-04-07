@@ -153,7 +153,12 @@ public class RootController {
 
     //소연 : 의료진 상세보기(의사 디테일)
     @GetMapping("/doctorDetail/{doctor_number}")
-    public ModelAndView doctorDetail(@PathVariable int doctor_number)
+    public ModelAndView doctorDetail(@PathVariable int doctor_number) {
+        System.out.println("doctor_number = " + doctor_number);
+        ModelAndView mav = new ModelAndView();
+
+        return mav;
+    }
 
 
 
