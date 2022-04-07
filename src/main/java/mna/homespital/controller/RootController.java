@@ -54,20 +54,26 @@ public class RootController {
         return new ModelAndView("user/main/index");
     }
 
-    //로그인
+    //환자로그인
     @GetMapping("/loginForm")
     public ModelAndView loginForm() {
         return new ModelAndView("user/main/loginForm");
     }
 
 
-    //회원가입
+    //환자회원가입
     @GetMapping("/joinForm")
     public ModelAndView joinForm() {
         return new ModelAndView("user/userside/joinForm");
     }
 
-    //회원정보수정
+    //약국회원가입
+    @GetMapping("/pharmacyJoinForm")
+    public ModelAndView phamacyJoinForm() {
+        return new ModelAndView("admin/pharside/joinForm");
+    }
+
+    //환자회원정보수정
     @GetMapping("/modifyForm")
     public ModelAndView modifyForm() {
         ModelAndView mav = new ModelAndView("user/userside/modifyForm");
@@ -76,7 +82,7 @@ public class RootController {
             User user = memberService.queryMember(email);
             String juminNum = user.getUser_registration_number();
             user.setUser_registration_number(juminNum.replaceAll(".{6}$", "******"));
-            
+
             if (user == null) {
                 mav.setViewName("user/main/loginForm");
             } else {
@@ -89,7 +95,7 @@ public class RootController {
         return mav;
     }
 
-    //비밀번호확인(정보수정 전)
+    //환자비밀번호확인(정보수정 전)
     @GetMapping("/pwCheck")
     public ModelAndView pwCheck() {
         String email = (String) session.getAttribute("email");
@@ -100,7 +106,7 @@ public class RootController {
         return new ModelAndView("user/userside/pwCheck");
     }
 
-    //회원탈퇴
+    //환자회원탈퇴
     @GetMapping("/delete")
     public ModelAndView deleteForm() {
         String email = (String) session.getAttribute("email");
@@ -111,7 +117,7 @@ public class RootController {
         return new ModelAndView("user/userside/deleteForm");
     }
 
-    //비밀번호 찾기
+    //환자비밀번호 찾기
     @GetMapping("/findpwForm")
     public ModelAndView findpwForm() {
         return new ModelAndView("user/main/findpwForm");
@@ -189,6 +195,6 @@ public class RootController {
     // 관리자 메인 페이지 임시로 만들어놈 ( 인성 )
     @GetMapping("/adminIndex")
     public ModelAndView adminIndex() {
-        return new ModelAndView("admin/mian/adminIndex");
+        return new ModelAndView("admin/main/adminIndex");
     }
 }
