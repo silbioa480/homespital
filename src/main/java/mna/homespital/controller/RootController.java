@@ -172,7 +172,7 @@ public class RootController {
 
         try {
             User user = memberService.findByEmail(email);
-//            mv.addObject("user", user);
+            mv.addObject("user", user);
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -692,16 +692,21 @@
   }
 
   $('.appointDo').click(function() {
-    if(!$("input:checked[id='timeChecked']").is(":checked")) {
+    if(!$("input:checked[name='timeChecked']").is(":checked")) {
       alert("시간약관을 체크하세요.")
+
       return false;
-    } else if(!$("input:checked[id='naebangChecked']").is(":checked")) {
+    } else if(!$("input:checked[name='naebangChecked']").is(":checked")) {
       alert("내방약관을 체크하세요.")
       return false;
-    } else if(!$("input:checked[id='paymentConfirm']").is(":checked")) {
+    } else if(!$("input:checked[name='paymentConfirm']").is(":checked")) {
       alert("결제약관을 체크하세요.")
       return false;
+    } else if($('.diagnosis_content') == "") {
+      alert("증상 내용을 입력해주세요.")
+      return false;
     }
+
   })
 
 </script>
