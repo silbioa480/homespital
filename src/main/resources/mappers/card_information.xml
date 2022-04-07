@@ -21,6 +21,15 @@
         ]]>
     </select>
 
+    <select id="queryMyCardWithCardNumber" resultType="Card_Information" parameterType="Map">
+        <![CDATA[
+        select *
+        from card_information
+        where card_number = #{card_number}
+          and customer_uid = #{customer_uid}
+        ]]>
+    </select>
+
     <insert id="insertMyCard" parameterType="Map">
         <![CDATA[
         insert into card_information(customer_uid, card_owner_number, card_exp, card_nickname, card_number)

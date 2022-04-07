@@ -1,9 +1,6 @@
 package mna.homespital.controller;
 
-import mna.homespital.dto.Diagnosis;
-import mna.homespital.dto.Doctor;
-import mna.homespital.dto.PageInfo;
-import mna.homespital.dto.User;
+import mna.homespital.dto.*;
 import mna.homespital.service.*;
 import org.apache.maven.model.Model;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +17,6 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -169,11 +165,6 @@ public class RootController {
     }
 
 
-
-
-
-
-
     //진료차트 쓰기
 //  @GetMapping("/appointmentForm/{doc}")
 //  public ModelAndView appointmentForm(@PathVariable int doc) {
@@ -204,6 +195,12 @@ public class RootController {
                 String birth = user.getUser_registration_number().substring(0, 6);
                 String gender = user.getUser_registration_number().substring(7, 8);
                 mv.addObject("user", user);
+                System.out.println(user);
+                Card_Information card = paymentService.getPayment(user.getUser_number(), user.getBilling_key());
+//                System.out.println(((Object) cardInfo).toString());
+                String cardInfo = card.getCard_nickname() + " (" + card.getCard_number().substring(card.getCard_number().length() - 4, card.getCard_number().length()) + ")";
+
+                mv.addObject("cardInfo", cardInfo);
 
                 //모델에 view 넣기
                 //의사 객체
@@ -247,7 +244,7 @@ public class RootController {
     //진료예약   ( 인성 )
     @PostMapping("/appointmentForm")
     public ModelAndView appointment(Diagnosis diagnosis, MultipartFile[] diagnosisImgNames,
-                              Model model, HttpServletRequest request, HttpServletResponse response) {
+                                    Model model, HttpServletRequest request, HttpServletResponse response) {
         ModelAndView mv = new ModelAndView();
         try {
             // 사진 업로드
@@ -263,6 +260,8 @@ public class RootController {
                 fileNameArr += (diagnosisImg + ", ");
             }
 
+            if (diagnosis.getBilling_key().isEmpty())
+                diagnosis.setBilling_key(memberService.findByEmail((String) session.getAttribute("email")).getBilling_key());
             // DB insert
             diagnosis.setDiagnosis_image_name(fileNameArr.toString());
             diagnosisService.insertDiagnosis(diagnosis);

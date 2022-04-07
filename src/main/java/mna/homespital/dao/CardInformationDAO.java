@@ -12,7 +12,9 @@ import java.util.Map;
 public interface CardInformationDAO {
     List<Card_Information> queryMyCards(int card_owner_number) throws Exception;
 
-    Card_Information queryMyCard(Map<String, String> params) throws Exception;
+    Card_Information queryMyCard(Map<String, Object> params) throws Exception;
+
+    Card_Information queryMyCardWithCardNumber(Map<String, Object> params) throws Exception;
 
     void insertMyCard(Card_Information param) throws Exception;
 
