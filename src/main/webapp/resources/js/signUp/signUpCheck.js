@@ -16,7 +16,6 @@ const setError = (element, message, e) => {
     errorDisplay.innerText = message;
     inputControl.classList.add('error');
     inputControl.classList.remove('success');
-    e.preventDefault();
 }
 //성공시 에러메시지 삭제
 const setSuccess = element => {
@@ -51,17 +50,20 @@ const isValidSocialSecurityNumber2 = SocialSecurityNumber2 => {
     return reg.test(SocialSecurityNumber2);
 }
 
-form.addEventListener('change', e => {
-    e.preventDefault();
-    validateInput(e);
-})
+// form.addEventListener('change', e => {
+//     e.preventDefault();
+//     validateInput(e);
+// })
+//
+// form.addEventListener('submit', e => {
+//     e.preventDefault();
+//     validateInput(e);
+//     alert("회원강비에 성공하샸습니다.");
+// })
 
-form.addEventListener('submit', e => {
-    validateInput(e);
-})
 
 // trim: 양끝의 공백을 제거한다.
-const validateInput = (e) => {
+function validateInput(e) {
     const emailValue = email.value.trim();
     const passwordValue = password.value.trim();
     const password2Value = password2.value.trim();
@@ -72,24 +74,48 @@ const validateInput = (e) => {
 //이메일
     if (emailValue === "") {
         setError(email, "필수 정보입니다.", e);
+        return false;
     } else if (!isValidEmail(emailValue)) {
         setError(email, "올바른 형식으로 입력해주세요.", e);
+        return false;
     } else {
-        setSuccess(email);
+        $.ajax({
+            type: "POST",
+            url: "emailoverlap",
+            data: {
+                "email": emailValue
+            },
+            async: false,
+            success: function (data) {
+                var isOK = data
+                if (isOK) {
+                    console.log(typeof isOK);
+                    console.log(!isOK);
+                    setError(email, "이미있는 이메일 입니다.");
+                } else {
+                    setSuccess(email);
+                }
+            }
+        });
     }
+
 //비밀번호
     if (passwordValue === "") {
         setError(password, "필수 정보입니다.", e);
+        return false;
     } else if (!isVaildPassword(passwordValue)) {
         setError(password, "비밀번호는 8자 이상이어야 하며, 숫자/영문/특수문자를 모두 포함해야 합니다.", e);
+        return false;
     } else {
         setSuccess(password);
     }
 //비밀번호 확인
     if (password2Value === "") {
         setError(password2, "필수 정보입니다.", e);
+        return false;
     } else if (password2Value !== passwordValue) {
         setError(password2, "비밀번호가 일치하지 않습니다.", e);
+        return false;
     } else {
         setSuccess(password2);
     }
@@ -97,14 +123,17 @@ const validateInput = (e) => {
 //이름
     if (nameValue === "") {
         setError(name, "이름을 입력해주세요.", e);
+        return false;
     } else if (!isValidName(nameValue)) {
         setError(name, "2글자이상 한글만 입력해주세요", e);
+        return false;
     } else {
         setSuccess(name);
     }
 //주민등록번호 앞자리
     if (SocialSecurityNumberValue === "") {
         setError(SocialSecurityNumber, "필수 정보입니다.", e);
+        return false;
         // } else if (!isValidSocialSecurityNumber(SocialSecurityNumber)) {
         //     setError(SocialSecurityNumber, "숫자 6개를 입력해주세요.",e);
     } else {
@@ -113,6 +142,7 @@ const validateInput = (e) => {
 //주민등록번호 뒷자리
     if (SocialSecurityNumberValue2 === "") {
         setError(SocialSecurityNumber2, "필수 정보입니다.", e);
+        return false;
         // } else if (!isValidSocialSecurityNumber2(SocialSecurityNumber2)) {
         //     setError(SocialSecurityNumber2, "숫자 7개를 입력해주세요.",e);
     } else {
@@ -121,9 +151,16 @@ const validateInput = (e) => {
     // 후대폰
     if (phoneValue === "") {
         setError(phone, "필수 정보입니다.", e);
+        return false;
     } else {
         setSuccess(phone);
     }
+
+    if (confirm("회원가입을하시겠습니까?")) {
+        alert("회원가입이 완료 되었습니다.감사합니다");
+        $("form").submit();
+    }
+    ;
 }
 
 

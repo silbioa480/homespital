@@ -231,7 +231,7 @@
                         </div>
                     </div>
                     <br><br><br>
-                    <input type="submit" value="회원가입" style="width: 100%;"></input>
+                    <input type="button" onClick="validateInput()" value="회원가입" style="width: 100%;"></input>
                 </div>
             </section>
         </form>
