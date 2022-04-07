@@ -210,6 +210,7 @@ public class RootController {
                 Doctor doctor = doctorService.getDocInfo(doctor_number);
                 doctor.setDoctor_password("");
                 mv.addObject("doctor", doctor);
+
                 //의사 실제 진료시간(근무시간 - 점심시간)을 계산
                 String work_time = doctor.getWorking_time();
                 String[] work_timeArr = work_time.split(",");
