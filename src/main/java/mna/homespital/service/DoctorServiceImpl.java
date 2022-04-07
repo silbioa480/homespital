@@ -93,10 +93,15 @@ public class DoctorServiceImpl implements DoctorService {
         return doctorDAO.getDocScheduleInfo(doctor_number);
     }
 
-    // 선택된 진료과의 닥터 정보들 가져오기(준근)
+    // 의사이메일로 의사 가져오기(준근)
     @Override
-    public Doctor selectDoctor(String doctor_diagnosis_type) throws Exception {
-        return doctorDAO.selectDoctor(doctor_diagnosis_type);
+    public int searchDocId(String doctor_email) throws Exception {
+        return doctorDAO.searchDocId(doctor_email);
+    }
+
+    @Override
+    public ArrayList<HashMap<String, Object>> docMedicalRecords(int doctor_number) throws Exception {
+        return doctorDAO.docMedicalRecords(doctor_number);
     }
 
 

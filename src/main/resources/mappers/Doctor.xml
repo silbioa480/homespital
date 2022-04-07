@@ -58,12 +58,24 @@
         ]]>
     </select>
 
-    <!-- 선택된 진료과의 닥터 정보들 가져오기(준근) -->
-    <select id="selectDoctor" resultType="Doctor" parameterType="String">
-        <![CDATA[
-        select *
-        from doctor
-        where doctor_diagnosis_type = #{doctor_diagnosis_type}
+    <!-- email값으로 의사아이디 불러오기   -->
+    <select id="searchDocId" resultType="int" parameterType="String">
+	    <![CDATA[
+        select doctor_number
+        from user
+        where doctor_email = #{doctor_email}
+        ]]>
+    </select>
+
+    <!--  나의 진료내역 리스트 보기(준근)  -->
+    <select id="docMedicalRecords" resultType="HashMap" parameterType="int">
+	    <![CDATA[
+        select di.*, u.*
+        from diagnosis di,
+             user u
+        where di.doctor_number = #{doctor_number}
+          and di.user_number = u.user_number
+        order by di.create_date desc;
         ]]>
     </select>
 
