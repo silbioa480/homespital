@@ -18,7 +18,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css"
     />
-
+      <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/css/medicalList.css" />
   </head>
   <body class="is-preload">
@@ -33,6 +33,8 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 <%--        </nav>--%>
 <%--      </div>--%>
 <%--    </section>--%>
+
+<%--진료과 검색 태영--%>
     <div id="searcharea">
           <div class="search">
               <form action="medicalSearch" method="post">
@@ -61,16 +63,38 @@ uri="http://java.sun.com/jsp/jstl/core" %>
       </div>
     </div>
 
-<%--    <!-- Footer -->--%>
-<%--    <footer id="footer" class="wrapper style1-alt">--%>
-<%--      <div class="inner">--%>
-<%--        <ul class="menu">--%>
-<%--          <li>&copy; Untitled. All rights reserved.</li>--%>
-<%--          <li>Design: <a href="#">HTML5 UP</a></li>--%>
-<%--        </ul>--%>
-<%--      </div>--%>
-<%--    </footer>--%>
 
 
+<%--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>--%>
+<%--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>--%>
+
+<%--<script>--%>
+<%--&lt;%&ndash;   autocomplete 태영 &ndash;%&gt;--%>
+<%--    $(function(){--%>
+<%--        $('#mediSearch').autocomplete({--%>
+<%--            source:function(request,response){--%>
+<%--                $.ajax({--%>
+<%--                    type:"post",--%>
+<%--                    url:"/mediSearch",--%>
+<%--                    dataType:"json",--%>
+<%--                    contentType:"application/json; charset=UTF-8",--%>
+<%--                    success:function(data,textStatus){--%>
+<%--                        console.log(data);--%>
+<%--                        var fillterdArray=data.array().filter();--%>
+<%--                        console.log(fillterdArray);--%>
+<%--                        response(--%>
+<%--                            $.map(fillterdArray,function(item){--%>
+<%--                                return{--%>
+<%--                                    label:item.key,--%>
+<%--                                    value:item.value--%>
+<%--                                }--%>
+<%--                            })--%>
+<%--                        )--%>
+<%--                    }--%>
+<%--                })--%>
+<%--            }--%>
+<%--        })--%>
+<%--    })--%>
+<%--</script>--%>
   </body>
 </html>
