@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: InSung
-  Date: 2022-04-01
-  Time: 오전 12:26
-  To change this template use File | Settings | File Templates.
---%>
+<%--인성 : 약국단 진료리스트보기--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>

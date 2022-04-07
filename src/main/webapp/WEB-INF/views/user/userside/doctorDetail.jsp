@@ -1,18 +1,16 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: InSung
-  Date: 2022-04-01
-  Time: 오전 12:23
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%--의료진 보기 : 훈/소연--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Title</title>
+    <title>의료진 상세보기</title>
     <link rel="stylesheet" href="/resources/css/writeMediChartForm.css"/>
 </head>
 <body>
+
+
 <div class="card p-3">
     <div class="row g-0">
         <div class="col-md-4" style="min-width: 200px; max-width: 200px;">

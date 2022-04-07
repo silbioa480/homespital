@@ -79,7 +79,7 @@
                 </div>
                 <div>
                     <p class="medicalLink">
-                        <a href="doctorList">${data.medical_name}</a>
+                        <a href="/doctorList?doctor_diagnosis_type=${data.medical_name}">${data.medical_name}</a>
                     </p>
                 </div>
             </div>

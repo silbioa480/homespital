@@ -2443,15 +2443,15 @@ table {
     width: 100%;
 }
 
-table tbody tr {
-    border: solid 2px #f4f4f4;
-    border-left: 0;
-    border-right: 0;
-}
+/*table tbody tr {*/
+/*    border: solid 2px #f4f4f4;*/
+/*    border-left: 0;*/
+/*    border-right: 0;*/
+/*}*/
 
-table tbody tr:nth-child(2n + 1) {
-    background-color: #fafafa;
-}
+/*table tbody tr:nth-child(2n + 1) {*/
+/*    background-color: #fafafa;*/
+/*}*/
 
 table td {
     padding: 0.75em 0.75em;
