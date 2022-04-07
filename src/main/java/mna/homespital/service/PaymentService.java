@@ -14,4 +14,9 @@ public interface PaymentService {
     public JSONObject pay(String authToken, String customer_uid, String merchant_uid, int amount, String name);
 
     public List<Card_Information> getPayments(String email);
+
+    public Card_Information getPaymentInfo(int user_number, String card_number);
+
+    public Card_Information getPayment(int user_number, String customer_uid);
+
 }

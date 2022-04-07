@@ -4,12 +4,15 @@ import mna.homespital.dto.Doctor;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Mapper
 @Repository
 public interface DoctorDAO {
 
+    // 의료진 찾기 - 의료진 목록 보기 (훈)
     List<Doctor> queryDoctor(int startrow) throws Exception;
 
     Integer doctorAmount() throws Exception;
@@ -19,6 +22,9 @@ public interface DoctorDAO {
 
     // 의사명 및 병원명 검색 태영
     List<Doctor> searchDoh(String keyword) throws Exception;
+    
+    //의사 스케쥴에 대한 정보 가져오기 (준근)
+    ArrayList<HashMap<String, Object>> getDocScheduleInfo(int doctor_number) throws Exception;
 
     // 거리순 검색 알고리즘
     // 현재 주소를 어떻게든 가져와. 이거는 geolocation = html5 https

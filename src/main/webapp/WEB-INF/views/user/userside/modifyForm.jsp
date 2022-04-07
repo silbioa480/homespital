@@ -406,6 +406,41 @@
         $('#phoneModal').modal("hide");
         document.getElementById("originphone").value = document.getElementById("phone").value
     }
+
+    //새로운 비밀번호 입력시 정규성검사(아래에 에러메세지 뜸)
+    function check_pw() {
+        var password = document.getElementById('password').value;
+        var password2 = document.getElementById('password2').value;
+        if (password !== password2) {
+            document.getElementById('pw_check_msg').innerHTML = "비밀번호가 다릅니다. 다시 확인해 주세요.";
+        } else {
+            document.getElementById('pw_check_msg').innerHTML = "";
+        }
+        if (password2 === "") {
+            document.getElementById('pw_check_msg').innerHTML = "";
+        }
+    }
+
+  //새로운 비밀번호 입력시 정규성검사(아래에 에러메세지 뜸)
+  function check_pw() {
+    var password = document.getElementById('password').value;
+    var password2 = document.getElementById('password2').value;
+    if (password !== password2) {
+      document.getElementById('pw_check_msg').innerHTML = "비밀번호가 다릅니다. 다시 확인해 주세요.";
+    } else {
+      document.getElementById('pw_check_msg').innerHTML = "";
+    }
+    if (password2 === "") {
+      document.getElementById('pw_check_msg').innerHTML = "";
+    }
+  }
+
+  function submitNewCardId() {
+    if ($("#cardNameModal").val() == "") {
+      alert("카드 별칭을 입력해주세요.");
+      $("#cardNameModal").focus();
+      return false;
+    }
     function getParentText() {
         document.getElementById("cardName").value = document.getElementById("cardNameModal").value
         document.getElementById("lastCardNum").value = document.getElementById("lastCardNumModal").value
@@ -485,6 +520,36 @@
         })
         return false;
     }
+      // 훈:
+    card_number = $('#cardNumModal1').val() + '-' + $('#cardNumModal2').val() + '-' + $('#cardNumModal3').val() + '-' + $('#cardNumModal4').val();
+    expiry = '20' + $('#cardMMYYNumModal').val().substr(2, 2) + '-' + $('#cardMMYYNumModal').val().substr(0, 2);
+    pwd_2digit = $('#cardPassword').val();
+
+    // var formData = new FormData();
+    // formData.append("card_number", card_number);
+    // formData.append("expiry", expiry);
+    // formData.append("pwd_2digit", pwd_2digit);
+    $.ajax({
+      url: "/writeMyCard",
+      type: "POST",
+      cache: false,
+      data: {
+        "card_name": $("#cardNameModal").val(),
+        "card_number": card_number,
+        "expiry": expiry,
+        "pwd_2digit": pwd_2digit,
+      },
+      contentType: "application/x-www-form-urlencoded; charset=UTF-8;",
+      success: function (data) {
+        alert("성공하였습니다.");
+        //$('#writeCardModal').modal("hide");
+      },
+      error: function (data) {
+        alert("에러가 발생했습니다.")
+      }
+    })
+    return false;
+  }
 </script>
 
 

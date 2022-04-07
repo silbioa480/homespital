@@ -140,69 +140,65 @@
                     </div>
                 </div>
             </section>
-            <br><br><br><br>
+<%--            <br><br><br><br>--%>
 
             <!-- Three -->
-            <section id="three">
-                <div class="container">
-                    <h5>결제 정보에 사용됩니다(선택)</h5>
-                    <hr>
-                    <div class="input-control">
-                    <h5 class="card-title">카드 별칭</h5>
-                        <div style="display:flex">
-                        <input style="width: 100%" id="cardNameModal" type="text"
-                               name="cardNameModal"
-                               placeholder="카드 별칭를 입력해주세요. ( 최대 8자 )" title="카드 별칭 입력"
-                               maxlength="8"/>
-                    </div>
-                    <div class="error"></div>
-                    </div>
+<%--            <section id="three">--%>
+<%--                <div class="container">--%>
+<%--                    <h5>결제 정보에 사용됩니다(선택)</h5>--%>
+<%--                    <hr style="height:4px">--%>
+<%--                    <div class="input-control">--%>
+<%--                    <h5 class="card-title">카드 별칭</h5>--%>
+<%--                        <div style="display:flex">--%>
+<%--                        <input style="width: 100%" id="cardNameModal" type="text"--%>
+<%--                               name="cardNameModal"--%>
+<%--                               placeholder="카드 별칭를 입력해주세요. ( 최대 8자 )" title="카드 별칭 입력"--%>
+<%--                               maxlength="8"/>--%>
+<%--                    </div>--%>
+<%--                    <div class="error"></div>--%>
+<%--                    </div>--%>
 
-                    <div class="input-control">
-                        <h5 class="card-title">카드 번호</h5>
-                        <div style="display:flex">
-                            <input style="width: 24%; height:40px;" id="cardNumModal1" type="text"
-                                   name="cardNumModal1" maxlength="4" minlength="4"/>
-                            <span style="line-height:40px;">-</span>
-                            <input style="width: 24%; height:40px;" id="cardNumModal2"
-                                   type="password"
-                                   name="cardNumModal2" maxlength="4" minlength="4"/>
-                            <span style="line-height:40px;">-</span>
-                            <input style="width: 24%; height:40px;" id="cardNumModal3"
-                                   type="password"
-                                   name="cardNumModal3" maxlength="4" minlength="4"/>
-                            <span style="line-height:40px;">-</span>
-                            <input style="width: 24%; height:40px;" id="cardNumModal4" type="text"
-                                   name="cardNumModal4" maxlength="4" minlength="4"/>
-                        </div>
-                    </div>
-
-
-                    <div class="input-control">
-                        <h5 class="card-title">카드 유효기간</h5>
-                        <div style="display:flex">
-                            <input style="width: 100%" id="cardMMYYNumModal" type="text"
-                                   name="cardMMYYNumModal"
-                                   title="카드 유효기간" placeholder="MMYY" maxlength="4" minlength="4"/>
-                        </div>
-                    </div>
+<%--                    <div class="input-control">--%>
+<%--                        <h5 class="card-title">카드 번호</h5>--%>
+<%--                        <div style="display:flex">--%>
+<%--                            <input style="width: 24%; height:40px;" id="cardNumModal1" type="text"--%>
+<%--                                   name="cardNumModal1" maxlength="4" minlength="4"/>--%>
+<%--                            <span style="line-height:40px;">-</span>--%>
+<%--                            <input style="width: 24%; height:40px;" id="cardNumModal2"--%>
+<%--                                   type="password"--%>
+<%--                                   name="cardNumModal2" maxlength="4" minlength="4"/>--%>
+<%--                            <span style="line-height:40px;">-</span>--%>
+<%--                            <input style="width: 24%; height:40px;" id="cardNumModal3"--%>
+<%--                                   type="password"--%>
+<%--                                   name="cardNumModal3" maxlength="4" minlength="4"/>--%>
+<%--                            <span style="line-height:40px;">-</span>--%>
+<%--                            <input style="width: 24%; height:40px;" id="cardNumModal4" type="text"--%>
+<%--                                   name="cardNumModal4" maxlength="4" minlength="4"/>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
 
 
-                    <div class="input-control">
-                        <h5 class="card-title">카드 비밀번호</h5>
-                        <div style="display:flex">
-                            <input style="width: 100%" id="cardPassword" type="password"
-                                   name="cardPassword"
-                                   title="카드 비밀번호" placeholder="비밀번호 앞자리 2개 입력하세요." maxlength="2"
-                                   minlength="2"/>
-                        </div>
-                    </div>
-                </div>
+<%--                    <div class="input-control">--%>
+<%--                        <h5 class="card-title">카드 유효기간</h5>--%>
+<%--                        <div style="display:flex">--%>
+<%--                            <input style="width: 100%" id="cardMMYYNumModal" type="text"--%>
+<%--                                   name="cardMMYYNumModal"--%>
+<%--                                   title="카드 유효기간" placeholder="MMYY" maxlength="4" minlength="4"/>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
 
 
+<%--                    <div class="input-control">--%>
+<%--                        <h5 class="card-title">카드 비밀번호</h5>--%>
+<%--                        <div style="display:flex">--%>
+<%--                            <input style="width: 100%" id="cardPassword" type="password"--%>
+<%--                                   name="cardPassword"--%>
+<%--                                   title="카드 비밀번호" placeholder="비밀번호 앞자리 2개 입력하세요." maxlength="2"--%>
+<%--                                   minlength="2"/>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
 
-            </section>
-            <br><br><br><br>
 
 
             <!-- Four -->
@@ -235,7 +231,7 @@
                         </div>
                     </div>
                     <br><br><br>
-                    <input type="submit" value="회원가입" style="width: 100%;"></input>
+                    <input type="button" onClick="validateInput()" value="회원가입" style="width: 100%;"></input>
                 </div>
             </section>
         </form>
