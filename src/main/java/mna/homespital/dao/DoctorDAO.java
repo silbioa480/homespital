@@ -10,6 +10,7 @@ import java.util.List;
 @Repository
 public interface DoctorDAO {
 
+    // 의료진 찾기 - 의료진 목록 보기 (훈)
     List<Doctor> queryDoctor(int startrow) throws Exception;
 
     Integer doctorAmount() throws Exception;
