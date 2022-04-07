@@ -26,7 +26,7 @@
 
     <!-- Main -->
     <div id="main">
-        <form id="form" name="form" action="/doctorJoin" method="post">
+        <form id="form" name="form" action="/doctorJoin.do" method="post">
             <!-- One -->
             <section id="one">
                 <div class="container">
@@ -83,9 +83,9 @@
                         <div class="error"></div>
                     </div>
                     <div class="input-control">
-                        <label class="doctor-title" for="DoctorNumber">의사면허번호</label>
+                        <label class="doctor-title" for="doctorNumber">의사면허번호</label>
                         <div style="display:flex">
-                            <input id="DoctorNumber" name="DoctorNumber" type="text" maxlength="6">
+                            <input id="doctorNumber" name="doctorNumber" type="text" maxlength="6">
                         </div>
                         <div class="error"></div>
                     </div>
@@ -99,9 +99,7 @@
                     <div class="input-control">
                         <label class="doctor-title" for="businessNumber">사업자번호</label>
                         <div style="display:flex">
-                            <input id="businessNumber" style="width: 20%" name="businessNumber1" type="text" maxlength="6">&nbsp__&nbsp<input
-                                type="text" id="businessNumber2" style="width: 20%" name="businessNumber2" maxlength="7">&nbsp__&nbsp<input
-                                type="text" id="businessNumber3" style="width: 20%" name="businessNumber3" maxlength="7">
+                            <input id="businessNumber" style="width: 70%" name="businessNumber1" type="text" maxlength="6">
                             <input type="button" id="businessNumCheck" class="doubleChk" style="width: 15%" value="조회">
                         </div>
                         <div class="error"></div>
