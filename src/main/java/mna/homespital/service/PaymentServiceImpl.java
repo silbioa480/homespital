@@ -14,7 +14,9 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 @Service
@@ -83,7 +85,7 @@ public class PaymentServiceImpl implements PaymentService {
     } // https://docs.iamport.kr/tech/access-token?lang=ko
     // response는 "access_token", "now(아임포트 REST API 서버의 현재시간)", "expired_at(토큰의 만료시간(KST))"
 
-    public JSONObject getBillingKey(String authToken, JSONObject cardData) {
+    public JSONObject getBillingKey(String authToken, JSONObject cardData, int user_number, String card_nickname) {
         JSONObject result = null;
 
         //customer_uid 설정
@@ -147,16 +149,21 @@ public class PaymentServiceImpl implements PaymentService {
         try {
             Card_Information cardInfo = new Card_Information(
                     cardData.getString("customer_uid"),
-                    cardData.getInt("card_owner_number"),
-                    new SimpleDateFormat("MMyy").parse(cardData.getString("expiry")),
-                    cardData.getString("card_nickname"),
+                    user_number,
+                    new SimpleDateFormat("yyyy-MM").parse(cardData.getString("expiry")),
+                    card_nickname,
                     cardData.getString("card_number")
             );
+            Map<String, Object> param = new HashMap<>();
+            param.put("customer_uid", cardData.getString("customer_uid"));
+            param.put("card_owner_number", user_number);
             cardDAO.insertMyCard(cardInfo);
+            cardDAO.setThisCardMain(param);
+            return result.getJSONObject("response");
         } catch (Exception e) {
-            //throw new Exception("결제 정보 오류");
+            e.printStackTrace();
+            return null;
         }
-        return result.getJSONObject("response");
     }
 
     public JSONObject pay(String authToken, String customer_uid, String merchant_uid, int amount, String name) {

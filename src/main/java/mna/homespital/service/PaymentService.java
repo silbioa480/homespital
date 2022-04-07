@@ -9,7 +9,7 @@ public interface PaymentService {
 
     public JSONObject getAuthToken();
 
-    public JSONObject getBillingKey(String authToken, JSONObject cardData);
+    public JSONObject getBillingKey(String authToken, JSONObject cardData, int user_number, String card_nickname);
 
     public JSONObject pay(String authToken, String customer_uid, String merchant_uid, int amount, String name);
 
