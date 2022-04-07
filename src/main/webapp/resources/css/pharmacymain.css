@@ -1,0 +1,54 @@
+body,html{
+    padding:0; margin:0;
+}
+a{
+   cursor:pointer;
+}
+
+#wrapper{
+    width:100%;
+    height:auto;
+}
+
+.pharmacy{
+    width:100%;
+    height:969px;
+    box-sizing: border-box;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background: url(/resources/img/main/overlay.png), url(/resources/img/main/intro.jpg);
+    background-size: 256px 256px, cover;
+    background-attachment: fixed, fixed;
+    background-position: top left, bottom center;
+    background-repeat: repeat, no-repeat;
+}
+
+.pharmacy-content-box{
+    width:60%;
+    height:auto;
+    display:flex;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+
+
+.pharmacy-link{
+    height:auto;
+    padding:4vw 3vw;
+    margin: 20px;
+    display:block;
+    box-sizing: border-box;
+    background-color:rgba(156,173,172,0.5);
+    border-radius:20px;
+    border:1px solid pink;
+    color:black;
+    font-weight:bold;
+    text-decoration: none;
+}
+
+.pharmacy-content:hover{
+    transition:all 0.5s ease-in-out;
+    transform:scale(1.1);
+}

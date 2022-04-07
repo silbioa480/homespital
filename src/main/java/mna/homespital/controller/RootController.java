@@ -197,4 +197,12 @@ public class RootController {
     public ModelAndView adminIndex() {
         return new ModelAndView("admin/main/adminIndex");
     }
+
+    //약국 메인페이지 태영
+    @GetMapping("/pharmacyIndex")
+    public ModelAndView pharmacyIndex(){
+        ModelAndView mv =new ModelAndView();
+        mv.setViewName("admin/pharside/pharmacyIndex");
+        return mv;
+    }
 }
