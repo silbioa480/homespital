@@ -44,8 +44,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
               <%--
               data-bs-target="#navbarNavDarkDropdown"
               aria-controls="navbarNavDarkDropdown"
-              --%
-            >
+              --%>
               data-target="#navbars" aria-controls="navbars"
               aria-expanded="false" aria-label="Toggle navigation">
               <span class="fa fa-bars" style="color: black"></span>
