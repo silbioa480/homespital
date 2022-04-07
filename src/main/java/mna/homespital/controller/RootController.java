@@ -129,6 +129,10 @@ public class RootController {
   public ModelAndView appointmentForm(@PathVariable int doctor_number) throws Exception {
     ModelAndView mv = new ModelAndView("user/userside/appointmentForm");
     String email = (String) session.getAttribute("email");
+    if(email == null) {
+      mv.setViewName("redirect:/loginForm");
+    }
+
     try {
       //모델에 view 넣기
       //의사 객체
@@ -171,8 +175,9 @@ public class RootController {
 
   //진료예약   ( 인성 )
   @PostMapping("/appointmentForm")
-  public String appointment(Diagnosis diagnosis, MultipartFile[] diagnosisImgNames,
-                            Model model, HttpServletRequest request, HttpServletResponse response) {
+  public ModelAndView appointment(Diagnosis diagnosis, MultipartFile[] diagnosisImgNames,
+                                  Model model, HttpServletRequest request, HttpServletResponse response) {
+    ModelAndView mv = new ModelAndView();
     try {
       // 사진 업로드
       String fileNameArr = "";
@@ -190,10 +195,12 @@ public class RootController {
       // DB insert
       diagnosis.setDiagnosis_image_name(fileNameArr.toString());
       diagnosisService.insertDiagnosis(diagnosis);
+      mv.setViewName("redirect:/myMedicalList");
     } catch (Exception e) {
       e.printStackTrace();
+      //mv.setViewName();
     }
-    return "/appointmentSuccess";
+    return mv;
   }
 
   // 관리자 메인 페이지 임시로 만들어놈 ( 인성 )

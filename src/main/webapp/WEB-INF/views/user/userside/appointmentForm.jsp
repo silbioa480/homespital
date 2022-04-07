@@ -740,6 +740,8 @@
     <%--  alert( '${doctor.doctor_name} '+ "의사에게 " + $("input:checked[name='diagnosis_time']").val()+ "시에 예약 완료되었습니다.");--%>
     <%--})--%>
 
+
+
 </script>
 
 </body>
