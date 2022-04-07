@@ -158,8 +158,12 @@ public class PaymentServiceImpl implements PaymentService {
             param.put("customer_uid", cardData.getString("customer_uid"));
             param.put("card_owner_number", user_number);
             cardDAO.insertMyCard(cardInfo);
-            cardDAO.setThisCardMain(param);
-            return result.getJSONObject("response");
+            JSONObject r = result.getJSONObject("response");
+            Card_Information cardInform = cardDAO.queryMyCard(param);
+            r.put("card_nickname", cardInform.getCard_nickname());
+            r.put("card_number", cardInform.getCard_number().substring(cardInform.getCard_number().length() - 4, cardInform.getCard_number().length()));
+            r.put("customer_uid", cardInform.getCustomer_uid());
+            return r;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -238,4 +242,29 @@ public class PaymentServiceImpl implements PaymentService {
             return null;
         }
     }
+
+    public Card_Information getPaymentInfo(int user_number, String card_number) {
+        try {
+            Map<String, Object> params = new HashMap<>();
+            params.put("user_number", user_number);
+            params.put("card_number", card_number);
+            return cardDAO.queryMyCardWithCardNumber(params);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public Card_Information getPayment(int user_number, String customer_uid) {
+        try {
+            Map<String, Object> params = new HashMap<>();
+            params.put("card_owner_number", user_number);
+            params.put("customer_uid", customer_uid);
+            Card_Information card = cardDAO.queryMyCard(params);
+            System.out.println(card.getCard_nickname());
+            return card;
+        } catch (Exception e) {
+            return null;
+        }
+    }
 }
+
