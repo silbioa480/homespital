@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class DoctorServiceImpl implements DoctorService {
@@ -16,10 +17,11 @@ public class DoctorServiceImpl implements DoctorService {
     DoctorDAO doctorDAO;
 
     @Override
-    public List<Doctor> getDocList(int page, PageInfo pageInfo) throws Exception {
+    public List<Doctor> getDocList(String doctor_diagnosis_type, int page, PageInfo pageInfo) throws Exception {
 
         // 의료진 찾기 - 의료진 목록 보기 (훈)
-        List<Doctor> list = doctorDAO.queryDoctor(0);
+
+//        List<Doctor> list = doctorDAO.queryDoctor(param);
         int listCount = doctorDAO.doctorAmount();
 
         // 총 페이지 수. 올림처리
@@ -40,7 +42,10 @@ public class DoctorServiceImpl implements DoctorService {
         int startrow = (page - 1) * 10 + 1;
 //        HashMap<String, Integer> input = new HashMap<>();
 //        input.put("startrow", startrow);
-        return doctorDAO.queryDoctor(startrow);
+        Map<String, Object> param = new HashMap<>();
+        param.put("doctor_diagnosis_type", doctor_diagnosis_type);
+        param.put("startrow", startrow);
+        return doctorDAO.queryDoctor(param);
         //return list;
     }
 
@@ -76,14 +81,23 @@ public class DoctorServiceImpl implements DoctorService {
         return doctorDAO.docInfo(doctor_number);
     }
 
-    //의사명 및 병원명 검색 태영
+    //의사명 및 병원명 검색 (태영)
     @Override
     public List<Doctor> getSearchDoh(String keyword) throws Exception {
         return doctorDAO.searchDoh(keyword);
     }
-    
+
+    // 의사 스케쥴에 대한 정보 가져오기 (준근)
     @Override
     public ArrayList<HashMap<String, Object>> getDocScheduleInfo(int doctor_number) throws Exception {
         return doctorDAO.getDocScheduleInfo(doctor_number);
     }
+
+    // 선택된 진료과의 닥터 정보들 가져오기(준근)
+    @Override
+    public Doctor selectDoctor(String doctor_diagnosis_type) throws Exception {
+        return doctorDAO.selectDoctor(doctor_diagnosis_type);
+    }
+
+
 }

@@ -1,27 +1,29 @@
 <%-- Created by IntelliJ IDEA. User: styli Date: 2022-03-28 Time: 오후 8:33 To
-change this template use File | Settings | File Templates. --%> <%@ page
-contentType="text/html;charset=UTF-8" language="java" %> <%@ taglib prefix="c"
-uri="http://java.sun.com/jsp/jstl/core" %>
+change this template use File | Settings | File Templates. --%>
+<%@ page
+        contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c"
+           uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%--모든 진료항 목 출력페이지 view 태영--%>
 
 <html>
-  <head>
+<head>
     <title>Title</title>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, user-scalable=no"
+            name="viewport"
+            content="width=device-width, initial-scale=1, user-scalable=no"
     />
-    <link rel="stylesheet" href="/resources/css/doctorList.css" />
+    <link rel="stylesheet" href="/resources/css/doctorList.css"/>
     <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css"
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css"
     />
-      <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/css/medicalList.css" />
-  </head>
-  <body class="is-preload">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/css/medicalList.css"/>
+</head>
+<body class="is-preload">
 <%--    <section id="sidebar">--%>
 <%--      <div class="inner">--%>
 <%--        <nav>--%>
@@ -35,34 +37,33 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 <%--    </section>--%>
 
 <%--진료과 검색 태영--%>
-    <div id="searcharea">
-          <div class="search">
-              <form action="medicalSearch" method="post">
-                  <input type="search" placeholder="원하시는 진료과를 입력하세요" name="mediSearch" id="mediSearch" />
-                  <button type="submit" id="searchMedical">검색</button>
-              </form>
-          </div>
+<div id="searcharea">
+    <div class="search">
+        <form action="medicalSearch" method="post">
+            <input type="search" placeholder="원하시는 진료과를 입력하세요" name="mediSearch" id="mediSearch"/>
+            <button type="submit" id="searchMedical">검색</button>
+        </form>
     </div>
+</div>
 
 
 <%--진료항목리스트 출력 태영--%>
-    <div id="wrapper">
-      <div class="medicalList">
+<div id="wrapper">
+    <div class="medicalList">
         <c:forEach var="data" items="${list}">
-          <div class="databox">
-            <div>
-              <img src="<%=request.getContextPath()%>+${data.medical_image}" />
+            <div class="databox">
+                <div>
+                    <img src="<%=request.getContextPath()%>+${data.medical_image}"/>
+                </div>
+                <div>
+                    <p class="medicalLink">
+                        <a href="/doctorList?doctor_diagnosis_type=${data.medical_name}">${data.medical_name}</a>
+                    </p>
+                </div>
             </div>
-            <div>
-              <p class="medicalLink">
-                <a href="doctorList">${data.medical_name}</a>
-              </p>
-            </div>
-          </div>
         </c:forEach>
-      </div>
     </div>
-
+</div>
 
 
 <%--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>--%>
@@ -96,5 +97,10 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 <%--        })--%>
 <%--    })--%>
 <%--</script>--%>
-  </body>
+</body>
+<script>
+
+
+</script>
+
 </html>

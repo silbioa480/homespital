@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface DoctorService {
     // 의료진 찾기 - 의료진 목록 보기 (훈)
-    public List<Doctor> getDocList(int page, PageInfo pageInfo) throws Exception;
+    public List<Doctor> getDocList(String doctor_diagnosis_type, int page, PageInfo pageInfo) throws Exception;
 
 //    // 소연 : 의료진 list 5개 보여주고, 6개 부터는 다음으로 넘어가는 것. (무한 스크롤이 2nd.일단 일케 할게요) (DTO와 연결, DAO필요X)
 //    PageInfo getPageInfo(PageInfo pageInfo) throws Exception;
@@ -22,4 +22,7 @@ public interface DoctorService {
 
     //의사 스케쥴에 대한 정보 가져오기(준근)
     ArrayList<HashMap<String, Object>> getDocScheduleInfo(int doctor_number) throws Exception;
+
+    //선택된 진료과의 닥터 정보들 가져오기 (준근)
+    Doctor selectDoctor(String doctor_diagnosis_type) throws Exception;
 }

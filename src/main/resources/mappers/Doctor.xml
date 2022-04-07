@@ -12,13 +12,14 @@
     <!--                #{user_phone}, #{user_address})-->
     <!--        ]]>-->
     <!--    </insert>-->
-    <select id="queryDoctor" resultType="Doctor" parameterType="int">
+    <select id="queryDoctor" resultType="Doctor" parameterType="Map">
         <![CDATA[
         select *
         from (select @rownum:=@rownum+1 rnum, tot.*
               from (select * from doctor) tot,
                   (select @rownum := 0) temp) sub
         where rnum between #{startrow} and #{startrow} + 9
+          and doctor_diagnosis_type = #{doctor_diagnosis_type}
         ]]>
     </select>
 
@@ -41,7 +42,10 @@
     <!--의사명 및 병원명 검색 태영   -->
     <select id="searchDoh" resultType="Doctor" parameterType="String">
         <![CDATA[
-            select * from doctor where doctor_name like concat('%', #{keyword}, '%') or replace(hospital_name,' ','') like concat('%', #{keyword}, '%')
+        select *
+        from doctor
+        where doctor_name like concat('%', #{keyword}, '%')
+           or replace(hospital_name, ' ', '') like concat('%', #{keyword}, '%')
         ]]>
     </select>
 
@@ -53,5 +57,15 @@
         WHERE (@rownum := 0)=0 and doctor_number = #{doctor_number};
         ]]>
     </select>
+
+    <!-- 선택된 진료과의 닥터 정보들 가져오기(준근) -->
+    <select id="selectDoctor" resultType="Doctor" parameterType="String">
+        <![CDATA[
+        select *
+        from doctor
+        where doctor_diagnosis_type = #{doctor_diagnosis_type}
+        ]]>
+    </select>
+
 
 </mapper>
