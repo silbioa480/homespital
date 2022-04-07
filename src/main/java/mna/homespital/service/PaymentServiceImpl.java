@@ -257,9 +257,11 @@ public class PaymentServiceImpl implements PaymentService {
     public Card_Information getPayment(int user_number, String customer_uid) {
         try {
             Map<String, Object> params = new HashMap<>();
-            params.put("user_number", user_number);
+            params.put("card_owner_number", user_number);
             params.put("customer_uid", customer_uid);
-            return cardDAO.queryMyCard(params);
+            Card_Information card = cardDAO.queryMyCard(params);
+            System.out.println(card.getCard_nickname());
+            return card;
         } catch (Exception e) {
             return null;
         }
