@@ -10,6 +10,7 @@
 </head>
 <body>
 <div>
+  <button id="test">버튼</button>
   <%--    인성      --%>
   <form method="post" class="file-uploader" action="/appointmentForm" enctype="multipart/form-data">
     <div class="card p-3">
@@ -42,28 +43,16 @@
                 </tr>
                 <tr>
                   <th>시간:</th>
-                  <td>
-                    c:foreach로 넣을 영역. 예시
-                    <label class="box-radio-input" data-bs-toggle="tooltip" data-bs-placement="top"
-                           title="현재 시간에 예약한 인원 : 1/10">
-                      <input type="radio" name="diagnosis_time" value="10" checked="checked">
-                      <span>10:00</span>
-                    </label>
-                    <label class="box-radio-input" data-bs-toggle="tooltip" data-bs-placement="top"
-                           title="현재 시간에 예약한 인원 : 8/10">
-                      <input type="radio" name="diagnosis_time" value="11">
-                      <span>11:00</span>
-                    </label>
-                    <label class="box-radio-input" data-bs-toggle="tooltip" data-bs-placement="top"
-                           title="점심시간">
-                      <input type="radio" name="diagnosis_time" value="12" disabled>
-                      <span class="text-muted">12:00</span>
-                    </label>
-                    <label class="box-radio-input" data-bs-toggle="tooltip" data-bs-placement="top"
-                           title="현재 시간에 예약한 인원 : 10/10">
-                      <input type="radio" name="diagnosis_time" value="13" disabled>
-                      <span class="text-muted">13:00</span>
-                    </label>
+                  <td id="workBtn">
+                    <c:forEach var="wt" items="${real_work_timeList}">
+                      <label class="box-radio-input" data-bs-toggle="tooltip" data-bs-placement="top"
+                             title="">
+                        <input type="radio" name="diagnosis_time" value="${wt}" checked="checked">
+                        <span>${wt}:00</span>
+                      </label>
+                    </c:forEach>
+
+
                   </td>
                 </tr>
               </table>
@@ -697,20 +686,28 @@
   $('.appointDo').click(function() {
     if(!$("input:checked[name='timeChecked']").is(":checked")) {
       alert("시간약관을 체크하세요.")
-
+      $(".timeChecked").focus();
       return false;
     } else if(!$("input:checked[name='naebangChecked']").is(":checked")) {
       alert("내방약관을 체크하세요.")
+      $(".naebangChecked").focus();
       return false;
     } else if(!$("input:checked[name='paymentConfirm']").is(":checked")) {
       alert("결제약관을 체크하세요.")
+      $(".paymentConfirm").focus();
       return false;
     } else if($('.diagnosis_content').val() == "") {
       alert("증상 내용을 입력해주세요.")
+      $(".diagnosis_content").focus();
       return false;
+    } else {
+      alert( '${doctor.doctor_name} '+ "의사에게 " + $("input:checked[name='diagnosis_time']").val()+ "시에 예약 완료되었습니다.");
     }
-
   })
+
+  <%--$('#test').click(function() {--%>
+  <%--  alert( '${doctor.doctor_name} '+ "의사에게 " + $("input:checked[name='diagnosis_time']").val()+ "시에 예약 완료되었습니다.");--%>
+  <%--})--%>
 
 </script>
 
