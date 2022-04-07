@@ -188,8 +188,9 @@ public class RootController {
         String filename = UUID.randomUUID().toString() + "." + diagnosisImg.substring(diagnosisImg.lastIndexOf('.') + 1);
         File destFile = new File(path + filename);
         diagnosisImgNames[i].transferTo(destFile);
-        diagnosisImg = filename;
-        fileNameArr += (diagnosisImg + ", ");
+        // 이 두줄땜시 사진 자동으로 올라감
+//        diagnosisImg = filename;
+//        fileNameArr += (diagnosisImg + ", ");
       }
 
       // DB insert
