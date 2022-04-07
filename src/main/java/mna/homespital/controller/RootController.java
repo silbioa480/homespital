@@ -19,6 +19,8 @@ import java.io.File;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -167,6 +169,11 @@ public class RootController {
     }
 
 
+
+
+
+
+
     //진료차트 쓰기
 //  @GetMapping("/appointmentForm/{doc}")
 //  public ModelAndView appointmentForm(@PathVariable int doc) {
@@ -200,12 +207,38 @@ public class RootController {
 
                 mv.addObject("cardInfo", paymentService.getPayment(user.getUser_number(), user.getBilling_key()));
 
+                //모델에 view 넣기
+                //의사 객체
+                Doctor doctor = doctorService.getDocInfo(doctor_number);
+                doctor.setDoctor_password("");
+                mv.addObject("doctor", doctor);
+
+                //의사 실제 진료시간(근무시간 - 점심시간)을 계산
+                String work_time = doctor.getWorking_time();
+                String[] work_timeArr = work_time.split(",");
+                String lunch_time = doctor.getLunch_time();
+
+                List<String> real_work_timeList = new ArrayList<>();
+                for (String workTime : work_timeArr) {
+                    if (!workTime.equals(lunch_time)) {
+                        real_work_timeList.add(workTime);
+                    }
+                }
+                mv.addObject("real_work_timeList", real_work_timeList);
+
                 if (Integer.parseInt(gender) < 3) birth = "19" + birth;
                 else birth = "20" + birth;
                 LocalDate birth_date = LocalDate.parse(birth, DateTimeFormatter.ofPattern("yyyyMMdd"));
                 LocalDate now = LocalDate.now(ZoneId.of("Asia/Seoul"));
                 int age = now.minusYears(birth_date.getYear()).getYear();
                 mv.addObject("age", age);
+
+                //의사 스케쥴 객체
+//                ArrayList<HashMap<String, Object>> ds = doctorService.getDocScheduleInfo(doctor_number);
+//                mv.addObject("ds", ds);
+//                for (int i = 0; i < ds.size(); i++) {
+//                    System.out.println("ds[" + i + "] = " + ds.get(i));
+//                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -216,7 +249,7 @@ public class RootController {
     //진료예약   ( 인성 )
     @PostMapping("/appointmentForm")
     public ModelAndView appointment(Diagnosis diagnosis, MultipartFile[] diagnosisImgNames,
-                                    Model model, HttpServletRequest request, HttpServletResponse response) {
+                              Model model, HttpServletRequest request, HttpServletResponse response) {
         ModelAndView mv = new ModelAndView();
         try {
             // 사진 업로드
