@@ -13,13 +13,14 @@
                              hospital_name, zip_code, street_address, detail_address, doctor_diagnosis_type,
                              working_time, lunch_time, holiday, hospital_fax, hospital_url, doctor_introduction)
         values (#{doctor_emai}, #{doctor_password}, #{doctor_phone}, #{doctor_name},
-                #{doctor_valid_number},#{doctor_profile_image_name},,#{hospital_business_number},
-                #{hospital_name}, #{zip_code}, #{street_address}, #{detail_address}, #{detail_address}, #{doctor_diagnosis_type},
+                #{doctor_valid_number}, #{doctor_profile_image_name}, , #{hospital_business_number},
+                #{hospital_name}, #{zip_code}, #{street_address}, #{detail_address}, #{detail_address},
+                #{doctor_diagnosis_type},
                 #{working_time}, #{lunch_time}, #{holiday}, #{hospital_fax}, #{hospital_url}, #{doctor_introduction})
         ]]>
     </insert>
 
-    <select id="queryDoctor" resultType="Doctor" parameterType="int">
+    <select id="queryDoctor" resultType="Doctor" parameterType="Map">
         <![CDATA[
         select *
         from (select @rownum:=@rownum+1 rnum, tot.*
