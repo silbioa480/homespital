@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.PrintWriter;
 
 @Controller
 public class PharmacyController {
@@ -33,15 +35,25 @@ public class PharmacyController {
 
     //용식:약사 로그인
     @PostMapping("PharmacyLogin.do")
-    public String pharmacyLogin(@RequestParam("email") String email, @RequestParam("password") String password) {
+    public String pharmacyLogin(@RequestParam("email") String email, @RequestParam("password") String password, HttpServletResponse response) {
         try {
             pharSerivce.login(email, password);
             session.setAttribute("email", email);
             return "redirect:/pharmacyMainForm";
         } catch (Exception e) {
             e.printStackTrace();
+            try {
+                response.setContentType("text/html;charset=UTF-8");
+                response.setCharacterEncoding("UTF-8");
+                PrintWriter out = response.getWriter();
+                out.println("<script>alert('로그인 실패 : 아이디와 비밀번호를 다시 한 번 확인해주세요.');history.go(-1);</script>");
+                out.flush();
+            } catch (Exception ee) {
+            }
             return "redirect:/pharmacyLoginForm";
         }
+
+
     }
 
     //용식:약사 회원가입
@@ -60,12 +72,11 @@ public class PharmacyController {
         pharmacy.setDetail_address(request.getParameter("addrDetail"));
         ModelAndView mv = new ModelAndView();
         try {
-            System.out.println("여기들어오라ㅏ ㅇㅇㅇㅇㅇ");
             pharSerivce.join(pharmacy);
-            mv.setViewName("redirect:/loginForm");
+            mv.setViewName("redirect:/pharmacyLoginForm");
         } catch (Exception e) {
             e.printStackTrace();
-            mv.setViewName("redirect:/joinForm");
+            mv.setViewName("redirect:/pharmacyJoinForm");
         }
 
         return mv;
