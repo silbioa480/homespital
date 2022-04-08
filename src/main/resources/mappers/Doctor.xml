@@ -6,27 +6,31 @@
 <mapper namespace="mna.homespital.dao.DoctorDAO">
 
     <!--가영: 회원가입 인서트-->
-<!--    <insert id="insertDoctorMember" parameterType="doctor">-->
-<!--        <![CDATA[-->
-<!--        insert into `doctor`(doctor_email, doctor_password, hospital_file_name,hospital_name, hospital_telephone, doctor_phone, doctor_name,doctor_valid_number, doctor_profile_image_name, hospital_business_number,zip_code, street_address, detail_address, doctor_diagnosis_type,working_time, lunch_time, holiday, hospital_fax, hospital_url, doctor_introduction)-->
-<!--        values (#{doctor_email}, #{doctor_password}, 'a','a', 'a', 'a', 'a',-->
-<!--                'a','a','a',-->
-<!--               'a', 'a', 'a', 'a',-->
-<!--                'a', 'a', 'a', 'a', 'a', 'a')-->
-<!--        ]]>-->
-<!--    </insert>-->
+    <!--    <insert id="insertDoctorMember" parameterType="doctor">-->
+    <!--        <![CDATA[-->
+    <!--        insert into `doctor`(doctor_email, doctor_password, hospital_file_name,hospital_name, hospital_telephone, doctor_phone, doctor_name,doctor_valid_number, doctor_profile_image_name, hospital_business_number,zip_code, street_address, detail_address, doctor_diagnosis_type,working_time, lunch_time, holiday, hospital_fax, hospital_url, doctor_introduction)-->
+    <!--        values (#{doctor_email}, #{doctor_password}, 'a','a', 'a', 'a', 'a',-->
+    <!--                'a','a','a',-->
+    <!--               'a', 'a', 'a', 'a',-->
+    <!--                'a', 'a', 'a', 'a', 'a', 'a')-->
+    <!--        ]]>-->
+    <!--    </insert>-->
 
     <insert id="insertDoctorMember" parameterType="doctor">
         <![CDATA[
-        insert into `doctor`(doctor_email, doctor_password, doctor_phone, doctor_name,doctor_valid_number, doctor_profile_image_name, hospital_business_number,zip_code, street_address, detail_address, doctor_diagnosis_type,working_time, lunch_time, holiday, hospital_fax, hospital_url, doctor_introduction)
+        insert into `doctor`(doctor_email, doctor_password, doctor_phone, doctor_name, doctor_valid_number,
+                             doctor_profile_image_name, hospital_business_number, zip_code, street_address,
+                             detail_address, doctor_diagnosis_type, working_time, lunch_time, holiday, hospital_fax,
+                             hospital_url, doctor_introduction)
         values (#{doctor_email}, #{doctor_password}, #{doctor_phone}, #{doctor_name},
-                #{doctor_valid_number},#{doctor_profile_image_name},#{hospital_business_number},
+                #{doctor_valid_number}, #{doctor_profile_image_name}, #{hospital_business_number},
                 #{zip_code}, #{street_address}, #{detail_address}, #{doctor_diagnosis_type},
-                REPLACE(#{working_time}," ",""), #{lunch_time}, #{holiday}, #{hospital_fax}, #{hospital_url}, #{doctor_introduction})
+                REPLACE(#{working_time}, " ", ""), #{lunch_time}, #{holiday}, #{hospital_fax}, #{hospital_url},
+                #{doctor_introduction})
         ]]>
     </insert>
 
-<!--가영: 의사정보 가져옴-->
+    <!--가영: 의사정보 가져옴-->
     <select id="DoctorQueryMember" resultType="Doctor" parameterType="String">
         <![CDATA[
         select *
@@ -35,7 +39,7 @@
         ]]>
     </select>
 
-    <select id="queryDoctor" resultType="Doctor" parameterType="int">
+    <select id="queryDoctor" resultType="Doctor" parameterType="Map">
         <![CDATA[
         select *
         from (select @rownum:=@rownum+1 rnum, tot.*

@@ -2,8 +2,6 @@ package mna.homespital.controller;
 
 import mna.homespital.dto.Diagnosis;
 import mna.homespital.dto.Doctor;
-import mna.homespital.dto.Pharmacy;
-import mna.homespital.dto.User;
 import mna.homespital.service.DiagnosisService;
 import mna.homespital.service.DoctorService;
 import mna.homespital.service.PharService;
@@ -15,12 +13,13 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -106,36 +105,36 @@ public class DoctorController {
     doctor.setDetail_address(request.getParameter("addrDetail"));
     String[] diag_types = request.getParameterValues("doctor_diagnosis_type");
     List<String> sortedDiag_types = new ArrayList<String>();
-    for(String diag : diag_types){
-      if(!diag.equals("")) sortedDiag_types.add(diag);
+    for (String diag : diag_types) {
+      if (!diag.equals("")) sortedDiag_types.add(diag);
     }
     String diag_type = sortedDiag_types.toString();
     System.out.println(diag_type);
-    diag_type = diag_type.substring( 1, diag_type.length()-1).trim();
+    diag_type = diag_type.substring(1, diag_type.length() - 1).trim();
     doctor.setDoctor_diagnosis_type(diag_type);
 
     //오픈-마감시간 코드
     Integer openTime = Integer.parseInt(request.getParameter("open"));
     Integer closeTime = Integer.parseInt(request.getParameter("close"));
     List<Integer> openClose = new ArrayList<>();
-    for (int i = openTime; i<closeTime; i++){
+    for (int i = openTime; i < closeTime; i++) {
       openClose.add(i);
     }
     String openCloseString = openClose.toString();
-    doctor.setWorking_time(openCloseString.substring(1,openCloseString.length()-1));
+    doctor.setWorking_time(openCloseString.substring(1, openCloseString.length() - 1));
 
     // 점심시간 코드
     openTime = Integer.parseInt(request.getParameter("lunch-st"));
     closeTime = Integer.parseInt(request.getParameter("lunch-cl"));
     openClose = new ArrayList<>();
-    for (int i = openTime; i<closeTime; i++){
+    for (int i = openTime; i < closeTime; i++) {
       openClose.add(i);
     }
     openCloseString = openClose.toString();
-    doctor.setLunch_time(openCloseString.substring(1,openCloseString.length()-1));
+    doctor.setLunch_time(openCloseString.substring(1, openCloseString.length() - 1));
 
     String holiday = Arrays.toString(request.getParameterValues("holiday"));
-    holiday = holiday.substring(1, holiday.length()-1).trim();
+    holiday = holiday.substring(1, holiday.length() - 1).trim();
     doctor.setHoliday(holiday);
     doctor.setHospital_fax(request.getParameter("hospital_fax"));
     doctor.setHospital_url(request.getParameter("hospital_url"));
@@ -189,10 +188,10 @@ public class DoctorController {
       } else {
         return "비밀번호일치";
       }
-      } catch (Exception e) {
-        e.printStackTrace();
-        return "에러";
-      }
+    } catch (Exception e) {
+      e.printStackTrace();
+      return "에러";
+    }
   }
 
   //의사의 진료내역 (준근)
