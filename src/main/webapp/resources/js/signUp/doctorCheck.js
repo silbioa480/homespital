@@ -1,3 +1,62 @@
+//가영: 의사 유효성검사(진행중 - 완료되면 완료라고 바꿀예정)
+const form = document.getElementById('form');
+const email = document.getElementById('email');
+
+const setError = (element, message, e) => {
+    const inputControl = element.parentElement;
+    const errorDisplay = inputControl.querySelector('.error');
+    errorDisplay.innerText = message;
+    inputControl.classList.add('error');
+    inputControl.classList.remove('success');
+}
+//성공시 에러메시지 삭제
+const setSuccess = element => {
+    const inputControl = element.parentElement;
+    const errorDisplay = inputControl.querySelector('.error');
+
+    errorDisplay.innerText = '';
+    inputControl.classList.add('success');
+    inputControl.classList.remove('error');
+}
+
+//이메일 중복검사
+const isValidEmail = email => {
+    const reg = /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
+    return reg.test(String(email).toLowerCase());
+}
+function validateInput(e) {
+    const emailValue = email.value.trim();
+
+    if (emailValue === "") {
+        setError(email, "필수 정보입니다.", e);
+        return false;
+    } else if (!isValidEmail(emailValue)) {
+        setError(email, "올바른 형식으로 입력해주세요.", e);
+        return false;
+    } else {
+        $.ajax({
+            type: "POST",
+            url: "emailoverlap",
+            data: {
+                "email": emailValue
+            },
+            async: false,
+            success: function (data) {
+                var isOK = data
+                if (isOK) {
+                    console.log(typeof isOK);
+                    console.log(!isOK);
+                    setError(email, "이미있는 이메일 입니다.");
+                } else {
+                    setSuccess(email);
+                }
+            }
+        });
+    }
+};
+
+
+
 // $(function(){
 //     //모달을 전역변수로 선언
 //     var modalContents = $(".modal-contents");
