@@ -13,7 +13,7 @@ import java.util.List;
 public interface DoctorDAO {
 
     //가영: 이메일로 의사 정보 가져오기
-    Doctor DoctorQueryMember(String doctor_email) throws Exception;
+    Doctor DoctorQueryMember(String email) throws Exception;
 
     //가영: 의사 정보 넣기
     void insertDoctorMember(Doctor doctor) throws Exception;
