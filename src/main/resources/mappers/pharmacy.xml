@@ -20,7 +20,7 @@
 	    <![CDATA[
         select phar_number
         from user
-        where phar_number = #{phar_number}
+        where phar_email = #{phar_email}
         ]]>
     </select>
 
