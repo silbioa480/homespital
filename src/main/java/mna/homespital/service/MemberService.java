@@ -40,5 +40,7 @@ public interface MemberService {
     //용식: 이메일중복체크
     boolean emailCheck(String email) throws Exception;
 
+
+//가영: 비밀번호 확인(회원정보변경 전 페이지)
     User findByEmail(String email) throws Exception;
 }

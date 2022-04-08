@@ -2,6 +2,7 @@ package mna.homespital.service;
 
 import mna.homespital.dto.Doctor;
 import mna.homespital.dto.PageInfo;
+import mna.homespital.dto.User;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,6 +12,16 @@ public interface DoctorService {
 
     //가영 : 의사 회원가입
     Doctor join(Doctor doctor) throws Exception;
+    
+    
+//가영: 의사 아이디중복확인
+    boolean emailCheck(String email) throws Exception;
+
+    //가영: 비밀번호 확인(회원정보변경 전 페이지)
+    Doctor findByEmail(String email) throws Exception;
+
+    //가영: 유저정보 가져오기
+    Doctor doctorQueryMember(String email) throws Exception;
 
     // 의료진 찾기 - 의료진 목록 보기 (훈)
     public List<Doctor> getDocList(String doctor_diagnosis_type, int page, PageInfo pageInfo) throws Exception;
