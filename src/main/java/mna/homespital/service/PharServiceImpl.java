@@ -20,10 +20,21 @@ public class PharServiceImpl implements PharService {
     //용식: 약사 회원가입
     @Override
     public Pharmacy join(Pharmacy pharmacy) throws Exception {
-        System.out.println(pharmacy);
         Pharmacy phar = pharmacyDAO.PharmacyQueryMember(pharmacy.getPharmacy_email());
         if (phar != null) throw new Exception("이미 있는 이메일입니다.");
         pharmacyDAO.insertPharmacyMember(pharmacy);
         return pharmacy;
+    }
+
+    //용식 : 약사 로그인
+    @Override
+    public boolean login(String email, String password) throws Exception {
+        Pharmacy pharmacy = pharmacyDAO.PharmacyQueryMember(email);
+        if (pharmacy == null) throw new Exception("없는 이메일입니다.");
+        if (password.equals(pharmacy.getPharmacy_password())) {
+            return true;
+        } else {
+            throw new Exception("비밀번호가 틀립니다.");
+        }
     }
 }
