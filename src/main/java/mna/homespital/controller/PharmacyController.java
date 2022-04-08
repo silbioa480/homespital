@@ -60,12 +60,11 @@ public class PharmacyController {
         pharmacy.setDetail_address(request.getParameter("addrDetail"));
         ModelAndView mv = new ModelAndView();
         try {
-            System.out.println("여기들어오라ㅏ ㅇㅇㅇㅇㅇ");
             pharSerivce.join(pharmacy);
-            mv.setViewName("redirect:/loginForm");
+            mv.setViewName("redirect:/pharmacyLoginForm");
         } catch (Exception e) {
             e.printStackTrace();
-            mv.setViewName("redirect:/joinForm");
+            mv.setViewName("redirect:/pharmacyJoinForm");
         }
 
         return mv;
