@@ -22,4 +22,5 @@ public interface PharService {
     // 용식 : 약사 로그인
     boolean pharmacyLogin(String email, String password) throws Exception;
 
+
 }

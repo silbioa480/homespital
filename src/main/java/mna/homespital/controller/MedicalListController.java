@@ -47,14 +47,12 @@ public class MedicalListController {
     //모든 진료항목 출력 (태영)
 
     @GetMapping("/list")
-    public ModelAndView medicalList(@RequestParam(required=false) String mediSearch) {
+    public ModelAndView allmedicalList() {
         ModelAndView mv = new ModelAndView();
         try {
-            List<AllMedical> searchmd;
-            if(mediSearch==null) searchmd = allmedListService.allMedList();
-            else searchmd = allmedListService.searchMed(mediSearch);
+            List<AllMedical> amd = allmedListService.allMedList();
 
-            mv.addObject("list", searchmd);
+            mv.addObject("list", amd);
             mv.setViewName("user/userside/medicalList");
         } catch (Exception e) {
             e.printStackTrace();
@@ -63,19 +61,18 @@ public class MedicalListController {
     }
 
     //원하는 진료항목출력 태영
-//    @PostMapping("/medicalSearch")
-//    public ModelAndView medicalSearch(@RequestParam(value = "mediSearch") String mediSearch) {
-//        ModelAndView mv = new ModelAndView();
-//        try {
-//            List<AllMedical> searchmd = allmedListService.searchMed();
-//
-//            mv.addObject("list", searchmd);
-//            mv.setViewName("user/userside/medicalList");
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return mv;
-//    }
+    @PostMapping("/medicalSearch")
+    public ModelAndView medicalSearch(@RequestParam(value = "mediSearch") String mediSearch) {
+        ModelAndView mv = new ModelAndView();
+        try {
+            List<AllMedical> searchmd = allmedListService.searchMed(mediSearch);
+            mv.addObject("list", searchmd);
+            mv.setViewName("user/userside/medicalList");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return mv;
+    }
 
 //    //autocomplete controller 태영
 //    @ResponseBody
@@ -228,17 +225,15 @@ public class MedicalListController {
             e.printStackTrace();
             mv.setViewName("/common/err");
         }
-
         return mv;
     }
-
 
     //원 : 의사리스트 보기 - 거리별 정렬
     @GetMapping("/doctorList/distance")
     public ModelAndView doctorListByDistance(@RequestBody List<Doctor> doctorList) {
         ModelAndView mv = new ModelAndView("user/userside/doctorList");
         PageInfo pageInfo = new PageInfo();
-
+      
         mv.addObject("doctorList", doctorList);
         mv.addObject("pageInfo", pageInfo);
         return mv;

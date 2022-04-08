@@ -68,9 +68,11 @@ public class PharmacyController {
             System.out.println("여기들어오라ㅏ ㅇㅇㅇㅇㅇ");
             pharService.join(pharmacy);
             mv.setViewName("redirect:/loginForm");
+            pharService.join(pharmacy);
+            mv.setViewName("redirect:/pharmacyLoginForm");
         } catch (Exception e) {
             e.printStackTrace();
-            mv.setViewName("redirect:/joinForm");
+            mv.setViewName("redirect:/pharmacyJoinForm");
         }
 
         return mv;
