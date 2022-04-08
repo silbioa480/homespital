@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 @Controller
 public class PharmacyController {
@@ -38,11 +39,13 @@ public class PharmacyController {
 
     //용식:약사 로그인
     @PostMapping("PharmacyLogin.do")
-    public String pharmacyLogin(@RequestParam("email") String email, @RequestParam("password") String password) {
+    public String pharmacyLogin(@RequestParam("email") String pharmacy_email, @RequestParam("password") String pharmacy_password) {
         try {
-            pharService.pharmacyLogin(email, password);
-            session.setAttribute("email", email);
-            return "redirect:/pharmacyMainForm";
+            pharService.pharmacyLogin(pharmacy_email, pharmacy_password);
+            Pharmacy pharmacy = pharService.getPharInfo(pharService.getNumberByEmail(pharmacy_email));
+            pharmacy.setPharmacy_password("");
+            session.setAttribute("pharmacy", pharmacy);
+            return "redirect:/customerList";
         } catch (Exception e) {
             e.printStackTrace();
             return "redirect:/pharmacyLoginForm";
@@ -78,15 +81,17 @@ public class PharmacyController {
         return mv;
     }
 
-    //나의진료내역 (인성)
+    //환자진료내역 (인성)
     @GetMapping("/customerList")
     public String customerList(HttpSession session, Model m) throws Exception {
         try {
-            String email = (String) session.getAttribute("email");
-            String name = (String) session.getAttribute("name");
-            int searchNumber = pharService.getNumberByEmail(email);
-            Diagnosis diagnosis = new Diagnosis();
-//            diagnosis.setUser_number(searchNumber);
+//            String email = (String) session.getAttribute("email");
+//            String name = (String) session.getAttribute("name");
+            Pharmacy pharmacy = (Pharmacy) session.getAttribute("pharmacy");
+//            int searchNumber = pharService.getNumberByEmail(email);
+            int searchNumber = pharmacy.getPharmacy_number();
+//            Diagnosis diagnosis = new Diagnosis();
+            List<HashMap<String, Object>> diagnosis = pharService.pharCustomerRecordsList(searchNumber);
             m.addAttribute("diagnosis", diagnosis);
         } catch (Exception e) {
             System.out.println("Catch() join");
