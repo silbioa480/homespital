@@ -42,7 +42,7 @@ public class PharServiceImpl implements PharService {
 
     //용식 : 약사 로그인
     @Override
-    public boolean login(String email, String password) throws Exception {
+    public boolean pharmacyLogin(String email, String password) throws Exception {
         Pharmacy pharmacy = pharmacyDAO.PharmacyQueryMember(email);
         if (pharmacy == null) throw new Exception("없는 이메일입니다.");
         if (password.equals(pharmacy.getPharmacy_password())) {
