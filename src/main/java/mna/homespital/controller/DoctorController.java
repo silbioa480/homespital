@@ -93,7 +93,7 @@ public class DoctorController {
 
     //가영: 의사 이메일 중복확인
     @ResponseBody
-    @PostMapping("/emailoverlap")
+    @PostMapping("/DoctorEmailoverlap")
     public boolean emailOverLap(@RequestParam String email) {
         boolean result = false;
         try {
