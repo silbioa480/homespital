@@ -169,26 +169,37 @@ public class RootController {
     } catch (Exception e) {
         e.printStackTrace();
     }
+    
     return mv;
   }
 
-  //진료예약   ( 인성 )
-  @PostMapping("/appointmentForm")
-  public ModelAndView appointment(Diagnosis diagnosis, MultipartFile[] diagnosisImgNames,
-                                  Model model, HttpServletRequest request, HttpServletResponse response) {
-    ModelAndView mv = new ModelAndView();
-    try {
-        // 사진 업로드
-        String fileNameArr = "";
+    //진료예약   ( 인성 )
+    @PostMapping("/appointmentForm")
+    public ModelAndView appointment(Diagnosis diagnosis, MultipartFile[] diagnosisImgNames,
+                                    Model model, HttpServletRequest request, HttpServletResponse response) {
+        ModelAndView mv = new ModelAndView();
+        try {
+            // 사진 업로드
+            String fileNameArr = "";
 
-        for (int i = 0; i < diagnosisImgNames.length; i++) {
-            String diagnosisImg = diagnosisImgNames[i].getOriginalFilename();
-            String path = servletContext.getRealPath("/resources/img/uploadImg/");
-            String filename = UUID.randomUUID().toString() + "." + diagnosisImg.substring(diagnosisImg.lastIndexOf('.') + 1);
-            File destFile = new File(path + filename);
-            diagnosisImgNames[i].transferTo(destFile);
-            diagnosisImg = filename;
-            fileNameArr += (diagnosisImg + ", ");
+            for (int i = 0; i < diagnosisImgNames.length; i++) {
+                String diagnosisImg = diagnosisImgNames[i].getOriginalFilename();
+                String path = servletContext.getRealPath("/resources/img/uploadImg/");
+                String filename = UUID.randomUUID().toString() + "." + diagnosisImg.substring(diagnosisImg.lastIndexOf('.') + 1);
+                File destFile = new File(path + filename);
+                diagnosisImgNames[i].transferTo(destFile);
+                // 이 두대땜시 자동업로드댐
+//                diagnosisImg = filename;
+//                fileNameArr += (diagnosisImg + ", ");
+            }
+
+            // DB insert
+            diagnosis.setDiagnosis_image_name(fileNameArr.toString());
+            diagnosisService.insertDiagnosis(diagnosis);
+            mv.setViewName("redirect:/myMedicalList");
+        } catch (Exception e) {
+            e.printStackTrace();
+            //mv.setViewName();
         }
 
         // DB insert

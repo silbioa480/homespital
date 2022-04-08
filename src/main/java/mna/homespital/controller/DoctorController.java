@@ -212,19 +212,6 @@ public class DoctorController {
     return "admin/doctor/doctorMedicalList";
   }
 
-  //진료내역 리스트 출력 (인성)
-  @ResponseBody
-  @GetMapping("/pharCustomerRecordsList")
-  public ArrayList<HashMap<String, Object>> pharCustomerRecordsList(@RequestParam int phar_number) {
-    ArrayList<HashMap<String, Object>> customerList = new ArrayList<>();
-    try {
-      customerList = pharService.pharCustomerRecordsList(phar_number);
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-    return customerList;
-  }
-
   //의사에게 들어온 진료내역 리스트 출력 (준근)
   @ResponseBody
   @GetMapping("/docMedicalRecords")
