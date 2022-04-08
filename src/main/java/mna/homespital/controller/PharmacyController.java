@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.PrintWriter;
 
 @Controller
 public class PharmacyController {
@@ -34,17 +36,25 @@ public class PharmacyController {
     }
 
     //용식:약사 로그인
-//    @PostMapping("PharmacyLogin.do")
-//    public String pharmacyLogin(@RequestParam("email") String email, @RequestParam("password") String password) {
-//        try {
-//            pharSerivce.login(email, password);
-//            session.setAttribute("email", email);
-//            return "redirect:/pharmacyMainForm";
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return "redirect:/pharmacyLoginForm";
-//        }
-//    }
+    @PostMapping("PharmacyLogin.do")
+    public String pharmacyLogin(@RequestParam("email") String email, @RequestParam("password") String password, HttpServletResponse response) {
+        try {
+            pharSerivce.login(email, password);
+            session.setAttribute("email", email);
+            return "redirect:/pharmacyMainForm";
+        } catch (Exception e) {
+            e.printStackTrace();
+            try {
+                response.setContentType("text/html;charset=UTF-8");
+                response.setCharacterEncoding("UTF-8");
+                PrintWriter out = response.getWriter();
+                out.println("<script>alert('로그인 실패 : 아이디와 비밀번호를 다시 한 번 확인해주세요.');history.go(-1);</script>");
+                out.flush();
+            } catch (Exception ee) {
+            }
+            return "redirect:/pharmacyLoginForm";
+        }
+    }
 
     //용식:약사 회원가입
     @PostMapping("pharmacyJoin.do")
