@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -38,7 +39,7 @@ public class DoctorController {
 
     //의사 로그인(준근)
     @PostMapping("/docLogin")
-    public String docLogin(@RequestParam("email") String doctor_email, @RequestParam("password") String doctor_password, Model model) {
+    public String docLogin(@RequestParam("email") String doctor_email, @RequestParam("password") String doctor_password, Model model) throws Exception {
 
         try {
             doctorService.docLogin(doctor_email, doctor_password);
@@ -46,7 +47,8 @@ public class DoctorController {
             return "redirect:/admin/";
         } catch (Exception e) {
             model.addAttribute("err", e.getMessage());
-            return "redirect:/admin/docLogin";
+            String msg = URLEncoder.encode("의사이메일과 비밀번호를 확인해주세요", "utf-8");
+            return "redirect:/admin/docLogin?msg=" + msg;
         }
     }
 
