@@ -72,7 +72,7 @@ public class SignUpController {
 
     //가영:유저로그인
     @PostMapping("/login.do")
-    public String login(@RequestParam("email") String user_email, @RequestParam("password") String user_password, Model model) throws Exception {
+    public String login(@RequestParam("email") String user_email, @RequestParam("password") String user_password, Model model) {
 
         try {
 //            User user = memberService.findByEmail(user_email);

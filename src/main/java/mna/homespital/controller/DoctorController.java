@@ -11,14 +11,10 @@ import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-<<<<<<< HEAD
-=======
 import org.springframework.web.servlet.ModelAndView;
 
->>>>>>> 5916c45215ebf1454f5724307d943d20fe5ab336
 
 import javax.servlet.http.HttpSession;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.springframework.web.servlet.ModelAndView;
@@ -36,35 +32,6 @@ public class DoctorController {
     @Autowired
     DiagnosisService diagnosisService;
 
-<<<<<<< HEAD
-    //의사 index
-    @GetMapping("/")
-    public String DoctorMain() {
-        return "admin/main/index";
-    }
-
-    @GetMapping("/docLogin")
-    public String docLoginForm() {
-        return "admin/main/loginForm";
-    }
-
-    //의사 로그인(준근)
-    @PostMapping("/docLogin")
-    public String docLogin(@RequestParam("email") String doctor_email, @RequestParam("password") String doctor_password, Model model) throws Exception {
-
-        try {
-            doctorService.docLogin(doctor_email, doctor_password);
-            session.setAttribute("email", doctor_email);
-            return "redirect:/admin/";
-        } catch (Exception e) {
-            model.addAttribute("err", e.getMessage());
-            String msg = URLEncoder.encode("의사이메일과 비밀번호를 확인해주세요", "utf-8");
-            return "redirect:/admin/docLogin?msg=" + msg;
-        }
-    }
-
-
-=======
 
     @Autowired
     HttpSession session;
@@ -90,7 +57,6 @@ public class DoctorController {
         return "admin/phar/customerList";
     }
   
->>>>>>> 5916c45215ebf1454f5724307d943d20fe5ab336
     //의사의 진료내역 (준근)
     @GetMapping("/docMedicalList")
     public String docMedicalList(HttpSession session, Model m) throws Exception {

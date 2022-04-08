@@ -86,17 +86,4 @@
         ]]>
     </select>
 
-<<<<<<< HEAD
-    <!-- 의사 로그인(준근)-->
-    <select id="docLoginQuery" resultType="Doctor" parameterType="String">
-        <![CDATA[
-        select *
-        from doctor
-        where doctor_email = #{doctor_email}
-        ]]>
-    </select>
-
-
-=======
->>>>>>> 5916c45215ebf1454f5724307d943d20fe5ab336
 </mapper>
