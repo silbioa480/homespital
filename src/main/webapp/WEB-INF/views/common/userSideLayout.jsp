@@ -60,7 +60,7 @@
 <body>
 <%--<div style="background-color:#1abc9c; position: absolute; width: 100%; height:400px;"></div>--%>
 
-<tiles:insertAttribute name="sidebar"/>
+<%--<tiles:insertAttribute name="sidebar"/> 소연 삭제 by 4/7--%>
 <div class="container" style="margin-left: 18em; width: calc(100vw - 18em);">
     <tiles:insertAttribute name="navbar"/>
     <tiles:insertAttribute name="body"/>
