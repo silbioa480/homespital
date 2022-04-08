@@ -33,6 +33,9 @@ public class RootController {
   HttpSession session;
 
   @Autowired
+  AllMedicalListService allMedicalListService;
+
+  @Autowired
   MedicalListService medicalListService;
 
   @Autowired
@@ -213,6 +216,14 @@ public class RootController {
   //가영: 의사 회원가입
   @GetMapping("/doctorJoin")
   public ModelAndView doctorJoin() {
-      return new ModelAndView("admin/doctorside/joinForm");
+      ModelAndView mv = new ModelAndView("admin/doctorside/joinForm");
+      try {
+        mv.addObject("medicalList", allMedicalListService.allMedList());
+      } catch(Exception e){
+        System.out.println("CANNOT GET LIST");
+      }
+      return mv;
   }
+
+
 }
