@@ -34,6 +34,13 @@ public interface DoctorDAO {
     ArrayList<HashMap<String, Object>> getDocScheduleInfo(int doctor_number) throws Exception;
     
 
+    // 의사이메일로 의사 가져오기(준근)
+    int searchDocId(String doctor_email) throws Exception;
+
+    //의사 진료내역 리스트 출력(준근)
+    ArrayList<HashMap<String, Object>> docMedicalRecords(int doctor_number) throws Exception;
+
+
     // 거리순 검색 알고리즘
     // 현재 주소를 어떻게든 가져와. 이거는 geolocation = html5 https
     // 이 주소를 기반으로 현재 위치로부터 가까운 병원 순으로 카카오맵에서 병원 리스트를 가져옴

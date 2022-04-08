@@ -37,7 +37,7 @@ public class UserController {
     @Autowired
     private DoctorService doctorService;
 
-    //나의진료내역 (준근)
+    //환자의 진료내역 (준근)
     @GetMapping("/myMedicalList")
     public String myMedicalList(HttpSession session, Model m) throws Exception {
         System.out.println("myMedicalList() join");

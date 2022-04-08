@@ -26,5 +26,10 @@ public interface DoctorService {
     //의사 스케쥴에 대한 정보 가져오기(준근)
     ArrayList<HashMap<String, Object>> getDocScheduleInfo(int doctor_number) throws Exception;
 
+    //의사 이메일로 의사정보 가져오기 (준근)
+    int searchDocId(String doctor_email) throws Exception;
+
+    //의사 진료내역 리스트 출력(준근)
+    ArrayList<HashMap<String, Object>> docMedicalRecords(int doctor_number) throws Exception;
 
 }
