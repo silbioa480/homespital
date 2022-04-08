@@ -9,12 +9,10 @@
     <link rel="stylesheet" href="/resources/css/signUp.css"/>
 
     <style>
-    .doctor-title {
-        font-size: 20px;
-    }
-
-
-</style>
+        .doctor-title {
+            font-size: 20px;
+        }
+    </style>
 
 
 </head>
@@ -104,7 +102,7 @@
                         </div>
                         <div class="error"></div>
                     </div>
-<br>
+                    <br>
 
 
                     <div>
@@ -141,22 +139,22 @@
                         </table>
                     </div>
 
-<%--                    <div>--%>
-<%--                        <label class="doctor-title">진료과 선택</label>--%>
-<%--                    </div>--%>
+                    <%--                    <div>--%>
+                    <%--                        <label class="doctor-title">진료과 선택</label>--%>
+                    <%--                    </div>--%>
 
-<%--                    <div>--%>
-<%--                        <select id='bComps' multiple='multiple'>--%>
-<%--                            <option value='c001'>1</option>--%>
-<%--                            <option value='c002'>2</option>--%>
-<%--                            <option value='c003'>3</option>--%>
-<%--                        </select>--%>
+                    <%--                    <div>--%>
+                    <%--                        <select id='bComps' multiple='multiple'>--%>
+                    <%--                            <option value='c001'>1</option>--%>
+                    <%--                            <option value='c002'>2</option>--%>
+                    <%--                            <option value='c003'>3</option>--%>
+                    <%--                        </select>--%>
 
-<%--                        <select id='aComps' multiple='multiple'></select>--%>
+                    <%--                        <select id='aComps' multiple='multiple'></select>--%>
 
-<%--                        <input type='button' id='btnLToR' value='오른쪽'>--%>
-<%--                        <input type='button' id='btnRToL' value='왼쪽'>--%>
-<%--                    </div>--%>
+                    <%--                        <input type='button' id='btnLToR' value='오른쪽'>--%>
+                    <%--                        <input type='button' id='btnRToL' value='왼쪽'>--%>
+                    <%--                    </div>--%>
 
 
 
@@ -166,77 +164,77 @@
                         <div>
                             <div style="display:flex">
 
-                        <select name='open' class="form-select" style="width: 35%; margin-left: 30px" aria-label="Default select example">
-                            <option selected style="text-align: center;">진료 시작</option>
-                            <option value="9" style="text-align: center">9</option>
-                            <option value="10" style="text-align: center">10</option>
-                            <option value="11" style="text-align: center">11</option>
-                        </select>
-                        <select name='close' class="form-select" style="width: 35%;  margin-left: 40px"  aria-label="Default select example">
-                            <option selected style="text-align: center;">진료 마감</option>
-                            <option value="17" style="text-align: center">17</option>
-                            <option value="18" style="text-align: center">18</option>
-                            <option value="19" style="text-align: center">19</option>
-
-                        </select>
-                            </div>
-                    </div>
-                        <br>
-                    <div>
-                        <label class="doctor-title">점심 시간 선택</label>
-                        <label style="font-size: 10pt;">단위: 시간</label>
-                        <div>
-                            <div style="display:flex">
-
-                                <select name='lunch-st' class="form-select" style="width: 35%; margin-left: 30px" aria-label="Default select example">
-                                    <option selected style="text-align: center;">점심시간(부터)</option>
-                                    <option value="9" style="text-align: center">11</option>
-                                    <option value="10" style="text-align: center">12</option>
-                                    <option value="11" style="text-align: center">13</option>
+                                <select name='open' class="form-select" style="width: 35%; margin-left: 30px" aria-label="Default select example">
+                                    <option selected style="text-align: center;">진료 시작</option>
+                                    <option value="9" style="text-align: center">9</option>
+                                    <option value="10" style="text-align: center">10</option>
+                                    <option value="11" style="text-align: center">11</option>
                                 </select>
-                                <select name='lunch-cl' class="form-select" style="width: 35%;  margin-left: 40px"  aria-label="Default select example">
-                                    <option selected style="text-align: center;">점심시간(까지)</option>
-                                    <option value="17" style="text-align: center">12</option>
-                                    <option value="18" style="text-align: center">13</option>
-                                    <option value="19" style="text-align: center">14</option>
+                                <select name='close' class="form-select" style="width: 35%;  margin-left: 40px"  aria-label="Default select example">
+                                    <option selected style="text-align: center;">진료 마감</option>
+                                    <option value="17" style="text-align: center">17</option>
+                                    <option value="18" style="text-align: center">18</option>
+                                    <option value="19" style="text-align: center">19</option>
 
                                 </select>
                             </div>
-                    </div>
-                        <br>
-
-                        <label class="doctor-title">병원 정기 휴무 선택</label><label style="font-size: 10pt;">(다중선택가능)</label>
-
-                        <div class="rest-day">
-
-                            <label class="rest-check" style="margin-left: 50px">
-                                <input type="checkbox"  name="non" id="non">
-                                <span style="font-size: 15px; color: #000000">휴무없음</span>
-                                <input type="checkbox" name="mon" id="mon" style="margin-left: 7px">
-                                <span style="font-size: 15px; color: #000000">월</span>
-                                <input type="checkbox" name="tue" id="tue" style="margin-left: 7px">
-                                <span style="font-size: 15px; color: #000000">화</span>
-                                <input type="checkbox" name="wed" id="wed" style="margin-left: 7px">
-                                <span style="font-size: 15px; color: #000000">수</span>
-                                <input type="checkbox" name="thurs" id="thurs" style="margin-left: 7px">
-                                <span style="font-size: 15px; color: #000000">목</span>
-                                <input type="checkbox" name="fri" id="fri" style="margin-left: 7px">
-                                <span style="font-size: 15px; color: #000000">금</span>
-                                <input type="checkbox" name="sat" id="sat" style="margin-left: 7px">
-                                <span style="font-size: 15px; color: #000000">토</span>
-                                <input type="checkbox" name="sun" id="sun" style="margin-left: 7px">
-                                <span style="font-size: 15px; color: #000000">일</span>
-                            </label>
-
                         </div>
+                        <br>
+                        <div>
+                            <label class="doctor-title">점심 시간 선택</label>
+                            <label style="font-size: 10pt;">단위: 시간</label>
+                            <div>
+                                <div style="display:flex">
+
+                                    <select name='lunch-st' class="form-select" style="width: 35%; margin-left: 30px" aria-label="Default select example">
+                                        <option selected style="text-align: center;">점심시간(부터)</option>
+                                        <option value="9" style="text-align: center">11</option>
+                                        <option value="10" style="text-align: center">12</option>
+                                        <option value="11" style="text-align: center">13</option>
+                                    </select>
+                                    <select name='lunch-cl' class="form-select" style="width: 35%;  margin-left: 40px"  aria-label="Default select example">
+                                        <option selected style="text-align: center;">점심시간(까지)</option>
+                                        <option value="17" style="text-align: center">12</option>
+                                        <option value="18" style="text-align: center">13</option>
+                                        <option value="19" style="text-align: center">14</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                            <br>
+
+                            <label class="doctor-title">병원 정기 휴무 선택</label><label style="font-size: 10pt;">(다중선택가능)</label>
+
+                            <div class="rest-day">
+
+                                <label class="rest-check" style="margin-left: 50px">
+                                    <input type="checkbox"  name="non" id="non">
+                                    <span style="font-size: 15px; color: #000000">휴무없음</span>
+                                    <input type="checkbox" name="mon" id="mon" style="margin-left: 7px">
+                                    <span style="font-size: 15px; color: #000000">월</span>
+                                    <input type="checkbox" name="tue" id="tue" style="margin-left: 7px">
+                                    <span style="font-size: 15px; color: #000000">화</span>
+                                    <input type="checkbox" name="wed" id="wed" style="margin-left: 7px">
+                                    <span style="font-size: 15px; color: #000000">수</span>
+                                    <input type="checkbox" name="thurs" id="thurs" style="margin-left: 7px">
+                                    <span style="font-size: 15px; color: #000000">목</span>
+                                    <input type="checkbox" name="fri" id="fri" style="margin-left: 7px">
+                                    <span style="font-size: 15px; color: #000000">금</span>
+                                    <input type="checkbox" name="sat" id="sat" style="margin-left: 7px">
+                                    <span style="font-size: 15px; color: #000000">토</span>
+                                    <input type="checkbox" name="sun" id="sun" style="margin-left: 7px">
+                                    <span style="font-size: 15px; color: #000000">일</span>
+                                </label>
+
+                            </div>
                             <div style="font-size: 12px;">* 병원 운영시간을 기반으로 비대면 진료 예약을 받을 수 있습니다.</div>
 
                             <div style="font-size: 12px;">  시간당 최대 10명 예약이 가능합니다.</div>
 
                             <div style="font-size: 12px;">  예약시간 관리는 환자리스트에서 확인 가능합니다.</div>
-                    </div>
+                        </div>
 
-                </div>
+                    </div>
             </section>
             <br><br><br><br>
 
@@ -268,7 +266,7 @@
                             </div>
                             <div class="error"></div>
                         </div>
-                </div>
+                    </div>
                 </div>
 
 
