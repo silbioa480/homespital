@@ -32,17 +32,17 @@ public class PharmacyController {
     }
 
     //용식:약사 로그인
-    @PostMapping("PharmacyLogin.do")
-    public String pharmacyLogin(@RequestParam("email") String email, @RequestParam("password") String password) {
-        try {
-            pharSerivce.login(email, password);
-            session.setAttribute("email", email);
-            return "redirect:/pharmacyMainForm";
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "redirect:/pharmacyLoginForm";
-        }
-    }
+//    @PostMapping("PharmacyLogin.do")
+//    public String pharmacyLogin(@RequestParam("email") String email, @RequestParam("password") String password) {
+//        try {
+//            pharSerivce.login(email, password);
+//            session.setAttribute("email", email);
+//            return "redirect:/pharmacyMainForm";
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return "redirect:/pharmacyLoginForm";
+//        }
+//    }
 
     //용식:약사 회원가입
     @PostMapping("pharmacyJoin.do")
