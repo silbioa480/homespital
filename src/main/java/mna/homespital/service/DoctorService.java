@@ -39,7 +39,6 @@ public interface DoctorService {
     //진료시작, 시작시 diagnosis_status 0-> 1로 변경
     void startDiagnosis(int diagnosis_number) throws Exception;
 
-
     //진료 완료, diagnosis_status 1->3 변경
     void finishDiagnosis(int diagnosis_number) throws Exception;
 }

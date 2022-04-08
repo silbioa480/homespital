@@ -104,7 +104,7 @@
         where diagnosis_number = #{diagnosis_number};
         ]]>
     </update>
-    
+
     <!-- 진료 완료하기하기 (준근)-->
     <update id="finishDiagnosis" parameterType="int">
         <![CDATA[
@@ -113,6 +113,4 @@
         where diagnosis_number = #{diagnosis_number};
         ]]>
     </update>
-
-
 </mapper>
