@@ -137,7 +137,7 @@
                     if (item.diagnosis_status == 0) {
                         complete = "<button type='button' id='startBtn' class='btn btn-primary btn-sm' onclick='startBtn(" + item.diagnosis_number + ");'>진료시작하기</button>";
                     } else if (item.diagnosis_status == 1) {
-                        complete = "<button type='button' id='finishBtn' class='btn btn-info btn-sm' onclick='finishBtn(" + item.diagnosis_number + ");'>진료완료하기</button>";
+                        complete = "<button type='button' id='finishBtn' class='btn btn-info btn-sm' onclick='finishBtn(" + item.diagnosis_number + ");'>진료중/완료하기</button>";
                     } else if (item.diagnosis_status == 2) {
                         complete = "예약취소";
                     } else if (item.diagnosis_status == 3) {
@@ -152,12 +152,29 @@
                         complete = "진료완료";
                     }
 
-                    // 진료영수증이 있으면 내려받기 버튼 생성, 없으면 공백
-                    let upload = "";
-                    if (item.is_prescription_upload == true) {
-                        upload = "<button type='button' id ='uploadBtn' class='uploadBtn'>내려받기</button>"
+                    //진료예약(아직진료시작X) (diagnosis_status = 0) -> is_diagnosis_upload = 0 업로드버튼X,
+                    //진료시작했을 떄, (diagnosis_status = 1) -> is_diagnosis_upload = 1 업로드버튼O,
+                    //진료 종료했을 떄, (diagosis_status= 3~7) -> is_diagnosis_upload = 2 업로드버튼X, 업로드완료
+                    //진료영수증
+                    let receipt = "";
+                    if (item.is_diagnosis_upload == 0) {
+                        receipt = "";
+                    } else if (item.is_diagnosis_upload == 1) {
+                        receipt = "<button type='button' id ='receiptUpload' class='btn btn-info btn-sm' onclick='receiptUpload(" + item.diagnosis_number + ")';'>영수증업로드</button>";
                     } else {
-                        upload = "";
+                        receipt = "업로드완료";
+                    }
+                    //진료예약(아직진료시작X) (diagnosis_status = 0) 일 때  ->> is_prescription_upload = 0 업로드버튼X,
+                    //진료시작(dagnosis_status = 1)일 때   ->> is_prescription_upload = 1 업로드버튼0,
+                    //진료 종료(diagnosis_status = 3~7) 일 때  -> is_prescription_upload = 2 업로드버튼 X, 업로드완료
+                    //처방전
+                    let prescription = "";
+                    if (item.is_prescription_upload == 0) {
+                        prescription = "";
+                    } else if (item.is_prescription_upload == 1) {
+                        prescription = "<button type='button' id ='prescriptionUpload' class='btn btn-info btn-sm' onclick='prescriptionUpload(" + item.diagnosis_number + ")';'>처방전업로드</button>";
+                    } else {
+                        prescription = "업로드완료";
                     }
 
                     // 나의 진료 내역 테이블 생성 (리눅스 서버에 올릴때 진단영수증 파일경로 바꿔줘야함)
@@ -165,8 +182,8 @@
                         "<td>" + item.user_name + "</td>" +
                         "<td>" + gender + "</td>" +
                         "<td>" + birth + "</td>" +
-                        "<td><a href='/resources/img/uploadReceipt/" + item.diagnosis_file_name + "' download=''><span class='material-icons'>file_download</span></a>" + "</td > " +
-                        "<td><a href='/resources/img/uploadReceipt/" + item.diagnosis_file_name + "' download=''><span class='material-icons'>file_download</span></a>" + "</td > " +
+                        "<td>" + receipt + "</td>" +
+                        "<td>" + prescription + "</td>" +
                         "<td>" + complete + "</td></tr><br>);"
                     )
                     ;
@@ -218,6 +235,46 @@
                 },
                 success: function (data) {
                     console.log("진료 완료 성공 : " + e)
+                    location.href = "${pageContext.request.contextPath}/doctor/docMedicalList";
+                },
+            })
+        } else {
+            return;
+        }
+    }
+
+    //진료영수증 업로드
+    function receiptUpload(e) {
+        if (confirm("진료영수증 업로드를 하시겠습니까?") == true) {
+            $.ajax({
+                url: "receiptUpload",
+                type: "POST",
+                datatype: "json",
+                data: {
+                    "diagnosis_number": e,
+                },
+                success: function (data) {
+                    console.log("진료영수증 업로드 성공 : " + e)
+                    location.href = "${pageContext.request.contextPath}/doctor/docMedicalList";
+                },
+            })
+        } else {
+            return;
+        }
+    }
+
+    //진단서 업로드
+    function prescriptionUpload(e) {
+        if (confirm("진료영수증 업로드를 하시겠습니까?") == true) {
+            $.ajax({
+                url: "prescriptionUpload",
+                type: "POST",
+                datatype: "json",
+                data: {
+                    "diagnosis_number": e,
+                },
+                success: function (data) {
+                    console.log("진단서 업로드 성공 : " + e)
                     location.href = "${pageContext.request.contextPath}/doctor/docMedicalList";
                 },
             })

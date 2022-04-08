@@ -100,16 +100,20 @@
     <update id="startDiagnosis" parameterType="int">
         <![CDATA[
         update diagnosis
-        set diagnosis_status = 1
+        set diagnosis_status       = 1,
+            is_diagnosis_upload    = 1,
+            is_prescription_upload = 1
         where diagnosis_number = #{diagnosis_number};
         ]]>
     </update>
-    
+
     <!-- 진료 완료하기하기 (준근)-->
     <update id="finishDiagnosis" parameterType="int">
         <![CDATA[
         update diagnosis
-        set diagnosis_status = 3
+        set diagnosis_status       = 3,
+            is_diagnosis_upload    = 2,
+            is_prescription_upload = 2
         where diagnosis_number = #{diagnosis_number};
         ]]>
     </update>
