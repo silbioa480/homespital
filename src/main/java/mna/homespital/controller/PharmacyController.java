@@ -21,11 +21,13 @@ public class PharmacyController {
     @Autowired
     PharService pharSerivce;
 
+    //약국메인
     @GetMapping("/pharmacyMainForm")
     public ModelAndView pharmacyMain() {
         return new ModelAndView("admin/pharside/pharmacyIndex");
     }
 
+    //약국 로그인Form
     @GetMapping("/pharmacyLoginForm")
     public ModelAndView pharmacyLogin() {
         return new ModelAndView("admin/phar/pharmacyLoginForm");

@@ -9,16 +9,15 @@
 <head>
     <meta charset="UTF-8"/>
     <title>홈스피탈</title>
+    <link rel="stylesheet" href="../../../../resources/css/navbar.css" />
 </head>
 <style>
-    .active {
-    }
-
+    a > i,
     a:link,
     a:visited,
     a:hover,
     a:active {
-        color: grey;
+        color: #111;
         text-decoration: none;
     }
 
@@ -33,7 +32,7 @@
         <div class="d-flex w-100">
             <a
                     class="navbar-brand justify-content-start"
-                    href="/"
+                    href="/pharmacyMainForm"
                     style="font-family: 'Y_Spotlight'"
             >
                 <i class="fa fa-medkit" aria-hidden="true"></i>
@@ -57,7 +56,7 @@
             >
                 <ul class="navbar-nav ml-auto pl-lg-5 pl-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">진료리스트</a>
+                        <a class="nav-link" href="/customerList">진료리스트</a>
                     </li>
                 </ul>
 
@@ -65,7 +64,7 @@
                     <c:choose>
                         <c:when test="${not empty email}">
                             <li class="nav-item">
-                                <a class="nav-link" href="#">관리자 페이지</a>
+                                <a class="nav-link" href="#">내 정보수정</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">로그아웃</a>
@@ -73,13 +72,13 @@
                         </c:when>
                         <c:otherwise>
                             <li class="nav-item">
-                                <a class="nav-link" href="/login">로그인</a>
+                                <a class="nav-link" href="/pharmacyLoginForm">로그인</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">회원가입</a>
                             </li>
                             <li class="nav-item cta-btn btn-dark text-white">
-                                <a class="nav-link" href="#">환자 페이지로 이동</a>
+                                <a class="nav-link" href="/">환자 페이지로 이동</a>
                             </li>
                         </c:otherwise>
                     </c:choose>
