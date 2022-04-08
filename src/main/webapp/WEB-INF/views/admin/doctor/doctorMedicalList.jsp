@@ -112,12 +112,25 @@
         function next_load(list) {
             $.each(list, function (index, item) {
                 if (index >= page * 30 && index < page * 30 + 30) {
-                    console.log(index);
                     //data에서 create_date를 받아와 해당날짜의 요일을 만들어준다.
                     var old_date = list[index].create_date;
                     var date = old_date.slice(0, 10)
                     var week = ['일', '월', '화', '수', '목', '금', '토'];
                     var dayOfWeek = week[new Date(date).getDay()];
+
+                    //data에서 user_registraion_number를 받아와 성별을 만들어준다.
+                    let old_registration = list[index].user_registration_number;
+                    let gender = old_registration.substring(7, 8);
+
+                    if (gender === '1' || gender === '3') {
+                        gender = "남";
+                    } else if (gender === '2' || gender === '4') {
+                        gender = "여";
+                    }
+
+                    // 환자 주민번호가 db에는 1******, 2******로 들어가지만 프론트에서 한번 더 처리해준다.
+                    let birth = old_registration.substr(0, 8);
+                    birth = birth + "******";
 
                     //진료완료, 진료중 표시 및 대기/예약취소하기 버튼
                     let complete = "";
@@ -150,11 +163,11 @@
                     // 나의 진료 내역 테이블 생성 (리눅스 서버에 올릴때 진단영수증 파일경로 바꿔줘야함)
                     $("#docMedicalList").append("<tr><td>" + date + " (" + dayOfWeek + ") " + item.diagnosis_time + ":00</td>" +
                         "<td>" + item.user_name + "</td>" +
-                        "<td>" + item.doctor_name + "</td>" +
-                        "<td>" + item.user_registration_number + "</td>" +
+                        "<td>" + gender + "</td>" +
+                        "<td>" + birth + "</td>" +
                         "<td><a href='/resources/img/uploadReceipt/" + item.diagnosis_file_name + "' download=''><span class='material-icons'>file_download</span></a>" + "</td > " +
-                        "<td>" + complete + "</td>" +
-                        "<td><a href='/myMedicalDetail/" + item.diagnosis_number + "'><span class='material-icons'>search</span></a>" + "</td></tr><br>);"
+                        "<td><a href='/resources/img/uploadReceipt/" + item.diagnosis_file_name + "' download=''><span class='material-icons'>file_download</span></a>" + "</td > " +
+                        "<td>" + complete + "</td></tr><br>);"
                     )
                     ;
                 }

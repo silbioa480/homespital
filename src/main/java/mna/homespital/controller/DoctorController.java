@@ -123,6 +123,7 @@ public class DoctorController {
         ArrayList<HashMap<String, Object>> docMedicalList = new ArrayList<>();
         try {
             docMedicalList = doctorService.docMedicalRecords(doctor_number);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
