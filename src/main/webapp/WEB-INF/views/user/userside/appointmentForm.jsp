@@ -2,13 +2,61 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>비대면진료 예약하기</title>
     <%--  파일 업로드 CSS  --%>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css"/>
     <link rel="stylesheet" href="/resources/css/writeMediChartForm.css"/>
+    <link rel="stylesheet" href="/resources/css/sidebar.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css"/>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
+<style>
+    a:link, a:visited, a:hover, a:active {
+        color: grey;
+        text-decoration: none;
+    !important
+    }
+</style>
 <body>
+<%--side-nav 시작 by 소연 4/8--%>
+<div id="sidebar">
+    <div class="d-flex flex-column align-items-center">
+        <%--        <span class="image avatar"><img src="/resources/img/doctorList/doctor01.jpg" alt=""/></span>--%>
+        <h1 id="logo"><a href="/">Homespital</a></h1>
+        <p>${name}님 안녕하세요.</p>
+    </div>
+    <nav id="nav">
+        <ul>
+            <li><a href="#one" class="active">예약시간 선택</a></li>
+            <li><a href="#two">진료차트 작성</a></li>
+            <li><a href="#three">약 배송방법 선택</a></li>
+            <li><a href="#four">결제정보 입력</a></li>
+        </ul>
+
+
+    </nav>
+    <footer>
+        <ul class="icons">
+            <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+            <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+            <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+            <li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+            <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+        </ul>
+    </footer>
+</div>
+<%--side-nav 끝 by 소연 4/7--%>
+
+
+
+
+
+
+
+
 <div>
     <c:forEach var="map" items="${ds}">
 
@@ -79,7 +127,7 @@
 
         </div>
         <div class="card p-3">
-            <h4><strong>진료 차트 작성</strong></h4>
+            <h4 id="two"><strong>진료 차트 작성</strong></h4>
             <div class="card p-3">
                 <table class="table table-borderless chartTable">
                     <tr>
@@ -111,7 +159,7 @@
         </div>
         <%----------------------------------------------------------------------%>
         <div class="card p-3">
-            <h4 id="two"><strong>약제 배송 방식</strong></h4>
+            <h4 id="three"><strong>약제 배송 방식</strong></h4>
             <div class="m-3">
                 <input type="hidden" name="is_delivery" id="is_delivery" value=0>
                 <button class="btn btn-warning rounded-pill"
@@ -207,7 +255,7 @@
 
         </div>
         <div class="card p-3">
-            <h4 id="three"><strong>결제 정보</strong></h4>
+            <h4 id="four"><strong>결제 정보</strong></h4>
             <div class="card p-3">
                 <div class="d-flex align-items-end">
                     <h4>${user.user_name}</h4>
