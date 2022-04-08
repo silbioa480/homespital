@@ -37,22 +37,22 @@
 
                     <div style="font-size: 25px">로그인 정보에 사용됩니다<strong style="color: #1abc9c">(필수)</strong></div>
                     <br>
-                    <diu class="input-control">
+                    <diu class="input-control" id="divEmail">
                         <label for="email" class="doctor-title">이메일</label>
                         <input type="email" id="email" name="doctor_email" placeholder="이메일을 입력해주세요">
                         <div class="error"></div>
                     </diu>
-                    <div class="input-control">
+                    <div class="input-control" id="divPassword">
                         <label for="password" class="doctor-title">비밀번호</label>
                         <input type="password" id="password" name="doctor_password" placeholder="비밀번호를 입력해주세요">
                         <div class="error"></div>
                     </div>
-                    <div class="input-control">
+                    <div class="input-control" id="divPassword2">
                         <label for="password2" class="doctor-title">비밀번호 확인</label>
                         <input type="password" id="password2" name="password2" placeholder="비밀번호를 입력해주세요">
                         <div class="error"></div>
                     </div>
-                    <div class="input-control">
+                    <div class="input-control" id="divPhone">
                         <label for="phone" class="doctor-title">휴대폰 번호</label>
                         <div style="display:flex">
                             <input id="phone" type="text" name="doctor_phone" title="전화번호 입력"/>
@@ -60,6 +60,8 @@
                         </div>
                         <div class="error"></div>
                         <br/>
+                    </div>
+                        <div class="input-control" id="divPhone2">
                         <div style="display:flex">
                             <input id="phone2" type="text" name="phone2" title="인증번호 입력" disabled/>
                             <input type="button" id="phoneChk2" class="doubleChk" value="본인인증">
@@ -78,26 +80,26 @@
                 <div class="container">
                     <div style="font-size: 25px">의사/병원정보<strong style="color: #1abc9c">(필수)</strong></div>
                     <br>
-                    <div class="input-control">
-                        <label class="doctor-title" for="name">의사이름</label>
-                        <input type="text" id="name" name="doctor_name" placeholder="이름을 입력해주세요">
+                    <div class="input-control" id="divDoctorName">
+                        <label class="doctor-title" for="doctorName">의사이름</label>
+                        <input type="text" id="doctorName" name="doctor_name" placeholder="이름을 입력해주세요">
                         <div class="error"></div>
                     </div>
-                    <div class="input-control">
+                    <div class="input-control" id="divDoctorNumber">
                         <label class="doctor-title" for="doctorNumber">의사면허번호</label>
                         <div style="display:flex">
                             <input id="doctorNumber" name="doctor_valid_number" type="text" maxlength="6">
                         </div>
                         <div class="error"></div>
                     </div>
-                    <div class="input-control">
+                    <div class="input-control" id="divDoctorProfile">
                         <label class="doctor-title" for="doctorProfile">의사사진</label>
                         <div style="display:flex">
                             <input id="doctorProfile" name="doctor_profile_image_name" type="text" maxlength="6">
                         </div>
                         <div class="error"></div>
                     </div>
-                    <div class="input-control">
+                    <div class="input-control" id="divBusinessNumber">
                         <label class="doctor-title" for="businessNumber">사업자번호</label>
                         <div style="display:flex">
                             <input id="businessNumber" style="width: 70%" name="hospital_business_number" type="text" maxlength="10">
