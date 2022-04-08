@@ -46,7 +46,7 @@
                 data-bs-target="#navbarNavDarkDropdown"
                 aria-controls="navbarNavDarkDropdown"
                 --%>
-                        data-target="#navbars" aria-controls="navbars"
+                        data-bs-target="#navbars" aria-controls="navbars"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="fa fa-bars" style="color: black"></span>
                 </button>
@@ -65,27 +65,18 @@
                         <c:choose>
                             <c:when test="${not empty email}">
                                 <li class="nav-item dropdown">
-                                    <a
-                                            class="nav-link dropdown-toggle"
+                                    <a class="nav-link dropdown-toggle"
                                             href="#"
                                             data-bs-toggle="dropdown"
-                                            id="DropdownMenuLink"
-                                    >마이페이지</a
-                                    >
-                                    <ul
-                                            class="dropdown-menu"
+                                            id="DropdownMenuLink">마이페이지</a>
+                                    <ul class="dropdown-menu"
                                             aria-labelledby="dropdownMenuLink"
-                                            aria-expanded="false"
-                                    >
+                                            aria-expanded="false">
                                         <li>
-                                            <a class="dropdown-item" href="/myMedicalList"
-                                            >나의진료내역</a
-                                            >
+                                            <a class="dropdown-item" href="/myMedicalList">나의진료내역</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="/pwCheck"
-                                            >내정보수정</a
-                                            >
+                                            <a class="dropdown-item" href="/pwCheck">내정보수정</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -100,12 +91,30 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="/joinForm">회원가입</a>
                                 </li>
-                                <li class="nav-item cta-btn text-white">
-                                    <a class="nav-link" href="/adminIndex/">의료 관계자 로그인</a>
+<%--                                <li class="nav-item dropdown cta-btn text-white">--%>
+<%--                                    <a class="nav-link" href="/adminIndex/">의료 관계자 로그인</a>--%>
+<%--                                </li>--%>
+
+                                    </ul>
                                 </li>
+
+
                             </c:otherwise>
                         </c:choose>
                     </ul>
+
+                            <ul class="nav nav-pills">
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link active dropdown-toggle nav-link active" data-toggle="dropdown" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">의료 관계자 로그인</a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="/adminIndex">의사로그인</a>
+                                        <a class="dropdown-item" href="#">약국로그인</a>
+                                    </div>
+                                </li>
+                            </ul>
+
+
+
                 </div>
             </div>
         </div>
