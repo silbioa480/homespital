@@ -171,8 +171,9 @@ public class RootController {
 
     //진료예약   ( 인성 )
     @PostMapping("/appointmentForm")
-    public String appointment(Diagnosis diagnosis, MultipartFile[] diagnosisImgNames,
-                              Model model, HttpServletRequest request, HttpServletResponse response) {
+    public ModelAndView appointment(Diagnosis diagnosis, MultipartFile[] diagnosisImgNames,
+                                    Model model, HttpServletRequest request, HttpServletResponse response) {
+        ModelAndView mv = new ModelAndView();
         try {
             // 사진 업로드
             String fileNameArr = "";
@@ -190,10 +191,12 @@ public class RootController {
             // DB insert
             diagnosis.setDiagnosis_image_name(fileNameArr.toString());
             diagnosisService.insertDiagnosis(diagnosis);
+            mv.setViewName("redirect:/myMedicalList");
         } catch (Exception e) {
             e.printStackTrace();
+            //mv.setViewName();
         }
-        return "/appointmentSuccess";
+        return mv;
     }
 
     // 관리자 메인 페이지 임시로 만들어놈 ( 인성 )
@@ -209,10 +212,11 @@ public class RootController {
 //        mv.setViewName("admin/pharside/pharmacyIndex");
 //        return mv;
 //    }
-
+  
     //가영: 의사 회원가입
     @GetMapping("/doctorJoin")
     public ModelAndView doctorJoin() {
         return new ModelAndView("admin/doctorside/joinForm");
     }
+  
 }

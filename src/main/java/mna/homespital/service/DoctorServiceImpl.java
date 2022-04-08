@@ -102,5 +102,15 @@ public class DoctorServiceImpl implements DoctorService {
         return doctorDAO.getDocScheduleInfo(doctor_number);
     }
 
+    // 의사이메일로 의사 가져오기(준근)
+    @Override
+    public int searchDocId(String doctor_email) throws Exception {
+        return doctorDAO.searchDocId(doctor_email);
+    }
+
+    @Override
+    public ArrayList<HashMap<String, Object>> docMedicalRecords(int doctor_number) throws Exception {
+        return doctorDAO.docMedicalRecords(doctor_number);
+    }
 
 }

@@ -61,7 +61,7 @@
 <%--진료과 검색 태영--%>
 <div id="searcharea">
     <div class="search">
-        <form action="list">
+        <form action="medicalSearch" method="post">
             <input type="search" placeholder="원하시는 진료과를 입력하세요" name="mediSearch" id="mediSearch"/>
             <button type="submit" id="searchMedical">검색</button>
         </form>
