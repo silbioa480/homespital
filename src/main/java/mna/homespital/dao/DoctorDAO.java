@@ -32,13 +32,16 @@ public interface DoctorDAO {
 
     //의사 스케쥴에 대한 정보 가져오기 (준근)
     ArrayList<HashMap<String, Object>> getDocScheduleInfo(int doctor_number) throws Exception;
-    
+
 
     // 의사이메일로 의사 가져오기(준근)
     int searchDocId(String doctor_email) throws Exception;
 
     //의사 진료내역 리스트 출력(준근)
     ArrayList<HashMap<String, Object>> docMedicalRecords(int doctor_number) throws Exception;
+
+    //의사 로그인에 필요한 정보 가져오기
+    Doctor docLoginQuery(String doctor_email) throws Exception;
 
 
     // 거리순 검색 알고리즘
