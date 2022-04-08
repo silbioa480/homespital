@@ -16,10 +16,10 @@
     <definition name="user/main/loginForm" extends="loginLayout">
         <put-attribute name="body" value="/WEB-INF/views/user/main/loginForm.jsp"/>
     </definition>
-    <!--  훈  -->
+    <!--  훈.  소연 updated 4/7 sidenav tiles에서 삭제. 각 jsp마다 내용 다르게 넣을예정-->
     <definition name="userSideLayout" template="/WEB-INF/views/common/userSideLayout.jsp">
         <put-attribute name="navbar" value="/WEB-INF/views/common/layout/navbar.jsp"/>
-        <put-attribute name="sidebar" value="/WEB-INF/views/common/layout/sidebar.jsp"/>
+<!--        <put-attribute name="sidebar" value="/WEB-INF/views/common/layout/sidebar.jsp"/>-->
         <put-attribute name="body" value=""/>
         <put-attribute name="footer" value="/WEB-INF/views/common/layout/footer.jsp"/>
     </definition>
@@ -33,6 +33,46 @@
         <put-attribute name="body" value=""/>
         <put-attribute name="footer" value="/WEB-INF/views/common/layout/footer.jsp"/>
     </definition>
+
+
+
+<!--    -->
+    <definition name="admin/doctorside/*" extends="DP_SideLayout">
+        <put-attribute name="body"
+                       value="/WEB-INF/views/admin/doctorside/{1}.jsp"/>
+    </definition>
+
+    <definition name="admin/pharside/*" extends="DP_SideLayout">
+        <put-attribute name="body"
+                       value="/WEB-INF/views/admin/pharside/{1}.jsp"/>
+    </definition>
+
+    <definition name="DP_baseLayout" template="/WEB-INF/views/common/DP_baseLayout.jsp">
+        <put-attribute name="DP_navbar" value="/WEB-INF/views/common/layout/DP_navbar.jsp"/>
+        <put-attribute name="body" value=""/>
+        <put-attribute name="footer" value="/WEB-INF/views/common/layout/footer.jsp"/>
+    </definition>
+
+    <definition name="admin/*" extends="DP_baseLayout">
+        <put-attribute name="body"
+                       value="/WEB-INF/views/admin/{1}.jsp"/>
+    </definition>
+
+    <definition name="admin/*/*" extends="DP_baseLayout">
+        <put-attribute name="body"
+                       value="/WEB-INF/views/admin/{1}/{2}.jsp"/>
+    </definition>
+
+    <definition name="admin/*/*/*" extends="DP_baseLayout">
+        <put-attribute name="body"
+                       value="/WEB-INF/views/admin/{1}/{2}/{3}.jsp"/>
+    </definition>
+
+<!--    -->
+
+
+
+
 
     <definition name="*" extends="baseLayout">
         <put-attribute name="body"

@@ -15,4 +15,50 @@
         ]]>
     </select>
 
+    <!-- 인성: 약사 email값으로 아이디 불러오기   -->
+    <select id="getNumberByEmail" resultType="int" parameterType="String">
+	    <![CDATA[
+        select pharmacy_number
+        from pharmacy
+        where pharmacy_email = #{pharmacy_email}
+        ]]>
+    </select>
+
+    <!--  나의 진료내역 리스트 보기(인성)  -->
+    <select id="pharCustomerRecordsList" resultType="HashMap" parameterType="int">
+	    <![CDATA[
+        select di.*, doc.*, us.*
+        from diagnosis di,
+             doctor doc,
+             user us
+        where di.pharmacy_number = #{pharmacy_number}
+          and di.doctor_number = doc.doctor_number
+          and di.user_number = us.user_number
+        order by di.create_date desc
+        ]]>
+    </select>
+
+
+    <select id="PharmacyQueryMember" resultType="Pharmacy" parameterType="String">
+        <![CDATA[
+        select *
+        from pharmacy
+        where pharmacy_email = #{pharmacy_email}
+        ]]>
+    </select>
+
+    <!--용식: 회원가입 인서트-->
+    <insert id="insertPharmacyMember" parameterType="pharmacy">
+        <![CDATA[
+        insert into `pharmacy`(pharmacy_email, pharmacy_password, pharmacy_mobile, pharmacy_business,
+                               pharmacy_name,
+                               pharmacy_institution, pharmacy_phone, zip_code,
+                               street_address, detail_address)
+        values (#{pharmacy_email}, #{pharmacy_password}, #{pharmacy_mobile}, #{pharmacy_business},
+                #{pharmacy_name},
+                #{pharmacy_institution}, #{pharmacy_phone}, #{zip_code},
+                #{street_address}, #{detail_address})
+        ]]>
+    </insert>
+
 </mapper>

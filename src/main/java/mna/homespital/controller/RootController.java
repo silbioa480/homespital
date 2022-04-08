@@ -169,16 +169,18 @@ public class RootController {
     } catch (Exception e) {
       e.printStackTrace();
     }
+
     return mv;
   }
 
   //진료예약   ( 인성 )
   @PostMapping("/appointmentForm")
-  public String appointment(Diagnosis diagnosis, MultipartFile[] diagnosisImgNames,
-                            Model model, HttpServletRequest request, HttpServletResponse response) {
+  public ModelAndView appointment(Diagnosis diagnosis, MultipartFile[] diagnosisImgNames,
+                                  Model model, HttpServletRequest request, HttpServletResponse response) {
+    ModelAndView mv = new ModelAndView();
     try {
-      // 사진 업로드
       String fileNameArr = "";
+      // 사진 업로드
 
       for (int i = 0; i < diagnosisImgNames.length; i++) {
         String diagnosisImg = diagnosisImgNames[i].getOriginalFilename();
@@ -186,17 +188,20 @@ public class RootController {
         String filename = UUID.randomUUID().toString() + "." + diagnosisImg.substring(diagnosisImg.lastIndexOf('.') + 1);
         File destFile = new File(path + filename);
         diagnosisImgNames[i].transferTo(destFile);
-        diagnosisImg = filename;
-        fileNameArr += (diagnosisImg + ", ");
+        // 이 두대땜시 자동업로드댐
+//                diagnosisImg = filename;
+//                fileNameArr += (diagnosisImg + ", ");
       }
 
       // DB insert
       diagnosis.setDiagnosis_image_name(fileNameArr.toString());
       diagnosisService.insertDiagnosis(diagnosis);
+      mv.setViewName("redirect:/myMedicalList");
     } catch (Exception e) {
       e.printStackTrace();
+      //mv.setViewName();
     }
-    return "/appointmentSuccess";
+    return mv;
   }
 
   // 관리자 메인 페이지 임시로 만들어놈 ( 인성 )
@@ -216,13 +221,13 @@ public class RootController {
   //가영: 의사 회원가입
   @GetMapping("/doctorJoin")
   public ModelAndView doctorJoin() {
-      ModelAndView mv = new ModelAndView("admin/doctorside/joinForm");
-      try {
-        mv.addObject("medicalList", allMedicalListService.allMedList());
-      } catch(Exception e){
-        System.out.println("CANNOT GET LIST");
-      }
-      return mv;
+    ModelAndView mv = new ModelAndView("admin/doctorside/joinForm");
+    try {
+      mv.addObject("medicalList", allMedicalListService.allMedList());
+    } catch (Exception e) {
+      System.out.println("CANNOT GET LIST");
+    }
+    return mv;
   }
 
   //가영: 의사 비밀번호 확인
@@ -235,6 +240,5 @@ public class RootController {
     }
     return new ModelAndView("admin/doctorside/docPwCheck");
   }
-
 
 }

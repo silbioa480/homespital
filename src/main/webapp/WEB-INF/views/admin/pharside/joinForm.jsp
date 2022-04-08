@@ -39,23 +39,21 @@
 
 <!-- Wrapper -->
 <div id="wrapper">
-
-    <!-- Main -->
     <div id="main">
-        <form id="form" name="form" action="#" method="post">
-            <!-- One -->
+        <!-- One -->
+        <form id="form" name="form" action="pharmacyJoin.do" method="post">
             <section id="one">
                 <div class="container">
                     <h5>로그인 정보에 사용됩니다(필수)</h5>
                     <hr style="height:3px">
                     <diu class="input-control">
                         <label for="email">이메일</label>
-                        <input type="email" id="email" name="email" placeholder="이메일을 입력해주세요">
+                        <input type="email" id="email" name="pharmacy_email" placeholder="이메일을 입력해주세요">
                         <div class="error"></div>
                     </diu>
                     <div class="input-control">
                         <label for="password">비밀번호</label>
-                        <input type="password" id="password" name="password" placeholder="비밀번호를 입력해주세요">
+                        <input type="password" id="password" name="pharmacy_password" placeholder="비밀번호를 입력해주세요">
                         <div class="error"></div>
                     </div>
                     <div class="input-control">
@@ -66,7 +64,7 @@
                     <div class="input-control">
                         <label for="phone">휴대폰 번호</label>
                         <div style="display:flex">
-                            <input id="phone" type="text" name="phone" title="전화번호 입력"/>
+                            <input id="phone" type="text" name="pharmacy_mobile" title="전화번호 입력"/>
                             <input type="button" id="phoneChk" class="doubleChk" value="인증번호 받기">
                         </div>
                         <div class="error"></div>
@@ -91,20 +89,21 @@
                     <div class="input-control">
                         <label for="businessNumber">사업자 번호</label>
                         <div style="display:flex;">
-                            <input type="text" id="businessNumber" name="businessNumber" placeholder="사업자 번호를 입력해주세요">
+                            <input type="text" id="businessNumber" name="pharmacy_business"
+                                   placeholder="사업자 번호를 입력해주세요">
                             <input type="button" class="businessBtn" value="사업자 조회"/>
                         </div>
                         <div class="error"></div>
                     </div>
                     <div class="input-control">
                         <label for="pharmacyName">약국명</label>
-                        <input type="text" id="pharmacyName" name="pharmacyName" placeholder="약국명을 입력해주세요">
+                        <input type="text" id="pharmacyName" name="pharmacy_name" placeholder="약국명을 입력해주세요">
                         <div class="error"></div>
                     </div>
                     <div class="input-control">
                         <label for="institutionNumber">요양기관 번호</label>
                         <div style="display:flex">
-                            <input type="text" id="institutionNumber" name="institutionNumber"
+                            <input type="text" id="institutionNumber" name="pharmacy_institution"
                                    placeholder="요양기관 번호를 입력해주세요">
                             <input class="institutionBtn" type="button" value="중복 확인">
                         </div>
@@ -113,7 +112,7 @@
                     </div>
                     <div class="input-control">
                         <label for="pharmacyPhone">약국 전화번호</label>
-                        <input type="text" id="pharmacyPhone" name="pharmacyPhone" placeholder="약국 전화번호를 입력해주세요">
+                        <input type="text" id="pharmacyPhone" name="pharmacy_phone" placeholder="약국 전화번호를 입력해주세요">
                         <div class="error"></div>
                     </div>
                     <div class="input-control">
@@ -184,12 +183,10 @@
                         </div>
                     </div>
                     <br><br><br>
-                    <input type="submit" value="회원가입" style="width: 100%;"></input>
+                    <input id="subbtn" type="submit" value="회원가입" style="width: 100%;"></input>
                 </div>
             </section>
         </form>
-
-
     </div>
 
     <!-- Footer -->
@@ -203,7 +200,6 @@
     </section>
 
 </div>
-
 <!-- Scripts -->
 <script src="/resources/js/signUp/jquery.min.js"></script>
 <script src="/resources/js/signUp/jquery.scrollex.min.js"></script>

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 @Repository
@@ -19,7 +20,7 @@ public interface DoctorDAO {
     void insertDoctorMember(Doctor doctor) throws Exception;
 
     // 의료진 찾기 - 의료진 목록 보기 (훈)
-    List<Doctor> queryDoctor(int startrow) throws Exception;
+    List<Doctor> queryDoctor(Map<String, Object> param) throws Exception;
 
     Integer doctorAmount() throws Exception;
 
@@ -28,9 +29,25 @@ public interface DoctorDAO {
 
     // 의사명 및 병원명 검색 태영
     List<Doctor> searchDoh(String keyword) throws Exception;
-    
+
     //의사 스케쥴에 대한 정보 가져오기 (준근)
     ArrayList<HashMap<String, Object>> getDocScheduleInfo(int doctor_number) throws Exception;
+
+
+    // 의사이메일로 의사 가져오기(준근)
+    int searchDocId(String doctor_email) throws Exception;
+
+    // 의사 진료내역 리스트 출력(준근)
+    ArrayList<HashMap<String, Object>> docMedicalRecords(int doctor_number) throws Exception;
+
+    // 의사 로그인에 필요한 정보 가져오기
+    Doctor docLoginQuery(String doctor_email) throws Exception;
+
+    // 진료시작하기(준근)
+    void startDiagnosis(int diagnosis_number) throws Exception;
+
+    // 진료 완료하기(준근)
+    void finishDiagnosis(int diagnosis_number) throws Exception;
 
     // 거리순 검색 알고리즘
     // 현재 주소를 어떻게든 가져와. 이거는 geolocation = html5 https

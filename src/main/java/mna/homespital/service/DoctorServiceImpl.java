@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class DoctorServiceImpl implements DoctorService {
@@ -46,10 +47,11 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public List<Doctor> getDocList(int page, PageInfo pageInfo) throws Exception {
+    public List<Doctor> getDocList(String doctor_diagnosis_type, int page, PageInfo pageInfo) throws Exception {
 
         // 의료진 찾기 - 의료진 목록 보기 (훈)
-        List<Doctor> list = doctorDAO.queryDoctor(0);
+
+//        List<Doctor> list = doctorDAO.queryDoctor(param);
         int listCount = doctorDAO.doctorAmount();
 
         // 총 페이지 수. 올림처리
@@ -70,7 +72,10 @@ public class DoctorServiceImpl implements DoctorService {
         int startrow = (page - 1) * 10 + 1;
 //        HashMap<String, Integer> input = new HashMap<>();
 //        input.put("startrow", startrow);
-        return doctorDAO.queryDoctor(startrow);
+        Map<String, Object> param = new HashMap<>();
+        param.put("doctor_diagnosis_type", doctor_diagnosis_type);
+        param.put("startrow", startrow);
+        return doctorDAO.queryDoctor(param);
         //return list;
     }
 
@@ -106,14 +111,55 @@ public class DoctorServiceImpl implements DoctorService {
         return doctorDAO.docInfo(doctor_number);
     }
 
-    //의사명 및 병원명 검색 태영
+    //의사명 및 병원명 검색 (태영)
     @Override
     public List<Doctor> getSearchDoh(String keyword) throws Exception {
         return doctorDAO.searchDoh(keyword);
     }
-    
+
+    // 의사 스케쥴에 대한 정보 가져오기 (준근)
     @Override
     public ArrayList<HashMap<String, Object>> getDocScheduleInfo(int doctor_number) throws Exception {
         return doctorDAO.getDocScheduleInfo(doctor_number);
     }
+
+    // 의사이메일로 의사 가져오기(준근)
+    @Override
+    public int searchDocId(String doctor_email) throws Exception {
+        return doctorDAO.searchDocId(doctor_email);
+    }
+
+    //의사에게 들어온 진료리스트 보기(준근)
+    @Override
+    public ArrayList<HashMap<String, Object>> docMedicalRecords(int doctor_number) throws Exception {
+        return doctorDAO.docMedicalRecords(doctor_number);
+    }
+
+    //의사 로그인(준근)
+    @Override
+    public boolean docLogin(String doctor_email, String doctor_password) throws Exception {
+        try {
+            Doctor doctor = doctorDAO.docLoginQuery(doctor_email);
+            if (doctor_password.equals((doctor.getDoctor_password()))) {
+                return true;
+            } else {
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            throw new Exception("로그인 오류");
+        }
+    }
+
+    //진료 시작(준근)
+    @Override
+    public void startDiagnosis(int diagnosis_number) throws Exception {
+        doctorDAO.startDiagnosis(diagnosis_number);
+    }
+
+    // 진료 완료(준근)
+    @Override
+    public void finishDiagnosis(int diagnosis_number) throws Exception {
+        doctorDAO.finishDiagnosis(diagnosis_number);
+    }
+
 }
