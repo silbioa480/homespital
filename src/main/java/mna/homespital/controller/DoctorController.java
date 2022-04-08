@@ -7,10 +7,7 @@ import mna.homespital.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
@@ -28,11 +25,31 @@ public class DoctorController {
     @Autowired
     DiagnosisService diagnosisService;
 
-
+    //의사 index
     @GetMapping("/")
     public String DoctorMain() {
         return "admin/main/index";
     }
+
+    @GetMapping("/docLogin")
+    public String docLoginForm() {
+        return "admin/main/loginForm";
+    }
+
+    //의사 로그인(준근)
+    @PostMapping("/docLogin")
+    public String docLogin(@RequestParam("email") String doctor_email, @RequestParam("password") String doctor_password, Model model) {
+
+        try {
+            doctorService.docLogin(doctor_email, doctor_password);
+            session.setAttribute("email", doctor_email);
+            return "redirect:/admin/";
+        } catch (Exception e) {
+            model.addAttribute("err", e.getMessage());
+            return "redirect:/admin/docLogin";
+        }
+    }
+
 
     //의사의 진료내역 (준근)
     @GetMapping("/docMedicalList")

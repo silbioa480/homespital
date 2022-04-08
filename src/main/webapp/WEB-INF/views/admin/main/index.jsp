@@ -2,10 +2,12 @@
 <html>
 <head>
     <title>Homespital</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="/resources/css/main.css" />
-    <noscript><link rel="stylesheet" href="/resources/css/main2.css" /></noscript>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="/resources/css/main.css"/>
+    <noscript>
+        <link rel="stylesheet" href="/resources/css/main2.css"/>
+    </noscript>
 </head>
 <body class="is-preload">
 <!-- Intro -->
@@ -13,9 +15,15 @@
     <div class="content">
         <header>
             <h2>Homespital.</h2>
+            <%-- 임시로 넣은 로그인 버튼--%>
+            <a href="/admin/docLogin">임시로 넣은 로그인</a>
+
+
         </header>
-        <p>Welcome to <strong>Big Picture</strong> a responsive site template designed by <a href="https://html5up.net">HTML5 UP</a><br />
-            and released for free under the <a href="https://html5up.net/license">Creative Commons Attribution license</a>.</p>
+        <p>Welcome to <strong>Big Picture</strong> a responsive site template designed by <a href="https://html5up.net">HTML5
+            UP</a><br/>
+            and released for free under the <a href="https://html5up.net/license">Creative Commons Attribution
+                license</a>.</p>
         <footer>
             <a href="#one" class="button style2 down">More</a>
         </footer>
@@ -59,22 +67,28 @@
         <!-- Gallery  -->
         <div class="gallery">
             <article class="from-left">
-                <a href="/resources/img/main/01.jpg" class="image fit"><img src="/resources/img/main/01.jpg" title="The Anonymous Red" alt="" /></a>
+                <a href="/resources/img/main/01.jpg" class="image fit"><img src="/resources/img/main/01.jpg"
+                                                                            title="The Anonymous Red" alt=""/></a>
             </article>
             <article class="from-right">
-                <a href="/resources/img/main/02.jpg" class="image fit"><img src="/resources/img/main/02.jpg" title="Airchitecture II" alt="" /></a>
+                <a href="/resources/img/main/02.jpg" class="image fit"><img src="/resources/img/main/02.jpg"
+                                                                            title="Airchitecture II" alt=""/></a>
             </article>
             <article class="from-left">
-                <a href="/resources/img/main/03.jpg" class="image fit"><img src="/resources/img/main/03.jpg" title="Air Lounge" alt="" /></a>
+                <a href="/resources/img/main/03.jpg" class="image fit"><img src="/resources/img/main/03.jpg"
+                                                                            title="Air Lounge" alt=""/></a>
             </article>
             <article class="from-right">
-                <a href="/resources/img/main/04.jpg" class="image fit"><img src="/resources/img/main/04.jpg" title="Carry on" alt="" /></a>
+                <a href="/resources/img/main/04.jpg" class="image fit"><img src="/resources/img/main/04.jpg"
+                                                                            title="Carry on" alt=""/></a>
             </article>
             <article class="from-left">
-                <a href="/resources/img/main/05.jpg" class="image fit"><img src="/resources/img/main/05.jpg" title="The sparkling shell" alt="" /></a>
+                <a href="/resources/img/main/05.jpg" class="image fit"><img src="/resources/img/main/05.jpg"
+                                                                            title="The sparkling shell" alt=""/></a>
             </article>
             <article class="from-right">
-                <a href="/resources/img/main/06.jpg" class="image fit"><img src="/resources/img/main/06.jpg" title="Bent IX" alt="" /></a>
+                <a href="/resources/img/main/06.jpg" class="image fit"><img src="/resources/img/main/06.jpg"
+                                                                            title="Bent IX" alt=""/></a>
             </article>
         </div>
 
@@ -91,18 +105,17 @@
         <div class="box">
             <form method="post" action="#">
                 <div class="fields">
-                    <div class="field half"><input type="text" name="name" placeholder="Name" /></div>
-                    <div class="field half"><input type="email" name="email" placeholder="Email" /></div>
+                    <div class="field half"><input type="text" name="name" placeholder="Name"/></div>
+                    <div class="field half"><input type="email" name="email" placeholder="Email"/></div>
                     <div class="field"><textarea name="message" placeholder="Message" rows="6"></textarea></div>
                 </div>
                 <ul class="actions special">
-                    <li><input type="submit" value="Send Message" /></li>
+                    <li><input type="submit" value="Send Message"/></li>
                 </ul>
             </form>
         </div>
     </div>
 </section>
-
 
 
 <!-- Scripts -->

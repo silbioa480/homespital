@@ -99,9 +99,25 @@ public class DoctorServiceImpl implements DoctorService {
         return doctorDAO.searchDocId(doctor_email);
     }
 
+    // 의사에게 들어온 진료리스트 보기(준근)
     @Override
     public ArrayList<HashMap<String, Object>> docMedicalRecords(int doctor_number) throws Exception {
         return doctorDAO.docMedicalRecords(doctor_number);
+    }
+
+    //의사 로그인(준근)
+    @Override
+    public boolean docLogin(String doctor_email, String doctor_password) throws Exception {
+        try {
+            Doctor doctor = doctorDAO.docLoginQuery(doctor_email);
+            if (doctor_password.equals((doctor.getDoctor_password()))) {
+                return true;
+            } else {
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            throw new Exception("로그인 오류");
+        }
     }
 
 
