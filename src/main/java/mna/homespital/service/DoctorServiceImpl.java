@@ -24,6 +24,14 @@ public class DoctorServiceImpl implements DoctorService {
         return doctor;
     }
 
+    //가영: 의사 이메일 중복확인
+    @Override
+    public boolean emailCheck(String email) throws Exception {
+        Doctor doctor = doctorDAO.DoctorQueryMember(email);
+        if (doctor == null) return false;
+        return true;
+    }
+
     @Override
     public List<Doctor> getDocList(int page, PageInfo pageInfo) throws Exception {
 
