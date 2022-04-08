@@ -97,7 +97,7 @@
                     <div class="input-control">
                         <label class="doctor-title" for="businessNumber">사업자번호</label>
                         <div style="display:flex">
-                            <input id="businessNumber" style="width: 70%" name="businessNumber1" type="text" maxlength="6">
+                            <input id="businessNumber" style="width: 70%" name="businessNumber1" type="text" maxlength="11">
                             <input type="button" id="businessNumCheck" class="doubleChk" style="width: 15%" value="조회">
                         </div>
                         <div class="error"></div>
@@ -365,9 +365,5 @@
     //         // alert($("#bComps").val()); -- 이동확인
     //     });
 </script>
-
-
-
-
 </body>
 </html>
