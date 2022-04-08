@@ -36,7 +36,7 @@ function validateInput(e) {
     } else {
         $.ajax({
             type: "POST",
-            url: "emailoverlap",
+            url: "/admin/DoctorEmailoverlap",
             data: {
                 "email": emailValue
             },
