@@ -10,7 +10,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import service.PhoneCheckService;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.PrintWriter;
 import java.util.Map;
 
 @Controller
@@ -72,7 +74,7 @@ public class SignUpController {
 
     //가영:유저로그인
     @PostMapping("/login.do")
-    public String login(@RequestParam("email") String user_email, @RequestParam("password") String user_password, Model model) {
+    public String login(@RequestParam("email") String user_email, @RequestParam("password") String user_password, Model model, HttpServletResponse response) {
 
         try {
 //            User user = memberService.findByEmail(user_email);
@@ -82,7 +84,15 @@ public class SignUpController {
             return "redirect:/";
         } catch (Exception e) {
             model.addAttribute("err", e.getMessage());
-            return "redirect:/loginForm";
+            try {
+                response.setContentType("text/html;charset=UTF-8");
+                response.setCharacterEncoding("UTF-8");
+                PrintWriter out = response.getWriter();
+                out.println("<script>alert('로그인 실패 : 아이디와 비밀번호를 다시 한 번 확인해주세요.');history.go(-1);</script>");
+                out.flush();
+            } catch (Exception ee) {
+            }
+            return "redirect:/login";
         }
     }
 

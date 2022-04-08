@@ -70,7 +70,7 @@
     <select id="searchDocId" resultType="int" parameterType="String">
 	    <![CDATA[
         select doctor_number
-        from user
+        from doctor
         where doctor_email = #{doctor_email}
         ]]>
     </select>
@@ -95,5 +95,24 @@
         where doctor_email = #{doctor_email}
         ]]>
     </select>
+
+    <!-- 진료 시작하기 (준근)-->
+    <update id="startDiagnosis" parameterType="int">
+        <![CDATA[
+        update diagnosis
+        set diagnosis_status = 1
+        where diagnosis_number = #{diagnosis_number};
+        ]]>
+    </update>
+    
+    <!-- 진료 완료하기하기 (준근)-->
+    <update id="finishDiagnosis" parameterType="int">
+        <![CDATA[
+        update diagnosis
+        set diagnosis_status = 3
+        where diagnosis_number = #{diagnosis_number};
+        ]]>
+    </update>
+
 
 </mapper>

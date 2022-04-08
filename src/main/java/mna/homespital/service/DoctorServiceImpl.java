@@ -129,4 +129,16 @@ public class DoctorServiceImpl implements DoctorService {
         }
     }
 
+    //진료 시작(준근)
+    @Override
+    public void startDiagnosis(int diagnosis_number) throws Exception {
+        doctorDAO.startDiagnosis(diagnosis_number);
+    }
+
+    // 진료 완료(준근)
+    @Override
+    public void finishDiagnosis(int diagnosis_number) throws Exception {
+        doctorDAO.finishDiagnosis(diagnosis_number);
+    }
+
 }
