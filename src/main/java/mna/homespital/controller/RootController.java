@@ -225,5 +225,16 @@ public class RootController {
       return mv;
   }
 
+  //가영: 의사 비밀번호 확인
+  @GetMapping("/docPwCheck")
+  public ModelAndView docPwCheck() {
+    String email = (String) session.getAttribute("email");
+
+    if (email == null) {
+      return new ModelAndView("user/main/index");
+    }
+    return new ModelAndView("admin/doctorside/docPwCheck");
+  }
+
 
 }
