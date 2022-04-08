@@ -16,6 +16,15 @@ public class DoctorServiceImpl implements DoctorService {
     @Autowired
     DoctorDAO doctorDAO;
 
+    //가영: 의사회원가입
+    @Override
+    public Doctor join(Doctor doctor) throws Exception {
+        Doctor doc = doctorDAO.DoctorQueryMember(doctor.getDoctor_email());
+        if (doc != null) throw new Exception("이미 있는 이메일입니다.");
+        doctorDAO.insertDoctorMember(doctor);
+        return doctor;
+    }
+
     @Override
     public List<Doctor> getDocList(String doctor_diagnosis_type, int page, PageInfo pageInfo) throws Exception {
 
@@ -105,6 +114,7 @@ public class DoctorServiceImpl implements DoctorService {
         return doctorDAO.docMedicalRecords(doctor_number);
     }
 
+<<<<<<< HEAD
     //의사 로그인(준근)
     @Override
     public boolean docLogin(String doctor_email, String doctor_password) throws Exception {
@@ -121,4 +131,6 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
 
+=======
+>>>>>>> 5916c45215ebf1454f5724307d943d20fe5ab336
 }

@@ -13,6 +13,12 @@ import java.util.Map;
 @Repository
 public interface DoctorDAO {
 
+    //가영: 이메일로 의사 정보 가져오기
+    Doctor DoctorQueryMember(String doctor_email) throws Exception;
+
+    //가영: 의사 정보 넣기
+    void insertDoctorMember(Doctor doctor) throws Exception;
+
     // 의료진 찾기 - 의료진 목록 보기 (훈)
     List<Doctor> queryDoctor(Map<String, Object> param) throws Exception;
 
@@ -26,6 +32,7 @@ public interface DoctorDAO {
 
     //의사 스케쥴에 대한 정보 가져오기 (준근)
     ArrayList<HashMap<String, Object>> getDocScheduleInfo(int doctor_number) throws Exception;
+    
 
     // 의사이메일로 의사 가져오기(준근)
     int searchDocId(String doctor_email) throws Exception;

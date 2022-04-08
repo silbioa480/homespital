@@ -1,21 +1,31 @@
 package mna.homespital.controller;
 
 import mna.homespital.dto.Diagnosis;
+import mna.homespital.service.MedicalListService;
+import mna.homespital.service.PharService;
 import mna.homespital.service.DiagnosisService;
 import mna.homespital.service.DoctorService;
 import mna.homespital.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+<<<<<<< HEAD
+=======
+import org.springframework.web.servlet.ModelAndView;
+
+>>>>>>> 5916c45215ebf1454f5724307d943d20fe5ab336
 
 import javax.servlet.http.HttpSession;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
+import org.springframework.web.servlet.ModelAndView;
+
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/")
 public class DoctorController {
     @Autowired
     DoctorService doctorService;
@@ -26,6 +36,7 @@ public class DoctorController {
     @Autowired
     DiagnosisService diagnosisService;
 
+<<<<<<< HEAD
     //의사 index
     @GetMapping("/")
     public String DoctorMain() {
@@ -53,6 +64,33 @@ public class DoctorController {
     }
 
 
+=======
+
+    @Autowired
+    HttpSession session;
+
+    @Autowired
+    PharService pharService;
+
+    //나의진료내역 (인성)
+    @GetMapping("/customerList")
+    public String customerList(HttpSession session, Model m) throws Exception {
+        try {
+//            String email = (String) session.getAttribute("email");
+//            String name = (String) session.getAttribute("name");
+//            int searchNumber = pharService.getNumberByEmail(email);
+            Diagnosis diagnosis = new Diagnosis();
+//            diagnosis.setUser_number(searchNumber);
+            m.addAttribute("diagnosis", diagnosis);
+        } catch (Exception e) {
+            System.out.println("Catch() join");
+            e.printStackTrace();
+            return "common/err";
+        }
+        return "admin/phar/customerList";
+    }
+  
+>>>>>>> 5916c45215ebf1454f5724307d943d20fe5ab336
     //의사의 진료내역 (준근)
     @GetMapping("/docMedicalList")
     public String docMedicalList(HttpSession session, Model m) throws Exception {
@@ -70,6 +108,19 @@ public class DoctorController {
             return "common/err";
         }
         return "admin/doctor/customerList";
+    }
+
+    //진료내역 리스트 출력 (인성)
+    @ResponseBody
+    @GetMapping("/pharCustomerRecordsList")
+    public ArrayList<HashMap<String, Object>> pharCustomerRecordsList(@RequestParam int phar_number) {
+        ArrayList<HashMap<String, Object>> customerList = new ArrayList<>();
+        try {
+            customerList = pharService.pharCustomerRecordsList(phar_number);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return customerList;
     }
 
     //의사에게 들어온 진료내역 리스트 출력 (준근)

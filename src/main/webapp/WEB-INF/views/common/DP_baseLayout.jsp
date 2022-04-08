@@ -32,13 +32,6 @@
         }
 
         @font-face {
-            font-family: 'Y_Spotlight';
-            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/Y_Spotlight.woff') format('woff');
-            font-weight: normal;
-            font-style: normal;
-        }
-
-        @font-face {
             font-family: 'Yeongdo-Rg';
             src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/Yeongdo-Rg.woff') format('woff');
             font-weight: normal;
@@ -59,15 +52,13 @@
 </head>
 <body>
 <%--<div style="background-color:#1abc9c; position: absolute; width: 100%; height:400px;"></div>--%>
-
-<%--<tiles:insertAttribute name="sidebar"/> 소연 삭제 by 4/7--%>
-<div class="container" style="margin-left: 18em; width: calc(100vw - 18em);">
-    <tiles:insertAttribute name="navbar"/>
-    <tiles:insertAttribute name="body"/>
-</div>
-<%--<tiles:insertAttribute name="footer"/>--%>
+<tiles:insertAttribute name="DP_navbar"/>
+<%--<div class="container px-4 px-lg-5 mt-5" style="max-width: 1200px;">--%>
+<tiles:insertAttribute name="body"/>
+<%--</div>--%>
+<tiles:insertAttribute name="footer"/>
 
 
-<%--<script src="/resources/js/login/login.js"></script>--%>
+<script src="/resources/js/login/login.js"></script>
 </body>
 </html>
