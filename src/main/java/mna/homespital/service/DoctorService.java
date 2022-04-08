@@ -10,6 +10,10 @@ public interface DoctorService {
 
     //가영 : 의사 회원가입
     Doctor join(Doctor doctor) throws Exception;
+    
+    
+//가영: 의사 아이디중복확인
+    boolean emailCheck(String email) throws Exception;
 
     // 의료진 찾기 - 의료진 목록 보기 (훈)
     public List<Doctor> getDocList(int page, PageInfo pageInfo) throws Exception;
