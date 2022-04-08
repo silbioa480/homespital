@@ -715,19 +715,18 @@
     }
     // 인성: 예약하기 버튼 정규성 검사
     $('.appointDo').click(function () {
+        console.log(document.getElementById('is_delivery').value);
         if (!$("input:checked[name='timeChecked']").is(":checked")) {
             alert("시간약관을 체크하세요.")
             $(".timeChecked").focus();
             return false;
-        } else if(!$("input:checked[name='is_delivery']").val() == 0) {
-            $(!$("input:checked[name='naebangChecked']").is(":checked"))
-            alert("내방약관을 체크하세요.");
-            $('#is_delivery').focus();
-        } else if (!$("input:checked[name='naebangChecked']").is(":checked")) {
-            alert("내방약관을 체크하세요.")
-            $(".naebangChecked").focus();
-            return false;
-        } else if (!$("input:checked[name='paymentConfirm']").is(":checked")) {
+        } else if($(document.getElementById('is_delivery').value === 0)) {
+            if(!$("input:checked[name='naebangChecked']").is(":checked")) {
+                alert("내방약관을 체크하세요.");
+                $('.naebangChecked').focus();
+                return false;
+            }
+        }  else if (!$("input:checked[name='paymentConfirm']").is(":checked")) {
             alert("결제약관을 체크하세요.")
             $(".paymentConfirm").focus();
             return false;
