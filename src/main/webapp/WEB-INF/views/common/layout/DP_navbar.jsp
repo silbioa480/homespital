@@ -41,8 +41,8 @@
             <button
                     class="navbar-toggler border-dark"
                     type="button"
-                    data-toggle="collapse"
-                    data-target="#navbars"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbars"
                     aria-controls="navbars"
                     aria-expanded="false"
                     aria-label="Toggle navigation"

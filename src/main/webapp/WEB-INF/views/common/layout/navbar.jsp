@@ -46,7 +46,7 @@
                 data-bs-target="#navbarNavDarkDropdown"
                 aria-controls="navbarNavDarkDropdown"
                 --%>
-                        data-target="#navbars" aria-controls="navbars"
+                        data-bs-target="#navbars" aria-controls="navbars"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="fa fa-bars" style="color: black"></span>
                 </button>
