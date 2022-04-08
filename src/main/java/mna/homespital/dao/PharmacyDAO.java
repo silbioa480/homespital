@@ -21,5 +21,10 @@ public interface PharmacyDAO {
     // 인성: customerList 출력
     ArrayList<HashMap<String, Object>> pharCustomerRecordsList(int phar_number) throws Exception;
 
+    //용식: 이메일로 약사 정보 가져오기
+    Pharmacy PharmacyQueryMember(String pharmacy_email) throws Exception;
+
+    //용식: 약사 정보 넣기
+    void insertPharmacyMember(Pharmacy pharmacy) throws Exception;
 
 }

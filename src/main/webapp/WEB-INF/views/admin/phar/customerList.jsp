@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <%-- 준근 --%>
+=======
+<%--인성 : 약국단 진료리스트보기--%>
+>>>>>>> dff7af5acb4970371c62fe183cef8179ed976930
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>

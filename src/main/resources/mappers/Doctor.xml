@@ -4,14 +4,21 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mna.homespital.dao.DoctorDAO">
-    <!--    <insert id="insertDoctor" parameterType="Doctor">-->
-    <!--        <![CDATA[-->
-    <!--        insert into `user`(user_email, user_password, user_name, user_registration_number,-->
-    <!--                           user_phone, user_address)-->
-    <!--        values (#{user_email}, #{user_password}, #{user_name}, #{user_registration_number},-->
-    <!--                #{user_phone}, #{user_address})-->
-    <!--        ]]>-->
-    <!--    </insert>-->
+
+    <!--가영: 회원가입 인서트-->
+    <insert id="insertDoctorMember" parameterType="doctor">
+        <![CDATA[
+        insert into `doctor`(doctor_emai, doctor_password, doctor_phone, doctor_name,
+                             doctor_valid_number, doctor_profile_image_name, hospital_business_number,
+                             hospital_name, zip_code, street_address, detail_address, doctor_diagnosis_type,
+                             working_time, lunch_time, holiday, hospital_fax, hospital_url, doctor_introduction)
+        values (#{doctor_emai}, #{doctor_password}, #{doctor_phone}, #{doctor_name},
+                #{doctor_valid_number},#{doctor_profile_image_name},,#{hospital_business_number},
+                #{hospital_name}, #{zip_code}, #{street_address}, #{detail_address}, #{detail_address}, #{doctor_diagnosis_type},
+                #{working_time}, #{lunch_time}, #{holiday}, #{hospital_fax}, #{hospital_url}, #{doctor_introduction})
+        ]]>
+    </insert>
+
     <select id="queryDoctor" resultType="Doctor" parameterType="int">
         <![CDATA[
         select *
@@ -19,6 +26,7 @@
               from (select * from doctor) tot,
                   (select @rownum := 0) temp) sub
         where rnum between #{startrow} and #{startrow} + 9
+          and doctor_diagnosis_type = #{doctor_diagnosis_type}
         ]]>
     </select>
 
@@ -41,7 +49,10 @@
     <!--의사명 및 병원명 검색 태영   -->
     <select id="searchDoh" resultType="Doctor" parameterType="String">
         <![CDATA[
-            select * from doctor where doctor_name like concat('%', #{keyword}, '%') or replace(hospital_name,' ','') like concat('%', #{keyword}, '%')
+        select *
+        from doctor
+        where doctor_name like concat('%', #{keyword}, '%')
+           or replace(hospital_name, ' ', '') like concat('%', #{keyword}, '%')
         ]]>
     </select>
 
@@ -53,5 +64,6 @@
         WHERE (@rownum := 0)=0 and doctor_number = #{doctor_number};
         ]]>
     </select>
+
 
 </mapper>

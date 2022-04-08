@@ -44,7 +44,7 @@ public class MemberServiceImpl implements MemberService {
         User mem = memberDAO.queryMember(user.getUser_email());
         if (mem != null) throw new Exception("이미 있는 이메일입니다.");
         memberDAO.insertMember(user);
-        return memberDAO.queryMember(user.getUser_email());
+        return user;
     }
 
     //용식:비밀번호 수정

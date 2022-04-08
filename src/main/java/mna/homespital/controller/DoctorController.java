@@ -5,6 +5,7 @@ import mna.homespital.service.MedicalListService;
 import mna.homespital.service.PharService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -12,6 +13,11 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
 
 @Controller
 @RequestMapping("/")
@@ -41,7 +47,7 @@ public class DoctorController {
         return "admin/phar/customerList";
     }
 
-    //진료내역 리스트 출력 (준근)
+    //진료내역 리스트 출력 (인성)
     @ResponseBody
     @GetMapping("/pharCustomerRecordsList")
     public ArrayList<HashMap<String, Object>> pharCustomerRecordsList(@RequestParam int phar_number) {
@@ -55,3 +61,6 @@ public class DoctorController {
     }
 
 }
+
+
+
