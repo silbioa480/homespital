@@ -323,7 +323,7 @@
                         </div>
                     </div>
                     <br><br>
-                    <input type="submit"  value="회원가입" style="width: 100%;"></input>
+                    <input type="button"  onclick="validateInput()" value="회원가입" style="width: 100%;"></input>
                 </div>
             </section>
         </form>
@@ -351,10 +351,10 @@
 <script src="/resources/js/signUp/breakpoints.min.js"></script>
 <script src="/resources/js/signUp/util.js"></script>
 <script src="/resources/js/signUp/signUp.js"></script>
-<script src="/resources/js/signUp/signUpCheck.js"></script>
+<%--<script src="/resources/js/signUp/signUpCheck.js"></script>--%>
 
 <script src="/resources/js/signUp/doctorJoin.js"></script>
-<%--<script src="/resources/js/signUp/doctorCheck.js"></script>--%>
+<script src="/resources/js/signUp/doctorCheck.js"></script>
 
 <script>
     $(function() {
