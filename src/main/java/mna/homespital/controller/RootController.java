@@ -2,7 +2,6 @@ package mna.homespital.controller;
 
 import mna.homespital.dto.Diagnosis;
 import mna.homespital.dto.Doctor;
-import mna.homespital.dto.PageInfo;
 import mna.homespital.dto.User;
 import mna.homespital.service.*;
 import org.apache.maven.model.Model;
@@ -16,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -54,28 +55,40 @@ public class RootController {
         return new ModelAndView("user/main/index");
     }
 
-    //로그인
+    //환자로그인
     @GetMapping("/loginForm")
     public ModelAndView loginForm() {
         return new ModelAndView("user/main/loginForm");
     }
 
 
-    //회원가입
+    //환자회원가입
     @GetMapping("/joinForm")
     public ModelAndView joinForm() {
         return new ModelAndView("user/userside/joinForm");
     }
 
-    //회원정보수정
+    //약국회원가입
+    @GetMapping("/pharmacyJoinForm")
+    public ModelAndView phamacyJoinForm() {
+        return new ModelAndView("admin/pharside/joinForm");
+    }
+
+    //환자회원정보수정
     @GetMapping("/modifyForm")
     public ModelAndView modifyForm() {
         ModelAndView mav = new ModelAndView("user/userside/modifyForm");
         String email = (String) session.getAttribute("email");
         try {
             User user = memberService.queryMember(email);
+            String juminNum = user.getUser_registration_number();
+            user.setUser_registration_number(juminNum.replaceAll(".{6}$", "******"));
+
             if (user == null) {
                 mav.setViewName("user/main/loginForm");
+            } else {
+                mav.addObject("user", user);
+                System.out.println(user.toString());
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -83,13 +96,18 @@ public class RootController {
         return mav;
     }
 
-//  //비밀번호확인(정보수정 전)
-//  @GetMapping("/pwCheck")
-//  public ModelAndView pwCheck() {
-//    return new ModelAndView("user/userside/pwCheck");
-//  }
+    //환자비밀번호확인(정보수정 전)
+    @GetMapping("/pwCheck")
+    public ModelAndView pwCheck() {
+        String email = (String) session.getAttribute("email");
 
-    //회원탈퇴
+        if (email == null) {
+            return new ModelAndView("user/main/index");
+        }
+        return new ModelAndView("user/userside/pwCheck");
+    }
+
+    //환자회원탈퇴
     @GetMapping("/delete")
     public ModelAndView deleteForm() {
         String email = (String) session.getAttribute("email");
@@ -100,63 +118,50 @@ public class RootController {
         return new ModelAndView("user/userside/deleteForm");
     }
 
-    //비밀번호 찾기
+    //환자비밀번호 찾기
     @GetMapping("/findpwForm")
     public ModelAndView findpwForm() {
         return new ModelAndView("user/main/findpwForm");
     }
 
-    //의료진 찾기
-    //    @SuppressWarnings("deprecation") // 의사 목업코드를 넣을때 쓴 코드. DAO로 실제 DB를 받아올 수 있다면 떼도 됨
-    @GetMapping("/doctorList")
-    public ModelAndView doctorList(@RequestParam(required = false, defaultValue = "1") int page) throws Exception {
-        ModelAndView mv = new ModelAndView("user/userside/doctorList");
-        PageInfo pageInfo = new PageInfo();
-        List<Doctor> doctorList = doctorService.getDocList(page, pageInfo);
-
-        mv.addObject("doctorList", doctorList);
-        mv.addObject("pageInfo", pageInfo);
-        return mv;
-    }
-
-    //원하는 의사명 및 병원명 찾기 태영
-    @PostMapping("/dohSearch")
-    public ModelAndView dohSearch(@RequestParam(value="dhSearch") String dhSearch){
-        ModelAndView mv=new ModelAndView();
-        try{
-            List<Doctor> doc=doctorService.getSearchDoh(dhSearch);
-//            List<Doctor> docList = doctorService.getDocList(page, pageInfo);
-            mv.addObject("doctorList",doc);
-            mv.setViewName("user/userside/doctorList");
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        return mv;
-    }
-    //진료차트 쓰기
-//  @GetMapping("/appointmentForm/{doc}")
-//  public ModelAndView appointmentForm(@PathVariable int doc) {
-
-    @GetMapping("/appointmentForm")
-    public ModelAndView appointmentForm() throws Exception {
+    //진료차트 쓰기, 예약하기(인성 , 준근)
+    @GetMapping("/appointmentForm/{doctor_number}")
+    public ModelAndView appointmentForm(@PathVariable int doctor_number) throws Exception {
         ModelAndView mv = new ModelAndView("user/userside/appointmentForm");
-        int doctor_number = 1;
-
-
-        // page
+        String email = (String) session.getAttribute("email");
         try {
+            //모델에 view 넣기
+            //의사 객체
             Doctor doctor = doctorService.getDocInfo(doctor_number);
             doctor.setDoctor_password("");
-
-            System.out.println(doctor.getDoctor_name());
             mv.addObject("doctor", doctor);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        String email = (String) session.getAttribute("email");
 
-        try {
+            //의사 실제 진료시간(근무시간 - 점심시간)을 계산
+            String work_time = doctor.getWorking_time();
+            String[] work_timeArr = work_time.split(",");
+            String lunch_time = doctor.getLunch_time();
+
+            List<String> real_work_timeList = new ArrayList<>();
+            for (String workTime : work_timeArr) {
+                if (!workTime.equals(lunch_time)) {
+                    real_work_timeList.add(workTime);
+                }
+            }
+            mv.addObject("real_work_timeList", real_work_timeList);
+
+            //유저 객체
+
+            System.out.println("email = " + email);
             User user = memberService.findByEmail(email);
+            mv.addObject("user", user);
+
+            System.out.println("user = " + user);
+
+
+            //의사 스케쥴 객체
+            ArrayList<HashMap<String, Object>> ds = doctorService.getDocScheduleInfo(doctor_number);
+            mv.addObject("ds", ds);
+
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -194,8 +199,20 @@ public class RootController {
     // 관리자 메인 페이지 임시로 만들어놈 ( 인성 )
     @GetMapping("/adminIndex")
     public ModelAndView adminIndex() {
-        return new ModelAndView("admin/mian/adminIndex");
+        return new ModelAndView("admin/main/adminIndex");
     }
 
+//    //약국 메인페이지 태영
+//    @GetMapping("/pharmacyIndex")
+//    public ModelAndView pharmacyIndex() {
+//        ModelAndView mv = new ModelAndView();
+//        mv.setViewName("admin/pharside/pharmacyIndex");
+//        return mv;
+//    }
 
+    //가영: 의사 회원가입
+    @GetMapping("/doctorJoin")
+    public ModelAndView doctorJoin() {
+        return new ModelAndView("admin/doctorside/joinForm");
+    }
 }

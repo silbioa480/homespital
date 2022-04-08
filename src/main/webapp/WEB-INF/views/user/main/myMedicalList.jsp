@@ -84,7 +84,7 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 
-
+    // 페이지에 들어오자마자 실행
     $(document).ready(function () {
         let page = 0;
         let loading = false;

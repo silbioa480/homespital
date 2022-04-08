@@ -9,24 +9,27 @@
 <html>
 <head>
     <title>Title</title>
+    <link rel="stylesheet" href="/resources/css/signUp.css"/>
     <script src="resources/jQuery/jquery-3.4.1.min.js"></script>
 </head>
 <body>
 
 <form style="margin-top: 100px; " action="/delete" method="post" id="deleteForm" name="deleteForm" autocomplete="off">
     <input type="hidden" id="user_id" name="user_id" value="${user.user_email}">
-    <div class="col-sm-8 col-sm-offset-2">
-        <div class="panel panel-default panel-margin-10">
-            <div class="panel-body panel-body-content text-center">
-                <p class="lead">회원탈퇴</p>
-                <div class="form-group" style="margin-bottom: 20px">
+    <div class="container" style="margin-top: 150px">
+        <h3>회원탈퇴</h3>
+        <hr>
 
-                    <input  type="password" id = "password" name="password" class="form-control form-control-inline text-center" placeholder="비밀번호를 입력해 주세요." />
+
+                <div class="input-control">
+
+                    <input  type="password" id = "password" name="password" class="form-control form-control-inline text-center" style="width: 100%" placeholder="비밀번호를 입력해 주세요." />
                 </div>
 
                 <hr>
-                <br>
-                <button type="button" id="delete" name="delete" class="btn btn-primary">탈퇴</button> <a href="/user/mypage" class="btn btn-default">취소</a>
+
+                <input type="submit" id="delete" name="delete" style="width: 100%" value="탈퇴"></input>
+<%--        <a href="/user/mypage" style="width: 48%" class="btn btn-default">취소</a>--%>
             </div>
         </div>
     </div>
@@ -59,25 +62,6 @@
             if(confirm("정말 탈퇴 하시겠습니까?") == true)
             {
 
-                // if($("#password").val()==""){
-            //     alert("비밀번호를 입력해주세요");
-            //     $("#password").focus();
-            //     return false
-            // }
-
-            // if($("#password2").val()==""){
-            //     alert("비밀번호 확인을 입력해주세요");
-            //     $("#password2").focus();
-            //     return false
-            // }
-            //
-            // if ($("#password").val() != $("#password2").val()) {
-            //     alert("비밀번호가 일치하지 않습니다.");
-            //     $("#password").focus();
-            //
-            //     return false;
-            // }
-
             $.ajax({
                 url : "/delete",
                 type : "POST",
@@ -101,18 +85,11 @@
                     }
                     else
                     {
-                        alert("회원 탈퇴 중 오류가 발생했습니다.");
+                        alert("비밀번호를 확인해주세요.");
                         location.href = "/delete";
                     }
                 },
-                // complete:function(data)
-                // {
-                //     icia.common.log(data);
-                // },
-                // error:function(xhr, status, error)
-                // {
-                //     icia.common.error(error);
-                // }
+
             });
             }
         });

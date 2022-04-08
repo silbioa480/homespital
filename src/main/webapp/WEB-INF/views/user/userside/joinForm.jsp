@@ -12,32 +12,32 @@
 
 <body class="is-preload">
 
-<!-- Header -->
-<section id="header">
-    <header>
-        <span class="image avatar"><img src="/resources/img/signUp/avatar.jpg" alt=""/></span>
-        <h1 id="logo"><a href="#">Homespital</a></h1>
-        <p>Hi</p>
+<%--<!-- Header -->--%>
+<%--<section id="header">--%>
+<%--    <header>--%>
+<%--        <span class="image avatar"><img src="/resources/img/signUp/avatar.jpg" alt=""/></span>--%>
+<%--        <h1 id="logo"><a href="#">Homespital</a></h1>--%>
+<%--        <p>Hi</p>--%>
 
-    </header>
-    <nav id="nav">
-        <ul>
-            <li><a href="#one" class="active">필수정보입력</a></li>
-            <li><a href="#two">주소 입력</a></li>
-            <li><a href="#three">결제 정보 입력</a></li>
-            <li><a href="#four">약관동의</a></li>
-        </ul>
-    </nav>
-    <footer>
-        <ul class="icons">
-            <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-            <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-            <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-            <li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
-            <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-        </ul>
-    </footer>
-</section>
+<%--    </header>--%>
+<%--    <nav id="nav">--%>
+<%--        <ul>--%>
+<%--            <li><a href="#one" class="active">필수정보입력</a></li>--%>
+<%--            <li><a href="#two">주소 입력</a></li>--%>
+<%--            <li><a href="#three">결제 정보 입력</a></li>--%>
+<%--            <li><a href="#four">약관동의</a></li>--%>
+<%--        </ul>--%>
+<%--    </nav>--%>
+<%--    <footer>--%>
+<%--        <ul class="icons">--%>
+<%--            <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>--%>
+<%--            <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>--%>
+<%--            <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>--%>
+<%--            <li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>--%>
+<%--            <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>--%>
+<%--        </ul>--%>
+<%--    </footer>--%>
+<%--</section>--%>
 
 <!-- Wrapper -->
 <div id="wrapper">
@@ -48,6 +48,8 @@
             <!-- One -->
             <section id="one">
                 <div class="container">
+                    <h3>회원가입</h3>
+                    <br>
                     <h5>로그인 정보에 사용됩니다(필수)</h5>
                     <hr>
                     <diu class="input-control">
@@ -138,41 +140,65 @@
                     </div>
                 </div>
             </section>
-            <br><br><br><br>
+<%--            <br><br><br><br>--%>
 
             <!-- Three -->
-            <section id="three">
-                <div class="container">
-                    <h5>결제 정보에 사용됩니다(선택)</h5>
-                    <hr>
-                    <h5>카드 번호</h5>
-                    <div class="creditCardNumber">
-                        <input type="text" class="moveNumber" onKeyup="inputMoveNumber(this);" maxlength="4"
-                               style="width:100px"/>&nbsp;-&nbsp;
-                        <input type="text" class="moveNumber" onKeyup="inputMoveNumber(this);" maxlength="4"
-                               style="width:100px"/>&nbsp;-&nbsp;
-                        <input type="text" class="moveNumber" onKeyup="inputMoveNumber(this);" maxlength="4"
-                               style="width:100px"/>&nbsp;-&nbsp;
-                        <input type="text" class="moveNumber" maxlength="4" style="width:100px"/>
-                    </div>
-                    <div class="creditCardValidity">
-                        <h5>카드 유효기간</h5>
-                        <input type="text" class="validThru" onKeyup="inputValidThru(this);" placeholder="MM/YY"
-                               maxlength="5"/>
-                    </div>
-                    <div class="creditCardBirth">
-                        <h5>생년월일</h5>
-                        <input type="text" class="" placeholder="생년월일" maxlength="6">
-                    </div>
-                    <div>
-                        <h5>카드 비밀번호</h5>
-                        <input type="text" class="" placeholder="앞에 두자리만 입력해주세요" maxlength="2">
-                    </div>
-                    <button>Get</button>
-                    <input type="hidden" name="billing_key">
-                </div>
-            </section>
-            <br><br><br><br>
+<%--            <section id="three">--%>
+<%--                <div class="container">--%>
+<%--                    <h5>결제 정보에 사용됩니다(선택)</h5>--%>
+<%--                    <hr style="height:4px">--%>
+<%--                    <div class="input-control">--%>
+<%--                    <h5 class="card-title">카드 별칭</h5>--%>
+<%--                        <div style="display:flex">--%>
+<%--                        <input style="width: 100%" id="cardNameModal" type="text"--%>
+<%--                               name="cardNameModal"--%>
+<%--                               placeholder="카드 별칭를 입력해주세요. ( 최대 8자 )" title="카드 별칭 입력"--%>
+<%--                               maxlength="8"/>--%>
+<%--                    </div>--%>
+<%--                    <div class="error"></div>--%>
+<%--                    </div>--%>
+
+<%--                    <div class="input-control">--%>
+<%--                        <h5 class="card-title">카드 번호</h5>--%>
+<%--                        <div style="display:flex">--%>
+<%--                            <input style="width: 24%; height:40px;" id="cardNumModal1" type="text"--%>
+<%--                                   name="cardNumModal1" maxlength="4" minlength="4"/>--%>
+<%--                            <span style="line-height:40px;">-</span>--%>
+<%--                            <input style="width: 24%; height:40px;" id="cardNumModal2"--%>
+<%--                                   type="password"--%>
+<%--                                   name="cardNumModal2" maxlength="4" minlength="4"/>--%>
+<%--                            <span style="line-height:40px;">-</span>--%>
+<%--                            <input style="width: 24%; height:40px;" id="cardNumModal3"--%>
+<%--                                   type="password"--%>
+<%--                                   name="cardNumModal3" maxlength="4" minlength="4"/>--%>
+<%--                            <span style="line-height:40px;">-</span>--%>
+<%--                            <input style="width: 24%; height:40px;" id="cardNumModal4" type="text"--%>
+<%--                                   name="cardNumModal4" maxlength="4" minlength="4"/>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+
+
+<%--                    <div class="input-control">--%>
+<%--                        <h5 class="card-title">카드 유효기간</h5>--%>
+<%--                        <div style="display:flex">--%>
+<%--                            <input style="width: 100%" id="cardMMYYNumModal" type="text"--%>
+<%--                                   name="cardMMYYNumModal"--%>
+<%--                                   title="카드 유효기간" placeholder="MMYY" maxlength="4" minlength="4"/>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+
+
+<%--                    <div class="input-control">--%>
+<%--                        <h5 class="card-title">카드 비밀번호</h5>--%>
+<%--                        <div style="display:flex">--%>
+<%--                            <input style="width: 100%" id="cardPassword" type="password"--%>
+<%--                                   name="cardPassword"--%>
+<%--                                   title="카드 비밀번호" placeholder="비밀번호 앞자리 2개 입력하세요." maxlength="2"--%>
+<%--                                   minlength="2"/>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+
 
 
             <!-- Four -->
@@ -205,7 +231,7 @@
                         </div>
                     </div>
                     <br><br><br>
-                    <input type="submit" value="회원가입" style="width: 100%;"></input>
+                    <input type="button" onClick="validateInput()" value="회원가입" style="width: 100%;"></input>
                 </div>
             </section>
         </form>
