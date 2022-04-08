@@ -2,13 +2,16 @@ package mna.homespital.controller;
 
 import mna.homespital.dto.Doctor;
 import mna.homespital.dto.Pharmacy;
+import mna.homespital.dto.User;
 import mna.homespital.service.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -100,6 +103,33 @@ public class DoctorController {
         }
 
         return result;
+    }
+
+    //가영: 의사 비밀번호 확인
+    //가영: 비밀번호확인
+    @ResponseBody
+    @RequestMapping(value = "/docPwCheck", method = RequestMethod.POST)
+    public String submitPasswordMember(@RequestParam(value = "password") String password, RedirectAttributes rttr, HttpSession session) {
+        try {
+            String email = (String) session.getAttribute("email");
+            Doctor doctor = doctorService.doctorQueryMember(email);
+            if (doctor == null) {
+                return "사용자없음";
+            }
+            String originPass = doctor.getDoctor_password();
+            String inputPass = password;
+
+            if (!(inputPass.equals(originPass))) {
+                rttr.addFlashAttribute("msg", true);
+
+                return "비밀번호틀림";
+            } else {
+                return "비밀번호일치";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "에러";
+        }
     }
 
 
