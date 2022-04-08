@@ -26,201 +26,197 @@ import java.util.UUID;
 @RequestMapping("/")
 public class RootController {
 
-  @Autowired
-  private ServletContext servletContext;
+    @Autowired
+    private ServletContext servletContext;
 
-  @Autowired
-  HttpSession session;
+    @Autowired
+    HttpSession session;
 
-  @Autowired
-  MedicalListService medicalListService;
+    @Autowired
+    MedicalListService medicalListService;
 
-  @Autowired
-  DiagnosisService diagnosisService;
+    @Autowired
+    DiagnosisService diagnosisService;
 
-  @Autowired
-  DoctorService doctorService;
+    @Autowired
+    DoctorService doctorService;
 
-  @Autowired
-  MemberService memberService;
+    @Autowired
+    MemberService memberService;
 
-  @Autowired
-  UserService userService;
+    @Autowired
+    UserService userService;
 
-  public RootController() {
-  }
-
-  @GetMapping("/")
-  public ModelAndView index() {
-    return new ModelAndView("user/main/index");
-  }
-
-  //환자로그인
-  @GetMapping("/loginForm")
-  public ModelAndView loginForm() {
-    return new ModelAndView("user/main/loginForm");
-  }
-
-
-  //환자회원가입
-  @GetMapping("/joinForm")
-  public ModelAndView joinForm() {
-    return new ModelAndView("user/userside/joinForm");
-  }
-
-  //약국회원가입
-  @GetMapping("/pharmacyJoinForm")
-  public ModelAndView phamacyJoinForm() {
-    return new ModelAndView("admin/pharside/joinForm");
-  }
-
-  //환자회원정보수정
-  @GetMapping("/modifyForm")
-  public ModelAndView modifyForm() {
-    ModelAndView mav = new ModelAndView("user/userside/modifyForm");
-    String email = (String) session.getAttribute("email");
-    try {
-      User user = memberService.queryMember(email);
-      String juminNum = user.getUser_registration_number();
-      user.setUser_registration_number(juminNum.replaceAll(".{6}$", "******"));
-
-      if (user == null) {
-        mav.setViewName("user/main/loginForm");
-      } else {
-        mav.addObject("user", user);
-        System.out.println(user.toString());
-      }
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-    return mav;
-  }
-
-  //환자비밀번호확인(정보수정 전)
-  @GetMapping("/pwCheck")
-  public ModelAndView pwCheck() {
-    String email = (String) session.getAttribute("email");
-
-    if (email == null) {
-      return new ModelAndView("user/main/index");
-    }
-    return new ModelAndView("user/userside/pwCheck");
-  }
-
-  //환자회원탈퇴
-  @GetMapping("/delete")
-  public ModelAndView deleteForm() {
-    String email = (String) session.getAttribute("email");
-
-    if (email == null) {
-      return new ModelAndView("user/main/index");
-    }
-    return new ModelAndView("user/userside/deleteForm");
-  }
-
-  //환자비밀번호 찾기
-  @GetMapping("/findpwForm")
-  public ModelAndView findpwForm() {
-    return new ModelAndView("user/main/findpwForm");
-  }
-
-  //진료차트 쓰기, 예약하기(인성 , 준근)
-  @GetMapping("/appointmentForm/{doctor_number}")
-  public ModelAndView appointmentForm(@PathVariable int doctor_number) throws Exception {
-    ModelAndView mv = new ModelAndView("user/userside/appointmentForm");
-    String email = (String) session.getAttribute("email");
-    if(email == null) {
-      mv.setViewName("redirect:/loginForm");
+    public RootController() {
     }
 
-    try {
-      //모델에 view 넣기
-      //의사 객체
-      Doctor doctor = doctorService.getDocInfo(doctor_number);
-      doctor.setDoctor_password("");
-      mv.addObject("doctor", doctor);
+    @GetMapping("/")
+    public ModelAndView index() {
+        return new ModelAndView("user/main/index");
+    }
 
-      //의사 실제 진료시간(근무시간 - 점심시간)을 계산
-      String work_time = doctor.getWorking_time();
-      String[] work_timeArr = work_time.split(",");
-      String lunch_time = doctor.getLunch_time();
+    //환자로그인
+    @GetMapping("/loginForm")
+    public ModelAndView loginForm() {
+        return new ModelAndView("user/main/loginForm");
+    }
 
-      List<String> real_work_timeList = new ArrayList<>();
-      for (String workTime : work_timeArr) {
-        if (!workTime.equals(lunch_time)) {
-          real_work_timeList.add(workTime);
+
+    //환자회원가입
+    @GetMapping("/joinForm")
+    public ModelAndView joinForm() {
+        return new ModelAndView("user/userside/joinForm");
+    }
+
+    //약국회원가입
+    @GetMapping("/pharmacyJoinForm")
+    public ModelAndView phamacyJoinForm() {
+        return new ModelAndView("admin/pharside/joinForm");
+    }
+
+    //환자회원정보수정
+    @GetMapping("/modifyForm")
+    public ModelAndView modifyForm() {
+        ModelAndView mav = new ModelAndView("user/userside/modifyForm");
+        String email = (String) session.getAttribute("email");
+        try {
+            User user = memberService.queryMember(email);
+            String juminNum = user.getUser_registration_number();
+            user.setUser_registration_number(juminNum.replaceAll(".{6}$", "******"));
+
+            if (user == null) {
+                mav.setViewName("user/main/loginForm");
+            } else {
+                mav.addObject("user", user);
+                System.out.println(user.toString());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-      }
-      mv.addObject("real_work_timeList", real_work_timeList);
-
-      //유저 객체
-
-      System.out.println("email = " + email);
-      User user = memberService.findByEmail(email);
-      mv.addObject("user", user);
-
-      System.out.println("user = " + user);
-
-
-      //의사 스케쥴 객체
-      ArrayList<HashMap<String, Object>> ds = doctorService.getDocScheduleInfo(doctor_number);
-      mv.addObject("ds", ds);
-
-
-    } catch (Exception e) {
-      e.printStackTrace();
+        return mav;
     }
-    return mv;
-  }
 
-  //진료예약   ( 인성 )
-  @PostMapping("/appointmentForm")
-  public ModelAndView appointment(Diagnosis diagnosis, MultipartFile[] diagnosisImgNames,
-                                  Model model, HttpServletRequest request, HttpServletResponse response) {
-    ModelAndView mv = new ModelAndView();
-    try {
-      // 사진 업로드
-      String fileNameArr = "";
+    //환자비밀번호확인(정보수정 전)
+    @GetMapping("/pwCheck")
+    public ModelAndView pwCheck() {
+        String email = (String) session.getAttribute("email");
 
-      for (int i = 0; i < diagnosisImgNames.length; i++) {
-        String diagnosisImg = diagnosisImgNames[i].getOriginalFilename();
-        String path = servletContext.getRealPath("/resources/img/uploadImg/");
-        String filename = UUID.randomUUID().toString() + "." + diagnosisImg.substring(diagnosisImg.lastIndexOf('.') + 1);
-        File destFile = new File(path + filename);
-        diagnosisImgNames[i].transferTo(destFile);
-        // 이 두줄땜시 사진 자동으로 올라감
-//        diagnosisImg = filename;
-//        fileNameArr += (diagnosisImg + ", ");
-      }
-
-      // DB insert
-      diagnosis.setDiagnosis_image_name(fileNameArr.toString());
-      diagnosisService.insertDiagnosis(diagnosis);
-      mv.setViewName("redirect:/myMedicalList");
-    } catch (Exception e) {
-      e.printStackTrace();
-      //mv.setViewName();
+        if (email == null) {
+            return new ModelAndView("user/main/index");
+        }
+        return new ModelAndView("user/userside/pwCheck");
     }
-    return mv;
-  }
 
-  // 관리자 메인 페이지 임시로 만들어놈 ( 인성 )
-  @GetMapping("/adminIndex")
-  public ModelAndView adminIndex() {
-    return new ModelAndView("admin/main/adminIndex");
-  }
+    //환자회원탈퇴
+    @GetMapping("/delete")
+    public ModelAndView deleteForm() {
+        String email = (String) session.getAttribute("email");
 
-  //약국 메인페이지 태영
-  @GetMapping("/pharmacyIndex")
-  public ModelAndView pharmacyIndex() {
-    ModelAndView mv = new ModelAndView();
-    mv.setViewName("admin/pharside/pharmacyIndex");
-    return mv;
-  }
+        if (email == null) {
+            return new ModelAndView("user/main/index");
+        }
+        return new ModelAndView("user/userside/deleteForm");
+    }
 
-  //가영: 의사 회원가입
-  @GetMapping("/doctorJoin")
-  public ModelAndView doctorJoin() {
-      return new ModelAndView("admin/doctorside/joinForm");
-  }
+    //환자비밀번호 찾기
+    @GetMapping("/findpwForm")
+    public ModelAndView findpwForm() {
+        return new ModelAndView("user/main/findpwForm");
+    }
+
+    //진료차트 쓰기, 예약하기(인성 , 준근)
+    @GetMapping("/appointmentForm/{doctor_number}")
+    public ModelAndView appointmentForm(@PathVariable int doctor_number) throws Exception {
+        ModelAndView mv = new ModelAndView("user/userside/appointmentForm");
+        String email = (String) session.getAttribute("email");
+        try {
+            //모델에 view 넣기
+            //의사 객체
+            Doctor doctor = doctorService.getDocInfo(doctor_number);
+            doctor.setDoctor_password("");
+            mv.addObject("doctor", doctor);
+
+            //의사 실제 진료시간(근무시간 - 점심시간)을 계산
+            String work_time = doctor.getWorking_time();
+            String[] work_timeArr = work_time.split(",");
+            String lunch_time = doctor.getLunch_time();
+
+            List<String> real_work_timeList = new ArrayList<>();
+            for (String workTime : work_timeArr) {
+                if (!workTime.equals(lunch_time)) {
+                    real_work_timeList.add(workTime);
+                }
+            }
+            mv.addObject("real_work_timeList", real_work_timeList);
+
+            //유저 객체
+
+            System.out.println("email = " + email);
+            User user = memberService.findByEmail(email);
+            mv.addObject("user", user);
+
+            System.out.println("user = " + user);
+
+
+            //의사 스케쥴 객체
+            ArrayList<HashMap<String, Object>> ds = doctorService.getDocScheduleInfo(doctor_number);
+            mv.addObject("ds", ds);
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return mv;
+    }
+
+    //진료예약   ( 인성 )
+    @PostMapping("/appointmentForm")
+    public ModelAndView appointment(Diagnosis diagnosis, MultipartFile[] diagnosisImgNames,
+                                    Model model, HttpServletRequest request, HttpServletResponse response) {
+        ModelAndView mv = new ModelAndView();
+        try {
+            // 사진 업로드
+            String fileNameArr = "";
+
+            for (int i = 0; i < diagnosisImgNames.length; i++) {
+                String diagnosisImg = diagnosisImgNames[i].getOriginalFilename();
+                String path = servletContext.getRealPath("/resources/img/uploadImg/");
+                String filename = UUID.randomUUID().toString() + "." + diagnosisImg.substring(diagnosisImg.lastIndexOf('.') + 1);
+                File destFile = new File(path + filename);
+                diagnosisImgNames[i].transferTo(destFile);
+                diagnosisImg = filename;
+                fileNameArr += (diagnosisImg + ", ");
+            }
+
+            // DB insert
+            diagnosis.setDiagnosis_image_name(fileNameArr.toString());
+            diagnosisService.insertDiagnosis(diagnosis);
+            mv.setViewName("redirect:/myMedicalList");
+        } catch (Exception e) {
+            e.printStackTrace();
+            //mv.setViewName();
+        }
+        return mv;
+    }
+
+    // 관리자 메인 페이지 임시로 만들어놈 ( 인성 )
+    @GetMapping("/adminIndex")
+    public ModelAndView adminIndex() {
+        return new ModelAndView("admin/main/adminIndex");
+    }
+
+    //약국 메인페이지 태영
+    @GetMapping("/pharmacyIndex")
+    public ModelAndView pharmacyIndex() {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("admin/pharside/pharmacyIndex");
+        return mv;
+    }
+  
+    //가영: 의사 회원가입
+    @GetMapping("/doctorJoin")
+    public ModelAndView doctorJoin() {
+        return new ModelAndView("admin/doctorside/joinForm");
+    }
+  
 }
