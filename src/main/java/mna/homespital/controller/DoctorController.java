@@ -5,9 +5,7 @@ import mna.homespital.dto.Pharmacy;
 import mna.homespital.service.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -89,6 +87,21 @@ public class DoctorController {
 
         return mv;
     }
+
+    //가영: 의사 이메일 중복확인
+    @ResponseBody
+    @PostMapping("/emailoverlap")
+    public boolean emailOverLap(@RequestParam String email) {
+        boolean result = false;
+        try {
+            result = doctorService.emailCheck(email);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
 
 
 }
