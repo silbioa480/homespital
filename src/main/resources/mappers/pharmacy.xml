@@ -15,4 +15,25 @@
         ]]>
     </select>
 
+    <select id="PharmacyQueryMember" resultType="Pharmacy" parameterType="String">
+        <![CDATA[
+        select *
+        from pharmacy
+        where pharmacy_email = #{pharmacy_email}
+        ]]>
+    </select>
+
+    <!--용식: 회원가입 인서트-->
+    <insert id="insertPharmacyMember" parameterType="pharmacy">
+        <![CDATA[
+        insert into `pharmacy`(pharmacy_email, pharmacy_password, pharmacy_mobile, pharmacy_business,
+                               pharmacy_name,
+                               pharmacy_institution, pharmacy_phone, zip_code,
+                               street_address, detail_address)
+        values (#{pharmacy_email}, #{pharmacy_password}, #{pharmacy_mobile}, #{pharmacy_business},
+                #{pharmacy_name},
+                #{pharmacy_institution}, #{pharmacy_phone}, #{zip_code},
+                #{street_address}, #{detail_address})
+        ]]>
+    </insert>
 </mapper>

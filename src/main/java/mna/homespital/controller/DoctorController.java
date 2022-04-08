@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/admin")
@@ -33,7 +34,7 @@ public class DoctorController {
     public String DoctorMain() {
         return "admin/main/index";
     }
-
+  
     //의사의 진료내역 (준근)
     @GetMapping("/docMedicalList")
     public String docMedicalList(HttpSession session, Model m) throws Exception {
