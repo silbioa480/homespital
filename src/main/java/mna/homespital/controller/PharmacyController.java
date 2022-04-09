@@ -60,7 +60,6 @@ public class PharmacyController {
       return "redirect:/pharmacyLoginForm";
     }
   }
-
   //용식:약사 회원가입
   @PostMapping("pharmacyJoin.do")
   public ModelAndView pharmacyJoin(HttpServletRequest request) {
@@ -69,27 +68,21 @@ public class PharmacyController {
     pharmacy.setPharmacy_password(request.getParameter("pharmacy_password"));
     pharmacy.setPharmacy_mobile(request.getParameter("pharmacy_mobile"));
     pharmacy.setPharmacy_business(request.getParameter("pharmacy_business"));
-    pharmacy.setPharmacy_name(request.getParameter("pharmacy_name"));
-    pharmacy.setPharmacy_institution(request.getParameter("pharmacy_institution"));
+    pharmacy.setPharmacy_name(request.getParameter("pharmacy_name"));;
     pharmacy.setPharmacy_phone(request.getParameter("pharmacy_phone"));
     pharmacy.setZip_code(request.getParameter("zipNo"));
     pharmacy.setStreet_address(request.getParameter("roadFullAddr"));
     pharmacy.setDetail_address(request.getParameter("addrDetail"));
     ModelAndView mv = new ModelAndView();
     try {
-      System.out.println("여기들어오라ㅏ ㅇㅇㅇㅇㅇ");
-      pharService.join(pharmacy);
-      mv.setViewName("redirect:/loginForm");
       pharService.join(pharmacy);
       mv.setViewName("redirect:/pharmacyLoginForm");
     } catch (Exception e) {
       e.printStackTrace();
       mv.setViewName("redirect:/pharmacyJoinForm");
     }
-
     return mv;
   }
-
   //환자진료내역 (인성)
   @GetMapping("/customerList")
   public String customerList(HttpSession session, Model m) throws Exception {

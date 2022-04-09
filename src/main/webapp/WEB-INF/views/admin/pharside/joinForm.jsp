@@ -100,16 +100,16 @@
                         <input type="text" id="pharmacyName" name="pharmacy_name" placeholder="약국명을 입력해주세요">
                         <div class="error"></div>
                     </div>
-                    <div class="input-control">
-                        <label for="institutionNumber">요양기관 번호</label>
-                        <div style="display:flex">
-                            <input type="text" id="institutionNumber" name="pharmacy_institution"
-                                   placeholder="요양기관 번호를 입력해주세요">
-                            <input class="institutionBtn" type="button" value="중복 확인">
-                        </div>
-                        <div class="error"></div>
+<%--                    <div class="input-control">--%>
+<%--                        <label for="institutionNumber">요양기관 번호</label>--%>
+<%--                        <div style="display:flex">--%>
+<%--                            <input type="text" id="institutionNumber" name="pharmacy_institution"--%>
+<%--                                   placeholder="요양기관 번호를 입력해주세요">--%>
+<%--                            <input class="institutionBtn" type="button" value="중복 확인">--%>
+<%--                        </div>--%>
+<%--                        <div class="error"></div>--%>
 
-                    </div>
+<%--                    </div>--%>
                     <div class="input-control">
                         <label for="pharmacyPhone">약국 전화번호</label>
                         <input type="text" id="pharmacyPhone" name="pharmacy_phone" placeholder="약국 전화번호를 입력해주세요">

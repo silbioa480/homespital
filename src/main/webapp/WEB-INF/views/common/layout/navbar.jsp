@@ -112,7 +112,28 @@
             </li>
           </ul>
 
+<<<<<<< HEAD
+                            </c:otherwise>
+                        </c:choose>
+                    </ul>
+                        <c:if test="${empty email}">
+                            <ul class="nav nav-pills">
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link active dropdown-toggle nav-link active" data-toggle="dropdown" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">의료 관계자 로그인</a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="/adminIndex">의사로그인</a>
+                                        <a class="dropdown-item" href="#">약국로그인</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </c:if>
 
+
+                </div>
+            </div>
+=======
+
+>>>>>>> 0447081eafef833eee941c164ed816b8bfe85cf7
         </div>
       </div>
     </div>

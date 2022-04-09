@@ -8,7 +8,6 @@ public class Pharmacy {
     private String pharmacy_mobile;
     private String pharmacy_business;
     private String pharmacy_name;
-    private String pharmacy_institution;
     private String pharmacy_phone;
     private String zip_code;
     private String street_address;
@@ -17,14 +16,13 @@ public class Pharmacy {
     public Pharmacy() {
     }
 
-    public Pharmacy(Integer pharmacy_number, String pharmacy_email, String pharmacy_password, String pharmacy_mobile, String pharmacy_business, String pharmacy_name, String pharmacy_institution, String pharmacy_phone, String zip_code, String street_address, String detail_address) {
+    public Pharmacy(Integer pharmacy_number, String pharmacy_email, String pharmacy_password, String pharmacy_mobile, String pharmacy_business, String pharmacy_name, String pharmacy_phone, String zip_code, String street_address, String detail_address) {
         this.pharmacy_number = pharmacy_number;
         this.pharmacy_email = pharmacy_email;
         this.pharmacy_password = pharmacy_password;
         this.pharmacy_mobile = pharmacy_mobile;
         this.pharmacy_business = pharmacy_business;
         this.pharmacy_name = pharmacy_name;
-        this.pharmacy_institution = pharmacy_institution;
         this.pharmacy_phone = pharmacy_phone;
         this.zip_code = zip_code;
         this.street_address = street_address;
@@ -79,14 +77,6 @@ public class Pharmacy {
         this.pharmacy_name = pharmacy_name;
     }
 
-    public String getPharmacy_institution() {
-        return pharmacy_institution;
-    }
-
-    public void setPharmacy_institution(String pharmacy_institution) {
-        this.pharmacy_institution = pharmacy_institution;
-    }
-
     public String getPharmacy_phone() {
         return pharmacy_phone;
     }
@@ -128,7 +118,6 @@ public class Pharmacy {
                 ", pharmacy_mobile='" + pharmacy_mobile + '\'' +
                 ", pharmacy_business='" + pharmacy_business + '\'' +
                 ", pharmacy_name='" + pharmacy_name + '\'' +
-                ", pharmacy_institution='" + pharmacy_institution + '\'' +
                 ", pharmacy_phone='" + pharmacy_phone + '\'' +
                 ", zip_code='" + zip_code + '\'' +
                 ", street_address='" + street_address + '\'' +
