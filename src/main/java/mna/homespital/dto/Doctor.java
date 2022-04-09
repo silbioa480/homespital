@@ -23,63 +23,12 @@ public class Doctor {
     private String zip_code;
     private String street_address;
     private String detail_address;
-    private String hospital_fax;
+    private String hospital_fax;;
     private String hospital_url;
     private Date create_date;
     private Date update_date;
+    //가영: 의사정보 추가
 
-    public Doctor() {
-    }
-
-    public Doctor(int doctor_number, String doctor_email, String doctor_password, String doctor_phone, String doctor_name, String doctor_valid_number, String doctor_profile_image_name, String hospital_name, String hospital_telephone, String hospital_business_number, String doctor_introduction, String hospital_file_name, String doctor_diagnosis_type, String working_time, String lunch_time, String holiday, String zip_code, String street_address, String detail_address, String hospital_fax, String hospital_url, Date create_date, Date update_date) {
-        this.doctor_number = doctor_number;
-        this.doctor_email = doctor_email;
-        this.doctor_password = doctor_password;
-        this.doctor_phone = doctor_phone;
-        this.doctor_name = doctor_name;
-        this.doctor_valid_number = doctor_valid_number;
-        this.doctor_profile_image_name = doctor_profile_image_name;
-        this.hospital_name = hospital_name;
-        this.hospital_telephone = hospital_telephone;
-        this.hospital_business_number = hospital_business_number;
-        this.doctor_introduction = doctor_introduction;
-        this.hospital_file_name = hospital_file_name;
-        this.doctor_diagnosis_type = doctor_diagnosis_type;
-        this.working_time = working_time;
-        this.lunch_time = lunch_time;
-        this.holiday = holiday;
-        this.zip_code = zip_code;
-        this.street_address = street_address;
-        this.detail_address = detail_address;
-        this.hospital_fax = hospital_fax;
-        this.hospital_url = hospital_url;
-        this.create_date = create_date;
-        this.update_date = update_date;
-    }
-
-    public Doctor(int doctor_number, String doctor_email, String doctor_password, String doctor_phone, String doctor_name, String doctor_valid_number, String doctor_profile_image_name, String hospital_name, String hospital_telephone, String hospital_business_number, String doctor_introduction, String hospital_file_name, String doctor_diagnosis_type, String working_time, String lunch_time, String holiday, String zip_code, String street_address, String detail_address, String hospital_fax, String hospital_url) {
-        this.doctor_number = doctor_number;
-        this.doctor_email = doctor_email;
-        this.doctor_password = doctor_password;
-        this.doctor_phone = doctor_phone;
-        this.doctor_name = doctor_name;
-        this.doctor_valid_number = doctor_valid_number;
-        this.doctor_profile_image_name = doctor_profile_image_name;
-        this.hospital_name = hospital_name;
-        this.hospital_telephone = hospital_telephone;
-        this.hospital_business_number = hospital_business_number;
-        this.doctor_introduction = doctor_introduction;
-        this.hospital_file_name = hospital_file_name;
-        this.doctor_diagnosis_type = doctor_diagnosis_type;
-        this.working_time = working_time;
-        this.lunch_time = lunch_time;
-        this.holiday = holiday;
-        this.zip_code = zip_code;
-        this.street_address = street_address;
-        this.detail_address = detail_address;
-        this.hospital_fax = hospital_fax;
-        this.hospital_url = hospital_url;
-    }
 
     public int getDoctor_number() {
         return doctor_number;
@@ -264,4 +213,56 @@ public class Doctor {
     public void setUpdate_date(Date update_date) {
         this.update_date = update_date;
     }
+
+    public Doctor() {
+    }
+
+    public Doctor(int doctor_number, String doctor_email, String doctor_password, String doctor_phone, String doctor_name, String doctor_valid_number, String doctor_profile_image_name, String hospital_name, String hospital_telephone, String hospital_business_number, String doctor_introduction, String hospital_file_name, String doctor_diagnosis_type, String working_time, String lunch_time, String holiday, String zip_code, String street_address, String detail_address, String hospital_fax, String hospital_url, Date create_date, Date update_date) {
+        this.doctor_number = doctor_number;
+        this.doctor_email = doctor_email;
+        this.doctor_password = doctor_password;
+        this.doctor_phone = doctor_phone;
+        this.doctor_name = doctor_name;
+        this.doctor_valid_number = doctor_valid_number;
+        this.doctor_profile_image_name = doctor_profile_image_name;
+        this.hospital_name = hospital_name;
+        this.hospital_telephone = hospital_telephone;
+        this.hospital_business_number = hospital_business_number;
+        this.doctor_introduction = doctor_introduction;
+        this.hospital_file_name = hospital_file_name;
+        this.doctor_diagnosis_type = doctor_diagnosis_type;
+        this.working_time = working_time;
+        this.lunch_time = lunch_time;
+        this.holiday = holiday;
+        this.zip_code = zip_code;
+        this.street_address = street_address;
+        this.detail_address = detail_address;
+        this.hospital_fax = hospital_fax;
+        this.hospital_url = hospital_url;
+        this.create_date = create_date;
+        this.update_date = update_date;
+    }
+
+    //가영: 의사회원가입
+    public Doctor (String doctor_email, String doctor_password, String doctor_phone, String doctor_name, String doctor_valid_number, String doctor_profile_image_name, String hospital_business_number, String zip_code, String street_address,String detail_address, String doctor_diagnosis_type, String working_time, String lunch_time, String holiday, String hospital_fax, String hospital_url, String doctor_introduction){
+        this.doctor_email = doctor_email;
+        this.doctor_password = doctor_password;
+        this.doctor_phone = doctor_phone;
+        this.doctor_name = doctor_name;
+        this.doctor_valid_number = doctor_valid_number;
+        this.doctor_profile_image_name = doctor_profile_image_name;
+        this.hospital_business_number = hospital_business_number;
+        this.zip_code=zip_code;
+        this.street_address = street_address;
+        this.detail_address = detail_address;
+        this.doctor_diagnosis_type = doctor_diagnosis_type;
+        this.working_time = working_time;
+        this.lunch_time = lunch_time;
+        this.holiday = holiday;
+        this.hospital_fax = hospital_fax;
+        this.hospital_url = hospital_url;
+        this.doctor_introduction = doctor_introduction;
+
+    }
+     
 }

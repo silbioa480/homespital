@@ -2,6 +2,8 @@ package mna.homespital.service;
 
 import mna.homespital.dto.Doctor;
 import mna.homespital.dto.PageInfo;
+import mna.homespital.dto.User;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,6 +12,16 @@ public interface DoctorService {
 
     //가영 : 의사 회원가입
     Doctor join(Doctor doctor) throws Exception;
+    
+    
+//가영: 의사 아이디중복확인
+    boolean emailCheck(String email) throws Exception;
+
+    //가영: 비밀번호 확인(회원정보변경 전 페이지)
+    Doctor findByEmail(String email) throws Exception;
+
+    //가영: 유저정보 가져오기
+    Doctor doctorQueryMember(String email) throws Exception;
 
     // 의료진 찾기 - 의료진 목록 보기 (훈)
     public List<Doctor> getDocList(String doctor_diagnosis_type, int page, PageInfo pageInfo) throws Exception;
@@ -32,4 +44,12 @@ public interface DoctorService {
     //의사 진료내역 리스트 출력(준근)
     ArrayList<HashMap<String, Object>> docMedicalRecords(int doctor_number) throws Exception;
 
+    //의사 로그인(준근)
+    boolean docLogin(String doctor_email, String doctor_password) throws Exception;
+
+    //진료시작, 시작시 diagnosis_status 0-> 1로 변경
+    void startDiagnosis(int diagnosis_number) throws Exception;
+
+    //진료 완료, diagnosis_status 1->3 변경
+    void finishDiagnosis(int diagnosis_number) throws Exception;
 }

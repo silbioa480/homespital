@@ -2,25 +2,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>비대면진료 예약하기</title>
+    <title>Title</title>
     <%--  파일 업로드 CSS  --%>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css"/>
     <link rel="stylesheet" href="/resources/css/writeMediChartForm.css"/>
-    <link rel="stylesheet" href="/resources/css/sidebar.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css"/>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
-<style>
-    a:link, a:visited, a:hover, a:active {
-        color: grey;
-        text-decoration: none;
-    !important
-    }
-</style>
 <body>
+<<<<<<< HEAD
 
 <%--side-nav 시작 by 소연 4/8--%>
 <div id="sidebar">
@@ -53,6 +42,8 @@
 
 
 >
+=======
+>>>>>>> 0447081eafef833eee941c164ed816b8bfe85cf7
 <div>
     <c:forEach var="map" items="${ds}">
 
@@ -123,7 +114,7 @@
 
         </div>
         <div class="card p-3">
-            <h4 id="two"><strong>진료 차트 작성</strong></h4>
+            <h4><strong>진료 차트 작성</strong></h4>
             <div class="card p-3">
                 <table class="table table-borderless chartTable">
                     <tr>
@@ -156,7 +147,11 @@
         <%----------------------------------------------------------------------%>
 
         <div class="card p-3">
+<<<<<<< HEAD
             <h4 id="three"><strong>약제 배송 방식</strong></h4>
+=======
+            <h4 id="two"><strong>약제 배송 방식</strong></h4>
+>>>>>>> 0447081eafef833eee941c164ed816b8bfe85cf7
             <div id="choosePharmacy">
                 <div class="map_wrap">
                     <div id="map"
@@ -235,7 +230,7 @@
 
         </div>
         <div class="card p-3">
-            <h4 id="four"><strong>결제 정보</strong></h4>
+            <h4 id="three"><strong>결제 정보</strong></h4>
             <div class="card p-3">
                 <div class="d-flex align-items-end">
                     <h4>${user.user_name}</h4>
