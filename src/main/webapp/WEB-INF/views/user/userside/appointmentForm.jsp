@@ -2,15 +2,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>비대면 진료 예약하기</title>
     <%--  파일 업로드 CSS  --%>
     <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css"/>
     <link rel="stylesheet" href="/resources/css/writeMediChartForm.css"/>
+    <link rel="stylesheet" href="/resources/css/sidebar.css">
 </head>
 <body>
-<<<<<<< HEAD
-
 <%--side-nav 시작 by 소연 4/8--%>
 <div id="sidebar">
     <div class="d-flex flex-column align-items-center">
@@ -25,8 +24,6 @@
             <li><a href="#three">약 배송방법 선택</a></li>
             <li><a href="#four">결제정보 입력</a></li>
         </ul>
-
-
     </nav>
     <footer>
         <ul class="icons">
@@ -40,10 +37,6 @@
 </div>
 <%--side-nav 끝 by 소연 4/7--%>
 
-
->
-=======
->>>>>>> 0447081eafef833eee941c164ed816b8bfe85cf7
 <div>
     <c:forEach var="map" items="${ds}">
 
@@ -147,11 +140,7 @@
         <%----------------------------------------------------------------------%>
 
         <div class="card p-3">
-<<<<<<< HEAD
             <h4 id="three"><strong>약제 배송 방식</strong></h4>
-=======
-            <h4 id="two"><strong>약제 배송 방식</strong></h4>
->>>>>>> 0447081eafef833eee941c164ed816b8bfe85cf7
             <div id="choosePharmacy">
                 <div class="map_wrap">
                     <div id="map"
@@ -230,7 +219,7 @@
 
         </div>
         <div class="card p-3">
-            <h4 id="three"><strong>결제 정보</strong></h4>
+            <h4 id="four"><strong>결제 정보</strong></h4>
             <div class="card p-3">
                 <div class="d-flex align-items-end">
                     <h4>${user.user_name}</h4>
