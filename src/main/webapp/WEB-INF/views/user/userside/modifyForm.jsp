@@ -17,13 +17,10 @@
     <link rel="stylesheet" href="/resources/css/sidebar.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css"/>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
-
-
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/signUp.css"/>
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<%--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>--%>
+<%--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"/>--%>
 
     <%--    <script src="./jquery-3.4.1.min.js"></script>--%>
     <%--    <link rel="stylesheet" href="./bootstrapt/css/bootstrap.min.css" />--%>
@@ -234,7 +231,7 @@
                         <%--                        <input type="text" class="validThru" id="cardMMYYNum" onKeyup="inputValidThru(this);" placeholder="MMYY"--%>
                         <%--                               maxlength="4" style="width: 50%" readonly/>--%>
                         <%--                    </div>--%>
-                        <input type="button" id="addCard" name="addCard" class="addCard" value="관리">
+<%--                        <input type="button" id="addCard" name="addCard" class="addCard" value="관리">--%>
                         <button id="writeCard" class="btn" onclick="return false;">카드 추가</button>
                         <%--                        <span><input type="button" id="deleteCard" name="deleteCard" class="deleteCard" value="삭제" /></span>--%>
                     </div>

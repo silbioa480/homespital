@@ -107,7 +107,7 @@ public class RootController {
     if (email == null) {
       return new ModelAndView("user/main/index");
     }
-    return new ModelAndView("user/userside/pwCheck");
+    return new ModelAndView("user/main/pwCheck");
   }
 
   //환자회원탈퇴
