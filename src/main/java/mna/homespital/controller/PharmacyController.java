@@ -54,8 +54,7 @@ public class PharmacyController {
         pharmacy.setPharmacy_password(request.getParameter("pharmacy_password"));
         pharmacy.setPharmacy_mobile(request.getParameter("pharmacy_mobile"));
         pharmacy.setPharmacy_business(request.getParameter("pharmacy_business"));
-        pharmacy.setPharmacy_name(request.getParameter("pharmacy_name"));
-        pharmacy.setPharmacy_institution(request.getParameter("pharmacy_institution"));
+        pharmacy.setPharmacy_name(request.getParameter("pharmacy_name"));;
         pharmacy.setPharmacy_phone(request.getParameter("pharmacy_phone"));
         pharmacy.setZip_code(request.getParameter("zipNo"));
         pharmacy.setStreet_address(request.getParameter("roadFullAddr"));

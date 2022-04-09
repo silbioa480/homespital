@@ -51,12 +51,10 @@
     <insert id="insertPharmacyMember" parameterType="pharmacy">
         <![CDATA[
         insert into `pharmacy`(pharmacy_email, pharmacy_password, pharmacy_mobile, pharmacy_business,
-                               pharmacy_name,
-                               pharmacy_institution, pharmacy_phone, zip_code,
+                               pharmacy_name,  pharmacy_phone, zip_code,
                                street_address, detail_address)
         values (#{pharmacy_email}, #{pharmacy_password}, #{pharmacy_mobile}, #{pharmacy_business},
-                #{pharmacy_name},
-                #{pharmacy_institution}, #{pharmacy_phone}, #{zip_code},
+                #{pharmacy_name}, #{pharmacy_phone}, #{zip_code},
                 #{street_address}, #{detail_address})
         ]]>
     </insert>
