@@ -5,20 +5,25 @@
   Time: 오전 12:23
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Title</title>
-    <title>Homespital</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
-    <link rel="stylesheet" href="/resources/css/signUp.css"/>
+
+    <link rel="stylesheet" href="/resources/css/sidebar.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css"/>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+
+
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/signUp.css"/>
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-            crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
 
     <%--    <script src="./jquery-3.4.1.min.js"></script>--%>
     <%--    <link rel="stylesheet" href="./bootstrapt/css/bootstrap.min.css" />--%>
@@ -31,36 +36,32 @@
         }
     </style>
 </head>
-
+<body>
+<section id="sidebar">
+    <div class="d-flex flex-column align-items-center">
+        <%--        <span class="image avatar"><img src="/resources/img/doctorList/doctor01.jpg" alt=""/></span>--%>
+        <h1 id="logo"><a href="/">Homespital</a></h1>
+        <p>${name}님 안녕하세요.</p>
+        <p class="py-5"><strong>마이 페이지 > 내 정보 수정</strong></p>
+    </div>
+    <nav>
+        <ul id="nav">
+            <li class="nav-item"><a href="#one" class="nav-link active">필수정보수정</a></li>
+            <li class="nav-item"><a href="#two" class="nav-link">배송지 수정</a></li>
+            <li class="nav-item"><a href="#three" class="nav-link">결제 정보 수정</a></li>
+        </ul>
+    </nav>
+    <footer>
+        <ul class="icons">
+            <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+            <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+            <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+            <li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+            <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+        </ul>
+    </footer>
+</section>
 <div class="is-preload">
-
-    <!-- Header -->
-    <%--    <section id="header">--%>
-    <%--        <header>--%>
-    <%--            <span class="image avatar"><img src="/resources/img/signUp/avatar.jpg" alt=""/></span>--%>
-    <%--            <h1 id="logo"><a href="#">Homespital</a></h1>--%>
-    <%--            <p>Hi</p>--%>
-
-    <%--        </header>--%>
-    <%--        <nav id="nav">--%>
-    <%--            <ul>--%>
-    <%--                <li><a href="#one" class="active">필수정보수정</a></li>--%>
-    <%--                <li><a href="#two">배송지 수정</a></li>--%>
-    <%--                <li><a href="#three">결제 정보 수정</a></li>--%>
-
-    <%--            </ul>--%>
-    <%--        </nav>--%>
-    <%--        <footer>--%>
-    <%--            <ul class="icons">--%>
-    <%--                <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>--%>
-    <%--                <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>--%>
-    <%--                <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>--%>
-    <%--                <li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>--%>
-    <%--                <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>--%>
-    <%--            </ul>--%>
-    <%--        </footer>--%>
-    <%--    </section>--%>
-
     <!-- Wrapper -->
     <div id="wrapper">
 
@@ -93,7 +94,6 @@
                             <span id="pw_check_msg" style="color: #1abc9c"></span>
                             <div class="error"></div>
                         </div>
-
 
                         <div class="input-control">
                             <label for="name">이름</label>
@@ -236,44 +236,6 @@
                         <%--                    </div>--%>
                         <input type="button" id="addCard" name="addCard" class="addCard" value="관리">
                         <button id="writeCard" class="btn" onclick="return false;">카드 추가</button>
-                        <%--                        모달 --%>
-                        <div class="modal fade" id="addCardModal" tabindex="-1" role="dialog"
-                             aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="addCardLabel">메인 카드 변경</h5>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div>
-                                            <input type="radio" name="cardCheck" class="card_list" value="1111" checked/>
-                                            <span> ****-****-****-1111</span>
-                                        </div>
-                                        <hr>
-                                        <div>
-                                            <input type="radio" name="cardCheck" class="card_list" value="2222"/>
-                                            <span> ****-****-****-2222</span>
-                                        </div>
-                                        <hr>
-                                        <div>
-                                            <input type="radio" name="cardCheck" class="card_list" value="3333"/>
-                                            <span> ****-****-****-3333</span>
-                                        </div>
-                                        <hr>
-                                        <div>
-                                            <input type="radio" name="cardCheck" class="card_list" value="4444"/>
-                                            <span> ****-****-****-4444</span>
-                                        </div>
-                                        <hr>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <a class="btn" id="modalY3" onclick="">확인</a>
-                                        <button class="btn" type="button" data-bs-dismiss="modal">취소</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                         <%--                        <span><input type="button" id="deleteCard" name="deleteCard" class="deleteCard" value="삭제" /></span>--%>
                     </div>
                     <div class="modal fade" id="writeCardModal" tabindex="-1" role="dialog">
@@ -338,10 +300,8 @@
 
                     <h5> * 본인명의 카드만 등록 가능 합니다.</h5>
                     <br><br>
-                    <div style="display:flex">
-
-                        <input type="submit" value="수정"
-                               style="width: 80%; margin-left:20px; margin-right: 20px;"/>
+                    <div class="d-flex">
+                        <input type="submit" value="수정" style="width: 80%; margin-left:20px; margin-right: 20px;"/>
                         <a class="btn" id="deleteMem" href="/delete" style="margin-right: 0px">회원탈퇴</a>
                     </div>
                 </section>
