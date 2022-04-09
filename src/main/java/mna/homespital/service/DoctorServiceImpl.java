@@ -3,6 +3,7 @@ package mna.homespital.service;
 import mna.homespital.dao.DoctorDAO;
 import mna.homespital.dto.Doctor;
 import mna.homespital.dto.PageInfo;
+import mna.homespital.dto.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,18 @@ public class DoctorServiceImpl implements DoctorService {
     @Autowired
     DoctorDAO doctorDAO;
 
+    //가영: 비밀번호확인: 이메일로 유저정보 가져오는거
+    @Override
+    public Doctor findByEmail(String email) throws Exception {
+        return doctorDAO.DoctorQueryMember(email);
+    }
+
+    //가영: 유저정보가져오기
+    @Override
+    public Doctor doctorQueryMember(String email) throws Exception {
+        return doctorDAO.DoctorQueryMember(email);
+    }
+
     //가영: 의사회원가입
     @Override
     public Doctor join(Doctor doctor) throws Exception {
@@ -23,6 +36,14 @@ public class DoctorServiceImpl implements DoctorService {
         if (doc != null) throw new Exception("이미 있는 이메일입니다.");
         doctorDAO.insertDoctorMember(doctor);
         return doctor;
+    }
+
+    //가영: 의사 이메일 중복확인
+    @Override
+    public boolean emailCheck(String email) throws Exception {
+        Doctor doctor = doctorDAO.DoctorQueryMember(email);
+        if (doctor == null) return false;
+        return true;
     }
 
     @Override

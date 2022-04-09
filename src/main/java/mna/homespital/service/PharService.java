@@ -19,6 +19,8 @@ public interface PharService {
     //용식 : 약사 회원가입
     Pharmacy join(Pharmacy pharmacy) throws Exception;
 
-    //용식: 약사 로그인
-    boolean login(String email, String password) throws Exception;
+    // 용식 : 약사 로그인
+    boolean pharmacyLogin(String email, String password) throws Exception;
+
+
 }

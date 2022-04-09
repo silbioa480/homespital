@@ -14,7 +14,7 @@ import java.util.Map;
 public interface DoctorDAO {
 
     //가영: 이메일로 의사 정보 가져오기
-    Doctor DoctorQueryMember(String doctor_email) throws Exception;
+    Doctor DoctorQueryMember(String email) throws Exception;
 
     //가영: 의사 정보 넣기
     void insertDoctorMember(Doctor doctor) throws Exception;
@@ -48,7 +48,6 @@ public interface DoctorDAO {
 
     // 진료 완료하기(준근)
     void finishDiagnosis(int diagnosis_number) throws Exception;
-
 
     // 거리순 검색 알고리즘
     // 현재 주소를 어떻게든 가져와. 이거는 geolocation = html5 https
