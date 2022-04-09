@@ -102,7 +102,7 @@
                             </c:otherwise>
                         </c:choose>
                     </ul>
-
+                        <c:if test="${empty email}">
                             <ul class="nav nav-pills">
                                 <li class="nav-item dropdown">
                                     <a class="nav-link active dropdown-toggle nav-link active" data-toggle="dropdown" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">의료 관계자 로그인</a>
@@ -112,7 +112,7 @@
                                     </div>
                                 </li>
                             </ul>
-
+                        </c:if>
 
 
                 </div>
