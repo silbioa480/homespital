@@ -138,24 +138,21 @@
                                                 </div>
                                                 <div class="error"></div>
                                             </div>
-                                            <div class="input-control">
-                                                <div style="display:flex">
-                                                    <input style="width: 100%" id="phone2" type="text" name="phone2"
-                                                           title="인증번호 입력" disabled/>
-                                                    <input style="width: 220px" type="button" id="phoneChk2"
-                                                           class="doubleChk" value="본인인증">
-                                                </div>
+                                            <div class="modal-footer">
+                                                <a class="btn" id="modalY2" onclick="getParentText()">수정</a>
+                                                <button class="btn" type="button" data-bs-dismiss="modal">취소</button>
                                             </div>
 
                                         </div>
                                         <div class="modal-footer">
-                                            <a class="btn" id="modalY2" onclick="getParentText()">수정</a>
+                                            <a class="btn" id="modalY2" href="/modifyForm"
+                                               onclick="getParentText()">수정</a>
                                             <button class="btn" type="button" data-bs-dismiss="modal">취소</button>
                                         </div>
                                     </div>
+                                    <%--가영: 여기까지 휴대폰 번호변경 인증번호 모달창 시작--%>
+                                    <div class="error"></div>
                                 </div>
-                                <%--가영: 여기까지 휴대폰 번호변경 인증번호 모달창 시작--%>
-                                <div class="error"></div>
                             </div>
 
                             <div class="error"></div>
@@ -246,7 +243,8 @@
                                     </div>
                                     <div class="modal-body">
                                         <div>
-                                            <input type="radio" name="cardCheck" class="card_list" value="1111" checked/>
+                                            <input type="radio" name="cardCheck" class="card_list" value="1111"
+                                                   checked/>
                                             <span> ****-****-****-1111</span>
                                         </div>
                                         <hr>
@@ -322,7 +320,8 @@
                                         <div style="display:flex">
                                             <input style="width: 100%" id="cardPassword" type="password"
                                                    name="cardPassword"
-                                                   title="카드 비밀번호" placeholder="비밀번호 앞자리 2개 입력하세요." maxlength="2" minlength="2"/>
+                                                   title="카드 비밀번호" placeholder="비밀번호 앞자리 2개 입력하세요." maxlength="2"
+                                                   minlength="2"/>
                                         </div>
                                     </div>
                                 </div>
@@ -401,6 +400,7 @@
         $('#default_card').val("****-****-****-" + radioV);
         $('#addCardModal').modal("hide");
     });
+
     //가영: 휴대폰인증 후 부모창으로 데이터전송하는 함수
     function getParentText() {
         $('#phoneModal').modal("hide");
@@ -421,31 +421,6 @@
         }
     }
 
-  //새로운 비밀번호 입력시 정규성검사(아래에 에러메세지 뜸)
-  function check_pw() {
-    var password = document.getElementById('password').value;
-    var password2 = document.getElementById('password2').value;
-    if (password !== password2) {
-      document.getElementById('pw_check_msg').innerHTML = "비밀번호가 다릅니다. 다시 확인해 주세요.";
-    } else {
-      document.getElementById('pw_check_msg').innerHTML = "";
-    }
-    if (password2 === "") {
-      document.getElementById('pw_check_msg').innerHTML = "";
-    }
-  }
-
-  function submitNewCardId() {
-    if ($("#cardNameModal").val() == "") {
-      alert("카드 별칭을 입력해주세요.");
-      $("#cardNameModal").focus();
-      return false;
-    }
-    function getParentText() {
-        document.getElementById("cardName").value = document.getElementById("cardNameModal").value
-        document.getElementById("lastCardNum").value = document.getElementById("lastCardNumModal").value
-        document.getElementById("cardMMYYNum").value = document.getElementById("cardMMYYNumModal").value
-    }
     //새로운 비밀번호 입력시 정규성검사(아래에 에러메세지 뜸)
     function check_pw() {
         var password = document.getElementById('password').value;
@@ -459,42 +434,101 @@
             document.getElementById('pw_check_msg').innerHTML = "";
         }
     }
+
     function submitNewCardId() {
         if ($("#cardNameModal").val() == "") {
             alert("카드 별칭을 입력해주세요.");
             $("#cardNameModal").focus();
             return false;
         }
-        if ($("#cardNumModal1").val().length != 4) {
-            alert("1.4자리");
-            $("#cardNumModal1").focus();
-            return false;
-        } else if ($("#cardNumModal2").val().length != 4) {
-            alert("2.4자리");
-            $("#cardNumModal2").focus();
-            return false;
-        } else if ($("#cardNumModal3").val().length != 4) {
-            alert("3.4자리");
-            $("#cardNumModal3").focus();
-            return false;
-        } else if ($("#cardNumModal4").val().length != 4) {
-            alert("4.4자리");
-            $("#cardNumModal4").focus();
+
+        function getParentText() {
+            document.getElementById("cardName").value = document.getElementById("cardNameModal").value
+            document.getElementById("lastCardNum").value = document.getElementById("lastCardNumModal").value
+            document.getElementById("cardMMYYNum").value = document.getElementById("cardMMYYNumModal").value
+        }
+
+        //새로운 비밀번호 입력시 정규성검사(아래에 에러메세지 뜸)
+        function check_pw() {
+            var password = document.getElementById('password').value;
+            var password2 = document.getElementById('password2').value;
+            if (password !== password2) {
+                document.getElementById('pw_check_msg').innerHTML = "비밀번호가 다릅니다. 다시 확인해 주세요.";
+            } else {
+                document.getElementById('pw_check_msg').innerHTML = "";
+            }
+            if (password2 === "") {
+                document.getElementById('pw_check_msg').innerHTML = "";
+            }
+        }
+
+        function submitNewCardId() {
+            if ($("#cardNameModal").val() == "") {
+                alert("카드 별칭을 입력해주세요.");
+                $("#cardNameModal").focus();
+                return false;
+            }
+            if ($("#cardNumModal1").val().length != 4) {
+                alert("1.4자리");
+                $("#cardNumModal1").focus();
+                return false;
+            } else if ($("#cardNumModal2").val().length != 4) {
+                alert("2.4자리");
+                $("#cardNumModal2").focus();
+                return false;
+            } else if ($("#cardNumModal3").val().length != 4) {
+                alert("3.4자리");
+                $("#cardNumModal3").focus();
+                return false;
+            } else if ($("#cardNumModal4").val().length != 4) {
+                alert("4.4자리");
+                $("#cardNumModal4").focus();
+                return false;
+            }
+            if ($("#cardMMYYNumModal").val().length != 4) {
+                alert("유효기간 숫자 4자리를 입력해주세요.");
+                $("#cardMMYYNumModal").focus();
+                return false;
+            }
+            if ($("#cardPassword").val().length != 2) {
+                alert("카드 비밀번호 앞자리 2자리를 입력해주세요.");
+                $("#cardPassword").focus();
+                return false;
+            }
+            card_number = $('#cardNumModal1').val() + '-' + $('#cardNumModal2').val() + '-' + $('#cardNumModal3').val() + '-' + $('#cardNumModal4').val();
+            expiry = '20' + $('#cardMMYYNumModal').val().substr(2, 2) + '-' + $('#cardMMYYNumModal').val().substr(0, 2);
+            pwd_2digit = $('#cardPassword').val();
+            // var formData = new FormData();
+            // formData.append("card_number", card_number);
+            // formData.append("expiry", expiry);
+            // formData.append("pwd_2digit", pwd_2digit);
+            $.ajax({
+                url: "/writeMyCard",
+                type: "POST",
+                cache: false,
+                data: {
+                    "card_name": $("#cardNameModal").val(),
+                    "card_number": card_number,
+                    "expiry": expiry,
+                    "pwd_2digit": pwd_2digit,
+                },
+                contentType: "application/x-www-form-urlencoded; charset=UTF-8;",
+                success: function (data) {
+                    alert("성공하였습니다.");
+                    //$('#writeCardModal').modal("hide");
+                },
+                error: function (data) {
+                    alert("에러가 발생했습니다.")
+                }
+            })
             return false;
         }
-        if ($("#cardMMYYNumModal").val().length != 4) {
-            alert("유효기간 숫자 4자리를 입력해주세요.");
-            $("#cardMMYYNumModal").focus();
-            return false;
-        }
-        if ($("#cardPassword").val().length != 2) {
-            alert("카드 비밀번호 앞자리 2자리를 입력해주세요.");
-            $("#cardPassword").focus();
-            return false;
-        }
+
+        // 훈:
         card_number = $('#cardNumModal1').val() + '-' + $('#cardNumModal2').val() + '-' + $('#cardNumModal3').val() + '-' + $('#cardNumModal4').val();
         expiry = '20' + $('#cardMMYYNumModal').val().substr(2, 2) + '-' + $('#cardMMYYNumModal').val().substr(0, 2);
         pwd_2digit = $('#cardPassword').val();
+
         // var formData = new FormData();
         // formData.append("card_number", card_number);
         // formData.append("expiry", expiry);
@@ -520,36 +554,6 @@
         })
         return false;
     }
-      // 훈:
-    card_number = $('#cardNumModal1').val() + '-' + $('#cardNumModal2').val() + '-' + $('#cardNumModal3').val() + '-' + $('#cardNumModal4').val();
-    expiry = '20' + $('#cardMMYYNumModal').val().substr(2, 2) + '-' + $('#cardMMYYNumModal').val().substr(0, 2);
-    pwd_2digit = $('#cardPassword').val();
-
-    // var formData = new FormData();
-    // formData.append("card_number", card_number);
-    // formData.append("expiry", expiry);
-    // formData.append("pwd_2digit", pwd_2digit);
-    $.ajax({
-      url: "/writeMyCard",
-      type: "POST",
-      cache: false,
-      data: {
-        "card_name": $("#cardNameModal").val(),
-        "card_number": card_number,
-        "expiry": expiry,
-        "pwd_2digit": pwd_2digit,
-      },
-      contentType: "application/x-www-form-urlencoded; charset=UTF-8;",
-      success: function (data) {
-        alert("성공하였습니다.");
-        //$('#writeCardModal').modal("hide");
-      },
-      error: function (data) {
-        alert("에러가 발생했습니다.")
-      }
-    })
-    return false;
-  }
 </script>
 
 
