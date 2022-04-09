@@ -22,26 +22,53 @@
 
 <body class="is-preload">
 
+
+
 <!-- Wrapper -->
 <div id="wrapper">
+    <!-- 모달창 -->
+    <div class="modal fade" id="defaultModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">알림</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="modal-contents"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-bs-dismiss="modal">닫기</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <!--// 모달창 -->
 
     <!-- Main -->
     <div id="main">
-        <form id="form" name="form" action="/admin/doctorJoin.do" method="post">
+        <form id="form" name="form" action="doctorJoin.do" method="post">
             <!-- One -->
             <section id="one">
                 <div class="container">
+
                     <h3 style="margin-top: 100px">의사 회원가입</h3>
 
                     <hr>
 
                     <div style="font-size: 25px">로그인 정보에 사용됩니다<strong style="color: #1abc9c">(필수)</strong></div>
                     <br>
-                    <diu class="input-control" id="divEmail">
+                    <div class="input-control" id="divEmail">
                         <label for="email" class="doctor-title">이메일</label>
+                        <div style="display:flex">
                         <input type="email" id="email" name="doctor_email" placeholder="이메일을 입력해주세요">
+<%--                            <button type="button" onClick="doctorEmailoverlap()" style="width: 100%;">중복확인</button>--%>
+<%--                        <input type="button" onClick="docEmailOverlap()" class="btn" id="docEmailOverlap" value="중복"></input>--%>
+<%--                            <input type="button" onClick="doctorEmailoverlap()" value="회원가입" style="width: 100%;"></input>--%>
+                            <input type="button" id="doctorEmailoverlap" class="doubleChk" value="중복확인">
+                        </div>
                         <div class="error"></div>
-                    </diu>
+                    </div>
                     <div class="input-control" id="divPassword">
                         <label for="password" class="doctor-title">비밀번호</label>
                         <input type="password" id="password" name="doctor_password" placeholder="비밀번호를 입력해주세요">
@@ -121,24 +148,30 @@
                             <tr>
                                 <th>우편번호</th>
                                 <td>
+                                    <div id="divZipNo">
                                     <div style="display:flex">
                                         <input type="hidden" id="confmKey" name="confmKey" value="">
                                         <input type="text" id="zipNo" name="zipNo" readonly style="width:100%">
                                         <input type="button" value="주소검색" onclick="goPopup()"
                                                style=" margin-left:30px;">
                                     </div>
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
+                                <div id="divRoadFullAddr">
                                 <th>도로명주소</th>
                                 <td><input type="text" id="roadFullAddr" name="roadFullAddr" style="width:100%"></td>
+                                </div>
                             </tr>
                             <tr>
+                                <div id="divAddrDetail">
                                 <th>상세주소</th>
                                 <td>
                                     <input type="text" id="addrDetail" name="addrDetail" style="width:100%" value="">
 
                                 </td>
+                                </div>
                             </tr>
                             </tbody>
                         </table>
@@ -176,19 +209,23 @@
                             <div style="display:flex">
 <%--           애도 히든추가                --%>
 <%--                        <input type="hidden" id="openClose" name="openClose">--%>
-                        <select name="open" class="form-select" style="width: 35%; margin-left: 30px" aria-label="오픈 진료 시간">
-                            <option selected style="text-align: center;">진료 시작</option>
-                            <option value="9" style="text-align: center">9</option>
-                            <option value="10" style="text-align: center">10</option>
-                            <option value="11" style="text-align: center">11</option>
+                        <div id="divOpen">
+                        <select name="open" class="form-select" id="open" style="width: 35%; margin-left: 30px" aria-label="오픈 진료 시간">
+                            <option selected value="" style="text-align: center;">진료 시작</option>
+                            <option value="9" id="open9" style="text-align: center">9</option>
+                            <option value="10" id="open10" style="text-align: center">10</option>
+                            <option value="11" id="open11" style="text-align: center">11</option>
                         </select>
-                        <select name="close" class="form-select" style="width: 35%;  margin-left: 40px"  aria-label="마감 진료 시간">
-                            <option selected style="text-align: center;">진료 마감</option>
-                            <option value="17" style="text-align: center">17</option>
-                            <option value="18" style="text-align: center">18</option>
-                            <option value="19" style="text-align: center">19</option>
+                            </div>
+                         <div id="divEnd">
+                        <select name="close" class="form-select" id="end" style="width: 35%;  margin-left: 40px"  aria-label="마감 진료 시간">
+                            <option selected value="" style="text-align: center;">진료 마감</option>
+                            <option value="17" id="end17" style="text-align: center">17</option>
+                            <option value="18" id="end18" style="text-align: center">18</option>
+                            <option value="19" id="end19" style="text-align: center">19</option>
 
                         </select>
+                        </div>
                             </div>
                     </div>
                     </div>
@@ -201,15 +238,15 @@
 <%--                                <input type="hidden" name="lunch-time">--%>
                                 <select name='lunch-st' class="form-select" id="lunch-st" style="width: 35%; margin-left: 30px" aria-label="Default select example">
                                     <option selected style="text-align: center;">점심시간(부터)</option>
-                                    <option value="11" style="text-align: center">11</option>
-                                    <option value="12" style="text-align: center">12</option>
-                                    <option value="13" style="text-align: center">13</option>
+                                    <option value="11" id="startLunch110" style="text-align: center">11</option>
+                                    <option value="12" id="startLunch120" style="text-align: center">12</option>
+                                    <option value="13" id="startLunch130" style="text-align: center">13</option>
                                 </select>
                                 <select name='lunch-cl' class="form-select" id="lunch-cl" style="width: 35%;  margin-left: 40px"  aria-label="Default select example">
                                     <option selected style="text-align: center;">점심시간(까지)</option>
-                                    <option value="12" style="text-align: center">12</option>
-                                    <option value="13" style="text-align: center">13</option>
-                                    <option value="14" style="text-align: center">14</option>
+                                    <option value="12" id="endLunch121" style="text-align: center">12</option>
+                                    <option value="13" id="endLunch131" style="text-align: center">13</option>
+                                    <option value="14" id="endLunch141" style="text-align: center">14</option>
 
                                 </select>
                             </div>
@@ -325,7 +362,7 @@
                         </div>
                     </div>
                     <br><br>
-                    <input type="button"  onclick="validateInput()" value="회원가입" style="width: 100%;"></input>
+                    <button type="submit" class="btn">Sign in</button>
                 </div>
             </section>
         </form>
