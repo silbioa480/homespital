@@ -84,7 +84,7 @@
             <c:if test="${empty email}">
                 <ul class="nav nav-pills">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" href="#" role="button"
+                        <a class="nav-link btn-warning dropdown-toggle active" data-bs-toggle="dropdown" href="#" role="button"
                            aria-haspopup="true" aria-expanded="false">의료 관계자 페이지</a>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="/doctor/">의사 페이지</a>

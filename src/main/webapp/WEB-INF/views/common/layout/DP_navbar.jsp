@@ -50,7 +50,12 @@
                 <div class="collapse navbar-collapse justify-content-end" id="navbars">
                     <ul class="navbar-nav ml-auto pl-lg-5 pl-0">
                         <li class="nav-item">
-                            <a class="nav-link" href="/customerList">진료리스트</a>
+                            <c:if test="${not empty doctor}">
+                                <a class="nav-link" href="/customerList">진료리스트</a>
+                            </c:if>
+                            <c:if test="${not empty pharmacy}">
+                                <a class="nav-link" href="/customerList">진료리스트</a>
+                            </c:if>
                         </li>
                     </ul>
 
@@ -75,7 +80,7 @@
                             </c:otherwise>
                         </c:choose>
                         <li class="nav-item">
-                            <a class="nav-link btn-sm btn-primary rounded text-white" href="/">환자 페이지로 이동</a>
+                            <a class="nav-link btn-sm btn-secondary rounded text-white" href="/">환자 페이지로 이동</a>
                         </li>
                     </ul>
                 </div>
