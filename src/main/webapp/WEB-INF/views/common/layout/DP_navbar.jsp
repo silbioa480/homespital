@@ -50,10 +50,7 @@
                 <span class="fa fa-bars" style="color: black"></span>
             </button>
 
-            <div
-                    class="collapse navbar-collapse justify-content-end"
-                    id="navbars"
-            >
+            <div class="collapse navbar-collapse justify-content-end" id="navbars">
                 <ul class="navbar-nav ml-auto pl-lg-5 pl-0">
                     <li class="nav-item">
                         <a class="nav-link" href="/customerList">진료리스트</a>
@@ -77,11 +74,12 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="#">회원가입</a>
                             </li>
-                            <li class="nav-item cta-btn btn-dark text-white">
-                                <a class="nav-link" href="/">환자 페이지로 이동</a>
-                            </li>
+
                         </c:otherwise>
                     </c:choose>
+                    <li class="nav-item btn-primary rounded">
+                        <a class="nav-link text-white" href="/">환자 페이지로 이동</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -99,22 +97,5 @@
     --%>
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script>
-    //$('#'+window.location.pathname.split("/")[1]+'-nav').addClass('btn-dark text-white');
-    //$('#'+window.location.pathname.split("/")[1]+'-nav').addClass('btn-dark text-white');
-    if (
-        window.location.pathname != "/" &&
-        window.location.pathname.split("/")[1] != "place" &&
-        window.location.pathname.split("/")[1] != "userInfo"
-    ) {
-        //document.getElementById(window.location.pathname.split("/")[1]+'-nav').classList.add('btn-dark');
-        //document.getElementById(window.location.pathname.split("/")[1]+'-nav').classList.add('text-white');
-        /* document.getElementById(window.location.pathname.split("/")[1] + '-nav').classList.add('font-weight-bold');
-        document.getElementById(window.location.pathname.split("/")[1] + '-nav').classList.add('text-white'); */
-        $("#" + window.location.pathname.split("/")[1] + "-nav").addClass(
-            "font-weight-bold text-white"
-        );
-    }
-</script>
 </body>
 </html>
