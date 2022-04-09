@@ -84,10 +84,11 @@
             <c:if test="${empty email}">
                 <ul class="nav nav-pills">
                     <li class="nav-item dropdown">
-                        <a class="nav-link active dropdown-toggle nav-link active" data-toggle="dropdown" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">의료 관계자 로그인</a>
+                        <a class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" href="#" role="button"
+                           aria-haspopup="true" aria-expanded="false">의료 관계자 페이지</a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="/doctor/">의사로그인</a>
-                            <a class="dropdown-item" href="/pharmacyMainForm">약국로그인</a>
+                            <a class="dropdown-item" href="/doctor/">의사 페이지</a>
+                            <a class="dropdown-item" href="/pharmacyMainForm">약국페이지</a>
                         </div>
                     </li>
                 </ul>
