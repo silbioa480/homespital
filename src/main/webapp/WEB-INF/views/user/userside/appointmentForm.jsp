@@ -6,23 +6,32 @@
     <%--  파일 업로드 CSS  --%>
     <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css"/>
-    <link rel="stylesheet" href="/resources/css/writeMediChartForm.css"/>
-    <link rel="stylesheet" href="/resources/css/sidebar.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/writeMediChartForm.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/sidebar.css">
+<%--    <script src="http://code.jquery.com/jquery-latest.min.js"></script>--%>
+<%--    <script src="${pageContext.request.contextPath}/resources/js/signUp/jquery.scrollex.min.js"></script>--%>
+<%--    <script src="${pageContext.request.contextPath}/resources/js/signUp/jquery.scrolly.min.js"></script>--%>
+<%--    <script src="${pageContext.request.contextPath}/resources/js/signUp/browser.min.js"></script>--%>
+<%--    <script src="${pageContext.request.contextPath}/resources/js/signUp/util.js"></script>--%>
+<%--    <script src="${pageContext.request.contextPath}/resources/js/main/commonSidebarScroll.js"></script>--%>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </head>
 <body>
 <%--side-nav 시작 by 소연 4/8--%>
-<div id="sidebar">
+<section id="sidebar">
     <div class="d-flex flex-column align-items-center">
         <%--        <span class="image avatar"><img src="/resources/img/doctorList/doctor01.jpg" alt=""/></span>--%>
         <h1 id="logo"><a href="/">Homespital</a></h1>
         <p>${name}님 안녕하세요.</p>
+        <p class="py-5"><strong>비대면 진료 예약하기</strong></p>
     </div>
-    <nav id="nav">
-        <ul>
-            <li><a href="#one" class="active">예약시간 선택</a></li>
-            <li><a href="#two">진료차트 작성</a></li>
-            <li><a href="#three">약 배송방법 선택</a></li>
-            <li><a href="#four">결제정보 입력</a></li>
+    <nav>
+        <ul id="nav">
+            <li class="nav-item"><a href="#one" class="nav-link active">예약시간 선택</a></li>
+            <li class="nav-item"><a href="#two" class="nav-link">진료차트 작성</a></li>
+            <li class="nav-item"><a href="#three" class="nav-link">약 배송방법 선택</a></li>
+            <li class="nav-item"><a href="#four" class="nav-link">결제정보 입력</a></li>
         </ul>
     </nav>
     <footer>
@@ -34,7 +43,7 @@
             <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
         </ul>
     </footer>
-</div>
+</section>
 <%--side-nav 끝 by 소연 4/7--%>
 
 <div>
@@ -44,9 +53,10 @@
 
 
     <%--    인성      --%>
-    <form method="post" class="file-uploader" action="/appointmentForm" enctype="multipart/form-data">
-        <div class="card p-3">
-            <h4 id="one"><strong>시간 선택하기</strong></h4>
+    <form method="post" class="file-uploader" data-bs-spy="scroll" data-bs-target="#nav"
+          data-bs-offset="0" tabindex="0" action="/appointmentForm" enctype="multipart/form-data">
+        <section class="card p-3" id="one">
+            <h4><strong>시간 선택하기</strong></h4>
             <div class="card p-3">
                 <div class="row g-0">
                     <div class="col-md-4" style="min-width: 200px; max-width: 200px;">
@@ -105,8 +115,8 @@
                 </div>
             </div>
 
-        </div>
-        <div class="card p-3">
+        </section>
+        <section class="card p-3" id="two">
             <h4><strong>진료 차트 작성</strong></h4>
             <div class="card p-3">
                 <table class="table table-borderless chartTable">
@@ -136,11 +146,11 @@
                     </tr>
                 </table>
             </div>
-        </div>
+        </section>
         <%----------------------------------------------------------------------%>
 
-        <div class="card p-3">
-            <h4 id="three"><strong>약제 배송 방식</strong></h4>
+        <section class="card p-3" id="three">
+            <h4><strong>약제 배송 방식</strong></h4>
             <div id="choosePharmacy">
                 <div class="map_wrap">
                     <div id="map"
@@ -217,9 +227,9 @@
 
             </div>
 
-        </div>
-        <div class="card p-3">
-            <h4 id="four"><strong>결제 정보</strong></h4>
+        </section>
+        <section class="card p-3" id="four">
+            <h4><strong>결제 정보</strong></h4>
             <div class="card p-3">
                 <div class="d-flex align-items-end">
                     <h4>${user.user_name}</h4>
@@ -312,14 +322,13 @@
                 진단에 따라 처방의 유무가 결정되기 때문에 진단 시/조제 시 결제가 두번 되는 부분을 양해 부탁 드립니다. 감사합니다.
             </p>
             <label><input type="checkbox" class="paymentConfirm" name="paymentConfirm">확인했어요</label>
-        </div>
+        </section>
 
-</div>
-<div class="appoint-out">
-    <label for="appointDo" class="appointBtn">예약하기</label>
-    <input type="submit" id="appointDo" class="appointDo" style="display: none"/>
-</div>
-</form>
+        <div class="appoint-out">
+            <label for="appointDo" class="appointBtn">예약하기</label>
+            <input type="submit" id="appointDo" class="appointDo" style="display: none"/>
+        </div>
+    </form>
 </div>
 <%-- 카카오맵 관련 JS --%>
 <script type="text/javascript"
@@ -765,6 +774,16 @@
 
 
 </script>
-
+<script>
+    var scrollSpy = new bootstrap.ScrollSpy(document.body, {
+        target: '#nav'
+    })
+    //
+    // var dataSpyList = [].slice.call(document.querySelectorAll('[data-bs-spy="scroll"]'))
+    // dataSpyList.forEach(function (dataSpyEl) {
+    //     bootstrap.ScrollSpy.getInstance(dataSpyEl)
+    //         .refresh()
+    // })
+</script>
 </body>
 </html>
