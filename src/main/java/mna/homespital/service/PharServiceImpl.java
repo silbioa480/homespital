@@ -12,6 +12,7 @@ import java.util.HashMap;
 public class PharServiceImpl implements PharService {
     @Autowired
     PharmacyDAO pharmacyDAO;
+
     //    인성: 약사 이메일로 number 찾기
     @Override
     public int getNumberByEmail(String phar_email) throws Exception {
@@ -51,4 +52,25 @@ public class PharServiceImpl implements PharService {
             throw new Exception("비밀번호가 틀립니다.");
         }
     }
+
+    //용식: 약사 회원가입 이메일 중복체크
+    @Override
+    public boolean emailCheck(String email) throws Exception {
+        Pharmacy pharmacy = pharmacyDAO.PharmacyQueryMember(email);
+        if (pharmacy == null) return false;
+        return true;
+    }
+
+    @Override
+    public Pharmacy getPharInfo(String pharmacy_email) throws Exception {
+        return pharmacyDAO.PharmacyQueryMember(pharmacy_email);
+    }
+
+    //용식:이메일중복체크
+//    @Override
+//    public boolean emailCheck(String email) throws Exception {
+//        User user = memberDAO.queryMember(email);
+//        if (user == null) return false;
+//        return true;
+//    }
 }

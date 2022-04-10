@@ -32,12 +32,7 @@ change this template use File | Settings | File Templates. --%>
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button
-                        type="button"
-                        class="close"
-                        data-dismiss="modal"
-                        aria-hidden="true"
-                >
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                     ×
                 </button>
                 <h4 class="modal-title" style="color: #1cb495">알림</h4>
