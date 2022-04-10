@@ -41,7 +41,7 @@
 <div id="wrapper">
     <div id="main">
         <!-- One -->
-        <form id="form" name="form" action="pharmacyJoin.do" method="post">
+        <form id="form" name="form" action="pharmacy/join.do" method="post">
             <section id="one">
                 <div class="container">
                     <h3 style="margin-top: 100px">약사 회원가입</h3>
