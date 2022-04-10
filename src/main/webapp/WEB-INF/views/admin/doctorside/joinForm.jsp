@@ -19,7 +19,31 @@
 </head>
 
 <body class="is-preload">
+<section id="header">
+    <header>
+        <span class="image avatar"><img src="/resources/img/signUp/avatar.jpg" alt=""/></span>
+        <h1 id="logo"><a href="#">Homespital</a></h1>
+        <p>Hi</p>
 
+    </header>
+    <nav id="nav">
+        <ul>
+            <li><a href="#one" class="active">로그인 정보 입력<font color="red">(필수)</font></a></li>
+            <li><a href="#two" class="active">의사 정보 입력<font color="red">(필수)</font></a></li>
+            <li><a href="#three" class="active">추가 정보 입력(선택)</a></li>
+            <li><a href="#four">약관동의</a></li>
+        </ul>
+    </nav>
+    <footer>
+        <ul class="icons">
+            <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+            <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+            <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+            <li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+            <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+        </ul>
+    </footer>
+</section>
 
 
 <!-- Wrapper -->
@@ -127,7 +151,8 @@
                     <div class="input-control" id="divBusinessNumber">
                         <label class="doctor-title" for="businessNumber">사업자번호</label>
                         <div style="display:flex">
-                            <input id="businessNumber" style="width: 70%" name="hospital_business_number" type="text" maxlength="10">
+                            <input id="businessNumber" style="width: 70%" name="hospital_business_number" type="text"
+                                   maxlength="10">
                             <input type="button" id="businessNumCheck" class="doubleChk" style="width: 15%" value="조회">
                         </div>
                         <div class="error"></div>
@@ -142,7 +167,7 @@
                                 <col style="width:20%">
                                 <col>
                             </colgroup>
-                            <tbody >
+                            <tbody>
                             <tr>
                                 <th>우편번호</th>
                                 <td>
@@ -159,14 +184,16 @@
                             <tr>
                                 <div id="divRoadFullAddr">
                                     <th>도로명주소</th>
-                                    <td><input type="text" id="roadFullAddr" name="roadFullAddr" style="width:100%"></td>
+                                    <td><input type="text" id="roadFullAddr" name="roadFullAddr" style="width:100%">
+                                    </td>
                                 </div>
                             </tr>
                             <tr>
                                 <div id="divAddrDetail">
                                     <th>상세주소</th>
                                     <td>
-                                        <input type="text" id="addrDetail" name="addrDetail" style="width:100%" value="">
+                                        <input type="text" id="addrDetail" name="addrDetail" style="width:100%"
+                                               value="">
 
                                     </td>
                                 </div>
@@ -182,7 +209,7 @@
                     <div>
                         <%--                        <input type="hidde" name="doctor_diagnosis_type"/>--%>
                         <div style="display:flex">
-                            <select id='bComps' multiple='multiple' style="height: 200px;" >
+                            <select id='bComps' multiple='multiple' style="height: 200px;">
                                 <c:forEach var="med" items="${medicalList}">
                                     <option value="${med.medical_name}">${med.medical_name}</option>
                                 </c:forEach>
@@ -193,11 +220,11 @@
                             <input type='button' id='btnLToR' value='▶'>
                             <input type='button' id='btnRToL' value='◀'>
 
-                            <select id='aComps' multiple='multiple' name="doctor_diagnosis_type" style="height: 200px;"></select>
+                            <select id='aComps' multiple='multiple' name="doctor_diagnosis_type"
+                                    style="height: 200px;"></select>
 
                         </div>
                     </div>
-
 
 
                     <div>
@@ -208,7 +235,8 @@
                                 <%--           애도 히든추가                --%>
                                 <%--                        <input type="hidden" id="openClose" name="openClose">--%>
                                 <div id="divOpen">
-                                    <select name="open" class="form-select" id="open" style="width: 35%; margin-left: 30px" aria-label="오픈 진료 시간">
+                                    <select name="open" class="form-select" id="open"
+                                            style="width: 35%; margin-left: 30px" aria-label="오픈 진료 시간">
                                         <option selected value="" style="text-align: center;">진료 시작</option>
                                         <option value="9" id="open9" style="text-align: center">9</option>
                                         <option value="10" id="open10" style="text-align: center">10</option>
@@ -216,7 +244,8 @@
                                     </select>
                                 </div>
                                 <div id="divEnd">
-                                    <select name="close" class="form-select" id="end" style="width: 35%;  margin-left: 40px"  aria-label="마감 진료 시간">
+                                    <select name="close" class="form-select" id="end"
+                                            style="width: 35%;  margin-left: 40px" aria-label="마감 진료 시간">
                                         <option selected value="" style="text-align: center;">진료 마감</option>
                                         <option value="17" id="end17" style="text-align: center">17</option>
                                         <option value="18" id="end18" style="text-align: center">18</option>
@@ -234,13 +263,15 @@
                         <div>
                             <div style="display:flex">
                                 <%--                                <input type="hidden" name="lunch-time">--%>
-                                <select name='lunch-st' class="form-select" id="lunch-st" style="width: 35%; margin-left: 30px" aria-label="Default select example">
+                                <select name='lunch-st' class="form-select" id="lunch-st"
+                                        style="width: 35%; margin-left: 30px" aria-label="Default select example">
                                     <option selected style="text-align: center;">점심시간(부터)</option>
                                     <option value="11" id="startLunch110" style="text-align: center">11</option>
                                     <option value="12" id="startLunch120" style="text-align: center">12</option>
                                     <option value="13" id="startLunch130" style="text-align: center">13</option>
                                 </select>
-                                <select name='lunch-cl' class="form-select" id="lunch-cl" style="width: 35%;  margin-left: 40px"  aria-label="Default select example">
+                                <select name='lunch-cl' class="form-select" id="lunch-cl"
+                                        style="width: 35%;  margin-left: 40px" aria-label="Default select example">
                                     <option selected style="text-align: center;">점심시간(까지)</option>
                                     <option value="12" id="endLunch121" style="text-align: center">12</option>
                                     <option value="13" id="endLunch131" style="text-align: center">13</option>
@@ -250,11 +281,11 @@
                             </div>
                         </div>
 
-<%--                        <script>--%>
-<%--                            // lunch-st 와 umnch-cl 의 벨류값 hidden 에 넘기기--%>
-<%--                            const str = document.getElementsByName("lunch-st") +"~" + document.getElementsByName("lunch-cl")--%>
+                        <%--                        <script>--%>
+                        <%--                            // lunch-st 와 umnch-cl 의 벨류값 hidden 에 넘기기--%>
+                        <%--                            const str = document.getElementsByName("lunch-st") +"~" + document.getElementsByName("lunch-cl")--%>
 
-<%--                        </script>--%>
+                        <%--                        </script>--%>
                         <br>
 
                         <label class="doctor-title">병원 정기 휴무 선택</label><label style="font-size: 10pt;">(다중선택가능)</label>
@@ -265,29 +296,43 @@
                             <%--                            <label for="holiday" class="rest-check"style="margin-left: 50px">--%>
 
                             <span style="font-size: 15px; color: #000000">
-                                    <input type="checkbox"  name="non" id="non"> 휴무없음</span>
+                                    <input type="checkbox" name="non" id="non"> 휴무없음</span>
                             <%--체크박스 인풋 span안에 넣어놨음--%>
-                            <span style="font-size: 15px; color: #000000" > <input type="checkbox" class="check" name="holiday" id="mon" value="월" style="margin-left: 7px">월</span>
+                            <span style="font-size: 15px; color: #000000"> <input type="checkbox" class="check"
+                                                                                  name="holiday" id="mon" value="월"
+                                                                                  style="margin-left: 7px">월</span>
 
-                            <span style="font-size: 15px; color: #000000"><input type="checkbox" class="check"name="holiday" id="tue" value="화" style="margin-left: 7px">화</span>
+                            <span style="font-size: 15px; color: #000000"><input type="checkbox" class="check"
+                                                                                 name="holiday" id="tue" value="화"
+                                                                                 style="margin-left: 7px">화</span>
 
-                            <span style="font-size: 15px; color: #000000"><input type="checkbox" class="check"name="holiday" id="wed" value="수" style="margin-left: 7px">수</span>
+                            <span style="font-size: 15px; color: #000000"><input type="checkbox" class="check"
+                                                                                 name="holiday" id="wed" value="수"
+                                                                                 style="margin-left: 7px">수</span>
 
-                            <span style="font-size: 15px; color: #000000"> <input type="checkbox" class="check"name="holiday" id="thurs" value="목" style="margin-left: 7px">목</span>
+                            <span style="font-size: 15px; color: #000000"> <input type="checkbox" class="check"
+                                                                                  name="holiday" id="thurs" value="목"
+                                                                                  style="margin-left: 7px">목</span>
 
-                            <span style="font-size: 15px; color: #000000"><input type="checkbox" class="check"name="holiday" id="fri" value="금" style="margin-left: 7px">금</span>
+                            <span style="font-size: 15px; color: #000000"><input type="checkbox" class="check"
+                                                                                 name="holiday" id="fri" value="금"
+                                                                                 style="margin-left: 7px">금</span>
 
-                            <span style="font-size: 15px; color: #000000"><input type="checkbox" class="check"name="holiday" id="sat" value="토" style="margin-left: 7px">토</span>
+                            <span style="font-size: 15px; color: #000000"><input type="checkbox" class="check"
+                                                                                 name="holiday" id="sat" value="토"
+                                                                                 style="margin-left: 7px">토</span>
 
-                            <span style="font-size: 15px; color: #000000"><input type="checkbox"class="check" name="holiday" id="sun" value="일" style="margin-left: 7px">일</span>
+                            <span style="font-size: 15px; color: #000000"><input type="checkbox" class="check"
+                                                                                 name="holiday" id="sun" value="일"
+                                                                                 style="margin-left: 7px">일</span>
                             <%--                            </label>--%>
 
                         </div>
                         <div style="font-size: 12px;">* 병원 운영시간을 기반으로 비대면 진료 예약을 받을 수 있습니다.</div>
 
-                        <div style="font-size: 12px;">  시간당 최대 10명 예약이 가능합니다.</div>
+                        <div style="font-size: 12px;"> 시간당 최대 10명 예약이 가능합니다.</div>
 
-                        <div style="font-size: 12px;">  예약시간 관리는 환자리스트에서 확인 가능합니다.</div>
+                        <div style="font-size: 12px;"> 예약시간 관리는 환자리스트에서 확인 가능합니다.</div>
                     </div>
 
                 </div>
@@ -324,11 +369,8 @@
                         </div>
                     </div>
                 </div>
-
-
             </section>
             <br><br><br><br>
-
 
             <!-- Four -->
             <section id="four">
@@ -394,7 +436,7 @@
 <script src="/resources/js/signUp/doctorCheck.js"></script>
 
 <script>
-    $(function() {
+    $(function () {
         //-- 왼쪽 -> 오른쪽 이동
         $('#btnLToR').click(function (event) {
             $("#bComps option:selected").each(function () {
@@ -418,27 +460,27 @@
 
 <%--사업자 번호 조회 태영--%>
 <script>
-    $(function(){
-        $('#businessNumCheck').click(function(){
-            let ceonumber=$('#businessNumber').val();
+    $(function () {
+        $('#businessNumCheck').click(function () {
+            let ceonumber = $('#businessNumber').val();
             let arrayData = {
-                "b_no":[ceonumber]
+                "b_no": [ceonumber]
             }
             // console.log(ceonumber);
             // console.log(arrayData);
             $.ajax({
-                url:"https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=smkh950RF%2BKUYSGK2GSWio7MhSh80eabzme3oFO%2B%2B%2FbR9Zl0vWADP9G0sx2iCZJK5TihKXg4AYHUMb9XVYgX3w%3D%3D",
-                type:"post",
+                url: "https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=smkh950RF%2BKUYSGK2GSWio7MhSh80eabzme3oFO%2B%2B%2FbR9Zl0vWADP9G0sx2iCZJK5TihKXg4AYHUMb9XVYgX3w%3D%3D",
+                type: "post",
                 data: JSON.stringify(arrayData), // json 을 string으로 변환하여 전송
                 dataType: "JSON",
                 contentType: "application/json",
                 accept: "application/json",
-                success: function(data,result) {
+                success: function (data, result) {
                     console.log(data);
-                    for(let i=0;i<data.data.length;i++){
+                    for (let i = 0; i < data.data.length; i++) {
                         console.log(data.data[i]);
                         console.log(data.data[i].tax_type);
-                        if(data.data[i].tax_type === "국세청에 등록되지 않은 사업자등록번호입니다." ) {
+                        if (data.data[i].tax_type === "국세청에 등록되지 않은 사업자등록번호입니다.") {
                             alert("국세청에 등록되지 않은 사업자등록번호입니다.");
                         } else {
                             alert("확인되었습니다.")
