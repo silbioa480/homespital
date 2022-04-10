@@ -33,9 +33,6 @@ public class RootController {
     HttpSession session;
 
     @Autowired
-    AllMedicalListService allMedicalListService;
-
-    @Autowired
     MedicalListService medicalListService;
 
     @Autowired
@@ -202,26 +199,6 @@ public class RootController {
     @GetMapping("/adminIndex")
     public ModelAndView adminIndex() {
         return new ModelAndView("admin/main/adminIndex");
-    }
-
-    //약국 메인페이지 태영
-    @GetMapping("/pharmacyIndex")
-    public ModelAndView pharmacyIndex() {
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName("admin/pharside/pharmacyIndex");
-        return mv;
-    }
-
-    //가영: 의사 회원가입
-    @GetMapping("/doctorJoin")
-    public ModelAndView doctorJoin() {
-        ModelAndView mv = new ModelAndView("admin/doctorside/joinForm");
-        try {
-            mv.addObject("medicalList", allMedicalListService.allMedList());
-        } catch (Exception e) {
-            System.out.println("CANNOT GET LIST");
-        }
-        return mv;
     }
 
     //가영: 의사 비밀번호 확인

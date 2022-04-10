@@ -91,7 +91,7 @@ public class DoctorController {
     String[] diag_types = request.getParameterValues("doctor_diagnosis_type");
     List<String> sortedDiag_types = new ArrayList<String>();
     for (String diag : diag_types) {
-      if (!diag.equals(null)) sortedDiag_types.add(diag);
+      if (!diag.equals("")) sortedDiag_types.add(diag);
     }
     String diag_type = sortedDiag_types.toString();
     System.out.println(diag_type);
