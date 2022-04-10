@@ -6,9 +6,51 @@ const email = document.getElementById('email');
 const password = document.getElementById('password');
 const password2 = document.getElementById('password2');
 const name = document.getElementById('name');
-const SocialSecurityNumber = document.getElementById('SocialSecurityNumber').parentElement;
+const SocialSecurityNumber = document.getElementById('SocialSecurityNumber1').parentElement;
 const SocialSecurityNumber2 = document.getElementById('SocialSecurityNumber2').parentElement;
 const phone = document.getElementById('phone').parentElement;
+const phone2 = document.getElementById("phone2").parentElement
+const address = document.getElementById("zipNo").parentElement.parentElement.parentElement.parentElement.parentElement;
+const agree = document.getElementById("agree_all").parentElement
+
+email.addEventListener("change", checkEmail);
+password.addEventListener("change", checkPassword);
+password2.addEventListener("change", checkPassword2);
+name.addEventListener("change", checkName);
+SocialSecurityNumber.addEventListener("change", checkSocialSecurityNumber);
+SocialSecurityNumber2.addEventListener("change", checkSocialSecurityNumber2);
+phone.addEventListener("change", checkPhone);
+phone2.addEventListener("change", checkPhone2);
+address.addEventListener("change", checkAddress);
+
+function checkAll() {
+    checkEmail();
+    checkPassword();
+    checkPassword2();
+    checkName();
+    checkSocialSecurityNumber();
+    checkSocialSecurityNumber2();
+    checkPhone();
+    checkPhone2();
+    checkAddress();
+    checkRadio();
+    console.log(checkEmail());
+    if (confirm("회원가입을하시겠습니까?")) {
+        if (checkEmail() === true && checkPassword() === true && checkPassword2() === true
+            && checkName() === true && checkSocialSecurityNumber() === true
+            && checkSocialSecurityNumber2() === true
+            && checkPhone() === true && checkPhone2() === true
+            && checkAddress() === true && checkRadio() === true) {
+            alert("회원가입이 완료 되었습니다.감사합니다");
+            $("form").submit();
+        } else {
+            alert("회원가입에 실패했습니다.")
+        }
+
+
+    }
+}
+
 // 에러메세지
 const setError = (element, message, e) => {
     const inputControl = element.parentElement;
@@ -26,62 +68,21 @@ const setSuccess = element => {
     inputControl.classList.add('success');
     inputControl.classList.remove('error');
 }
-const isValidEmail = email => {
-    const reg = /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
-    return reg.test(String(email).toLowerCase());
-}
 
-const isVaildPassword = password => {
-    const reg = /^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
-    return reg.test(password);
-}
-const isValidName = name => {
-    const reg = /^[가-힝].{2,}$/
-    return reg.test(String(name));
-}
-
-const isValidSocialSecurityNumber = SocialSecurityNumber => {
-    const reg = /^[a-zA-Z0-9]{4,12}$/;
-    return reg.test(SocialSecurityNumber);
-}
-
-const isValidSocialSecurityNumber2 = SocialSecurityNumber2 => {
-    const reg = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-    return reg.test(SocialSecurityNumber2);
-}
-
-// form.addEventListener('change', e => {
-//     e.preventDefault();
-//     validateInput(e);
-// })
-//
-// form.addEventListener('submit', e => {
-//     e.preventDefault();
-//     validateInput(e);
-//     alert("회원강비에 성공하샸습니다.");
-// })
-
-
-// trim: 양끝의 공백을 제거한다.
-function validateInput(e) {
+function checkEmail() {
+    var checked = false;
     const emailValue = email.value.trim();
-    const passwordValue = password.value.trim();
-    const password2Value = password2.value.trim();
-    const nameValue = name.value.trim();
-    const SocialSecurityNumberValue = document.getElementById('SocialSecurityNumber').value.trim();
-    const SocialSecurityNumberValue2 = document.getElementById('SocialSecurityNumber2').value.trim();
-    const phoneValue = document.getElementById('phone').value.trim();
-//이메일
+    var emailPattern = /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
     if (emailValue === "") {
-        setError(email, "필수 정보입니다.", e);
+        setError(email, "필수 정보입니다.");
         return false;
-    } else if (!isValidEmail(emailValue)) {
-        setError(email, "올바른 형식으로 입력해주세요.", e);
+    } else if (!emailPattern.test(emailValue)) {
+        setError(email, "올바른 형식으로 입력해 주세요.");
         return false;
     } else {
         $.ajax({
             type: "POST",
-            url: "emailoverlap",
+            url: "/emailoverlap",
             data: {
                 "email": emailValue
             },
@@ -89,79 +90,272 @@ function validateInput(e) {
             success: function (data) {
                 var isOK = data
                 if (isOK) {
-                    console.log(typeof isOK);
-                    console.log(!isOK);
                     setError(email, "이미있는 이메일 입니다.");
+                    checked = false;
                 } else {
                     setSuccess(email);
+                    checked = true;
                 }
             }
-        });
+        })
     }
+    return checked;
 
-//비밀번호
-    if (passwordValue === "") {
-        setError(password, "필수 정보입니다.", e);
+}
+
+function checkPassword() {
+    const passwordValue = password.value.trim();
+    var pwPattern = /^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+    if (passwordValue.value === "") {
+        setError(password, "필수 정보입니다.");
         return false;
-    } else if (!isVaildPassword(passwordValue)) {
-        setError(password, "비밀번호는 8자 이상이어야 하며, 숫자/영문/특수문자를 모두 포함해야 합니다.", e);
+    } else if (!pwPattern.test(passwordValue)) {
+        setError(password, "8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.");
         return false;
     } else {
         setSuccess(password);
     }
-//비밀번호 확인
+    return true;
+}
+
+function checkPassword2() {
+    const passwordValue = password.value.trim();
+    const password2Value = password2.value.trim();
     if (password2Value === "") {
-        setError(password2, "필수 정보입니다.", e);
+        setError(password2, "필수 정보입니다.");
         return false;
     } else if (password2Value !== passwordValue) {
-        setError(password2, "비밀번호가 일치하지 않습니다.", e);
+        setError(password2, "비밀번호가 일치하지 않습니다.");
         return false;
     } else {
         setSuccess(password2);
     }
+    return true;
+}
 
-//이름
+function checkName() {
+    const nameValue = name.value.trim();
+    var namePattern = /^[가-힣]{2,4}$/;
     if (nameValue === "") {
-        setError(name, "이름을 입력해주세요.", e);
+        setError(name, "필수 정보입니다.");
         return false;
-    } else if (!isValidName(nameValue)) {
-        setError(name, "2글자이상 한글만 입력해주세요", e);
+    } else if (!namePattern.test(nameValue)) {
+        setError(name, "2글자 이상 한글만 입력해 주세요.");
         return false;
     } else {
         setSuccess(name);
     }
-//주민등록번호 앞자리
-    if (SocialSecurityNumberValue === "") {
-        setError(SocialSecurityNumber, "필수 정보입니다.", e);
+    return true;
+}
+
+
+function checkSocialSecurityNumber() {
+    const socialSecurityNumberValue = document.getElementById("SocialSecurityNumber1").value.trim();
+    var SocialSecurityNumberPattern = /d{2}([0]\d|[1][0-2])([0][1-9]|[1-2]\d|[3][0-1])/
+    if (socialSecurityNumberValue === "") {
+        setError(SocialSecurityNumber, "필수 정보입니다.");
         return false;
-        // } else if (!isValidSocialSecurityNumber(SocialSecurityNumber)) {
-        //     setError(SocialSecurityNumber, "숫자 6개를 입력해주세요.",e);
+    } else if (!SocialSecurityNumberPattern.test(socialSecurityNumberValue)) {
+        setError(SocialSecurityNumber, "형식에 맞게 입력해 주세요.");
+        return false;
     } else {
         setSuccess(SocialSecurityNumber);
     }
-//주민등록번호 뒷자리
-    if (SocialSecurityNumberValue2 === "") {
-        setError(SocialSecurityNumber2, "필수 정보입니다.", e);
+    return true;
+}
+
+function checkSocialSecurityNumber2() {
+    const socialSecurityNumberValue2 = document.getElementById("SocialSecurityNumber2").value.trim();
+    var SocialSecurityNumberPattern = /[1-4]\d{6}/
+    if (socialSecurityNumberValue2 === "") {
+        setError(SocialSecurityNumber2, "필수 정보입니다.");
         return false;
-        // } else if (!isValidSocialSecurityNumber2(SocialSecurityNumber2)) {
-        //     setError(SocialSecurityNumber2, "숫자 7개를 입력해주세요.",e);
+    } else if (!SocialSecurityNumberPattern.test(socialSecurityNumberValue2)) {
+        setError(SocialSecurityNumber2, "형식에 맞게 입력해 주세요.");
+        return false;
     } else {
         setSuccess(SocialSecurityNumber2);
     }
-    // 후대폰
+    return true;
+}
+
+function checkPhone() {
+    var phonePattern = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
+    const phoneValue = document.getElementById("phone").value.trim();
     if (phoneValue === "") {
-        setError(phone, "필수 정보입니다.", e);
+        setError(phone, "필수 정보입니다.");
+        return false;
+    } else if (!phonePattern.test(phoneValue)) {
+        setError(phone, "형식에 맞지 않은 번호입니다.");
         return false;
     } else {
         setSuccess(phone);
     }
-
-    if (confirm("회원가입을하시겠습니까?")) {
-        alert("회원가입이 완료 되었습니다.감사합니다");
-        $("form").submit();
-    }
-    ;
+    return true;
 }
+
+function checkPhone2() {
+    const phone2Value = document.getElementById("phone2").value.trim();
+    if (phone2Value === "") {
+        setError(phone2, "필수 정보입니다.");
+        return false;
+    } else if (phone2Value !== code2) {
+        setError(phone2, "인증번호가 일치하지 않습니다.")
+        return false;
+    } else {
+        setSuccess(phone2);
+    }
+    return true;
+}
+
+function checkAddress() {
+    const zipNoValue = document.getElementById("zipNo").value.trim();
+    const roadFullAddrValue = document.getElementById("roadFullAddr").value.trim();
+    const addrDetailValue = document.getElementById("addrDetail").value.trim();
+    if (zipNoValue === "" || roadFullAddrValue === "" || addrDetailValue === "") {
+        setError(address, "필수 정보입니다.");
+        return false;
+    } else {
+        setSuccess(address);
+    }
+    return true;
+}
+
+function checkRadio() {
+    if (!$("input:checkbox[name='agree']").is(":checked")) {
+        setError(agree, "필수 정보입니다.");
+        return false
+    } else {
+        setSuccess(agree);
+    }
+    return true;
+}
+
+// const isValidEmail = email => {
+//     const reg = /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
+//     return reg.test(String(email).toLowerCase());
+// }
+//
+// const isVaildPassword = password => {
+//     const reg = /^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+//     return reg.test(password);
+// }
+// const isValidName = name => {
+//     const reg = /^[가-힝].{2,}$/
+//     return reg.test(String(name));
+// }
+//
+// const isValidSocialSecurityNumber = SocialSecurityNumber => {
+//     const reg = /^[a-zA-Z0-9]{4,12}$/;
+//     return reg.test(SocialSecurityNumber);
+// }
+//
+// const isValidSocialSecurityNumber2 = SocialSecurityNumber2 => {
+//     const reg = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+//     return reg.test(SocialSecurityNumber2);
+// }
+
+// form.addEventListener('change', e => {
+//     e.preventDefault();
+//     validateInput(e);
+// })
+
+// form.addEventListener('submit', e => {
+//     validateInput(e);
+//     alert("회원강비에 성공하샸습니다.");
+// })
+
+
+// trim: 양끝의 공백을 제거한다.
+// function validateInput(e) {
+//     const emailValue = email.value.trim();
+//     const passwordValue = password.value.trim();
+//     const password2Value = password2.value.trim();
+//     const nameValue = name.value.trim();
+//     const SocialSecurityNumberValue = document.getElementById('SocialSecurityNumber').value.trim();
+//     const SocialSecurityNumberValue2 = document.getElementById('SocialSecurityNumber2').value.trim();
+//     const phoneValue = document.getElementById('phone').value.trim();
+// //이메일
+//     if (emailValue === "") {
+//         setError(email, "필수 정보입니다.", e);
+//     } else if (!isValidEmail(emailValue)) {
+//         setError(email, "올바른 형식으로 입력해주세요.", e);
+//     } else {
+//         $.ajax({
+//             type: "POST",
+//             url: "emailoverlap",
+//             data: {
+//                 "email": emailValue
+//             },
+//             async: false,
+//             success: function (data) {
+//                 var isOK = data
+//                 if (isOK) {
+//                     console.log(typeof isOK);
+//                     console.log(!isOK);
+//                     setError(email, "이미있는 이메일 입니다.");
+//                 } else {
+//                     setSuccess(email);
+//                     e.preventDefault();
+//                 }
+//             }
+//         });
+//     }
+//
+// //비밀번호
+//     if (passwordValue === "") {
+//         setError(password, "필수 정보입니다.", e);
+//     } else if (!isVaildPassword(passwordValue)) {
+//         setError(password, "비밀번호는 8자 이상이어야 하며, 숫자/영문/특수문자를 모두 포함해야 합니다.", e);
+//     } else {
+//         setSuccess(password);
+//     }
+// //비밀번호 확인
+//     if (password2Value === "") {
+//         setError(password2, "필수 정보입니다.", e);
+//     } else if (password2Value !== passwordValue) {
+//         setError(password2, "비밀번호가 일치하지 않습니다.", e);
+//     } else {
+//         setSuccess(password2);
+//     }
+//
+// //이름
+//     if (nameValue === "") {
+//         setError(name, "이름을 입력해주세요.", e);
+//     } else if (!isValidName(nameValue)) {
+//         setError(name, "2글자이상 한글만 입력해주세요", e);
+//     } else {
+//         setSuccess(name);
+//     }
+// //주민등록번호 앞자리
+//     if (SocialSecurityNumberValue === "") {
+//         setError(SocialSecurityNumber, "필수 정보입니다.", e);
+//         // } else if (!isValidSocialSecurityNumber(SocialSecurityNumber)) {
+//         //     setError(SocialSecurityNumber, "숫자 6개를 입력해주세요.",e);
+//     } else {
+//         setSuccess(SocialSecurityNumber);
+//     }
+// //주민등록번호 뒷자리
+//     if (SocialSecurityNumberValue2 === "") {
+//         setError(SocialSecurityNumber2, "필수 정보입니다.", e);
+//         // } else if (!isValidSocialSecurityNumber2(SocialSecurityNumber2)) {
+//         //     setError(SocialSecurityNumber2, "숫자 7개를 입력해주세요.",e);
+//     } else {
+//         setSuccess(SocialSecurityNumber2);
+//     }
+//     // 후대폰
+//     if (phoneValue === "") {
+//         setError(phone, "필수 정보입니다.", e);
+//     } else {
+//         setSuccess(phone);
+//     }
+//
+//     if (confirm("회원가입을하시겠습니까?")) {
+//         alert("회원가입이 완료 되었습니다.감사합니다");
+//         $("form").submit();
+//     }
+//     ;
+// }
 
 
 //카드번호
