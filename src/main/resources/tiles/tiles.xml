@@ -33,7 +33,17 @@
         <put-attribute name="body" value=""/>
         <put-attribute name="footer" value="/WEB-INF/views/common/layout/footer.jsp"/>
     </definition>
+    <definition name="DP_baseLayout" template="/WEB-INF/views/common/DP_baseLayout.jsp">
+        <put-attribute name="DP_navbar" value="/WEB-INF/views/common/layout/DP_navbar.jsp"/>
+        <put-attribute name="body" value=""/>
+        <put-attribute name="footer" value="/WEB-INF/views/common/layout/footer.jsp"/>
+    </definition>
 
+    <definition name="DP_SideLayout" template="/WEB-INF/views/common/DP_SideLayout.jsp">
+        <put-attribute name="DP_navbar" value="/WEB-INF/views/common/layout/DP_navbar.jsp"/>
+        <put-attribute name="body" value=""/>
+        <put-attribute name="footer" value="/WEB-INF/views/common/layout/footer.jsp"/>
+    </definition>
 
 
 <!--    -->
@@ -47,11 +57,7 @@
                        value="/WEB-INF/views/admin/pharside/{1}.jsp"/>
     </definition>
 
-    <definition name="DP_baseLayout" template="/WEB-INF/views/common/DP_baseLayout.jsp">
-        <put-attribute name="DP_navbar" value="/WEB-INF/views/common/layout/DP_navbar.jsp"/>
-        <put-attribute name="body" value=""/>
-        <put-attribute name="footer" value="/WEB-INF/views/common/layout/footer.jsp"/>
-    </definition>
+
 
     <definition name="admin/*" extends="DP_baseLayout">
         <put-attribute name="body"

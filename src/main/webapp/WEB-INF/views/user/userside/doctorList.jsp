@@ -103,119 +103,120 @@
             <button class="btn btn-secondary rounded-pill">실시간 진료</button>
             <button class="btn btn-warning rounded-pill" onclick={sortByDistance();}>거리순</button>
         </div>
-        <div class="card p-3">
-            <c:if test="${not empty doctorList}">
-                <c:forEach var="doctor" items="${doctorList}" varStatus="status">
+    </div>
+    <div class="card p-3">
+        <c:if test="${not empty doctorList}">
+            <c:forEach var="doctor" items="${doctorList}" varStatus="status">
 
-                    <div class="row g-0">
-                        <div class="col-md-4" style="min-width: 200px; max-width: 200px;">
-                            <div class="img-wrapper">
-                                    <%--                            <img alt="의사사진 영역"--%>
-                                    <%--                                 src="<c:choose><c:when test="${not empty doctor.doctor_profile_image_name || doctor.doctor_profile_image_name eq ''}">/img/doctorImg/${doctor.doctor_profile_image_name}</c:when>--%>
-                                    <%--                                            <c:otherwise>https://img.freepik.com/free-photo/portrait-of-asian-doctor-woman-cross-arms-standing-in-medical-uniform-and-stethoscope-smiling-at-camera-white-background_1258-83220.jpg</c:otherwise></c:choose>"/>--%>
-                                <img alt="의사사진 영역" src="${doctor.doctor_profile_image_name}"
-                                     onerror="this.src='https://img.freepik.com/free-photo/portrait-of-asian-doctor-woman-cross-arms-standing-in-medical-uniform-and-stethoscope-smiling-at-camera-white-background_1258-83220.jpg'">
-                            </div>
-                        </div>
-                        <div class="col-md-8 card-body">
-                            <div class="card-title d-flex justify-content-between">
-                                <div class="d-flex">
-                                    <h4 class="pr-3 font-weight-bolder">${doctor.doctor_name}</h4>
-                                    <span class="pl-3 font-weight-normal align-text-bottom">의사 / ${doctor.doctor_diagnosis_type}</span>
-                                </div>
-                                <div class="d-flex">
-                                    <button class="btn btn-secondary ml-auto"
-                                            onclick="location.href='/doctorDetail/${doctor.doctor_number}';">
-                                        <i class="fa-solid fa-magnifying-glass">의료진 상세보기</i>
-                                    </button>
-                                    <button class="btn ml-auto" style="background-color: #1abc9c; color: white;"
-                                            onclick="location.href='/appointmentForm/${doctor.doctor_number}';">
-                                        <i class="fa fa-check">비대면 진료 예약하기</i>
-                                    </button>
-
-                                </div>
-                            </div>
-                            <div class="card-text">
-                                <p class="card-text">
-                                <table class="table table-borderless">
-                                    <tr>
-                                        <th>병원이름:</th>
-                                        <td>${doctor.hospital_name}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>주소 :</th>
-                                        <td>${doctor.zip_code} ${doctor.street_address} ${doctor.detail_address}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>진료시간:</th>
-                                        <td>
-                                                ${doctor.working_time}
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>점심시간:</th>
-                                        <td>
-                                                ${doctor.lunch_time}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>휴진:</th>
-                                        <td>매주 ${doctor.holiday}요일</td>
-                                    </tr>
-                                </table>
-                                </p>
-                            </div>
+                <div class="row g-0">
+                    <div class="col-md-4" style="min-width: 200px; max-width: 200px;">
+                        <div class="img-wrapper">
+                                <%--                            <img alt="의사사진 영역"--%>
+                                <%--                                 src="<c:choose><c:when test="${not empty doctor.doctor_profile_image_name || doctor.doctor_profile_image_name eq ''}">/img/doctorImg/${doctor.doctor_profile_image_name}</c:when>--%>
+                                <%--                                            <c:otherwise>https://img.freepik.com/free-photo/portrait-of-asian-doctor-woman-cross-arms-standing-in-medical-uniform-and-stethoscope-smiling-at-camera-white-background_1258-83220.jpg</c:otherwise></c:choose>"/>--%>
+                            <img alt="의사사진 영역" src="${doctor.doctor_profile_image_name}"
+                                 onerror="this.src='https://img.freepik.com/free-photo/portrait-of-asian-doctor-woman-cross-arms-standing-in-medical-uniform-and-stethoscope-smiling-at-camera-white-background_1258-83220.jpg'">
                         </div>
                     </div>
+                    <div class="col-md-8 card-body">
+                        <div class="card-title d-flex justify-content-between">
+                            <div class="d-flex">
+                                <h4 class="pr-3 font-weight-bolder">${doctor.doctor_name}</h4>
+                                <span class="pl-3 font-weight-normal align-text-bottom">의사 / ${doctor.doctor_diagnosis_type}</span>
+                            </div>
+                            <div class="d-flex">
+                                <button class="btn btn-secondary ml-auto"
+                                        onclick="location.href='/doctorDetail/${doctor.doctor_number}';">
+                                    <i class="fa-solid fa-magnifying-glass">의료진 상세보기</i>
+                                </button>
+                                <button class="btn ml-auto" style="background-color: #1abc9c; color: white;"
+                                        onclick="location.href='/appointmentForm/${doctor.doctor_number}';">
+                                    <i class="fa fa-check">비대면 진료 예약하기</i>
+                                </button>
+
+                            </div>
+                        </div>
+                        <div class="card-text">
+                            <p class="card-text">
+                            <table class="table table-borderless">
+                                <tr>
+                                    <th>병원이름:</th>
+                                    <td>${doctor.hospital_name}</td>
+                                </tr>
+                                <tr>
+                                    <th>주소 :</th>
+                                    <td>${doctor.zip_code} ${doctor.street_address} ${doctor.detail_address}</td>
+                                </tr>
+                                <tr>
+                                    <th>진료시간:</th>
+                                    <td>
+                                            ${doctor.working_time}
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>점심시간:</th>
+                                    <td>
+                                            ${doctor.lunch_time}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>휴진:</th>
+                                    <td>매주 ${doctor.holiday}요일</td>
+                                </tr>
+                            </table>
+                            </p>
+                        </div>
+                    </div>
+                </div>
 
 
-                    <c:if test="${!status.last}">
-                        <hr>
-                    </c:if>
-                </c:forEach>
-            </c:if>
-        </div>
-        <nav class="text-center" id="pageList">
-            <ul class="pagination justify-content-center">
-                <c:choose>
-                    <c:when test="${pageInfo.page<=1}">
-                        <li class="page-item"><a class="page-link" href="#">이전</a></li>
-                        <!-- [이전]&nbsp; -->
-                    </c:when>
-                    <c:otherwise>
-                        <li class="page-item"><a class="page-link"
-                                                 href="./${place.id }?place_name=${place.place_name }&page=${pageInfo.page-1}">이전</a>
-                        </li>
-                    </c:otherwise>
-                </c:choose>
-                <c:forEach var="i" begin="${pageInfo.startPage }" end="${pageInfo.endPage }">
-                    <c:choose>
-                        <c:when test="${pageInfo.page==i }">
-                            <li class="page-item active">
-                                <a class="page-link" href="#">${i }</a></li>
-                        </c:when>
-                        <c:otherwise>
-                            <li class="page-item"><a class="page-link"
-                                                     href="./${place.id }?place_name=${place.place_name }&page=${pageInfo.page}">${i }</a>
-                            </li>
-
-                        </c:otherwise>
-                    </c:choose>
-                </c:forEach>
-                <c:choose>
-                    <c:when test="${pageInfo.page>=pageInfo.maxPage }">
-                        <li class="page-item"><a class="page-link" href="#">다음</a></li>
-                    </c:when>
-                    <c:otherwise>
-                        <li class="page-item"><a class="page-link"
-                                                 href="./${place.id }?place_name=${place.place_name }&page=${pageInfo.page+1}">다음</a>
-                        </li>
-                    </c:otherwise>
-                </c:choose>
-            </ul>
-        </nav>
+                <c:if test="${!status.last}">
+                    <hr>
+                </c:if>
+            </c:forEach>
+        </c:if>
     </div>
+    <nav class="text-center" id="pageList">
+        <ul class="pagination justify-content-center">
+            <c:choose>
+                <c:when test="${pageInfo.page<=1}">
+                    <li class="page-item"><a class="page-link" href="#">이전</a></li>
+                    <!-- [이전]&nbsp; -->
+                </c:when>
+                <c:otherwise>
+                    <li class="page-item"><a class="page-link"
+                                             href="./${place.id }?place_name=${place.place_name }&page=${pageInfo.page-1}">이전</a>
+                    </li>
+                </c:otherwise>
+            </c:choose>
+            <c:forEach var="i" begin="${pageInfo.startPage }" end="${pageInfo.endPage }">
+                <c:choose>
+                    <c:when test="${pageInfo.page==i }">
+                        <li class="page-item active">
+                            <a class="page-link" href="#">${i }</a></li>
+                    </c:when>
+                    <c:otherwise>
+                        <li class="page-item"><a class="page-link"
+                                                 href="./${place.id }?place_name=${place.place_name }&page=${pageInfo.page}">${i }</a>
+                        </li>
+
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
+            <c:choose>
+                <c:when test="${pageInfo.page>=pageInfo.maxPage }">
+                    <li class="page-item"><a class="page-link" href="#">다음</a></li>
+                </c:when>
+                <c:otherwise>
+                    <li class="page-item"><a class="page-link"
+                                             href="./${place.id }?place_name=${place.place_name }&page=${pageInfo.page+1}">다음</a>
+                    </li>
+                </c:otherwise>
+            </c:choose>
+        </ul>
+    </nav>
+</div>
 
     <!-- Scripts -->
 

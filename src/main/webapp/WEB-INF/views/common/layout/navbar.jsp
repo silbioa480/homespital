@@ -8,7 +8,7 @@
 <head>
   <meta charset="UTF-8"/>
   <title>홈스피탈</title>
-  <link rel="stylesheet" href="../../../../resources/css/navbar.css"/>
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/navbar.css"/>
   <style>
     a > i,
     a:link,
@@ -30,32 +30,16 @@
   <nav class="navbar navbar-expand-md navbar-fixed-top w-100">
     <div class="container">
       <div class="d-flex w-100">
-        <a
-          class="navbar-brand justify-content-start"
-          href="/"
-          style="font-family: 'Y_Spotlight'"
-        >
+        <a class="navbar-brand justify-content-start" href="/" style="font-family: 'Y_Spotlight'" >
           <i class="fa fa-medkit" aria-hidden="true"></i>
           홈스피탈
         </a>
-        <button
-          class="navbar-toggler border-dark"
-          type="button"
-          data-toggle="collapse"
-        <%--
-        data-bs-target="#navbarNavDarkDropdown"
-        aria-controls="navbarNavDarkDropdown"
-        --%>
-          data-target="#navbars" aria-controls="navbars"
-          data-bs-target="#navbars" aria-controls="navbars"
-          aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler border-dark" type="button" data-bs-toggle="collapse"
+          data-bs-target="#navbars" aria-controls="navbars" aria-expanded="false" aria-label="Toggle navigation">
           <span class="fa fa-bars" style="color: black"></span>
         </button>
 
-        <div
-          class="collapse navbar-collapse justify-content-end"
-          id="navbars"
-        >
+        <div class="collapse navbar-collapse justify-content-end" id="navbars">
           <ul class="navbar-nav ml-auto pl-lg-5 pl-0">
             <li class="nav-item">
               <a class="nav-link" href="/list">예약하기</a>
@@ -92,27 +76,23 @@
                 <li class="nav-item">
                   <a class="nav-link" href="/joinForm">회원가입</a>
                 </li>
-                <li class="nav-item cta-btn text-white">
-                  <a class="nav-link" href="#">의료 관계자 로그인</a>
-                </li>
-
               </c:otherwise>
             </c:choose>
           </ul>
 
-          <ul class="nav nav-pills">
-            <li class="nav-item dropdown">
-              <a class="nav-link active dropdown-toggle nav-link active" data-toggle="dropdown"
-                 data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">의료 관계자
-                로그인</a>
-              <div class="dropdown-menu">
-                <a class="dropdown-item" href="/adminIndex">의사로그인</a>
-                <a class="dropdown-item" href="#">약국로그인</a>
-              </div>
-            </li>
-          </ul>
 
-
+            <c:if test="${empty email}">
+                <ul class="nav nav-pills">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link btn-warning dropdown-toggle active" data-bs-toggle="dropdown" href="#" role="button"
+                           aria-haspopup="true" aria-expanded="false">의료 관계자 페이지</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/doctor/">의사 페이지</a>
+                            <a class="dropdown-item" href="/pharmacyMainForm">약국페이지</a>
+                        </div>
+                    </li>
+                </ul>
+            </c:if>
         </div>
       </div>
     </div>

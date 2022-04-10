@@ -5,20 +5,22 @@
   Time: 오전 12:23
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Title</title>
-    <title>Homespital</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
-    <link rel="stylesheet" href="/resources/css/signUp.css"/>
+
+    <link rel="stylesheet" href="/resources/css/sidebar.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css"/>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/signUp.css"/>
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-            crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<%--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>--%>
+<%--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"/>--%>
 
     <%--    <script src="./jquery-3.4.1.min.js"></script>--%>
     <%--    <link rel="stylesheet" href="./bootstrapt/css/bootstrap.min.css" />--%>
@@ -31,36 +33,32 @@
         }
     </style>
 </head>
-
+<body>
+<section id="sidebar">
+    <div class="d-flex flex-column align-items-center">
+        <%--        <span class="image avatar"><img src="/resources/img/doctorList/doctor01.jpg" alt=""/></span>--%>
+        <h1 id="logo"><a href="/">Homespital</a></h1>
+        <p>${name}님 안녕하세요.</p>
+        <p class="py-5"><strong>마이 페이지 > 내 정보 수정</strong></p>
+    </div>
+    <nav>
+        <ul id="nav">
+            <li class="nav-item"><a href="#one" class="nav-link active">필수정보수정</a></li>
+            <li class="nav-item"><a href="#two" class="nav-link">배송지 수정</a></li>
+            <li class="nav-item"><a href="#three" class="nav-link">결제 정보 수정</a></li>
+        </ul>
+    </nav>
+    <footer>
+        <ul class="icons">
+            <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+            <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+            <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+            <li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+            <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+        </ul>
+    </footer>
+</section>
 <div class="is-preload">
-
-    <!-- Header -->
-    <%--    <section id="header">--%>
-    <%--        <header>--%>
-    <%--            <span class="image avatar"><img src="/resources/img/signUp/avatar.jpg" alt=""/></span>--%>
-    <%--            <h1 id="logo"><a href="#">Homespital</a></h1>--%>
-    <%--            <p>Hi</p>--%>
-
-    <%--        </header>--%>
-    <%--        <nav id="nav">--%>
-    <%--            <ul>--%>
-    <%--                <li><a href="#one" class="active">필수정보수정</a></li>--%>
-    <%--                <li><a href="#two">배송지 수정</a></li>--%>
-    <%--                <li><a href="#three">결제 정보 수정</a></li>--%>
-
-    <%--            </ul>--%>
-    <%--        </nav>--%>
-    <%--        <footer>--%>
-    <%--            <ul class="icons">--%>
-    <%--                <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>--%>
-    <%--                <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>--%>
-    <%--                <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>--%>
-    <%--                <li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>--%>
-    <%--                <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>--%>
-    <%--            </ul>--%>
-    <%--        </footer>--%>
-    <%--    </section>--%>
-
     <!-- Wrapper -->
     <div id="wrapper">
 
@@ -93,7 +91,6 @@
                             <span id="pw_check_msg" style="color: #1abc9c"></span>
                             <div class="error"></div>
                         </div>
-
 
                         <div class="input-control">
                             <label for="name">이름</label>
@@ -138,24 +135,21 @@
                                                 </div>
                                                 <div class="error"></div>
                                             </div>
-                                            <div class="input-control">
-                                                <div style="display:flex">
-                                                    <input style="width: 100%" id="phone2" type="text" name="phone2"
-                                                           title="인증번호 입력" disabled/>
-                                                    <input style="width: 220px" type="button" id="phoneChk2"
-                                                           class="doubleChk" value="본인인증">
-                                                </div>
+                                            <div class="modal-footer">
+                                                <a class="btn" id="modalY2" onclick="getParentText()">수정</a>
+                                                <button class="btn" type="button" data-bs-dismiss="modal">취소</button>
                                             </div>
 
                                         </div>
                                         <div class="modal-footer">
-                                            <a class="btn" id="modalY2" onclick="getParentText()">수정</a>
+                                            <a class="btn" id="modalY2" href="/modifyForm"
+                                               onclick="getParentText()">수정</a>
                                             <button class="btn" type="button" data-bs-dismiss="modal">취소</button>
                                         </div>
                                     </div>
+                                    <%--가영: 여기까지 휴대폰 번호변경 인증번호 모달창 시작--%>
+                                    <div class="error"></div>
                                 </div>
-                                <%--가영: 여기까지 휴대폰 번호변경 인증번호 모달창 시작--%>
-                                <div class="error"></div>
                             </div>
 
                             <div class="error"></div>
@@ -234,7 +228,7 @@
                         <%--                        <input type="text" class="validThru" id="cardMMYYNum" onKeyup="inputValidThru(this);" placeholder="MMYY"--%>
                         <%--                               maxlength="4" style="width: 50%" readonly/>--%>
                         <%--                    </div>--%>
-                        <input type="button" id="addCard" name="addCard" class="addCard" value="관리">
+<%--                        <input type="button" id="addCard" name="addCard" class="addCard" value="관리">--%>
                         <button id="writeCard" class="btn" onclick="return false;">카드 추가</button>
                         <%--                        모달 --%>
                         <div class="modal fade" id="addCardModal" tabindex="-1" role="dialog"
@@ -246,7 +240,8 @@
                                     </div>
                                     <div class="modal-body">
                                         <div>
-                                            <input type="radio" name="cardCheck" class="card_list" value="1111" checked/>
+                                            <input type="radio" name="cardCheck" class="card_list" value="1111"
+                                                   checked/>
                                             <span> ****-****-****-1111</span>
                                         </div>
                                         <hr>
@@ -322,7 +317,8 @@
                                         <div style="display:flex">
                                             <input style="width: 100%" id="cardPassword" type="password"
                                                    name="cardPassword"
-                                                   title="카드 비밀번호" placeholder="비밀번호 앞자리 2개 입력하세요." maxlength="2" minlength="2"/>
+                                                   title="카드 비밀번호" placeholder="비밀번호 앞자리 2개 입력하세요." maxlength="2"
+                                                   minlength="2"/>
                                         </div>
                                     </div>
                                 </div>
@@ -338,10 +334,8 @@
 
                     <h5> * 본인명의 카드만 등록 가능 합니다.</h5>
                     <br><br>
-                    <div style="display:flex">
-
-                        <input type="submit" value="수정"
-                               style="width: 80%; margin-left:20px; margin-right: 20px;"/>
+                    <div class="d-flex">
+                        <input type="submit" value="수정" style="width: 80%; margin-left:20px; margin-right: 20px;"/>
                         <a class="btn" id="deleteMem" href="/delete" style="margin-right: 0px">회원탈퇴</a>
                     </div>
                 </section>
@@ -401,6 +395,7 @@
         $('#default_card').val("****-****-****-" + radioV);
         $('#addCardModal').modal("hide");
     });
+
     //가영: 휴대폰인증 후 부모창으로 데이터전송하는 함수
     function getParentText() {
         $('#phoneModal').modal("hide");
@@ -421,31 +416,6 @@
         }
     }
 
-  //새로운 비밀번호 입력시 정규성검사(아래에 에러메세지 뜸)
-  function check_pw() {
-    var password = document.getElementById('password').value;
-    var password2 = document.getElementById('password2').value;
-    if (password !== password2) {
-      document.getElementById('pw_check_msg').innerHTML = "비밀번호가 다릅니다. 다시 확인해 주세요.";
-    } else {
-      document.getElementById('pw_check_msg').innerHTML = "";
-    }
-    if (password2 === "") {
-      document.getElementById('pw_check_msg').innerHTML = "";
-    }
-  }
-
-  function submitNewCardId() {
-    if ($("#cardNameModal").val() == "") {
-      alert("카드 별칭을 입력해주세요.");
-      $("#cardNameModal").focus();
-      return false;
-    }
-    function getParentText() {
-        document.getElementById("cardName").value = document.getElementById("cardNameModal").value
-        document.getElementById("lastCardNum").value = document.getElementById("lastCardNumModal").value
-        document.getElementById("cardMMYYNum").value = document.getElementById("cardMMYYNumModal").value
-    }
     //새로운 비밀번호 입력시 정규성검사(아래에 에러메세지 뜸)
     function check_pw() {
         var password = document.getElementById('password').value;
@@ -459,42 +429,101 @@
             document.getElementById('pw_check_msg').innerHTML = "";
         }
     }
+
     function submitNewCardId() {
         if ($("#cardNameModal").val() == "") {
             alert("카드 별칭을 입력해주세요.");
             $("#cardNameModal").focus();
             return false;
         }
-        if ($("#cardNumModal1").val().length != 4) {
-            alert("1.4자리");
-            $("#cardNumModal1").focus();
-            return false;
-        } else if ($("#cardNumModal2").val().length != 4) {
-            alert("2.4자리");
-            $("#cardNumModal2").focus();
-            return false;
-        } else if ($("#cardNumModal3").val().length != 4) {
-            alert("3.4자리");
-            $("#cardNumModal3").focus();
-            return false;
-        } else if ($("#cardNumModal4").val().length != 4) {
-            alert("4.4자리");
-            $("#cardNumModal4").focus();
+
+        function getParentText() {
+            document.getElementById("cardName").value = document.getElementById("cardNameModal").value
+            document.getElementById("lastCardNum").value = document.getElementById("lastCardNumModal").value
+            document.getElementById("cardMMYYNum").value = document.getElementById("cardMMYYNumModal").value
+        }
+
+        //새로운 비밀번호 입력시 정규성검사(아래에 에러메세지 뜸)
+        function check_pw() {
+            var password = document.getElementById('password').value;
+            var password2 = document.getElementById('password2').value;
+            if (password !== password2) {
+                document.getElementById('pw_check_msg').innerHTML = "비밀번호가 다릅니다. 다시 확인해 주세요.";
+            } else {
+                document.getElementById('pw_check_msg').innerHTML = "";
+            }
+            if (password2 === "") {
+                document.getElementById('pw_check_msg').innerHTML = "";
+            }
+        }
+
+        function submitNewCardId() {
+            if ($("#cardNameModal").val() == "") {
+                alert("카드 별칭을 입력해주세요.");
+                $("#cardNameModal").focus();
+                return false;
+            }
+            if ($("#cardNumModal1").val().length != 4) {
+                alert("1.4자리");
+                $("#cardNumModal1").focus();
+                return false;
+            } else if ($("#cardNumModal2").val().length != 4) {
+                alert("2.4자리");
+                $("#cardNumModal2").focus();
+                return false;
+            } else if ($("#cardNumModal3").val().length != 4) {
+                alert("3.4자리");
+                $("#cardNumModal3").focus();
+                return false;
+            } else if ($("#cardNumModal4").val().length != 4) {
+                alert("4.4자리");
+                $("#cardNumModal4").focus();
+                return false;
+            }
+            if ($("#cardMMYYNumModal").val().length != 4) {
+                alert("유효기간 숫자 4자리를 입력해주세요.");
+                $("#cardMMYYNumModal").focus();
+                return false;
+            }
+            if ($("#cardPassword").val().length != 2) {
+                alert("카드 비밀번호 앞자리 2자리를 입력해주세요.");
+                $("#cardPassword").focus();
+                return false;
+            }
+            card_number = $('#cardNumModal1').val() + '-' + $('#cardNumModal2').val() + '-' + $('#cardNumModal3').val() + '-' + $('#cardNumModal4').val();
+            expiry = '20' + $('#cardMMYYNumModal').val().substr(2, 2) + '-' + $('#cardMMYYNumModal').val().substr(0, 2);
+            pwd_2digit = $('#cardPassword').val();
+            // var formData = new FormData();
+            // formData.append("card_number", card_number);
+            // formData.append("expiry", expiry);
+            // formData.append("pwd_2digit", pwd_2digit);
+            $.ajax({
+                url: "/writeMyCard",
+                type: "POST",
+                cache: false,
+                data: {
+                    "card_name": $("#cardNameModal").val(),
+                    "card_number": card_number,
+                    "expiry": expiry,
+                    "pwd_2digit": pwd_2digit,
+                },
+                contentType: "application/x-www-form-urlencoded; charset=UTF-8;",
+                success: function (data) {
+                    alert("성공하였습니다.");
+                    //$('#writeCardModal').modal("hide");
+                },
+                error: function (data) {
+                    alert("에러가 발생했습니다.")
+                }
+            })
             return false;
         }
-        if ($("#cardMMYYNumModal").val().length != 4) {
-            alert("유효기간 숫자 4자리를 입력해주세요.");
-            $("#cardMMYYNumModal").focus();
-            return false;
-        }
-        if ($("#cardPassword").val().length != 2) {
-            alert("카드 비밀번호 앞자리 2자리를 입력해주세요.");
-            $("#cardPassword").focus();
-            return false;
-        }
+
+        // 훈:
         card_number = $('#cardNumModal1').val() + '-' + $('#cardNumModal2').val() + '-' + $('#cardNumModal3').val() + '-' + $('#cardNumModal4').val();
         expiry = '20' + $('#cardMMYYNumModal').val().substr(2, 2) + '-' + $('#cardMMYYNumModal').val().substr(0, 2);
         pwd_2digit = $('#cardPassword').val();
+
         // var formData = new FormData();
         // formData.append("card_number", card_number);
         // formData.append("expiry", expiry);
@@ -520,36 +549,6 @@
         })
         return false;
     }
-      // 훈:
-    card_number = $('#cardNumModal1').val() + '-' + $('#cardNumModal2').val() + '-' + $('#cardNumModal3').val() + '-' + $('#cardNumModal4').val();
-    expiry = '20' + $('#cardMMYYNumModal').val().substr(2, 2) + '-' + $('#cardMMYYNumModal').val().substr(0, 2);
-    pwd_2digit = $('#cardPassword').val();
-
-    // var formData = new FormData();
-    // formData.append("card_number", card_number);
-    // formData.append("expiry", expiry);
-    // formData.append("pwd_2digit", pwd_2digit);
-    $.ajax({
-      url: "/writeMyCard",
-      type: "POST",
-      cache: false,
-      data: {
-        "card_name": $("#cardNameModal").val(),
-        "card_number": card_number,
-        "expiry": expiry,
-        "pwd_2digit": pwd_2digit,
-      },
-      contentType: "application/x-www-form-urlencoded; charset=UTF-8;",
-      success: function (data) {
-        alert("성공하였습니다.");
-        //$('#writeCardModal').modal("hide");
-      },
-      error: function (data) {
-        alert("에러가 발생했습니다.")
-      }
-    })
-    return false;
-  }
 </script>
 
 
