@@ -95,7 +95,7 @@ function checkEmail() {
     } else {
         $.ajax({
             type: "POST",
-            url: "pharmacy/emailoverlap",
+            url: "/pharmacy/emailoverlap",
             data: {
                 "email": emailValue
             },
