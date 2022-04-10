@@ -67,7 +67,7 @@ change this template use File | Settings | File Templates. --%>
 <!-- login Form -->
 <div class="login_box">
     <div class="content">
-        <form id="signup-form" method="post" action="/PharmacyLogin.do">
+        <form id="signup-form" method="post" action="/pharmacy/login.do">
             <div class="form-group" id="divEmail">
                 <input
                         class="signup-id"
