@@ -426,7 +426,7 @@ $(document).ready(function() {
         // } else {
         $.ajax({
             type: "POST",
-            url: "/doctor/DoctorEmailoverlap",
+            url: "/doctor/Emailoverlap",
             data: {
                 "email": $("#email").val()
             },
