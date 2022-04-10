@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: InSung
-  Date: 2022-04-07
-  Time: 오후 10:58
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -57,7 +51,7 @@
 
 <%--<tiles:insertAttribute name="sidebar"/> 소연 삭제 by 4/7--%>
 <div class="container" style="margin-left: 18em; width: calc(100vw - 18em);">
-    <tiles:insertAttribute name="DP_navbar"/>
+    <tiles:insertAttribute name="navbar"/>
     <tiles:insertAttribute name="body"/>
 </div>
 <%--<tiles:insertAttribute name="footer"/>--%>

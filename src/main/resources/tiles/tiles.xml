@@ -13,9 +13,17 @@
         <put-attribute name="body" value=""/>
     </definition>
 
+    <!--  훈 - 로그인 창은 상단 네비바 적용 X  -->
     <definition name="user/main/loginForm" extends="loginLayout">
         <put-attribute name="body" value="/WEB-INF/views/user/main/loginForm.jsp"/>
     </definition>
+    <definition name="admin/doctor/loginForm" extends="loginLayout">
+        <put-attribute name="body" value="/WEB-INF/views/admin/doctor/loginForm.jsp"/>
+    </definition>
+    <definition name="admin/phar/pharmacyLoginForm" extends="loginLayout">
+        <put-attribute name="body" value="/WEB-INF/views/admin/phar/pharmacyLoginForm.jsp"/>
+    </definition>
+
     <!--  훈.  소연 updated 4/7 sidenav tiles에서 삭제. 각 jsp마다 내용 다르게 넣을예정-->
     <definition name="userSideLayout" template="/WEB-INF/views/common/userSideLayout.jsp">
         <put-attribute name="navbar" value="/WEB-INF/views/common/layout/navbar.jsp"/>
@@ -36,25 +44,25 @@
 
     <!--  훈 - D_*Layout / P_*Layout 분리  -->
     <definition name="D_baseLayout" template="/WEB-INF/views/common/D_baseLayout.jsp">
-        <put-attribute name="DP_navbar" value="/WEB-INF/views/common/layout/D_navbar.jsp"/>
+        <put-attribute name="navbar" value="/WEB-INF/views/common/layout/D_navbar.jsp"/>
         <put-attribute name="body" value=""/>
         <put-attribute name="footer" value="/WEB-INF/views/common/layout/footer.jsp"/>
     </definition>
 
     <definition name="D_sideLayout" template="/WEB-INF/views/common/D_SideLayout.jsp">
-        <put-attribute name="DP_navbar" value="/WEB-INF/views/common/layout/D_navbar.jsp"/>
+        <put-attribute name="navbar" value="/WEB-INF/views/common/layout/D_navbar.jsp"/>
         <put-attribute name="body" value=""/>
         <put-attribute name="footer" value="/WEB-INF/views/common/layout/footer.jsp"/>
     </definition>
 
     <definition name="P_baseLayout" template="/WEB-INF/views/common/P_baseLayout.jsp">
-        <put-attribute name="DP_navbar" value="/WEB-INF/views/common/layout/P_navbar.jsp"/>
+        <put-attribute name="navbar" value="/WEB-INF/views/common/layout/P_navbar.jsp"/>
         <put-attribute name="body" value=""/>
         <put-attribute name="footer" value="/WEB-INF/views/common/layout/footer.jsp"/>
     </definition>
 
     <definition name="P_sideLayout" template="/WEB-INF/views/common/P_SideLayout.jsp">
-        <put-attribute name="DP_navbar" value="/WEB-INF/views/common/layout/P_navbar.jsp"/>
+        <put-attribute name="navbar" value="/WEB-INF/views/common/layout/P_navbar.jsp"/>
         <put-attribute name="body" value=""/>
         <put-attribute name="footer" value="/WEB-INF/views/common/layout/footer.jsp"/>
     </definition>
@@ -79,24 +87,6 @@
         <put-attribute name="body"
                        value="/WEB-INF/views/admin/phar/{1}.jsp"/>
     </definition>
-
-
-    <!--    <definition name="admin/*" extends="DP_baseLayout">-->
-    <!--        <put-attribute name="body"-->
-    <!--                       value="/WEB-INF/views/admin/{1}.jsp"/>-->
-    <!--    </definition>-->
-
-    <!--    <definition name="admin/*/*" extends="DP_baseLayout">-->
-    <!--        <put-attribute name="body"-->
-    <!--                       value="/WEB-INF/views/admin/{1}/{2}.jsp"/>-->
-    <!--    </definition>-->
-
-    <!--    <definition name="admin/*/*/*" extends="DP_baseLayout">-->
-    <!--        <put-attribute name="body"-->
-    <!--                       value="/WEB-INF/views/admin/{1}/{2}/{3}.jsp"/>-->
-    <!--    </definition>-->
-
-    <!--    -->
 
 
     <definition name="*" extends="baseLayout">

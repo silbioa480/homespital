@@ -52,7 +52,7 @@
 </head>
 <body>
 <%--<div style="background-color:#1abc9c; position: absolute; width: 100%; height:400px;"></div>--%>
-<tiles:insertAttribute name="DP_navbar"/>
+<tiles:insertAttribute name="navbar"/>
 <%--<div class="container px-4 px-lg-5 mt-5" style="max-width: 1200px;">--%>
 <tiles:insertAttribute name="body"/>
 <%--</div>--%>
