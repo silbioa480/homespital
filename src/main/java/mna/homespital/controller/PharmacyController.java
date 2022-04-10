@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-@Controller
+      @Controller//("/pharmacy") ("/")
 public class PharmacyController {
 
   @Autowired
