@@ -30,6 +30,7 @@ public class SignUpController {
         int randomNumber = (int) ((Math.random() * (9999 - 1000 + 1)) + 1000);//난수 생성
         PhoneCheckService phoneCheckService = new PhoneCheckService();
         phoneCheckService.certifiedPhoneNumber(userPhoneNumber, randomNumber);
+        System.out.println(randomNumber);
         return Integer.toString(randomNumber);
     }
 
@@ -81,7 +82,7 @@ public class SignUpController {
 //            session.setAttribute("user",user);
             memberService.login(user_email, user_password);
             session.setAttribute("email", user_email);
-            session.setAttribute("name", memberService.findByEmail(user_email).getUser_name());
+//            session.setAttribute("name", memberService.findByEmail(user_email).getUser_name());
 //            session.setAttribute("phone", memberService.findByEmail(user_email).getUser_phone());
             return "redirect:/";
         } catch (Exception e) {
