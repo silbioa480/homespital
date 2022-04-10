@@ -54,7 +54,7 @@ public class PharmacyController {
             Pharmacy pharmacy = pharService.getPharInfo(email);
             pharmacy.setPharmacy_password("");
             session.setAttribute("pharmacy", pharmacy);
-            return "redirect:/pharmacy/";
+            return "redirect:/pharmacy/customerList";
         } catch (Exception e) {
             e.printStackTrace();
             try {
@@ -123,12 +123,8 @@ public class PharmacyController {
     @GetMapping("/customerList")
     public String customerList(HttpSession session, Model m) throws Exception {
         try {
-//            String email = (String) session.getAttribute("email");
-//            String name = (String) session.getAttribute("name");
             Pharmacy pharmacy = (Pharmacy) session.getAttribute("pharmacy");
-//            int searchNumber = pharService.getNumberByEmail(email);
             int searchNumber = pharmacy.getPharmacy_number();
-//            Diagnosis diagnosis = new Diagnosis();
             List<HashMap<String, Object>> diagnosis = pharService.pharCustomerRecordsList(searchNumber);
             m.addAttribute("diagnosis", diagnosis);
         } catch (Exception e) {

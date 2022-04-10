@@ -125,7 +125,7 @@ public class DoctorServiceImpl implements DoctorService {
 
     // 의사이메일로 의사 가져오기(준근)
     @Override
-    public int searchDocId(String doctor_email) throws Exception {
+    public Doctor searchDocId(String doctor_email) throws Exception {
         return doctorDAO.searchDocId(doctor_email);
     }
 
