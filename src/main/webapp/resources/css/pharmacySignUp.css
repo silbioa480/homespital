@@ -2925,10 +2925,9 @@ input[type="button"]:disabled,
     }
 
     /* Wrapper */
-    #wrapper {
-        padding-right: 21em;
-    }
-
+    /*#wrapper {*/
+    /*    padding-right: 21em;*/
+    /*}*/
     /* Main */
     #main > section > .container {
         padding: 4em 0 2em 0;

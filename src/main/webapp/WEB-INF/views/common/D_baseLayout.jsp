@@ -1,11 +1,16 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: InSung
-  Date: 2022-04-07
-  Time: 오후 10:58
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+
+<%-- <!-- 목업 코드, 아래 영역을 주석처리하면 로그아웃 처리된 것으로 짜볼 수 있음 -->
+<%@ page import="com.ilinbun.mulcam.dto.User"%>
+<%!User user = new User(1, "mockup@mock.up", "목업", "", "#", 5, 1);%>
+<c:set var="user" value='<%=user%>' />
+<!-- 목업 코드 --> --%>
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -24,13 +29,6 @@
     <style>
         #headertitle:link, #headertitle:visited, #headertitle:hover, #headertitle:active {
             color: black;
-        }
-
-        @font-face {
-            font-family: 'Y_Spotlight';
-            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/Y_Spotlight.woff') format('woff');
-            font-weight: normal;
-            font-style: normal;
         }
 
         @font-face {
@@ -54,14 +52,13 @@
 </head>
 <body>
 <%--<div style="background-color:#1abc9c; position: absolute; width: 100%; height:400px;"></div>--%>
-
-<%--<tiles:insertAttribute name="sidebar"/> 소연 삭제 by 4/7--%>
-<div class="container" style="margin-left: 18em; width: calc(100vw - 18em);">
-    <tiles:insertAttribute name="DP_navbar"/>
-    <tiles:insertAttribute name="body"/>
-</div>
-<%--<tiles:insertAttribute name="footer"/>--%>
+<tiles:insertAttribute name="navbar"/>
+<%--<div class="container px-4 px-lg-5 mt-5" style="max-width: 1200px;">--%>
+<tiles:insertAttribute name="body"/>
+<%--</div>--%>
+<tiles:insertAttribute name="footer"/>
 
 
-<%--<script src="/resources/js/login/login.js"></script>--%>
+<script src="/resources/js/login/login.js"></script>
 </body>
+</html>

@@ -22,8 +22,9 @@
     </header>
     <nav id="nav">
         <ul>
-            <li><a href="#one" class="active">약국정보입력(필수)</a></li>
-            <li><a href="#two">약관동의</a></li>
+            <li><a href="#one" class="active">로그인 정보 입력<font color="red">(필수)</font></a></li>
+            <li><a href="#two" class="active">약국 정보 입력<font color="red">(필수)</font></a></li>
+            <li><a href="#three">약관동의</a></li>
         </ul>
     </nav>
     <footer>
@@ -41,7 +42,7 @@
 <div id="wrapper">
     <div id="main">
         <!-- One -->
-        <form id="form" name="form" action="pharmacy/join.do" method="post">
+        <form id="form" name="form" action="/pharmacy/join.do" method="post">
             <section id="one">
                 <div class="container">
                     <h3 style="margin-top: 100px">약사 회원가입</h3>
