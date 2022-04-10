@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 
 public interface PharService {
-//    인성: 약사 이메일로 number 찾기
+    //    인성: 약사 이메일로 number 찾기
     int getNumberByEmail(String phar_email) throws Exception;
 
     //나의 진료내역 리스트 출력 (준근)
@@ -22,5 +22,9 @@ public interface PharService {
     // 용식 : 약사 로그인
     boolean pharmacyLogin(String email, String password) throws Exception;
 
+    //용식 :약사 회원가입 이메일 중복체크
+    boolean emailCheck(String email) throws Exception;
+
+    Pharmacy getPharInfo(String pharmacy_email) throws Exception;
 
 }
