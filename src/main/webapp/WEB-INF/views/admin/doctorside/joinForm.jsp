@@ -45,7 +45,7 @@
 
     <!-- Main -->
     <div id="main">
-        <form id="form" name="form" action="doctorJoin.do" method="post">
+        <form id="form" name="form" action="/doctor/doctorJoin.do" method="post">
             <!-- One -->
             <section id="one">
                 <div class="container">
@@ -250,10 +250,11 @@
                             </div>
                         </div>
 
-                        <script>
-                            // lunch-st 와 umnch-cl 의 벨류값 hidden 에 넘기기
-                            const str = document.getElementsByName("lunch-st") +"~" + document.getElementsByName("lunch-cl")
-                        </script>
+<%--                        <script>--%>
+<%--                            // lunch-st 와 umnch-cl 의 벨류값 hidden 에 넘기기--%>
+<%--                            const str = document.getElementsByName("lunch-st") +"~" + document.getElementsByName("lunch-cl")--%>
+
+<%--                        </script>--%>
                         <br>
 
                         <label class="doctor-title">병원 정기 휴무 선택</label><label style="font-size: 10pt;">(다중선택가능)</label>
