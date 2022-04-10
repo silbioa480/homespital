@@ -47,6 +47,7 @@ blockquote, q {
     background-color: white;
     color: #111;
 }
+
 #three
 .btn:hover {
     background-color: #111;
@@ -2582,7 +2583,7 @@ input[type="button"],
     font-weight: 520;
     border: 1px solid #111;
     height: 44px;
-    line-height:  44px;
+    line-height: 44px;
     padding: 0 1.5em;
     text-align: center;
     text-decoration: none;
@@ -3361,14 +3362,12 @@ input[type="button"]:disabled,
     border-color: #09c372;
 }
 
-.input-control .error input {
-    border-color: #ff3860;
-}
 
 .input-control .error {
     color: #ff3860;
     /*font-size: 20px;*/
 }
+
 
 /*.terms {*/
 /*    list-style: none;*/

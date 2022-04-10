@@ -1,3 +1,5 @@
+//약사 회원가입 정규성 검사
+
 const form = document.getElementById('form');
 const email = document.getElementById("email");
 const password = document.getElementById("password");
@@ -8,7 +10,7 @@ const businessNumber = document.getElementById("businessNumber").parentElement;
 const pharmacyName = document.getElementById("pharmacyName");
 const pharmacyPhone = document.getElementById("pharmacyPhone");
 const address = document.getElementById("zipNo").parentElement.parentElement.parentElement.parentElement.parentElement;
-
+const agree = document.getElementById("agree_all").parentElement
 
 email.addEventListener("change", checkEmail);
 password.addEventListener("change", checkPassword);
@@ -19,7 +21,6 @@ businessNumber.addEventListener("change", checkBusinessNumber);
 pharmacyName.addEventListener("change", checkPharmacyName);
 pharmacyPhone.addEventListener("change", checkPharmacyPhone);
 address.addEventListener("change", checkAddress);
-
 
 // form.addEventListener("submit", e => {
 //     checkEmail();
@@ -44,11 +45,13 @@ function checkAll() {
     checkPharmacyName();
     checkPharmacyPhone();
     checkAddress();
+    checkRadio();
+    console.log(checkEmail());
     if (confirm("회원가입을하시겠습니까?")) {
         if (checkEmail() === true && checkPassword() === true && checkPassword2() === true
             && checkPhone() === true && checkPhone2() === true && checkBusinessNumber() === true
             && checkPharmacyName() === true && checkPharmacyPhone() === true
-            && checkAddress() === true) {
+            && checkAddress() === true && checkRadio() === true) {
             alert("회원가입이 완료 되었습니다.감사합니다");
             $("form").submit();
         } else {
@@ -80,6 +83,7 @@ const setSuccess = element => {
 }
 
 function checkEmail() {
+    var checked = false;
     const emailValue = email.value.trim();
     var emailPattern = /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
     if (emailValue === "") {
@@ -89,9 +93,27 @@ function checkEmail() {
         setError(email, "올바른 형식으로 입력해 주세요.");
         return false;
     } else {
-        setSuccess(email);
+        $.ajax({
+            type: "POST",
+            url: "pharmacy/emailoverlap",
+            data: {
+                "email": emailValue
+            },
+            async: false,
+            success: function (data) {
+                var isOK = data
+                if (isOK) {
+                    setError(email, "이미있는 이메일 입니다.");
+                    checked = false;
+                } else {
+                    setSuccess(email);
+                    checked = true;
+                }
+            }
+        })
     }
-    return true;
+    return checked;
+
 }
 
 function checkPassword() {
@@ -143,6 +165,9 @@ function checkPhone2() {
     const phone2Value = document.getElementById("phone2").value.trim();
     if (phone2Value === "") {
         setError(phone2, "필수 정보입니다.");
+        return false;
+    } else if (phone2Value !== code2) {
+        setError(phone2, "인증번호가 일치하지 않습니다.")
         return false;
     } else {
         setSuccess(phone2);
@@ -196,6 +221,15 @@ function checkAddress() {
     return true;
 }
 
+function checkRadio() {
+    if (!$("input:checkbox[name='agree']").is(":checked")) {
+        setError(agree, "필수 정보입니다.");
+        return false
+    } else {
+        setSuccess(agree);
+    }
+    return true;
+}
 
 // function checkAll() {
 //     if (!checkEmail(emailValue)) {
@@ -280,26 +314,26 @@ $("#phoneChk").click(function () {
                 $("#phone2").attr("disabled", false);
                 $("#phoneChk2").css("display", "inline-block");
                 $(".successPhoneChk").text("인증번호를 입력한 뒤 본인인증을 눌러주십시오.");
-                $(".successPhoneChk").css("color", "green");
                 code2 = data;
+                console.log(code2);
             }
         }
     });
 });
 // 휴대폰 인증번호 대조
-$("#phoneChk2").click(function () {
-    if ($("#phone2").val() == code2) {
-        $(".successPhoneChk").text("인증번호가 일치합니다.");
-        $(".successPhoneChk").css("color", "green");
-        $("#phoneDoubleChk").val("true");
-        $("#phone2").attr("disabled", true);
-    } else {
-        $(".successPhoneChk").text("인증번호가 일치하지 않습니다. 확인해주시기 바랍니다.");
-        $(".successPhoneChk").css("color", "red");
-        $("#phoneDoubleChk").val("false");
-        $(this).attr("autofocus", true);
-    }
-});
+// $("#phoneChk2").click(function () {
+//     if ($("#phone2").val() == code2) {
+//         $(".successPhoneChk").text("인증번호가 일치합니다.");
+//         $(".successPhoneChk").css("color", "green");
+//         $("#phoneDoubleChk").val("true");
+//         $("#phone2").attr("disabled", true);
+//     } else {
+//         $(".successPhoneChk").text("인증번호가 일치하지 않습니다. 확인해주시기 바랍니다.");
+//         $(".successPhoneChk").css("color", "red");
+//         $("#phoneDoubleChk").val("false");
+//         $(this).attr("autofocus", true);
+//     }
+// });
 
 // 동의 모두선택 / 해제
 const agreeChkAll = document.querySelector('input[name=agree_all]');
