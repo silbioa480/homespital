@@ -4,15 +4,7 @@
 <html>
 <head>
     <title>환자 진료리스트</title>
-    <link rel="stylesheet" href="/resources/css/myMedicalDetail.css"/>
-    <!-- 합쳐지고 최소화된 최신 CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
-    <!-- 부가적인 테마 -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-
-    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/resources/css/pharCustomerDetail.css"/>
 
     <%-- 구글 아이콘 CDN링크 --%>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -32,30 +24,28 @@
         }
 
         p {
-            font-size: 30px;
-            padding: 10px;
+            padding-top: 10px;
         }
 
         .table {
-            height: 500px;
             overflow: auto;
         }
     </style>
 </head>
 <body>
 <div class="container">
-    <div class="col mt-5">
+    <div class="col mt-1">
         <div class="list-header bg-info text-right">
             <h1 id="logo">Homespital</h1>
 
         </div>
 
-        <p class="text-right">환자 진료내역</p>
+        <p class="text-end fs-4">환자 진료내역</p>
 
         <div class="card p-3">
-            <div class="card-body p-4">
+            <div class="card-body p-2">
                 <div class="text-center table-responsive">
-                    <table class="table fs-3 fst-normal">
+                    <table class="table fs-5">
                         <thead>
                         <tr>
                             <th>날짜/시간</th>
@@ -69,7 +59,7 @@
                             <th>현황</th>
                         </tr>
                         </thead>
-                        <tbody id="docMedicalList">
+                        <tbody id="pharCustomerlList">
                         <tr>
                             <td>${diagnosis.create_date} / ${diagnosis.diagnosis_time}시</td>
                             <td>${diagnosis.user_name}</td>
@@ -80,70 +70,85 @@
                             <td>${diagnosis.is_delivery}</td>
                             <td>${diagnosis.is_prescription_upload}</td>
                             <td>${diagnosis.diagnosis_status}</td>
-
                         </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
-            <div class="card">
-                <h4 class="card-title"><strong>환자 처방 내역</strong></h4>
-                <div class="card-body">
-                    <div class="row g-0">
-                        <div class="col-md-4" style="min-width: 200px; max-width: 200px;">
-                            <div class="img-wrapper">
-                                <%--                            <img alt="의사사진 영역"--%>
-                                <%--                                 src="<c:choose><c:when test="${not empty doctor.doctor_profile_image_name || doctor.doctor_profile_image_name eq ''}">/img/doctorImg/${doctor.doctor_profile_image_name}</c:when>--%>
-                                <%--                                            <c:otherwise>https://img.freepik.com/free-photo/portrait-of-asian-doctor-woman-cross-arms-standing-in-medical-uniform-and-stethoscope-smiling-at-camera-white-background_1258-83220.jpg</c:otherwise></c:choose>"/>--%>
-                                <img alt="의사사진 영역" src="${doctor.doctor_profile_image_name}"
-                                     onerror="this.src='https://img.freepik.com/free-photo/portrait-of-asian-doctor-woman-cross-arms-standing-in-medical-uniform-and-stethoscope-smiling-at-camera-white-background_1258-83220.jpg'">
-                            </div>
-                        </div>
-                        <div class="col-md-8 card-body">
-                            <div class="card-title d-flex justify-content-between">
-                                <div class="d-flex">
-                                    <h4 class="pr-3 font-weight-bolder">${diagnosis.doctor_name}</h4>
-                                    <span class="pl-3 font-weight-normal align-text-bottom">의사 / ${diagnosis.doctor_diagnosis_type}</span>
-                                </div>
-                            </div>
-                            <div class="card-text">
-                                <p class="card-text">
-                                <table class="table table-borderless">
-                                    <tr>
-                                        <th>병원이름:</th>
-                                        <td>${diagnosis.hospital_name}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>주소 :</th>
-                                        <td>${diagnosis.zip_code} ${diagnosis.street_address} ${diagnosis.detail_address}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>진료시간:</th>
-                                        <td>
-                                            ${diagnosis.working_time}
 
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>점심시간:</th>
-                                        <td>
-                                            ${diagnosis.lunch_time}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>휴진:</th>
-                                        <td>매주 ${diagnosis.holiday}요일</td>
-                                    </tr>
-                                </table>
-                                </p>
-                            </div>
-                        </div>
+
+
+            <div class="card p-3">
+                <h4 class="card-title fs-3"><strong>진료 차트</strong></h4>
+                <div class="card-body fs-5" style="padding: 5px; line-height: 33px;">
+                    <div><strong>비대면 진료 시간 : ${diagnosis.create_date} ${diagnosis.diagnosis_time}시</strong></div>
+                    <div>생년월일 : ${diagnosis.birthday}</div>
+                    <div>주소 :
+                        (${diagnosis.user_zip_code}) ${diagnosis.user_street_address} ${diagnosis.user_detail_address}</div>
+                    <div>휴대폰 번호 : ${diagnosis.user_phone}</div>
+                </div>
+                <div style="background:#F9F9F9;">
+                    <table class="table table-borderless fs-5">
+                        <tbody>
+                        <tr>
+                            <th>진단 소견서</th>
+                            <td>
+                                <textarea name="doctor_opinion" style="width: 100%; min-height: 100px; font-size: 18px;" readonly="readonly"
+                                          maxlength="500">${diagnosis.doctor_opinion}</textarea>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+            <div class="card p-3">
+                <h4 class="card-title"><strong>약제 배송 방법</strong></h4>
+                <div class="card-body">
+                    <div class="d-flex">
+                        <c:choose>
+                        <c:when test="${diangosis.is_delivery}">
+                        <button class="btn btn-warning rounded-pill p-3" type="button" style="width:120px; height: 35px;">약국으로 직접 방문
+                            </c:when>
+                            <c:otherwise>
+                            <button class="btn btn-warning rounded-pill p-3" type="button">집까지 배송받기</button>
+                            </c:otherwise>
+                            </c:choose>
+                    </div>
+                    <div class="d-flex">
+                        <c:choose>
+                            <c:when test="${diagnosis.is_delivery}">
+                                <div class="d-block w-100">
+                                    <h5>내방하실 약국</h5>
+                                    <hr>
+                                    <div id="pharmacyName">${empty diagnosis.pharmacy_name ? "-" : diagnosis.pharmacy_name}</div>
+                                    <div id="pharmacyPhone">${empty diagnosis.pharmacy_phone ? "-" : diagnosis.pharmacy_phone}</div>
+                                    <div id="pharmacyAddress">${empty diagnosis.pharmacy_address ? "-" : diagnosis.pharmacy_addres}</div>
+                                </div>
+                            </c:when>
+                            <c:otherwise>
+                                <div class="d-block w-100">
+                                    <h5>보내는 곳 주소</h5>
+                                    <hr>
+                                    <div id="pharmacyName">${diagnosis.pharmacy_name}</div>
+                                    <div id="pharmacyPhone">${diagnosis.pharmacy_phone}</div>
+                                    <div id="pharmacyAddress">${diagnosis.pharmacy_address}</div>
+                                </div>
+                                <div class="d-block w-100">
+                                    <h5>받으시는 곳 주소</h5>
+                                    <hr>
+                                    <div>${diagnosis.user_address}</div>
+                                </div>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                 </div>
             </div>
 
-            <div class="card">
-                <h4 class="card-title"><strong>환자 처방 내역</strong></h4>
+
+            <div class="card p-3">
+                <h4 class="card-title"><strong>환자 진료 내역</strong></h4>
                 <div class="card-body">
                     <div class="row g-0">
                         <div class="col-md-4" style="min-width: 200px; max-width: 200px;">
