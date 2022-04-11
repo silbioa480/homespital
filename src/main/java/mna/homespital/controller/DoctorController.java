@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -210,17 +212,21 @@ public class DoctorController {
     // 소연&훈 해당 환자에 대한 진료 내역
     @GetMapping("/customerDetail/{diagnosis_number}")
     public ModelAndView customerDetail(@PathVariable int diagnosis_number) {
-        ModelAndView mv = new ModelAndView("/admin/doctor/customerDetail");
+        ModelAndView mv = new ModelAndView("admin/doctor/customerDetail");
         try {
             if (session.getAttribute("doctor") == null) throw new Exception("로그인 되어있지 않음");
             Doctor doctor = (Doctor) session.getAttribute("doctor");
             HashMap<String, Object> diagnosis = diagnosisService.getDiagnosisDetail(diagnosis_number);
             if (diagnosis == null || !((Integer) diagnosis.get("doctor_number")).equals(doctor.getDoctor_number()))
                 throw new Exception("올바르지 않은 진단기록");
+            LocalDateTime create_date = (LocalDateTime) diagnosis.get("create_date");
+//            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String create_date_str = create_date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            diagnosis.replace("create_date", create_date_str);
             mv.addObject("diagnosis", diagnosis);
         } catch (Exception e) {
             e.printStackTrace();
-            mv.setViewName("/common/err");
+            mv.setViewName("common/err");
         }
         return mv;
     }
