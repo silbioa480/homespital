@@ -90,6 +90,7 @@
         let loading = false;
         let list = null;
 
+
         console.log("ready");
         $.ajax({
             url: '/doctor/docMedicalRecords',
@@ -151,10 +152,11 @@
                         complete = "진료완료";
                     }
 
+
                     //진료예약(아직진료시작X) (diagnosis_status = 0) -> is_diagnosis_upload = 0 업로드버튼X,
                     //진료시작했을 떄, (diagnosis_status = 1) -> is_diagnosis_upload = 1 업로드버튼O,
-                    //진료 종료했을 떄, (diagosis_status= 3~7) -> is_diagnosis_upload = 2 업로드버튼X, 업로드완료
-                    //진료영수증
+                    //진료영수증이나 진단서 업로드 안하고 진료 종료했을 떄, (diagosis_status= 3~7)  --> is_diagnosis_upload = 3 업로드 버튼X, 빈문자열 나오게
+                    //진료영수증 업로드
                     let receipt = "";
                     if (item.is_diagnosis_upload == 0) {
                         receipt = "";
@@ -177,17 +179,17 @@
                     //진료예약(아직진료시작X) (diagnosis_status = 0) 일 때  ->> is_prescription_upload = 0 업로드버튼X,
                     //진료시작(dagnosis_status = 1)일 때   ->> is_prescription_upload = 1 업로드버튼0,
                     //진료 종료(diagnosis_status = 3~7) 일 때  -> is_prescription_upload = 2 업로드버튼 X, 업로드완료
-                    //처방전
+                    //처방전 업로드
                     let prescription = "";
                     if (item.is_prescription_upload == 0) {
                         prescription = "";
                     } else if (item.is_prescription_upload == 1) {
-                        prescription = "<button type='button' data-toggle='modal' data-target='#staticBackdrop2_" + item.diagnosis_number + " 'id ='prescriptionUpload" + item.diagnosis_number + "' class='btn btn-info btn-sm'>진단서업로드</button><br>" +
+                        prescription = "<button type='button' data-toggle='modal' data-target='#staticBackdrop2_" + item.diagnosis_number + " 'id ='prescriptionUpload" + item.diagnosis_number + "' class='btn btn-info btn-sm'>처방전업로드</button><br>" +
                             '<div class="modal fade" id="staticBackdrop2_' + item.diagnosis_number + '" data-backdrop="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">' +
                             '<div class="modal-dialog" role="document">' +
                             '<div class="modal-content">' +
                             '<div class="modal-header">' +
-                            '<h5 class="modal-title" id="staticBackdropLabel">진단서 업로드</h5>' +
+                            '<h5 class="modal-title" id="staticBackdropLabel">처방전 업로드</h5>' +
                             '<button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
                             '<span aria-hidden="true">&times;</span>' +
                             '</button>' +
@@ -226,6 +228,7 @@
 
     // 진료 시작하기
     function startBtn(e) {
+        console.log()
         if (confirm("진료를 시작하시겠습니까?") == true) {
             $.ajax({
                 url: "startDiagnosis",
@@ -255,8 +258,14 @@
                     "diagnosis_number": e,
                 },
                 success: function (data) {
-                    console.log("진료 완료 성공 : " + e)
-                    location.href = "${pageContext.request.contextPath}/doctor/docMedicalList";
+                    if (data === "success") {
+                        console.log(data);
+                        console.log("진료 완료 성공 : " + e)
+                        location.href = "${pageContext.request.contextPath}/doctor/docMedicalList";
+                    } else if (data === "failed") {
+                        alert("진료영수증이 업로드 되지 않았습니다. 진료영수증을 업로드 후 다시 실행해주세요.")
+                        location.href = "${pageContext.request.contextPath}/doctor/docMedicalList";
+                    }
                 },
             })
         } else {

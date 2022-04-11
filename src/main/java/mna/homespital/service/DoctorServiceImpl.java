@@ -167,10 +167,16 @@ public class DoctorServiceImpl implements DoctorService {
         doctorDAO.uploadReceipt(diagnosis_number, receiptFileName);
     }
 
-    // 진단서 업로드(준근)
+    // 처방전 업로드(준근)
     @Override
     public void uploadPrescription(int diagnosis_number, String prescriptionFileName) throws Exception {
         doctorDAO.uploadPrescription(diagnosis_number, prescriptionFileName);
+    }
+
+    //진료영수증 업로드 된지 확인(준근)
+    @Override
+    public int checkDiagnosisUpload(int diagnosis_number) throws Exception {
+        return doctorDAO.checkDiagnosisUpload(diagnosis_number);
     }
 
 }

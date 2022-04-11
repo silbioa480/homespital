@@ -53,7 +53,7 @@ public class DoctorController {
 
     //의사 로그인(준근)
     @PostMapping("/docLogin")
-    public String docLogin(@RequestParam("email") String doctor_email, @RequestParam("password") String doctor_password, HttpServletResponse response, Model model) throws Exception {
+    public String docLogin(@RequestParam("email") String doctor_email, @RequestParam("password") String doctor_password, HttpServletResponse response, Model model) {
 
         try {
             doctorService.docLogin(doctor_email, doctor_password);
@@ -239,11 +239,18 @@ public class DoctorController {
     }
 
     // 진료 완료하기 diagnoisis_status (1 -> 3)(준근)
+    // 진료 완료하기 할 때 유효성 검사(is_diagnosis_upload가 2가 아니면 진료완료 실패하고 alert띄움
     @ResponseBody
     @PostMapping("/finishDiagnosis")
-    public String finishDiagnosis(int diagnosis_number) {
+    public String finishDiagnosis(int diagnosis_number, HttpServletResponse response) {
         try {
+            //is_diagnosis_upload가 2(업로드완료) 인지 확인
+            int num = doctorService.checkDiagnosisUpload(diagnosis_number);
+            if (num != 2) {
+                return "failed";
+            }
             doctorService.finishDiagnosis(diagnosis_number);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -284,7 +291,7 @@ public class DoctorController {
         return "redirect:/doctor/docMedicalList";
     }
 
-    // 진단서 업로드(준근)
+    // 처방전 업로드(준근)
     @PostMapping("/prescriptionUpload")
     public String prescriptionUpload(MultipartFile prescriptionFile, int diagnosis_number, HttpServletResponse response) throws Exception {
         System.out.println("prescriptionUpload() join" + diagnosis_number);

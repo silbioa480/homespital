@@ -53,8 +53,11 @@ public interface DoctorDAO {
     // 진료영수증 업로드(준근)
     void uploadReceipt(@Param("diagnosis_number") int diagnosis_number, @Param("diagnosis_file_name") String receiptFileName) throws Exception;
 
-    // 진단서 업로드(준근)
+    // 처방전 업로드(준근)
     void uploadPrescription(@Param("diagnosis_number") int diagnosis_number, @Param("prescription_file_name") String prescriptionFileName) throws Exception;
+
+    //진료영수증 업로드 된지 확인(준근)
+    int checkDiagnosisUpload(int diagnosis_number) throws Exception;
     // 거리순 검색 알고리즘
     // 현재 주소를 어떻게든 가져와. 이거는 geolocation = html5 https
     // 이 주소를 기반으로 현재 위치로부터 가까운 병원 순으로 카카오맵에서 병원 리스트를 가져옴

@@ -55,6 +55,9 @@ public interface DoctorService {
     //진료영수증 업로드(준근)
     void uploadReceipt(int diagnosis_number, String receiptFileName) throws Exception;
 
-    //진단서 업로드(준근)
+    //처방전 업로드(준근)
     void uploadPrescription(int diagnosis_number, String prescriptionFileName) throws Exception;
+
+    //진료영수증 업로드 된지 확인(준근)
+    int checkDiagnosisUpload(int diagnosis_number) throws Exception;
 }
