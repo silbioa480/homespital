@@ -2,7 +2,11 @@ package mna.homespital.controller;
 
 import mna.homespital.dto.Diagnosis;
 import mna.homespital.dto.Doctor;
+import mna.homespital.dto.User;
 import mna.homespital.service.*;
+import net.nurigo.java_sdk.api.Message;
+import net.nurigo.java_sdk.exceptions.CoolsmsException;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -223,11 +227,36 @@ public class DoctorController {
     }
 
     // 진료 시작하기 diagnoisis_status (0 -> 1)(준근)
+    //카톡링크문자 보내기 태영
     @ResponseBody
     @PostMapping("/startDiagnosis")
     public String startDiagnosis(int diagnosis_number) {
+        String api_key = "NCSK1Q8DMWF4EQYK";
+        String api_secret = "9KEMFM30PPC8NTBR62L9WECLHIRXQJTO";
+        Message coolsms = new Message(api_key, api_secret);
+        HashMap<String, String> params = new HashMap<String, String>();
         try {
             doctorService.startDiagnosis(diagnosis_number);
+            Diagnosis dig= diagnosisService.getDiaInfo(diagnosis_number);
+            Doctor dtc=doctorService.getDocInfo(dig.getDoctor_number());
+            User user=userService.getUserInfo(dig.getUser_number());
+            String dtcName=dtc.getDoctor_name();
+            String userName=user.getUser_name();
+            String dtcPhone=dtc.getDoctor_phone();
+            params.put("to", "01089303955");// 수신전화번호
+            params.put("from", "01089303955");// 발신전화번호
+            params.put("type", "LMS");
+            params.put("text","진료를 시작합니다.\n" +
+                    "1대1 진료카카오톡\n" + "https://open.kakao.com/o/sXJSPePd"+"\n"+
+                    "의사명:"+dtcName +"\n"+
+                    "환자명:"+userName+"\n"); // 문자 내용 입력 ,담당의사 이름,환자이름
+            params.put("app_version", "test app 1.2"); // application name and version
+            JSONObject obj = (JSONObject) coolsms.send(params);
+            System.out.println(obj.toString());
+        }catch(CoolsmsException e){
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+            System.out.println(e.getCode());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -245,4 +274,20 @@ public class DoctorController {
         }
         return "success";
     }
+
+//    //카톡링크문자 보내기 태영
+//    @ResponseBody
+//    @PostMapping("/sendOpenTalk")
+//    public String sendOpenTalk(int doctor_number){
+//
+//        try{
+//            Doctor dtc =doctorService.getDocInfo(doctor_number);
+//            String userPhoneNumber=dtc.getDoctor_phone();
+//
+//        }catch(Exception e){
+//            e.printStackTrace();
+//        }
+//
+//        return "success";
+//    }
 }
