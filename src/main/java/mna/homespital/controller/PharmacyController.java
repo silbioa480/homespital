@@ -1,6 +1,8 @@
 package mna.homespital.controller;
 
+import mna.homespital.dto.Doctor;
 import mna.homespital.dto.Pharmacy;
+import mna.homespital.service.DiagnosisService;
 import mna.homespital.service.PharService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +28,9 @@ public class PharmacyController {
 
     @Autowired
     PharService pharService;
+
+    @Autowired
+    DiagnosisService diagnosisService;
 
     //약국메인
     @GetMapping({"", "/"})
@@ -149,4 +154,23 @@ public class PharmacyController {
         }
         return customerList;
     }
+
+    // 인성 : 환자에 대한 진료내역과 의사의 데이터
+    @GetMapping("/customerDetail/{diagnosis_number}")
+    public ModelAndView customerDetail(@PathVariable int diagnosis_number) {
+        ModelAndView mv = new ModelAndView("/admin/phar/customerDetail");
+        try {
+            if (session.getAttribute("pharmacy") == null) throw new Exception("로그인 되어있지 않음");
+            Pharmacy pharmacy = (Pharmacy) session.getAttribute("pharmacy");
+            HashMap<String, Object> diagnosis = diagnosisService.getDiagnosisDetail(diagnosis_number);
+            if (diagnosis == null || !((Integer) diagnosis.get("pharmacy_number")).equals(pharmacy.getPharmacy_number()))
+                throw new Exception("올바르지 않은 진단기록");
+            mv.addObject("diagnosis", diagnosis);
+        } catch (Exception e) {
+            e.printStackTrace();
+            mv.setViewName("/common/err");
+        }
+        return mv;
+    }
+
 }
