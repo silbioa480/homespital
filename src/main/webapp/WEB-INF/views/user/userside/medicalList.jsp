@@ -38,7 +38,6 @@
     <div class="d-flex flex-column align-items-center">
         <%--        <span class="image avatar"><img src="/resources/img/doctorList/doctor01.jpg" alt=""/></span>--%>
         <h1 id="logo"><a href="/">Homespital</a></h1>
-        <p>${name}님 안녕하세요.</p>
     </div>
     <nav id="nav">
         <ul>
