@@ -162,4 +162,9 @@ public class DoctorServiceImpl implements DoctorService {
         doctorDAO.finishDiagnosis(diagnosis_number);
     }
 
+    @Override
+    public String getUserPhone(int doctor_number) throws Exception {
+        return doctorDAO.getUserPhone(doctor_number);
+    }
+
 }
