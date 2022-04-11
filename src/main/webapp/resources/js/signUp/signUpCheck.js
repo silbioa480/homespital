@@ -10,7 +10,7 @@ const SocialSecurityNumber = document.getElementById('SocialSecurityNumber1').pa
 const SocialSecurityNumber2 = document.getElementById('SocialSecurityNumber2').parentElement;
 const phone = document.getElementById('phone').parentElement;
 const phone2 = document.getElementById("phone2").parentElement
-const address = document.getElementById("zipNo").parentElement.parentElement.parentElement.parentElement.parentElement;
+// const address = document.getElementById("zipNo").parentElement.parentElement.parentElement.parentElement.parentElement;
 const agree = document.getElementById("agree_all").parentElement
 
 email.addEventListener("change", checkEmail);
@@ -21,7 +21,8 @@ SocialSecurityNumber.addEventListener("change", checkSocialSecurityNumber);
 SocialSecurityNumber2.addEventListener("change", checkSocialSecurityNumber2);
 phone.addEventListener("change", checkPhone);
 phone2.addEventListener("change", checkPhone2);
-address.addEventListener("change", checkAddress);
+
+// address.addEventListener("change", checkAddress);
 
 function checkAll() {
     checkEmail();
@@ -32,7 +33,7 @@ function checkAll() {
     checkSocialSecurityNumber2();
     checkPhone();
     checkPhone2();
-    checkAddress();
+    // checkAddress();
     checkRadio();
     console.log(checkEmail());
     if (confirm("회원가입을하시겠습니까?")) {
@@ -208,18 +209,18 @@ function checkPhone2() {
     return true;
 }
 
-function checkAddress() {
-    const zipNoValue = document.getElementById("zipNo").value.trim();
-    const roadFullAddrValue = document.getElementById("roadFullAddr").value.trim();
-    const addrDetailValue = document.getElementById("addrDetail").value.trim();
-    if (zipNoValue === "" || roadFullAddrValue === "" || addrDetailValue === "") {
-        setError(address, "필수 정보입니다.");
-        return false;
-    } else {
-        setSuccess(address);
-    }
-    return true;
-}
+// function checkAddress() {
+//     const zipNoValue = document.getElementById("zipNo").value.trim();
+//     const roadFullAddrValue = document.getElementById("roadFullAddr").value.trim();
+//     const addrDetailValue = document.getElementById("addrDetail").value.trim();
+//     if (zipNoValue === "" || roadFullAddrValue === "" || addrDetailValue === "") {
+//         setError(address, "필수 정보입니다.");
+//         return false;
+//     } else {
+//         setSuccess(address);
+//     }
+//     return true;
+// }
 
 function checkRadio() {
     if (!$("input:checkbox[name='agree']").is(":checked")) {
