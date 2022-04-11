@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import service.PhoneCheckService;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -88,7 +89,7 @@ public class DoctorController {
 
     //가영:의사 회원가입
     @PostMapping("/doctorJoin.do")
-    public ModelAndView doctorJoin(HttpServletRequest request, MultipartFile doctorImgNames, HttpServletResponse response) {
+    public ModelAndView doctorJoin(HttpServletRequest request, MultipartFile doctorImgNames, MultipartFile hospitalImgNames, HttpServletResponse response) {
         Doctor doctor = new Doctor();
         doctor.setDoctor_email(request.getParameter("doctor_email"));
         doctor.setDoctor_password(request.getParameter("doctor_password"));
@@ -144,12 +145,23 @@ public class DoctorController {
 
         ModelAndView mv = new ModelAndView();
         try {
-
+            // 의사 프로필 업로드
+            String fileNameArr = "";
             String doctorImg = doctorImgNames.getOriginalFilename();
             String path = servletContext.getRealPath("/resources/img/doctorImg/");
             String filename = UUID.randomUUID().toString() + "." + doctorImg.substring(doctorImg.lastIndexOf('.') + 1);
             File destFile = new File(path + filename);
             doctorImgNames.transferTo(destFile);
+            doctor.setDoctor_profile_image_name(fileNameArr.toString());
+
+
+            String hospitalfileName = "";
+            String hospitalrImg = hospitalImgNames.getOriginalFilename();
+            String hpath = servletContext.getRealPath("/resources/img/hospitalImg/");
+            String hospitalfilename = UUID.randomUUID().toString() + "." + hospitalrImg.substring(hospitalrImg.lastIndexOf('.') + 1);
+            File hdestFile = new File(path + filename);
+            hospitalImgNames.transferTo(hdestFile);
+            doctor.setDoctor_introduction(hospitalfileName.toString());
 
 
 
@@ -261,5 +273,16 @@ public class DoctorController {
             e.printStackTrace();
         }
         return "success";
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/phoneCheck", method = RequestMethod.GET)
+    //용식: 회원가입 문자전송API
+    public String sendSMS(@RequestParam("phone") String userPhoneNumber) { // 휴대폰 문자보내기
+        int randomNumber = (int) ((Math.random() * (9999 - 1000 + 1)) + 1000);//난수 생성
+        PhoneCheckService phoneCheckService = new PhoneCheckService();
+        phoneCheckService.certifiedPhoneNumber(userPhoneNumber, randomNumber);
+        System.out.println(randomNumber);
+        return Integer.toString(randomNumber);
     }
 }
