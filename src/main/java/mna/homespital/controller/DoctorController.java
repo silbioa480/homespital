@@ -6,6 +6,8 @@ import mna.homespital.service.DiagnosisService;
 import mna.homespital.service.DoctorService;
 import mna.homespital.service.PharService;
 import mna.homespital.service.UserService;
+import net.nurigo.java_sdk.api.Message;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -228,11 +230,29 @@ public class DoctorController {
   }
 
   // 진료 시작하기 diagnoisis_status (0 -> 1)(준근)
+  //의사번호를 통해 환자휴대번호 갖고오고 진료시작문자 및 카카오톡링크보내기 태영
   @ResponseBody
   @PostMapping("/startDiagnosis")
   public String startDiagnosis(int diagnosis_number) {
+    String api_key = "NCSPV8YZMCKSQUYI";
+    String api_secret = "NCONVJRYQOCGNWXZGDIXVEAMAMSYMC4W";
+
     try {
       doctorService.startDiagnosis(diagnosis_number);
+
+//      String userphoneNumber=doctorService.getUserPhone(doctor_number);
+      Message coolsms = new Message(api_key, api_secret);
+      HashMap<String, String> params = new HashMap<String, String>();
+      params.put("to", "01089303955");// 수신전화번호
+      params.put("from", "01089303955");// 발신전화번호
+      params.put("type", "SMS");
+      params.put("text", "진료를 시작합니다"+"의사 일대일 진료채팅방\n" +
+              "링크를 선택하면 카카오톡이 실행됩니다.\n" +
+              "\n" +
+              "https://open.kakao.com/o/sXJSPePd"); // 문자 내용 입력
+      params.put("app_version", "test app 1.2"); // application name and version
+      JSONObject obj = (JSONObject) coolsms.send(params);
+      System.out.println(obj.toString());
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -250,4 +270,30 @@ public class DoctorController {
     }
     return "success";
   }
+
+//  //의사번호를 통해 환자휴대번호 갖고오고 진료시작문자 및 카카오톡링크보내기 태영
+//  @ResponseBody
+//  @PostMapping("/sendOpentalk")
+//  public void sendOpentalk(int doctor_number){
+//          String api_key = "NCSPV8YZMCKSQUYI";
+//          String api_secret = "NCONVJRYQOCGNWXZGDIXVEAMAMSYMC4W";
+//
+//        try{
+//          String userphoneNumber=doctorService.getUserPhone(doctor_number);
+//          Message coolsms = new Message(api_key, api_secret);
+//          HashMap<String, String> params = new HashMap<String, String>();
+//          params.put("to", "01089303955");// 수신전화번호
+//          params.put("from", "01089303955");// 발신전화번호
+//          params.put("type", "SMS");
+//          params.put("text", "진료를 시작합니다"+"의사 일대일 진료채팅방\n" +
+//                  "링크를 선택하면 카카오톡이 실행됩니다.\n" +
+//                  "\n" +
+//                  "https://open.kakao.com/o/sXJSPePd"); // 문자 내용 입력
+//          params.put("app_version", "test app 1.2"); // application name and version
+//          JSONObject obj = (JSONObject) coolsms.send(params);
+//          System.out.println(obj.toString());
+//        }catch(Exception e){
+//          e.printStackTrace();
+//        }
+//  }
 }
