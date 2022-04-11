@@ -113,6 +113,7 @@
                             <input id="phone2" type="text" name="phone2" title="인증번호 입력" disabled/>
                             <input type="button" id="phoneChk2" class="doubleChk" value="본인인증">
                         </div>
+                        <div class="error"></div>
                         <span class="point successPhoneChk">※ 휴대폰 번호 입력후 인증번호 보내기를 해주십시오.</span>
                         <input type="hidden" id="phoneDoubleChk"/>
 
@@ -134,31 +135,39 @@
                     </div>
                     <div class="input-control">
                         <label class="doctor-title" for="doctorNumber">의사면허번호</label>
-                        <div style="display:flex">
+<%--                        <div style="display:flex">--%>
                             <input id="doctorNumber" name="doctor_valid_number" type="text" maxlength="6">
-                        </div>
-                        <div class="error"></div>
+                            <div class="error"></div>
+<%--                        </div>--%>
+
                     </div>
                     <div class="input-control">
-                        <label class="doctor-title" for="doctorProfile">의사사진</label>
-                        <div style="display:flex">
-                            <input id="doctorProfile" name="doctor_profile_image_name" type="text" maxlength="6">
+                        <span class="doctor-title">의사사진</span>
+<%--                        <div style="display:flex">--%>
+                        <label for="doctorProfile" id="filebtn">사진 등록</label>
+                            <input id="doctorProfile" name="doctorImgNames" type="file"  accept=".gif, .jpg, .png">
+                        <div id='attZone'>
                         </div>
+<%--                        </div>--%>
                         <div class="error"></div>
                     </div>
                     <div class="input-control">
                         <label class="doctor-title" for="businessNumber">사업자번호</label>
-                        <div style="display:flex">
+                        <div style="display:flex; flex-flow : wrap ">
                             <input id="businessNumber" style="width: 70%" name="hospital_business_number" type="text"
                                    maxlength="10">
+
                             <input type="button" id="businessNumCheck" class="doubleChk" style="width: 15%" value="조회">
+                            <div class="error"></div>
                         </div>
-                        <div class="error"></div>
+
                     </div>
+
+
                     <br>
 
 
-                    <div>
+                    <div class="input-control">
                         <label class="doctor-title">병원주소</label>
                         <table style="width: 90%">
                             <colgroup>
@@ -169,45 +178,47 @@
                             <tr>
                                 <th>우편번호</th>
                                 <td>
-                                    <div>
+
                                         <div style="display:flex">
                                             <input type="hidden" id="confmKey" name="confmKey" value="">
                                             <input type="text" id="zipNo" name="zipNo" readonly style="width:100%">
                                             <input type="button" value="주소검색" onclick="goPopup()"
                                                    style=" margin-left:30px;">
                                         </div>
-                                    </div>
+
+
                                 </td>
                             </tr>
                             <tr>
-                                <div>
+
                                     <th>도로명주소</th>
                                     <td><input type="text" id="roadFullAddr" name="roadFullAddr" style="width:100%">
                                     </td>
-                                </div>
+
                             </tr>
                             <tr>
-                                <div>
+
                                     <th>상세주소</th>
                                     <td>
                                         <input type="text" id="addrDetail" name="addrDetail" style="width:100%"
                                                value="">
 
                                     </td>
-                                </div>
+
                             </tr>
                             </tbody>
                         </table>
+                        <div class="error"></div>
                     </div>
 
                     <div>
-                        <label class="doctor-title">진료과 선택</label>
+                        <label class="doctor-title" style="margin-top: 20px">진료과 선택</label>
                     </div>
 
                     <div>
                         <%--                        <input type="hidde" name="doctor_diagnosis_type"/>--%>
-                        <div style="display:flex">
-                            <select id='diagnosis_type' multiple='multiple' style="height: 200px;" >
+                        <div class="d-flex align-items-center" style="display: -webkit-flex;">
+                            <select id='diagnosis_type' multiple='multiple' style="height: 200px; width: 100%" >
                                 <c:forEach var="med" items="${medicalList}">
                                     <option value="${med.medical_name}">${med.medical_name}</option>
                                 </c:forEach>
@@ -215,69 +226,68 @@
                                 <%--                            <option value='소아과'>2</option>--%>
                                 <%--                            <option value='이비인후과'>3</option>--%>
                             </select>
-                            <input type='button' id='btnLToR' value='▶'>
-                            <input type='button' id='btnRToL' value='◀'>
+                            <div class="px-2">
+                                <input type='button' id='btnLToR' value='▶'>
+                                <input type='button' id='btnRToL' value='◀'>
+                            </div>
+                            <select id='diagnosis_type2' multiple='multiple' name="doctor_diagnosis_type" style="height: 200px; width: 100%"></select>
 
-                            <select id='diagnosis_type2' multiple='multiple' name="doctor_diagnosis_type" style="height: 200px;"></select>
-
+                            <div class="error" style="overflow:hidden; word-break:break-all;" ></div>
                         </div>
                     </div>
 
 
                     <div>
-                        <label class="doctor-title">진료 시간 선택</label>
+                        <label class="doctor-title" style="margin-top: 20px">진료 시간 선택</label>
                         <label style="font-size: 10pt;">단위: 시간</label>
-                        <div>
-                            <div style="display:flex">
-                                <%--           애도 히든추가                --%>
-                                <%--                        <input type="hidden" id="openClose" name="openClose">--%>
-                                <div>
+
+                            <div style="display:flex; flex-flow : wrap">
+
                                     <select name="open" class="form-select" id="open" style="width: 35%; margin-left: 30px" aria-label="오픈 진료 시간">
-                                        <option selected value="" style="text-align: center;">진료 시작</option>
-                                        <option value="9" id="open9" style="text-align: center">9</option>
-                                        <option value="10" id="open10" style="text-align: center">10</option>
-                                        <option value="11" id="open11" style="text-align: center">11</option>
+                                        <option name="open" selected value="" disabled="disabled" style="text-align: center;">진료 시작</option>
+                                        <option name="open" value="9" id="open9" style="text-align: center">9</option>
+                                        <option name="open" value="10" id="open10" style="text-align: center">10</option>
+                                        <option name="open" value="11" id="open11" style="text-align: center">11</option>
                                     </select>
-                                </div>
-                                <div id="divEnd">
+
                                     <select name="close" class="form-select" id="end"
                                             style="width: 35%;  margin-left: 40px" aria-label="마감 진료 시간">
-                                        <option selected value="" style="text-align: center;">진료 마감</option>
-                                        <option value="17" id="end17" style="text-align: center">17</option>
-                                        <option value="18" id="end18" style="text-align: center">18</option>
-                                        <option value="19" id="end19" style="text-align: center">19</option>
-
+                                        <option name="close" selected value="" disabled="disabled" style="text-align: center;">진료 마감</option>
+                                        <option name="close" value="17" id="end17" style="text-align: center">17</option>
+                                        <option name="close" value="18" id="end18" style="text-align: center">18</option>
+                                        <option name="close" value="19" id="end19" style="text-align: center">19</option>
                                     </select>
-                                </div>
+
+
+                                    <div class="error" ></div>
                             </div>
-                        </div>
+
+
                     </div>
                     <br>
                     <div>
-                        <label class="doctor-title">점심 시간 선택</label>
+                        <label class="doctor-title" style="margin-top: 20px">점심 시간 선택</label>
                         <label style="font-size: 10pt;">단위: 시간</label>
                         <div>
-                            <div style="display:flex">
+                            <div style="display:flex; flex-flow : wrap">
 
-<%--                                <input type="hidden" name="lunch-time">--%>
-    <div id="divStartLunch">
                                 <select name='lunch-st' class="form-select" id="lunch-st" style="width: 35%; margin-left: 30px" aria-label="Default select example">
 
-                                    <option selected style="text-align: center;">점심시간(부터)</option>
-                                    <option value="11" id="startLunch110" style="text-align: center">11</option>
-                                    <option value="12" id="startLunch120" style="text-align: center">12</option>
-                                    <option value="13" id="startLunch130" style="text-align: center">13</option>
+                                    <option name='lunch-st' value="" disabled="disabled" selected style="text-align: center;">점심시간(부터)</option>
+                                    <option name='lunch-st' value="11" id="startLunch110" style="text-align: center">11</option>
+                                    <option name='lunch-st' value="12" id="startLunch120" style="text-align: center">12</option>
+                                    <option name='lunch-st' value="13" id="startLunch130" style="text-align: center">13</option>
                                 </select>
-    </div>
-    <div id="divEndLunch">
+
                                 <select name='lunch-cl' class="form-select" id="lunch-cl" style="width: 35%;  margin-left: 40px"  aria-label="Default select example">
-                                    <option selected style="text-align: center;">점심시간(까지)</option>
-                                    <option value="12" id="endLunch121" style="text-align: center">12</option>
-                                    <option value="13" id="endLunch131" style="text-align: center">13</option>
-                                    <option value="14" id="endLunch141" style="text-align: center">14</option>
+                                    <option name='lunch-cl' value="" disabled="disabled" selected style="text-align: center;">점심시간(까지)</option>
+                                    <option name='lunch-cl' value="12" id="endLunch121" style="text-align: center">12</option>
+                                    <option name='lunch-cl' value="13" id="endLunch131" style="text-align: center">13</option>
+                                    <option name='lunch-cl' value="14" id="endLunch141" style="text-align: center">14</option>
 
                                 </select>
-    </div>
+
+    <div class="error"></div>
                             </div>
                     </div>
 
@@ -323,7 +333,12 @@
                             <span style="font-size: 15px; color: #000000"><input type="checkbox" class="check"
                                                                                  name="holiday" id="sun" value="일"
                                                                                  style="margin-left: 7px">일</span>
+
+                <span style="font-size: 15px; color: #000000"><input type="checkbox" class="check"
+                                                                     name="holiday" id="non" value="휴무없음"
+                                                                     style="margin-left: 7px">휴무없음</span>
                             <%--                            </label>--%>
+                                     <div class="error"></div>
 
                         </div>
                         <div style="font-size: 12px;">* 병원 운영시간을 기반으로 비대면 진료 예약을 받을 수 있습니다.</div>
@@ -399,6 +414,7 @@
                             </label>
                             <div class="error" style="color: #ff3860; font-size: 20px;"></div>
                         </div>
+
                     </div>
                     <br><br><br>
                     <input id="subbtn" type="button" value="회원가입" style="width: 100%;" onClick="checkAll()"></input>
@@ -438,22 +454,22 @@
     $(function () {
         //-- 왼쪽 -> 오른쪽 이동
         $('#btnLToR').click(function (event) {
-            $("#bComps option:selected").each(function () {
+            $("#diagnosis_type option:selected").each(function () {
                 if ($(this).index != 0) {
-                    $(this).appendTo("#aComps");
+                    $(this).appendTo("#diagnosis_type2");
                 }
             });
-            // alert($("#aComps").val()); -- 이동확인
+            // alert($("#diagnosis_type").val()); -- 이동확인
         });
 
         //-- 오른쪽 -> 왼쪽 이동
         $("#btnRToL").click(function (event) {
-            $("#aComps option:selected").each(function () {
+            $("#diagnosis_type2 option:selected").each(function () {
                 if ($(this).index != 0) {
-                    $(this).appendTo("#bComps");
+                    $(this).appendTo("#diagnosis_type");
                 }
             });
-            // alert($("#bComps").val()); -- 이동확인
+            // alert($("#diagnosis_type2").val()); -- 이동확인
         });
     });
 
@@ -496,6 +512,55 @@
 
         })
     })
+
+</script>
+
+<%-- 이미지 업로드 미리보기 --%>
+<script>
+
+    ( /* att_zone : 이미지들이 들어갈 위치 id, btn : file tag id */
+        imageView = function imageView(att_zone, btn) {
+            var attZone = document.getElementById(att_zone);
+            var doctorProfile = document.getElementById(btn)
+            var sel_files = [];
+            // 이미지와 체크 박스를 감싸고 있는 div 속성
+            var div_style = 'display:inline-block;position:relative;'
+                + 'width:150px;height:120px;margin:5px;border:1px solid #b4b4b4;z-index:1';
+            // 미리보기 이미지 속성
+            var img_style = 'width:100%;height:100%;z-index:none';
+            // 이미지안에 표시되는 체크박스의 속성
+            var chk_style = 'width:30px;height:30px;position:absolute;font-size:24px;'
+                + 'right:0px;bottom:0px;z-index:999;background-color:rgba(0,67,50,0);color:#d52a2a';
+            doctorProfile.onchange = function (e) {
+                var files = e.target.files;
+                var fileArr = Array.prototype.slice.call(files)
+                for (f of fileArr) {
+                    imageLoader(f);
+                }
+            }
+
+            /*첨부된 이미리즐을 배열에 넣고 미리보기 */
+            imageLoader = function (image) {
+                sel_files.push(image);
+                var reader = new FileReader();
+                reader.onload = function (ee) {
+                    let img = document.createElement('img')
+                    img.setAttribute('src', ee.target.result);
+                    document.querySelector("div#attZone").appendChild(img);
+                }
+                reader.readAsDataURL(image);
+            }
+        }
+    )('att_zone', 'doctorProfile')
+    // function setThumbnail(event) {
+    //     var reader = new FileReader();
+    //     reader.onload = function(event) {
+    //         var img = document.createElement("img");
+    //         img.setAttribute("src", event.target.result);
+    //         document.querySelector("div#image_container").appendChild(img);
+    //     };
+    //     reader.readAsDataURL(event.target.files[0]);
+    // }
 
 </script>
 

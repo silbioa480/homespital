@@ -61,6 +61,7 @@ public class RootController {
         return new ModelAndView("user/main/loginForm");
     }
 
+
     //환자회원가입
     @GetMapping("/joinForm")
     public ModelAndView joinForm() {

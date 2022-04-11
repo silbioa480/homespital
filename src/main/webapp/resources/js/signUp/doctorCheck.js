@@ -34,7 +34,7 @@ doctorNumber.addEventListener("change", checkDoctorNumber);
 doctorProfile.addEventListener("change", checkProfile);
 businessNumber.addEventListener("change", checkBusinessNumber);
 address.addEventListener("change", checkAddress);
-diagnosisType.addEventListener("change", checkDiagnosisType);
+// diagnosisType.addEventListener("change", checkDiagnosisType);
 diagnosisType2.addEventListener("change", checkDiagnosisType2);
 open.addEventListener("change", checkOpen);
 end.addEventListener("change", checkEnd);
@@ -70,7 +70,8 @@ function checkAll() {
             && checkPhone() === true && checkPhone2() === true && checkBusinessNumber() === true
             && checkAddress() === true && checkRadio() === true && checkDoctorName() ===true
             && checkDoctorNumber () === true && checkProfile() === true
-        && checkDiagnosisType() === true && checkDiagnosisType2() === true && checkOpen() === true
+        // && checkDiagnosisType() === true
+            && checkDiagnosisType2() === true && checkOpen() === true
         && checkEnd() === true && checkLunchSt() === true && checkLunchCl() === true  ) {
             alert("회원가입이 완료 되었습니다.감사합니다");
             $("form").submit();

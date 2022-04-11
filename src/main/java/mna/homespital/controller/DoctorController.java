@@ -7,21 +7,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 @Controller
 @RequestMapping("/doctor")
 public class DoctorController {
+
+    @Autowired
+    private ServletContext servletContext;
     @Autowired
     DoctorService doctorService;
     @Autowired
@@ -85,14 +88,17 @@ public class DoctorController {
 
     //가영:의사 회원가입
     @PostMapping("/doctorJoin.do")
-    public ModelAndView doctorJoin(HttpServletRequest request) {
+    public ModelAndView doctorJoin(HttpServletRequest request, MultipartFile doctorImgNames, HttpServletResponse response) {
         Doctor doctor = new Doctor();
         doctor.setDoctor_email(request.getParameter("doctor_email"));
         doctor.setDoctor_password(request.getParameter("doctor_password"));
         doctor.setDoctor_phone(request.getParameter("doctor_phone"));
         doctor.setDoctor_name(request.getParameter("doctor_name"));
         doctor.setDoctor_valid_number(request.getParameter("doctor_valid_number"));
+
+        //의사프로필업로드
         doctor.setDoctor_profile_image_name(request.getParameter("doctor_profile_image_name"));
+
         doctor.setHospital_business_number(request.getParameter("hospital_business_number"));
         doctor.setZip_code(request.getParameter("zipNo"));
         doctor.setStreet_address(request.getParameter("roadFullAddr"));
@@ -132,10 +138,21 @@ public class DoctorController {
         doctor.setHoliday(holiday);
         doctor.setHospital_fax(request.getParameter("hospital_fax"));
         doctor.setHospital_url(request.getParameter("hospital_url"));
+
+        //병원소개 파일 업로드
         doctor.setDoctor_introduction(request.getParameter("doctor_introduction"));
 
         ModelAndView mv = new ModelAndView();
         try {
+
+            String doctorImg = doctorImgNames.getOriginalFilename();
+            String path = servletContext.getRealPath("/resources/img/doctorImg/");
+            String filename = UUID.randomUUID().toString() + "." + doctorImg.substring(doctorImg.lastIndexOf('.') + 1);
+            File destFile = new File(path + filename);
+            doctorImgNames.transferTo(destFile);
+
+
+
             System.out.println("여기들어오라ㅏ ㅇㅇㅇㅇㅇ");
             doctorService.join(doctor);
             mv.setViewName("redirect:/doctor/docLogin");
