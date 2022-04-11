@@ -1,9 +1,9 @@
 package mna.homespital.service;
 
 import mna.homespital.dao.DoctorDAO;
+import mna.homespital.dto.Diagnosis;
 import mna.homespital.dto.Doctor;
 import mna.homespital.dto.PageInfo;
-import mna.homespital.dto.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -160,6 +160,35 @@ public class DoctorServiceImpl implements DoctorService {
     @Override
     public void finishDiagnosis(int diagnosis_number) throws Exception {
         doctorDAO.finishDiagnosis(diagnosis_number);
+    }
+
+    //진료영수증 업로드(준근)
+    @Override
+    public void uploadReceipt(int diagnosis_number, String receiptFileName) throws Exception {
+        doctorDAO.uploadReceipt(diagnosis_number, receiptFileName);
+    }
+
+    // 처방전 업로드(준근)
+    @Override
+    public void uploadPrescription(int diagnosis_number, String prescriptionFileName) throws Exception {
+        doctorDAO.uploadPrescription(diagnosis_number, prescriptionFileName);
+    }
+
+    @Override
+    public String getUserPhone(int doctor_number) throws Exception {
+        return doctorDAO.getUserPhone(doctor_number);
+    }
+
+    //진료영수증 업로드 된지 확인(준근)
+    @Override
+    public Diagnosis checkDiagnosisUpload(int diagnosis_number) throws Exception {
+        return doctorDAO.checkDiagnosisUpload(diagnosis_number);
+    }
+
+    //처방전 없이 진료완료 시 is_prescription_upload 3(처방전없음)으로 변경 (준근)
+    @Override
+    public void changePrescription(int diagnosis_number) throws Exception {
+        doctorDAO.changePrescription(diagnosis_number);
     }
 
 }
