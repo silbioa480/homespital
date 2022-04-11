@@ -7,13 +7,13 @@
 
     <link rel="stylesheet" href="/resources/css/myMedicalList.css"/>
     <!-- 합쳐지고 최소화된 최신 CSS -->
-<%--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">--%>
+    <%--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">--%>
 
-<%--    <!-- 부가적인 테마 -->--%>
-<%--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">--%>
+    <%--    <!-- 부가적인 테마 -->--%>
+    <%--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">--%>
 
-<%--    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->--%>
-<%--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>--%>
+    <%--    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->--%>
+    <%--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>--%>
 
     <%-- 구글 아이콘 CDN링크 --%>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -21,7 +21,7 @@
     <style>
         .material-icons {
             /*font-size: 36px;*/
-            font-size : 1.5rem;
+            font-size: 1.5rem;
         }
 
         .list-header {
@@ -124,7 +124,7 @@
                     } else if (item.diagnosis_status == 2) {
                         complete = "예약취소";
                     } else if (item.diagnosis_status == 3) {
-                        complete = "조제중";
+                        complete = "진료완료";
                     } else if (item.diagnosis_status == 4) {
                         complete = "처방전X/진료완료";
                     } else if (item.diagnosis_status == 5) {
