@@ -130,9 +130,25 @@
     <update id="finishDiagnosis" parameterType="int">
         <![CDATA[
         update diagnosis
-        set diagnosis_status       = 3,
-            is_diagnosis_upload    = 2,
-            is_prescription_upload = 2
+        set diagnosis_status = 3
+        where diagnosis_number = #{diagnosis_number};
+        ]]>
+    </update>
+
+    <!-- Diagnosis 확인// 진료영수증, 진단서 업로드 된지 확인에 사용(준근) -->
+    <select id="checkDiagnosisUpload" resultType="Diagnosis" parameterType="int">
+	    <![CDATA[
+        select *
+        from diagnosis
+        where diagnosis_number = #{diagnosis_number}
+        ]]>
+    </select>
+
+    <!-- 처방전 없이 진료완료 시 is_prescription_upload 3(처방전없음)으로 변경 (준근)-->
+    <update id="changePrescription" parameterType="int">
+        <![CDATA[
+        update diagnosis
+        set is_prescription_upload = 3
         where diagnosis_number = #{diagnosis_number};
         ]]>
     </update>
@@ -147,7 +163,7 @@
         ]]>
     </update>
 
-    <!--  진단서 업로드(준근) -->
+    <!--  처방전 업로드(준근) -->
     <update id="uploadPrescription" parameterType="Map">
         <![CDATA[
         update diagnosis

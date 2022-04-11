@@ -58,7 +58,7 @@ public class DoctorController {
 
     //의사 로그인(준근)
     @PostMapping("/docLogin")
-    public String docLogin(@RequestParam("email") String doctor_email, @RequestParam("password") String doctor_password, HttpServletResponse response, Model model) throws Exception {
+    public String docLogin(@RequestParam("email") String doctor_email, @RequestParam("password") String doctor_password, HttpServletResponse response, Model model) {
 
         try {
             doctorService.docLogin(doctor_email, doctor_password);
@@ -204,11 +204,12 @@ public class DoctorController {
         System.out.println("docMedicalList() Join");
         try {
             Doctor doctor = (Doctor) session.getAttribute("doctor");
-//      int serarchDocNum = doctorService.searchDocId(email);
             Diagnosis diagnosis = new Diagnosis();
             diagnosis.setDoctor_number(doctor.getDoctor_number());
             //      이부분 준근님에게 물어보기
             m.addAttribute("diagnosis", diagnosis);
+
+
         } catch (Exception e) {
             e.printStackTrace();
             return "common/err";
@@ -292,10 +293,22 @@ public class DoctorController {
     }
 
     // 진료 완료하기 diagnoisis_status (1 -> 3)(준근)
+    // 진료 완료하기 할 때 유효성 검사(is_diagnosis_upload가 2가 아니면 진료완료 실패하고 alert띄움
     @ResponseBody
     @PostMapping("/finishDiagnosis")
-    public String finishDiagnosis(int diagnosis_number) {
+    public String finishDiagnosis(int diagnosis_number, HttpServletResponse response) {
+
         try {
+            //is_diagnosis_upload가 2(업로드완료) 인지 확인
+            Diagnosis diagnosis = doctorService.checkDiagnosisUpload(diagnosis_number);
+            if (diagnosis.getIs_diagnosis_upload() != 2) {
+                return "failed";
+            }
+            // 진료완료 하면서 is_prescription_upload=1(처방전업로드X상태)이면 is_prescription_upload = 3(처방전없음)처리
+            if (diagnosis.getIs_prescription_upload() == 1) {
+                doctorService.changePrescription(diagnosis_number);
+            }
+            //진료완료 처리
             doctorService.finishDiagnosis(diagnosis_number);
         } catch (Exception e) {
             e.printStackTrace();
@@ -305,6 +318,7 @@ public class DoctorController {
 
 
     //진료영수증 업로드 (준근)
+    //receipt(진료영수증) == diagnosis_file_name
     @PostMapping("/receiptUpload")
     public String receiptUpload(MultipartFile receiptFile, int diagnosis_number, HttpServletResponse response) throws Exception {
         System.out.println("receiptUpload() join" + diagnosis_number);
@@ -337,7 +351,7 @@ public class DoctorController {
         return "redirect:/doctor/docMedicalList";
     }
 
-    // 진단서 업로드(준근)
+    // 처방전 업로드(준근)
     @PostMapping("/prescriptionUpload")
     public String prescriptionUpload(MultipartFile prescriptionFile, int diagnosis_number, HttpServletResponse response) throws Exception {
         System.out.println("prescriptionUpload() join" + diagnosis_number);

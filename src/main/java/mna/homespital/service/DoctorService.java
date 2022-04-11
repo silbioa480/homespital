@@ -1,5 +1,6 @@
 package mna.homespital.service;
 
+import mna.homespital.dto.Diagnosis;
 import mna.homespital.dto.Doctor;
 import mna.homespital.dto.PageInfo;
 
@@ -55,9 +56,16 @@ public interface DoctorService {
     //진료영수증 업로드(준근)
     void uploadReceipt(int diagnosis_number, String receiptFileName) throws Exception;
 
-    //진단서 업로드(준근)
+    //처방전 업로드(준근)
     void uploadPrescription(int diagnosis_number, String prescriptionFileName) throws Exception;
 
     //의사번호를 통해서 환자 전화번호 갖고오기 태영
     String getUserPhone(int doctor_number) throws Exception;
+
+    //진료영수증 업로드 된지 확인(준근)
+    Diagnosis checkDiagnosisUpload(int diagnosis_number) throws Exception;
+
+    //처방전 없이 진료완료 시 is_prescription_upload 3(처방전없음)으로 변경 (준근)
+    void changePrescription(int diagnosis_number) throws Exception;
 }
+
