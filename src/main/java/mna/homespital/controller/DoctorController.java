@@ -207,6 +207,25 @@ public class DoctorController {
         return "admin/doctor/doctorMedicalList";
     }
 
+    // 소연&훈 해당 환자에 대한 진료 내역
+    @GetMapping("/customerDetail/{diagnosis_number}")
+    public ModelAndView customerDetail(@PathVariable int diagnosis_number) {
+        ModelAndView mv = new ModelAndView("/admin/doctor/customerDetail");
+        try {
+            if (session.getAttribute("doctor") == null) throw new Exception("로그인 되어있지 않음");
+            Doctor doctor = (Doctor) session.getAttribute("doctor");
+            HashMap<String, Object> diagnosis = diagnosisService.getDiagnosisDetail(diagnosis_number);
+            if (diagnosis == null || !((Integer) diagnosis.get("doctor_number")).equals(doctor.getDoctor_number()))
+                throw new Exception("올바르지 않은 진단기록");
+            mv.addObject("diagnosis", diagnosis);
+        } catch (Exception e) {
+            e.printStackTrace();
+            mv.setViewName("/common/err");
+        }
+        return mv;
+    }
+
+
     //의사에게 들어온 진료내역 리스트 출력 (준근)
     @ResponseBody
     @GetMapping("/docMedicalRecords")
