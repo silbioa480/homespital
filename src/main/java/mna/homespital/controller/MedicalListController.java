@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -123,32 +124,38 @@ public class MedicalListController {
 
     // 종호: 현재 좌표 입력받으면 나와 의사의 거리순으로 정렬하기
     if (longitude != 0 && latitude != 0) {
-      int distance = Integer.MAX_VALUE;
       List<List<Integer>> distanceList = new ArrayList<>();
       List<Doctor> newDoctorList = new ArrayList<>();
 
       for (int i = 0; i < doctorList.size(); i++) {
+        int distance = Integer.MAX_VALUE;
         GeocoderRequest geocoderRequest = new GeocoderRequestBuilder().setAddress(doctorList.get(i).getStreet_address()).setLanguage("ko").getGeocoderRequest();
 
-        Geocoder geocoder = new Geocoder();
-        GeocodeResponse geocoderResponse = geocoder.geocode(geocoderRequest);
+        try {
+          Geocoder geocoder = new Geocoder();
+          GeocodeResponse geocoderResponse = geocoder.geocode(geocoderRequest);
+          System.out.println(geocoderResponse.getStatus());
 
-        if (geocoderResponse.getStatus() == GeocoderStatus.OK & !geocoderResponse.getResults().isEmpty()) {
-          GeocoderResult geocoderResult = geocoderResponse.getResults().iterator().next();
-          LatLng geoLocation = geocoderResult.getGeometry().getLocation();
+          if (geocoderResponse.getStatus() == GeocoderStatus.OK & !geocoderResponse.getResults().isEmpty()) {
+            GeocoderResult geocoderResult = geocoderResponse.getResults().iterator().next();
+            LatLng geoLocation = geocoderResult.getGeometry().getLocation();
 
-          double doctorLatitude = geoLocation.getLat().doubleValue();
-          double doctorLongitude = geoLocation.getLng().doubleValue();
+            double doctorLatitude = geoLocation.getLat().doubleValue();
+            double doctorLongitude = geoLocation.getLng().doubleValue();
 
-          distance = (int) Math.sqrt(Math.pow(longitude - doctorLongitude, 2) + Math.pow(latitude - doctorLatitude, 2));
+            distance = (int) Math.sqrt(Math.pow(longitude - doctorLongitude, 2) + Math.pow(latitude - doctorLatitude, 2));
+            System.out.println(distance);
+          }
+
+          int finalI = i;
+          int finalDistance = distance;
+          distanceList.add(new ArrayList<Integer>() {{
+            add(finalI);
+            add(finalDistance);
+          }});
+        } catch (IOException e) {
+          e.printStackTrace();
         }
-
-        int finalI = i;
-        int finalDistance = distance;
-        distanceList.add(new ArrayList<Integer>() {{
-          add(finalI);
-          add(finalDistance);
-        }});
       }
 
       distanceList.sort(Comparator.comparingInt((List<Integer> a) -> a.get(1)));
