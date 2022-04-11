@@ -78,9 +78,7 @@
         </div>
     </div>
 </div>
-<div>
-    ㅂ 7ㅂ
-</div>
+
 
 </body>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -160,7 +158,17 @@
                     if (item.is_diagnosis_upload == 0) {
                         receipt = "";
                     } else if (item.is_diagnosis_upload == 1) {
-                        receipt = "<button type='button' id ='receiptUpload' class='btn btn-info btn-sm' onclick='receiptUpload(" + item.diagnosis_number + ")';'>영수증업로드</button>";
+                        console.log(item.diagnosis_number)
+                        receipt = "<button type='button' data-toggle='modal' data-target='#staticBackdrop" + item.diagnosis_number + " 'id ='receiptUpload" + item.diagnosis_number + "' class='btn btn-info btn-sm' onclick='receiptUpload(" + item.diagnosis_number + ")';'>영수증업로드</button><br>" +
+                            '<div class="modal fade" id="staticBackdrop' + item.diagnosis_number + '" data-backdrop="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">' +
+                            '<div class="modal-dialog" role="document">' +
+                            '<div class="modal-content">' +
+                            '<div class="modal-header">' +
+                            '<h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>' +
+                            '<button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
+                            '<span aria-hidden="true">&times;</span>' +
+                            '</button>' +
+                            '</div><div class="modal-body"> 모달 내용 </div><div class="modal-footer"><button type="button" class="btn btn-secondary upload-btn"  data-dismiss="modal">Close</button><button type="button" class="btn btn-primary">Understood</button></div></div></div></div>'
                     } else {
                         receipt = "업로드완료";
                     }
@@ -243,6 +251,7 @@
         }
     }
 
+    <%--
     //진료영수증 업로드
     function receiptUpload(e) {
         if (confirm("진료영수증 업로드를 하시겠습니까?") == true) {
@@ -282,6 +291,7 @@
             return;
         }
     }
+    --%>
 
 
 </script>
