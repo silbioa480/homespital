@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -165,6 +167,10 @@ public class PharmacyController {
             HashMap<String, Object> diagnosis = diagnosisService.getDiagnosisDetail(diagnosis_number);
             if (diagnosis == null || !((Integer) diagnosis.get("pharmacy_number")).equals(pharmacy.getPharmacy_number()))
                 throw new Exception("올바르지 않은 진단기록");
+            LocalDateTime create_date = (LocalDateTime) diagnosis.get("create_date");
+//            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String create_date_str = create_date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            diagnosis.replace("create_date", create_date_str);
             mv.addObject("diagnosis", diagnosis);
         } catch (Exception e) {
             e.printStackTrace();

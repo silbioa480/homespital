@@ -340,9 +340,9 @@ public class DoctorController {
             writer = response.getWriter();
             response.setContentType("text/html;charset=utf-8");
             response.setCharacterEncoding("utf-8");
-            json.append("uploaded", 1);
-            json.append("filename", filename);
-            json.append("url", "/resources/img/uploadReceipt/" + filename);
+//            json.append("uploaded", 1);
+//            json.append("filename", filename);
+//            json.append("url", "/resources/img/uploadReceipt/" + filename);
             writer.println(json);
         } catch (Exception e) {
             e.printStackTrace();
@@ -373,9 +373,9 @@ public class DoctorController {
             writer = response.getWriter();
             response.setContentType("text/html;charset=utf-8");
             response.setCharacterEncoding("utf-8");
-            json.append("uploaded", 1);
-            json.append("filename", filename);
-            json.append("url", "/resources/img/uploadPrescription/" + filename);
+//            json.append("uploaded", 1);
+//            json.append("filename", filename);
+//            json.append("url", "/resources/img/uploadPrescription/" + filename);
             writer.println(json);
         } catch (Exception e) {
             e.printStackTrace();
