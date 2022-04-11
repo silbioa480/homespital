@@ -120,4 +120,12 @@
         where di.diagnosis_number = #{diagnosis_number}
         ]]>
     </select>
+
+    <update id="writeDoctorOpinion" parameterType="Map">
+        <![CDATA[
+        update diagnosis
+        set doctor_opinion = #{doctor_opinion}
+        where diagnosis_number = #{diagnosis_number}
+        ]]>
+    </update>
 </mapper>
