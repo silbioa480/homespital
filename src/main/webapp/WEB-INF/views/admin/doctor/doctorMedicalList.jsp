@@ -182,8 +182,8 @@
                     if (item.is_prescription_upload == 0) {
                         prescription = "";
                     } else if (item.is_prescription_upload == 1) {
-                        prescription = "<button type='button' data-toggle='modal' data-target='#staticBackdrop" + item.diagnosis_number + " 'id ='prescriptionUpload" + item.diagnosis_number + "' class='btn btn-info btn-sm'>진단서업로드</button><br>" +
-                            '<div class="modal fade" id="staticBackdrop' + item.diagnosis_number + '" data-backdrop="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">' +
+                        prescription = "<button type='button' data-toggle='modal' data-target='#staticBackdrop2_" + item.diagnosis_number + " 'id ='prescriptionUpload" + item.diagnosis_number + "' class='btn btn-info btn-sm'>진단서업로드</button><br>" +
+                            '<div class="modal fade" id="staticBackdrop2_' + item.diagnosis_number + '" data-backdrop="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">' +
                             '<div class="modal-dialog" role="document">' +
                             '<div class="modal-content">' +
                             '<div class="modal-header">' +
