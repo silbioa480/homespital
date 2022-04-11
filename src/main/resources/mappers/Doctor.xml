@@ -136,4 +136,11 @@
         where diagnosis_number = #{diagnosis_number};
         ]]>
     </update>
+
+    <!-- 담당 환자의 전화번호 가져오기 태영   -->
+    <select id="getUserPhone" parameterType="int" resultType="String">
+        <![CDATA[
+            select u.user_phone from d doctor,u user where d.doctor_number=#{doctor_number} and d.doctor_number=u.user_number;
+        ]]>
+    </select>
 </mapper>
