@@ -28,7 +28,7 @@
 <body>
 <!-- Header -->
 <div>
-    <nav class="navbar navbar-expand-md navbar-fixed-top w-100">
+    <nav class="navbar navbar-expand-md fixed-top w-100">
         <div class="container">
             <div class="d-flex w-100">
                 <a class="navbar-brand justify-content-start" href="/pharmacy/" style="font-family: 'Y_Spotlight'">
@@ -93,5 +93,6 @@
     --%>
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="/resources/js/main/navbar.js"></script>
 </body>
 </html>

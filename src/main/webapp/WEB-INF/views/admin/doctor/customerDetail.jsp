@@ -1,16 +1,23 @@
-<%-- 의사 리스트--%>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.*" %><%-- 의사 리스트--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+    HashMap<String, Object> diagnosis = (HashMap<String, Object>) request.getAttribute("diagnosis");
+    String imageStr = (String) diagnosis.get("diagnosis_image_name");
+    List<String> images = new ArrayList<>(Arrays.asList(imageStr.split(",")));
+    List<String> sorted = new ArrayList<>();
+    for (int i = 0; i < images.size(); i++) {
+        if (!(images.get(i).trim().equals("") || images.get(i).trim().equals(" ") || images.get(i).trim().isEmpty()))
+            sorted.add(images.get(i));
+    }
+    pageContext.setAttribute("images", sorted);
+%>
+
 <html>
 <head>
     <title>의사 진료리스트</title>
     <link rel="stylesheet" href="/resources/css/myMedicalDetail.css"/>
-    <!-- 합쳐지고 최소화된 최신 CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
-    <!-- 부가적인 테마 -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-
     <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
@@ -35,27 +42,22 @@
             font-size: 30px;
             padding: 10px;
         }
-
-        .table {
-            height: 500px;
-            overflow: auto;
-        }
     </style>
 </head>
 <body>
 <div class="container">
-    <div class="col mt-5">
-        <div class="list-header bg-info text-right">
+    <div class="col mt-3">
+        <div class="list-header bg-warning text-right">
             <h1 id="logo">Homespital</h1>
 
         </div>
 
-        <p class="text-right">마이페이지 > 의사진료내역</p>
+        <p class="text-end">마이페이지 > 진료상세내역</p>
 
         <div class="card p-3">
             <div class="card-body p-4">
                 <div class="text-center table-responsive">
-                    <table class="table fs-3 fst-normal">
+                    <table class="table ">
                         <thead>
                         <tr>
                             <th>날짜/시간</th>
@@ -70,7 +72,10 @@
                         </thead>
                         <tbody id="docMedicalList">
                         <tr>
-                            <td>${diagnosis.create_date} / ${diagnosis.diagnosis_time}시</td>
+                            <td>
+                                <%--                                <%= new SimpleDateFormat("yyyy-MM-dd").format(((Date) ((HashMap<String, Object>) request.getAttribute("diagnosis")).get("create_date"))) %>--%>
+                                ${diagnosis.create_date} ${diagnosis.diagnosis_time}시
+                            </td>
                             <td>${diagnosis.diagnosis_wait_number}</td>
                             <td>${diagnosis.user_name}</td>
                             <td>${diagnosis.gender}</td>
@@ -84,7 +89,86 @@
                     </table>
                 </div>
             </div>
-            <div class="card">
+            <div class="card p-3">
+                <h4 class="card-title"><strong>진료 차트</strong></h4>
+                <div class="card-body">
+                    <div><strong>비대면 진료 시간 : ${diagnosis.create_date} ${diagnosis.diagnosis_time}시</strong></div>
+                    <div>생년월일 : ${diagnosis.birthday}</div>
+                    <div>주소 :
+                        (${diagnosis.user_zip_code}) ${diagnosis.user_street_address} ${diagnosis.user_detail_address}</div>
+                    <div>휴대폰 번호 : ${diagnosis.user_phone}</div>
+                </div>
+                <div style="background:#F9F9F9;">
+                    <table class="table table-borderless">
+                        <tbody>
+                        <tr>
+                            <th>증상</th>
+                            <td>${diagnosis.diagnosis_content}</td>
+                        </tr>
+                        <tr>
+                            <th>이미지</th>
+                            <td>
+                                <c:forEach var="image" items="${images}">
+                                    <img src="${image}" max-width="100%"
+                                         onerror="this.src='https://via.placeholder.com/500/000000/FFFFFF/?text=NoImgSelected'">
+                                </c:forEach>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>진단 소견서</th>
+                            <td>
+                                <textarea name="doctor_opinion" style="width: 100%; min-height: 100px;"
+                                          maxlength="500">${diagnosis.doctor_opinion}</textarea>
+                                <button type="button" id="submitDoctorOpinion">작성하기</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card p-3">
+                <h4 class="card-title"><strong>약제 배송 방법</strong></h4>
+                <div class="card-body">
+                    <div class="d-flex">
+                        <c:choose>
+                        <c:when test="${diangosis.is_delivery}">
+                        <button class="btn btn-warning rounded-pill" type="button">약국으로 직접 방문
+                            </c:when>
+                            <c:otherwise>
+                            <button class="btn btn-secondary rounded-pill" type="button">집까지 배송받기</button>
+                            </c:otherwise>
+                            </c:choose>
+                    </div>
+                    <div class="d-flex">
+                        <c:choose>
+                            <c:when test="${diagnosis.is_delivery}">
+                                <div class="d-block w-100">
+                                    <h5>내방하실 약국</h5>
+                                    <hr>
+                                    <div id="pharmacyName">${empty diagnosis.pharmacy_name ? "-" : diagnosis.pharmacy_name}</div>
+                                    <div id="pharmacyPhone">${empty diagnosis.pharmacy_phone ? "-" : diagnosis.pharmacy_phone}</div>
+                                    <div id="pharmacyAddress">${empty diagnosis.pharmacy_address ? "-" : diagnosis.pharmacy_addres}</div>
+                                </div>
+                            </c:when>
+                            <c:otherwise>
+                                <div class="d-block w-100">
+                                    <h5>보내는 곳 주소</h5>
+                                    <hr>
+                                    <div id="pharmacyName">${diagnosis.pharmacy_name}</div>
+                                    <div id="pharmacyPhone">${diagnosis.pharmacy_phone}</div>
+                                    <div id="pharmacyAddress">${diagnosis.pharmacy_address}</div>
+                                </div>
+                                <div class="d-block w-100">
+                                    <h5>받으시는 곳 주소</h5>
+                                    <hr>
+                                    <div>${diagnosis.user_address}</div>
+                                </div>
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
+                </div>
+            </div>
+            <div class="card p-3">
                 <h4 class="card-title"><strong>진료 예약 내역</strong></h4>
                 <div class="card-body">
                     <div class="row g-0">
