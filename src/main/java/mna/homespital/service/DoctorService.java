@@ -52,4 +52,7 @@ public interface DoctorService {
 
     //진료 완료, diagnosis_status 1->3 변경
     void finishDiagnosis(int diagnosis_number) throws Exception;
+
+    //의사번호를 통해서 환자 전화번호 갖고오기 태영
+    String getUserPhone(int doctor_number) throws Exception;
 }
