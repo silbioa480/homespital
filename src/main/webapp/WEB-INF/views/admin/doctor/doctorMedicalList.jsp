@@ -222,9 +222,12 @@
                 }
             }
         });
+
+
     })
 
     // 진료 시작하기
+    //진료시작시 문자전송 + 카카오 오픈링크 태영
     function startBtn(e) {
         if (confirm("진료를 시작하시겠습니까?") == true) {
             $.ajax({
@@ -235,6 +238,8 @@
                     "diagnosis_number": e,
                 },
                 success: function (data) {
+                    console.log(data);
+
                     console.log("진료 시작 성공 : " + e)
                     location.href = "${pageContext.request.contextPath}/doctor/docMedicalList";
                 },
@@ -307,5 +312,10 @@
     --%>
 
 
+
+
+
 </script>
+
+
 </html>

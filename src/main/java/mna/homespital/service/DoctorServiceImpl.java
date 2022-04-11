@@ -173,4 +173,9 @@ public class DoctorServiceImpl implements DoctorService {
         doctorDAO.uploadPrescription(diagnosis_number, prescriptionFileName);
     }
 
+    @Override
+    public String getUserPhone(int doctor_number) throws Exception {
+        return doctorDAO.getUserPhone(doctor_number);
+    }
+
 }

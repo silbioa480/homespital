@@ -57,4 +57,7 @@ public interface DoctorService {
 
     //진단서 업로드(준근)
     void uploadPrescription(int diagnosis_number, String prescriptionFileName) throws Exception;
+
+    //의사번호를 통해서 환자 전화번호 갖고오기 태영
+    String getUserPhone(int doctor_number) throws Exception;
 }
