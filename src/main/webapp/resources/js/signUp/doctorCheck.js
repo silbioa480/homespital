@@ -8,19 +8,20 @@ const password = document.getElementById("password");
 const password2 = document.getElementById('password2');
 const phone = document.getElementById("phone").parentElement;
 const phone2 = document.getElementById("phone2").parentElement;
-const doctorName = document.getElementById("doctorName").parentElement;
-const doctorNumber = document.getElementById("doctorNumber").parentElement;
-const doctorProfile = document.getElementById("doctorProfile").parentElement;
-const businessNumber = document.getElementById("businessNumber").parentElement;
+const doctorName = document.getElementById("doctorName");
+const doctorNumber = document.getElementById("doctorNumber");
+const doctorProfile = document.getElementById("doctorProfile");
+const businessNumber = document.getElementById("businessNumber");
 const address = document.getElementById("zipNo").parentElement.parentElement.parentElement.parentElement.parentElement;
 //확인필요
-const diagnosisType = document.getElementById("diagnosis_type").parentElement;
-const diagnosisType2 = document.getElementById("diagnosis_type2").parentElement;
-const open = document.getElementById("open").parentElement;
-const end = document.getElementById("end").parentElement;
-const lunchSt = document.getElementById("lunch-st").parentElement;
-const lunchCl = document.getElementById("lunch-cl").parentElement;
-
+// const diagnosisType = document.getElementById("diagnosis_type");
+const diagnosisType2 = document.getElementById("diagnosis_type2");
+// const diagnosisType2 =$('#diagnosis_type2');
+const open = document.getElementsByName("open")[0];
+const close = document.getElementsByName("close")[0];
+const lunchSt = document.getElementsByName("lunch-st")[0];
+const lunchCl = document.getElementsByName("lunch-cl")[0];
+const holiday = document.getElementsByName("holiday")[0];
 const agree = document.getElementById("agree_all").parentElement;
 
 
@@ -37,10 +38,10 @@ address.addEventListener("change", checkAddress);
 // diagnosisType.addEventListener("change", checkDiagnosisType);
 diagnosisType2.addEventListener("change", checkDiagnosisType2);
 open.addEventListener("change", checkOpen);
-end.addEventListener("change", checkEnd);
+close.addEventListener("change", checkClose);
 lunchSt.addEventListener("change", checkLunchSt);
 lunchCl.addEventListener("change", checkLunchCl);
-
+// holiday.addEventListener("change", checkHoliday);
 address.addEventListener("change", checkAddress);
 
 function checkAll() {
@@ -57,12 +58,13 @@ function checkAll() {
     // checkDiagnosisType();
     checkDiagnosisType2();
     checkOpen();
-    checkEnd();
+    checkClose();
     checkLunchSt();
     checkLunchCl();
     checkBusinessNumber();
     checkAddress();
     checkRadio();
+    // checkHoliday();
 
     console.log(checkEmail());
     if (confirm("회원가입을하시겠습니까?")) {
@@ -84,7 +86,14 @@ function checkAll() {
 }
 
 // 에러메세지
-const setError = (element, message) => {
+// const setError = (element, message) => {
+//     const inputControl = element.parentElement;
+//     const errorDisplay = inputControl.querySelector('.error');
+//     errorDisplay.innerText = message;
+//     inputControl.classList.add('error');
+//     inputControl.classList.remove('success');
+// }
+function setError(element, message) {
     const inputControl = element.parentElement;
     const errorDisplay = inputControl.querySelector('.error');
     errorDisplay.innerText = message;
@@ -93,7 +102,15 @@ const setError = (element, message) => {
 }
 
 //성공시 에러메시지 삭제
-const setSuccess = element => {
+// const setSuccess = element => {
+//     const inputControl = element.parentElement;
+//     const errorDisplay = inputControl.querySelector('.error');
+//
+//     errorDisplay.innerText = '';
+//     inputControl.classList.add('success');
+//     inputControl.classList.remove('error');
+// }
+function setSuccess(element) {
     const inputControl = element.parentElement;
     const errorDisplay = inputControl.querySelector('.error');
 
@@ -115,7 +132,7 @@ function checkEmail() {
     } else {
         $.ajax({
             type: "POST",
-            url: "/DoctorEmailoverlap",
+            url: "/doctor/Emailoverlap",
             data: {
                 "email": emailValue
             },
@@ -242,8 +259,9 @@ function checkBusinessNumber() {
 }
 
 function checkDiagnosisType2() {
-    const diagnosisType2Value = document.getElementById("diagnosisType2").value.trim();
-    if (diagnosisType2Value === "") {
+    var diagnosisType2Value = document.getElementById("diagnosis_type2").options.length;
+    // const diagnosisType2Value = document.getElementById("diagnosisType2").value.trim();
+    if (diagnosisType2Value === 0) {
         setError(diagnosisType2, "진료과를 1개 이상 선택해주세요.");
         return false;
     } else {
@@ -252,49 +270,121 @@ function checkDiagnosisType2() {
     return true;
 }
 
+// function checkHoliday() {
+//     const holidayValue = document.getElementsByName("holiday")[0].value.trim();
+//     console.log(holiday.checkbox[0].checked);
+//     if (holiday.checkbox[0].checked==false &&
+//         holiday.checkbox[1].checked==false &&
+//         holiday.checkbox[2].checked==false &&
+//         holiday.checkbox[3].checked==false &&
+//         holiday.checkbox[4].checked==false &&
+//         holiday.checkbox[5].checked==false &&
+//         holiday.checkbox[6].checked==false &&
+//         holiday.checkbox[7].checked==false) {
+//         setError(holiday, "휴무일을 선택해주세요.")
+//     } else {
+//         setSuccess(holiday);
+//     }
+//     return true;
+// }
+//진료시간(시작)
 function checkOpen() {
-    const open = document.getElementById("open").value.trim();
-    if (open === "") {
-        setError(open, "진료시작 시간을 선택해주세요.");
-        return false;
+    const openValue = document.getElementsByName("open")[0].value.trim();
+    if (open.options[1].selected==false &&
+        open.options[2].selected==false &&
+        open.options[3].selected==false ) {
+        setError(open, "진료시간을 선택해주세요.")
     } else {
         setSuccess(open);
     }
     return true;
 }
 
-function checkEnd() {
-    const endValue = document.getElementById("end").value.trim();
-    if (endValue === "") {
-        setError(end, "진료마감 시간을 선택해주세요.");
-        return false;
+//진료마감
+function checkClose() {
+    const closeValue = document.getElementsByName("close")[0].value.trim();
+    if (close.options[1].selected==false &&
+        close.options[2].selected==false &&
+        close.options[3].selected==false ) {
+        setError(close, "진료시간을 선택해주세요.")
     } else {
-        setSuccess(end);
+        setSuccess(close);
     }
     return true;
 }
 
+//점심시간(시작)
 function checkLunchSt() {
-    const lunchStValue = document.getElementById("lunchSt").value.trim();
-    if (lunchStValue === "") {
-        setError(lunchSt, "점심시간을 선택해주세요.");
-        return false;
+    const lunchStValue = document.getElementsByName("lunch-st")[0].value.trim();
+    if (lunchSt.options[1].selected==false &&
+        lunchSt.options[2].selected==false &&
+        lunchSt.options[3].selected==false ) {
+        setError(lunchSt, "점심시간을 선택해주세요.")
     } else {
         setSuccess(lunchSt);
     }
     return true;
 }
 
+//점심시간(시작)
 function checkLunchCl() {
-    const lunchClValue = document.getElementById("lunchCl").value.trim();
-    if (lunchClValue === "") {
-        setError(lunchCl, "점심시간을 선택해주세요.");
-        return false;
+    const lunchClValue = document.getElementsByName("lunch-cl")[0].value.trim();
+    if (lunchCl.options[1].selected==false &&
+        lunchCl.options[2].selected==false &&
+        lunchCl.options[3].selected==false ) {
+        setError(lunchCl, "점심시간을 선택해주세요.")
     } else {
         setSuccess(lunchCl);
     }
     return true;
 }
+
+
+//
+//
+// function checkLunchCl() {
+//     const lunchcl = document.getElementsByName("lunchcl").value.trim();
+//     if (open === "") {
+//         setError(open, "진료시작 시간을 선택해주세요.");
+//         return false;
+//     } else {
+//         setSuccess(open);
+//     }
+//     return true;
+// }
+//
+// function checkEnd() {
+//     const endValue = document.getElementById("end").value.trim();
+//     if (endValue === "") {
+//         setError(end, "진료마감 시간을 선택해주세요.");
+//         return false;
+//     } else {
+//         setSuccess(end);
+//     }
+//     return true;
+// }
+//
+// function checkLunchSt() {
+//     const lunchStValue = document.getElementById("lunchSt").value.trim();
+//     if (lunchStValue === "") {
+//         setError(lunchSt, "점심시간을 선택해주세요.");
+//         return false;
+//     } else {
+//         setSuccess(lunchSt);
+//     }
+//     return true;
+// }
+//
+// function checkLunchCl() {
+//     const lunchClValue = document.getElementById("lunchCl").value.trim();
+//     if (lunchClValue === "") {
+//         setError(lunchCl, "점심시간을 선택해주세요.");
+//         return false;
+//     } else {
+//         setSuccess(lunchCl);
+//     }
+//     return true;
+// }
 
 
 function checkAddress() {

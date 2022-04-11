@@ -59,7 +59,7 @@
 
 <%--<tiles:insertAttribute name="sidebar"/> 소연 삭제 by 4/7--%>
 <div class="container" style="margin-left: 18em; width: calc(100vw - 18em);">
-    <tiles:insertAttribute name="DP_navbar"/>
+    <tiles:insertAttribute name="navbar"/>
     <tiles:insertAttribute name="body"/>
 </div>
 <%--<tiles:insertAttribute name="footer"/>--%>
