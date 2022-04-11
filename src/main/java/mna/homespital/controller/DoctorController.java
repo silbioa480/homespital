@@ -291,7 +291,7 @@ public class DoctorController {
         //넘어온 파일의 이름
         String prescriptionFileName = prescriptionFile.getOriginalFilename();
         try {
-            String path = servletContext.getRealPath("/resources/img/uploadprescription/");
+            String path = servletContext.getRealPath("/resources/img/uploadPrescription/");
             String filename = UUID.randomUUID().toString() + "." + prescriptionFileName.substring(prescriptionFileName.lastIndexOf('.') + 1);
             File destFile = new File(path + filename);
 
@@ -307,12 +307,12 @@ public class DoctorController {
             response.setCharacterEncoding("utf-8");
             json.append("uploaded", 1);
             json.append("filename", filename);
-            json.append("url", "/resources/img/uploadprescription/" + filename);
+            json.append("url", "/resources/img/uploadPrescription/" + filename);
             writer.println(json);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        doctorService.uploadReceipt(diagnosis_number, prescriptionFileName);
+        doctorService.uploadPrescription(diagnosis_number, prescriptionFileName);
 
         return "redirect:/doctor/docMedicalList";
     }

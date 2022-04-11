@@ -137,13 +137,22 @@
         ]]>
     </update>
 
-
-    <!--  진료영수증 업로드 -->
+    <!--  진료영수증 업로드(준근) -->
     <update id="uploadReceipt" parameterType="Map">
         <![CDATA[
         update diagnosis
         set is_diagnosis_upload = 2,
             diagnosis_file_name =#{diagnosis_file_name}
+        where diagnosis_number = #{diagnosis_number}
+        ]]>
+    </update>
+
+    <!--  진단서 업로드(준근) -->
+    <update id="uploadPrescription" parameterType="Map">
+        <![CDATA[
+        update diagnosis
+        set is_prescription_upload = 2,
+            prescription_file_name =#{prescription_file_name}
         where diagnosis_number = #{diagnosis_number}
         ]]>
     </update>
