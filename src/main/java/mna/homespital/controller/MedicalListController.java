@@ -50,25 +50,9 @@ public class MedicalListController {
     Diagnosis diagnosis;
 
 
-    //모든 진료항목 출력 (태영)
-
-    @GetMapping("/list")
-    public ModelAndView allmedicalList() {
-        ModelAndView mv = new ModelAndView();
-        try {
-            List<AllMedical> amd = allmedListService.allMedList();
-
-            mv.addObject("list", amd);
-            mv.setViewName("user/userside/medicalList");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return mv;
-    }
-
-    //원하는 진료항목출력 태영
-    @PostMapping("/medicalSearch")
-    public ModelAndView medicalSearch(@RequestParam(value = "mediSearch") String mediSearch) {
+    // 진료항목출력 태영
+    @RequestMapping("/medicalSearch")
+    public ModelAndView medicalSearch(@RequestParam(required = false) String mediSearch) {
         ModelAndView mv = new ModelAndView();
         try {
             List<AllMedical> searchmd = allmedListService.searchMed(mediSearch);

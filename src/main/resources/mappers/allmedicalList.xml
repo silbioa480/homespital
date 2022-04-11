@@ -4,18 +4,23 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mna.homespital.dao.AllMedicalListDAO">
-<!--  모든진료항목출력  태영-->
+    <!--  모든진료항목출력  태영-->
     <select id="allMedicalList" resultType="AllMedical">
     <![CDATA[
-            select * from all_medical;
+        select *
+        from all_medical;
         ]]>
     </select>
 
-<!--   진료과 검색 태영-->
+    <!--   진료과 검색 태영-->
     <select id="searchMedical" resultType="AllMedical" parameterType="String">
-        <![CDATA[
-                select * from all_medical where replace(medical_name, ' ', '') like concat('%', #{keyward}, '%')
-        ]]>
+
+        select *
+        from all_medical
+        <if test="keyward != null and !keyward.equals('')">
+            where replace(medical_name, ' ', '') like concat('%', #{keyward}, '%')
+        </if>
+
     </select>
 
 </mapper>
