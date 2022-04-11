@@ -69,7 +69,7 @@
 
     <!-- Main -->
     <div id="main">
-        <form id="form" name="form" action="/doctor/doctorJoin.do" method="post">
+        <form id="form" name="form" action="/doctor/doctorJoin.do" method="post" enctype="multipart/form-data">
             <!-- One -->
             <section id="one">
                 <div class="container">
@@ -141,8 +141,8 @@
 <%--                        </div>--%>
 
                     </div>
-                    <div class="input-control">
-                        <span class="doctor-title">의사사진</span>
+                    <div class="input-control">의사 프로필 등록
+<%--                        <span class="doctor-title">의사사진</span>--%>
 <%--                        <div style="display:flex">--%>
                         <label for="doctorProfile" id="filebtn">사진 등록</label>
                             <input id="doctorProfile" name="doctorImgNames" type="file"  accept=".gif, .jpg, .png">
@@ -232,8 +232,9 @@
                             </div>
                             <select id='diagnosis_type2' multiple='multiple' name="doctor_diagnosis_type" style="height: 200px; width: 100%"></select>
 
-                            <div class="error" style="overflow:hidden; word-break:break-all;" ></div>
                         </div>
+                            <div class="error" style="overflow:hidden; word-break:break-all; color: red;" ></div>
+
                     </div>
 
 
@@ -259,7 +260,7 @@
                                     </select>
 
 
-                                    <div class="error" ></div>
+                                    <div class="error" style="color: red"></div>
                             </div>
 
 
@@ -287,7 +288,7 @@
 
                                 </select>
 
-    <div class="error"></div>
+    <div class="error" style="color: red"></div>
                             </div>
                     </div>
 
@@ -304,11 +305,10 @@
                             <%--                            히든추가--%>
                             <%--                            <input type="hidden" id="holiday" name="holiday">--%>
                             <%--                            <label for="holiday" class="rest-check"style="margin-left: 50px">--%>
-
-                                <span style="font-size: 15px; color: #000000">
+                                <span style="font-size: 15px; color: #000000"></span>
 
 <%--체크박스 인풋 span안에 넣어놨음--%>
-                                <span style="font-size: 15px; color: #000000" > <input type="checkbox" class="check" name="holiday" id="mon" value="월" style="margin-left: 7px">월</span>
+                            <span style="font-size: 15px; color: #000000" > <input type="checkbox" class="check" name="holiday" id="mon" value="월" style="margin-left: 7px">월</span>
 
                             <span style="font-size: 15px; color: #000000"><input type="checkbox" class="check"
                                                                                  name="holiday" id="tue" value="화"
@@ -332,13 +332,13 @@
 
                             <span style="font-size: 15px; color: #000000"><input type="checkbox" class="check"
                                                                                  name="holiday" id="sun" value="일"
-                                                                                 style="margin-left: 7px">일</span>
+                                                                                 style="margin-left: 7px" >일</span>
 
-                <span style="font-size: 15px; color: #000000"><input type="checkbox" class="check"
+                             <span style="font-size: 15px; color: #000000"><input type="checkbox" class="check"
                                                                      name="holiday" id="non" value="휴무없음"
                                                                      style="margin-left: 7px">휴무없음</span>
                             <%--                            </label>--%>
-                                     <div class="error"></div>
+                                     <div class="error" style="color:red"></div>
 
                         </div>
                         <div style="font-size: 12px;">* 병원 운영시간을 기반으로 비대면 진료 예약을 받을 수 있습니다.</div>
@@ -373,10 +373,10 @@
                             </div>
                             <div class="error"></div>
                         </div>
-                        <div class="input-control">
-                            <label class="doctor-title" for="Doctor_introduction">병원소개</label>
-                            <div style="display:flex">
-                                <input id="Doctor_introduction" name="doctor_introduction" type="text" maxlength="6">
+                        <div class="input-control">병원 소개 사진 등록
+                            <label for="hospitalProfile" id="filebtn1">사진 등록</label>
+                            <input id="hospitalProfile" name="hospitalImgNames" type="file" style="display: none"  accept=".gif, .jpg, .png">
+                            <div id='attZone1'>
                             </div>
                             <div class="error"></div>
                         </div>
@@ -476,61 +476,20 @@
 
 </script>
 
-<%--사업자 번호 조회 태영--%>
-<script>
-    $(function () {
-        $('#businessNumCheck').click(function () {
-            let ceonumber = $('#businessNumber').val();
-            let arrayData = {
-                "b_no": [ceonumber]
-            }
 
-            // console.log(ceonumber);
-            // console.log(arrayData);
-            $.ajax({
-                url: "https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=smkh950RF%2BKUYSGK2GSWio7MhSh80eabzme3oFO%2B%2B%2FbR9Zl0vWADP9G0sx2iCZJK5TihKXg4AYHUMb9XVYgX3w%3D%3D",
-                type: "post",
-                data: JSON.stringify(arrayData), // json 을 string으로 변환하여 전송
-                dataType: "JSON",
-                contentType: "application/json",
-                accept: "application/json",
-                success: function (data, result) {
-                    console.log(data);
-                    for (let i = 0; i < data.data.length; i++) {
-                        console.log(data.data[i]);
-                        console.log(data.data[i].tax_type);
-                        if (data.data[i].tax_type === "국세청에 등록되지 않은 사업자등록번호입니다.") {
-                            alert("국세청에 등록되지 않은 사업자등록번호입니다.");
-                        } else {
-                            alert("확인되었습니다.")
-                        }
-                    }
 
-                }
-
-            })
-
-        })
-    })
-
-</script>
 
 <%-- 이미지 업로드 미리보기 --%>
 <script>
 
-    ( /* att_zone : 이미지들이 들어갈 위치 id, btn : file tag id */
+    (/* att_zone : 이미지들이 들어갈 위치 id, btn : file tag id */
         imageView = function imageView(att_zone, btn) {
             var attZone = document.getElementById(att_zone);
             var doctorProfile = document.getElementById(btn)
             var sel_files = [];
-            // 이미지와 체크 박스를 감싸고 있는 div 속성
-            var div_style = 'display:inline-block;position:relative;'
-                + 'width:150px;height:120px;margin:5px;border:1px solid #b4b4b4;z-index:1';
             // 미리보기 이미지 속성
-            var img_style = 'width:100%;height:100%;z-index:none';
-            // 이미지안에 표시되는 체크박스의 속성
-            var chk_style = 'width:30px;height:30px;position:absolute;font-size:24px;'
-                + 'right:0px;bottom:0px;z-index:999;background-color:rgba(0,67,50,0);color:#d52a2a';
+            var img_style = 'display:inline-block;position:relative;'
+                + 'width:150px;height:120px;margin:5px;border:1px solid #b4b4b4;z-index:1';
             doctorProfile.onchange = function (e) {
                 var files = e.target.files;
                 var fileArr = Array.prototype.slice.call(files)
@@ -538,7 +497,6 @@
                     imageLoader(f);
                 }
             }
-
             /*첨부된 이미리즐을 배열에 넣고 미리보기 */
             imageLoader = function (image) {
                 sel_files.push(image);
@@ -546,12 +504,47 @@
                 reader.onload = function (ee) {
                     let img = document.createElement('img')
                     img.setAttribute('src', ee.target.result);
+                    img.setAttribute('style', img_style)
                     document.querySelector("div#attZone").appendChild(img);
                 }
                 reader.readAsDataURL(image);
             }
         }
-    )('att_zone', 'doctorProfile')
+     )('att_zone', 'doctorProfile')
+</script>
+<script>
+
+
+
+    (imageView1 = function imageView1(att_zone1, btn1) {
+            var attZone1 = document.getElementById(att_zone1);
+            var hospitalProfile = document.getElementById(btn1)
+            var sel_files1 = [];
+            var img_style = 'display:inline-block;position:relative;'
+                + 'width:150px;height:120px;margin:5px;border:1px solid #b4b4b4;z-index:1';
+            hospitalProfile.onchange = function (e) {
+                var files1 = e.target.files;
+                var fileArr1 = Array.prototype.slice.call(files1)
+                for (f of fileArr1) {
+                    imageLoader1(f);
+                }
+            }
+
+            /*첨부된 이미리즐을 배열에 넣고 미리보기 */
+            imageLoader1 = function (image) {
+                sel_files1.push(image);
+                var reader = new FileReader();
+                reader.onload = function (ee) {
+                    let img = document.createElement('img')
+                    img.setAttribute('src', ee.target.result);
+                    img.setAttribute('style', img_style)
+                    document.querySelector("div#attZone1").appendChild(img);
+                }
+                reader.readAsDataURL(image);
+            }
+        }
+    )('att_zone1', 'hospitalProfile')
+
     // function setThumbnail(event) {
     //     var reader = new FileReader();
     //     reader.onload = function(event) {
