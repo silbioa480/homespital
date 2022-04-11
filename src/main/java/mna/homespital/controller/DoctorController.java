@@ -250,6 +250,8 @@ public class DoctorController {
         return "success";
     }
 
+
+    //진료영수증 업로드 (준근)
     @PostMapping("/receiptUpload")
     public String receiptUpload(MultipartFile receiptFile, int diagnosis_number, HttpServletResponse response) throws Exception {
         System.out.println("receiptUpload() join" + diagnosis_number);
@@ -260,9 +262,6 @@ public class DoctorController {
             String filename = UUID.randomUUID().toString() + "." + receiptFileName.substring(receiptFileName.lastIndexOf('.') + 1);
             File destFile = new File(path + filename);
 
-            System.out.println("filename = " + filename);
-            System.out.println("destFile = " + destFile);
-
             PrintWriter writer = null;
             JSONObject json = new JSONObject();
 
@@ -271,24 +270,49 @@ public class DoctorController {
             receiptFileName = filename;
             System.out.println(receiptFileName);
             writer = response.getWriter();
-            System.out.println("2");
             response.setContentType("text/html;charset=utf-8");
-            System.out.println("2-2");
             response.setCharacterEncoding("utf-8");
-            System.out.println("3");
             json.append("uploaded", 1);
-            System.out.println("3-1");
             json.append("filename", filename);
-            System.out.println("4");
             json.append("url", "/resources/img/uploadReceipt/" + filename);
-            System.out.println("5");
             writer.println(json);
-            System.out.println("6");
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("7");
         doctorService.uploadReceipt(diagnosis_number, receiptFileName);
+
+        return "redirect:/doctor/docMedicalList";
+    }
+
+    // 진단서 업로드(준근)
+    @PostMapping("/prescriptionUpload")
+    public String prescriptionUpload(MultipartFile prescriptionFile, int diagnosis_number, HttpServletResponse response) throws Exception {
+        System.out.println("prescriptionUpload() join" + diagnosis_number);
+        //넘어온 파일의 이름
+        String prescriptionFileName = prescriptionFile.getOriginalFilename();
+        try {
+            String path = servletContext.getRealPath("/resources/img/uploadprescription/");
+            String filename = UUID.randomUUID().toString() + "." + prescriptionFileName.substring(prescriptionFileName.lastIndexOf('.') + 1);
+            File destFile = new File(path + filename);
+
+            PrintWriter writer = null;
+            JSONObject json = new JSONObject();
+
+            prescriptionFile.transferTo(destFile);
+
+            prescriptionFileName = filename;
+            System.out.println(prescriptionFileName);
+            writer = response.getWriter();
+            response.setContentType("text/html;charset=utf-8");
+            response.setCharacterEncoding("utf-8");
+            json.append("uploaded", 1);
+            json.append("filename", filename);
+            json.append("url", "/resources/img/uploadprescription/" + filename);
+            writer.println(json);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        doctorService.uploadReceipt(diagnosis_number, prescriptionFileName);
 
         return "redirect:/doctor/docMedicalList";
     }
