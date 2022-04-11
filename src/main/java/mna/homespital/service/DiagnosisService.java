@@ -15,4 +15,8 @@ public interface DiagnosisService {
 
     //훈 : 진료차트 상세내역 가져오기
     public HashMap<String, Object> getDiagnosisDetail(int diagnosis_number) throws Exception;
+
+    //훈 : 진료차트 의사 소견 작성하기
+    public void writeDoctorOpinion(int diagnosis_number, String doctor_opinion) throws Exception;
+    
 }
