@@ -148,8 +148,6 @@
                         complete = "진료완료";
                     } else if (item.diagnosis_status == 6) {
                         complete = "진료완료";
-                    } else if (item.diagnosis_status == 7) {
-                        complete = "진료완료";
                     }
 
 
@@ -324,9 +322,6 @@
         }
     }
     --%>
-
-
-
 
 
 </script>
