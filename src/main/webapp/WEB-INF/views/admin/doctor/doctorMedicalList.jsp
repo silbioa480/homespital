@@ -73,6 +73,7 @@
                         <tbody id="docMedicalList">
                         </tbody>
                     </table>
+
                 </div>
             </div>
         </div>
@@ -158,17 +159,18 @@
                     if (item.is_diagnosis_upload == 0) {
                         receipt = "";
                     } else if (item.is_diagnosis_upload == 1) {
-                        console.log(item.diagnosis_number)
-                        receipt = "<button type='button' data-toggle='modal' data-target='#staticBackdrop" + item.diagnosis_number + " 'id ='receiptUpload" + item.diagnosis_number + "' class='btn btn-info btn-sm' onclick='receiptUpload(" + item.diagnosis_number + ")';'>영수증업로드</button><br>" +
+                        receipt = "<button type='button' data-toggle='modal' data-target='#staticBackdrop" + item.diagnosis_number + " 'id ='receiptUpload" + item.diagnosis_number + "' class='btn btn-info btn-sm'>영수증업로드</button><br>" +
                             '<div class="modal fade" id="staticBackdrop' + item.diagnosis_number + '" data-backdrop="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">' +
                             '<div class="modal-dialog" role="document">' +
                             '<div class="modal-content">' +
                             '<div class="modal-header">' +
-                            '<h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>' +
+                            '<h5 class="modal-title" id="staticBackdropLabel">진료 영수증 업로드</h5>' +
                             '<button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
                             '<span aria-hidden="true">&times;</span>' +
                             '</button>' +
-                            '</div><div class="modal-body"> 모달 내용 </div><div class="modal-footer"><button type="button" class="btn btn-secondary upload-btn"  data-dismiss="modal">Close</button><button type="button" class="btn btn-primary">Understood</button></div></div></div></div>'
+                            '</div><form action="receiptUpload" method="POST" enctype="multipart/form-data"><div class="modal-body">' +
+                            "<input type='hidden' name='diagnosis_number' value='" + item.diagnosis_number + "'>" +
+                            '<input type="file" name="receiptFile">사진선택</input></div><div class="modal-footer"><button type="button" class="btn btn-secondary"  data-dismiss="modal">닫기</button><button type="submit" class="btn btn-primary upload-btn' + item.diagnosis_number + '">확인</button></div></form></div></div></div>'
                     } else {
                         receipt = "업로드완료";
                     }
@@ -180,7 +182,18 @@
                     if (item.is_prescription_upload == 0) {
                         prescription = "";
                     } else if (item.is_prescription_upload == 1) {
-                        prescription = "<button type='button' id ='prescriptionUpload' class='btn btn-info btn-sm' onclick='prescriptionUpload(" + item.diagnosis_number + ")';'>처방전업로드</button>";
+                        prescription = "<button type='button' data-toggle='modal' data-target='#staticBackdrop" + item.diagnosis_number + " 'id ='prescriptionUpload" + item.diagnosis_number + "' class='btn btn-info btn-sm'>진단서업로드</button><br>" +
+                            '<div class="modal fade" id="staticBackdrop' + item.diagnosis_number + '" data-backdrop="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">' +
+                            '<div class="modal-dialog" role="document">' +
+                            '<div class="modal-content">' +
+                            '<div class="modal-header">' +
+                            '<h5 class="modal-title" id="staticBackdropLabel">진단서 업로드</h5>' +
+                            '<button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
+                            '<span aria-hidden="true">&times;</span>' +
+                            '</button>' +
+                            '</div><form action="prescriptionUpload" method="POST" enctype="multipart/form-data"><div class="modal-body">' +
+                            "<input type='hidden' name='diagnosis_number' value='" + item.diagnosis_number + "'>" +
+                            '<input type="file" name="prescriptionFile">사진선택</input></div><div class="modal-footer"><button type="button" class="btn btn-secondary"  data-dismiss="modal">닫기</button><button type="submit" class="btn btn-primary upload-btn' + item.diagnosis_number + '">확인</button></div></form></div></div></div>'
                     } else {
                         prescription = "업로드완료";
                     }
