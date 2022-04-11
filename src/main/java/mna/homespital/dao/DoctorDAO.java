@@ -49,6 +49,9 @@ public interface DoctorDAO {
     // 진료 완료하기(준근)
     void finishDiagnosis(int diagnosis_number) throws Exception;
 
+    //의사번호를 통해서 환자 전화번호 갖고오기 태영
+    String getUserPhone(int doctor_number) throws Exception;
+
     // 거리순 검색 알고리즘
     // 현재 주소를 어떻게든 가져와. 이거는 geolocation = html5 https
     // 이 주소를 기반으로 현재 위치로부터 가까운 병원 순으로 카카오맵에서 병원 리스트를 가져옴
