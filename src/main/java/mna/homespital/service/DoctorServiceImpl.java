@@ -3,7 +3,6 @@ package mna.homespital.service;
 import mna.homespital.dao.DoctorDAO;
 import mna.homespital.dto.Doctor;
 import mna.homespital.dto.PageInfo;
-import mna.homespital.dto.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -160,6 +159,18 @@ public class DoctorServiceImpl implements DoctorService {
     @Override
     public void finishDiagnosis(int diagnosis_number) throws Exception {
         doctorDAO.finishDiagnosis(diagnosis_number);
+    }
+
+    //진료영수증 업로드(준근)
+    @Override
+    public void uploadReceipt(int diagnosis_number, String receiptFileName) throws Exception {
+        doctorDAO.uploadReceipt(diagnosis_number, receiptFileName);
+    }
+
+    // 진단서 업로드(준근)
+    @Override
+    public void uploadPrescription(int diagnosis_number, String prescriptionFileName) throws Exception {
+        doctorDAO.uploadPrescription(diagnosis_number, prescriptionFileName);
     }
 
 }

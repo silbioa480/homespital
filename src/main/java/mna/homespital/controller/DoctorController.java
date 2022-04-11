@@ -3,23 +3,24 @@ package mna.homespital.controller;
 import mna.homespital.dto.Diagnosis;
 import mna.homespital.dto.Doctor;
 import mna.homespital.service.*;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 @Controller
 @RequestMapping("/doctor")
@@ -36,6 +37,9 @@ public class DoctorController {
     AllMedicalListService allMedicalListService;
     @Autowired
     PharService pharService;
+
+    @Autowired
+    ServletContext servletContext;
 
     //의사 index(준근)
     @GetMapping("/")
@@ -269,5 +273,72 @@ public class DoctorController {
             e.printStackTrace();
         }
         return "success";
+    }
+
+
+    //진료영수증 업로드 (준근)
+    @PostMapping("/receiptUpload")
+    public String receiptUpload(MultipartFile receiptFile, int diagnosis_number, HttpServletResponse response) throws Exception {
+        System.out.println("receiptUpload() join" + diagnosis_number);
+        //넘어온 파일의 이름
+        String receiptFileName = receiptFile.getOriginalFilename();
+        try {
+            String path = servletContext.getRealPath("/resources/img/uploadReceipt/");
+            String filename = UUID.randomUUID().toString() + "." + receiptFileName.substring(receiptFileName.lastIndexOf('.') + 1);
+            File destFile = new File(path + filename);
+
+            PrintWriter writer = null;
+            JSONObject json = new JSONObject();
+
+            receiptFile.transferTo(destFile);
+
+            receiptFileName = filename;
+            System.out.println(receiptFileName);
+            writer = response.getWriter();
+            response.setContentType("text/html;charset=utf-8");
+            response.setCharacterEncoding("utf-8");
+            json.append("uploaded", 1);
+            json.append("filename", filename);
+            json.append("url", "/resources/img/uploadReceipt/" + filename);
+            writer.println(json);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        doctorService.uploadReceipt(diagnosis_number, receiptFileName);
+
+        return "redirect:/doctor/docMedicalList";
+    }
+
+    // 진단서 업로드(준근)
+    @PostMapping("/prescriptionUpload")
+    public String prescriptionUpload(MultipartFile prescriptionFile, int diagnosis_number, HttpServletResponse response) throws Exception {
+        System.out.println("prescriptionUpload() join" + diagnosis_number);
+        //넘어온 파일의 이름
+        String prescriptionFileName = prescriptionFile.getOriginalFilename();
+        try {
+            String path = servletContext.getRealPath("/resources/img/uploadPrescription/");
+            String filename = UUID.randomUUID().toString() + "." + prescriptionFileName.substring(prescriptionFileName.lastIndexOf('.') + 1);
+            File destFile = new File(path + filename);
+
+            PrintWriter writer = null;
+            JSONObject json = new JSONObject();
+
+            prescriptionFile.transferTo(destFile);
+
+            prescriptionFileName = filename;
+            System.out.println(prescriptionFileName);
+            writer = response.getWriter();
+            response.setContentType("text/html;charset=utf-8");
+            response.setCharacterEncoding("utf-8");
+            json.append("uploaded", 1);
+            json.append("filename", filename);
+            json.append("url", "/resources/img/uploadPrescription/" + filename);
+            writer.println(json);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        doctorService.uploadPrescription(diagnosis_number, prescriptionFileName);
+
+        return "redirect:/doctor/docMedicalList";
     }
 }
