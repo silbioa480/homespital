@@ -97,7 +97,7 @@
                         <div style="display:flex;">
                             <input type="text" id="businessNumber" name="pharmacy_business"
                                    placeholder="사업자 번호를 입력해주세요">
-                            <input type="button" class="businessBtn" value="사업자 조회"/>
+                            <input type="button" id="businessNumCheck" class="businessBtn" value="사업자 조회"/>
                         </div>
                         <div class="error"></div>
                     </div>

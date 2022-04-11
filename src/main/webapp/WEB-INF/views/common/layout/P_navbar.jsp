@@ -9,7 +9,7 @@
 <head>
     <meta charset="UTF-8"/>
     <title>홈스피탈</title>
-    <link rel="stylesheet" href="../../../../resources/css/navbar.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/navbar.css"/>
 </head>
 <style>
     a > i,
@@ -28,7 +28,7 @@
 <body>
 <!-- Header -->
 <div>
-    <nav class="navbar navbar-expand-md navbar-fixed-top w-100">
+    <nav class="navbar navbar-expand-md fixed-top w-100" id="navbar">
         <div class="container">
             <div class="d-flex w-100">
                 <a class="navbar-brand justify-content-start" href="/pharmacy/" style="font-family: 'Y_Spotlight'">
@@ -36,15 +36,9 @@
                     홈스피탈
                 </a>
                 <a class="fs-6 align-self-center" href="/pharmacy/">약사 페이지</a>
-                <button
-                        class="navbar-toggler border-dark"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#navbars"
-                        aria-controls="navbars"
-                        aria-expanded="false"
-                        aria-label="Toggle navigation"
-                >
+                <button class="navbar-toggler border-dark" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbars" aria-controls="navbars" aria-expanded="false"
+                        aria-label="Toggle navigation">
                     <span class="fa fa-bars" style="color: black"></span>
                 </button>
 
@@ -93,5 +87,6 @@
     --%>
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="/resources/js/main/navbar.js"></script>
 </body>
 </html>

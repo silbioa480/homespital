@@ -27,7 +27,7 @@
 <body>
 <!-- Header -->
 <div>
-    <nav class="navbar navbar-expand-md navbar-fixed-top w-100">
+    <nav class="navbar navbar-expand-md fixed-top w-100" id="navbar">
         <div class="container">
             <div class="d-flex w-100">
                 <a class="navbar-brand justify-content-start" href="/" style="font-family: 'Y_Spotlight'">
@@ -112,26 +112,6 @@
     --%>
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<%--
-<script>
-  --%>
-<%--    //$('#'+window.location.pathname.split("/")[1]+'-nav').addClass('btn-dark text-white');--%>
-<%--    //$('#'+window.location.pathname.split("/")[1]+'-nav').addClass('btn-dark text-white');--%>
-<%--    if (--%>
-<%--        window.location.pathname != "/" &&--%>
-<%--        window.location.pathname.split("/")[1] != "place" &&--%>
-<%--        window.location.pathname.split("/")[1] != "userInfo"--%>
-<%--    ) {--%>
-<%--        //document.getElementById(window.location.pathname.split("/")[1]+'-nav').classList.add('btn-dark');--%>
-<%--        //document.getElementById(window.location.pathname.split("/")[1]+'-nav').classList.add('text-white');--%>
-<%--        /* document.getElementById(window.location.pathname.split("/")[1] + '-nav').classList.add('font-weight-bold');--%>
-<%--        document.getElementById(window.location.pathname.split("/")[1] + '-nav').classList.add('text-white'); */--%>
-<%--        $("#" + window.location.pathname.split("/")[1] + "-nav").addClass(--%>
-<%--            "font-weight-bold text-white"--%>
-<%--        );--%>
-<%--    }--%>
-<%--
-</script>
---%>
+<script src="/resources/js/main/navbar.js"></script>
 </body>
 </html>

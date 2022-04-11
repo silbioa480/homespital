@@ -73,14 +73,13 @@
                         <tbody id="docMedicalList">
                         </tbody>
                     </table>
+
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div>
-    ㅂ 7ㅂ
-</div>
+
 
 </body>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -90,6 +89,7 @@
         let page = 0;
         let loading = false;
         let list = null;
+
 
         console.log("ready");
         $.ajax({
@@ -152,29 +152,57 @@
                         complete = "진료완료";
                     }
 
+
                     //진료예약(아직진료시작X) (diagnosis_status = 0) -> is_diagnosis_upload = 0 업로드버튼X,
                     //진료시작했을 떄, (diagnosis_status = 1) -> is_diagnosis_upload = 1 업로드버튼O,
-                    //진료 종료했을 떄, (diagosis_status= 3~7) -> is_diagnosis_upload = 2 업로드버튼X, 업로드완료
-                    //진료영수증
+                    //진료영수증 업로드 안하고 진료완료버튼 실행시 -> finishBtn()에서 유효성 처리되어 진료완료처리X.
+                    //진료영수증 업로드
                     let receipt = "";
                     if (item.is_diagnosis_upload == 0) {
                         receipt = "";
                     } else if (item.is_diagnosis_upload == 1) {
-                        receipt = "<button type='button' id ='receiptUpload' class='btn btn-info btn-sm' onclick='receiptUpload(" + item.diagnosis_number + ")';'>영수증업로드</button>";
-                    } else {
+                        receipt = "<button type='button' data-toggle='modal' data-target='#staticBackdrop" + item.diagnosis_number + " 'id ='receiptUpload" + item.diagnosis_number + "' class='btn btn-info btn-sm'>영수증업로드</button><br>" +
+                            '<div class="modal fade" id="staticBackdrop' + item.diagnosis_number + '" data-backdrop="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">' +
+                            '<div class="modal-dialog" role="document">' +
+                            '<div class="modal-content">' +
+                            '<div class="modal-header">' +
+                            '<h5 class="modal-title" id="staticBackdropLabel">진료 영수증 업로드</h5>' +
+                            '<button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
+                            '<span aria-hidden="true">&times;</span>' +
+                            '</button>' +
+                            '</div><form action="receiptUpload" method="POST" enctype="multipart/form-data"><div class="modal-body">' +
+                            "<input type='hidden' name='diagnosis_number' value='" + item.diagnosis_number + "'>" +
+                            '<input type="file" name="receiptFile">사진선택</input></div><div class="modal-footer"><button type="button" class="btn btn-secondary"  data-dismiss="modal">닫기</button><button type="submit" class="btn btn-primary upload-btn' + item.diagnosis_number + '">확인</button></div></form></div></div></div>'
+                    } else if (item.is_diagnosis_upload == 2) {
                         receipt = "업로드완료";
                     }
+
                     //진료예약(아직진료시작X) (diagnosis_status = 0) 일 때  ->> is_prescription_upload = 0 업로드버튼X,
                     //진료시작(dagnosis_status = 1)일 때   ->> is_prescription_upload = 1 업로드버튼0,
-                    //진료 종료(diagnosis_status = 3~7) 일 때  -> is_prescription_upload = 2 업로드버튼 X, 업로드완료
-                    //처방전
+                    //                                   업로드 완료시 is_prescription_upload = 2 업로드완료.
+                    //진료 종료(diagnosis_status = 3~7) 인데 --> is_prescription_upload가 1이면
+                    //                                      Controller에서 is_prescription_upload = 3(처방전없음)으로 바꿔준다.
+                    //처방전 업로드
                     let prescription = "";
                     if (item.is_prescription_upload == 0) {
                         prescription = "";
                     } else if (item.is_prescription_upload == 1) {
-                        prescription = "<button type='button' id ='prescriptionUpload' class='btn btn-info btn-sm' onclick='prescriptionUpload(" + item.diagnosis_number + ")';'>처방전업로드</button>";
-                    } else {
+                        prescription = "<button type='button' data-toggle='modal' data-target='#staticBackdrop2_" + item.diagnosis_number + " 'id ='prescriptionUpload" + item.diagnosis_number + "' class='btn btn-info btn-sm'>처방전업로드</button><br>" +
+                            '<div class="modal fade" id="staticBackdrop2_' + item.diagnosis_number + '" data-backdrop="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">' +
+                            '<div class="modal-dialog" role="document">' +
+                            '<div class="modal-content">' +
+                            '<div class="modal-header">' +
+                            '<h5 class="modal-title" id="staticBackdropLabel">처방전 업로드</h5>' +
+                            '<button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
+                            '<span aria-hidden="true">&times;</span>' +
+                            '</button>' +
+                            '</div><form action="prescriptionUpload" method="POST" enctype="multipart/form-data"><div class="modal-body">' +
+                            "<input type='hidden' name='diagnosis_number' value='" + item.diagnosis_number + "'>" +
+                            '<input type="file" name="prescriptionFile">사진선택</input></div><div class="modal-footer"><button type="button" class="btn btn-secondary"  data-dismiss="modal">닫기</button><button type="submit" class="btn btn-primary upload-btn' + item.diagnosis_number + '">확인</button></div></form></div></div></div>'
+                    } else if (item.is_prescription_upload == 2) {
                         prescription = "업로드완료";
+                    } else if (item.is_prescription_upload == 3) {
+                        prescription = "처방전없음";
                     }
 
                     // 나의 진료 내역 테이블 생성 (리눅스 서버에 올릴때 진단영수증 파일경로 바꿔줘야함)
@@ -201,10 +229,14 @@
                 }
             }
         });
+
+
     })
 
     // 진료 시작하기
+    //진료시작시 문자전송 + 카카오 오픈링크 태영
     function startBtn(e) {
+        console.log()
         if (confirm("진료를 시작하시겠습니까?") == true) {
             $.ajax({
                 url: "startDiagnosis",
@@ -214,6 +246,8 @@
                     "diagnosis_number": e,
                 },
                 success: function (data) {
+                    console.log(data);
+
                     console.log("진료 시작 성공 : " + e)
                     location.href = "${pageContext.request.contextPath}/doctor/docMedicalList";
                 },
@@ -234,8 +268,14 @@
                     "diagnosis_number": e,
                 },
                 success: function (data) {
-                    console.log("진료 완료 성공 : " + e)
-                    location.href = "${pageContext.request.contextPath}/doctor/docMedicalList";
+                    if (data === "success") {
+                        console.log(data);
+                        console.log("진료 완료 성공 : " + e)
+                        location.href = "${pageContext.request.contextPath}/doctor/docMedicalList";
+                    } else if (data === "failed") {
+                        alert("진료영수증이 업로드 되지 않았습니다. 진료영수증을 업로드 후 다시 실행해주세요.")
+                        location.href = "${pageContext.request.contextPath}/doctor/docMedicalList";
+                    }
                 },
             })
         } else {
@@ -243,6 +283,7 @@
         }
     }
 
+    <%--
     //진료영수증 업로드
     function receiptUpload(e) {
         if (confirm("진료영수증 업로드를 하시겠습니까?") == true) {
@@ -282,7 +323,13 @@
             return;
         }
     }
+    --%>
+
+
+
 
 
 </script>
+
+
 </html>
