@@ -5,6 +5,8 @@ import mna.homespital.dto.Diagnosis;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+
 @Service
 public class DiagnosisServiceImpl implements DiagnosisService {
 
@@ -24,4 +26,10 @@ public class DiagnosisServiceImpl implements DiagnosisService {
         return diagnosisDAO.getDiagnosisNo(diagnosis_number);
     }
 
+    //훈: 진료차트 상세내역 가져오기
+    @Override
+    public HashMap<String, Object> getDiagnosisDetail(int diagnosis_number) throws Exception {
+        System.out.println("getDiagnosisDetail() join");
+        return diagnosisDAO.diagnosisDetail(diagnosis_number);
+    }
 }

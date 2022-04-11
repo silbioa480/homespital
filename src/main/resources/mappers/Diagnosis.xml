@@ -40,4 +40,80 @@
         where diagnosis_number = #{diagnosis_number}
         ]]>
     </select>
+
+    <!--  해당 진단서 번호에 대한 상세내역 보기(훈)  -->
+    <select id="diagnosisDetail" resultType="HashMap" parameterType="int">
+	    <![CDATA[
+        select di.diagnosis_number,
+               di.doctor_number,
+               di.pharmacy_number,
+               di.diagnosis_type,
+               di.diagnosis_time,
+               di.diagnosis_wait_number,
+               di.diagnosis_content,
+               di.diagnosis_image_name,
+               di.diagnosis_status,
+               di.is_diagnosis_upload,
+               di.is_prescription_upload,
+               di.diagnosis_file_name,
+               di.prescription_file_name,
+               di.diagnosis_money,
+               di.prescription_money,
+               di.is_delivery,
+               di.billing_key,
+               di.doctor_opinion,
+               di.pharmacy_name,
+               di.pharmacy_address,
+               di.pharmacy_phone,
+               di.user_address,
+               di.create_date,
+               di.update_date,
+
+               doc.doctor_email,
+               doc.doctor_phone,
+               doc.doctor_name,
+               doc.hospital_name,
+               doc.hospital_telephone,
+               doc.hospital_business_number,
+               doc.doctor_diagnosis_type,
+               doc.working_time,
+               doc.lunch_time,
+               doc.holiday,
+               doc.zip_code,
+               doc.street_address,
+               doc.detail_address,
+               doc.hospital_fax,
+               doc.hospital_url,
+
+               us.user_number,
+               us.user_email,
+               us.user_name,
+--                us.user_registration_number,
+               CONCAT(
+                       (CASE
+                            WHEN SUBSTR(us.user_registration_number, 8, 1) = '1' THEN '19'
+                            WHEN SUBSTR(us.user_registration_number, 8, 1) = '2' THEN '19'
+                            WHEN SUBSTR(us.user_registration_number, 8, 1) = '3' THEN '20'
+                            WHEN SUBSTR(us.user_registration_number, 8, 1) = '4' THEN '20'
+                            ELSE '19'
+                           END
+                           ),
+                       SUBSTR(us.user_registration_number, 1, 2), '년 ',
+                       SUBSTR(us.user_registration_number, 3, 2), '월 ',
+                       SUBSTR(us.user_registration_number, 5, 2), '일'
+                   )    as birthday,
+               (CASE
+                    WHEN SUBSTR(us.user_registration_number, 8, 1) = '1' THEN '남'
+                    WHEN SUBSTR(us.user_registration_number, 8, 1) = '2' THEN '여'
+                    WHEN SUBSTR(us.user_registration_number, 8, 1) = '3' THEN '남'
+                    WHEN SUBSTR(us.user_registration_number, 8, 1) = '4' THEN '여'
+                    ELSE '알 수 없음'
+                   END) as gender,
+               us.user_phone
+        from `diagnosis` di
+                 join `doctor` doc on di.doctor_number = doc.doctor_number
+                 join `user` us on di.user_number = us.user_number
+        where di.diagnosis_number = #{diagnosis_number}
+        ]]>
+    </select>
 </mapper>
