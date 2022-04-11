@@ -126,13 +126,11 @@
                     } else if (item.diagnosis_status == 3) {
                         complete = "진료완료";
                     } else if (item.diagnosis_status == 4) {
-                        complete = "처방전X/진료완료";
-                    } else if (item.diagnosis_status == 5) {
                         complete = "조제중";
-                    } else if (item.diagnosis_status == 6) {
+                    } else if (item.diagnosis_status == 5) {
                         complete = "<button type='button' id='successBtn' class='btn btn-info btn-sm' onclick='successBtn(" + item.diagnosis_number + ");'>약제 수령 확정</button>";
-                    } else if (item.diagnosis_status == 7) {
-                        complete = "약배송완료/진료완료";
+                    } else if (item.diagnosis_status == 6) {
+                        complete = "종료";
                     }
 
                     // 진료영수증이 있으면 내려받기 버튼 생성, 없으면 공백

@@ -148,7 +148,8 @@
     <update id="changePrescription" parameterType="int">
         <![CDATA[
         update diagnosis
-        set is_prescription_upload = 3 and diagnosis_status = 7
+        set is_prescription_upload = 3,
+            diagnosis_status       = 7
         where diagnosis_number = #{diagnosis_number};
         ]]>
     </update>
