@@ -30,7 +30,7 @@ public class PharmacyController {
     //약국메인
     @GetMapping({"", "/"})
     public ModelAndView pharmacyMain() {
-        return new ModelAndView("admin/pharside/pharmacyIndex");
+        return new ModelAndView("admin/phar/pharmacyIndex");
     }
 
     //약국 로그인Form
