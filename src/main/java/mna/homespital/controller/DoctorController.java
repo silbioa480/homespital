@@ -199,11 +199,12 @@ public class DoctorController {
         System.out.println("docMedicalList() Join");
         try {
             Doctor doctor = (Doctor) session.getAttribute("doctor");
-//      int serarchDocNum = doctorService.searchDocId(email);
             Diagnosis diagnosis = new Diagnosis();
             diagnosis.setDoctor_number(doctor.getDoctor_number());
             //      이부분 준근님에게 물어보기
             m.addAttribute("diagnosis", diagnosis);
+
+
         } catch (Exception e) {
             e.printStackTrace();
             return "common/err";
@@ -243,14 +244,19 @@ public class DoctorController {
     @ResponseBody
     @PostMapping("/finishDiagnosis")
     public String finishDiagnosis(int diagnosis_number, HttpServletResponse response) {
+
         try {
             //is_diagnosis_upload가 2(업로드완료) 인지 확인
-            int num = doctorService.checkDiagnosisUpload(diagnosis_number);
-            if (num != 2) {
+            Diagnosis diagnosis = doctorService.checkDiagnosisUpload(diagnosis_number);
+            if (diagnosis.getIs_diagnosis_upload() != 2) {
                 return "failed";
             }
+            // 진료완료 하면서 is_prescription_upload=1(처방전업로드X상태)이면 is_prescription_upload = 3(처방전없음)처리
+            if (diagnosis.getIs_prescription_upload() == 1) {
+                doctorService.changePrescription(diagnosis_number);
+            }
+            //진료완료 처리
             doctorService.finishDiagnosis(diagnosis_number);
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -259,6 +265,7 @@ public class DoctorController {
 
 
     //진료영수증 업로드 (준근)
+    //receipt(진료영수증) == diagnosis_file_name
     @PostMapping("/receiptUpload")
     public String receiptUpload(MultipartFile receiptFile, int diagnosis_number, HttpServletResponse response) throws Exception {
         System.out.println("receiptUpload() join" + diagnosis_number);

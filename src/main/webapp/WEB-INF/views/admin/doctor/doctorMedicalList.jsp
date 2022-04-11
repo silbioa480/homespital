@@ -155,7 +155,7 @@
 
                     //진료예약(아직진료시작X) (diagnosis_status = 0) -> is_diagnosis_upload = 0 업로드버튼X,
                     //진료시작했을 떄, (diagnosis_status = 1) -> is_diagnosis_upload = 1 업로드버튼O,
-                    //진료영수증이나 진단서 업로드 안하고 진료 종료했을 떄, (diagosis_status= 3~7)  --> is_diagnosis_upload = 3 업로드 버튼X, 빈문자열 나오게
+                    //진료영수증 업로드 안하고 진료완료버튼 실행시 -> finishBtn()에서 유효성 처리되어 진료완료처리X.
                     //진료영수증 업로드
                     let receipt = "";
                     if (item.is_diagnosis_upload == 0) {
@@ -173,12 +173,15 @@
                             '</div><form action="receiptUpload" method="POST" enctype="multipart/form-data"><div class="modal-body">' +
                             "<input type='hidden' name='diagnosis_number' value='" + item.diagnosis_number + "'>" +
                             '<input type="file" name="receiptFile">사진선택</input></div><div class="modal-footer"><button type="button" class="btn btn-secondary"  data-dismiss="modal">닫기</button><button type="submit" class="btn btn-primary upload-btn' + item.diagnosis_number + '">확인</button></div></form></div></div></div>'
-                    } else {
+                    } else if (item.is_diagnosis_upload == 2) {
                         receipt = "업로드완료";
                     }
+
                     //진료예약(아직진료시작X) (diagnosis_status = 0) 일 때  ->> is_prescription_upload = 0 업로드버튼X,
                     //진료시작(dagnosis_status = 1)일 때   ->> is_prescription_upload = 1 업로드버튼0,
-                    //진료 종료(diagnosis_status = 3~7) 일 때  -> is_prescription_upload = 2 업로드버튼 X, 업로드완료
+                    //                                   업로드 완료시 is_prescription_upload = 2 업로드완료.
+                    //진료 종료(diagnosis_status = 3~7) 인데 --> is_prescription_upload가 1이면
+                    //                                      Controller에서 is_prescription_upload = 3(처방전없음)으로 바꿔준다.
                     //처방전 업로드
                     let prescription = "";
                     if (item.is_prescription_upload == 0) {
@@ -196,8 +199,10 @@
                             '</div><form action="prescriptionUpload" method="POST" enctype="multipart/form-data"><div class="modal-body">' +
                             "<input type='hidden' name='diagnosis_number' value='" + item.diagnosis_number + "'>" +
                             '<input type="file" name="prescriptionFile">사진선택</input></div><div class="modal-footer"><button type="button" class="btn btn-secondary"  data-dismiss="modal">닫기</button><button type="submit" class="btn btn-primary upload-btn' + item.diagnosis_number + '">확인</button></div></form></div></div></div>'
-                    } else {
+                    } else if (item.is_prescription_upload == 2) {
                         prescription = "업로드완료";
+                    } else if (item.is_prescription_upload == 3) {
+                        prescription = "처방전없음";
                     }
 
                     // 나의 진료 내역 테이블 생성 (리눅스 서버에 올릴때 진단영수증 파일경로 바꿔줘야함)
