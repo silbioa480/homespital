@@ -4,6 +4,8 @@ import mna.homespital.dto.Diagnosis;
 import mna.homespital.dto.Doctor;
 import mna.homespital.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -262,12 +264,29 @@ public class DoctorController {
     // 진료 완료하기 diagnoisis_status (1 -> 3)(준근)
     @ResponseBody
     @PostMapping("/finishDiagnosis")
-    public String finishDiagnosis(int diagnosis_number) {
+    public ResponseEntity<String> finishDiagnosis(int diagnosis_number) {
+        ResponseEntity<String> result = null;
         try {
             doctorService.finishDiagnosis(diagnosis_number);
+            return new ResponseEntity<>("success", HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
+            return new ResponseEntity<>("failed", HttpStatus.BAD_REQUEST);
         }
-        return "success";
+    }
+
+    @ResponseBody
+    @PostMapping("/writeOpinion")
+    public ResponseEntity<String> writeOpinion(@RequestParam int diagnosis_number,
+                                               @RequestParam String doctor_opinion) {
+        ResponseEntity<String> result = null;
+        try {
+            diagnosisService.writeDoctorOpinion(diagnosis_number, doctor_opinion);
+            result = new ResponseEntity<>("SUCCESS", HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            result = new ResponseEntity<>("FAILED", HttpStatus.BAD_REQUEST);
+        }
+        return result;
     }
 }
