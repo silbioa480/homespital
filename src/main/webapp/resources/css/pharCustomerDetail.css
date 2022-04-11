@@ -1255,3 +1255,11 @@ body {
     margin: auto;
 }
 
+.timetable > tbody > tr > th {
+    width: 80px;
+}
+
+#logo {
+    align-items: center;
+    justify-content: center;
+}

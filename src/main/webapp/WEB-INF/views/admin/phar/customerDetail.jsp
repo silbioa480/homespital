@@ -81,7 +81,7 @@
             <div class="card p-3">
                 <h4 class="card-title fs-3"><strong>진료 차트</strong></h4>
                 <div class="card-body fs-5" style="padding: 5px; line-height: 33px;">
-                    <div><strong>비대면 진료 시간 : ${diagnosis.create_date} ${diagnosis.diagnosis_time}시</strong></div>
+                    <div><strong>비대면 진료 시간 : ${diagnosis.create_date} / ${diagnosis.diagnosis_time}시</strong></div>
                     <div>생년월일 : ${diagnosis.birthday}</div>
                     <div>주소 :
                         (${diagnosis.user_zip_code}) ${diagnosis.user_street_address} ${diagnosis.user_detail_address}</div>
@@ -109,14 +109,14 @@
                     <div class="d-flex">
                         <c:choose>
                         <c:when test="${diangosis.is_delivery}">
-                        <button class="btn btn-warning rounded-pill p-3" type="button" style="width:120px; height: 35px;">약국으로 직접 방문
+                        <button class="btn-sm btn-warning rounded-pill" type="button">약국으로 직접 방문
                             </c:when>
                             <c:otherwise>
-                            <button class="btn btn-warning rounded-pill p-3" type="button">집까지 배송받기</button>
+                            <button class="btn-sm btn-warning rounded-pill" type="button">집까지 배송받기</button>
                             </c:otherwise>
                             </c:choose>
                     </div>
-                    <div class="d-flex">
+                    <div class="d-flex pt-4">
                         <c:choose>
                             <c:when test="${diagnosis.is_delivery}">
                                 <div class="d-block w-100">
