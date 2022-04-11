@@ -208,7 +208,6 @@ public class DoctorController {
       Doctor doctor = (Doctor) session.getAttribute("doctor");
       Diagnosis diagnosis = new Diagnosis();
       diagnosis.setDoctor_number(doctor.getDoctor_number());
-      //      이부분 준근님에게 물어보기
       m.addAttribute("diagnosis", diagnosis);
 
 
