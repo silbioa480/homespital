@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
+import java.util.Map;
 
 @Mapper
 @Repository
@@ -19,4 +20,7 @@ public interface DiagnosisDAO {
 
     // 훈 : diagnosis_number로 해당진료 상세내역 가져오기
     public HashMap<String, Object> diagnosisDetail(int diagnosis_number) throws Exception;
+
+    // 훈 : 의사 소견 적기
+    public void writeDoctorOpinion(Map<String, Object> params) throws Exception;
 }

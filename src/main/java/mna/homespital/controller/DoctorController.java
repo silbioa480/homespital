@@ -8,6 +8,8 @@ import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -296,8 +298,8 @@ public class DoctorController {
     // 진료 완료하기 할 때 유효성 검사(is_diagnosis_upload가 2가 아니면 진료완료 실패하고 alert띄움
     @ResponseBody
     @PostMapping("/finishDiagnosis")
-    public String finishDiagnosis(int diagnosis_number, HttpServletResponse response) {
-
+    public ResponseEntity<String> finishDiagnosis(int diagnosis_number) {
+        ResponseEntity<String> result = null;
         try {
             //is_diagnosis_upload가 2(업로드완료) 인지 확인
             Diagnosis diagnosis = doctorService.checkDiagnosisUpload(diagnosis_number);
@@ -310,10 +312,26 @@ public class DoctorController {
             }
             //진료완료 처리
             doctorService.finishDiagnosis(diagnosis_number);
+            return new ResponseEntity<>("success", HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
+            return new ResponseEntity<>("failed", HttpStatus.BAD_REQUEST);
         }
-        return "success";
+    }
+
+    @ResponseBody
+    @PostMapping("/writeOpinion")
+    public ResponseEntity<String> writeOpinion(@RequestParam int diagnosis_number,
+                                               @RequestParam String doctor_opinion) {
+        ResponseEntity<String> result = null;
+        try {
+            diagnosisService.writeDoctorOpinion(diagnosis_number, doctor_opinion);
+            result = new ResponseEntity<>("SUCCESS", HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            result = new ResponseEntity<>("FAILED", HttpStatus.BAD_REQUEST);
+        }
+        return result;
     }
 
 

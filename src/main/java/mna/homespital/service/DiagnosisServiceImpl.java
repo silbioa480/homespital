@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class DiagnosisServiceImpl implements DiagnosisService {
@@ -31,5 +32,14 @@ public class DiagnosisServiceImpl implements DiagnosisService {
     public HashMap<String, Object> getDiagnosisDetail(int diagnosis_number) throws Exception {
         System.out.println("getDiagnosisDetail() join");
         return diagnosisDAO.diagnosisDetail(diagnosis_number);
+    }
+
+    //훈 : 진료차트 의사소견 작성하기
+    @Override
+    public void writeDoctorOpinion(int diagnosis_number, String doctor_opinion) throws Exception {
+        Map<String, Object> param = new HashMap<String, Object>();
+        param.put("diagnosis_number", diagnosis_number);
+        param.put("doctor_opinion", doctor_opinion);
+        diagnosisDAO.writeDoctorOpinion(param);
     }
 }

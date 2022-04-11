@@ -27,7 +27,7 @@
 <body>
 <!-- Header -->
 <div>
-    <nav class="navbar navbar-expand-md fixed-top w-100">
+    <nav class="navbar navbar-expand-md fixed-top w-100" id="navbar">
         <div class="container">
             <div class="d-flex w-100">
                 <a class="navbar-brand justify-content-start" href="/" style="font-family: 'Y_Spotlight'">

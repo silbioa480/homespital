@@ -17,10 +17,7 @@
 <html>
 <head>
     <title>의사 진료리스트</title>
-    <link rel="stylesheet" href="/resources/css/myMedicalDetail.css"/>
-    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
+    <link rel="stylesheet" href="/resources/css/doctorCustomerDetail.css"/>
     <%-- 구글 아이콘 CDN링크 --%>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -34,9 +31,9 @@
             height: 200px;
         }
 
-        th, td, tbody {
-            text-align: center;
-        }
+        /*th, td, tbody {*/
+        /*    text-align: center;*/
+        /*}*/
 
         p {
             font-size: 30px;
@@ -46,8 +43,8 @@
 </head>
 <body>
 <div class="container">
-    <div class="col mt-3">
-        <div class="list-header bg-warning text-right">
+    <div class="col my-3">
+        <div class="list-header bg-warning text-center">
             <h1 id="logo">Homespital</h1>
 
         </div>
@@ -99,7 +96,7 @@
                     <div>휴대폰 번호 : ${diagnosis.user_phone}</div>
                 </div>
                 <div style="background:#F9F9F9;">
-                    <table class="table table-borderless">
+                    <table class="table table-borderless m-4">
                         <tbody>
                         <tr>
                             <th>증상</th>
@@ -132,14 +129,14 @@
                     <div class="d-flex">
                         <c:choose>
                         <c:when test="${diangosis.is_delivery}">
-                        <button class="btn btn-warning rounded-pill" type="button">약국으로 직접 방문
+                        <button class="btn-sm btn-warning rounded-pill" type="button">약국으로 직접 방문
                             </c:when>
                             <c:otherwise>
-                            <button class="btn btn-secondary rounded-pill" type="button">집까지 배송받기</button>
+                            <button class="btn-sm btn-warning rounded-pill" type="button">집까지 배송받기</button>
                             </c:otherwise>
                             </c:choose>
                     </div>
-                    <div class="d-flex">
+                    <div class="d-flex pt-4">
                         <c:choose>
                             <c:when test="${diagnosis.is_delivery}">
                                 <div class="d-block w-100">
@@ -184,13 +181,14 @@
                         <div class="col-md-8 card-body">
                             <div class="card-title d-flex justify-content-between">
                                 <div class="d-flex">
-                                    <h4 class="pr-3 font-weight-bolder">${diagnosis.doctor_name}</h4>
-                                    <span class="pl-3 font-weight-normal align-text-bottom">의사 / ${diagnosis.doctor_diagnosis_type}</span>
+                                    <h4 class="font-weight-bolder"
+                                        style="padding-right: 10px !important;">${diagnosis.doctor_name}</h4>
+                                    <span class="font-weight-normal align-text-bottom">의사 / ${diagnosis.doctor_diagnosis_type}</span>
                                 </div>
                             </div>
                             <div class="card-text">
                                 <p class="card-text">
-                                <table class="table table-borderless">
+                                <table class="table table-borderless timetable">
                                     <tr>
                                         <th>병원이름:</th>
                                         <td>${diagnosis.hospital_name}</td>
@@ -233,21 +231,23 @@
 </body>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
-    <%--$(document).ready(function () {--%>
-    <%--    console.log("ready");--%>
-    <%--    $.ajax({--%>
-    <%--        url: '/docMedicalRecords',--%>
-    <%--        type: 'GET',--%>
-    <%--        datatype: "json",--%>
-    <%--        data: {--%>
-    <%--            "doctor_number": ${diagnosis.doctor_number}--%>
-    <%--        },--%>
-    <%--        success: function (data) {--%>
-    <%--        },--%>
-    <%--        error: function () {--%>
-    <%--            console.log("Error");--%>
-    <%--        }--%>
-    <%--    })--%>
-    <%--})--%>
+    $("#submitDoctorOpinion").on('click', function () {
+        $.ajax({
+            url: "/doctor/writeOpinion",
+            method: "POST",
+            data: {
+                "diagnosis_number": ${diagnosis.diagnosis_number},
+                "doctor_opinion": $("textarea[name='doctor_opinion']:visible").val()
+            },
+            async: false,
+            success: function (data) {
+
+                alert("의사 소견 작성 완료");
+            },
+            error: function () {
+                alert("의사 소견 작성 실패");
+            }
+        });
+    })
 </script>
 </html>

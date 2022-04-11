@@ -69,5 +69,8 @@
 
 
 <%--<script src="/resources/js/login/login.js"></script>--%>
+<script>
+    $('#navbar').removeClass('fixed-top');
+</script>
 </body>
 </html>
