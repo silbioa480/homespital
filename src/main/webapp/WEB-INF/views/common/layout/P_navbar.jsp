@@ -9,7 +9,7 @@
 <head>
     <meta charset="UTF-8"/>
     <title>홈스피탈</title>
-    <link rel="stylesheet" href="../../../../resources/css/navbar.css" />
+    <link rel="stylesheet" href="../../../../resources/css/navbar.css"/>
 </head>
 <style>
     a > i,
@@ -31,10 +31,11 @@
     <nav class="navbar navbar-expand-md navbar-fixed-top w-100">
         <div class="container">
             <div class="d-flex w-100">
-                <a class="navbar-brand justify-content-start" href="/pharmacyMainForm" style="font-family: 'Y_Spotlight'">
+                <a class="navbar-brand justify-content-start" href="/pharmacy/" style="font-family: 'Y_Spotlight'">
                     <i class="fa fa-medkit" aria-hidden="true"></i>
                     홈스피탈
                 </a>
+                <a class="fs-6 align-self-center" href="/pharmacy/">약사 페이지</a>
                 <button
                         class="navbar-toggler border-dark"
                         type="button"
@@ -49,32 +50,24 @@
 
                 <div class="collapse navbar-collapse justify-content-end" id="navbars">
                     <ul class="navbar-nav ml-auto pl-lg-5 pl-0">
-                        <li class="nav-item">
-                            <c:if test="${not empty doctor}">
-                                <a class="nav-link" href="/customerList">진료리스트</a>
-                            </c:if>
-                            <c:if test="${not empty pharmacy}">
-                                <a class="nav-link" href="/customerList">진료리스트</a>
-                            </c:if>
-                        </li>
-                    </ul>
-
-                    <ul class="navbar nav ml-auto">
                         <c:choose>
-                            <c:when test="${not empty email}">
+                            <c:when test="${not empty pharmacy}">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">내 정보수정</a>
+                                    <a class="nav-link" href="/pharmacy/customerList">진료리스트</a>
                                 </li>
+                                <%--                                <li class="nav-item">--%>
+                                <%--                                    <a class="nav-link" href="#">내 정보수정</a>--%>
+                                <%--                                </li>--%>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">로그아웃</a>
+                                    <a class="nav-link" href="/logout.do">로그아웃</a>
                                 </li>
                             </c:when>
                             <c:otherwise>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/pharmacyLoginForm">로그인</a>
+                                    <a class="nav-link" href="/pharmacy/loginForm">로그인</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">회원가입</a>
+                                    <a class="nav-link" href="/pharmacy/joinForm">회원가입</a>
                                 </li>
 
                             </c:otherwise>

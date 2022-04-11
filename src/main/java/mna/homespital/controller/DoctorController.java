@@ -2,10 +2,7 @@ package mna.homespital.controller;
 
 import mna.homespital.dto.Diagnosis;
 import mna.homespital.dto.Doctor;
-import mna.homespital.service.DiagnosisService;
-import mna.homespital.service.DoctorService;
-import mna.homespital.service.PharService;
-import mna.homespital.service.UserService;
+import mna.homespital.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,6 +30,8 @@ public class DoctorController {
   UserService userService;
   @Autowired
   DiagnosisService diagnosisService;
+  @Autowired
+  AllMedicalListService allMedicalListService;
 
   @Autowired
   PharService pharService;
@@ -91,7 +90,7 @@ public class DoctorController {
     String[] diag_types = request.getParameterValues("doctor_diagnosis_type");
     List<String> sortedDiag_types = new ArrayList<String>();
     for (String diag : diag_types) {
-      if (!diag.equals(null)) sortedDiag_types.add(diag);
+      if (!diag.equals("")) sortedDiag_types.add(diag);
     }
     String diag_type = sortedDiag_types.toString();
     System.out.println(diag_type);
@@ -223,6 +222,18 @@ public class DoctorController {
       e.printStackTrace();
     }
     return "success";
+  }
+
+  //가영: 의사 회원가입
+  @GetMapping("/doctorJoin")
+  public ModelAndView doctorJoin() {
+    ModelAndView mv = new ModelAndView("admin/doctorside/joinForm");
+    try {
+      mv.addObject("medicalList", allMedicalListService.allMedList());
+    } catch (Exception e) {
+      System.out.println("CANNOT GET LIST");
+    }
+    return mv;
   }
 
   // 진료 완료하기 diagnoisis_status (1 -> 3)(준근)
