@@ -57,7 +57,9 @@ public class DoctorController {
 
     try {
       doctorService.docLogin(doctor_email, doctor_password);
-      session.setAttribute("email", doctor_email);
+      Doctor doctor = doctorService.searchDocId(doctor_email);
+      doctor.setDoctor_password("");
+      session.setAttribute("doctor", doctor);
       return "redirect:/doctor/";
     } catch (Exception e) {
       model.addAttribute("err", e.getMessage());
@@ -73,23 +75,6 @@ public class DoctorController {
     }
   }
 
-  //나의진료내역 (인성)
-  @GetMapping("/customerList")
-  public String customerList(HttpSession session, Model m) throws Exception {
-    try {
-//            String email = (String) session.getAttribute("email");
-//            String name = (String) session.getAttribute("name");
-//            int searchNumber = pharService.getNumberByEmail(email);
-      Diagnosis diagnosis = new Diagnosis();
-//            diagnosis.setUser_number(searchNumber);
-      m.addAttribute("diagnosis", diagnosis);
-    } catch (Exception e) {
-      System.out.println("Catch() join");
-      e.printStackTrace();
-      return "common/err";
-    }
-    return "admin/phar/customerList";
-  }
 
   //가영:의사 회원가입
   @PostMapping("/doctorJoin.do")
@@ -146,7 +131,7 @@ public class DoctorController {
     try {
       System.out.println("여기들어오라ㅏ ㅇㅇㅇㅇㅇ");
       doctorService.join(doctor);
-      mv.setViewName("redirect:/loginForm");
+      mv.setViewName("redirect:/doctor/docLogin");
     } catch (Exception e) {
       e.printStackTrace();
       mv.setViewName("redirect:/doctorJoin");
@@ -157,7 +142,7 @@ public class DoctorController {
 
   //가영: 의사 이메일 중복확인
 
-  @PostMapping("/DoctorEmailoverlap")
+  @PostMapping("/Emailoverlap")
   @ResponseBody
   public boolean emailOverLap(@RequestParam String email) {
     boolean result = false;
@@ -202,10 +187,11 @@ public class DoctorController {
   public String docMedicalList(HttpSession session, Model m) throws Exception {
     System.out.println("docMedicalList() Join");
     try {
-      String email = (String) session.getAttribute("email");
-      int serarchDocNum = doctorService.searchDocId(email);
+      Doctor doctor = (Doctor) session.getAttribute("doctor");
+//      int serarchDocNum = doctorService.searchDocId(email);
       Diagnosis diagnosis = new Diagnosis();
-      diagnosis.setDoctor_number(serarchDocNum);
+      diagnosis.setDoctor_number(doctor.getDoctor_number());
+      //      이부분 준근님에게 물어보기
       m.addAttribute("diagnosis", diagnosis);
     } catch (Exception e) {
       e.printStackTrace();

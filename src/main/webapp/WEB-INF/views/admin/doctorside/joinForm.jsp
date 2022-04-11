@@ -19,7 +19,31 @@
 </head>
 
 <body class="is-preload">
+<section id="header">
+    <header>
+        <span class="image avatar"><img src="/resources/img/signUp/avatar.jpg" alt=""/></span>
+        <h1 id="logo"><a href="#">Homespital</a></h1>
+        <p>Hi</p>
 
+    </header>
+    <nav id="nav">
+        <ul>
+            <li><a href="#one" class="active">로그인 정보 입력<font color="red">(필수)</font></a></li>
+            <li><a href="#two" class="active">의사 정보 입력<font color="red">(필수)</font></a></li>
+            <li><a href="#three" class="active">추가 정보 입력(선택)</a></li>
+            <li><a href="#four">약관동의</a></li>
+        </ul>
+    </nav>
+    <footer>
+        <ul class="icons">
+            <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+            <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+            <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+            <li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+            <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+        </ul>
+    </footer>
+</section>
 
 
 <!-- Wrapper -->
@@ -45,7 +69,7 @@
 
     <!-- Main -->
     <div id="main">
-        <form id="form" name="form" action="doctorJoin.do" method="post">
+        <form id="form" name="form" action="/doctor/doctorJoin.do" method="post">
             <!-- One -->
             <section id="one">
                 <div class="container">
@@ -56,18 +80,16 @@
 
                     <div style="font-size: 25px">로그인 정보에 사용됩니다<strong style="color: #1abc9c">(필수)</strong></div>
                     <br>
-                    <div class="input-control" id="divEmail">
+                    <div class="input-control">
                         <label for="email" class="doctor-title">이메일</label>
-                        <div style="display:flex">
+<%--                        <div style="display:flex">--%>
                             <input type="email" id="email" name="doctor_email" placeholder="이메일을 입력해주세요">
-                            <%--                            <button type="button" onClick="doctorEmailoverlap()" style="width: 100%;">중복확인</button>--%>
-                            <%--                        <input type="button" onClick="docEmailOverlap()" class="btn" id="docEmailOverlap" value="중복"></input>--%>
-                            <%--                            <input type="button" onClick="doctorEmailoverlap()" value="회원가입" style="width: 100%;"></input>--%>
-                            <input type="button" id="doctorEmailoverlap" class="doubleChk" value="중복확인">
-                        </div>
+
+<%--                            <input type="button" id="doctorEmailoverlap" class="doubleChk" value="중복확인">--%>
+<%--                        </div>--%>
                         <div class="error"></div>
                     </div>
-                    <div class="input-control" id="divPassword">
+                    <div class="input-control">
                         <label for="password" class="doctor-title">비밀번호</label>
                         <input type="password" id="password" name="doctor_password" placeholder="비밀번호를 입력해주세요">
                         <div class="error"></div>
@@ -77,7 +99,7 @@
                         <input type="password" id="password2" name="password2" placeholder="비밀번호를 입력해주세요">
                         <div class="error"></div>
                     </div>
-                    <div class="input-control" id="divPhone">
+                    <div class="input-control">
                         <label for="phone" class="doctor-title">휴대폰 번호</label>
                         <div style="display:flex">
                             <input id="phone" type="text" name="doctor_phone" title="전화번호 입력"/>
@@ -105,29 +127,30 @@
                 <div class="container">
                     <div style="font-size: 25px">의사/병원정보<strong style="color: #1abc9c">(필수)</strong></div>
                     <br>
-                    <div class="input-control" id="divDoctorName">
+                    <div class="input-control" >
                         <label class="doctor-title" for="doctorName">의사이름</label>
                         <input type="text" id="doctorName" name="doctor_name" placeholder="이름을 입력해주세요">
                         <div class="error"></div>
                     </div>
-                    <div class="input-control" id="divDoctorNumber">
+                    <div class="input-control">
                         <label class="doctor-title" for="doctorNumber">의사면허번호</label>
                         <div style="display:flex">
                             <input id="doctorNumber" name="doctor_valid_number" type="text" maxlength="6">
                         </div>
                         <div class="error"></div>
                     </div>
-                    <div class="input-control" id="divDoctorProfile">
+                    <div class="input-control">
                         <label class="doctor-title" for="doctorProfile">의사사진</label>
                         <div style="display:flex">
                             <input id="doctorProfile" name="doctor_profile_image_name" type="text" maxlength="6">
                         </div>
                         <div class="error"></div>
                     </div>
-                    <div class="input-control" id="divBusinessNumber">
+                    <div class="input-control">
                         <label class="doctor-title" for="businessNumber">사업자번호</label>
                         <div style="display:flex">
-                            <input id="businessNumber" style="width: 70%" name="hospital_business_number" type="text" maxlength="10">
+                            <input id="businessNumber" style="width: 70%" name="hospital_business_number" type="text"
+                                   maxlength="10">
                             <input type="button" id="businessNumCheck" class="doubleChk" style="width: 15%" value="조회">
                         </div>
                         <div class="error"></div>
@@ -142,11 +165,11 @@
                                 <col style="width:20%">
                                 <col>
                             </colgroup>
-                            <tbody >
+                            <tbody>
                             <tr>
                                 <th>우편번호</th>
                                 <td>
-                                    <div id="divZipNo">
+                                    <div>
                                         <div style="display:flex">
                                             <input type="hidden" id="confmKey" name="confmKey" value="">
                                             <input type="text" id="zipNo" name="zipNo" readonly style="width:100%">
@@ -157,16 +180,18 @@
                                 </td>
                             </tr>
                             <tr>
-                                <div id="divRoadFullAddr">
+                                <div>
                                     <th>도로명주소</th>
-                                    <td><input type="text" id="roadFullAddr" name="roadFullAddr" style="width:100%"></td>
+                                    <td><input type="text" id="roadFullAddr" name="roadFullAddr" style="width:100%">
+                                    </td>
                                 </div>
                             </tr>
                             <tr>
-                                <div id="divAddrDetail">
+                                <div>
                                     <th>상세주소</th>
                                     <td>
-                                        <input type="text" id="addrDetail" name="addrDetail" style="width:100%" value="">
+                                        <input type="text" id="addrDetail" name="addrDetail" style="width:100%"
+                                               value="">
 
                                     </td>
                                 </div>
@@ -182,7 +207,7 @@
                     <div>
                         <%--                        <input type="hidde" name="doctor_diagnosis_type"/>--%>
                         <div style="display:flex">
-                            <select id='bComps' multiple='multiple' style="height: 200px;" >
+                            <select id='diagnosis_type' multiple='multiple' style="height: 200px;" >
                                 <c:forEach var="med" items="${medicalList}">
                                     <option value="${med.medical_name}">${med.medical_name}</option>
                                 </c:forEach>
@@ -193,11 +218,10 @@
                             <input type='button' id='btnLToR' value='▶'>
                             <input type='button' id='btnRToL' value='◀'>
 
-                            <select id='aComps' multiple='multiple' name="doctor_diagnosis_type" style="height: 200px;"></select>
+                            <select id='diagnosis_type2' multiple='multiple' name="doctor_diagnosis_type" style="height: 200px;"></select>
 
                         </div>
                     </div>
-
 
 
                     <div>
@@ -207,7 +231,7 @@
                             <div style="display:flex">
                                 <%--           애도 히든추가                --%>
                                 <%--                        <input type="hidden" id="openClose" name="openClose">--%>
-                                <div id="divOpen">
+                                <div>
                                     <select name="open" class="form-select" id="open" style="width: 35%; margin-left: 30px" aria-label="오픈 진료 시간">
                                         <option selected value="" style="text-align: center;">진료 시작</option>
                                         <option value="9" id="open9" style="text-align: center">9</option>
@@ -216,7 +240,8 @@
                                     </select>
                                 </div>
                                 <div id="divEnd">
-                                    <select name="close" class="form-select" id="end" style="width: 35%;  margin-left: 40px"  aria-label="마감 진료 시간">
+                                    <select name="close" class="form-select" id="end"
+                                            style="width: 35%;  margin-left: 40px" aria-label="마감 진료 시간">
                                         <option selected value="" style="text-align: center;">진료 마감</option>
                                         <option value="17" id="end17" style="text-align: center">17</option>
                                         <option value="18" id="end18" style="text-align: center">18</option>
@@ -233,13 +258,18 @@
                         <label style="font-size: 10pt;">단위: 시간</label>
                         <div>
                             <div style="display:flex">
-                                <%--                                <input type="hidden" name="lunch-time">--%>
+
+<%--                                <input type="hidden" name="lunch-time">--%>
+    <div id="divStartLunch">
                                 <select name='lunch-st' class="form-select" id="lunch-st" style="width: 35%; margin-left: 30px" aria-label="Default select example">
+
                                     <option selected style="text-align: center;">점심시간(부터)</option>
                                     <option value="11" id="startLunch110" style="text-align: center">11</option>
                                     <option value="12" id="startLunch120" style="text-align: center">12</option>
                                     <option value="13" id="startLunch130" style="text-align: center">13</option>
                                 </select>
+    </div>
+    <div id="divEndLunch">
                                 <select name='lunch-cl' class="form-select" id="lunch-cl" style="width: 35%;  margin-left: 40px"  aria-label="Default select example">
                                     <option selected style="text-align: center;">점심시간(까지)</option>
                                     <option value="12" id="endLunch121" style="text-align: center">12</option>
@@ -247,13 +277,15 @@
                                     <option value="14" id="endLunch141" style="text-align: center">14</option>
 
                                 </select>
+    </div>
                             </div>
-                        </div>
+                    </div>
 
-                        <script>
-                            // lunch-st 와 umnch-cl 의 벨류값 hidden 에 넘기기
-                            const str = document.getElementsByName("lunch-st") +"~" + document.getElementsByName("lunch-cl")
-                        </script>
+                        <%--                        <script>--%>
+                        <%--                            // lunch-st 와 umnch-cl 의 벨류값 hidden 에 넘기기--%>
+                        <%--                            const str = document.getElementsByName("lunch-st") +"~" + document.getElementsByName("lunch-cl")--%>
+
+                        <%--                        </script>--%>
                         <br>
 
                         <label class="doctor-title">병원 정기 휴무 선택</label><label style="font-size: 10pt;">(다중선택가능)</label>
@@ -263,30 +295,42 @@
                             <%--                            <input type="hidden" id="holiday" name="holiday">--%>
                             <%--                            <label for="holiday" class="rest-check"style="margin-left: 50px">--%>
 
-                            <span style="font-size: 15px; color: #000000">
-                                    <input type="checkbox"  name="non" id="non"> 휴무없음</span>
-                            <%--체크박스 인풋 span안에 넣어놨음--%>
-                            <span style="font-size: 15px; color: #000000" > <input type="checkbox" class="check" name="holiday" id="mon" value="월" style="margin-left: 7px">월</span>
+                                <span style="font-size: 15px; color: #000000">
 
-                            <span style="font-size: 15px; color: #000000"><input type="checkbox" class="check"name="holiday" id="tue" value="화" style="margin-left: 7px">화</span>
+<%--체크박스 인풋 span안에 넣어놨음--%>
+                                <span style="font-size: 15px; color: #000000" > <input type="checkbox" class="check" name="holiday" id="mon" value="월" style="margin-left: 7px">월</span>
 
-                            <span style="font-size: 15px; color: #000000"><input type="checkbox" class="check"name="holiday" id="wed" value="수" style="margin-left: 7px">수</span>
+                            <span style="font-size: 15px; color: #000000"><input type="checkbox" class="check"
+                                                                                 name="holiday" id="tue" value="화"
+                                                                                 style="margin-left: 7px">화</span>
 
-                            <span style="font-size: 15px; color: #000000"> <input type="checkbox" class="check"name="holiday" id="thurs" value="목" style="margin-left: 7px">목</span>
+                            <span style="font-size: 15px; color: #000000"><input type="checkbox" class="check"
+                                                                                 name="holiday" id="wed" value="수"
+                                                                                 style="margin-left: 7px">수</span>
 
-                            <span style="font-size: 15px; color: #000000"><input type="checkbox" class="check"name="holiday" id="fri" value="금" style="margin-left: 7px">금</span>
+                            <span style="font-size: 15px; color: #000000"> <input type="checkbox" class="check"
+                                                                                  name="holiday" id="thurs" value="목"
+                                                                                  style="margin-left: 7px">목</span>
 
-                            <span style="font-size: 15px; color: #000000"><input type="checkbox" class="check"name="holiday" id="sat" value="토" style="margin-left: 7px">토</span>
+                            <span style="font-size: 15px; color: #000000"><input type="checkbox" class="check"
+                                                                                 name="holiday" id="fri" value="금"
+                                                                                 style="margin-left: 7px">금</span>
 
-                            <span style="font-size: 15px; color: #000000"><input type="checkbox"class="check" name="holiday" id="sun" value="일" style="margin-left: 7px">일</span>
+                            <span style="font-size: 15px; color: #000000"><input type="checkbox" class="check"
+                                                                                 name="holiday" id="sat" value="토"
+                                                                                 style="margin-left: 7px">토</span>
+
+                            <span style="font-size: 15px; color: #000000"><input type="checkbox" class="check"
+                                                                                 name="holiday" id="sun" value="일"
+                                                                                 style="margin-left: 7px">일</span>
                             <%--                            </label>--%>
 
                         </div>
                         <div style="font-size: 12px;">* 병원 운영시간을 기반으로 비대면 진료 예약을 받을 수 있습니다.</div>
 
-                        <div style="font-size: 12px;">  시간당 최대 10명 예약이 가능합니다.</div>
+                        <div style="font-size: 12px;"> 시간당 최대 10명 예약이 가능합니다.</div>
 
-                        <div style="font-size: 12px;">  예약시간 관리는 환자리스트에서 확인 가능합니다.</div>
+                        <div style="font-size: 12px;"> 예약시간 관리는 환자리스트에서 확인 가능합니다.</div>
                     </div>
 
                 </div>
@@ -323,11 +367,8 @@
                         </div>
                     </div>
                 </div>
-
-
             </section>
             <br><br><br><br>
-
 
             <!-- Four -->
             <section id="four">
@@ -335,7 +376,7 @@
                     <div class="">
                         <div class="">
                             <div style="font-size: 25px">약관동의</div>
-                            <hr>
+                            <hr style="height:3px">
                             <label for="agree_all" style="display:block">
                                 <input type="checkbox" name="agree_all" id="agree_all">
                                 <span>모두 동의합니다</span>
@@ -353,13 +394,14 @@
                                 <span>개인정보 이용 동의<strong style="color: #1abc9c">(필수)</strong></span>
                             </label>
                             <label style="display:block;">
-                                <input type="checkbox" name="agree" value="4">
-                                <span>이벤트, 혜택정보 수신동의<strong class="select_disable" style="color: #b2afaf">(선택)</strong></span>
+                                <input type="checkbox" name="agree2" value="4">
+                                <span>이벤트, 혜택정보 수신동의<strong class="select_disable" style="color: #1abc9c">(선택)</strong></span>
                             </label>
+                            <div class="error" style="color: #ff3860; font-size: 20px;"></div>
                         </div>
                     </div>
-                    <br><br>
-                    <button type="submit" class="btn">Sign in</button>
+                    <br><br><br>
+                    <input id="subbtn" type="button" value="회원가입" style="width: 100%;" onClick="checkAll()"></input>
                 </div>
             </section>
         </form>
@@ -393,7 +435,7 @@
 <script src="/resources/js/signUp/doctorCheck.js"></script>
 
 <script>
-    $(function() {
+    $(function () {
         //-- 왼쪽 -> 오른쪽 이동
         $('#btnLToR').click(function (event) {
             $("#bComps option:selected").each(function () {
@@ -403,6 +445,7 @@
             });
             // alert($("#aComps").val()); -- 이동확인
         });
+
         //-- 오른쪽 -> 왼쪽 이동
         $("#btnRToL").click(function (event) {
             $("#aComps option:selected").each(function () {
@@ -413,40 +456,47 @@
             // alert($("#bComps").val()); -- 이동확인
         });
     });
+
+
 </script>
 
 <%--사업자 번호 조회 태영--%>
 <script>
-    $(function(){
-        $('#businessNumCheck').click(function(){
-            let ceonumber=$('#businessNumber').val();
+    $(function () {
+        $('#businessNumCheck').click(function () {
+            let ceonumber = $('#businessNumber').val();
             let arrayData = {
-                "b_no":[ceonumber]
+                "b_no": [ceonumber]
             }
+
             // console.log(ceonumber);
             // console.log(arrayData);
             $.ajax({
-                url:"https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=smkh950RF%2BKUYSGK2GSWio7MhSh80eabzme3oFO%2B%2B%2FbR9Zl0vWADP9G0sx2iCZJK5TihKXg4AYHUMb9XVYgX3w%3D%3D",
-                type:"post",
+                url: "https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=smkh950RF%2BKUYSGK2GSWio7MhSh80eabzme3oFO%2B%2B%2FbR9Zl0vWADP9G0sx2iCZJK5TihKXg4AYHUMb9XVYgX3w%3D%3D",
+                type: "post",
                 data: JSON.stringify(arrayData), // json 을 string으로 변환하여 전송
                 dataType: "JSON",
                 contentType: "application/json",
                 accept: "application/json",
-                success: function(data,result) {
+                success: function (data, result) {
                     console.log(data);
-                    for(let i=0;i<data.data.length;i++){
+                    for (let i = 0; i < data.data.length; i++) {
                         console.log(data.data[i]);
                         console.log(data.data[i].tax_type);
-                        if(data.data[i].tax_type === "국세청에 등록되지 않은 사업자등록번호입니다." ) {
+                        if (data.data[i].tax_type === "국세청에 등록되지 않은 사업자등록번호입니다.") {
                             alert("국세청에 등록되지 않은 사업자등록번호입니다.");
                         } else {
                             alert("확인되었습니다.")
                         }
                     }
+
                 }
+
             })
+
         })
     })
+
 </script>
 
 

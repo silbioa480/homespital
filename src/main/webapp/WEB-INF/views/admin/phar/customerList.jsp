@@ -95,18 +95,18 @@
         let list = null;
 
         $.ajax({
-            url: '/medicalRecordsList',
+            url: '/pharmacy/customerRecordsList',
             type: 'GET',
             datatype: "json",
-            data: {
-                "user_number": ${diagnosis.user_number}
-            },
+            // data: {
+            //     "user_number": 0
+            // },
             success: function (data) {
                 list = data;
                 next_load(list);
             }
         })
-
+<%--       ${diagnosis.user_number}--%>
         function next_load(list) {
             $.each(list, function (index, item) {
                 if (index >= page * 30 && index < page * 30 + 30) {

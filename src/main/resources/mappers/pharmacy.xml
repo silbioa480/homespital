@@ -27,14 +27,26 @@
     <!--  나의 진료내역 리스트 보기(인성)  -->
     <select id="pharCustomerRecordsList" resultType="HashMap" parameterType="int">
 	    <![CDATA[
-        select di.*, doc.*, us.*
-        from diagnosis di,
-             doctor doc,
-             user us
-        where di.pharmacy_number = #{pharmacy_number}
-          and di.doctor_number = doc.doctor_number
-          and di.user_number = us.user_number
-        order by di.create_date desc
+        select di.diagnosis_number, di.doctor_number, di.pharmacy_number, di.diagnosis_type, di.diagnosis_time,
+               di.diagnosis_wait_number, di.diagnosis_content, di.diagnosis_image_name, di.diagnosis_status, di.is_diagnosis_upload,
+               di.is_prescription_upload, di.diagnosis_file_name, di.prescription_file_name, di.diagnosis_money, di.prescription_money,
+               di.is_delivery, di.billing_key, di.doctor_opinion, di.pharmacy_name, di.pharmacy_address, di.pharmacy_phone, di.user_address,
+               di.create_date, di.update_date,
+
+               doc.doctor_email, doc.doctor_phone, doc.doctor_name, doc.hospital_name, doc.hospital_telephone,
+               doc.hospital_business_number, doc.doctor_diagnosis_type, doc.working_time, doc.lunch_time,
+               doc.holiday, doc.zip_code, doc.street_address, doc.detail_address, doc.hospital_fax, doc.hospital_url,
+               doc.create_date, doc.update_date,
+
+               us.user_number,  us.user_email, us.user_name,
+               us.user_registration_number, us.user_phone, us.billing_key, us.create_date,
+               us.update_date
+
+        from `diagnosis` di
+                 join `doctor` doc on di.doctor_number = doc.doctor_number
+                 join `user` us on di.user_number = us.user_number
+        where di.pharmacy_number = 1
+        order by di.create_date desc;
         ]]>
     </select>
 
@@ -51,12 +63,10 @@
     <insert id="insertPharmacyMember" parameterType="pharmacy">
         <![CDATA[
         insert into `pharmacy`(pharmacy_email, pharmacy_password, pharmacy_mobile, pharmacy_business,
-                               pharmacy_name,
-                               pharmacy_institution, pharmacy_phone, zip_code,
+                               pharmacy_name,  pharmacy_phone, zip_code,
                                street_address, detail_address)
         values (#{pharmacy_email}, #{pharmacy_password}, #{pharmacy_mobile}, #{pharmacy_business},
-                #{pharmacy_name},
-                #{pharmacy_institution}, #{pharmacy_phone}, #{zip_code},
+                #{pharmacy_name}, #{pharmacy_phone}, #{zip_code},
                 #{street_address}, #{detail_address})
         ]]>
     </insert>

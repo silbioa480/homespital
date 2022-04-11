@@ -86,7 +86,7 @@
     </select>
 
     <!-- email값으로 의사아이디 불러오기   -->
-    <select id="searchDocId" resultType="int" parameterType="String">
+    <select id="searchDocId" resultType="Doctor" parameterType="String">
 	    <![CDATA[
         select doctor_number
         from doctor

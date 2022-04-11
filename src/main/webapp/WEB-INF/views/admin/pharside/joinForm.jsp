@@ -22,8 +22,9 @@
     </header>
     <nav id="nav">
         <ul>
-            <li><a href="#one" class="active">약국정보입력(필수)</a></li>
-            <li><a href="#two">약관동의</a></li>
+            <li><a href="#one" class="active">로그인 정보 입력<font color="red">(필수)</font></a></li>
+            <li><a href="#two" class="active">약국 정보 입력<font color="red">(필수)</font></a></li>
+            <li><a href="#three">약관동의</a></li>
         </ul>
     </nav>
     <footer>
@@ -41,10 +42,12 @@
 <div id="wrapper">
     <div id="main">
         <!-- One -->
-        <form id="form" name="form" action="pharmacyJoin.do" method="post">
+        <form id="form" name="form" action="/pharmacy/join.do" method="post">
             <section id="one">
                 <div class="container">
-                    <h5>로그인 정보에 사용됩니다(필수)</h5>
+                    <h3 style="margin-top: 100px">약사 회원가입</h3>
+                    <hr>
+                    <div style="font-size: 25px">로그인 정보에 사용됩니다<strong style="color: #1abc9c">(필수)</strong></div>
                     <hr style="height:3px">
                     <diu class="input-control">
                         <label for="email">이메일</label>
@@ -69,12 +72,15 @@
                         </div>
                         <div class="error"></div>
                         <br/>
-                        <div style="display:flex">
-                            <input id="phone2" type="text" name="phone2" title="인증번호 입력" disabled/>
-                            <input type="button" id="phoneChk2" class="doubleChk" value="본인인증">
+                        <div class="input-control">
+                            <div style="display:flex">
+                                <input id="phone2" type="text" name="phone2" title="인증번호 입력" disabled/>
+                                <input type="button" id="phoneChk2" class="doubleChk" value="본인인증">
+                            </div>
+                            <div class="error"></div>
+                            <span class="point successPhoneChk">휴대폰 번호 입력후 인증번호 보내기를 해주십시오.</span>
+                            <input type="hidden" id="phoneDoubleChk"/>
                         </div>
-                        <span class="point successPhoneChk">휴대폰 번호 입력후 인증번호 보내기를 해주십시오.</span>
-                        <input type="hidden" id="phoneDoubleChk"/>
                     </div>
                 </div>
             </section>
@@ -84,7 +90,7 @@
             <!-- Two -->
             <section id="two">
                 <div class="container">
-                    <h5>약국정보입력(필수)</h5>
+                    <div style="font-size: 25px">약국정보입력<strong style="color: #1abc9c">(필수)</strong></div>
                     <hr style="height:3px">
                     <div class="input-control">
                         <label for="businessNumber">사업자 번호</label>
@@ -100,16 +106,16 @@
                         <input type="text" id="pharmacyName" name="pharmacy_name" placeholder="약국명을 입력해주세요">
                         <div class="error"></div>
                     </div>
-                    <div class="input-control">
-                        <label for="institutionNumber">요양기관 번호</label>
-                        <div style="display:flex">
-                            <input type="text" id="institutionNumber" name="pharmacy_institution"
-                                   placeholder="요양기관 번호를 입력해주세요">
-                            <input class="institutionBtn" type="button" value="중복 확인">
-                        </div>
-                        <div class="error"></div>
+                    <%--                    <div class="input-control">--%>
+                    <%--                        <label for="institutionNumber">요양기관 번호</label>--%>
+                    <%--                        <div style="display:flex">--%>
+                    <%--                            <input type="text" id="institutionNumber" name="pharmacy_institution"--%>
+                    <%--                                   placeholder="요양기관 번호를 입력해주세요">--%>
+                    <%--                            <input class="institutionBtn" type="button" value="중복 확인">--%>
+                    <%--                        </div>--%>
+                    <%--                        <div class="error"></div>--%>
 
-                    </div>
+                    <%--                    </div>--%>
                     <div class="input-control">
                         <label for="pharmacyPhone">약국 전화번호</label>
                         <input type="text" id="pharmacyPhone" name="pharmacy_phone" placeholder="약국 전화번호를 입력해주세요">
@@ -128,7 +134,7 @@
                                 <td>
                                     <div style="display:flex">
                                         <input type="hidden" id="confmKey" name="confmKey" value="">
-                                        <input type="text" id="zipNo" name="zipNo" readonly style="width:200px">
+                                        <input type="text" id="zipNo" name="zipNo" style="width:200px">
                                         <input type="button" value="주소검색" onclick="goPopup()"
                                                style=" margin-left:30px;">
                                     </div>
@@ -147,6 +153,7 @@
                             </tr>
                             </tbody>
                         </table>
+                        <div class="error"></div>
                     </div>
 
                 </div>
@@ -158,7 +165,7 @@
                 <div class="container">
                     <div class="">
                         <div class="">
-                            <h5>약관동의</h5>
+                            <div style="font-size: 25px">약관동의</div>
                             <hr style="height:3px">
                             <label for="agree_all" style="display:block">
                                 <input type="checkbox" name="agree_all" id="agree_all">
@@ -166,24 +173,25 @@
                             </label>
                             <label style="display:block">
                                 <input type="checkbox" name="agree" value="1">
-                                <span>이용약관 동의<strong>(필수)</strong></span>
+                                <span>이용약관 동의<strong style="color: #1abc9c">(필수)</strong></span>
                             </label>
                             <label style="display:block">
                                 <input type="checkbox" name="agree" value="2">
-                                <span>개인정보 수집, 이용 동의<strong>(필수)</strong></span>
+                                <span>개인정보 수집, 이용 동의<strong style="color: #1abc9c">(필수)</strong></span>
                             </label>
                             <label style="display:block">
                                 <input type="checkbox" name="agree" value="3">
-                                <span>개인정보 이용 동의<strong>(필수)</strong></span>
+                                <span>개인정보 이용 동의<strong style="color: #1abc9c">(필수)</strong></span>
                             </label>
                             <label style="display:block;">
-                                <input type="checkbox" name="agree" value="4">
-                                <span>이벤트, 혜택정보 수신동의<strong class="select_disable">(선택)</strong></span>
+                                <input type="checkbox" name="agree2" value="4">
+                                <span>이벤트, 혜택정보 수신동의<strong class="select_disable" style="color: #1abc9c">(선택)</strong></span>
                             </label>
+                            <div class="error" style="color: #ff3860; font-size: 20px;"></div>
                         </div>
                     </div>
                     <br><br><br>
-                    <input id="subbtn" type="submit" value="회원가입" style="width: 100%;"></input>
+                    <input id="subbtn" type="button" value="회원가입" style="width: 100%;" onClick="checkAll()"></input>
                 </div>
             </section>
         </form>
