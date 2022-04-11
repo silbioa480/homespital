@@ -201,6 +201,8 @@
                 }
             }
         });
+
+
     })
 
     // 진료 시작하기
@@ -286,23 +288,11 @@
         }
     }
 
+
+
+
+
 </script>
 
-<%--<script>--%>
-<%--    //진료시작시 문자전송 + 카카오 오픈링크 태영--%>
-<%--    $(function(){--%>
-<%--        $("#startBtn").click(function(){--%>
-<%--            $.ajax({--%>
-<%--                url:"sendOpentalk",--%>
-<%--                type:"POST",--%>
-<%--                data:${doctor.doctor_number},--%>
-<%--                success:function(data,result){--%>
-<%--                    console.log(data);--%>
-<%--                    console.log(result);--%>
-<%--                }--%>
-<%--            })--%>
-<%--        })--%>
-<%--    })--%>
 
-<%--</script>--%>
 </html>
