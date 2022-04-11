@@ -74,18 +74,39 @@
                        value="/WEB-INF/views/admin/doctorside/{1}.jsp"/>
     </definition>
 
+    <definition name="admin/doctorside/*/*" extends="D_sideLayout">
+        <put-attribute name="body"
+                       value="/WEB-INF/views/admin/doctorside/{1}/{2}.jsp"/>
+    </definition>
+
     <definition name="admin/pharside/*" extends="P_sideLayout">
         <put-attribute name="body"
                        value="/WEB-INF/views/admin/pharside/{1}.jsp"/>
     </definition>
+
+    <definition name="admin/pharside/*/*" extends="P_sideLayout">
+        <put-attribute name="body"
+                       value="/WEB-INF/views/admin/pharside/{1}/{2}.jsp"/>
+    </definition>
+
     <definition name="admin/doctor/*" extends="D_baseLayout">
         <put-attribute name="body"
                        value="/WEB-INF/views/admin/doctor/{1}.jsp"/>
     </definition>
 
+    <definition name="admin/doctor/*/*" extends="D_baseLayout">
+        <put-attribute name="body"
+                       value="/WEB-INF/views/admin/doctor/{1}/{2}.jsp"/>
+    </definition>
+
     <definition name="admin/phar/*" extends="P_baseLayout">
         <put-attribute name="body"
                        value="/WEB-INF/views/admin/phar/{1}.jsp"/>
+    </definition>
+
+    <definition name="admin/phar/*/*" extends="P_baseLayout">
+        <put-attribute name="body"
+                       value="/WEB-INF/views/admin/phar/{1}/{2}.jsp"/>
     </definition>
 
 

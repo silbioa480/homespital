@@ -4,6 +4,8 @@ import mna.homespital.dto.Diagnosis;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
+
 @Mapper
 @Repository
 public interface DiagnosisDAO {
@@ -14,4 +16,7 @@ public interface DiagnosisDAO {
 
     //  진료차트폼 ( 인성 )
     void insertDiagnosis(Diagnosis diagnosis) throws Exception;
+
+    // 훈 : diagnosis_number로 해당진료 상세내역 가져오기
+    public HashMap<String, Object> diagnosisDetail(int diagnosis_number) throws Exception;
 }
