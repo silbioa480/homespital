@@ -19,8 +19,8 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/signUp.css"/>
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
-<%--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>--%>
-<%--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"/>--%>
+    <%--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>--%>
+    <%--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"/>--%>
 
     <%--    <script src="./jquery-3.4.1.min.js"></script>--%>
     <%--    <link rel="stylesheet" href="./bootstrapt/css/bootstrap.min.css" />--%>
@@ -210,26 +210,13 @@
 
                         <h3>카드 관리</h3>
                         <hr>
-                        <input type="text" id="default_card" value="****-****-****-1423" disabled="disabled"/>
-                        <%--                    <div>--%>
-                        <%--                        <h5>카드 별칭</h5>--%>
-                        <%--                        <div style="display:flex">--%>
-                        <%--                            <input type="text" id="cardName" placeholder="카드 별칭을 입력하세요." maxlength="8" style="width: 50%" readonly>--%>
-                        <%--                        </div>--%>
-
-                        <%--                    <h5>카드 뒷자리 번호</h5>--%>
-                        <%--                    <div class="creditCardNumber">--%>
-                        <%--                        <input type="text" class="moveNumber" id="lastCardNum" onKeyup="inputMoveNumber(this);" maxlength="4" placeholder="카드 번호 뒷자리 4개를 입력하세요."--%>
-                        <%--                               style="width:50%" readonly/>--%>
-                        <%--                    </div>--%>
-
-                        <%--                    <div class="creditCardValidity">--%>
-                        <%--                        <h5>카드 유효기간</h5>--%>
-                        <%--                        <input type="text" class="validThru" id="cardMMYYNum" onKeyup="inputValidThru(this);" placeholder="MMYY"--%>
-                        <%--                               maxlength="4" style="width: 50%" readonly/>--%>
-                        <%--                    </div>--%>
-<%--                        <input type="button" id="addCard" name="addCard" class="addCard" value="관리">--%>
-                        <button id="writeCard" class="btn" onclick="return false;">카드 추가</button>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="default_card" value="${cardInfo}"
+                                   disabled="disabled"/>
+                            <button id="writeCard" class="btn" style="width: fit-content !important;"
+                                    onclick="return false;">카드 등록/변경
+                            </button>
+                        </div>
                         <%--                        모달 --%>
                         <div class="modal fade" id="addCardModal" tabindex="-1" role="dialog"
                              aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -275,7 +262,7 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5>카드등록</h5>
+                                    <h5>카드 등록/변경</h5>
                                 </div>
                                 <div class="modal-body">
                                     <div class="input-control">
@@ -324,7 +311,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button class="btn border-dark" type="button" id="submitNewCard"
-                                            onclick="submitNewCardId(); return false;">추가
+                                            onclick="submitNewCardId(); return false;">변경
                                     </button>
                                     <button class="btn" type="button" data-bs-dismiss="modal">취소</button>
                                 </div>
@@ -457,67 +444,67 @@
             }
         }
 
-        function submitNewCardId() {
-            if ($("#cardNameModal").val() == "") {
-                alert("카드 별칭을 입력해주세요.");
-                $("#cardNameModal").focus();
-                return false;
-            }
-            if ($("#cardNumModal1").val().length != 4) {
-                alert("1.4자리");
-                $("#cardNumModal1").focus();
-                return false;
-            } else if ($("#cardNumModal2").val().length != 4) {
-                alert("2.4자리");
-                $("#cardNumModal2").focus();
-                return false;
-            } else if ($("#cardNumModal3").val().length != 4) {
-                alert("3.4자리");
-                $("#cardNumModal3").focus();
-                return false;
-            } else if ($("#cardNumModal4").val().length != 4) {
-                alert("4.4자리");
-                $("#cardNumModal4").focus();
-                return false;
-            }
-            if ($("#cardMMYYNumModal").val().length != 4) {
-                alert("유효기간 숫자 4자리를 입력해주세요.");
-                $("#cardMMYYNumModal").focus();
-                return false;
-            }
-            if ($("#cardPassword").val().length != 2) {
-                alert("카드 비밀번호 앞자리 2자리를 입력해주세요.");
-                $("#cardPassword").focus();
-                return false;
-            }
-            card_number = $('#cardNumModal1').val() + '-' + $('#cardNumModal2').val() + '-' + $('#cardNumModal3').val() + '-' + $('#cardNumModal4').val();
-            expiry = '20' + $('#cardMMYYNumModal').val().substr(2, 2) + '-' + $('#cardMMYYNumModal').val().substr(0, 2);
-            pwd_2digit = $('#cardPassword').val();
-            // var formData = new FormData();
-            // formData.append("card_number", card_number);
-            // formData.append("expiry", expiry);
-            // formData.append("pwd_2digit", pwd_2digit);
-            $.ajax({
-                url: "/writeMyCard",
-                type: "POST",
-                cache: false,
-                data: {
-                    "card_name": $("#cardNameModal").val(),
-                    "card_number": card_number,
-                    "expiry": expiry,
-                    "pwd_2digit": pwd_2digit,
-                },
-                contentType: "application/x-www-form-urlencoded; charset=UTF-8;",
-                success: function (data) {
-                    alert("성공하였습니다.");
-                    //$('#writeCardModal').modal("hide");
-                },
-                error: function (data) {
-                    alert("에러가 발생했습니다.")
-                }
-            })
+        // function submitNewCardId() {
+        if ($("#cardNameModal").val() == "") {
+            alert("카드 별칭을 입력해주세요.");
+            $("#cardNameModal").focus();
             return false;
         }
+        if ($("#cardNumModal1").val().length != 4) {
+            alert("1.4자리");
+            $("#cardNumModal1").focus();
+            return false;
+        } else if ($("#cardNumModal2").val().length != 4) {
+            alert("2.4자리");
+            $("#cardNumModal2").focus();
+            return false;
+        } else if ($("#cardNumModal3").val().length != 4) {
+            alert("3.4자리");
+            $("#cardNumModal3").focus();
+            return false;
+        } else if ($("#cardNumModal4").val().length != 4) {
+            alert("4.4자리");
+            $("#cardNumModal4").focus();
+            return false;
+        }
+        if ($("#cardMMYYNumModal").val().length != 4) {
+            alert("유효기간 숫자 4자리를 입력해주세요.");
+            $("#cardMMYYNumModal").focus();
+            return false;
+        }
+        if ($("#cardPassword").val().length != 2) {
+            alert("카드 비밀번호 앞자리 2자리를 입력해주세요.");
+            $("#cardPassword").focus();
+            return false;
+        }
+        //     card_number = $('#cardNumModal1').val() + '-' + $('#cardNumModal2').val() + '-' + $('#cardNumModal3').val() + '-' + $('#cardNumModal4').val();
+        //     expiry = '20' + $('#cardMMYYNumModal').val().substr(2, 2) + '-' + $('#cardMMYYNumModal').val().substr(0, 2);
+        //     pwd_2digit = $('#cardPassword').val();
+        //     // var formData = new FormData();
+        //     // formData.append("card_number", card_number);
+        //     // formData.append("expiry", expiry);
+        //     // formData.append("pwd_2digit", pwd_2digit);
+        //     $.ajax({
+        //         url: "/writeMyCard",
+        //         type: "POST",
+        //         cache: false,
+        //         data: {
+        //             "card_name": $("#cardNameModal").val(),
+        //             "card_number": card_number,
+        //             "expiry": expiry,
+        //             "pwd_2digit": pwd_2digit,
+        //         },
+        //         contentType: "application/x-www-form-urlencoded; charset=UTF-8;",
+        //         success: function (data) {
+        //             alert("성공하였습니다.");
+        //             //$('#writeCardModal').modal("hide");
+        //         },
+        //         error: function (data) {
+        //             alert("에러가 발생했습니다.")
+        //         }
+        //     })
+        //     return false;
+        // }
 
         // 훈:
         card_number = $('#cardNumModal1').val() + '-' + $('#cardNumModal2').val() + '-' + $('#cardNumModal3').val() + '-' + $('#cardNumModal4').val();
@@ -537,11 +524,13 @@
                 "card_number": card_number,
                 "expiry": expiry,
                 "pwd_2digit": pwd_2digit,
+                "insertIntoMyData": true
             },
             contentType: "application/x-www-form-urlencoded; charset=UTF-8;",
             success: function (data) {
                 alert("성공하였습니다.");
-                //$('#writeCardModal').modal("hide");
+                $('#default_card').val($("#cardNameModal").val() + ' (' + $('#cardNumModal4').val() + ')');
+                $('#writeCardModal').modal("hide");
             },
             error: function (data) {
                 alert("에러가 발생했습니다.")

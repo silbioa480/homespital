@@ -32,8 +32,8 @@
     </div>
     <nav id="nav">
         <ul>
-            <li><a href="/list">진료과선택</a></li>
-            <li><a href="#" class="active">의료진선택</a></li>
+            <li><a href="/medicalSearch">진료과선택</a></li>
+            <li><a href="/doctorList" class="active">의료진선택</a></li>
         </ul>
     </nav>
     <footer>
@@ -97,7 +97,7 @@
 
 <div style="padding-right: 40px;">
     <div class="d-flex m-3 justify-content-between">
-        <span class="my-auto">총<c:if test="${not empty doctorList}">${fn:length(doctorList)}</c:if>명</span>
+        <span class="my-auto">총 ${not empty doctorList? fn:length(doctorList) : '0'}명</span>
         <div>
             <input type="hidden" name="docListSortOption" id="docListSortOption" value="false">
             <button class="btn btn-secondary rounded-pill">실시간 진료</button>
@@ -105,7 +105,8 @@
         </div>
     </div>
     <div class="card p-3">
-        <c:if test="${not empty doctorList}">
+        <c:choose>
+        <c:when test="${not empty doctorList}">
             <c:forEach var="doctor" items="${doctorList}" varStatus="status">
 
                 <div class="row g-0">
@@ -176,7 +177,11 @@
                     <hr>
                 </c:if>
             </c:forEach>
-        </c:if>
+        </c:when>
+            <c:otherwise>
+<%--                노 데이터--%>
+            </c:otherwise>
+        </c:choose>
     </div>
     <nav class="text-center" id="pageList">
         <ul class="pagination justify-content-center">

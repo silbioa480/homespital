@@ -1,6 +1,5 @@
 package mna.homespital.controller;
 
-import mna.homespital.dto.Doctor;
 import mna.homespital.dto.Pharmacy;
 import mna.homespital.service.DiagnosisService;
 import mna.homespital.service.PharService;
@@ -128,7 +127,6 @@ public class PharmacyController {
     //약사의 환자처방내역 (인성, 준근)
     @GetMapping("/pharMedicalList")
     public String pharMedicalList(HttpSession session, Model m) {
-        System.out.println("pharMedicalList() join");
         try {
             Pharmacy pharmacy = (Pharmacy) session.getAttribute("pharmacy");
             int pharmacy_number = pharmacy.getPharmacy_number();
@@ -144,15 +142,11 @@ public class PharmacyController {
     @ResponseBody
     @GetMapping("/pharMedicalRecords")
     public ArrayList<HashMap<String, Object>> pharMedicalRecords(@RequestParam int pharmacy_number) {
-        System.out.println("pharMedicalRecords() join");
-        System.out.println("pharmacy_number = " + pharmacy_number);
         ArrayList<HashMap<String, Object>> pharMedicalList = new ArrayList<>();
         try {
             Pharmacy pharmacy = (Pharmacy) session.getAttribute("pharmacy");
-            System.out.println("pharmacy = " + pharmacy);
             if (pharmacy == null) throw new Exception("로그인 되어있지않음.");
             pharMedicalList = pharService.pharMedicalRecords(pharmacy_number);
-            System.out.println("pharMedicalList = " + pharMedicalList);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -231,7 +225,6 @@ public class PharmacyController {
     @ResponseBody
     @PostMapping("/makeMedicine")
     public String makeMedicine(int diagnosis_number) {
-
         try {
             pharService.makeMedicine(diagnosis_number);
         } catch (Exception e) {
