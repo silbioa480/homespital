@@ -21,8 +21,8 @@ public class PharServiceImpl implements PharService {
 
     //환자 진료내역 출력 (인성)
     @Override
-    public ArrayList<HashMap<String, Object>> pharCustomerRecordsList(int phar_number) throws Exception {
-        return pharmacyDAO.pharCustomerRecordsList(phar_number);
+    public ArrayList<HashMap<String, Object>> pharMedicalRecords(int pharmacy_number) throws Exception {
+        return pharmacyDAO.pharMedicalRecords(pharmacy_number);
     }
 
     //소연 : 약사(Pharmacy)정보 가져오기

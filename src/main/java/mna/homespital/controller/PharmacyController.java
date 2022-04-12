@@ -133,7 +133,7 @@ public class PharmacyController {
         return "admin/phar/pharmacyMedicalList";
     }
 
-    //진료내역 리스트 출력 (인성)
+    //약사에게 들어온 처방 리스트 출력 (인성, 준근)
     @ResponseBody
     @GetMapping("/pharMedicalRecords")
     public ArrayList<HashMap<String, Object>> pharMedicalRecords(@RequestParam int pharmacy_number) {
@@ -144,7 +144,7 @@ public class PharmacyController {
             Pharmacy pharmacy = (Pharmacy) session.getAttribute("pharmacy");
             System.out.println("pharmacy = " + pharmacy);
             if (pharmacy == null) throw new Exception("로그인 되어있지않음.");
-            pharMedicalList = pharService.pharCustomerRecordsList(pharmacy.getPharmacy_number());
+            pharMedicalList = pharService.pharMedicalRecords(pharmacy_number);
             System.out.println("pharMedicalList = " + pharMedicalList);
         } catch (Exception e) {
             e.printStackTrace();

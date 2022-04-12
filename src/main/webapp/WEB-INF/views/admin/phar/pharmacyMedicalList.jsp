@@ -98,7 +98,7 @@
             type: 'GET',
             datatype: "json",
             data: {
-                "diagnosis": ${diagnosis}
+                "pharmacy_number": ${pharmacy_number}
             },
             success: function (data) {
                 console.log(data);
@@ -132,16 +132,16 @@
                         complete = "종료";
                     }
 
-                    // 나의 진료 내역 테이블 생성 (리눅스 서버에 올릴때 진단영수증 파일경로 바꿔줘야함)
-                    // $("#pharMedicalList").append("<tr><td>" + date + " (" + dayOfWeek + ") " + item.diagnosis_time + ":00</td>" +
-                    //     "<td>" + item.diagnosis_type + "</td>" +
-                    //     "<td>" + item.doctor_name + "</td>" +
-                    //     "<td>" + item.hospital_name + "</td>" +
-                    //     "<td><a href='/resources/img/uploadReceipt/" + item.diagnosis_file_name + "' download=''><span class='material-icons'>file_download</span></a>" + "</td > " +
-                    //     "<td>" + complete + "</td>" +
-                    //     "<td><a href='/myMedicalDetail/" + item.diagnosis_number + "'><span class='material-icons'>search</span></a>" + "</td></tr><br>);"
-                    // )
-                    // ;
+                    //나의 진료 내역 테이블 생성 (리눅스 서버에 올릴때 진단영수증 파일경로 바꿔줘야함)
+                    $("#pharMedicalList").append("<tr><td>" + date + " (" + dayOfWeek + ") " + item.diagnosis_time + ":00</td>" +
+                        "<td>" + item.diagnosis_type + "</td>" +
+                        "<td>" + item.doctor_name + "</td>" +
+                        "<td>" + item.hospital_name + "</td>" +
+                        "<td><a href='/resources/img/uploadReceipt/" + item.diagnosis_file_name + "' download=''><span class='material-icons'>file_download</span></a>" + "</td > " +
+                        "<td>" + complete + "</td>" +
+                        "<td><a href='/myMedicalDetail/" + item.diagnosis_number + "'><span class='material-icons'>search</span></a>" + "</td></tr><br>);"
+                    )
+                    ;
                 }
             })
             loading = false;
