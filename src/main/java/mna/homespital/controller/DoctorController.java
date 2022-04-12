@@ -360,17 +360,29 @@ public class DoctorController {
     }
 
     // 진료 완료하기 diagnoisis_status (1 -> 3)(준근)
+    // 진료 완료하기 할 때 유효성 검사(is_diagnosis_upload가 2가 아니면 진료완료 실패하고 alert띄움
     @ResponseBody
     @PostMapping("/finishDiagnosis")
-    public ResponseEntity<String> finishDiagnosis(int diagnosis_number) {
-        ResponseEntity<String> result = null;
+    public String finishDiagnosis(int diagnosis_number) {
+
         try {
+            //is_diagnosis_upload가 2(업로드완료) 인지 확인
+            Diagnosis diagnosis = doctorService.checkDiagnosisUpload(diagnosis_number);
+            if (diagnosis.getIs_diagnosis_upload() != 2) {
+                return "failed";
+            }
+            // 진료완료 하면서 is_prescription_upload=1(처방전업로드X상태)이면
+            // is_prescription_upload = 3(처방전없음) and diagnosis_status = 7 (처방전 없이 진료 완료) 처리
+            if (diagnosis.getIs_prescription_upload() == 1) {
+                doctorService.changePrescription(diagnosis_number);
+                return "success";
+            }
+            //진료완료 처리
             doctorService.finishDiagnosis(diagnosis_number);
-            return new ResponseEntity<>("success", HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResponseEntity<>("failed", HttpStatus.BAD_REQUEST);
         }
+        return "success";
     }
 
     @ResponseBody
