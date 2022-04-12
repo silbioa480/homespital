@@ -1,6 +1,7 @@
 package mna.homespital.dao;
 
 import mna.homespital.dto.Card_Information;
+import mna.homespital.dto.Payment;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -21,4 +22,10 @@ public interface CardInformationDAO {
     void deleteMyCard(String customer_uid) throws Exception;
 
     void setThisCardMain(Map<String, Object> param) throws Exception;
+
+    Integer getLastPaymentReceiptNo() throws Exception;
+
+    void issueReceipt(Payment payment) throws Exception;
+
+    void changeDiagBKUsed(int diagnosis_number) throws Exception;
 }

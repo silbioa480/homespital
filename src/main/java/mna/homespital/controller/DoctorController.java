@@ -42,7 +42,8 @@ public class DoctorController {
     AllMedicalListService allMedicalListService;
     @Autowired
     PharService pharService;
-
+    @Autowired
+    PaymentService paymentService;
     @Autowired
     ServletContext servletContext;
 
@@ -63,9 +64,12 @@ public class DoctorController {
     public String docLogin(@RequestParam("email") String doctor_email, @RequestParam("password") String doctor_password, HttpServletResponse response, Model model) {
 
         try {
+            System.out.println(1);
             doctorService.docLogin(doctor_email, doctor_password);
+            System.out.println(2);
             Doctor doctor = doctorService.searchDocId(doctor_email);
             doctor.setDoctor_password("");
+            System.out.println(3);
             session.setAttribute("doctor", doctor);
             return "redirect:/doctor/";
         } catch (Exception e) {
@@ -371,6 +375,20 @@ public class DoctorController {
             if (diagnosis.getIs_prescription_upload() == 1) {
                 doctorService.changePrescription(diagnosis_number);
                 return "success";
+            }
+            //결제 처리
+            System.out.println("STARTING GET TOKEN");
+            JSONObject authToken = paymentService.getAuthToken();
+            System.out.println("STARTING PAYING");
+            JSONObject payResult = paymentService.pay(authToken.getString("access_token"),
+                    diagnosis.getDiagnosis_number(),
+                    diagnosis.getBilling_key(),
+                    diagnosis.getUser_number(),
+                    1000,
+                    "멀티캠퍼스화이팅");
+            System.out.println("PAY END");
+            if (!payResult.getString("status").equals("paid")) {
+                System.out.println("결제 실패");
             }
             //진료완료 처리
             doctorService.finishDiagnosis(diagnosis_number);

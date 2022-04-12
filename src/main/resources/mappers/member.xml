@@ -8,7 +8,9 @@
         <![CDATA[
         insert into `user`(user_email, user_password, user_name, user_registration_number, user_phone, zip_code,
                            street_address, detail_address)
-        values (#{user_email}, #{user_password}, #{user_name}, #{user_registration_number}, #{user_phone}, #{zip_code},
+        values (#{user_email}, #{user_password}, #{user_name},
+                concat(substring(#{user_registration_number}, 1, 8), "******"),
+                #{user_phone}, #{zip_code},
                 #{street_address}, #{detail_address})
         ]]>
     </insert>
