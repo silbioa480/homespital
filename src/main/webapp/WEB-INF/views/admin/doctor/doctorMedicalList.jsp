@@ -100,7 +100,7 @@
                 "doctor_number": ${diagnosis.doctor_number}
             },
             success: function (data) {
-                console.log(data)
+                console.log(data);
                 list = data;
                 next_load(list);
             },
@@ -147,8 +147,6 @@
                     } else if (item.diagnosis_status == 5) {
                         complete = "진료완료";
                     } else if (item.diagnosis_status == 6) {
-                        complete = "진료완료";
-                    } else if (item.diagnosis_status == 7) {
                         complete = "진료완료";
                     }
 
@@ -229,8 +227,6 @@
                 }
             }
         });
-
-
     })
 
     // 진료 시작하기
@@ -324,9 +320,6 @@
         }
     }
     --%>
-
-
-
 
 
 </script>
