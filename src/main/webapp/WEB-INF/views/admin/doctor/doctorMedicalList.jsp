@@ -97,7 +97,7 @@
             type: 'GET',
             datatype: "json",
             data: {
-                "doctor_number": ${doctor_number}
+                "doctor_number": ${doctor.doctor_number}
             },
             success: function (data) {
                 console.log(data);
@@ -204,8 +204,8 @@
                     }
 
                     // 나의 진료 내역 테이블 생성 (리눅스 서버에 올릴때 진단영수증 파일경로 바꿔줘야함)
-                    $("#docMedicalList").append("<tr><td>" + date + " (" + dayOfWeek + ") " + item.diagnosis_time + ":00</td>" +
-                        "<td>" + item.user_name + "</td>" +
+                    $("#docMedicalList").append("<tr><td><a href='/doctor/customerDetail/" + item.diagnosis_number + "'>" + date + " (" + dayOfWeek + ") " + item.diagnosis_time + ":00</a></td>" +
+                        "<td><a href='/doctor/customerDetail/" + item.diagnosis_number + "'>" + item.user_name + "</a></td>" +
                         "<td>" + gender + "</td>" +
                         "<td>" + birth + "</td>" +
                         "<td>" + receipt + "</td>" +
