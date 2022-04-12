@@ -21,8 +21,8 @@ public class PharServiceImpl implements PharService {
 
     //환자 진료내역 출력 (인성)
     @Override
-    public ArrayList<HashMap<String, Object>> pharCustomerRecordsList(int phar_number) throws Exception {
-        return pharmacyDAO.pharCustomerRecordsList(phar_number);
+    public ArrayList<HashMap<String, Object>> pharMedicalRecords(int pharmacy_number) throws Exception {
+        return pharmacyDAO.pharMedicalRecords(pharmacy_number);
     }
 
     //소연 : 약사(Pharmacy)정보 가져오기
@@ -64,6 +64,18 @@ public class PharServiceImpl implements PharService {
     @Override
     public Pharmacy getPharInfo(String pharmacy_email) throws Exception {
         return pharmacyDAO.PharmacyQueryMember(pharmacy_email);
+    }
+
+    //  처방접수 및 조제시작(diagnosis_status 3 -> 4) 준근
+    @Override
+    public void makeMedicine(int diagnosis_number) throws Exception {
+        pharmacyDAO.makeMedicine(diagnosis_number);
+    }
+
+    //  조제 완료(diagnosis_status 4 -> 5) 준근
+    @Override
+    public void successMadeMedicine(int diagnosis_number) throws Exception {
+        pharmacyDAO.successMadeMedicine(diagnosis_number);
     }
 
     //용식:이메일중복체크

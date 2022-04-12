@@ -11,7 +11,7 @@ public interface PharService {
     int getNumberByEmail(String phar_email) throws Exception;
 
     //나의 진료내역 리스트 출력 (준근)
-    ArrayList<HashMap<String, Object>> pharCustomerRecordsList(int phar_number) throws Exception;
+    ArrayList<HashMap<String, Object>> pharMedicalRecords(int pharmacy_number) throws Exception;
 
     //소연 : 약사(Pharmacy)정보 가져오기
     Pharmacy getPharInfo(int pharmacy_number) throws Exception;
@@ -27,4 +27,9 @@ public interface PharService {
 
     Pharmacy getPharInfo(String pharmacy_email) throws Exception;
 
+    //  처방접수 및 조제시작(diagnosis_status 3 -> 4) 준근
+    void makeMedicine(int diagnosis_number) throws Exception;
+
+    //  조제 완료(diagnosis_status 4 -> 5) 준근
+    void successMadeMedicine(int diagnosis_number) throws Exception;
 }
