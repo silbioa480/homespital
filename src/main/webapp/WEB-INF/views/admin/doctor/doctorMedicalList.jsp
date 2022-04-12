@@ -100,7 +100,7 @@
                 "doctor_number": ${diagnosis.doctor_number}
             },
             success: function (data) {
-                console.log(data)
+                console.log(data);
                 list = data;
                 next_load(list);
             },
@@ -227,8 +227,6 @@
                 }
             }
         });
-
-
     })
 
     // 진료 시작하기

@@ -54,7 +54,7 @@ public class PharmacyController {
             Pharmacy pharmacy = pharService.getPharInfo(email);
             pharmacy.setPharmacy_password("");
             session.setAttribute("pharmacy", pharmacy);
-            return "redirect:/pharmacy/customerList";
+            return "redirect:/pharmacy/pharMedicalList";
         } catch (Exception e) {
             e.printStackTrace();
             try {
@@ -120,33 +120,37 @@ public class PharmacyController {
     }
 
     //환자진료내역 (인성)
-    @GetMapping("/customerList")
-    public String customerList(HttpSession session, Model m) throws Exception {
+    @GetMapping("/pharMedicalList")
+    public String pharMedicalList(HttpSession session, Model m) {
+        System.out.println("pharMedicalList() join");
         try {
             Pharmacy pharmacy = (Pharmacy) session.getAttribute("pharmacy");
             int searchNumber = pharmacy.getPharmacy_number();
             List<HashMap<String, Object>> diagnosis = pharService.pharCustomerRecordsList(searchNumber);
             m.addAttribute("diagnosis", diagnosis);
         } catch (Exception e) {
-            System.out.println("Catch() join");
             e.printStackTrace();
             return "common/err";
         }
-        return "admin/phar/customerList";
+        return "admin/phar/pharmacyMedicalList";
     }
 
     //진료내역 리스트 출력 (인성)
     @ResponseBody
-    @GetMapping("/customerRecordsList")
-    public ArrayList<HashMap<String, Object>> pharCustomerRecordsList() {
-        ArrayList<HashMap<String, Object>> customerList = new ArrayList<>();
+    @GetMapping("/pharMedicalRecords")
+    public ArrayList<HashMap<String, Object>> pharMedicalRecords(@RequestParam int pharmacy_number) {
+        System.out.println("pharMedicalRecords() join");
+        System.out.println("pharmacy_number = " + pharmacy_number);
+        ArrayList<HashMap<String, Object>> pharMedicalList = new ArrayList<>();
         try {
             Pharmacy pharmacy = (Pharmacy) session.getAttribute("pharmacy");
+            System.out.println("pharmacy = " + pharmacy);
             if (pharmacy == null) throw new Exception("로그인 되어있지않음.");
-            customerList = pharService.pharCustomerRecordsList(pharmacy.getPharmacy_number());
+            pharMedicalList = pharService.pharCustomerRecordsList(pharmacy.getPharmacy_number());
+            System.out.println("pharMedicalList = " + pharMedicalList);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return customerList;
+        return pharMedicalList;
     }
 }

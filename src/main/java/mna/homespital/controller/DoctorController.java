@@ -200,7 +200,7 @@ public class DoctorController {
 
     //의사의 진료내역 (준근)
     @GetMapping("/docMedicalList")
-    public String docMedicalList(HttpSession session, Model m) throws Exception {
+    public String docMedicalList(HttpSession session, Model m) {
         System.out.println("docMedicalList() Join");
         try {
             Doctor doctor = (Doctor) session.getAttribute("doctor");
