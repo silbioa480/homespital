@@ -47,7 +47,7 @@
                         <c:choose>
                             <c:when test="${not empty pharmacy}">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/pharmacy/customerList">진료리스트</a>
+                                    <a class="nav-link" href="/pharmacy/pharMedicalList">처방리스트</a>
                                 </li>
                                 <%--                                <li class="nav-item">--%>
                                 <%--                                    <a class="nav-link" href="#">내 정보수정</a>--%>

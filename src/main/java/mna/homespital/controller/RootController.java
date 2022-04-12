@@ -61,6 +61,7 @@ public class RootController {
         return new ModelAndView("user/main/loginForm");
     }
 
+
     //환자회원가입
     @GetMapping("/joinForm")
     public ModelAndView joinForm() {
@@ -202,14 +203,14 @@ public class RootController {
     }
 
     //가영: 의사 비밀번호 확인
-    @GetMapping("/docPwCheck")
-    public ModelAndView docPwCheck() {
-        String email = (String) session.getAttribute("email");
-
-        if (email == null) {
-            return new ModelAndView("user/main/index");
-        }
-        return new ModelAndView("admin/doctorside/docPwCheck");
-    }
+//    @GetMapping("/docPwCheck")
+//    public ModelAndView docPwCheck() {
+//        String email = (String) session.getAttribute("email");
+//
+//        if (email == null) {
+//            return new ModelAndView("user/main/index");
+//        }
+//        return new ModelAndView("admin/doctorside/docPwCheck");
+//    }
 
 }

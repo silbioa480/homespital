@@ -6,8 +6,8 @@
     <meta charset="utf-8"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
-    <link rel="stylesheet" href="/resources/css/pharmacySignUp.css"/>
-
+    <%--    <link rel="stylesheet" href="/resources/css/pharmacySignUp.css"/>--%>
+    <link rel="stylesheet" href="/resources/css/signUp.css"/>
 </head>
 
 <body class="is-preload">
@@ -96,8 +96,9 @@
                         <label for="businessNumber">사업자 번호</label>
                         <div style="display:flex;">
                             <input type="text" id="businessNumber" name="pharmacy_business"
-                                   placeholder="사업자 번호를 입력해주세요">
-                            <input type="button" id="businessNumCheck" class="businessBtn" value="사업자 조회"/>
+                                   placeholder="사업자 번호를 입력해주세요" style="width:370px">
+                            <input type="button" id="businessNumCheck" class="businessBtn" value="사업자 조회"
+                                   style="margin-left: 30px; width: 200px"/>
                         </div>
                         <div class="error"></div>
                     </div>

@@ -22,7 +22,66 @@ footer, header, hgroup, menu, nav, section {
     display: block;
 
 }
+/* 증상 이미지 첨부 btn ( 인성 ) */
+/*#filebtn,*/
+#filebtn1 {
+    width: 100px;
+    height: 28px;
+    border-radius: 5px;
+    border: 1px solid #111;
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    position: relative;
+    overflow: hidden;
+    z-index: 5;
+    transition: all 0.4s ease-in-out;
+    transform: translateY(20%);
+}
 
+/*#filebtn,*/
+#filebtn1:hover {
+    color: white;
+    z-index: 6;
+    transform: translateY(0);
+}
+
+/*#filebtn,*/
+#filebtn1::before,
+/*#filebtn,*/
+#filebtn1::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: black;
+    transition: all 0.25s ease-in-out;
+    z-index: -1;
+}
+
+/*#filebtn,*/
+#filebtn1::before {
+    transform: translateX(-100%);
+}
+
+/*#filebtn,*/
+#filebtn1::after {
+    transform: translateX(100%);
+}
+
+/*#filebtn,*/
+#filebtn1:hover:before {
+    transform: translateX(-50%);
+}
+
+/*#filebtn,*/
+#filebtn1:hover:after {
+    transform: translateX(50%);
+}
+/*--------------------------------
+*/
 body {
     line-height: 1;
 }
