@@ -46,7 +46,7 @@
         from (select @rownum:=@rownum+1 rnum, tot.*
         from (select * from doctor
         <if test="doctor_diagnosis_type != null and !doctor_diagnosis_type.equals('')">
-            where doctor_diagnosis_type like concat('%',#{doctor_diagnosis_type},'%')
+            where find_in_set(#{doctor_diagnosis_type},doctor_diagnosis_type)
         </if>
         ) tot,
         (select @rownum := 0) temp
