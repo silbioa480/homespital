@@ -204,10 +204,8 @@ public class DoctorController {
         System.out.println("docMedicalList() Join");
         try {
             Doctor doctor = (Doctor) session.getAttribute("doctor");
-            Diagnosis diagnosis = new Diagnosis();
-            diagnosis.setDoctor_number(doctor.getDoctor_number());
-            //      이부분 준근님에게 물어보기
-            m.addAttribute("diagnosis", diagnosis);
+            int doctor_number = doctor.getDoctor_number();
+            m.addAttribute("doctor_number", doctor_number);
 
 
         } catch (Exception e) {
@@ -244,7 +242,6 @@ public class DoctorController {
     @ResponseBody
     @GetMapping("/docMedicalRecords")
     public ArrayList<HashMap<String, Object>> docMedicalRecords(@RequestParam int doctor_number) {
-        System.out.println("docMedicalRecords() Join");
         ArrayList<HashMap<String, Object>> docMedicalList = new ArrayList<>();
         try {
             docMedicalList = doctorService.docMedicalRecords(doctor_number);
