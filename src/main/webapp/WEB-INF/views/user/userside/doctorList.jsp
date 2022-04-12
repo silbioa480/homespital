@@ -187,7 +187,7 @@
                 </c:when>
                 <c:otherwise>
                     <li class="page-item"><a class="page-link"
-                                             href="./${place.id }?place_name=${place.place_name }&page=${pageInfo.page-1}">이전</a>
+                                             href="./${place.id }?place_name=${place.place_name }&page=${pageInfo.page-1}&longitude=${longitude != 0 ? longitude : 0}&latitude=${latitude != 0 ? latitude : 0}">이전</a>
                     </li>
                 </c:otherwise>
             </c:choose>
@@ -195,11 +195,12 @@
                 <c:choose>
                     <c:when test="${pageInfo.page==i }">
                         <li class="page-item active">
-                            <a class="page-link" href="#">${i }</a></li>
+                            <a class="page-link" href="/doctorList?doctor_diagnosis_type=${doctor_diagnosis_type }&page=${i }&longitude=${longitude != 0 ? longitude : 0}&latitude=${latitude != 0 ? latitude : 0}">${i }</a>
+                        </li>
                     </c:when>
                     <c:otherwise>
-                        <li class="page-item"><a class="page-link"
-                                                 href="/doctorList?${place.id }?place_name=${place.place_name }&page=${pageInfo.page}">${i }</a>
+                        <li class="page-item">
+                            <a class="page-link" href="/doctorList?doctor_diagnosis_type=${doctor_diagnosis_type }&page=${i }&longitude=${longitude != 0 ? longitude : 0}&latitude=${latitude != 0 ? latitude : 0}">${i }</a>
                         </li>
 
                     </c:otherwise>
@@ -211,7 +212,7 @@
                 </c:when>
                 <c:otherwise>
                     <li class="page-item"><a class="page-link"
-                                             href="./${place.id }?place_name=${place.place_name }&page=${pageInfo.page+1}">다음</a>
+                                             href="/doctorList?doctor_diagnosis_type=${doctor_diagnosis_type }&page=${pageInfo.page+1}&longitude=${longitude != 0 ? longitude : 0}&latitude=${latitude != 0 ? latitude : 0}">다음</a>
                     </li>
                 </c:otherwise>
             </c:choose>
