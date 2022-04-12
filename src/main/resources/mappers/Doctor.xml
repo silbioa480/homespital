@@ -40,17 +40,18 @@
     </select>
 
     <select id="queryDoctor" resultType="Doctor" parameterType="Map">
-
         select *
         from (select @rownum:=@rownum+1 rnum, tot.*
-        from (select * from doctor) tot,
+        from (select * from doctor
+        <if test="doctor_diagnosis_type != null and !doctor_diagnosis_type.equals('')">
+            where doctor_diagnosis_type = #{doctor_diagnosis_type}
+        </if>
+        ) tot,
         (select @rownum := 0) temp
         ) sub
         where rnum between #{startrow} and #{startrow} + 9
-        <if test="doctor_diagnosis_type != null and !doctor_diagnosis_type.equals('')">
-            and doctor_diagnosis_type = #{doctor_diagnosis_type}
-        </if>
     </select>
+
 
     <select id="doctorAmount" resultType="Integer">
         <![CDATA[
@@ -59,6 +60,13 @@
         ]]>
     </select>
 
+    <select id="doctorAmountByType" resultType="integer" parameterType="String">
+        <![CDATA[
+        select count(*)
+        from doctor
+        where doctor_diagnosis_type like concat('%', #{doctor_diagnosis_type}, '%')
+        ]]>
+    </select>
     <!--   소연 : 의사 정보 가져오는 쿼리문  -->
     <select id="docInfo" resultType="Doctor" parameterType="int">
         <![CDATA[
