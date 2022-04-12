@@ -1,5 +1,6 @@
 package mna.homespital.controller;
 
+import mna.homespital.dto.Card_Information;
 import mna.homespital.dto.Diagnosis;
 import mna.homespital.dto.Doctor;
 import mna.homespital.dto.User;
@@ -47,6 +48,9 @@ public class RootController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    PaymentService paymentService;
+
     public RootController() {
     }
 
@@ -84,6 +88,9 @@ public class RootController {
             } else {
                 mav.addObject("user", user);
                 System.out.println(user.toString());
+                Card_Information cardInfoObj = paymentService.getPayment(user.getUser_number(), user.getBilling_key());
+                String cardInfo = cardInfoObj.getCard_nickname() + " (" + cardInfoObj.getCard_number().substring(cardInfoObj.getCard_number().length() - 4, cardInfoObj.getCard_number().length()) + ")";
+                mav.addObject("cardInfo", cardInfo);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -99,7 +106,7 @@ public class RootController {
         if (email == null) {
             return new ModelAndView("user/main/index");
         }
-        return new ModelAndView("user/userside/pwCheck");
+        return new ModelAndView("user/main/pwCheck");
     }
 
     //환자회원탈퇴
@@ -145,13 +152,18 @@ public class RootController {
             mv.addObject("real_work_timeList", real_work_timeList);
 
             //유저 객체
-
             System.out.println("email = " + email);
             User user = memberService.findByEmail(email);
             mv.addObject("user", user);
-
             System.out.println("user = " + user);
 
+            String cardInfo = "";
+            Card_Information cardInfoObj = paymentService.getPayment(user.getUser_number(), user.getBilling_key());
+            cardInfo = cardInfoObj.getCard_nickname();
+            cardInfo += " (";
+            cardInfo += cardInfoObj.getCard_number().substring(cardInfoObj.getCard_number().length() - 4, cardInfoObj.getCard_number().length());
+            cardInfo += ")";
+            mv.addObject("cardInfo", cardInfo);
 
             //의사 스케쥴 객체
             ArrayList<HashMap<String, Object>> ds = doctorService.getDocScheduleInfo(doctor_number);
@@ -165,7 +177,7 @@ public class RootController {
         return mv;
     }
 
-    //진료예약   ( 인성 )
+    //진료예약   ( 훈, 인성 )
     @PostMapping("/appointmentForm")
     public ModelAndView appointment(Diagnosis diagnosis, MultipartFile[] diagnosisImgNames,
                                     Model model, HttpServletRequest request, HttpServletResponse response) {
@@ -189,6 +201,17 @@ public class RootController {
             diagnosis.setDiagnosis_image_name(fileNameArr.toString());
             diagnosisService.insertDiagnosis(diagnosis);
             mv.setViewName("redirect:/myMedicalList");
+
+            //예약이 성공적으로 되었다는 알림 태영
+            Doctor dtc =doctorService.getDocInfo(diagnosis.getDoctor_number());
+            User user123=userService.getUserInfo(diagnosis.getUser_number());
+            String dtcPhone = dtc.getDoctor_phone();
+            String usePhone=user123.getUser_phone();
+            System.out.println("예약되었습니다.");
+            System.out.println("발신전화번호 : "+dtcPhone);
+            System.out.println("수신전화번호 : "+usePhone);
+            System.out.println("담당의사명 : "+dtc.getDoctor_name());
+            System.out.println("진료날짜 : "+dtc.getWorking_time());
         } catch (Exception e) {
             e.printStackTrace();
             //mv.setViewName();
@@ -212,5 +235,19 @@ public class RootController {
 //        }
 //        return new ModelAndView("admin/doctorside/docPwCheck");
 //    }
+
+    //소연 : 서비스 이용약관
+    @GetMapping("/termsOfService")
+    public ModelAndView termsOfService() {
+        return new ModelAndView("common/terms/termsOfService");
+    }
+
+
+
+    //소연 : 개인정보 처리방침
+    @GetMapping("/privacyPolicy")
+    public ModelAndView privacyPolicy() {
+        return new ModelAndView("common/terms/privacyPolicy");
+    }
 
 }

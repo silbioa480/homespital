@@ -131,6 +131,8 @@
                         complete = "<button type='button' id='successBtn' class='btn btn-info btn-sm' onclick='successBtn(" + item.diagnosis_number + ");'>약 수령 확정</button>";
                     } else if (item.diagnosis_status == 6) {
                         complete = "종료";
+                    } else if (item.diagnosis_status == 7) {
+                        complete = "종료";
                     }
 
                     // 진료영수증이 있으면 내려받기 버튼 생성, 없으면 빈 문자열
