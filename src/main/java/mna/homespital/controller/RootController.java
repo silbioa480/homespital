@@ -219,4 +219,12 @@ public class RootController {
         return new ModelAndView("common/terms/termsOfService");
     }
 
+
+
+    //소연 : 서비스 이용약관
+    @GetMapping("/privacyPolicy")
+    public ModelAndView privacyPolicy() {
+        return new ModelAndView("common/terms/privacyPolicy");
+    }
+
 }
