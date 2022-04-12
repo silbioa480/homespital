@@ -66,6 +66,18 @@ public class PharServiceImpl implements PharService {
         return pharmacyDAO.PharmacyQueryMember(pharmacy_email);
     }
 
+    //  처방접수 및 조제시작(diagnosis_status 3 -> 4) 준근
+    @Override
+    public void makeMedicine(int diagnosis_number) throws Exception {
+        pharmacyDAO.makeMedicine(diagnosis_number);
+    }
+
+    //  조제 완료(diagnosis_status 4 -> 5) 준근
+    @Override
+    public void successMadeMedicine(int diagnosis_number) throws Exception {
+        pharmacyDAO.successMadeMedicine(diagnosis_number);
+    }
+
     //용식:이메일중복체크
 //    @Override
 //    public boolean emailCheck(String email) throws Exception {

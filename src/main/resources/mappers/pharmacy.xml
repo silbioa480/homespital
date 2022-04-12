@@ -122,4 +122,23 @@
         ]]>
     </insert>
 
+    <!--처방접수 및 조제시작하기 (준근)-->
+    <update id="makeMedicine" parameterType="int">
+        <![CDATA[
+        update diagnosis
+        set diagnosis_status = 4
+        where diagnosis_number = #{diagnosis_number};
+        ]]>
+    </update>
+
+    <!--조제 완료하기 (준근)-->
+    <update id="successMadeMedicine" parameterType="int">
+        <![CDATA[
+        update diagnosis
+        set diagnosis_status = 5
+        where diagnosis_number = #{diagnosis_number};
+        ]]>
+    </update>
+
+
 </mapper>

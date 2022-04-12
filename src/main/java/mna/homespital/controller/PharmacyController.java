@@ -151,4 +151,29 @@ public class PharmacyController {
         }
         return pharMedicalList;
     }
+
+    // 처방전 접수하기 및 조제 시작하기(diagnosis_status 3- > 4)(준근)
+    @ResponseBody
+    @PostMapping("/makeMedicine")
+    public String makeMedicine(int diagnosis_number) {
+
+        try {
+            pharService.makeMedicine(diagnosis_number);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "success";
+    }
+
+    // 조제완료하기(diagnosis_status 4- > 5)(준근)
+    @ResponseBody
+    @PostMapping("/successMadeMedicine")
+    public String successMadeMedicine(int diagnosis_number) {
+        try {
+            pharService.successMadeMedicine(diagnosis_number);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "success";
+    }
 }

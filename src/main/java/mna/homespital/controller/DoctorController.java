@@ -293,7 +293,7 @@ public class DoctorController {
     // 진료 완료하기 할 때 유효성 검사(is_diagnosis_upload가 2가 아니면 진료완료 실패하고 alert띄움
     @ResponseBody
     @PostMapping("/finishDiagnosis")
-    public String finishDiagnosis(int diagnosis_number, HttpServletResponse response) {
+    public String finishDiagnosis(int diagnosis_number) {
 
         try {
             //is_diagnosis_upload가 2(업로드완료) 인지 확인

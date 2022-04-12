@@ -137,9 +137,9 @@
                     //진료완료, 진료중 표시 및 대기/예약취소하기 버튼
                     let complete = "";
                     if (item.diagnosis_status == 3) {
-                        complete = "<button type='button' id='cancelBtn' class='btn btn-danger btn-sm' onclick='makeMediBtn(" + item.diagnosis_number + ");'>조제 시작하기</button>";
+                        complete = "<button type='button' id='makeMediBtn' class='btn btn-danger btn-sm' onclick='makeMediBtn(" + item.diagnosis_number + ");'>처방 접수/조제</button>";
                     } else if (item.diagnosis_status == 4) {
-                        complete = "<button type='button' id='successBtn' class='btn btn-info btn-sm' onclick='successMakeBtn(" + item.diagnosis_number + ");'>조제 완료하기</button>";
+                        complete = "<button type='button' id='successMakeBtn' class='btn btn-info btn-sm' onclick='successMadeBtn(" + item.diagnosis_number + ");'>조제 완료/전송</button>";
                     } else if (item.diagnosis_status == 5) {
                         complete = "조제완료";
                     } else if (item.diagnosis_status == 6) {
@@ -179,47 +179,47 @@
         });
     })
 
-    <%--
-        // 예약 취소
-        function cancelBtn(e) {
-            if (confirm("예약 취소하시겠습니까?") == true) {
-                $.ajax({
-                    url: "/cancelMedicalRecord",
-                    type: "POST",
-                    datatype: "json",
-                    data: {
-                        "diagnosis_number": e,
-                    },
-                    success: function (data) {
-                        console.log("예약취소 성공 : " + e)
-                        location.href = "${pageContext.request.contextPath}/myMedicalList";
-                    },
-                })
-            } else {
-                return;
-            }
-        }
 
-        // 약 수령확정
-        function successBtn(e) {
-            if (confirm("약을 수령하셨나요? 수령확정 하시겠습니까?") == true) {
-                $.ajax({
-                    url: "/successMedicalRecord",
-                    type: "POST",
-                    datatype: "json",
-                    data: {
-                        "diagnosis_number": e,
-                    },
-                    success: function (data) {
-                        console.log("약 수령 완료/비대면진료 종료 : " + e)
-                        location.href = "${pageContext.request.contextPath}/myMedicalList";
-                    },
-                })
-            } else {
-                return;
-            }
+    // 처방접수/조제 시작
+    function makeMediBtn(e) {
+        if (confirm("처방 접수하시겠습니까?") == true) {
+            $.ajax({
+                url: "/makeMedicine",
+                type: "POST",
+                datatype: "json",
+                data: {
+                    "diagnosis_number": e,
+                },
+                success: function (data) {
+                    console.log("예약취소 성공 : " + e)
+                    location.href = "${pageContext.request.contextPath}/myMedicalList";
+                },
+            })
+        } else {
+            return;
         }
-    --%>
+    }
+
+    // 약 수령확정
+    function successMadeBtn(e) {
+        if (confirm("약을 수령하셨나요? 수령확정 하시겠습니까?") == true) {
+            $.ajax({
+                url: "/successMadeMedicine",
+                type: "POST",
+                datatype: "json",
+                data: {
+                    "diagnosis_number": e,
+                },
+                success: function (data) {
+                    console.log("약 수령 완료/비대면진료 종료 : " + e)
+                    location.href = "${pageContext.request.contextPath}/myMedicalList";
+                },
+            })
+        } else {
+            return;
+        }
+    }
+
 
 </script>
 </html>
