@@ -6,11 +6,12 @@ const form = document.getElementById('form');
 const email = document.getElementById("email");
 const password = document.getElementById("password");
 const password2 = document.getElementById('password2');
-const phone = document.getElementById("phone").parentElement;
-const phone2 = document.getElementById("phone2").parentElement;
+// const phone = document.getElementById("phone").parentElement;
+// const phone2 = document.getElementById("phone2").parentElement;
 const doctorName = document.getElementById("doctorName");
 const doctorNumber = document.getElementById("doctorNumber");
-const doctorProfile = document.getElementById("doctorProfile");
+const doctorProfile = document.getElementById("doctorProfile").parentElement.parentElement.parentElement.parentElement.parentElement;
+const hospitalName = document.getElementById("hospitalName");
 const businessNumber = document.getElementById("businessNumber");
 const address = document.getElementById("zipNo").parentElement.parentElement.parentElement.parentElement.parentElement;
 //확인필요
@@ -28,12 +29,13 @@ const agree = document.getElementById("agree_all").parentElement;
 email.addEventListener("change", checkEmail);
 password.addEventListener("change", checkPassword);
 password2.addEventListener("change", checkPassword2);
-phone.addEventListener("change", checkPhone);
-phone2.addEventListener("change", checkPhone2);
+// phone.addEventListener("change", checkPhone);
+// phone2.addEventListener("change", checkPhone2);
 doctorName.addEventListener("change", checkDoctorName);
 doctorNumber.addEventListener("change", checkDoctorNumber);
 doctorProfile.addEventListener("change", checkProfile);
 businessNumber.addEventListener("change", checkBusinessNumber);
+hospitalName.addEventListener("change", checkHospitalName);
 address.addEventListener("change", checkAddress);
 // diagnosisType.addEventListener("change", checkDiagnosisType);
 diagnosisType2.addEventListener("change", checkDiagnosisType2);
@@ -50,8 +52,8 @@ function checkAll() {
     checkEmail();
     checkPassword();
     checkPassword2();
-    checkPhone();
-    checkPhone2();
+    // checkPhone();
+    // checkPhone2();
     checkDoctorName();
     checkDoctorNumber();
     checkProfile();
@@ -64,16 +66,20 @@ function checkAll() {
     checkLunchSt();
     checkLunchCl();
     checkBusinessNumber();
+    checkHospitalName();
+    checkHospitalTelephone();
     checkAddress();
     checkRadio();
     checkHoliday();
     console.log(checkEmail());
     if (confirm("회원가입을하시겠습니까?")) {
         if (checkEmail() === true && checkPassword() === true && checkPassword2() === true
-            && checkPhone() === true && checkPhone2() === true && checkBusinessNumber() === true
+            // && checkPhone() === true && checkPhone2() === true
+            && checkBusinessNumber() === true
             && checkAddress() === true && checkRadio() === true && checkDoctorName() ===true
             && checkDoctorNumber () === true && checkProfile() === true
         // && checkDiagnosisType() === true
+            && checkHospitalName() === true && checkHospitalTelephone() === true
             && checkDiagnosisType2() === true && checkOpen() === true
         && checkClose() === true && checkLunchSt() === true && checkLunchCl() === true && checkHoliday()===true ) {
             alert("회원가입이 완료 되었습니다.감사합니다");
@@ -186,34 +192,34 @@ function checkPassword2() {
     return true;
 }
 
-function checkPhone() {
-    var phonePattern = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
-    const phoneValue = document.getElementById("phone").value.trim();
-    if (phoneValue === "") {
-        setError(phone, "휴대폰 번호를 입력해주세요.");
-        return false;
-    } else if (!phonePattern.test(phoneValue)) {
-        setError(phone, "형식에 맞지 않은 번호입니다.");
-        return false;
-    } else {
-        setSuccess(phone);
-    }
-    return true;
-}
-
-function checkPhone2() {
-    const phone2Value = document.getElementById("phone2").value.trim();
-    if (phone2Value === "") {
-        setError(phone2, "인증번호를 입력해주세요.");
-        return false;
-    } else if (phone2Value !== code2) {
-        setError(phone2, "인증번호가 일치하지 않습니다.")
-        return false;
-    } else {
-        setSuccess(phone2);
-    }
-    return true;
-}
+// function checkPhone() {
+//     var phonePattern = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
+//     const phoneValue = document.getElementById("phone").value.trim();
+//     if (phoneValue === "") {
+//         setError(phone, "휴대폰 번호를 입력해주세요.");
+//         return false;
+//     } else if (!phonePattern.test(phoneValue)) {
+//         setError(phone, "형식에 맞지 않은 번호입니다.");
+//         return false;
+//     } else {
+//         setSuccess(phone);
+//     }
+//     return true;
+// }
+//
+// function checkPhone2() {
+//     const phone2Value = document.getElementById("phone2").value.trim();
+//     if (phone2Value === "") {
+//         setError(phone2, "인증번호를 입력해주세요.");
+//         return false;
+//     } else if (phone2Value !== code2) {
+//         setError(phone2, "인증번호가 일치하지 않습니다.")
+//         return false;
+//     } else {
+//         setSuccess(phone2);
+//     }
+//     return true;
+// }
 
 function checkDoctorName() {
     const doctorNameValue = document.getElementById("doctorName").value.trim();
@@ -274,6 +280,27 @@ function checkBusinessNumber() {
     return true;
 }
 
+function checkHospitalName() {
+    const hospitalNameValue = document.getElementById("hospitalName").value.trim();
+    if (hospitalNameValue === "") {
+        setError(hospitalName, "병원이름을 입력해주세요.");
+        return false;
+    } else {
+        setSuccess(hospitalName);
+    }
+    return true;
+}
+
+function checkHospitalTelephone() {
+    const hospitalTelephoneValue = document.getElementById("hospitalTelephone").value.trim();
+    if (hospitalTelephoneValue === "") {
+        setError(hospitalTelephone, "병원 전화번호를 입력해주세요.");
+        return false;
+    } else {
+        setSuccess(hospitalTelephone);
+    }
+    return true;
+}
 
 function checkDiagnosisType2() {
     var diagnosisType2Value = document.getElementById("diagnosis_type2").options.length;
