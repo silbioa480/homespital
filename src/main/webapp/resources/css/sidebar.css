@@ -3,9 +3,11 @@
 #logo {
     min-width: 200px;
     max-width: 200px;
-    min-height: 48px;
-    max-height: 48px;
+    min-height: 200px;
+    max-height: 200px;
     margin: 0 auto;
+    display: flex;
+    align-items: center;
 }
 
 #logo a {
@@ -15,7 +17,7 @@
     max-height: 48px;
     font-family: 'Y_Spotlight';
     font-size: 30px;
-    margin: 0 auto;
+    margin: auto 0 !important;
 }
 
 #sidebar {

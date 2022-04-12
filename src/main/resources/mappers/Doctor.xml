@@ -40,14 +40,16 @@
     </select>
 
     <select id="queryDoctor" resultType="Doctor" parameterType="Map">
-        <![CDATA[
+
         select *
         from (select @rownum:=@rownum+1 rnum, tot.*
-              from (select * from doctor) tot,
-                  (select @rownum := 0) temp) sub
+        from (select * from doctor) tot,
+        (select @rownum := 0) temp
+        ) sub
         where rnum between #{startrow} and #{startrow} + 9
-          and doctor_diagnosis_type = #{doctor_diagnosis_type}
-        ]]>
+        <if test="doctor_diagnosis_type != null and !doctor_diagnosis_type.equals('')">
+            and doctor_diagnosis_type = #{doctor_diagnosis_type}
+        </if>
     </select>
 
     <select id="doctorAmount" resultType="Integer">
@@ -176,7 +178,10 @@
     <!-- 담당 환자의 전화번호 가져오기 태영   -->
     <select id="getUserPhone" parameterType="int" resultType="String">
         <![CDATA[
-            select u.user_phone from d doctor,u user where d.doctor_number=#{doctor_number} and d.doctor_number=u.user_number
+        select u.user_phone
+        from d doctor,
+             u user
+        where d.doctor_number=#{doctor_number} and d.doctor_number=u.user_number
         ]]>
     </select>
 </mapper>
