@@ -96,7 +96,7 @@ public class DoctorController {
 
     //가영:의사 회원가입
     @PostMapping("/doctorJoin.do")
-    public ModelAndView doctorJoin(HttpServletRequest request) {
+    public ModelAndView doctorJoin(HttpServletRequest request, MultipartFile doctorImgNames, MultipartFile hospitalImgNames, HttpServletResponse response) {
         Doctor doctor = new Doctor();
         doctor.setDoctor_email(request.getParameter("doctor_email"));
         doctor.setDoctor_password(request.getParameter("doctor_password"));
@@ -147,6 +147,28 @@ public class DoctorController {
 
         ModelAndView mv = new ModelAndView();
         try {
+            // 의사 프로필 업로드
+            String fileNameArr = "";
+            String doctorImg = doctorImgNames.getOriginalFilename();
+            String path = servletContext.getRealPath("/resources/img/doctorImg/");
+            String filename = UUID.randomUUID().toString() + "." + doctorImg.substring(doctorImg.lastIndexOf('.') + 1);
+            File destFile = new File(path + filename);
+            doctorImgNames.transferTo(destFile);
+            doctorImg = filename;
+            fileNameArr = doctorImg;
+            doctor.setDoctor_profile_image_name(fileNameArr.toString());
+
+            String hospitalfileName = "";
+            String hospitalImg = hospitalImgNames.getOriginalFilename();
+            String hpath = servletContext.getRealPath("/resources/img/hospitalImg/");
+            String hospitalfilename = UUID.randomUUID().toString() + "." + hospitalImg.substring(hospitalImg.lastIndexOf('.') + 1);
+            File hdestFile = new File(hpath + hospitalfilename);
+            hospitalImgNames.transferTo(hdestFile);
+            hospitalImg = hospitalfilename;
+            hospitalfileName = hospitalImg;
+            System.out.println(hospitalfileName);
+            doctor.setHospital_file_name(hospitalfileName.toString());
+
             System.out.println("여기들어오라ㅏ ㅇㅇㅇㅇㅇ");
             doctorService.join(doctor);
             mv.setViewName("redirect:/doctor/docLogin");
@@ -338,17 +360,29 @@ public class DoctorController {
     }
 
     // 진료 완료하기 diagnoisis_status (1 -> 3)(준근)
+    // 진료 완료하기 할 때 유효성 검사(is_diagnosis_upload가 2가 아니면 진료완료 실패하고 alert띄움
     @ResponseBody
     @PostMapping("/finishDiagnosis")
-    public ResponseEntity<String> finishDiagnosis(int diagnosis_number) {
-        ResponseEntity<String> result = null;
+    public String finishDiagnosis(int diagnosis_number) {
+
         try {
+            //is_diagnosis_upload가 2(업로드완료) 인지 확인
+            Diagnosis diagnosis = doctorService.checkDiagnosisUpload(diagnosis_number);
+            if (diagnosis.getIs_diagnosis_upload() != 2) {
+                return "failed";
+            }
+            // 진료완료 하면서 is_prescription_upload=1(처방전업로드X상태)이면
+            // is_prescription_upload = 3(처방전없음) and diagnosis_status = 7 (처방전 없이 진료 완료) 처리
+            if (diagnosis.getIs_prescription_upload() == 1) {
+                doctorService.changePrescription(diagnosis_number);
+                return "success";
+            }
+            //진료완료 처리
             doctorService.finishDiagnosis(diagnosis_number);
-            return new ResponseEntity<>("success", HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResponseEntity<>("failed", HttpStatus.BAD_REQUEST);
         }
+        return "success";
     }
 
     @ResponseBody

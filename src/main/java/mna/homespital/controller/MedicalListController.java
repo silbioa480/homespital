@@ -106,6 +106,10 @@ public class MedicalListController {
         PageInfo pageInfo = new PageInfo();
         List<Doctor> doctorList = doctorService.getDocList(doctor_diagnosis_type, page, pageInfo);
 
+        for (Doctor d : doctorList) {
+            System.out.println(d.getDoctor_diagnosis_type());
+        }
+
         // 종호: 현재 좌표 입력받으면 나와 의사의 거리순으로 정렬하기
         if (longitude != 0 && latitude != 0) {
             List<List<Integer>> distanceList = new ArrayList<>();
@@ -155,6 +159,7 @@ public class MedicalListController {
 
         doctorList.forEach(doctor -> {
             String work_time = doctor.getWorking_time();
+            System.out.println(work_time + "-------------------------------");
             String[] work_timeArr = work_time.split(",");
 
             for (int i = 0; i < work_timeArr.length; i++) {
@@ -199,7 +204,9 @@ public class MedicalListController {
                 doctor.setLunch_time("오전 " + lunch_time + "시 ~ 오전 " + (lunch_time + 1) + "시");
             }
         });
-
+        mv.addObject("latitude", latitude);
+        mv.addObject("longitude", longitude);
+        mv.addObject("doctor_diagnosis_type", doctor_diagnosis_type);
         mv.addObject("doctorList", doctorList);
         mv.addObject("pageInfo", pageInfo);
         return mv;

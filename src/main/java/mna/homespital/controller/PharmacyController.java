@@ -1,6 +1,5 @@
 package mna.homespital.controller;
 
-import mna.homespital.dto.Doctor;
 import mna.homespital.dto.Pharmacy;
 import mna.homespital.service.DiagnosisService;
 import mna.homespital.service.PharService;
@@ -173,6 +172,52 @@ public class PharmacyController {
 //            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             String create_date_str = create_date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
             diagnosis.replace("create_date", create_date_str);
+
+            // 진료 시간 코드
+            String work_time = (String) diagnosis.get("working_time");
+            String[] work_timeArr = work_time.split(",");
+
+            for (int i = 0; i < work_timeArr.length; i++) {
+                System.out.println("work_timeArr = " + work_timeArr[i]); //9~17까지 콘솔에 뜸 [0], [work_timeArr.length-1]
+            }
+
+            int start_time = Integer.parseInt(work_timeArr[0]);
+            int end_time = Integer.parseInt(work_timeArr[work_timeArr.length - 1]) + 1;
+
+            if (end_time >= 13) {
+                if (start_time >= 13) {
+                    start_time -= 12;
+                    end_time -= 12;
+                    work_time = "오후 " + start_time + "시 ~ 오후 " + end_time + "시";
+                } else if (start_time == 12) {
+                    end_time -= 12;
+                    work_time = "오후 " + start_time + "시 ~ 오후 " + end_time + "시";
+                } else if (start_time < 12) {
+                    end_time -= 12;
+                    work_time = "오전 " + start_time + "시 ~ 오후 " + end_time + "시";
+                }
+            } else if (end_time <= 12) {
+                work_time = "오전 " + start_time + "시 ~ 오전 " + end_time + "시";
+
+            }
+            diagnosis.replace("working_time", work_time);
+            System.out.println("work_time else if() = " + work_time);
+
+            String lunch_time_str = "";
+            int lunch_time = Integer.parseInt((String) diagnosis.get("lunch_time"));
+            //13시 이후 일 때  =>  오후 1시 ~ 오후 2시, 오후 2시 ~ 오후 3시 ... 로 출력
+            if (lunch_time >= 13) {
+                lunch_time -= 12;
+                lunch_time_str = ("오후 " + lunch_time + "시 ~ 오후 " + (lunch_time + 1) + "시");
+            } else if (lunch_time == 12) { // 12시 일 때, 오후 12시 ~ 오후 1시
+                lunch_time_str = ("오후 " + lunch_time + "시 ~ 오후 " + (lunch_time - 11) + "시");
+            } else if (lunch_time == 11) { //11시 일 때, 오전 11시 ~ 오후 12시
+                lunch_time_str = ("오전 " + lunch_time + "시 ~ 오후 " + (lunch_time + 1) + "시");
+            } else if (lunch_time < 11) { // 10시 이전 일 때, 오전 10시 ~ 오전 11시, 오전 9시 ~ 오전 10시 ...로 출력
+                lunch_time_str = ("오전 " + lunch_time + "시 ~ 오전 " + (lunch_time + 1) + "시");
+            }
+            diagnosis.replace("lunch_time", lunch_time_str);
+
             mv.addObject("diagnosis", diagnosis);
         } catch (Exception e) {
             e.printStackTrace();
@@ -185,7 +230,7 @@ public class PharmacyController {
     @ResponseBody
     @PostMapping("/makeMedicine")
     public String makeMedicine(int diagnosis_number) {
-
+        System.out.println("makeMedicine() Join");
         try {
             pharService.makeMedicine(diagnosis_number);
         } catch (Exception e) {

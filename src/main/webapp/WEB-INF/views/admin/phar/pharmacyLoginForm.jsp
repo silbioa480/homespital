@@ -94,16 +94,8 @@ change this template use File | Settings | File Templates. --%>
             </div>
         </form>
 
-        <span
-        ><a style="color: white; margin-left: 45px" href="/findpwForm"
-        >비밀번호 찾기</a
-        > </span
-        ><span
-    ><a style="color: white; margin-left: 10px" href="/pharmacy/joinForm"
-    >회원가입</a
-    >
-        </span>
-
+        <%--        <span><a style="color: white; margin-left: 45px" href="/findpwForm">비밀번호 찾기</a></span>--%>
+        <span><a style="color: white; margin-left: 10px" href="/pharmacy/joinForm">회원가입</a></span>
 
     </div>
 </div>

@@ -225,11 +225,6 @@ public class PaymentServiceImpl implements PaymentService {
             conn = null;
         }
 
-        try {
-
-        } catch (Exception e) {
-
-        }
         return result.getJSONObject("response");
     }
 
@@ -243,6 +238,7 @@ public class PaymentServiceImpl implements PaymentService {
         }
     }
 
+    @Override
     public Card_Information getPaymentInfo(int user_number, String card_number) {
         try {
             Map<String, Object> params = new HashMap<>();
@@ -254,17 +250,28 @@ public class PaymentServiceImpl implements PaymentService {
         }
     }
 
+    @Override
     public Card_Information getPayment(int user_number, String customer_uid) {
         try {
             Map<String, Object> params = new HashMap<>();
             params.put("card_owner_number", user_number);
             params.put("customer_uid", customer_uid);
+//            System.out.println("queryMyCard Start");
+//            System.out.println("user_number = " + user_number + ", customer_uid = " + customer_uid);
             Card_Information card = cardDAO.queryMyCard(params);
             System.out.println(card.getCard_nickname());
             return card;
         } catch (Exception e) {
             return null;
         }
+    }
+
+    @Override
+    public void setMyMainCard(int user_number, String customer_uid) throws Exception {
+        Map<String, Object> param = new HashMap<>();
+        param.put("card_owner_number", user_number);
+        param.put("customer_uid", customer_uid);
+        cardDAO.setThisCardMain(param);
     }
 }
 

@@ -2,7 +2,7 @@ package mna.homespital.controller;
 
 import mna.homespital.dto.User;
 import mna.homespital.service.MemberService;
-import mna.homespital.service.PaymentServiceImpl;
+import mna.homespital.service.PaymentService;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,7 +26,7 @@ public class BillingController {
     MemberService memberService;
 
     @Autowired
-    PaymentServiceImpl paymentService;
+    PaymentService paymentService;
 
 //    @GetMapping("/billingkeyForm")
 //    public String billkeyForm() {
@@ -72,7 +72,10 @@ public class BillingController {
 
             // 빌링키 발급 요청
             JSONObject billingKey = paymentService.getBillingKey(authToken, cardData, user.getUser_number(), (String) params.get("card_name"));
+            System.out.println(params.get("insertIntoMyData"));
 
+            if (params.get("insertIntoMyData").equals("true"))
+                paymentService.setMyMainCard(user.getUser_number(), billingKey.getString("customer_uid"));
 
             return new ResponseEntity<String>(billingKey.toString(), HttpStatus.OK);
         } catch (Exception e) {
