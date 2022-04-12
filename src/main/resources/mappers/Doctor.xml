@@ -128,7 +128,7 @@
         ]]>
     </update>
 
-    <!-- 진료 완료하기하기 (준근)-->
+    <!-- 진료 완료하기하기(처방전있는경우) (준근)-->
     <update id="finishDiagnosis" parameterType="int">
         <![CDATA[
         update diagnosis
@@ -150,7 +150,8 @@
     <update id="changePrescription" parameterType="int">
         <![CDATA[
         update diagnosis
-        set is_prescription_upload = 3
+        set is_prescription_upload = 3,
+            diagnosis_status       = 6
         where diagnosis_number = #{diagnosis_number};
         ]]>
     </update>
