@@ -212,51 +212,74 @@
 </body>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
-    <%--$(document).ready(function () {--%>
-    <%--    console.log("ready");--%>
-    <%--    $.ajax({--%>
-    <%--        url: '/docMedicalRecords',--%>
-    <%--        type: 'GET',--%>
-    <%--        datatype: "json",--%>
-    <%--        data: {--%>
-    <%--            "doctor_number": ${diagnosis.doctor_number}--%>
-    <%--        },--%>
-    <%--        success: function (data) {--%>
-    <%--        },--%>
-    <%--        error: function () {--%>
-    <%--            console.log("Error");--%>
-    <%--        }--%>
-    <%--    })--%>
-    <%--})--%>
+                    //진료완료, 진료중 표시 및 대기/예약취소하기 버튼
+                    let complete = "";
+                    if ((${diagnosis.diagnosis_status}) == 3) {
+                        complete = "<button type='button' id='makeMediBtn' class='btn btn-danger btn-sm' onclick='makeMediBtn(" + (${diagnosis.diagnosis_number}) + ");'>처방 접수/조제</button>";
+                    } else if ((${diagnosis.diagnosis_status}) == 4) {
+                        complete = "<button type='button' id='successMakeBtn' class='btn btn-info btn-sm' onclick='successMadeBtn(" + (${diagnosis.diagnosis_number}) + ");'>조제 완료/전송</button>";
+                    } else if ((${diagnosis.diagnosis_status}) == 5) {
+                        complete = "조제완료";
+                    } else if ((${diagnosis.diagnosis_status}) == 6) {
+                        complete = "종료";
+                    }
+                    $('#diagnosis_status').html(complete);
 
 
-    //진료예약(아직진료시작X) (diagnosis_status = 0) 일 때  ->> is_prescription_upload = 0 업로드버튼X,
-    //진료시작(dagnosis_status = 1)일 때   ->> is_prescription_upload = 1 업로드버튼0,
-    //                                   업로드 완료시 is_prescription_upload = 2 업로드완료.
-    //진료 종료(diagnosis_status = 3~7) 인데 --> is_prescription_upload가 1이면
-    //                                      Controller에서 is_prescription_upload = 3(처방전없음)으로 바꿔준다.
-    //처방전 업로드
-    let prescription = "";
-    if ((${diagnosis.is_prescription_upload}) == 0) {
-        prescription = "";
-    } else if ((${diagnosis.is_prescription_upload}) == 1) {
-        prescription = "<button type='button' data-bs-toggle='modal' data-bs-target='#staticBackdrop2_" + (${diagnosis.diagnosis_number}) + " 'id ='prescriptionUpload" + (${diagnosis.diagnosis_number}) + "' class='btn btn-info btn-sm'>처방전업로드</button><br>" +
-            '<div class="modal fade" id="staticBackdrop2_' + (${diagnosis.diagnosis_number}) + '" data-bs-backdrop="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">' +
-            '<div class="modal-dialog" role="document">' +
-            '<div class="modal-content">' +
-            '<div class="modal-header">' +
-            '<h5 class="modal-title" id="staticBackdropLabel">처방전 업로드</h5>' +
-            '<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">' +
-            '<span aria-hidden="true">&times;</span>' +
-            '</button>' +
-            '</div><form action="prescriptionUpload" method="POST" enctype="multipart/form-data"><div class="modal-body">' +
-            "<input type='hidden' name='diagnosis_number' value='" + (${diagnosis.diagnosis_number}) + "'>" +
-            '<input type="file" name="prescriptionFile">사진선택</input></div><div class="modal-footer"><button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">닫기</button><button type="submit" class="btn btn-primary upload-btn' + (${diagnosis.diagnosis_number}) + '">확인</button></div></form></div></div></div>';
-    } else if ((${diagnosis.is_prescription_upload}) == 2) {
-        prescription = "업로드완료";
-    } else if ((${diagnosis.is_prescription_upload}) == 3) {
-        prescription = "처방전없음";
+                    // 처방전이 있을 때만 버튼 생성, 없으면 빈문자열
+                    let receiptFile = "";
+                    if ((${diagnosis.is_prescription_upload }) === 2) {
+                        receiptFile = "<a href='/resources/img/uploadReceipt/" + "(${diagnosis.diagnosis_file_name })" + "' download=''><span class='material-icons'>file_download</span></a>"
+                    }
+                    $('#is_prescription_upload').html(receiptFile);
+
+                    let is_delivery = "방문";
+                    if ((${diagnosis.is_delivery }) === true) {
+                        is_delivery = "배송"
+                    }
+                    $('#is_delivery').html(complete);
+</script>
+<script>
+    // 처방접수/조제 시작
+    function makeMediBtn(e) {
+        if (confirm("처방 접수하시겠습니까?") == true) {
+            $.ajax({
+                url: "makeMedicine",
+                type: "POST",
+                datatype: "json",
+                data: {
+                    "diagnosis_number": e,
+                },
+                success: function (data) {
+                    console.log("처방 접수 성공 : " + e)
+                    location.href = "${pageContext.request.contextPath}/pharmacy/pharMedicalList";
+                },
+            })
+        } else {
+            return;
+        }
     }
-    $('#is_prescription_upload').html(prescription);
+
+    // 약 수령확정
+    function successMadeBtn(e) {
+        if (confirm("약을 수령하셨나요? 수령확정 하시겠습니까?") == true) {
+            $.ajax({
+                url: "successMadeMedicine",
+                type: "POST",
+                datatype: "json",
+                data: {
+                    "diagnosis_number": e,
+                },
+                success: function (data) {
+                    console.log("약 수령 완료/비대면진료 종료 : " + e)
+                    location.href = "${pageContext.request.contextPath}/pharmacy/pharMedicalList";
+                },
+            })
+        } else {
+            return;
+        }
+    }
+
+
 </script>
 </html>
