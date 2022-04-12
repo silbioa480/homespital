@@ -96,7 +96,7 @@
             type: 'GET',
             datatype: "json",
             data: {
-                "doctor_number": ${diagnosis.doctor_number}
+                "doctor_number": ${doctor_number}
             },
             success: function (data) {
                 console.log(data);

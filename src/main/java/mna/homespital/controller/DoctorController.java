@@ -8,6 +8,8 @@ import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -200,14 +202,12 @@ public class DoctorController {
 
     //의사의 진료내역 (준근)
     @GetMapping("/docMedicalList")
-    public String docMedicalList(HttpSession session, Model m) {
+    public String docMedicalList(HttpSession session, Model m) throws Exception {
         System.out.println("docMedicalList() Join");
         try {
             Doctor doctor = (Doctor) session.getAttribute("doctor");
-            Diagnosis diagnosis = new Diagnosis();
-            diagnosis.setDoctor_number(doctor.getDoctor_number());
-            //      이부분 준근님에게 물어보기
-            m.addAttribute("diagnosis", diagnosis);
+            int doctor_number = doctor.getDoctor_number();
+            m.addAttribute("doctor_number", doctor_number);
 
 
         } catch (Exception e) {
@@ -231,6 +231,52 @@ public class DoctorController {
 //            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             String create_date_str = create_date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
             diagnosis.replace("create_date", create_date_str);
+
+            // 진료 시간 코드
+            String work_time = (String) diagnosis.get("working_time");
+            String[] work_timeArr = work_time.split(",");
+
+            for (int i = 0; i < work_timeArr.length; i++) {
+                System.out.println("work_timeArr = " + work_timeArr[i]); //9~17까지 콘솔에 뜸 [0], [work_timeArr.length-1]
+            }
+
+            int start_time = Integer.parseInt(work_timeArr[0]);
+            int end_time = Integer.parseInt(work_timeArr[work_timeArr.length - 1]) + 1;
+
+            if (end_time >= 13) {
+                if (start_time >= 13) {
+                    start_time -= 12;
+                    end_time -= 12;
+                    work_time = "오후 " + start_time + "시 ~ 오후 " + end_time + "시";
+                } else if (start_time == 12) {
+                    end_time -= 12;
+                    work_time = "오후 " + start_time + "시 ~ 오후 " + end_time + "시";
+                } else if (start_time < 12) {
+                    end_time -= 12;
+                    work_time = "오전 " + start_time + "시 ~ 오후 " + end_time + "시";
+                }
+            } else if (end_time <= 12) {
+                work_time = "오전 " + start_time + "시 ~ 오전 " + end_time + "시";
+
+            }
+            diagnosis.replace("working_time", work_time);
+            System.out.println("work_time else if() = " + work_time);
+
+            String lunch_time_str = "";
+            int lunch_time = Integer.parseInt((String) diagnosis.get("lunch_time"));
+            //13시 이후 일 때  =>  오후 1시 ~ 오후 2시, 오후 2시 ~ 오후 3시 ... 로 출력
+            if (lunch_time >= 13) {
+                lunch_time -= 12;
+                lunch_time_str = ("오후 " + lunch_time + "시 ~ 오후 " + (lunch_time + 1) + "시");
+            } else if (lunch_time == 12) { // 12시 일 때, 오후 12시 ~ 오후 1시
+                lunch_time_str = ("오후 " + lunch_time + "시 ~ 오후 " + (lunch_time - 11) + "시");
+            } else if (lunch_time == 11) { //11시 일 때, 오전 11시 ~ 오후 12시
+                lunch_time_str = ("오전 " + lunch_time + "시 ~ 오후 " + (lunch_time + 1) + "시");
+            } else if (lunch_time < 11) { // 10시 이전 일 때, 오전 10시 ~ 오전 11시, 오전 9시 ~ 오전 10시 ...로 출력
+                lunch_time_str = ("오전 " + lunch_time + "시 ~ 오전 " + (lunch_time + 1) + "시");
+            }
+            diagnosis.replace("lunch_time", lunch_time_str);
+
             mv.addObject("diagnosis", diagnosis);
         } catch (Exception e) {
             e.printStackTrace();
@@ -244,7 +290,6 @@ public class DoctorController {
     @ResponseBody
     @GetMapping("/docMedicalRecords")
     public ArrayList<HashMap<String, Object>> docMedicalRecords(@RequestParam int doctor_number) {
-        System.out.println("docMedicalRecords() Join");
         ArrayList<HashMap<String, Object>> docMedicalList = new ArrayList<>();
         try {
             docMedicalList = doctorService.docMedicalRecords(doctor_number);
@@ -293,29 +338,32 @@ public class DoctorController {
     }
 
     // 진료 완료하기 diagnoisis_status (1 -> 3)(준근)
-    // 진료 완료하기 할 때 유효성 검사(is_diagnosis_upload가 2가 아니면 진료완료 실패하고 alert띄움
     @ResponseBody
     @PostMapping("/finishDiagnosis")
-    public String finishDiagnosis(int diagnosis_number, HttpServletResponse response) {
-
+    public ResponseEntity<String> finishDiagnosis(int diagnosis_number) {
+        ResponseEntity<String> result = null;
         try {
-            //is_diagnosis_upload가 2(업로드완료) 인지 확인
-            Diagnosis diagnosis = doctorService.checkDiagnosisUpload(diagnosis_number);
-            if (diagnosis.getIs_diagnosis_upload() != 2) {
-                return "failed";
-            }
-            // 진료완료 하면서 is_prescription_upload=1(처방전업로드X상태)이면
-            // is_prescription_upload = 3(처방전없음) and diagnosis_status = 7 (처방전 없이 진료 완료) 처리
-            if (diagnosis.getIs_prescription_upload() == 1) {
-                doctorService.changePrescription(diagnosis_number);
-                return "success";
-            }
-            //진료완료 처리
             doctorService.finishDiagnosis(diagnosis_number);
+            return new ResponseEntity<>("success", HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
+            return new ResponseEntity<>("failed", HttpStatus.BAD_REQUEST);
         }
-        return "success";
+    }
+
+    @ResponseBody
+    @PostMapping("/writeOpinion")
+    public ResponseEntity<String> writeOpinion(@RequestParam int diagnosis_number,
+                                               @RequestParam String doctor_opinion) {
+        ResponseEntity<String> result = null;
+        try {
+            diagnosisService.writeDoctorOpinion(diagnosis_number, doctor_opinion);
+            result = new ResponseEntity<>("SUCCESS", HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            result = new ResponseEntity<>("FAILED", HttpStatus.BAD_REQUEST);
+        }
+        return result;
     }
 
 

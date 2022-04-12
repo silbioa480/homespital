@@ -118,25 +118,25 @@
                     //진료완료, 진료중 표시 및 대기/예약취소하기 버튼
                     let complete = "";
                     if (item.diagnosis_status == 0) {
-                        complete = "<button type='button' id='cancelBtn' class='btn btn-danger btn-sm' onclick='cancelBtn(" + item.diagnosis_number + ");'>예약취소하기</button>";
+                        complete = "<button type='button' id='cancelBtn' class='btn btn-danger btn-sm' onclick='cancelBtn(" + item.diagnosis_number + ");'>대기/예약취소</button>";
                     } else if (item.diagnosis_status == 1) {
                         complete = "진료중";
                     } else if (item.diagnosis_status == 2) {
-                        complete = "예약취소";
+                        complete = "예약취소완료";
                     } else if (item.diagnosis_status == 3) {
-                        complete = "진료완료";
+                        complete = "진료완료/조제대기";
                     } else if (item.diagnosis_status == 4) {
                         complete = "조제중";
                     } else if (item.diagnosis_status == 5) {
-                        complete = "<button type='button' id='successBtn' class='btn btn-info btn-sm' onclick='successBtn(" + item.diagnosis_number + ");'>약제 수령 확정</button>";
+                        complete = "<button type='button' id='successBtn' class='btn btn-info btn-sm' onclick='successBtn(" + item.diagnosis_number + ");'>약 수령 확정</button>";
                     } else if (item.diagnosis_status == 6) {
                         complete = "종료";
                     }
 
-                    // 진료영수증이 있으면 내려받기 버튼 생성, 없으면 공백
+                    // 진료영수증이 있으면 내려받기 버튼 생성, 없으면 빈 문자열
                     let upload = "";
-                    if (item.is_prescription_upload == true) {
-                        upload = "<button type='button' id ='uploadBtn' class='uploadBtn'>내려받기</button>"
+                    if (item.is_diagnosis_upload == 2) {
+                        upload = "<a href='/resources/img/uploadReceipt/" + item.diagnosis_file_name + "' download=''><span class='material-icons'>file_download</span></a>"
                     } else {
                         upload = "";
                     }
@@ -146,7 +146,7 @@
                         "<td>" + item.diagnosis_type + "</td>" +
                         "<td>" + item.doctor_name + "</td>" +
                         "<td>" + item.hospital_name + "</td>" +
-                        "<td><a href='/resources/img/uploadReceipt/" + item.diagnosis_file_name + "' download=''><span class='material-icons'>file_download</span></a>" + "</td > " +
+                        "<td>" + upload + "</td > " +
                         "<td>" + complete + "</td>" +
                         "<td><a href='/myMedicalDetail/" + item.diagnosis_number + "'><span class='material-icons'>search</span></a>" + "</td></tr><br>);"
                     )
