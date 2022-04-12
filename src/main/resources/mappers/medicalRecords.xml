@@ -39,7 +39,7 @@
     <update id="successMedicalRecord" parameterType="int">
         <![CDATA[
         update diagnosis
-        set diagnosis_status = 7
+        set diagnosis_status = 6
         where diagnosis_number = #{diagnosis_number};
         ]]>
     </update>

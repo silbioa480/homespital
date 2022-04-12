@@ -96,7 +96,7 @@
         ]]>
     </select>
 
-    <!--  나의 진료내역 리스트 보기(준근)  -->
+    <!--  의사의 진료내역 리스트 보기(준근)  -->
     <select id="docMedicalRecords" resultType="HashMap" parameterType="int">
 	    <![CDATA[
         select di.*, u.*
