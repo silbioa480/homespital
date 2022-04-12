@@ -40,7 +40,6 @@ public class UserController {
     //환자의 진료내역 (준근)
     @GetMapping("/myMedicalList")
     public String myMedicalList(HttpSession session, Model m) throws Exception {
-        System.out.println("myMedicalList() join");
         try {
             String email = (String) session.getAttribute("email");
             int searchNumber = mls.searchId(email);
@@ -72,7 +71,6 @@ public class UserController {
     @ResponseBody
     @PostMapping("/cancelMedicalRecord")
     public String cancelReservation(int diagnosis_number) {
-        System.out.println("cancel : " + diagnosis_number);
         try {
             mls.cancelMedicalRecord(diagnosis_number);
         } catch (Exception e) {
@@ -85,7 +83,6 @@ public class UserController {
     @ResponseBody
     @PostMapping("/successMedicalRecord")
     public String successMedicalRecord(int diagnosis_number) {
-        System.out.println("successMedicalRecord() Join");
         try {
             mls.successMedicalRecord(diagnosis_number);
         } catch (Exception e) {
@@ -167,10 +164,6 @@ public class UserController {
             String work_time = doctor.getWorking_time();
             String[] work_timeArr = work_time.split(",");
 
-            for (int i = 0; i < work_timeArr.length; i++) {
-                System.out.println("work_timeArr = " + work_timeArr[i]); //9~17까지 콘솔에 뜸 [0], [work_timeArr.length-1]
-            }
-
             int start_time = Integer.parseInt(work_timeArr[0]);
             int end_time = Integer.parseInt(work_timeArr[work_timeArr.length - 1]) + 1;
 
@@ -184,12 +177,10 @@ public class UserController {
                     end_time -= 12;
                     work_time = "오후 " + start_time + "시 ~ 오후 " + end_time + "시";
                     doctor.setWorking_time(work_time);
-                    System.out.println("work_time else if() = " + work_time);
                 } else if (start_time < 12) {
                     end_time -= 12;
                     work_time = "오전 " + start_time + "시 ~ 오후 " + end_time + "시";
                     doctor.setWorking_time(work_time);
-                    System.out.println("work_time else if() = " + work_time);
                 }
 
             } else if (end_time <= 12) {
