@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import service.PhoneCheckService;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -103,7 +104,11 @@ public class DoctorController {
         doctor.setDoctor_phone(request.getParameter("doctor_phone"));
         doctor.setDoctor_name(request.getParameter("doctor_name"));
         doctor.setDoctor_valid_number(request.getParameter("doctor_valid_number"));
+        doctor.setHospital_name(request.getParameter("hospital_name"));
+        doctor.setHospital_telephone(request.getParameter("hospital_telephone"));
+        //의사프로필업로드
         doctor.setDoctor_profile_image_name(request.getParameter("doctor_profile_image_name"));
+
         doctor.setHospital_business_number(request.getParameter("hospital_business_number"));
         doctor.setZip_code(request.getParameter("zipNo"));
         doctor.setStreet_address(request.getParameter("roadFullAddr"));
@@ -143,6 +148,8 @@ public class DoctorController {
         doctor.setHoliday(holiday);
         doctor.setHospital_fax(request.getParameter("hospital_fax"));
         doctor.setHospital_url(request.getParameter("hospital_url"));
+
+        //병원소개 파일 업로드
         doctor.setDoctor_introduction(request.getParameter("doctor_introduction"));
 
         ModelAndView mv = new ModelAndView();
@@ -168,6 +175,7 @@ public class DoctorController {
             hospitalfileName = hospitalImg;
             System.out.println(hospitalfileName);
             doctor.setHospital_file_name(hospitalfileName.toString());
+
 
             System.out.println("여기들어오라ㅏ ㅇㅇㅇㅇㅇ");
             doctorService.join(doctor);
