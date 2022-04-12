@@ -1,5 +1,6 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%--가영: 병원회원가입페이지--%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -11,7 +12,9 @@
 
     <style>
         .doctor-title {
-            font-size: 20px;
+            font-size: 23px;
+            color: #545252;
+            margin-top: 10px;
         }
     </style>
 
@@ -48,24 +51,24 @@
 
 <!-- Wrapper -->
 <div id="wrapper">
-    <!-- 모달창 -->
-    <div class="modal fade" id="defaultModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal-title">알림</h4>
-                </div>
-                <div class="modal-body">
-                    <p class="modal-contents"></p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-bs-dismiss="modal">닫기</button>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-    <!--// 모달창 -->
+<%--    <!-- 모달창 -->--%>
+<%--    <div class="modal fade" id="defaultModal">--%>
+<%--        <div class="modal-dialog">--%>
+<%--            <div class="modal-content">--%>
+<%--                <div class="modal-header">--%>
+<%--                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>--%>
+<%--                    <h4 class="modal-title">알림</h4>--%>
+<%--                </div>--%>
+<%--                <div class="modal-body">--%>
+<%--                    <p class="modal-contents"></p>--%>
+<%--                </div>--%>
+<%--                <div class="modal-footer">--%>
+<%--                    <button type="button" class="btn btn-default" data-bs-dismiss="modal">닫기</button>--%>
+<%--                </div>--%>
+<%--            </div><!-- /.modal-content -->--%>
+<%--        </div><!-- /.modal-dialog -->--%>
+<%--    </div><!-- /.modal -->--%>
+<%--    <!--// 모달창 -->--%>
 
     <!-- Main -->
     <div id="main">
@@ -78,7 +81,7 @@
 
                     <hr>
 
-                    <div style="font-size: 25px">로그인 정보에 사용됩니다<strong style="color: #1abc9c">(필수)</strong></div>
+                    <div style="font-size: 30px">로그인 정보에 사용됩니다<strong style="color: #1abc9c">(필수)</strong></div>
                     <br>
                     <div class="input-control">
                         <label for="email" class="doctor-title">이메일</label>
@@ -114,7 +117,7 @@
                             <input type="button" id="phoneChk2" class="doubleChk" value="본인인증">
                         </div>
                         <div class="error"></div>
-                        <span class="point successPhoneChk">※ 휴대폰 번호 입력후 인증번호 보내기를 해주십시오.</span>
+                        <span class="point successPhoneChk" style="color: #1abc9c; font-size: 15px">※ 휴대폰 번호 입력후 인증번호 보내기를 해주십시오.</span>
                         <input type="hidden" id="phoneDoubleChk"/>
 
                     </div>
@@ -126,7 +129,7 @@
             <!-- Two -->
             <section id="two">
                 <div class="container">
-                    <div style="font-size: 25px">의사/병원정보<strong style="color: #1abc9c">(필수)</strong></div>
+                    <div style="font-size: 30px">의사/병원정보<strong style="color: #1abc9c">(필수)</strong></div>
                     <br>
                     <div class="input-control" >
                         <label class="doctor-title" for="doctorName">의사이름</label>
@@ -153,15 +156,15 @@
 <%--                    </div>--%>
 
                     <div class="input-control">
-                        <label for="doctorProfile" >의사 프로필 등록</label>
-                        <table class="table table=borderless chartTable">
+                        <label>의사 프로필 등록</label>
+                        <table class="table table=borderless chartTable" style="width: 90%">
                             <tr>
-                                <th>이미지 첨부</th>
+<%--                                <th>이미지 첨부</th>--%>
                                 <td>
                                     <div id="preview" align="center"></div>
                                     <div align="center" class="filebox" style="padding:10px">
                                         <label id="filebtn" for="doctorProfile">사진 등록</label>
-                                        <input id="doctorProfile" name="doctorImgNames" type="file" accept=".gif, .jpg, .png">
+                                        <input id="doctorProfile" name="doctorImgNames" type="file" style="display: none" accept=".gif, .jpg, .png">
                                         <div id='attZone'>
                                         </div>
                                     </div>
@@ -225,7 +228,7 @@
                             </tr>
                             <tr>
 
-                                    <th>도로명주소</th>
+                                    <th>도로명</th>
                                     <td><input type="text" id="roadFullAddr" name="roadFullAddr" style="width:100%">
                                     </td>
 
@@ -251,8 +254,8 @@
 
                     <div>
                         <%--                        <input type="hidde" name="doctor_diagnosis_type"/>--%>
-                        <div class="d-flex align-items-center" style="display: -webkit-flex;">
-                            <select id='diagnosis_type' multiple='multiple' style="height: 200px; width: 100%" >
+                        <div class="d-flex align-items-center" >
+                            <select id='diagnosis_type' multiple='multiple' style="height: 200px; width: 300px" >
                                 <c:forEach var="med" items="${medicalList}">
                                     <option value="${med.medical_name}">${med.medical_name}</option>
                                 </c:forEach>
@@ -261,19 +264,23 @@
                                 <%--                            <option value='이비인후과'>3</option>--%>
                             </select>
                             <div class="px-2">
-                                <input type='button' id='btnLToR' value='▶'>
-                                <input type='button' id='btnRToL' value='◀'>
+                                <span class="css-arrow-right" id='btnLToR'></span>
+                                <br>
+                                <span class="css-arrow-left" id='btnRToL'></span>
+
+<%--                                <input class="arrow-prev" type='button' id='btnLToR' >--%>
+<%--                                <input class="arrow-next" type='button' id='btnRToL' >--%>
                             </div>
-                            <select id='diagnosis_type2' multiple='multiple' name="doctor_diagnosis_type" style="height: 200px; width: 100%"></select>
+                            <select id='diagnosis_type2' multiple='multiple' name="doctor_diagnosis_type" style="height: 200px; width: 300px"></select>
 
                         </div>
-                            <div class="error" style="overflow:hidden; word-break:break-all; color: red;" ></div>
+                            <div class="error" style="overflow:hidden; word-break:break-all; color: #339966;" ></div>
 
                     </div>
 
 
                     <div>
-                        <label class="doctor-title" style="margin-top: 20px">진료 시간 선택</label>
+                        <label class="doctor-title" style="margin-top: 20px;">진료 시간 선택</label>
                         <label style="font-size: 10pt;">단위: 시간</label>
 
                             <div style="display:flex; flex-flow : wrap">
@@ -294,7 +301,7 @@
                                     </select>
 
 
-                                    <div class="error" style="color: red"></div>
+                                    <div class="error" style="color: #339966"></div>
                             </div>
 
 
@@ -339,47 +346,47 @@
                             <%--                            히든추가--%>
                             <%--                            <input type="hidden" id="holiday" name="holiday">--%>
                             <%--                            <label for="holiday" class="rest-check"style="margin-left: 50px">--%>
-                                <span style="font-size: 15px; color: #000000"></span>
+                                <span style="font-size: 20px; color: #000000"></span>
 
 <%--체크박스 인풋 span안에 넣어놨음--%>
-                            <span style="font-size: 15px; color: #000000" > <input type="checkbox" class="check" name="holiday" id="mon" value="월" style="margin-left: 7px">월</span>
+                            <label for="mon" style="font-size: 20px; color: #000000; cursor:pointer" > <input type="checkbox" class="check" name="holiday" id="mon" value="월" style="margin-left: 7px; ">&ensp;월</label>
 
-                            <span style="font-size: 15px; color: #000000"><input type="checkbox" class="check"
+                            <label for="tue" style="font-size: 20px; color: #000000; cursor:pointer"><input type="checkbox" class="check"
                                                                                  name="holiday" id="tue" value="화"
-                                                                                 style="margin-left: 7px">화</span>
+                                                                                 style="margin-left: 7px">&ensp;화</label>
 
-                            <span style="font-size: 15px; color: #000000"><input type="checkbox" class="check"
+                            <label for="wed" style="font-size: 20px; color: #000000; cursor:pointer"><input type="checkbox" class="check"
                                                                                  name="holiday" id="wed" value="수"
-                                                                                 style="margin-left: 7px">수</span>
+                                                                                 style="margin-left: 7px">&ensp;수</label>
 
-                            <span style="font-size: 15px; color: #000000"> <input type="checkbox" class="check"
+                            <label for="thurs" style="font-size: 20px; color: #000000; cursor:pointer"> <input type="checkbox" class="check"
                                                                                   name="holiday" id="thurs" value="목"
-                                                                                  style="margin-left: 7px">목</span>
+                                                                                  style="margin-left: 7px">&ensp;목</label>
 
-                            <span style="font-size: 15px; color: #000000"><input type="checkbox" class="check"
+                            <label for="fri" style="font-size: 20px; color: #000000; cursor:pointer"><input type="checkbox" class="check"
                                                                                  name="holiday" id="fri" value="금"
-                                                                                 style="margin-left: 7px">금</span>
+                                                                                 style="margin-left: 7px">&ensp;금</label>
 
-                            <span style="font-size: 15px; color: #000000"><input type="checkbox" class="check"
+                            <label for="sat" style="font-size: 20px; color: #000000; cursor:pointer"><input type="checkbox" class="check"
                                                                                  name="holiday" id="sat" value="토"
-                                                                                 style="margin-left: 7px">토</span>
+                                                                                 style="margin-left: 7px">&ensp;토</label>
 
-                            <span style="font-size: 15px; color: #000000"><input type="checkbox" class="check"
+                            <label for="sun" style="font-size: 20px; color: #000000; cursor:pointer"><input type="checkbox" class="check"
                                                                                  name="holiday" id="sun" value="일"
-                                                                                 style="margin-left: 7px" >일</span>
+                                                                                 style="margin-left: 7px" >&ensp;일</label>
 
-                             <span style="font-size: 15px; color: #000000"><input type="checkbox" class="check"
-                                                                     name="holiday" id="non" value="휴무없음"
-                                                                     style="margin-left: 7px">휴무없음</span>
+                             <label for="non" style="font-size: 20px; color: #000000; cursor:pointer"><input type="checkbox" class="check"
+                                                                     name="holiday" id="non" value=""
+                                                                     style="margin-left: 7px">&ensp;휴무없음</label>
                             <%--                            </label>--%>
-                                     <div class="error" style="color:red"></div>
+                                     <div class="error" style="color:#339966; cursor:pointer"></div>
 
                         </div>
-                        <div style="font-size: 12px;">* 병원 운영시간을 기반으로 비대면 진료 예약을 받을 수 있습니다.</div>
+                        <div style="font-size: 15px; color: #4e4e4b">* 병원 운영시간을 기반으로 비대면 진료 예약을 받을 수 있습니다.</div>
 
-                        <div style="font-size: 12px;"> 시간당 최대 10명 예약이 가능합니다.</div>
+                        <div style="font-size: 15px; color: #4e4e4b"> 시간당 <strong style="color: #1abc9c">최대 10명</strong> 예약이 가능합니다.</div>
 
-                        <div style="font-size: 12px;"> 예약시간 관리는 환자리스트에서 확인 가능합니다.</div>
+                        <div style="font-size: 15px; color: #4e4e4b"> <strong style="color: #1abc9c">예약시간 관리</strong>는 <strong style="color: #1abc9c">환자리스트</strong>에서 확인 가능합니다.</div>
                     </div>
 
                 </div>
@@ -389,9 +396,9 @@
             <!-- Three -->
             <section id="three">
                 <div class="container">
-                    <div style="font-size: 25px">추가 정보 입력<strong style="color: #bcb9b9">(선택)</strong></div>
-                    <div style="font-size: 12px;">* 진료예약시 환자에게 제공되는 정보입니다.</div>
-                    <hr>
+                    <div style="font-size: 30px">추가 정보 입력<strong style="color: #bcb9b9">(선택)</strong></div>
+                    <div style="font-size: 15px; color: #1abc9c">* 진료예약시 환자에게 제공되는 정보입니다.</div>
+
                     <div class="input-control">
                         <div class="input-control">
                             <label class="doctor-title" for="hospital_fax">팩스번호</label>
@@ -408,10 +415,10 @@
                             <div class="error"></div>
                         </div>
                         <div class="input-control">
-                            <label for="doctorProfile" >병원 소개 사진 등록</label>
-                            <table class="table table=borderless chartTable">
+                            <label>병원 소개 사진 등록</label>
+                            <table class="table table=borderless chartTable"  style="width: 90%">
                                 <tr>
-                                    <th>이미지 첨부</th>
+<%--                                    <th>이미지 첨부</th>--%>
                                     <td>
                                         <div id="preview1" align="center"></div>
                                         <div align="center" class="filebox" style="padding:10px">
@@ -436,7 +443,7 @@
                 <div class="container">
                     <div class="">
                         <div class="">
-                            <div style="font-size: 25px">약관동의</div>
+                            <div style="font-size: 30px">약관동의</div>
                             <hr style="height:3px">
                             <label for="agree_all" style="display:block">
                                 <input type="checkbox" name="agree_all" id="agree_all">
@@ -456,14 +463,14 @@
                             </label>
                             <label style="display:block;">
                                 <input type="checkbox" name="agree2" value="4">
-                                <span>이벤트, 혜택정보 수신동의<strong class="select_disable" style="color: #1abc9c">(선택)</strong></span>
+                                <span>이벤트, 혜택정보 수신동의<strong class="select_disable" style="color: #b2afaf">(선택)</strong></span>
                             </label>
                             <div class="error" style="color: #ff3860; font-size: 20px;"></div>
                         </div>
 
                     </div>
                     <br><br><br>
-                    <input id="subbtn" type="button" value="회원가입" style="width: 100%;" onClick="checkAll()"></input>
+                    <input id="subbtn" type="button" value="회원가입" style="width: 95%;" onClick="checkAll()"></input>
                 </div>
             </section>
         </form>

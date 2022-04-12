@@ -147,6 +147,28 @@ public class DoctorController {
 
         ModelAndView mv = new ModelAndView();
         try {
+            // 의사 프로필 업로드
+            String fileNameArr = "";
+            String doctorImg = doctorImgNames.getOriginalFilename();
+            String path = servletContext.getRealPath("/resources/img/doctorImg/");
+            String filename = UUID.randomUUID().toString() + "." + doctorImg.substring(doctorImg.lastIndexOf('.') + 1);
+            File destFile = new File(path + filename);
+            doctorImgNames.transferTo(destFile);
+            doctorImg = filename;
+            fileNameArr = doctorImg;
+            doctor.setDoctor_profile_image_name(fileNameArr.toString());
+
+            String hospitalfileName = "";
+            String hospitalImg = hospitalImgNames.getOriginalFilename();
+            String hpath = servletContext.getRealPath("/resources/img/hospitalImg/");
+            String hospitalfilename = UUID.randomUUID().toString() + "." + hospitalImg.substring(hospitalImg.lastIndexOf('.') + 1);
+            File hdestFile = new File(hpath + hospitalfilename);
+            hospitalImgNames.transferTo(hdestFile);
+            hospitalImg = hospitalfilename;
+            hospitalfileName = hospitalImg;
+            System.out.println(hospitalfileName);
+            doctor.setHospital_file_name(hospitalfileName.toString());
+
             System.out.println("여기들어오라ㅏ ㅇㅇㅇㅇㅇ");
             doctorService.join(doctor);
             mv.setViewName("redirect:/doctor/docLogin");
