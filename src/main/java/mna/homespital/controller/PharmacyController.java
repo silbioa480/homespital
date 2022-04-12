@@ -15,7 +15,6 @@ import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 @Controller
 @RequestMapping("/pharmacy")
@@ -119,15 +118,14 @@ public class PharmacyController {
         return result;
     }
 
-    //환자진료내역 (인성)
+    //약사의 환자처방내역 (인성, 준근)
     @GetMapping("/pharMedicalList")
     public String pharMedicalList(HttpSession session, Model m) {
         System.out.println("pharMedicalList() join");
         try {
             Pharmacy pharmacy = (Pharmacy) session.getAttribute("pharmacy");
-            int searchNumber = pharmacy.getPharmacy_number();
-            List<HashMap<String, Object>> diagnosis = pharService.pharCustomerRecordsList(searchNumber);
-            m.addAttribute("diagnosis", diagnosis);
+            int pharmacy_number = pharmacy.getPharmacy_number();
+            m.addAttribute("pharmacy_number", pharmacy_number);
         } catch (Exception e) {
             e.printStackTrace();
             return "common/err";
