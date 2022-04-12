@@ -74,7 +74,7 @@ public class BillingController {
             JSONObject billingKey = paymentService.getBillingKey(authToken, cardData, user.getUser_number(), (String) params.get("card_name"));
             System.out.println(params.get("insertIntoMyData"));
 
-            if (params.get("insertIntoMyData").equals("true"))
+            if (params.get("insertIntoMyData") != null && params.get("insertIntoMyData").equals("true"))
                 paymentService.setMyMainCard(user.getUser_number(), billingKey.getString("customer_uid"));
 
             return new ResponseEntity<String>(billingKey.toString(), HttpStatus.OK);

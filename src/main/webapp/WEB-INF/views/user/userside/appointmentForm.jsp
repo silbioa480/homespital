@@ -8,12 +8,12 @@
     <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/writeMediChartForm.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/sidebar.css">
-<%--    <script src="http://code.jquery.com/jquery-latest.min.js"></script>--%>
-<%--    <script src="${pageContext.request.contextPath}/resources/js/signUp/jquery.scrollex.min.js"></script>--%>
-<%--    <script src="${pageContext.request.contextPath}/resources/js/signUp/jquery.scrolly.min.js"></script>--%>
-<%--    <script src="${pageContext.request.contextPath}/resources/js/signUp/browser.min.js"></script>--%>
-<%--    <script src="${pageContext.request.contextPath}/resources/js/signUp/util.js"></script>--%>
-<%--    <script src="${pageContext.request.contextPath}/resources/js/main/commonSidebarScroll.js"></script>--%>
+    <%--    <script src="http://code.jquery.com/jquery-latest.min.js"></script>--%>
+    <%--    <script src="${pageContext.request.contextPath}/resources/js/signUp/jquery.scrollex.min.js"></script>--%>
+    <%--    <script src="${pageContext.request.contextPath}/resources/js/signUp/jquery.scrolly.min.js"></script>--%>
+    <%--    <script src="${pageContext.request.contextPath}/resources/js/signUp/browser.min.js"></script>--%>
+    <%--    <script src="${pageContext.request.contextPath}/resources/js/signUp/util.js"></script>--%>
+    <%--    <script src="${pageContext.request.contextPath}/resources/js/main/commonSidebarScroll.js"></script>--%>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </head>
@@ -193,7 +193,7 @@
                 </div>
                 <hr>
                 <div class="m-3">
-                    <input type="hidden" name="is_delivery" id="is_delivery" value=0>
+                    <input type="checkbox" name="is_delivery" id="is_delivery" class="d-none">
                     <button class="btn btn-warning rounded-pill"
                             onclick="toggleDelivery('false'); return false;">약국으로 직접 방문
                     </button>
@@ -235,7 +235,7 @@
                     <h4>${user.user_name}</h4>
                     <span class="px-2 pb-2">만 ${age}세(남)</span>
                 </div>
-                <p>배송 방법 : 집으로 받아보기(배송)</p>
+                <p>배송 방법 : <font id="fouris_delivery">약국으로 직접 방문</font></p>
                 <div>약국 이름 :<p id="pharmacyNamePay"></p></div>
                 <div>약국 전화번호 : <p id="pharmacyPhonePay"></p></div>
                 <div>약국 주소 : <p id="pharmacyAddressPay"></p></div>
@@ -356,7 +356,7 @@
             return false;
         }
         // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
-        ps.keywordSearch(keyword, placesSearchCB, {category_group_code: "PM9"});
+        ps.keywordSearch(keyword, placesSearchCB, {category_group_code: "PM9", location: map.getCenter()});
     }
 
     // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
@@ -544,6 +544,7 @@
     // 위치 가져오기 버튼 클릭시
     function getCurrentPosBtn() {
         navigator.geolocation.getCurrentPosition(locationLoadSuccess, locationLoadError);
+
     };
 </script>
 <%-- bootstrap tooltip 설정 --%>
@@ -560,12 +561,15 @@
 <%-- 약국내방/배달받기 설정 --%>
 <script>
     function toggleDelivery(arg) {
-        if (arg == 'true') {
-            document.getElementById('is_delivery').value = 1;
+        console.log(arg);
+        console.log(typeof arg);
+        if (arg === 'true') {
+            document.getElementById('is_delivery').checked = true;
             document.getElementById('delivery').style.display = "block";
             document.getElementById('naebang').style.display = "none";
+            document.getElementById('fouris_delivery').innerText = "집까지 배송받기";
         } else {
-            document.getElementById('is_delivery').value = 0;
+            document.getElementById('is_delivery').checked = null;
             document.getElementById('delivery').style.display = "none";
             document.getElementById('naebang').style.display = "block";
         }
@@ -738,6 +742,7 @@
         })
         return false;
     }
+
     // 인성: 예약하기 버튼 정규성 검사
     $('.appointDo').click(function () {
         // console.log(document.getElementById('is_delivery').value);
@@ -746,7 +751,7 @@
             alert("시간약관을 체크하세요.")
             $(".timeChecked").focus();
             return false;
-        }   else if($('#is_delivery').val() == 0 && !$("input:checked[name='naebangChecked']").is(":checked")) {
+        } else if ($('#is_delivery').val() == 0 && !$("input:checked[name='naebangChecked']").is(":checked")) {
             alert("내방약관을 체크하세요.");
             $('.naebangChecked').focus();
             return false;
@@ -771,7 +776,6 @@
     <%--$('#test').click(function() {--%>
     <%--  alert( '${doctor.doctor_name} '+ "의사에게 " + $("input:checked[name='diagnosis_time']").val()+ "시에 예약 완료되었습니다.");--%>
     <%--})--%>
-
 
 
 </script>

@@ -196,7 +196,12 @@ public class RootController {
 //                diagnosisImg = filename;
 //                fileNameArr += (diagnosisImg + ", ");
             }
-
+            User user = memberService.findByEmail((String) session.getAttribute("email"));
+            System.out.println(user.getUser_name() + " : " + user.getUser_number() + " :: " + user.getUser_registration_number());
+            String billkey = diagnosis.getBilling_key();
+            if (billkey == null || billkey.equals(""))
+                diagnosis.setBilling_key(user.getBilling_key());
+            System.out.println(diagnosis.getBilling_key());
             // DB insert
             diagnosis.setDiagnosis_image_name(fileNameArr.toString());
             diagnosisService.insertDiagnosis(diagnosis);
