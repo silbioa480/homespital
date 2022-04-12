@@ -236,4 +236,18 @@ public class RootController {
 //        return new ModelAndView("admin/doctorside/docPwCheck");
 //    }
 
+    //소연 : 서비스 이용약관
+    @GetMapping("/termsOfService")
+    public ModelAndView termsOfService() {
+        return new ModelAndView("common/terms/termsOfService");
+    }
+
+
+
+    //소연 : 개인정보 처리방침
+    @GetMapping("/privacyPolicy")
+    public ModelAndView privacyPolicy() {
+        return new ModelAndView("common/terms/privacyPolicy");
+    }
+
 }

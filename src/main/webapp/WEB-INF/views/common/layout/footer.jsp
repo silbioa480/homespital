@@ -32,8 +32,8 @@
     </div>
 
     <div>
-        <a href="${path}/common/terms/termsOfService"><div><h5><strong>이용약관</strong></h5></div></a>
-        <a href="${path}/common/terms/privacyPolicy"><div><h5><strong> 개인정보 처리방침 </strong></h5></div></a>
+        <a href="/termsOfService"><div><h5><strong>서비스 이용약관</strong></h5></div></a>
+        <a href="/privacyPolicy"><div><h5><strong>개인정보 처리방침</strong></h5></div></a>
     </div>
 
 
