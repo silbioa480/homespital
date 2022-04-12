@@ -180,7 +180,7 @@ public class DoctorController {
         return mv;
     }
 
-    //가영: 의사 이메일 중복확인
+//    가영: 의사 이메일 중복확인
 
     @PostMapping("/Emailoverlap")
     @ResponseBody
@@ -225,7 +225,6 @@ public class DoctorController {
     //의사의 진료내역 (준근)
     @GetMapping("/docMedicalList")
     public String docMedicalList(HttpSession session, Model m) throws Exception {
-        System.out.println("docMedicalList() Join");
         try {
             Doctor doctor = (Doctor) session.getAttribute("doctor");
             int doctor_number = doctor.getDoctor_number();
@@ -258,9 +257,6 @@ public class DoctorController {
             String work_time = (String) diagnosis.get("working_time");
             String[] work_timeArr = work_time.split(",");
 
-            for (int i = 0; i < work_timeArr.length; i++) {
-                System.out.println("work_timeArr = " + work_timeArr[i]); //9~17까지 콘솔에 뜸 [0], [work_timeArr.length-1]
-            }
 
             int start_time = Integer.parseInt(work_timeArr[0]);
             int end_time = Integer.parseInt(work_timeArr[work_timeArr.length - 1]) + 1;
@@ -282,7 +278,6 @@ public class DoctorController {
 
             }
             diagnosis.replace("working_time", work_time);
-            System.out.println("work_time else if() = " + work_time);
 
             String lunch_time_str = "";
             int lunch_time = Integer.parseInt((String) diagnosis.get("lunch_time"));
@@ -353,6 +348,7 @@ public class DoctorController {
             e.printStackTrace();
             System.out.println(e.getMessage());
             System.out.println(e.getCode());
+            System.out.println("params = " + params);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -364,7 +360,6 @@ public class DoctorController {
     @ResponseBody
     @PostMapping("/finishDiagnosis")
     public String finishDiagnosis(int diagnosis_number) {
-
         try {
             //is_diagnosis_upload가 2(업로드완료) 인지 확인
             Diagnosis diagnosis = doctorService.checkDiagnosisUpload(diagnosis_number);
@@ -405,7 +400,6 @@ public class DoctorController {
     //receipt(진료영수증) == diagnosis_file_name
     @PostMapping("/receiptUpload")
     public String receiptUpload(MultipartFile receiptFile, int diagnosis_number, HttpServletResponse response) throws Exception {
-        System.out.println("receiptUpload() join" + diagnosis_number);
         //넘어온 파일의 이름
         String receiptFileName = receiptFile.getOriginalFilename();
         try {
@@ -419,7 +413,6 @@ public class DoctorController {
             receiptFile.transferTo(destFile);
 
             receiptFileName = filename;
-            System.out.println(receiptFileName);
             writer = response.getWriter();
             response.setContentType("text/html;charset=utf-8");
             response.setCharacterEncoding("utf-8");
@@ -438,7 +431,6 @@ public class DoctorController {
     // 처방전 업로드(준근)
     @PostMapping("/prescriptionUpload")
     public String prescriptionUpload(MultipartFile prescriptionFile, int diagnosis_number, HttpServletResponse response) throws Exception {
-        System.out.println("prescriptionUpload() join" + diagnosis_number);
         //넘어온 파일의 이름
         String prescriptionFileName = prescriptionFile.getOriginalFilename();
         try {
@@ -452,7 +444,6 @@ public class DoctorController {
             prescriptionFile.transferTo(destFile);
 
             prescriptionFileName = filename;
-            System.out.println(prescriptionFileName);
             writer = response.getWriter();
             response.setContentType("text/html;charset=utf-8");
             response.setCharacterEncoding("utf-8");

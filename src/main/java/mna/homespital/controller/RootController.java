@@ -201,6 +201,17 @@ public class RootController {
             diagnosis.setDiagnosis_image_name(fileNameArr.toString());
             diagnosisService.insertDiagnosis(diagnosis);
             mv.setViewName("redirect:/myMedicalList");
+
+            //예약이 성공적으로 되었다는 알림 태영
+            Doctor dtc =doctorService.getDocInfo(diagnosis.getDoctor_number());
+            User user123=userService.getUserInfo(diagnosis.getUser_number());
+            String dtcPhone = dtc.getDoctor_phone();
+            String usePhone=user123.getUser_phone();
+            System.out.println("예약되었습니다.");
+            System.out.println("발신전화번호 : "+dtcPhone);
+            System.out.println("수신전화번호 : "+usePhone);
+            System.out.println("담당의사명 : "+dtc.getDoctor_name());
+            System.out.println("진료날짜 : "+dtc.getWorking_time());
         } catch (Exception e) {
             e.printStackTrace();
             //mv.setViewName();
@@ -224,5 +235,19 @@ public class RootController {
 //        }
 //        return new ModelAndView("admin/doctorside/docPwCheck");
 //    }
+
+    //소연 : 서비스 이용약관
+    @GetMapping("/termsOfService")
+    public ModelAndView termsOfService() {
+        return new ModelAndView("common/terms/termsOfService");
+    }
+
+
+
+    //소연 : 개인정보 처리방침
+    @GetMapping("/privacyPolicy")
+    public ModelAndView privacyPolicy() {
+        return new ModelAndView("common/terms/privacyPolicy");
+    }
 
 }
