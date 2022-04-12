@@ -67,9 +67,9 @@
                             <td>${diagnosis.birthday}</td>
                             <td>${diagnosis.doctor_name}</td>
                             <td>${diagnosis.hospital_name}</td>
-                            <td>${diagnosis.is_delivery}</td>
-                            <td>${diagnosis.is_prescription_upload}</td>
-                            <td>${diagnosis.diagnosis_status}</td>
+                            <td id="is_delivery">${diagnosis.is_delivery}</td>
+                            <td id="is_prescription_upload">${diagnosis.is_prescription_upload}</td>
+                            <td id="diagnosis_status">${diagnosis.diagnosis_status}</td>
                         </tr>
                         </tbody>
                     </table>
@@ -228,5 +228,35 @@
     <%--        }--%>
     <%--    })--%>
     <%--})--%>
+
+
+    //진료예약(아직진료시작X) (diagnosis_status = 0) 일 때  ->> is_prescription_upload = 0 업로드버튼X,
+    //진료시작(dagnosis_status = 1)일 때   ->> is_prescription_upload = 1 업로드버튼0,
+    //                                   업로드 완료시 is_prescription_upload = 2 업로드완료.
+    //진료 종료(diagnosis_status = 3~7) 인데 --> is_prescription_upload가 1이면
+    //                                      Controller에서 is_prescription_upload = 3(처방전없음)으로 바꿔준다.
+    //처방전 업로드
+    let prescription = "";
+    if ((${diagnosis.is_prescription_upload}) == 0) {
+        prescription = "";
+    } else if ((${diagnosis.is_prescription_upload}) == 1) {
+        prescription = "<button type='button' data-bs-toggle='modal' data-bs-target='#staticBackdrop2_" + (${diagnosis.diagnosis_number}) + " 'id ='prescriptionUpload" + (${diagnosis.diagnosis_number}) + "' class='btn btn-info btn-sm'>처방전업로드</button><br>" +
+            '<div class="modal fade" id="staticBackdrop2_' + (${diagnosis.diagnosis_number}) + '" data-bs-backdrop="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">' +
+            '<div class="modal-dialog" role="document">' +
+            '<div class="modal-content">' +
+            '<div class="modal-header">' +
+            '<h5 class="modal-title" id="staticBackdropLabel">처방전 업로드</h5>' +
+            '<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">' +
+            '<span aria-hidden="true">&times;</span>' +
+            '</button>' +
+            '</div><form action="prescriptionUpload" method="POST" enctype="multipart/form-data"><div class="modal-body">' +
+            "<input type='hidden' name='diagnosis_number' value='" + (${diagnosis.diagnosis_number}) + "'>" +
+            '<input type="file" name="prescriptionFile">사진선택</input></div><div class="modal-footer"><button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">닫기</button><button type="submit" class="btn btn-primary upload-btn' + (${diagnosis.diagnosis_number}) + '">확인</button></div></form></div></div></div>';
+    } else if ((${diagnosis.is_prescription_upload}) == 2) {
+        prescription = "업로드완료";
+    } else if ((${diagnosis.is_prescription_upload}) == 3) {
+        prescription = "처방전없음";
+    }
+    $('#is_prescription_upload').html(prescription);
 </script>
 </html>

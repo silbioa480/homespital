@@ -2303,12 +2303,12 @@ input[type="radio"] + label:before {
 }
 
 .image.avatar {
-    border-radius: 100%;
+    /*border-radius: 100%;*/
     overflow: hidden;
 }
 
 .image.avatar img {
-    border-radius: 100%;
+    /*border-radius: 100%;*/
     display: block;
     width: 100%;
 }
