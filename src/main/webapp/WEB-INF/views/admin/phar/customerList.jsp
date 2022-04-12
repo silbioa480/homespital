@@ -52,7 +52,7 @@
     <div class="col mt-5">
         <div class="list-header bg-info text-right">
             <h1 id="logo">Homespital</h1>
-            <h4 style="float:left; margin-top: 110px; margin-left: 25px;">인성${name}님 안녕하세요~</h4>
+            <h4 style="float:left; margin-top: 110px; margin-left: 25px;">인성님 안녕하세요~</h4>
         </div>
 
 
