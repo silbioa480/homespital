@@ -153,16 +153,20 @@ public class DoctorController {
             String filename = UUID.randomUUID().toString() + "." + doctorImg.substring(doctorImg.lastIndexOf('.') + 1);
             File destFile = new File(path + filename);
             doctorImgNames.transferTo(destFile);
+            doctorImg = filename;
+            fileNameArr = doctorImg;
             doctor.setDoctor_profile_image_name(fileNameArr.toString());
 
-
             String hospitalfileName = "";
-            String hospitalrImg = hospitalImgNames.getOriginalFilename();
+            String hospitalImg = hospitalImgNames.getOriginalFilename();
             String hpath = servletContext.getRealPath("/resources/img/hospitalImg/");
-            String hospitalfilename = UUID.randomUUID().toString() + "." + hospitalrImg.substring(hospitalrImg.lastIndexOf('.') + 1);
-            File hdestFile = new File(path + filename);
+            String hospitalfilename = UUID.randomUUID().toString() + "." + hospitalImg.substring(hospitalImg.lastIndexOf('.') + 1);
+            File hdestFile = new File(hpath + hospitalfilename);
             hospitalImgNames.transferTo(hdestFile);
-            doctor.setDoctor_introduction(hospitalfileName.toString());
+            hospitalImg = hospitalfilename;
+            hospitalfileName = hospitalImg;
+            System.out.println(hospitalfileName);
+            doctor.setHospital_file_name(hospitalfileName.toString());
 
 
 
