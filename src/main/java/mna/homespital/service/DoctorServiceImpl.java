@@ -52,29 +52,34 @@ public class DoctorServiceImpl implements DoctorService {
         // 의료진 찾기 - 의료진 목록 보기 (훈)
 
 //        List<Doctor> list = doctorDAO.queryDoctor(param);
-        int listCount = doctorDAO.doctorAmount();
-
+        int listCount = doctorDAO.doctorAmountByType(doctor_diagnosis_type);
+        System.out.println("해당 과의 의사 수 는 :" + listCount);
         // 총 페이지 수. 올림처리
         int maxPage = (int) Math.ceil((double) listCount / 10);
-
+        System.out.println("max page :" + maxPage);
         // 현재 페이지에 보여줄 시작 페이지 수
         int startPage = (((int) ((double) page / 10 + 0.9)) - 1) * 10 + 1;
-
+        System.out.println("start Page :" + startPage);
         // 현재 페이지에 보여줄 마지막 페이지 수(10,20,30,..)
         int endPage = startPage + 10 - 1;
 
+        System.out.println("the end page : "+ endPage);
         if (endPage > maxPage) endPage = maxPage;
+        System.out.println("the real end page : "+ endPage);
         pageInfo.setStartPage(startPage);
         pageInfo.setEndPage(endPage);
         pageInfo.setMaxPage(maxPage);
         pageInfo.setPage(page);
         pageInfo.setListCount(listCount);
+
         int startrow = (page - 1) * 10 + 1;
+
 //        HashMap<String, Integer> input = new HashMap<>();
 //        input.put("startrow", startrow);
         Map<String, Object> param = new HashMap<>();
         param.put("doctor_diagnosis_type", doctor_diagnosis_type);
         param.put("startrow", startrow);
+        System.out.println("tstartrow"+ startrow);
         return doctorDAO.queryDoctor(param);
         //return list;
     }

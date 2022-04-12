@@ -66,6 +66,8 @@ public interface DoctorDAO {
     //처방전 없이 진료완료 시 is_prescription_upload 3(처방전없음)으로 변경 (준근)
     void changePrescription(int diagnosis_number) throws Exception;
 
+    int doctorAmountByType(String doctor_diagnosis_type) throws Exception;
+
     // 거리순 검색 알고리즘
     // 현재 주소를 어떻게든 가져와. 이거는 geolocation = html5 https
     // 이 주소를 기반으로 현재 위치로부터 가까운 병원 순으로 카카오맵에서 병원 리스트를 가져옴

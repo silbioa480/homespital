@@ -1,20 +1,23 @@
 package mna.homespital.controller;
 
-import com.google.code.geocoder.Geocoder;
-import com.google.code.geocoder.GeocoderRequestBuilder;
-import com.google.code.geocoder.model.*;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import kong.unirest.HttpResponse;
+import kong.unirest.JsonNode;
+import kong.unirest.Unirest;
 import mna.homespital.dto.AllMedical;
 import mna.homespital.dto.Diagnosis;
 import mna.homespital.dto.Doctor;
 import mna.homespital.dto.PageInfo;
 import mna.homespital.service.*;
+import mna.homespital.vo.KakaoGeoRes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -106,40 +109,52 @@ public class MedicalListController {
         PageInfo pageInfo = new PageInfo();
         List<Doctor> doctorList = doctorService.getDocList(doctor_diagnosis_type, page, pageInfo);
 
+        for (Doctor d : doctorList) {
+            System.out.println(d.getDoctor_diagnosis_type());
+        }
+
         // 종호: 현재 좌표 입력받으면 나와 의사의 거리순으로 정렬하기
         if (longitude != 0 && latitude != 0) {
             List<List<Integer>> distanceList = new ArrayList<>();
             List<Doctor> newDoctorList = new ArrayList<>();
+            int size = doctorList.size();
+            int distance;
 
-            for (int i = 0; i < doctorList.size(); i++) {
-                int distance = Integer.MAX_VALUE;
-                System.out.println("TEST" + i);
-                GeocoderRequest geocoderRequest = new GeocoderRequestBuilder().setAddress(doctorList.get(i).getStreet_address()).setLanguage("ko").getGeocoderRequest();
+            String APIKey = "ec3f88c0be25b53b799db6b9849751aa";
+
+            for (int i = 0; i < size; i++) {
+                distance = Integer.MAX_VALUE;
 
                 try {
-                    Geocoder geocoder = new Geocoder();
-                    GeocodeResponse geocoderResponse = geocoder.geocode(geocoderRequest);
-                    System.out.println(geocoderResponse.getStatus());
+                    String apiURL = "https://dapi.kakao.com/v2/local/search/address.json?query="
+                            + URLEncoder.encode(doctorList.get(i).getStreet_address(), "UTF-8");
 
-                    if (geocoderResponse.getStatus() == GeocoderStatus.OK & !geocoderResponse.getResults().isEmpty()) {
-                        GeocoderResult geocoderResult = geocoderResponse.getResults().iterator().next();
-                        LatLng geoLocation = geocoderResult.getGeometry().getLocation();
+                    HttpResponse<JsonNode> response = Unirest.get(apiURL)
+                            .header("Authorization", "KakaoAK " + APIKey)
+                            .asJson();
 
-                        double doctorLatitude = geoLocation.getLat().doubleValue();
-                        double doctorLongitude = geoLocation.getLng().doubleValue();
+                    ObjectMapper objectMapper = new ObjectMapper();
+                    objectMapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
 
-                        distance = (int) Math.sqrt(Math.pow(longitude - doctorLongitude, 2) + Math.pow(latitude - doctorLatitude, 2));
-                        System.out.println(distance);
-                    }
+                    KakaoGeoRes bodyJson = objectMapper.readValue(response.getBody().toString(), KakaoGeoRes.class);
 
+                    double doctorLongitude = bodyJson.getDocuments().get(0).getX();
+                    double doctorLatitude = bodyJson.getDocuments().get(0).getY();
+
+                    distance = (int) (Math.sqrt(Math.pow(longitude - doctorLongitude, 2) + Math.pow(latitude - doctorLatitude, 2)) * 1000000);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
                     int finalI = i;
                     int finalDistance = distance;
+
+                    System.out.println(finalI + ", " + finalDistance);
+
                     distanceList.add(new ArrayList<Integer>() {{
                         add(finalI);
                         add(finalDistance);
                     }});
-                } catch (IOException e) {
-                    e.printStackTrace();
                 }
             }
 
@@ -155,6 +170,7 @@ public class MedicalListController {
 
         doctorList.forEach(doctor -> {
             String work_time = doctor.getWorking_time();
+            System.out.println(work_time + "-------------------------------");
             String[] work_timeArr = work_time.split(",");
 
             for (int i = 0; i < work_timeArr.length; i++) {
@@ -199,7 +215,9 @@ public class MedicalListController {
                 doctor.setLunch_time("오전 " + lunch_time + "시 ~ 오전 " + (lunch_time + 1) + "시");
             }
         });
-
+        mv.addObject("latitude", latitude);
+        mv.addObject("longitude", longitude);
+        mv.addObject("doctor_diagnosis_type", doctor_diagnosis_type);
         mv.addObject("doctorList", doctorList);
         mv.addObject("pageInfo", pageInfo);
         return mv;

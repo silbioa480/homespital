@@ -19,11 +19,13 @@
     <insert id="insertDoctorMember" parameterType="doctor">
         <![CDATA[
         insert into `doctor`(doctor_email, doctor_password, doctor_phone, doctor_name, doctor_valid_number,
-                             doctor_profile_image_name, hospital_name, hospital_telephone, hospital_business_number, zip_code, street_address,
+                             doctor_profile_image_name, hospital_name, hospital_telephone, hospital_business_number,
+                             zip_code, street_address,
                              detail_address, doctor_diagnosis_type, working_time, lunch_time, holiday, hospital_fax,
                              hospital_url, doctor_introduction, hospital_file_name)
         values (#{doctor_email}, #{doctor_password}, #{doctor_phone}, #{doctor_name},
-                #{doctor_valid_number}, #{doctor_profile_image_name}, #{hospital_name}, #{hospital_telephone}, #{hospital_business_number},
+                #{doctor_valid_number}, #{doctor_profile_image_name}, #{hospital_name}, #{hospital_telephone},
+                #{hospital_business_number},
                 #{zip_code}, #{street_address}, #{detail_address}, #{doctor_diagnosis_type},
                 REPLACE(#{working_time}, " ", ""), #{lunch_time}, #{holiday}, #{hospital_fax}, #{hospital_url},
                 #{doctor_introduction}, #{hospital_file_name})
@@ -40,22 +42,31 @@
     </select>
 
     <select id="queryDoctor" resultType="Doctor" parameterType="Map">
-
         select *
         from (select @rownum:=@rownum+1 rnum, tot.*
-        from (select * from doctor) tot,
+        from (select * from doctor
+        <if test="doctor_diagnosis_type != null and !doctor_diagnosis_type.equals('')">
+            where find_in_set(#{doctor_diagnosis_type},doctor_diagnosis_type)
+        </if>
+        ) tot,
         (select @rownum := 0) temp
         ) sub
         where rnum between #{startrow} and #{startrow} + 9
-        <if test="doctor_diagnosis_type != null and !doctor_diagnosis_type.equals('')">
-            and doctor_diagnosis_type = #{doctor_diagnosis_type}
-        </if>
     </select>
+
 
     <select id="doctorAmount" resultType="Integer">
         <![CDATA[
         select count(doctor_number)
         from doctor;
+        ]]>
+    </select>
+
+    <select id="doctorAmountByType" resultType="Integer" parameterType="String">
+        <![CDATA[
+        select count(*)
+        from doctor
+        where doctor_diagnosis_type like concat('%', #{doctor_diagnosis_type}, '%')
         ]]>
     </select>
 
@@ -151,7 +162,7 @@
         <![CDATA[
         update diagnosis
         set is_prescription_upload = 3,
-            diagnosis_status       = 6
+            diagnosis_status       = 7
         where diagnosis_number = #{diagnosis_number};
         ]]>
     </update>

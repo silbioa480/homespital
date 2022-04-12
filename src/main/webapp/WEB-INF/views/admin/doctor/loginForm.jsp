@@ -109,17 +109,10 @@ change this template use File | Settings | File Templates. --%>
             <div id="msg" class="msg"> ${URLDecoder.decode(param.msg, "utf-8")}</div>
         </form>
 
-        <span
-        ><a style="color: white; margin-left: 45px" href="/findpwForm"
-        >비밀번호 찾기</a
-        > </span
-        ><span
-    ><a style="color: white; margin-left: 10px" href="/joinForm"
-    >회원가입</a
-    >
-        </span>
+        <span><a style="color: white; margin-left: 45px" href="#">비밀번호 찾기</a></span>
+        <span><a style="color: white; margin-left: 10px" href="/doctor/join">회원가입</a></span>
 
-        
+
     </div>
 </div>
 

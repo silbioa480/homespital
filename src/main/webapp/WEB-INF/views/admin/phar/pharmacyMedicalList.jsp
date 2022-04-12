@@ -98,7 +98,7 @@
             type: 'GET',
             datatype: "json",
             data: {
-                "pharmacy_number": ${pharmacy_number}
+                "pharmacy_number": ${pharmacy.pharmacy_number}
             },
             success: function (data) {
                 console.log(data);
@@ -151,18 +151,24 @@
                     if (item.is_prescription_upload === 2) {
                         receiptFile = "<a href='/resources/img/uploadReceipt/" + item.diagnosis_file_name + "' download=''><span class='material-icons'>file_download</span></a>"
                     }
+                    let is_delivery = "방문";
+                    if (item.is_delivery === true) {
+                        is_delivery = "배송"
+                    }
 
-                    //나의 진료 내역 테이블 생성 (리눅스 서버에 올릴때 진단영수증 파일경로 바꿔줘야함)
-                    $("#pharMedicalList").append("<tr><td>" + date + " (" + dayOfWeek + ") " + item.diagnosis_time + ":00</td>" +
-                        "<td>" + item.user_name + "</td>" +
-                        "<td>" + gender + "</td>" +
-                        "<td>" + birth + "</td>" +
-                        "<td>" + item.hospital_name + "</td > " +
-                        "<td>" + complete + "</td>" +           // 배송
-                        "<td>" + receiptFile + "</td > " +  //처방전 다운받기
-                        "<td>" + complete + "</td></tr><br>);"  //현황
-                    )
-                    ;
+                    if (item.diagnosis_status >= 3 && item.diagnosis_status <= 6) {
+                        //나의 진료 내역 테이블 생성 (리눅스 서버에 올릴때 진단영수증 파일경로 바꿔줘야함)
+                        $("#pharMedicalList").append("<tr><td>" + date + " (" + dayOfWeek + ") " + item.diagnosis_time + ":00</td>" +
+                            "<td>" + item.user_name + "</td>" +
+                            "<td>" + gender + "</td>" +
+                            "<td>" + birth + "</td>" +
+                            "<td>" + item.hospital_name + "</td > " +
+                            "<td>" + is_delivery + "</td>" +           // 배송or방문
+                            "<td>" + receiptFile + "</td > " +  //처방전 다운받기
+                            "<td>" + complete + "</td></tr><br>);"  //현황
+                        )
+                        ;
+                    }
                 }
             })
             loading = false;
@@ -184,15 +190,15 @@
     function makeMediBtn(e) {
         if (confirm("처방 접수하시겠습니까?") == true) {
             $.ajax({
-                url: "/makeMedicine",
+                url: "makeMedicine",
                 type: "POST",
                 datatype: "json",
                 data: {
                     "diagnosis_number": e,
                 },
                 success: function (data) {
-                    console.log("예약취소 성공 : " + e)
-                    location.href = "${pageContext.request.contextPath}/myMedicalList";
+                    console.log("처방 접수 성공 : " + e)
+                    location.href = "${pageContext.request.contextPath}/pharmacy/pharMedicalList";
                 },
             })
         } else {
@@ -204,7 +210,7 @@
     function successMadeBtn(e) {
         if (confirm("약을 수령하셨나요? 수령확정 하시겠습니까?") == true) {
             $.ajax({
-                url: "/successMadeMedicine",
+                url: "successMadeMedicine",
                 type: "POST",
                 datatype: "json",
                 data: {
@@ -212,7 +218,7 @@
                 },
                 success: function (data) {
                     console.log("약 수령 완료/비대면진료 종료 : " + e)
-                    location.href = "${pageContext.request.contextPath}/myMedicalList";
+                    location.href = "${pageContext.request.contextPath}/pharmacy/pharMedicalList";
                 },
             })
         } else {
