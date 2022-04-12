@@ -84,7 +84,7 @@
                     <div class="input-control">
                         <label for="phone">휴대폰 번호</label>
                         <div style="display:flex">
-                            <input id="phone" type="text" name="pharmacy_mobile" title="전화번호 입력"/>
+                            <input id="phone" type="text" name="phone" title="전화번호 입력"/>
                             <input type="button" id="phoneChk" class="doubleChk" value="인증번호 받기">
                         </div>
                         <div class="error"></div>
