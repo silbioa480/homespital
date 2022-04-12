@@ -106,6 +106,10 @@ public class MedicalListController {
         PageInfo pageInfo = new PageInfo();
         List<Doctor> doctorList = doctorService.getDocList(doctor_diagnosis_type, page, pageInfo);
 
+        for (Doctor d : doctorList) {
+            System.out.println(d.getDoctor_diagnosis_type());
+        }
+
         // 종호: 현재 좌표 입력받으면 나와 의사의 거리순으로 정렬하기
         if (longitude != 0 && latitude != 0) {
             List<List<Integer>> distanceList = new ArrayList<>();
