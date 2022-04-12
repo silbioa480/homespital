@@ -180,7 +180,7 @@ public class DoctorController {
         return mv;
     }
 
-    //가영: 의사 이메일 중복확인
+//    가영: 의사 이메일 중복확인
 
     @PostMapping("/Emailoverlap")
     @ResponseBody
