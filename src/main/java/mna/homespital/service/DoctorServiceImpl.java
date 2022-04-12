@@ -62,6 +62,7 @@ public class DoctorServiceImpl implements DoctorService {
         System.out.println("start Page :" + startPage);
         // 현재 페이지에 보여줄 마지막 페이지 수(10,20,30,..)
         int endPage = startPage + 10 - 1;
+
         System.out.println("the end page : "+ endPage);
         if (endPage > maxPage) endPage = maxPage;
         System.out.println("the real end page : "+ endPage);
@@ -70,6 +71,7 @@ public class DoctorServiceImpl implements DoctorService {
         pageInfo.setMaxPage(maxPage);
         pageInfo.setPage(page);
         pageInfo.setListCount(listCount);
+
         int startrow = (page - 1) * 10 + 1;
 
 //        HashMap<String, Integer> input = new HashMap<>();
@@ -77,6 +79,7 @@ public class DoctorServiceImpl implements DoctorService {
         Map<String, Object> param = new HashMap<>();
         param.put("doctor_diagnosis_type", doctor_diagnosis_type);
         param.put("startrow", startrow);
+        System.out.println("tstartrow"+ startrow);
         return doctorDAO.queryDoctor(param);
         //return list;
     }

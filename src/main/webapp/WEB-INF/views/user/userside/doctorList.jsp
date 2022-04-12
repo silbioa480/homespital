@@ -105,7 +105,8 @@
         </div>
     </div>
     <div class="card p-3">
-        <c:if test="${(not empty doctorList) && (fn:length(doctorList) > 0)}">
+        <c:choose>
+        <c:when test="${not empty doctorList}">
             <c:forEach var="doctor" items="${doctorList}" varStatus="status">
 
                 <div class="row g-0">
@@ -176,7 +177,11 @@
                     <hr>
                 </c:if>
             </c:forEach>
-        </c:if>
+        </c:when>
+            <c:otherwise>
+<%--                노 데이터--%>
+            </c:otherwise>
+        </c:choose>
     </div>
     <nav class="text-center" id="pageList">
         <ul class="pagination justify-content-center">

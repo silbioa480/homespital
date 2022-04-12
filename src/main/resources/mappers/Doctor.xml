@@ -42,7 +42,6 @@
     </select>
 
     <select id="queryDoctor" resultType="Doctor" parameterType="Map">
-
         select *
         from (select @rownum:=@rownum+1 rnum, tot.*
         from (select * from doctor
@@ -55,6 +54,7 @@
         where rnum between #{startrow} and #{startrow} + 9
     </select>
 
+
     <select id="doctorAmount" resultType="Integer">
         <![CDATA[
         select count(doctor_number)
@@ -64,7 +64,7 @@
 
     <select id="doctorAmountByType" resultType="Integer" parameterType="String">
         <![CDATA[
-        select count(doctor_number)
+        select count(*)
         from doctor
         where doctor_diagnosis_type like concat('%', #{doctor_diagnosis_type}, '%')
         ]]>
