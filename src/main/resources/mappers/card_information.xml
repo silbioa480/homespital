@@ -47,12 +47,26 @@
 
     <update id="setThisCardMain" parameterType="Map">
         <![CDATA[
-        update `user` u, `card_information` c
+        update `user` u
         set u.billing_key = #{customer_uid}
         where u.user_number = #{card_owner_number}
-          and c.customer_uid = #{customer_uid}
-          and u.user_number = c.card_owner_number
         ]]>
     </update>
 
+
+    <select id="getLastPaymentReceiptNo" resultType="Integer">
+        select MAX(payment_number)
+        from payment;
+    </select>
+
+    <insert id="issueReceipt" parameterType="Payment">
+        insert into payment(payment_number, customer_uid, card_owner_number, payment_money, status)
+        values (#{payment_number}, #{customer_uid}, #{card_owner_number}, #{payment_money}, #{status})
+    </insert>
+
+    <update id="changeDiagBKUsed" parameterType="int">
+        update diagnosis
+        set billing_key = concat("!!", billing_key)
+        where diagnosis_number = #{diagnosis_number}
+    </update>
 </mapper>

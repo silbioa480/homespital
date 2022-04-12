@@ -10,25 +10,37 @@
 <head>
     <title>Title</title>
     <link rel="stylesheet" href="/resources/css/signUp.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="/resources/css/pwsearch.css"/>
+    <script src="/resources/js/login/login.js"></script>
 </head>
 <body>
-<form method="post" action="modifyPassword.do">
-    <div class="container" style="height:990px">
+
+<%--<header id="header">--%>
+<%--    <h1 style="margin-left: 40px; font-size: 30px">비밀번호 찾기</h1>--%>
+
+<%--</header>--%>
+
+<form id="pw-form" method="post" action="modifyPassword.do">
+    <hr style="margin-bottom: 30px; width: 280px;">
+
+    <div class="container" style="height:500px">
         <input type="hidden" name="email" id="email" value="${email}">
         <div class="input-control">
-            <label for="password3">새 비밀번호 입력</label>
+            <label for="password3" style="font-size: 20px">새 비밀번호 입력</label>
             <input type="password" id="password3" name="password3" placeholder="비밀번호를 입력해주세요" value=""
-                   minlength="4" maxlength="12" size="15" pattern="[a-zA-Z0-9]{4,12}" title="4~12자의 영문 대소문자와 숫자로만 입력."
+                   minlength="4" maxlength="12" size="15" pattern="/^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/" title="8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요."
                    required/>
 
         </div>
         <div class="input-control">
-            <label for="password4">새 비밀번호 확인</label>
+            <label for="password4"style="font-size: 20px; margin-top: 20px">새 비밀번호 확인</label>
             <input type="password" id="password4" name="password4" placeholder="비밀번호를 입력해주세요"
                    onkeyup="check_pw()" value="" maxlength="12" size="15" required>
             <span id="pw_check_msg" style="color: #1abc9c"></span>
         </div>
-        <input type="submit" value="확인"></input>
+        <button type="submit" id="emailCheck" class="btn-login" style="margin-top: 20px">비밀번호 변경</button>
+<%--        <input type="submit" style="margin-top: 20px" value="확인"></input>--%>
     </div>
 </form>
 </body>

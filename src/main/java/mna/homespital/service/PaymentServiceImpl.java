@@ -3,6 +3,7 @@ package mna.homespital.service;
 import mna.homespital.dao.CardInformationDAO;
 import mna.homespital.dao.MemberDAO;
 import mna.homespital.dto.Card_Information;
+import mna.homespital.dto.Payment;
 import mna.homespital.dto.User;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,6 +71,7 @@ public class PaymentServiceImpl implements PaymentService {
                 }
                 br.close();
                 body = new JSONObject(sb.toString());
+
                 if (body.getInt("code") != 0)
                     throw new Exception("code " + body.getInt("code") + ": " + body.getString("message"));
             } catch (Exception e) {
@@ -91,7 +93,7 @@ public class PaymentServiceImpl implements PaymentService {
         //customer_uid 설정
         int leftLimit = 48; // numeral '0'
         int rightLimit = 122; // letter 'z'
-        int targetStringLength = 250;
+        int targetStringLength = 80;
         Random random = new Random();
         String generatedString = random.ints(leftLimit, rightLimit + 1)
                 .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
@@ -170,12 +172,19 @@ public class PaymentServiceImpl implements PaymentService {
         }
     }
 
-    public JSONObject pay(String authToken, String customer_uid, String merchant_uid, int amount, String name) {
+    public JSONObject pay(String authToken, int diagnosis_number, String customer_uid, int user_number, int amount, String name) {
         // merchant_uid = 사실상 영수증 번호같은 개념인듯
         // name = 상대방 카드기록에 보이는 결제내역 스트링
         System.out.println("START");
         JSONObject result = null;
+        Integer merchant_uid_int = null;
         try {
+            merchant_uid_int = cardDAO.getLastPaymentReceiptNo();
+            if (merchant_uid_int == null) merchant_uid_int = 0;
+            merchant_uid_int += 1;
+            String merchant_uid = "RECEIPT" + String.format("%08d", merchant_uid_int);
+            System.out.println(merchant_uid);
+
             URL url = new URL("https://api.iamport.kr/subscribe/payments/again");
             conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("POST");
@@ -212,6 +221,13 @@ public class PaymentServiceImpl implements PaymentService {
                 }
                 br.close();
                 result = new JSONObject(sb.toString());
+                JSONObject resp = result.getJSONObject("response");
+                Payment receipt = new Payment(merchant_uid_int, customer_uid, user_number, amount, resp.getString("status"));
+                cardDAO.issueReceipt(receipt);
+                if (resp.getString("status").equals("paid"))
+                    cardDAO.changeDiagBKUsed(diagnosis_number);
+                else throw new Exception("결제 실패");
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -225,11 +241,6 @@ public class PaymentServiceImpl implements PaymentService {
             conn = null;
         }
 
-        try {
-
-        } catch (Exception e) {
-
-        }
         return result.getJSONObject("response");
     }
 
@@ -243,6 +254,7 @@ public class PaymentServiceImpl implements PaymentService {
         }
     }
 
+    @Override
     public Card_Information getPaymentInfo(int user_number, String card_number) {
         try {
             Map<String, Object> params = new HashMap<>();
@@ -254,17 +266,28 @@ public class PaymentServiceImpl implements PaymentService {
         }
     }
 
+    @Override
     public Card_Information getPayment(int user_number, String customer_uid) {
         try {
             Map<String, Object> params = new HashMap<>();
             params.put("card_owner_number", user_number);
             params.put("customer_uid", customer_uid);
+//            System.out.println("queryMyCard Start");
+//            System.out.println("user_number = " + user_number + ", customer_uid = " + customer_uid);
             Card_Information card = cardDAO.queryMyCard(params);
             System.out.println(card.getCard_nickname());
             return card;
         } catch (Exception e) {
             return null;
         }
+    }
+
+    @Override
+    public void setMyMainCard(int user_number, String customer_uid) throws Exception {
+        Map<String, Object> param = new HashMap<>();
+        param.put("card_owner_number", user_number);
+        param.put("customer_uid", customer_uid);
+        cardDAO.setThisCardMain(param);
     }
 }
 

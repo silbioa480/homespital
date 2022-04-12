@@ -36,6 +36,9 @@ function checkAll() {
     // checkAddress();
     checkRadio();
     console.log(checkEmail());
+    console.log(checkSocialSecurityNumber());
+    console.log(checkSocialSecurityNumber2());
+
     if (confirm("회원가입을하시겠습니까?")) {
         if (checkEmail() === true && checkPassword() === true && checkPassword2() === true
             && checkName() === true && checkSocialSecurityNumber() === true
@@ -152,14 +155,15 @@ function checkName() {
 
 function checkSocialSecurityNumber() {
     const socialSecurityNumberValue = document.getElementById("SocialSecurityNumber1").value.trim();
-    var SocialSecurityNumberPattern = /d{2}([0]\d|[1][0-2])([0][1-9]|[1-2]\d|[3][0-1])/
+    // var SocialSecurityNumberPattern = /d{2}([0]\d|[1][0-2])([0][1-9]|[1-2]\d|[3][0-1])/
     if (socialSecurityNumberValue === "") {
         setError(SocialSecurityNumber, "필수 정보입니다.");
         return false;
-    } else if (!SocialSecurityNumberPattern.test(socialSecurityNumberValue)) {
-        setError(SocialSecurityNumber, "형식에 맞게 입력해 주세요.");
-        return false;
-    } else {
+    }
+        // else if (!SocialSecurityNumberPattern.test(socialSecurityNumberValue)) {
+        //     setError(SocialSecurityNumber, "형식에 맞게 입력해 주세요.");
+    //     return false;
+    else {
         setSuccess(SocialSecurityNumber);
     }
     return true;
@@ -456,7 +460,6 @@ $("#phoneChk").click(function () {
                 $("#phoneChk2").css("display", "inline-block");
                 $(".successPhoneChk").text("인증번호를 입력한 뒤 본인인증을 눌러주십시오.");
                 $(".successPhoneChk").css("color", "green");
-                $("#phone").attr("readonly", true);
                 code2 = data;
             }
         }

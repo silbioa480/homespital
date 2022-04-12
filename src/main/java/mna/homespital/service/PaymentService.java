@@ -11,7 +11,7 @@ public interface PaymentService {
 
     public JSONObject getBillingKey(String authToken, JSONObject cardData, int user_number, String card_nickname);
 
-    public JSONObject pay(String authToken, String customer_uid, String merchant_uid, int amount, String name);
+    public JSONObject pay(String authToken, int diagnosis_number, String customer_uid, int user_number, int amount, String name);
 
     public List<Card_Information> getPayments(String email);
 
@@ -19,4 +19,5 @@ public interface PaymentService {
 
     public Card_Information getPayment(int user_number, String customer_uid);
 
+    void setMyMainCard(int user_number, String customer_uid) throws Exception;
 }

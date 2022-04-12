@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import service.PhoneCheckService;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -42,7 +43,8 @@ public class DoctorController {
     AllMedicalListService allMedicalListService;
     @Autowired
     PharService pharService;
-
+    @Autowired
+    PaymentService paymentService;
     @Autowired
     ServletContext servletContext;
 
@@ -63,9 +65,12 @@ public class DoctorController {
     public String docLogin(@RequestParam("email") String doctor_email, @RequestParam("password") String doctor_password, HttpServletResponse response, Model model) {
 
         try {
+            System.out.println(1);
             doctorService.docLogin(doctor_email, doctor_password);
+            System.out.println(2);
             Doctor doctor = doctorService.searchDocId(doctor_email);
             doctor.setDoctor_password("");
+            System.out.println(3);
             session.setAttribute("doctor", doctor);
             return "redirect:/doctor/";
         } catch (Exception e) {
@@ -96,14 +101,18 @@ public class DoctorController {
 
     //가영:의사 회원가입
     @PostMapping("/doctorJoin.do")
-    public ModelAndView doctorJoin(HttpServletRequest request) {
+    public ModelAndView doctorJoin(HttpServletRequest request, MultipartFile doctorImgNames, MultipartFile hospitalImgNames, HttpServletResponse response) {
         Doctor doctor = new Doctor();
         doctor.setDoctor_email(request.getParameter("doctor_email"));
         doctor.setDoctor_password(request.getParameter("doctor_password"));
         doctor.setDoctor_phone(request.getParameter("doctor_phone"));
         doctor.setDoctor_name(request.getParameter("doctor_name"));
         doctor.setDoctor_valid_number(request.getParameter("doctor_valid_number"));
+        doctor.setHospital_name(request.getParameter("hospital_name"));
+        doctor.setHospital_telephone(request.getParameter("hospital_telephone"));
+        //의사프로필업로드
         doctor.setDoctor_profile_image_name(request.getParameter("doctor_profile_image_name"));
+
         doctor.setHospital_business_number(request.getParameter("hospital_business_number"));
         doctor.setZip_code(request.getParameter("zipNo"));
         doctor.setStreet_address(request.getParameter("roadFullAddr"));
@@ -143,10 +152,35 @@ public class DoctorController {
         doctor.setHoliday(holiday);
         doctor.setHospital_fax(request.getParameter("hospital_fax"));
         doctor.setHospital_url(request.getParameter("hospital_url"));
+
+        //병원소개 파일 업로드
         doctor.setDoctor_introduction(request.getParameter("doctor_introduction"));
 
         ModelAndView mv = new ModelAndView();
         try {
+            // 의사 프로필 업로드
+            String fileNameArr = "";
+            String doctorImg = doctorImgNames.getOriginalFilename();
+            String path = servletContext.getRealPath("/resources/img/doctorImg/");
+            String filename = UUID.randomUUID().toString() + "." + doctorImg.substring(doctorImg.lastIndexOf('.') + 1);
+            File destFile = new File(path + filename);
+            doctorImgNames.transferTo(destFile);
+            doctorImg = filename;
+            fileNameArr = doctorImg;
+            doctor.setDoctor_profile_image_name(fileNameArr.toString());
+
+            String hospitalfileName = "";
+            String hospitalImg = hospitalImgNames.getOriginalFilename();
+            String hpath = servletContext.getRealPath("/resources/img/hospitalImg/");
+            String hospitalfilename = UUID.randomUUID().toString() + "." + hospitalImg.substring(hospitalImg.lastIndexOf('.') + 1);
+            File hdestFile = new File(hpath + hospitalfilename);
+            hospitalImgNames.transferTo(hdestFile);
+            hospitalImg = hospitalfilename;
+            hospitalfileName = hospitalImg;
+            System.out.println(hospitalfileName);
+            doctor.setHospital_file_name(hospitalfileName.toString());
+
+
             System.out.println("여기들어오라ㅏ ㅇㅇㅇㅇㅇ");
             doctorService.join(doctor);
             mv.setViewName("redirect:/doctor/docLogin");
@@ -158,7 +192,7 @@ public class DoctorController {
         return mv;
     }
 
-    //가영: 의사 이메일 중복확인
+//    가영: 의사 이메일 중복확인
 
     @PostMapping("/Emailoverlap")
     @ResponseBody
@@ -203,7 +237,6 @@ public class DoctorController {
     //의사의 진료내역 (준근)
     @GetMapping("/docMedicalList")
     public String docMedicalList(HttpSession session, Model m) throws Exception {
-        System.out.println("docMedicalList() Join");
         try {
             Doctor doctor = (Doctor) session.getAttribute("doctor");
             int doctor_number = doctor.getDoctor_number();
@@ -236,9 +269,6 @@ public class DoctorController {
             String work_time = (String) diagnosis.get("working_time");
             String[] work_timeArr = work_time.split(",");
 
-            for (int i = 0; i < work_timeArr.length; i++) {
-                System.out.println("work_timeArr = " + work_timeArr[i]); //9~17까지 콘솔에 뜸 [0], [work_timeArr.length-1]
-            }
 
             int start_time = Integer.parseInt(work_timeArr[0]);
             int end_time = Integer.parseInt(work_timeArr[work_timeArr.length - 1]) + 1;
@@ -260,7 +290,6 @@ public class DoctorController {
 
             }
             diagnosis.replace("working_time", work_time);
-            System.out.println("work_time else if() = " + work_time);
 
             String lunch_time_str = "";
             int lunch_time = Integer.parseInt((String) diagnosis.get("lunch_time"));
@@ -331,6 +360,7 @@ public class DoctorController {
             e.printStackTrace();
             System.out.println(e.getMessage());
             System.out.println(e.getCode());
+            System.out.println("params = " + params);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -338,17 +368,42 @@ public class DoctorController {
     }
 
     // 진료 완료하기 diagnoisis_status (1 -> 3)(준근)
+    // 진료 완료하기 할 때 유효성 검사(is_diagnosis_upload가 2가 아니면 진료완료 실패하고 alert띄움
     @ResponseBody
     @PostMapping("/finishDiagnosis")
-    public ResponseEntity<String> finishDiagnosis(int diagnosis_number) {
-        ResponseEntity<String> result = null;
+    public String finishDiagnosis(int diagnosis_number) {
         try {
+            //is_diagnosis_upload가 2(업로드완료) 인지 확인
+            Diagnosis diagnosis = doctorService.checkDiagnosisUpload(diagnosis_number);
+            if (diagnosis.getIs_diagnosis_upload() != 2) {
+                return "failed";
+            }
+            // 진료완료 하면서 is_prescription_upload=1(처방전업로드X상태)이면
+            // is_prescription_upload = 3(처방전없음) and diagnosis_status = 7 (처방전 없이 진료 완료) 처리
+            if (diagnosis.getIs_prescription_upload() == 1) {
+                doctorService.changePrescription(diagnosis_number);
+                return "success";
+            }
+            //결제 처리
+            System.out.println("STARTING GET TOKEN");
+            JSONObject authToken = paymentService.getAuthToken();
+            System.out.println("STARTING PAYING");
+            JSONObject payResult = paymentService.pay(authToken.getString("access_token"),
+                    diagnosis.getDiagnosis_number(),
+                    diagnosis.getBilling_key(),
+                    diagnosis.getUser_number(),
+                    1000,
+                    "멀티캠퍼스화이팅");
+            System.out.println("PAY END");
+            if (!payResult.getString("status").equals("paid")) {
+                System.out.println("결제 실패");
+            }
+            //진료완료 처리
             doctorService.finishDiagnosis(diagnosis_number);
-            return new ResponseEntity<>("success", HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResponseEntity<>("failed", HttpStatus.BAD_REQUEST);
         }
+        return "success";
     }
 
     @ResponseBody
@@ -371,7 +426,6 @@ public class DoctorController {
     //receipt(진료영수증) == diagnosis_file_name
     @PostMapping("/receiptUpload")
     public String receiptUpload(MultipartFile receiptFile, int diagnosis_number, HttpServletResponse response) throws Exception {
-        System.out.println("receiptUpload() join" + diagnosis_number);
         //넘어온 파일의 이름
         String receiptFileName = receiptFile.getOriginalFilename();
         try {
@@ -385,7 +439,6 @@ public class DoctorController {
             receiptFile.transferTo(destFile);
 
             receiptFileName = filename;
-            System.out.println(receiptFileName);
             writer = response.getWriter();
             response.setContentType("text/html;charset=utf-8");
             response.setCharacterEncoding("utf-8");
@@ -404,7 +457,6 @@ public class DoctorController {
     // 처방전 업로드(준근)
     @PostMapping("/prescriptionUpload")
     public String prescriptionUpload(MultipartFile prescriptionFile, int diagnosis_number, HttpServletResponse response) throws Exception {
-        System.out.println("prescriptionUpload() join" + diagnosis_number);
         //넘어온 파일의 이름
         String prescriptionFileName = prescriptionFile.getOriginalFilename();
         try {
@@ -418,7 +470,6 @@ public class DoctorController {
             prescriptionFile.transferTo(destFile);
 
             prescriptionFileName = filename;
-            System.out.println(prescriptionFileName);
             writer = response.getWriter();
             response.setContentType("text/html;charset=utf-8");
             response.setCharacterEncoding("utf-8");
