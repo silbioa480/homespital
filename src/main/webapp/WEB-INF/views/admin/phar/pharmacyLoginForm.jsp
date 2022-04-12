@@ -105,18 +105,7 @@ change this template use File | Settings | File Templates. --%>
     >
         </span>
 
-        <div class="social">
-            <p>SNS계정으로 간편 로그인/회원가입</p>
-            <a class="circle google" href="#">
-                <i class="fa fa-google-plus fa-fw"> </i>
-            </a>
-            <a id="kakao_login" class="circle kakao" href="#">
-                <i class="fa fa-kakao-plus fa-fw"> </i>
-            </a>
-            <a id="naver_login" class="circle naver" href="#">
-                <i class="fa fa-naver-plus fa-fw"> </i>
-            </a>
-        </div>
+        
     </div>
 </div>
 
