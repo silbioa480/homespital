@@ -96,7 +96,7 @@ public class DoctorController {
 
     //가영:의사 회원가입
     @PostMapping("/doctorJoin.do")
-    public ModelAndView doctorJoin(HttpServletRequest request) {
+    public ModelAndView doctorJoin(HttpServletRequest request, MultipartFile doctorImgNames, MultipartFile hospitalImgNames, HttpServletResponse response) {
         Doctor doctor = new Doctor();
         doctor.setDoctor_email(request.getParameter("doctor_email"));
         doctor.setDoctor_password(request.getParameter("doctor_password"));
@@ -180,7 +180,7 @@ public class DoctorController {
         return mv;
     }
 
-    //가영: 의사 이메일 중복확인
+//    가영: 의사 이메일 중복확인
 
     @PostMapping("/Emailoverlap")
     @ResponseBody
