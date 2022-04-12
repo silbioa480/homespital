@@ -221,7 +221,7 @@ public class RootController {
 
 
 
-    //소연 : 서비스 이용약관
+    //소연 : 개인정보 처리방침
     @GetMapping("/privacyPolicy")
     public ModelAndView privacyPolicy() {
         return new ModelAndView("common/terms/privacyPolicy");
