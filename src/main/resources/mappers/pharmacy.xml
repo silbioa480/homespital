@@ -90,11 +90,13 @@
     <!--  약사에게 들어온 처방 리스트 보기(준근)  -->
     <select id="pharMedicalRecords" resultType="HashMap" parameterType="int">
 	    <![CDATA[
-        select di.*, u.*
+        select di.*, u.*, d.*
         from diagnosis di,
-             user u
+             user u,
+             doctor d
         where di.pharmacy_number = #{pharmacy_number}
           and di.user_number = u.user_number
+          and di.doctor_number = d.doctor_number
         order by di.create_date desc;
         ]]>
     </select>
