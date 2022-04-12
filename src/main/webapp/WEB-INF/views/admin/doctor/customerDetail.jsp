@@ -39,6 +39,10 @@
             font-size: 30px;
             padding: 10px;
         }
+
+        p > a {
+            font-size: 30px;
+        }
     </style>
 </head>
 <body>
@@ -49,7 +53,7 @@
 
         </div>
 
-        <p class="text-end">마이페이지 > 진료상세내역</p>
+        <p class="text-end"><a href="/doctor/docMedicalList">마이페이지 > 의사 진료 내역</a> > 진료상세내역</p>
 
         <div class="card p-3">
             <div class="card-body p-4">
@@ -77,9 +81,9 @@
                             <td>${diagnosis.user_name}</td>
                             <td>${diagnosis.gender}</td>
                             <td>${diagnosis.birthday}</td>
-                            <td>${diagnosis.is_diagnosis_upload}</td>
-                            <td>${diagnosis.is_prescription_upload}</td>
-                            <td>${diagnosis.diagnosis_status}</td>
+                            <td id="is_diagnosis_upload">${diagnosis.is_diagnosis_upload}</td>
+                            <td id="is_prescription_upload">${diagnosis.is_prescription_upload}</td>
+                            <td id="diagnosis_status">${diagnosis.diagnosis_status}</td>
 
                         </tr>
                         </tbody>
@@ -106,8 +110,8 @@
                             <th>이미지</th>
                             <td>
                                 <c:forEach var="image" items="${images}">
-                                    <img src="${image}" max-width="100%"
-                                         onerror="this.src='https://via.placeholder.com/500/000000/FFFFFF/?text=NoImgSelected'">
+                                    <img src="/resources/img/uploadImg/${image}" max-width="100%"
+                                         onerror="this.src='https://via.placeholder.com/500/000000/FFFFFF/?text=Error...+NoImgSelected'">
                                 </c:forEach>
                             </td>
                         </tr>
@@ -249,5 +253,124 @@
             }
         });
     })
+</script>
+<script>
+    //진료완료, 진료중 표시 및 대기/예약취소하기 버튼
+    let complete = "";
+    if ((${diagnosis.diagnosis_status}) == 0) {
+        complete = "<button type='button' id='startBtn' class='btn btn-primary btn-sm' onclick='startBtn(" + (${diagnosis.diagnosis_number}) + ");'>진료시작하기</button>";
+    } else if ((${diagnosis.diagnosis_status}) == 1) {
+        complete = "<button type='button' id='finishBtn' class='btn btn-info btn-sm' onclick='finishBtn(" + (${diagnosis.diagnosis_number}) + ");'>진료중/완료하기</button>";
+    } else if ((${diagnosis.diagnosis_status}) == 2) {
+        complete = "예약취소";
+    } else if ((${diagnosis.diagnosis_status}) >= 3) {
+        complete = "진료완료";
+    }
+    $('#diagnosis_status').html(complete);
+
+    //진료예약(아직진료시작X) (diagnosis_status = 0) -> is_diagnosis_upload = 0 업로드버튼X,
+    //진료시작했을 떄, (diagnosis_status = 1) -> is_diagnosis_upload = 1 업로드버튼O,
+    //진료영수증 업로드 안하고 진료완료버튼 실행시 -> finishBtn()에서 유효성 처리되어 진료완료처리X.
+    //진료영수증 업로드
+    let receipt = "";
+    if ((${diagnosis.is_diagnosis_upload}) == 0) {
+        receipt = "";
+    } else if ((${diagnosis.is_diagnosis_upload}) == 1) {
+        receipt = "<button type='button' data-bs-toggle='modal' data-bs-target='#staticBackdrop" + ${diagnosis.diagnosis_number} +" 'id ='receiptUpload" + ${diagnosis.diagnosis_number} +"' class='btn btn-info btn-sm'>영수증업로드</button><br>" +
+            '<div class="modal fade" id="staticBackdrop' + ${diagnosis.diagnosis_number} +'" data-bs-backdrop="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">' +
+            '<div class="modal-dialog" role="document">' +
+            '<div class="modal-content">' +
+            '<div class="modal-header">' +
+            '<h5 class="modal-title" id="staticBackdropLabel">진료 영수증 업로드</h5>' +
+            '<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">' +
+            '<span aria-hidden="true">&times;</span>' +
+            '</button>' +
+            '</div><form action="receiptUpload" method="POST" enctype="multipart/form-data"><div class="modal-body">' +
+            "<input type='hidden' name='diagnosis_number' value='" + ${diagnosis.diagnosis_number} +"'>" +
+            '<input type="file" name="receiptFile">사진선택</input></div><div class="modal-footer"><button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">닫기</button><button type="submit" class="btn btn-primary upload-btn' + (${diagnosis.diagnosis_number}) + '">확인</button></div></form></div></div></div>'
+    } else if ((${diagnosis.is_diagnosis_upload}) == 2) {
+        receipt = "업로드완료";
+    }
+    $('#is_diagnosis_upload').html(receipt);
+
+    //진료예약(아직진료시작X) (diagnosis_status = 0) 일 때  ->> is_prescription_upload = 0 업로드버튼X,
+    //진료시작(dagnosis_status = 1)일 때   ->> is_prescription_upload = 1 업로드버튼0,
+    //                                   업로드 완료시 is_prescription_upload = 2 업로드완료.
+    //진료 종료(diagnosis_status = 3~7) 인데 --> is_prescription_upload가 1이면
+    //                                      Controller에서 is_prescription_upload = 3(처방전없음)으로 바꿔준다.
+    //처방전 업로드
+    let prescription = "";
+    if ((${diagnosis.is_prescription_upload}) == 0) {
+        prescription = "";
+    } else if ((${diagnosis.is_prescription_upload}) == 1) {
+        prescription = "<button type='button' data-bs-toggle='modal' data-bs-target='#staticBackdrop2_" + (${diagnosis.diagnosis_number}) + " 'id ='prescriptionUpload" + (${diagnosis.diagnosis_number}) + "' class='btn btn-info btn-sm'>처방전업로드</button><br>" +
+            '<div class="modal fade" id="staticBackdrop2_' + (${diagnosis.diagnosis_number}) + '" data-bs-backdrop="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">' +
+            '<div class="modal-dialog" role="document">' +
+            '<div class="modal-content">' +
+            '<div class="modal-header">' +
+            '<h5 class="modal-title" id="staticBackdropLabel">처방전 업로드</h5>' +
+            '<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">' +
+            '<span aria-hidden="true">&times;</span>' +
+            '</button>' +
+            '</div><form action="prescriptionUpload" method="POST" enctype="multipart/form-data"><div class="modal-body">' +
+            "<input type='hidden' name='diagnosis_number' value='" + (${diagnosis.diagnosis_number}) + "'>" +
+            '<input type="file" name="prescriptionFile">사진선택</input></div><div class="modal-footer"><button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">닫기</button><button type="submit" class="btn btn-primary upload-btn' + (${diagnosis.diagnosis_number}) + '">확인</button></div></form></div></div></div>';
+    } else if ((${diagnosis.is_prescription_upload}) == 2) {
+        prescription = "업로드완료";
+    } else if ((${diagnosis.is_prescription_upload}) == 3) {
+        prescription = "처방전없음";
+    }
+    $('#is_prescription_upload').html(prescription);
+</script>
+<script>
+    // 진료 시작하기
+    //진료시작시 문자전송 + 카카오 오픈링크 태영
+    function startBtn(e) {
+        console.log()
+        if (confirm("진료를 시작하시겠습니까?") == true) {
+            $.ajax({
+                url: "/doctor/startDiagnosis",
+                type: "POST",
+                datatype: "json",
+                data: {
+                    "diagnosis_number": e,
+                },
+                success: function (data) {
+                    console.log(data);
+
+                    console.log("진료 시작 성공 : " + e)
+                    location.href = "${pageContext.request.contextPath}/doctor/customerDetail/${diagnosis.diagnosis_number}";
+                },
+            })
+        } else {
+            return;
+        }
+    }
+
+    // 진료 완료하기
+    function finishBtn(e) {
+        if (confirm("진료를 완료하시겠습니까?") == true) {
+            $.ajax({
+                url: "/doctor/finishDiagnosis",
+                type: "POST",
+                datatype: "json",
+                data: {
+                    "diagnosis_number": e,
+                },
+                success: function (data) {
+                    if (data === "success") {
+                        console.log(data);
+                        console.log("진료 완료 성공 : " + e)
+                        location.href = "${pageContext.request.contextPath}/doctor/docMedicalList";
+                    } else if (data === "failed") {
+                        alert("진료영수증이 업로드 되지 않았습니다. 진료영수증을 업로드 후 다시 실행해주세요.")
+                        location.href = "${pageContext.request.contextPath}/doctor/customerDetail/${diagnosis.diagnosis_number}";
+                    }
+                },
+            })
+        } else {
+            return;
+        }
+    }
 </script>
 </html>
