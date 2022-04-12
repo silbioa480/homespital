@@ -19,11 +19,13 @@
     <insert id="insertDoctorMember" parameterType="doctor">
         <![CDATA[
         insert into `doctor`(doctor_email, doctor_password, doctor_phone, doctor_name, doctor_valid_number,
-                             doctor_profile_image_name, hospital_name, hospital_telephone, hospital_business_number, zip_code, street_address,
+                             doctor_profile_image_name, hospital_name, hospital_telephone, hospital_business_number,
+                             zip_code, street_address,
                              detail_address, doctor_diagnosis_type, working_time, lunch_time, holiday, hospital_fax,
                              hospital_url, doctor_introduction, hospital_file_name)
         values (#{doctor_email}, #{doctor_password}, #{doctor_phone}, #{doctor_name},
-                #{doctor_valid_number}, #{doctor_profile_image_name}, #{hospital_name}, #{hospital_telephone}, #{hospital_business_number},
+                #{doctor_valid_number}, #{doctor_profile_image_name}, #{hospital_name}, #{hospital_telephone},
+                #{hospital_business_number},
                 #{zip_code}, #{street_address}, #{detail_address}, #{doctor_diagnosis_type},
                 REPLACE(#{working_time}, " ", ""), #{lunch_time}, #{holiday}, #{hospital_fax}, #{hospital_url},
                 #{doctor_introduction}, #{hospital_file_name})
@@ -48,7 +50,7 @@
         ) sub
         where rnum between #{startrow} and #{startrow} + 9
         <if test="doctor_diagnosis_type != null and !doctor_diagnosis_type.equals('')">
-            and doctor_diagnosis_type = #{doctor_diagnosis_type}
+            and doctor_diagnosis_type LIKE concat('%',#{doctor_diagnosis_type},'%')
         </if>
     </select>
 

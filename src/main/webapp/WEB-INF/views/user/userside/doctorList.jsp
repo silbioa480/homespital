@@ -32,8 +32,8 @@
     </div>
     <nav id="nav">
         <ul>
-            <li><a href="/list">진료과선택</a></li>
-            <li><a href="#" class="active">의료진선택</a></li>
+            <li><a href="/medicalSearch">진료과선택</a></li>
+            <li><a href="/doctorList" class="active">의료진선택</a></li>
         </ul>
     </nav>
     <footer>
@@ -97,7 +97,7 @@
 
 <div style="padding-right: 40px;">
     <div class="d-flex m-3 justify-content-between">
-        <span class="my-auto">총<c:if test="${not empty doctorList}">${fn:length(doctorList)}</c:if>명</span>
+        <span class="my-auto">총 ${not empty doctorList? fn:length(doctorList) : '0'}명</span>
         <div>
             <input type="hidden" name="docListSortOption" id="docListSortOption" value="false">
             <button class="btn btn-secondary rounded-pill">실시간 진료</button>
@@ -105,7 +105,7 @@
         </div>
     </div>
     <div class="card p-3">
-        <c:if test="${not empty doctorList}">
+        <c:if test="${(not empty doctorList) && (fn:length(doctorList) > 0)}">
             <c:forEach var="doctor" items="${doctorList}" varStatus="status">
 
                 <div class="row g-0">
@@ -178,45 +178,45 @@
             </c:forEach>
         </c:if>
     </div>
-    <nav class="text-center" id="pageList">
-        <ul class="pagination justify-content-center">
-            <c:choose>
-                <c:when test="${pageInfo.page<=1}">
-                    <li class="page-item"><a class="page-link" href="#">이전</a></li>
-                    <!-- [이전]&nbsp; -->
-                </c:when>
-                <c:otherwise>
-                    <li class="page-item"><a class="page-link"
-                                             href="./${place.id }?place_name=${place.place_name }&page=${pageInfo.page-1}">이전</a>
-                    </li>
-                </c:otherwise>
-            </c:choose>
-            <c:forEach var="i" begin="${pageInfo.startPage }" end="${pageInfo.endPage }">
-                <c:choose>
-                    <c:when test="${pageInfo.page==i }">
-                        <li class="page-item active">
-                            <a class="page-link" href="#">${i }</a></li>
-                    </c:when>
-                    <c:otherwise>
-                        <li class="page-item"><a class="page-link"
-                                                 href="/doctorList?${place.id }?place_name=${place.place_name }&page=${pageInfo.page}">${i }</a>
-                        </li>
+    <%--    <nav class="text-center" id="pageList">--%>
+    <%--        <ul class="pagination justify-content-center">--%>
+    <%--            <c:choose>--%>
+    <%--                <c:when test="${pageInfo.page<=1}">--%>
+    <%--                    <li class="page-item"><a class="page-link" href="#">이전</a></li>--%>
+    <%--                    <!-- [이전]&nbsp; -->--%>
+    <%--                </c:when>--%>
+    <%--                <c:otherwise>--%>
+    <%--                    <li class="page-item"><a class="page-link"--%>
+    <%--                                             href="./${place.id }?place_name=${place.place_name }&page=${pageInfo.page-1}">이전</a>--%>
+    <%--                    </li>--%>
+    <%--                </c:otherwise>--%>
+    <%--            </c:choose>--%>
+    <%--            <c:forEach var="i" begin="${pageInfo.startPage }" end="${pageInfo.endPage }">--%>
+    <%--                <c:choose>--%>
+    <%--                    <c:when test="${pageInfo.page==i }">--%>
+    <%--                        <li class="page-item active">--%>
+    <%--                            <a class="page-link" href="#">${i }</a></li>--%>
+    <%--                    </c:when>--%>
+    <%--                    <c:otherwise>--%>
+    <%--                        <li class="page-item"><a class="page-link"--%>
+    <%--                                                 href="/doctorList?${place.id }?place_name=${place.place_name }&page=${pageInfo.page}">${i }</a>--%>
+    <%--                        </li>--%>
 
-                    </c:otherwise>
-                </c:choose>
-            </c:forEach>
-            <c:choose>
-                <c:when test="${pageInfo.page>=pageInfo.maxPage }">
-                    <li class="page-item"><a class="page-link" href="#">다음</a></li>
-                </c:when>
-                <c:otherwise>
-                    <li class="page-item"><a class="page-link"
-                                             href="./${place.id }?place_name=${place.place_name }&page=${pageInfo.page+1}">다음</a>
-                    </li>
-                </c:otherwise>
-            </c:choose>
-        </ul>
-    </nav>
+    <%--                    </c:otherwise>--%>
+    <%--                </c:choose>--%>
+    <%--            </c:forEach>--%>
+    <%--            <c:choose>--%>
+    <%--                <c:when test="${pageInfo.page>=pageInfo.maxPage }">--%>
+    <%--                    <li class="page-item"><a class="page-link" href="#">다음</a></li>--%>
+    <%--                </c:when>--%>
+    <%--                <c:otherwise>--%>
+    <%--                    <li class="page-item"><a class="page-link"--%>
+    <%--                                             href="./${place.id }?place_name=${place.place_name }&page=${pageInfo.page+1}">다음</a>--%>
+    <%--                    </li>--%>
+    <%--                </c:otherwise>--%>
+    <%--            </c:choose>--%>
+    <%--        </ul>--%>
+    <%--    </nav>--%>
 </div>
 
 <!-- Scripts -->

@@ -200,7 +200,8 @@ public class MedicalListController {
             }
         });
 
-        mv.addObject("doctorList", doctorList);
+        if (doctorList.size() > 0)
+            mv.addObject("doctorList", doctorList);
         mv.addObject("pageInfo", pageInfo);
         return mv;
     }
