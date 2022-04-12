@@ -155,6 +155,7 @@ public class MedicalListController {
 
         doctorList.forEach(doctor -> {
             String work_time = doctor.getWorking_time();
+            System.out.println(work_time + "-------------------------------");
             String[] work_timeArr = work_time.split(",");
 
             for (int i = 0; i < work_timeArr.length; i++) {
@@ -199,9 +200,10 @@ public class MedicalListController {
                 doctor.setLunch_time("오전 " + lunch_time + "시 ~ 오전 " + (lunch_time + 1) + "시");
             }
         });
-
-        if (doctorList.size() > 0)
-            mv.addObject("doctorList", doctorList);
+        mv.addObject("latitude", latitude);
+        mv.addObject("longitude", longitude);
+        mv.addObject("doctor_diagnosis_type", doctor_diagnosis_type);
+        mv.addObject("doctorList", doctorList);
         mv.addObject("pageInfo", pageInfo);
         return mv;
     }
