@@ -6,62 +6,26 @@
 <head>
     <title>환자 진료 내역</title>
 
-    <link rel="stylesheet" href="/resources/css/myMedicalList.css"/>
-    <!-- 합쳐지고 최소화된 최신 CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
-    <!-- 부가적인 테마 -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-
-    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
+    <link rel="stylesheet" href="/resources/css/pharCustomerDetail.css"/>
     <%-- 구글 아이콘 CDN링크 --%>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <style>
-        .material-icons {
-            font-size: 36px;
-        }
-
-        .list-header {
-            /*background-color: blue;*/
-            height: 200px;
-        }
-
-        th, td, tbody {
-            text-align: center;
-
-        }
-
-        p {
-            font-size: 30px;
-            padding: 10px;
-        }
-
-        .table {
-            height: 500px;
-            overflow: auto;
-        }
-
-
-    </style>
 </head>
 <body>
 <div class="container">
-    <div class="col mt-5">
-        <div class="list-header bg-info text-right">
+    <div class="col mt-3">
+        <div class="list-header bg-info text-center">
             <h1 id="logo">Homespital</h1>
-            <h4 style="float:left; margin-top: 110px; margin-left: 25px;">${pharmacy_name}</h4>
+<%--            <h4>${diagnosis.pharmacy_name}</h4>--%>
         </div>
 
 
-        <p class="text-right">약사 처방전 내역</p>
+        <p class="text-end p-3">약사 처방전 내역</p>
 
-        <div class="card">
+        <div class="card p-3">
             <div class="card-body p-4">
                 <div class="text-center table-responsive">
-                    <table class="table fs-3 fst-normal">
+                    <table class="table">
                         <thead>
                         <tr>
                             <th>날짜/시간</th>
