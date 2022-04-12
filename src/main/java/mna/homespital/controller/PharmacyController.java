@@ -1,6 +1,8 @@
 package mna.homespital.controller;
 
+import mna.homespital.dto.Doctor;
 import mna.homespital.dto.Pharmacy;
+import mna.homespital.service.DiagnosisService;
 import mna.homespital.service.PharService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,9 +15,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 @Controller
 @RequestMapping("/pharmacy")
@@ -27,10 +30,13 @@ public class PharmacyController {
     @Autowired
     PharService pharService;
 
+    @Autowired
+    DiagnosisService diagnosisService;
+
     //약국메인
     @GetMapping({"", "/"})
     public ModelAndView pharmacyMain() {
-        return new ModelAndView("admin/pharside/pharmacyIndex");
+        return new ModelAndView("admin/phar/pharmacyIndex");
     }
 
     //약국 로그인Form
@@ -54,7 +60,7 @@ public class PharmacyController {
             Pharmacy pharmacy = pharService.getPharInfo(email);
             pharmacy.setPharmacy_password("");
             session.setAttribute("pharmacy", pharmacy);
-            return "redirect:/pharmacy/customerList";
+            return "redirect:/pharmacy/pharMedicalList";
         } catch (Exception e) {
             e.printStackTrace();
             try {
@@ -119,34 +125,84 @@ public class PharmacyController {
         return result;
     }
 
-    //환자진료내역 (인성)
-    @GetMapping("/customerList")
-    public String customerList(HttpSession session, Model m) throws Exception {
+    //약사의 환자처방내역 (인성, 준근)
+    @GetMapping("/pharMedicalList")
+    public String pharMedicalList(HttpSession session, Model m) {
+        System.out.println("pharMedicalList() join");
         try {
             Pharmacy pharmacy = (Pharmacy) session.getAttribute("pharmacy");
-            int searchNumber = pharmacy.getPharmacy_number();
-            List<HashMap<String, Object>> diagnosis = pharService.pharCustomerRecordsList(searchNumber);
-            m.addAttribute("diagnosis", diagnosis);
+            int pharmacy_number = pharmacy.getPharmacy_number();
+            m.addAttribute("pharmacy_number", pharmacy_number);
         } catch (Exception e) {
-            System.out.println("Catch() join");
             e.printStackTrace();
             return "common/err";
         }
-        return "admin/phar/customerList";
+        return "admin/phar/pharmacyMedicalList";
     }
 
-    //진료내역 리스트 출력 (인성)
+    //약사에게 들어온 처방 리스트 출력 (인성, 준근)
     @ResponseBody
-    @GetMapping("/customerRecordsList")
-    public ArrayList<HashMap<String, Object>> pharCustomerRecordsList() {
-        ArrayList<HashMap<String, Object>> customerList = new ArrayList<>();
+    @GetMapping("/pharMedicalRecords")
+    public ArrayList<HashMap<String, Object>> pharMedicalRecords(@RequestParam int pharmacy_number) {
+        System.out.println("pharMedicalRecords() join");
+        System.out.println("pharmacy_number = " + pharmacy_number);
+        ArrayList<HashMap<String, Object>> pharMedicalList = new ArrayList<>();
         try {
             Pharmacy pharmacy = (Pharmacy) session.getAttribute("pharmacy");
+            System.out.println("pharmacy = " + pharmacy);
             if (pharmacy == null) throw new Exception("로그인 되어있지않음.");
-            customerList = pharService.pharCustomerRecordsList(pharmacy.getPharmacy_number());
+            pharMedicalList = pharService.pharMedicalRecords(pharmacy_number);
+            System.out.println("pharMedicalList = " + pharMedicalList);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return customerList;
+        return pharMedicalList;
+    }
+
+    // 인성 : 환자에 대한 진료내역과 의사의 데이터
+    @GetMapping("/customerDetail/{diagnosis_number}")
+    public ModelAndView customerDetail(@PathVariable int diagnosis_number) {
+        ModelAndView mv = new ModelAndView("/admin/phar/customerDetail");
+        try {
+            if (session.getAttribute("pharmacy") == null) throw new Exception("로그인 되어있지 않음");
+            Pharmacy pharmacy = (Pharmacy) session.getAttribute("pharmacy");
+            HashMap<String, Object> diagnosis = diagnosisService.getDiagnosisDetail(diagnosis_number);
+            if (diagnosis == null || !((Integer) diagnosis.get("pharmacy_number")).equals(pharmacy.getPharmacy_number()))
+                throw new Exception("올바르지 않은 진단기록");
+            LocalDateTime create_date = (LocalDateTime) diagnosis.get("create_date");
+//            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String create_date_str = create_date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            diagnosis.replace("create_date", create_date_str);
+            mv.addObject("diagnosis", diagnosis);
+        } catch (Exception e) {
+            e.printStackTrace();
+            mv.setViewName("/common/err");
+        }
+        return mv;
+    }
+
+    // 처방전 접수하기 및 조제 시작하기(diagnosis_status 3- > 4)(준근)
+    @ResponseBody
+    @PostMapping("/makeMedicine")
+    public String makeMedicine(int diagnosis_number) {
+
+        try {
+            pharService.makeMedicine(diagnosis_number);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "success";
+    }
+
+    // 조제완료하기(diagnosis_status 4- > 5)(준근)
+    @ResponseBody
+    @PostMapping("/successMadeMedicine")
+    public String successMadeMedicine(int diagnosis_number) {
+        try {
+            pharService.successMadeMedicine(diagnosis_number);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "success";
     }
 }

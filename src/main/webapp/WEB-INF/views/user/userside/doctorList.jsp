@@ -5,46 +5,46 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>의료진 보기</title>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
-  <link rel="stylesheet" href="/resources/css/doctorList.css"/>
-  <link rel="stylesheet" href="/resources/css/sidebar.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css"/>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <title>의료진 보기</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="/resources/css/doctorList.css"/>
+    <link rel="stylesheet" href="/resources/css/sidebar.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css"/>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 <style>
-  a:link, a:visited, a:hover, a:active {
-    color: grey;
-    text-decoration: none;
-  !important
-  }
+    a:link, a:visited, a:hover, a:active {
+        color: grey;
+        text-decoration: none;
+    !important
+    }
 
 </style>
 
 <body class="is-preload">
 <%--side-nav 시작 by 소연 4/7--%>
 <div id="sidebar">
-  <div class="d-flex flex-column align-items-center">
-    <%--        <span class="image avatar"><img src="/resources/img/doctorList/doctor01.jpg" alt=""/></span>--%>
-    <h1 id="logo"><a href="/">Homespital</a></h1>
-    <p>${name}님 안녕하세요.</p>
-  </div>
-  <nav id="nav">
-    <ul>
-      <li><a href="/list" >진료과선택</a></li>
-      <li><a href="#" class="active">의료진선택</a></li>
-    </ul>
-  </nav>
-  <footer>
-    <ul class="icons">
-      <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-      <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-      <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-      <li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
-      <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-    </ul>
-  </footer>
+    <div class="d-flex flex-column align-items-center">
+        <%--        <span class="image avatar"><img src="/resources/img/doctorList/doctor01.jpg" alt=""/></span>--%>
+        <h1 id="logo"><a href="/">Homespital</a></h1>
+        <p>${name}님 안녕하세요.</p>
+    </div>
+    <nav id="nav">
+        <ul>
+            <li><a href="/list">진료과선택</a></li>
+            <li><a href="#" class="active">의료진선택</a></li>
+        </ul>
+    </nav>
+    <footer>
+        <ul class="icons">
+            <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+            <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+            <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+            <li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+            <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+        </ul>
+    </footer>
 </div>
 <%--side-nav 끝 by 소연 4/7--%>
 <!-- Header -->
@@ -122,7 +122,8 @@
                         <div class="card-title d-flex justify-content-between">
                             <div class="d-flex">
                                 <h4 class="pr-3 font-weight-bolder">${doctor.doctor_name}</h4>
-                                <span class="pl-3 font-weight-normal align-text-bottom">의사 / ${doctor.doctor_diagnosis_type}</span>
+                                <span
+                                        class="pl-3 font-weight-normal align-text-bottom">의사 / ${doctor.doctor_diagnosis_type}</span>
                             </div>
                             <div class="d-flex">
                                 <button class="btn btn-secondary ml-auto"
@@ -198,7 +199,7 @@
                     </c:when>
                     <c:otherwise>
                         <li class="page-item"><a class="page-link"
-                                                 href="./${place.id }?place_name=${place.place_name }&page=${pageInfo.page}">${i }</a>
+                                                 href="/doctorList?${place.id }?place_name=${place.place_name }&page=${pageInfo.page}">${i }</a>
                         </li>
 
                     </c:otherwise>
@@ -218,90 +219,41 @@
     </nav>
 </div>
 
-    <!-- Scripts -->
+<!-- Scripts -->
 
-    <%-- 카카오맵 관련 JS --%>
-    <script type="text/javascript"
-            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a69fc7ca725d20c3e61c5b6bb3d32242&libraries=services"></script>
+<%-- 거리순 버튼을 클릭하면 현재 나의 위치와 가까운 순으로 의사 리스트가 출력된다. 종호 --%>
+<script>
+    let myLatitude;
+    let myLongitude;
 
-    <%-- JQuery --%>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+    getCurrentPosBtn();
 
-    <%-- 거리순 버튼을 클릭하면 현재 나의 위치와 가까운 순으로 의사 리스트가 출력된다. 종호 --%>
-    <script>
-        let myLatitude;
-        let myLongitude;
+    function locationLoadSuccess(pos) {
+        myLatitude = pos.coords.latitude;
+        myLongitude = pos.coords.longitude;
+    };
 
-        let geocoder = new kakao.maps.services.Geocoder();
+    function locationLoadError(pos) {
+        alert('위치 정보를 가져오는데 실패했습니다.');
+    };
 
-        // 1. 현재 나의 좌표를 가져온다.
-        getCurrentPosBtn();
+    function getCurrentPosBtn() {
+        navigator.geolocation.getCurrentPosition(locationLoadSuccess, locationLoadError);
+    };
 
-        function locationLoadSuccess(pos) {
-            // 현재 위치 받아오기
-            var currentPos = new kakao.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+    function sortByDistance() {
+        location.href = "/doctorList?doctor_diagnosis_type=${doctorList.get(0).doctor_diagnosis_type}&longitude=" + myLongitude + "&latitude=" + myLatitude;
+    }
 
-            myLatitude = pos.coords.latitude;
-            myLongitude = pos.coords.longitude;
-        };
+</script>
 
-        function locationLoadError(pos) {
-            alert('위치 정보를 가져오는데 실패했습니다.');
-        };
-
-        function getCurrentPosBtn() {
-            navigator.geolocation.getCurrentPosition(locationLoadSuccess, locationLoadError);
-        };
-
-        // 2. for 문을 돌려 doctor 의 좌표와 나의 좌표로 거리를 구한다.
-        let doctors = "${doctorList}";
-        let newDoctors = [];
-
-        for (let doctor in doctors) {
-            let doctorLatitude;
-            let doctorLongitude;
-            let distance = Number.MAX_SAFE_INTEGER;
-
-            geocoder.addressSearch(doctor.street_address, (result, status) => {
-                if (status === kakao.maps.services.Status.OK) {
-                    doctorLatitude = result[0].y;
-                    doctorLongitude = result[0].x;
-
-                    distance = Math.sqrt(Math.pow(myLatitude - doctorLatitude, 2) + Math.pow(myLongitude - doctorLongitude, 2));
-                }
-            });
-
-            doctor.distance = distance;
-            newDoctors.push(doctor);
-        }
-
-        // 3. 거리의 오름차순으로 정렬한다.
-        newDoctors.sort((a, b) => {
-            if (a.distance === b.distance) return 0;
-            return a.distance > b.distance ? 1 : -1;
-        });
-
-        function sortByDistance() {
-            // 4. 새로운 의사 배열을 ajax 로 controller 에 전송한다.
-            $.ajax({
-                type: "get",
-                url: "/doctorList/distance",
-                data: newDoctors,
-                success: function (result) {
-                    console.log(result);
-                }
-            });
-        }
-
-    </script>
-
-    <script src="/resources/js/doctorList/jquery.min.js"></script>
-    <script src="/resources/js/doctorList/jquery.scrollex.min.js"></script>
-    <script src="/resources/js/doctorList/jquery.scrolly.min.js"></script>
-    <script src="/resources/js/doctorList/browser.min.js"></script>
-    <script src="/resources/js/doctorList/breakpoints.min.js"></script>
-    <script src="/resources/js/doctorList/util.js"></script>
-    <script src="/resources/js/doctorList/doctorList.js"></script>
+<script src="/resources/js/doctorList/jquery.min.js"></script>
+<script src="/resources/js/doctorList/jquery.scrollex.min.js"></script>
+<script src="/resources/js/doctorList/jquery.scrolly.min.js"></script>
+<script src="/resources/js/doctorList/browser.min.js"></script>
+<script src="/resources/js/doctorList/breakpoints.min.js"></script>
+<script src="/resources/js/doctorList/util.js"></script>
+<script src="/resources/js/doctorList/doctorList.js"></script>
 
 
 </body>

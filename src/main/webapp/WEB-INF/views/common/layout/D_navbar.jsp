@@ -28,7 +28,7 @@
 <body>
 <!-- Header -->
 <div>
-    <nav class="navbar navbar-expand-md navbar-fixed-top w-100">
+    <nav class="navbar navbar-expand-md fixed-top w-100" id="navbar">
         <div class="container">
             <div class="d-flex w-100">
                 <a class="navbar-brand justify-content-start" href="/doctor/"
@@ -48,7 +48,7 @@
                         <c:choose>
                             <c:when test="${not empty doctor}">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/doctor/customerList">진료리스트</a>
+                                    <a class="nav-link" href="/doctor/docMedicalList">진료리스트</a>
                                 </li>
                                 <%--                                <li class="nav-item">--%>
                                 <%--                                    <a class="nav-link" href="#">내 정보수정</a>--%>
@@ -89,5 +89,7 @@
     --%>
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="/resources/js/main/navbar.js"></script>
 </body>
+
 </html>

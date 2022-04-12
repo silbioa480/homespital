@@ -60,8 +60,7 @@ change this template use File | Settings | File Templates. --%>
 
 <!-- Header -->
 <header id="header">
-    <h1>약사 로그인 화면입니다.</h1>
-    <h1 style="margin-left: 63px">로 그 인</h1>
+    <h1 style="margin-left: 63px">약 사 로 그 인</h1>
 </header>
 
 <!-- login Form -->
@@ -100,23 +99,12 @@ change this template use File | Settings | File Templates. --%>
         >비밀번호 찾기</a
         > </span
         ><span
-    ><a style="color: white; margin-left: 10px" href="/joinForm"
+    ><a style="color: white; margin-left: 10px" href="/pharmacy/joinForm"
     >회원가입</a
     >
         </span>
 
-        <div class="social">
-            <p>SNS계정으로 간편 로그인/회원가입</p>
-            <a class="circle google" href="#">
-                <i class="fa fa-google-plus fa-fw"> </i>
-            </a>
-            <a id="kakao_login" class="circle kakao" href="#">
-                <i class="fa fa-kakao-plus fa-fw"> </i>
-            </a>
-            <a id="naver_login" class="circle naver" href="#">
-                <i class="fa fa-naver-plus fa-fw"> </i>
-            </a>
-        </div>
+
     </div>
 </div>
 

@@ -25,4 +25,27 @@ header {
     justify-content: flex-end;
     align-items: center;
     padding: 30px 10%;
+    background-color: rgba(255, 255, 255, 0);
+    -webkit-transition-duration: 0.4s;
+    -webkit-transition-timing-function: ease-out;
+    transition-duration: 0.4s;
+    transition-timing-function: ease-out;
+}
+
+.nav-up {
+    background-color: rgba(255, 255, 255, 1);
+    -webkit-transition-duration: 0.4s;
+    -webkit-transition-timing-function: ease-in-out;
+    transition-duration: 0.4s;
+    transition-timing-function: ease-in-out;
+    /*헤더 높이와 같게*/
+}
+
+.nav-down {
+    background-color: rgba(255, 255, 255, 0);
+    -webkit-transition-duration: 0.4s;
+    -webkit-transition-timing-function: ease-in-out;
+    transition-duration: 0.4s;
+    transition-timing-function: ease-in-out;
+    /*헤더 높이와 같게*/
 }

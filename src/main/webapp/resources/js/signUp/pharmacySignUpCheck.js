@@ -46,8 +46,23 @@ function checkAll() {
     checkPharmacyPhone();
     checkAddress();
     checkRadio();
-    console.log(checkEmail());
     if (confirm("회원가입을하시겠습니까?")) {
+        console.log(checkEmail(), "이메일 체크")
+        console.log(checkPassword(), "비번 체크")
+        console.log(checkPassword2(), "비번2 체크")
+        console.log(checkPhone(), "전번 체크")
+        console.log(checkPhone2(), "전번2 체크")
+        console.log(checkBusinessNumber(), "사업자번호 체크")
+        console.log(checkPharmacyName(), "약국 체크")
+        console.log(checkPharmacyPhone(), "약구전화 체크")
+        console.log(checkAddress(), "주ㅜ소 체크")
+        console.log(checkRadio(), "라디오 체크")
+
+        console.log(checkEmail() === true && checkPassword() === true && checkPassword2() === true
+            && checkPhone() === true && checkPhone2() === true && checkBusinessNumber() === true
+            && checkPharmacyName() === true && checkPharmacyPhone() === true
+            && checkAddress() === true && checkRadio() === true)
+
         if (checkEmail() === true && checkPassword() === true && checkPassword2() === true
             && checkPhone() === true && checkPhone2() === true && checkBusinessNumber() === true
             && checkPharmacyName() === true && checkPharmacyPhone() === true
@@ -83,7 +98,7 @@ const setSuccess = element => {
 }
 
 function checkEmail() {
-    var checked = false;
+    var emailChecked = false;
     const emailValue = email.value.trim();
     var emailPattern = /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
     if (emailValue === "") {
@@ -104,15 +119,15 @@ function checkEmail() {
                 var isOK = data
                 if (isOK) {
                     setError(email, "이미있는 이메일 입니다.");
-                    checked = false;
+                    emailChecked = false;
                 } else {
                     setSuccess(email);
-                    checked = true;
+                    emailChecked = true;
                 }
             }
         })
     }
-    return checked;
+    return emailChecked;
 
 }
 
@@ -175,16 +190,57 @@ function checkPhone2() {
     return true;
 }
 
+
 function checkBusinessNumber() {
     const businessNumberValue = document.getElementById("businessNumber").value.trim();
     if (businessNumberValue === "") {
         setError(businessNumber, "필수 정보입니다.");
+        return false;
+    } else if ($('#businessNumCheck').val() !== "조회 완료") {
+        setError(businessNumber, "조회버튼 눌러주세요.");
         return false;
     } else {
         setSuccess(businessNumber);
     }
     return true;
 }
+
+$(function () {
+    $('#businessNumCheck').click(function () {
+        let ceonumber = $('#businessNumber').val();
+        let arrayData = {
+            "b_no": [ceonumber]
+        }
+        // console.log(ceonumber);
+        // console.log(arrayData);
+        $.ajax({
+            url: "https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=smkh950RF%2BKUYSGK2GSWio7MhSh80eabzme3oFO%2B%2B%2FbR9Zl0vWADP9G0sx2iCZJK5TihKXg4AYHUMb9XVYgX3w%3D%3D",
+            type: "post",
+            data: JSON.stringify(arrayData), // json 을 string으로 변환하여 전송
+            dataType: "JSON",
+            contentType: "application/json",
+            accept: "application/json",
+            success: function (data, result) {
+                console.log(data);
+                for (let i = 0; i < data.data.length; i++) {
+                    // console.log(data.data[i]);
+                    // console.log(data.data[i].tax_type);
+                    if (data.data[i].tax_type === "국세청에 등록되지 않은 사업자등록번호입니다.") {
+                        setError(businessNumber, "국세청에 등록되지 않은 사업자등록번호입니다.");
+                    } else {
+                        setSuccess(businessNumber);
+                        alert("확인 되었습니다.");
+                        $('#businessNumber').attr('readonly', true);
+                        $('#businessNumCheck').val("조회 완료");
+                        break;
+                    }
+                }
+            }
+
+        })
+    })
+})
+
 
 function checkPharmacyName() {
     const pharmacyNameValue = pharmacyName.value.trim();

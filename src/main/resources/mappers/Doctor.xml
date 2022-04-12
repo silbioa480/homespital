@@ -40,14 +40,16 @@
     </select>
 
     <select id="queryDoctor" resultType="Doctor" parameterType="Map">
-        <![CDATA[
+
         select *
         from (select @rownum:=@rownum+1 rnum, tot.*
-              from (select * from doctor) tot,
-                  (select @rownum := 0) temp) sub
+        from (select * from doctor) tot,
+        (select @rownum := 0) temp
+        ) sub
         where rnum between #{startrow} and #{startrow} + 9
-          and doctor_diagnosis_type = #{doctor_diagnosis_type}
-        ]]>
+        <if test="doctor_diagnosis_type != null and !doctor_diagnosis_type.equals('')">
+            and doctor_diagnosis_type = #{doctor_diagnosis_type}
+        </if>
     </select>
 
     <select id="doctorAmount" resultType="Integer">
@@ -94,7 +96,7 @@
         ]]>
     </select>
 
-    <!--  나의 진료내역 리스트 보기(준근)  -->
+    <!--  의사의 진료내역 리스트 보기(준근)  -->
     <select id="docMedicalRecords" resultType="HashMap" parameterType="int">
 	    <![CDATA[
         select di.*, u.*
@@ -126,14 +128,61 @@
         ]]>
     </update>
 
-    <!-- 진료 완료하기하기 (준근)-->
+    <!-- 진료 완료하기하기(처방전있는경우) (준근)-->
     <update id="finishDiagnosis" parameterType="int">
         <![CDATA[
         update diagnosis
-        set diagnosis_status       = 3,
-            is_diagnosis_upload    = 2,
-            is_prescription_upload = 2
+        set diagnosis_status = 3
         where diagnosis_number = #{diagnosis_number};
         ]]>
     </update>
+
+    <!-- Diagnosis 확인// 진료영수증, 진단서 업로드 된지 확인에 사용(준근) -->
+    <select id="checkDiagnosisUpload" resultType="Diagnosis" parameterType="int">
+	    <![CDATA[
+        select *
+        from diagnosis
+        where diagnosis_number = #{diagnosis_number}
+        ]]>
+    </select>
+
+    <!-- 처방전 없이 진료완료 시 is_prescription_upload 3(처방전없음)으로 변경 (준근)-->
+    <update id="changePrescription" parameterType="int">
+        <![CDATA[
+        update diagnosis
+        set is_prescription_upload = 3,
+            diagnosis_status       = 6
+        where diagnosis_number = #{diagnosis_number};
+        ]]>
+    </update>
+
+    <!--  진료영수증 업로드(준근) -->
+    <update id="uploadReceipt" parameterType="Map">
+        <![CDATA[
+        update diagnosis
+        set is_diagnosis_upload = 2,
+            diagnosis_file_name =#{diagnosis_file_name}
+        where diagnosis_number = #{diagnosis_number}
+        ]]>
+    </update>
+
+    <!--  처방전 업로드(준근) -->
+    <update id="uploadPrescription" parameterType="Map">
+        <![CDATA[
+        update diagnosis
+        set is_prescription_upload = 2,
+            prescription_file_name =#{prescription_file_name}
+        where diagnosis_number = #{diagnosis_number}
+        ]]>
+    </update>
+
+    <!-- 담당 환자의 전화번호 가져오기 태영   -->
+    <select id="getUserPhone" parameterType="int" resultType="String">
+        <![CDATA[
+        select u.user_phone
+        from d doctor,
+             u user
+        where d.doctor_number=#{doctor_number} and d.doctor_number=u.user_number
+        ]]>
+    </select>
 </mapper>
