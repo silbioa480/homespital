@@ -8,34 +8,11 @@
 
     <%-- 구글 아이콘 CDN링크 --%>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-    <style>
-        .material-icons {
-            font-size: 36px;
-        }
-
-        .list-header {
-            /*background-color: blue;*/
-            height: 200px;
-        }
-
-        th, td, tbody {
-            text-align: center;
-        }
-
-        p {
-            padding-top: 10px;
-        }
-
-        .table {
-            overflow: auto;
-        }
-    </style>
 </head>
 <body>
 <div class="container">
-    <div class="col mt-1">
-        <div class="list-header bg-info text-right">
+    <div class="col mt-3">
+        <div class="list-header bg-info text-center">
             <h1 id="logo">Homespital</h1>
 
         </div>
@@ -43,9 +20,9 @@
         <p class="text-end fs-4">환자 진료내역</p>
 
         <div class="card p-3">
-            <div class="card-body p-2">
+            <div class="card-body p-4">
                 <div class="text-center table-responsive">
-                    <table class="table fs-5">
+                    <table class="table">
                         <thead>
                         <tr>
                             <th>날짜/시간</th>
@@ -79,8 +56,8 @@
 
 
             <div class="card p-3">
-                <h4 class="card-title fs-3"><strong>진료 차트</strong></h4>
-                <div class="card-body fs-5" style="padding: 5px; line-height: 33px;">
+                <h4 class="card-title"><strong>진료 차트</strong></h4>
+                <div class="card-body" style="padding: 5px; line-height: 33px;">
                     <div><strong>비대면 진료 시간 : ${diagnosis.create_date} / ${diagnosis.diagnosis_time}시</strong></div>
                     <div>생년월일 : ${diagnosis.birthday}</div>
                     <div>주소 :
@@ -88,7 +65,7 @@
                     <div>휴대폰 번호 : ${diagnosis.user_phone}</div>
                 </div>
                 <div style="background:#F9F9F9;">
-                    <table class="table table-borderless fs-5">
+                    <table class="table table-borderless m-4 fs-5">
                         <tbody>
                         <tr>
                             <th>진단 소견서</th>
@@ -104,7 +81,7 @@
 
 
             <div class="card p-3">
-                <h4 class="card-title"><strong>약제 배송 방법</strong></h4>
+                <h4 class="card-title fs-4"><strong>약제 배송 방법</strong></h4>
                 <div class="card-body">
                     <div class="d-flex">
                         <c:choose>
@@ -112,7 +89,7 @@
                         <button class="btn-sm btn-warning rounded-pill" type="button">약국으로 직접 방문
                             </c:when>
                             <c:otherwise>
-                            <button class="btn-sm btn-warning rounded-pill" type="button">집까지 배송받기</button>
+                            <button class="btn-sm btn-warning rounded-pill" id="deiliveryBtn" type="button">집까지 배송받기</button>
                             </c:otherwise>
                             </c:choose>
                     </div>
@@ -215,9 +192,9 @@
                     //진료완료, 진료중 표시 및 대기/예약취소하기 버튼
                     let complete = "";
                     if ((${diagnosis.diagnosis_status}) == 3) {
-                        complete = "<button type='button' id='makeMediBtn' class='btn btn-danger btn-sm' onclick='makeMediBtn(" + (${diagnosis.diagnosis_number}) + ");'>처방 접수/조제</button>";
+                        complete = "<button type='button' id='makeMediBtn' class='btn btn-danger btn-sm h-75' onclick='makeMediBtn(" + (${diagnosis.diagnosis_number}) + ");'>처방 접수/조제</button>";
                     } else if ((${diagnosis.diagnosis_status}) == 4) {
-                        complete = "<button type='button' id='successMakeBtn' class='btn btn-info btn-sm' onclick='successMadeBtn(" + (${diagnosis.diagnosis_number}) + ");'>조제 완료/전송</button>";
+                        complete = "<button type='button' id='successMakeBtn' class='btn btn-info btn-sm h-75' onclick='successMadeBtn(" + (${diagnosis.diagnosis_number}) + ");'>조제 완료/전송</button>";
                     } else if ((${diagnosis.diagnosis_status}) == 5) {
                         complete = "조제완료";
                     } else if ((${diagnosis.diagnosis_status}) == 6) {
@@ -237,7 +214,7 @@
                     if ((${diagnosis.is_delivery }) === true) {
                         is_delivery = "배송"
                     }
-                    $('#is_delivery').html(complete);
+                    $('#is_delivery').html(is_delivery);
 </script>
 <script>
     // 처방접수/조제 시작
