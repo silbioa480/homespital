@@ -333,6 +333,7 @@
 <%-- 카카오맵 관련 JS --%>
 <script type="text/javascript"
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a69fc7ca725d20c3e61c5b6bb3d32242&libraries=services"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
     var markers = [];
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div
@@ -789,5 +790,6 @@
     //         .refresh()
     // })
 </script>
+
 </body>
 </html>

@@ -49,8 +49,8 @@ dependencies {
     //훈 : 아임포트 REST 클라이언트 API
     implementation 'com.github.iamport:iamport-rest-client-java:0.2.19'
 
-    //원 : geocoder-java
-    implementation group: 'com.google.code.geocoder-java', name: 'geocoder-java', version: '0.16'
+    //원 : Unirest
+    implementation 'com.konghq:unirest-java:3.11.09'
 }
 
 tasks.named('test') {

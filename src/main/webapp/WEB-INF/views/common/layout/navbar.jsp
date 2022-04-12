@@ -31,8 +31,8 @@
         <div class="container">
             <div class="d-flex w-100">
                 <a class="navbar-brand justify-content-start" href="/" style="font-family: 'Y_Spotlight'">
-                    <i class="fa fa-medkit" aria-hidden="true"></i>
-                    홈스피탈
+<%--                    <i class="fa fa-medkit" aria-hidden="true"></i>--%>
+                    <img id="logo" style="width: 120px; height: 100%; text-decoration-line: none" alt="" src="/resources/img/design/main_base_nav.png"/>
                 </a>
                 <button class="navbar-toggler border-dark" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbars" aria-controls="navbars" aria-expanded="false"

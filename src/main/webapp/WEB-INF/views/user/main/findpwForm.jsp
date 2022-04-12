@@ -31,7 +31,8 @@
             </div>
 
             <div class="form-group" style="margin-top: 15px">
-                <input type="button" id="emailCheck" value="인증번호 받기">
+<%--                <input type="button" id="emailCheck" value="인증번호 받기">--%>
+    <button type="button" id="emailCheck" class="btn-login">인증번호 받기</button>
 
             </div>
 
@@ -41,7 +42,8 @@
 
 
             <div class="form-group" style="margin-top: 15px">
-                <input type="button" id="certificationBtn" value="인증번호 확인" disabled/>
+<%--                <input type="button" id="certificationBtn" value="인증번호 확인" disabled/>--%>
+    <button type="button" id="certificationBtn" class="btn-login" disabled>인증번호 확인</button>
             </div>
 
 
