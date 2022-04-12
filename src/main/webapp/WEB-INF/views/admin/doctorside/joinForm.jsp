@@ -141,16 +141,50 @@
 <%--                        </div>--%>
 
                     </div>
-                    <div class="input-control">의사 프로필 등록
-<%--                        <span class="doctor-title">의사사진</span>--%>
-<%--                        <div style="display:flex">--%>
-                        <label for="doctorProfile" id="filebtn">사진 등록</label>
-                            <input id="doctorProfile" name="doctorImgNames" type="file"  accept=".gif, .jpg, .png">
-                        <div id='attZone'>
-                        </div>
+<%--                    <div class="input-control">의사 프로필 등록--%>
+<%--&lt;%&ndash;                        <span class="doctor-title">의사사진</span>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                        <div style="display:flex">&ndash;%&gt;--%>
+<%--                        <label for="doctorProfile" id="filebtn">사진 등록</label>--%>
+<%--                            <input id="doctorProfile" name="doctorImgNames" type="file"  accept=".gif, .jpg, .png">--%>
+<%--                        <div id='attZone'>--%>
 <%--                        </div>--%>
+<%--&lt;%&ndash;                        </div>&ndash;%&gt;--%>
+<%--                        <div class="error"></div>--%>
+<%--                    </div>--%>
+
+                    <div class="input-control">
+                        <label for="doctorProfile" >의사 프로필 등록</label>
+                        <table class="table table=borderless chartTable">
+                            <tr>
+                                <th>이미지 첨부</th>
+                                <td>
+                                    <div id="preview" align="center"></div>
+                                    <div align="center" class="filebox" style="padding:10px">
+                                        <label id="filebtn" for="doctorProfile">사진 등록</label>
+                                        <input id="doctorProfile" name="doctorImgNames" type="file" accept=".gif, .jpg, .png">
+                                        <div id='attZone'>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
                         <div class="error"></div>
                     </div>
+
+                    <div class="input-control" >
+                        <label class="doctor-title" for="hospitalName">병원이름</label>
+                        <input type="text" id="hospitalName" name="hospital_name" placeholder="병원이름을 입력해주세요">
+                        <div class="error"></div>
+                    </div>
+                    <div class="input-control">
+                        <label class="doctor-title" for="doctorNumber">병원 전화번호</label>
+
+                        <input id="hospitalTelephone" name="hospital_telephone" type="text" maxlength="6">
+                        <div class="error"></div>
+
+
+                    </div>
+
                     <div class="input-control">
                         <label class="doctor-title" for="businessNumber">사업자번호</label>
                         <div style="display:flex; flex-flow : wrap ">
@@ -373,13 +407,25 @@
                             </div>
                             <div class="error"></div>
                         </div>
-                        <div class="input-control">병원 소개 사진 등록
-                            <label for="hospitalProfile" id="filebtn1">사진 등록</label>
-                            <input id="hospitalProfile" name="hospitalImgNames" type="file" style="display: none"  accept=".gif, .jpg, .png">
-                            <div id='attZone1'>
-                            </div>
-                            <div class="error"></div>
+                        <div class="input-control">
+                            <label for="doctorProfile" >병원 소개 사진 등록</label>
+                            <table class="table table=borderless chartTable">
+                                <tr>
+                                    <th>이미지 첨부</th>
+                                    <td>
+                                        <div id="preview1" align="center"></div>
+                                        <div align="center" class="filebox" style="padding:10px">
+                                            <label for="hospitalProfile" id="filebtn1">사진 등록</label>
+                                            <input id="hospitalProfile" name="hospitalImgNames" type="file" style="display: none"  accept=".gif, .jpg, .png">
+                                            <div id='attZone1'>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+
                         </div>
+
                     </div>
                 </div>
             </section>
