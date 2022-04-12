@@ -19,4 +19,5 @@ public interface PaymentService {
 
     public Card_Information getPayment(int user_number, String customer_uid);
 
+    void setMyMainCard(int user_number, String customer_uid) throws Exception;
 }
