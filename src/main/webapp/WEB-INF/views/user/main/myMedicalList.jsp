@@ -133,10 +133,10 @@
                         complete = "종료";
                     }
 
-                    // 진료영수증이 있으면 내려받기 버튼 생성, 없으면 공백
+                    // 진료영수증이 있으면 내려받기 버튼 생성, 없으면 빈 문자열
                     let upload = "";
-                    if (item.is_prescription_upload == true) {
-                        upload = "<button type='button' id ='uploadBtn' class='uploadBtn'>내려받기</button>"
+                    if (item.is_diagnosis_upload == 2) {
+                        upload = "<a href='/resources/img/uploadReceipt/" + item.diagnosis_file_name + "' download=''><span class='material-icons'>file_download</span></a>"
                     } else {
                         upload = "";
                     }
@@ -146,7 +146,7 @@
                         "<td>" + item.diagnosis_type + "</td>" +
                         "<td>" + item.doctor_name + "</td>" +
                         "<td>" + item.hospital_name + "</td>" +
-                        "<td><a href='/resources/img/uploadReceipt/" + item.diagnosis_file_name + "' download=''><span class='material-icons'>file_download</span></a>" + "</td > " +
+                        "<td>" + upload + "</td > " +
                         "<td>" + complete + "</td>" +
                         "<td><a href='/myMedicalDetail/" + item.diagnosis_number + "'><span class='material-icons'>search</span></a>" + "</td></tr><br>);"
                     )

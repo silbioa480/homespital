@@ -146,6 +146,7 @@
                         complete = "종료";
                     }
 
+                    // 처방전이 있을 때만 버튼 생성, 없으면 빈문자열
                     let receiptFile = "";
                     if (item.is_prescription_upload === 2) {
                         receiptFile = "<a href='/resources/img/uploadReceipt/" + item.diagnosis_file_name + "' download=''><span class='material-icons'>file_download</span></a>"
