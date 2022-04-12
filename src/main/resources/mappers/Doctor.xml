@@ -19,11 +19,13 @@
     <insert id="insertDoctorMember" parameterType="doctor">
         <![CDATA[
         insert into `doctor`(doctor_email, doctor_password, doctor_phone, doctor_name, doctor_valid_number,
-                             doctor_profile_image_name, hospital_name, hospital_telephone, hospital_business_number, zip_code, street_address,
+                             doctor_profile_image_name, hospital_name, hospital_telephone, hospital_business_number,
+                             zip_code, street_address,
                              detail_address, doctor_diagnosis_type, working_time, lunch_time, holiday, hospital_fax,
                              hospital_url, doctor_introduction)
         values (#{doctor_email}, #{doctor_password}, #{doctor_phone}, #{doctor_name},
-                #{doctor_valid_number}, #{doctor_profile_image_name}, #{hospital_name}, #{hospital_telephone}, #{hospital_business_number},
+                #{doctor_valid_number}, #{doctor_profile_image_name}, #{hospital_name}, #{hospital_telephone},
+                #{hospital_business_number},
                 #{zip_code}, #{street_address}, #{detail_address}, #{doctor_diagnosis_type},
                 REPLACE(#{working_time}, " ", ""), #{lunch_time}, #{holiday}, #{hospital_fax}, #{hospital_url},
                 #{doctor_introduction})
@@ -151,7 +153,7 @@
         <![CDATA[
         update diagnosis
         set is_prescription_upload = 3,
-            diagnosis_status       = 6
+            diagnosis_status       = 7
         where diagnosis_number = #{diagnosis_number};
         ]]>
     </update>

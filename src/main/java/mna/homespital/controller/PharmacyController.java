@@ -1,6 +1,5 @@
 package mna.homespital.controller;
 
-import mna.homespital.dto.Doctor;
 import mna.homespital.dto.Pharmacy;
 import mna.homespital.service.DiagnosisService;
 import mna.homespital.service.PharService;
@@ -185,7 +184,7 @@ public class PharmacyController {
     @ResponseBody
     @PostMapping("/makeMedicine")
     public String makeMedicine(int diagnosis_number) {
-
+        System.out.println("makeMedicine() Join");
         try {
             pharService.makeMedicine(diagnosis_number);
         } catch (Exception e) {
