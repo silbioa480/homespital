@@ -187,7 +187,7 @@
                 </c:when>
                 <c:otherwise>
                     <li class="page-item"><a class="page-link"
-                                             href="./${place.id }?place_name=${place.place_name }&page=${pageInfo.page-1}&longitude=${longitude != 0 ? longitude : 0}&latitude=${latitude != 0 ? latitude : 0}">이전</a>
+                                             href="./doctorList?doctor_diagnosis_type=${doctor_diagnosis_type }&page=${pageInfo.page-1}&longitude=${longitude != 0 ? longitude : 0}&latitude=${latitude != 0 ? latitude : 0}">이전</a>
                     </li>
                 </c:otherwise>
             </c:choose>
