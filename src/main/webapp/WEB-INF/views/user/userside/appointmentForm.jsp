@@ -14,7 +14,7 @@
     <%--    <script src="${pageContext.request.contextPath}/resources/js/signUp/browser.min.js"></script>--%>
     <%--    <script src="${pageContext.request.contextPath}/resources/js/signUp/util.js"></script>--%>
     <%--    <script src="${pageContext.request.contextPath}/resources/js/main/commonSidebarScroll.js"></script>--%>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <%--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>--%>
 
 </head>
 <body>
@@ -89,7 +89,7 @@
                                         <c:forEach var="wt" items="${real_work_timeList}">
                                             <label class="box-radio-input" data-bs-toggle="tooltip"
                                                    data-bs-placement="top"
-                                                   title="">
+                                                   title="테스트">
                                                 <input type="radio" name="diagnosis_time" value="${wt}"
                                                        checked="checked">
                                                 <span>${wt}:00</span>

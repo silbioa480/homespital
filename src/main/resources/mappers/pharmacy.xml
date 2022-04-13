@@ -140,5 +140,12 @@
         ]]>
     </update>
 
-
+    <!--  훈 - 유저 예약 페이지에서 약국번호 잡도록 설정  -->
+    <select id="getPharNumByName" resultType="Integer" parameterType="Map">
+        select pharmacy_number
+        from pharmacy
+        where pharmacy_name = #{pharmacy_name}
+          and pharmacy_phone = #{pharmacy_phone}
+          and street_address like concat('%', #{pharmacy_address}, '%')
+    </select>
 </mapper>

@@ -72,7 +72,7 @@ public class DoctorController {
             doctor.setDoctor_password("");
             System.out.println(3);
             session.setAttribute("doctor", doctor);
-            return "redirect:/doctor/";
+            return "redirect:/doctor/docMedicalList";
         } catch (Exception e) {
             model.addAttribute("err", e.getMessage());
             try {
@@ -85,6 +85,13 @@ public class DoctorController {
             }
             return "redirect:/doctor/docLogin";
         }
+    }
+
+    //용식: 로그아웃
+    @GetMapping("/logout.do")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/doctor/";
     }
 
     //가영: 의사 회원가입
