@@ -46,6 +46,9 @@ public class RootController {
     UserService userService;
 
     @Autowired
+    PharService pharService;
+
+    @Autowired
     PaymentService paymentService;
 
     public RootController() {
@@ -234,6 +237,11 @@ public class RootController {
             if (billkey == null || billkey.equals(""))
                 diagnosis.setBilling_key(user.getBilling_key());
             System.out.println(diagnosis.getBilling_key());
+
+
+            Integer n = pharService.getPharmacyNumberByName(diagnosis.getPharmacy_name(), diagnosis.getPharmacy_address(), diagnosis.getPharmacy_phone());
+            if (n == null) throw new Exception("약국 매칭 불가");
+            diagnosis.setPharmacy_number(n);
             // DB insert
             diagnosis.setDiagnosis_image_name(fileNameArr.toString());
             diagnosisService.insertDiagnosis(diagnosis);

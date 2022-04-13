@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 @Repository
 @Mapper
@@ -32,4 +33,7 @@ public interface PharmacyDAO {
 
     //  조제 완료(diagnosis_status 4 -> 5) 준근
     void successMadeMedicine(int diagnosis_number) throws Exception;
+
+    // 훈 - 유저 예약 폼에서 약국 번호 잡아주는거
+    Integer getPharNumByName(Map<String, String> param) throws Exception;
 }
