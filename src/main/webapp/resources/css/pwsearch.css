@@ -396,10 +396,10 @@ button,
     -webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, opacity 0.2s ease-in-out;
     -ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, opacity 0.2s ease-in-out;
     transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, opacity 0.2s ease-in-out;
-    background-color: #1cb495;
+    background-color: #ffffff;
     border-radius: 6px;
     border: 0;
-    color: #ffffff !important;
+    color: #2a2d42 !important;
     cursor: pointer;
     display: inline-block;
     font-weight: 700;
@@ -415,13 +415,13 @@ input[type="reset"]:hover,
 input[type="button"]:hover,
 button:hover,
 .button:hover {
-    background-color: #1fcaa7; }
+    background-color: #bcb9b9; }
 input[type="submit"]:active,
 input[type="reset"]:active,
 input[type="button"]:active,
 button:active,
 .button:active {
-    background-color: #199e83; }
+    background-color: #807d7d; }
 input[type="submit"].disabled, input[type="submit"]:disabled,
 input[type="reset"].disabled,
 input[type="reset"]:disabled,

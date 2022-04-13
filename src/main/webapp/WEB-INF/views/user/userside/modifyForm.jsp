@@ -65,7 +65,7 @@
         <!-- Main -->
         <div id="main">
             <form id="form" style="margin-left: 100px" action="/modifyMember.do" method="post">
-                <input type="hidden" id="user_email" name="user_email" value="${email}">
+                <input type="hidden" id="user_email" name="user_email" value="${user.user_email}">
                 <!-- One -->
                 <section id="one">
                     <div class="container" style="margin-top: 150px">
@@ -73,21 +73,21 @@
                         <hr>
                         <div class="input-control">
                             <label for="email">이메일</label>
-                            <input class="modi-input" style="width: 100%" type="text" id="email" name="id"
-                                   value="${email}" readonly="readonly">
+                            <input class="modi-input" style="width: 100%" type="text" id="email" name="email"
+                                   value="${user.user_email}" readonly="readonly">
                         </div>
 
                         <div class="input-control">
                             <label for="password">새 비밀번호</label>
                             <input type="password" style="width: 100%" id="password" name="password"
                                    placeholder="비밀번호를 입력해주세요" value="" minlength="4" maxlength="12" size="15"
-                                   pattern="[a-zA-Z0-9]{4,12}" title="4~12자의 영문 대소문자와 숫자로만 입력.">
+                            >
                             <div class="error"></div>
                         </div>
                         <div class="input-control">
                             <label for="password2">새 비밀번호 확인</label>
                             <input type="password" style="width: 100%" id="password2" name="password2"
-                                   placeholder="비밀번호를 입력해주세요" onkeyup="check_pw()" value="" maxlength="12" size="15">
+                                   placeholder="비밀번호를 입력해주세요" value="" maxlength="12" size="15">
                             <span id="pw_check_msg" style="color: #1abc9c"></span>
                             <div class="error"></div>
                         </div>
@@ -95,7 +95,7 @@
                         <div class="input-control">
                             <label for="name">이름</label>
                             <input class="modi-input" style="width: 100%" type="text" id="name" name="name"
-                                   value="${name}" readonly="readonly">
+                                   value="${user.user_name}" readonly="readonly">
                         </div>
 
                         <div class="input-control">
@@ -103,7 +103,7 @@
 
                             <div id="SocialSecurityNumber" name="SocialSecurityNumber" style="display:flex">
                                 <input class="modi-input" style="width: 100%" type="text"
-                                       value="${registration_number}" readonly="readonly">
+                                       value="${user.user_registration_number}" readonly="readonly">
 
                             </div>
                         </div>
@@ -111,7 +111,7 @@
                             <label for="phone">휴대폰 번호</label>
                             <div style="display:flex">
                                 <input class="modi-input" style="width:100%" id="originphone" type="text" name="phone"
-                                       value="${user_phone}" readonly="readonly"/>
+                                       value="${user.user_phone}" readonly="readonly"/>
                                 <input type="button" id="phoneBtn" class="doubleChk" value="휴대폰번호변경">
                             </div>
 
@@ -135,17 +135,20 @@
                                                 </div>
                                                 <div class="error"></div>
                                             </div>
+                                            <div style="display:flex">
+                                                <input style="width: 100%" id="phone2" type="text" name="phone2"
+                                                       title="인증번호 입력" disabled/>
+                                                <input style="width: 220px" type="button" id="phoneChk2"
+                                                       class="doubleChk" value="본인인증">
+                                            </div>
                                             <div class="modal-footer">
                                                 <a class="btn" id="modalY2" onclick="getParentText()">수정</a>
                                                 <button class="btn" type="button" data-bs-dismiss="modal">취소</button>
                                             </div>
 
+
                                         </div>
-                                        <div class="modal-footer">
-                                            <a class="btn" id="modalY2" href="/modifyForm"
-                                               onclick="getParentText()">수정</a>
-                                            <button class="btn" type="button" data-bs-dismiss="modal">취소</button>
-                                        </div>
+
                                     </div>
                                     <%--가영: 여기까지 휴대폰 번호변경 인증번호 모달창 시작--%>
                                     <div class="error"></div>
@@ -353,9 +356,7 @@
 <script src="/resources/js/signUp/breakpoints.min.js"></script>
 <script src="/resources/js/signUp/util.js"></script>
 <script src="/resources/js/signUp/signUp.js"></script>
-<script src="/resources/js/signUp/signUpCheck.js"></script>
-
-<script src="/resources/js/signUp/signUpCheck.js"></script>
+<%--<script src="/resources/js/signUp/signUpCheck.js"></script>--%>
 
 <script type="text/javascript">
     $('#pwBtn').click(function (e) {
@@ -538,6 +539,91 @@
         })
         return false;
     }
+
+    // //후대폰 문자보내기
+    var code2 = "";
+    $("#phoneChk").click(function () {
+        alert("인증번호 발송이 완료되었습니다.\n휴대폰에서 인증번호 확인을 해주십시오.");
+        var phone = $("#phone").val();
+        $.ajax({
+            type: "GET",
+            url: "phoneCheck?phone=" + phone,
+            cache: false,//cache옵션은 브라우저 캐시를 방지하는 옵션입니다.
+            success: function (data) {
+                if (data == "error") {
+                    alert("휴대폰 번호가 올바르지 않습니다.")
+                    $(".successPhoneChk").text("유효한 번호를 입력해주세요.");
+                    $(".successPhoneChk").css("color", "red");
+                    $("#phone").attr("autofocus", true);
+                } else {
+                    $("#phone2").attr("disabled", false);
+                    $("#phoneChk2").css("display", "inline-block");
+                    $(".successPhoneChk").text("인증번호를 입력한 뒤 본인인증을 눌러주십시오.");
+                    $(".successPhoneChk").css("color", "green");
+                    code2 = data;
+                }
+            }
+        });
+    });
+
+    function goPopup() {
+        // 호출된 페이지(jusoPopup.jsp)에서 실제 주소검색URL(https://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
+        var pop = window.open("/jusoPopup", "pop", "width=570,height=420, scrollbars=yes, resizable=yes");
+
+        // 모바일 웹인 경우, 호출된 페이지(jusoPopup.jsp)에서 실제 주소검색URL(https://www.juso.go.kr/addrlink/addrMobileLinkUrl.do)를 호출하게 됩니다.
+        //var pop = window.open("/popup/jusoPopup.jsp","pop","scrollbars=yes, resizable=yes");
+    }
+
+    function jusoCallBack(zipNo, roadFullAddr, addrDetail) {
+        // 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
+        document.form.zipNo.value = zipNo;
+        document.form.roadFullAddr.value = roadFullAddr;
+        document.form.addrDetail.value = addrDetail;
+    }
+
+    // const password = document.getElementById('password');
+    // const password2 = document.getElementById('password2');
+    // password.addEventListener("change", checkPassword);
+    // password2.addEventListener("change", checkPassword2);
+
+    // function checkAll() {
+    //     checkPassword();
+    //     checkPassword2();
+    //
+    //     if (checkPassword === true && checkPassword2() === true) {
+    //         alert("")
+    //     }
+    // }
+    //
+    // function checkPassword() {
+    //     const passwordValue = password.value.trim();
+    //     var pwPattern = /^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+    //     if (passwordValue.value === "") {
+    //         setError(password, "필수 정보입니다.");
+    //         return false;
+    //     } else if (!pwPattern.test(passwordValue)) {
+    //         setError(password, "8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.");
+    //         return false;
+    //     } else {
+    //         setSuccess(password);
+    //     }
+    //     return true;
+    // }
+    //
+    // function checkPassword2() {
+    //     const passwordValue = password.value.trim();
+    //     const password2Value = password2.value.trim();
+    //     if (password2Value === "") {
+    //         setError(password2, "필수 정보입니다.");
+    //         return false;
+    //     } else if (password2Value !== passwordValue) {
+    //         setError(password2, "비밀번호가 일치하지 않습니다.");
+    //         return false;
+    //     } else {
+    //         setSuccess(password2);
+    //     }
+    //     return true;
+    // }
 </script>
 
 

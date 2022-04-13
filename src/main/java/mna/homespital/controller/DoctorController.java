@@ -87,6 +87,13 @@ public class DoctorController {
         }
     }
 
+    //용식: 로그아웃
+    @GetMapping("/logout.do")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/doctor/";
+    }
+
     //가영: 의사 회원가입
     @GetMapping("/join")
     public ModelAndView doctorJoin() {
@@ -108,6 +115,7 @@ public class DoctorController {
         doctor.setDoctor_phone(request.getParameter("doctor_phone"));
         doctor.setDoctor_name(request.getParameter("doctor_name"));
         doctor.setDoctor_valid_number(request.getParameter("doctor_valid_number"));
+        doctor.setDoctor_url(request.getParameter("doctor_url"));
         doctor.setHospital_name(request.getParameter("hospital_name"));
         doctor.setHospital_telephone(request.getParameter("hospital_telephone"));
 
@@ -363,11 +371,16 @@ public class DoctorController {
             String dtcName = dtc.getDoctor_name();
             String userName = user.getUser_name();
             String dtcPhone = dtc.getDoctor_phone();
-            params.put("to", "01089303955");// 수신전화번호
+            params.put("to", "01033633089\n");// 수신전화번호
             params.put("from", "01089303955");// 발신전화번호
             params.put("type", "LMS");
             params.put("text", "진료를 시작합니다.\n" +
-                    "1대1 진료카카오톡\n" + "https://open.kakao.com/o/sXJSPePd" + "\n" +
+                    "1대1 전용화상진료실\n" +
+                    "\n" +
+                    "회의 ID: 210 810 8130\n" +
+                    "비밀번호: 904132\n" +
+                    "\n" +
+                    "https://whaleon.us/o/CSpZOC/d9db5b8d345a45f292d255273158bcf4\n" + "\n" +
                     "의사명:" + dtcName + "\n" +
                     "환자명:" + userName + "\n"); // 문자 내용 입력 ,담당의사 이름,환자이름
             params.put("app_version", "test app 1.2"); // application name and version
@@ -386,10 +399,22 @@ public class DoctorController {
 
     // 진료 완료하기 diagnoisis_status (1 -> 3)(준근)
     // 진료 완료하기 할 때 유효성 검사(is_diagnosis_upload가 2가 아니면 진료완료 실패하고 alert띄움
+    //진료완료시  진료완료되었다고  문자전송(처방전없을경우에만) 있을시 문자전송x 약국에서 보냄 태영
     @ResponseBody
     @PostMapping("/finishDiagnosis")
     public String finishDiagnosis(int diagnosis_number) {
+        String api_key = "NCSK1Q8DMWF4EQYK";
+        String api_secret = "9KEMFM30PPC8NTBR62L9WECLHIRXQJTO";
+        Message coolsms = new Message(api_key, api_secret);
+        HashMap<String, String> params = new HashMap<String, String>();
         try {
+            Diagnosis diag = diagnosisService.getDiaInfo(diagnosis_number);
+            Doctor dtc = doctorService.getDocInfo(diag.getDoctor_number());
+            User user = userService.getUserInfo(diag.getUser_number());
+            String dtcName = dtc.getDoctor_name();
+            String userName = user.getUser_name();
+            String dtcPhone = dtc.getDoctor_phone();
+            String userPhone=user.getUser_phone();
             //is_diagnosis_upload가 2(업로드완료) 인지 확인
             Diagnosis diagnosis = doctorService.checkDiagnosisUpload(diagnosis_number);
             if (diagnosis.getIs_diagnosis_upload() != 2) {
@@ -399,6 +424,12 @@ public class DoctorController {
             // is_prescription_upload = 3(처방전없음) and diagnosis_status = 7 (처방전 없이 진료 완료) 처리
             if (diagnosis.getIs_prescription_upload() == 1) {
                 doctorService.changePrescription(diagnosis_number);
+                params.put("to","01089303955");
+                params.put("from","01089303955");
+                params.put("type","LMS");
+                params.put("text","진료가 완료되었습니다. 좋은 하루 보내시길 바랍니다.");
+                org.json.simple.JSONObject obj = coolsms.send(params);
+                System.out.println(obj.toString());
                 return "success";
             }
             //훈 - 결제 처리
@@ -417,6 +448,11 @@ public class DoctorController {
             }
             //진료완료 처리
             doctorService.finishDiagnosis(diagnosis_number);
+        } catch (CoolsmsException e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+            System.out.println(e.getCode());
+            System.out.println("params = " + params);
         } catch (Exception e) {
             e.printStackTrace();
         }

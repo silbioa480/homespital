@@ -33,8 +33,8 @@
             <div class="d-flex w-100">
                 <a class="navbar-brand justify-content-start" href="/doctor/"
                    style="font-family: 'Y_Spotlight'">
-                    <i class="fa fa-medkit" aria-hidden="true"></i>
-                    홈스피탈
+<%--                    <i class="fa fa-medkit" aria-hidden="true"></i>--%>
+    <img id="logo" style="width: 120px; height: 100%; text-decoration-line: none" alt="" src="/resources/img/design/main_base_nav.png"/>
                 </a>
                 <a class="fs-6 align-self-center" href="/doctor/">의사 페이지</a>
                 <button class="navbar-toggler border-dark" type="button"
@@ -54,7 +54,7 @@
                                 <%--                                    <a class="nav-link" href="#">내 정보수정</a>--%>
                                 <%--                                </li>--%>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/logout.do">로그아웃</a>
+                                    <a class="nav-link" href="/doctor/logout.do">로그아웃</a>
                                 </li>
                             </c:when>
                             <c:otherwise>

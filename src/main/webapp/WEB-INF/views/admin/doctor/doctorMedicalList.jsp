@@ -18,29 +18,29 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <style>
-        .material-icons {
-            font-size: 36px;
-        }
+      .material-icons {
+        font-size: 36px;
+      }
 
-        .list-header {
-            /*background-color: blue;*/
-            height: 200px;
-        }
+      .list-header {
+        /*background-color: blue;*/
+        height: 200px;
+      }
 
-        th, td, tbody {
-            text-align: center;
+      th, td, tbody {
+        text-align: center;
 
-        }
+      }
 
-        p {
-            font-size: 30px;
-            padding: 10px;
-        }
+      p {
+        font-size: 30px;
+        padding: 10px;
+      }
 
-        .table {
-            height: 500px;
-            overflow: auto;
-        }
+      .table {
+        height: 500px;
+        overflow: auto;
+      }
 
 
     </style>
@@ -110,6 +110,10 @@
         })
 
         function next_load(list) {
+            list.sort((a, b) => {
+                return a.diagnosis_status - b.diagnosis_status;
+            })
+
             $.each(list, function (index, item) {
                 if (index >= page * 30 && index < page * 30 + 30) {
                     //data에서 create_date를 받아와 해당날짜의 요일을 만들어준다.
@@ -172,7 +176,7 @@
                             '</button>' +
                             '</div><form action="receiptUpload" method="POST" enctype="multipart/form-data"><div class="modal-body">' +
                             "<input type='hidden' name='diagnosis_number' value='" + item.diagnosis_number + "'>" +
-                            '<input type="file" name="receiptFile">사진선택</input></div><div class="modal-footer"><button type="button" class="btn btn-secondary"  data-dismiss="modal">닫기</button><button type="submit" class="btn btn-primary upload-btn' + item.diagnosis_number + '">확인</button></div></form></div></div></div>'
+                            '<input type="file" accept=".gif, .jpg, .png" name="receiptFile">사진선택</input></div><div class="modal-footer"><button type="button" class="btn btn-secondary"  data-dismiss="modal">닫기</button><button type="submit" class="btn btn-primary upload-btn' + item.diagnosis_number + '">확인</button></div></form></div></div></div>'
                     } else if (item.is_diagnosis_upload == 2) {
                         receipt = "업로드완료";
                     }
@@ -198,7 +202,7 @@
                             '</button>' +
                             '</div><form action="prescriptionUpload" method="POST" enctype="multipart/form-data"><div class="modal-body">' +
                             "<input type='hidden' name='diagnosis_number' value='" + item.diagnosis_number + "'>" +
-                            '<input type="file" name="prescriptionFile">사진선택</input></div><div class="modal-footer"><button type="button" class="btn btn-secondary"  data-dismiss="modal">닫기</button><button type="submit" class="btn btn-primary upload-btn' + item.diagnosis_number + '">확인</button></div></form></div></div></div>'
+                            '<input type="file" accept=".gif, .jpg, .png" name="prescriptionFile">사진선택</input></div><div class="modal-footer"><button type="button" class="btn btn-secondary"  data-dismiss="modal">닫기</button><button type="submit" class="btn btn-primary upload-btn' + item.diagnosis_number + '">확인</button></div></form></div></div></div>'
                     } else if (item.is_prescription_upload == 2) {
                         prescription = "업로드완료";
                     } else if (item.is_prescription_upload == 3) {
