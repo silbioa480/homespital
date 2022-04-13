@@ -38,17 +38,17 @@
     <h1 style="margin-left: 20px; font-weight: bolder; margin-bottom: 30px">비밀번호 변경</h1>
 
 
-    <div class="container" style="height:500px">
+    <div class="container" >
         <input type="hidden" name="email" id="email" value="${email}">
         <div class="input-control">
-            <label for="password3" style="font-size: 15px">새 비밀번호 입력</label>
+            <label for="password3" style="font-size: 15px; font-weight: bolder;">새 비밀번호 입력</label>
             <input style="width: 290px"type="password" id="password3" name="password3" placeholder="비밀번호를 입력해주세요" value=""
                    minlength="4" maxlength="12" size="15" pattern="/^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/" title="8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요."
                    required/>
 
         </div>
         <div class="input-control">
-            <label for="password4"style="font-size: 15px; margin-top: 20px">새 비밀번호 확인</label>
+            <label for="password4"style="font-size: 15px; margin-top: 20px; font-weight: bolder;">새 비밀번호 확인</label>
             <input style="width: 290px" type="password" id="password4" name="password4" placeholder="비밀번호를 입력해주세요"
                    onkeyup="check_pw()" value="" maxlength="12" size="15" required>
             <span id="pw_check_msg" style="color: #1abc9c"></span>
