@@ -481,9 +481,11 @@ $("#phoneChk2").click(function () {
 });
 
 // 동의 모두선택 / 해제
-const agreeChkAll = document.querySelector('input[name=agree_all]');
-agreeChkAll.addEventListener('change', (e) => {
-    let agreeChk = document.querySelectorAll('input[name=agree]');
+const agreeChkAll = document.querySelector("input[name=agree_all]");
+agreeChkAll.addEventListener("change", (e) => {
+    let agreeChk = document.querySelectorAll(
+        "input[name=agree],input[name=agree2]"
+    );
     for (let i = 0; i < agreeChk.length; i++) {
         agreeChk[i].checked = e.target.checked;
     }
