@@ -372,9 +372,9 @@
         let msg = tcArr[i].diagnosis_wait_number + "/10";
         $('#' + i).attr('title', msg)
     }
-
-    var
-        markers = [];
+</script>
+<script>
+    var markers = [];
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         mapOption = {
             center: new kakao.maps.LatLng(37.529521, 126.964540), // 지도의 중심좌표
@@ -834,31 +834,31 @@
 </script>
 
 <script>
-        function notify(){
-            // Let's check if the browser supports notifications
-            if (!("Notification" in window)) {
-                alert("This browser does not support desktop notification");
-            }
-
-            // Let's check whether notification permissions have already been granted
-            else if (Notification.permission === "granted") {
-                // If it's okay let's create a notification
-                var notification = new Notification("Hi there!");
-            }
-
-            // Otherwise, we need to ask the user for permission
-            else if (Notification.permission !== 'denied') {
-                Notification.requestPermission(function (permission) {
-                    // If the user accepts, let's create a notification
-                    if (permission === "granted") {
-                        var notification = new Notification("Hi there!");
-                    }
-                });
-            }
-
-            // At last, if the user has denied notifications, and you
-            // want to be respectful there is no need to bother them any more.
+    function notify() {
+        // Let's check if the browser supports notifications
+        if (!("Notification" in window)) {
+            alert("This browser does not support desktop notification");
         }
+
+        // Let's check whether notification permissions have already been granted
+        else if (Notification.permission === "granted") {
+            // If it's okay let's create a notification
+            var notification = new Notification("Hi there!");
+        }
+
+        // Otherwise, we need to ask the user for permission
+        else if (Notification.permission !== 'denied') {
+            Notification.requestPermission(function (permission) {
+                // If the user accepts, let's create a notification
+                if (permission === "granted") {
+                    var notification = new Notification("Hi there!");
+                }
+            });
+        }
+
+        // At last, if the user has denied notifications, and you
+        // want to be respectful there is no need to bother them any more.
+    }
 
 </script>
 

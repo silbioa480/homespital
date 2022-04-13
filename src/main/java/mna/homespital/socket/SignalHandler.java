@@ -89,8 +89,7 @@ public class SignalHandler extends TextWebSocketHandler {
                 case MSG_TYPE_TEXT:
                     System.out.println("[ws] Text message: {}" + message.getData());
 
-
-                    sendMessage(session, new WebSocketMessage(message.getFrom(), MSG_TYPE_TEXT, message.getData(), null, null));
+                    sendMessage(session, message);
 
 
                     // message.data is the text sent by client
@@ -164,7 +163,7 @@ public class SignalHandler extends TextWebSocketHandler {
 
     private void sendMessage(WebSocketSession session, WebSocketMessage message) {
         try {
-            System.out.println(message);
+            System.out.println("===========>" + message);
             String json = objectMapper.writeValueAsString(message);
             session.sendMessage(new TextMessage(json));
         } catch (IOException e) {
