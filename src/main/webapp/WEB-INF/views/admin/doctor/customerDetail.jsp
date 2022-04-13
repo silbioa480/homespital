@@ -120,9 +120,27 @@
                             <td>
                                 <textarea name="doctor_opinion" style="width: 100%; min-height: 100px;"
                                           maxlength="500">${diagnosis.doctor_opinion}</textarea>
-                                <button type="button" id="submitDoctorOpinion">작성하기</button>
                             </td>
                         </tr>
+                        <tr>
+                            <th>검진 비용</th>
+                            <td>
+                                <div class="input-group">
+                                    <span class="input-group-text">비용</span>
+                                    <input type="number" class="form-control" name="diagnosis_money"
+                                           value="${diagnosis_money}" min="0">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                진단 소견서 / 검진 비용 등록/변경
+                            </th>
+                            <td>
+                                <button type="button" id="submitDoctorOpinion">제출하기</button>
+                            </td>
+                        </tr>
+
                         </tbody>
                     </table>
                 </div>
@@ -236,22 +254,25 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
     $("#submitDoctorOpinion").on('click', function () {
-        $.ajax({
-            url: "/doctor/writeOpinion",
-            method: "POST",
-            data: {
-                "diagnosis_number": ${diagnosis.diagnosis_number},
-                "doctor_opinion": $("textarea[name='doctor_opinion']:visible").val()
-            },
-            async: false,
-            success: function (data) {
+        if ($("textarea[name='doctor_opinion']:visible").val() != "" && $("input[name='diagnosis_money']").val() != 0) {
+            $.ajax({
+                url: "/doctor/writeOpinion",
+                method: "POST",
+                data: {
+                    "diagnosis_number": ${diagnosis.diagnosis_number},
+                    "doctor_opinion": $("textarea[name='doctor_opinion']:visible").val(),
+                    "diagnosis_money": $("input[name='diagnosis_money']").val(),
+                },
+                async: false,
+                success: function (data) {
 
-                alert("의사 소견 작성 완료");
-            },
-            error: function () {
-                alert("의사 소견 작성 실패");
-            }
-        });
+                    alert("소견 및 금액 등록 완료");
+                },
+                error: function () {
+                    alert("소견 및 금액 등록 실패");
+                }
+            });
+        } else alert('소견서나 금액이 작성되지 않았습니다. 작성 후에 제출해주세요.');
     })
 </script>
 <script>
