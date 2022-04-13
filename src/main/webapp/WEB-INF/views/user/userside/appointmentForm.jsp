@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/writeMediChartForm.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/sidebar.css">
-    <%--    <script src="http://code.jquery.com/jquery-latest.min.js"></script>--%>
+    <%--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>--%>
     <%--    <script src="${pageContext.request.contextPath}/resources/js/signUp/jquery.scrollex.min.js"></script>--%>
     <%--    <script src="${pageContext.request.contextPath}/resources/js/signUp/jquery.scrolly.min.js"></script>--%>
     <%--    <script src="${pageContext.request.contextPath}/resources/js/signUp/browser.min.js"></script>--%>
@@ -88,17 +88,19 @@
                                 <tr>
                                     <th>시간:</th>
                                     <td id="workBtn">
-                                        <c:forEach var="wt" items="${real_work_timeList}">
+                                        <c:forEach var="tt" items="${real_work_timeList}" varStatus="status">
+
                                             <label class="box-radio-input" data-bs-toggle="tooltip"
                                                    data-bs-placement="top"
-                                                   title="테스트">
-                                                <input type="radio" name="diagnosis_time" value="${wt}"
+                                                   id="${status.index}">
+
+                                                <input type="radio" name="diagnosis_time" value="${tt}"
                                                        checked="checked">
-                                                <span>${wt}:00</span>
+                                                <span>${tt}:00</span>
+
                                             </label>
+
                                         </c:forEach>
-
-
                                     </td>
                                 </tr>
                             </table>
@@ -329,7 +331,7 @@
         </section>
 
         <div class="appoint-out">
-            <label for="appointDo" class="appointBtn">예약하기</label>
+            <label for="appointDo" class="appointBtn" onClick="notify()">예약하기</label>
             <input type="submit" id="appointDo" class="appointDo" style="display: none"/>
         </div>
     </form>
@@ -360,7 +362,19 @@
 <%-- 카카오맵 관련 JS --%>
 <script type="text/javascript"
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a69fc7ca725d20c3e61c5b6bb3d32242&libraries=services"></script>
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    //test(준근)
+    let tcArr = JSON.parse(`${timeCount}`);
+
+
+    console.log(tcArr);
+    console.log(tcArr);
+    for (let i in tcArr) {
+        let msg = tcArr[i].diagnosis_wait_number + "/10";
+        $('#' + i).attr('title', msg)
+    }
+</script>
 <script>
     var markers = [];
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div
@@ -817,6 +831,37 @@
     //     bootstrap.ScrollSpy.getInstance(dataSpyEl)
     //         .refresh()
     // })
+
+
+</script>
+
+<script>
+    function notify() {
+        // Let's check if the browser supports notifications
+        if (!("Notification" in window)) {
+            alert("This browser does not support desktop notification");
+        }
+
+        // Let's check whether notification permissions have already been granted
+        else if (Notification.permission === "granted") {
+            // If it's okay let's create a notification
+            var notification = new Notification("Hi there!");
+        }
+
+        // Otherwise, we need to ask the user for permission
+        else if (Notification.permission !== 'denied') {
+            Notification.requestPermission(function (permission) {
+                // If the user accepts, let's create a notification
+                if (permission === "granted") {
+                    var notification = new Notification("Hi there!");
+                }
+            });
+        }
+
+        // At last, if the user has denied notifications, and you
+        // want to be respectful there is no need to bother them any more.
+    }
+
 </script>
 </body>
 </html>

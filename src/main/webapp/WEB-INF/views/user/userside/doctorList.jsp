@@ -2,8 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,12 +27,14 @@
 <%--side-nav 시작 by 소연 4/7--%>
 <div id="sidebar">
     <div class="d-flex flex-column align-items-center">
+        <div style="height:30px;"></div>
                 <span class="image avatar"><a href="/"><img src="/resources/img/design/logo_U_sideNav.png" alt=""/></a></span>
+        <div style="height:50px;"></div>
     </div>
     <nav id="nav">
         <ul>
-            <li><a href="/medicalSearch">진료과</a></li>
-            <li><a href="/doctorList" class="active">의료진선택</a></li>
+            <li><a href="/medicalSearch">진료과 선택</a></li>
+            <li><a href="/doctorList" class="active">의료진 선택</a></li>
         </ul>
     </nav>
     <footer>

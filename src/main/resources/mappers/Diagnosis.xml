@@ -128,10 +128,11 @@
         ]]>
     </select>
 
-    <update id="writeDoctorOpinion" parameterType="Map">
+    <update id="writeDoctorOpinionAndMoney" parameterType="Map">
         <![CDATA[
         update diagnosis
-        set doctor_opinion = #{doctor_opinion}
+        set doctor_opinion  = #{doctor_opinion},
+            diagnosis_money = #{diagnosis_money}
         where diagnosis_number = #{diagnosis_number}
         ]]>
     </update>

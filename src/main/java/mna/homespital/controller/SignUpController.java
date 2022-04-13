@@ -214,8 +214,14 @@ public class SignUpController {
 
 //        String address = "[" + params.get("zipNo") + "] " + params.get("roadFullAddr") + params.get("addrDetail");
         try {
-            memberService.modifyMember(email, password, name, phone, zip_code, street_address, detail_address);
-
+            User user = memberService.queryMember(email);
+            System.out.println("유저정보요" + user);
+            System.out.println("비밀번호 정보요" + user.getUser_password());
+            if (password == "") {
+                memberService.modifyMember(email, user.getUser_password(), name, phone, zip_code, street_address, detail_address);
+            } else {
+                memberService.modifyMember(email, password, name, phone, zip_code, street_address, detail_address);
+            }
         } catch (Exception e) {
             System.out.println("회원정보수정에서 에러가발생했습니다.");
             e.printStackTrace();

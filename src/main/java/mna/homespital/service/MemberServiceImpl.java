@@ -11,6 +11,8 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import javax.mail.internet.MimeMessage;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 
 @Service
@@ -109,6 +111,13 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public User findByEmail(String email) throws Exception {
         return memberDAO.queryMember(email);
+    }
+
+
+    //test 각 예약시간에 대한 카운트 가져오기
+    @Override
+    public ArrayList<HashMap<String, Object>> getCount(int doctor_number) throws Exception {
+        return memberDAO.getCount(doctor_number);
     }
 
 

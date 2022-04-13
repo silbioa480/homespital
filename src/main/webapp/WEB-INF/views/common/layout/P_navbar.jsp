@@ -32,8 +32,9 @@
         <div class="container">
             <div class="d-flex w-100">
                 <a class="navbar-brand justify-content-start" href="/pharmacy/" style="font-family: 'Y_Spotlight'">
-                    <i class="fa fa-medkit" aria-hidden="true"></i>
-                    홈스피탈
+<%--                    <i class="fa fa-medkit" aria-hidden="true"></i>--%>
+<%--                    홈스피탈--%>
+    <img id="logo" style="width: 120px; height: 100%; text-decoration-line: none" alt="" src="/resources/img/design/main_base_nav.png"/>
                 </a>
                 <a class="fs-6 align-self-center" href="/pharmacy/">약사 페이지</a>
                 <button class="navbar-toggler border-dark" type="button" data-bs-toggle="collapse"
@@ -86,7 +87,7 @@
     </header>
     --%>
 
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="/resources/js/main/navbar.js"></script>
 </body>
 </html>

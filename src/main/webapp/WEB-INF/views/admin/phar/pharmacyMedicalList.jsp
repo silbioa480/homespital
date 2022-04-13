@@ -49,7 +49,7 @@
 </div>
 
 </body>
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 
     // 페이지에 들어오자마자 실행
@@ -76,6 +76,10 @@
         })
 
         function next_load(list) {
+            list.sort((a, b) => {
+                return a.diagnosis_status - b.diagnosis_status;
+            })
+
             $.each(list, function (index, item) {
                 if (index >= page * 30 && index < page * 30 + 30) {
                     console.log(index);

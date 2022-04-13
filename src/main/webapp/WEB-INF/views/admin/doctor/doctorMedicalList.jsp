@@ -18,29 +18,29 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <style>
-        .material-icons {
-            font-size: 36px;
-        }
+      .material-icons {
+        font-size: 36px;
+      }
 
-        .list-header {
-            /*background-color: blue;*/
-            height: 200px;
-        }
+      .list-header {
+        /*background-color: blue;*/
+        height: 200px;
+      }
 
-        th, td, tbody {
-            text-align: center;
+      th, td, tbody {
+        text-align: center;
 
-        }
+      }
 
-        p {
-            font-size: 30px;
-            padding: 10px;
-        }
+      p {
+        font-size: 30px;
+        padding: 10px;
+      }
 
-        .table {
-            height: 500px;
-            overflow: auto;
-        }
+      .table {
+        height: 500px;
+        overflow: auto;
+      }
 
 
     </style>
@@ -82,7 +82,7 @@
 </div>
 
 </body>
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 
     $(document).ready(function () {
@@ -110,6 +110,10 @@
         })
 
         function next_load(list) {
+            list.sort((a, b) => {
+                return a.diagnosis_status - b.diagnosis_status;
+            })
+
             $.each(list, function (index, item) {
                 if (index >= page * 30 && index < page * 30 + 30) {
                     //data에서 create_date를 받아와 해당날짜의 요일을 만들어준다.
