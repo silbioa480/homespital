@@ -546,7 +546,7 @@
 </div>
 
 <!-- Scripts -->
-<script src="/resources/js/signUp/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="/resources/js/signUp/jquery.scrollex.min.js"></script>
 <script src="/resources/js/signUp/jquery.scrolly.min.js"></script>
 <script src="/resources/js/signUp/browser.min.js"></script>
