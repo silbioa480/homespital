@@ -44,7 +44,7 @@ function checkAll() {
             && checkName() === true && checkSocialSecurityNumber() === true
             && checkSocialSecurityNumber2() === true
             && checkPhone() === true && checkPhone2() === true
-            && checkAddress() === true && checkRadio() === true) {
+            && checkRadio() === true) {
             alert("회원가입이 완료 되었습니다.감사합니다");
             $("form").submit();
         } else {

@@ -1,8 +1,11 @@
 package mna.homespital.controller;
 
+import mna.homespital.dto.Diagnosis;
 import mna.homespital.dto.Pharmacy;
 import mna.homespital.service.DiagnosisService;
+import mna.homespital.service.PaymentService;
 import mna.homespital.service.PharService;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +31,9 @@ public class PharmacyController {
 
     @Autowired
     PharService pharService;
+
+    @Autowired
+    PaymentService paymentService;
 
     @Autowired
     DiagnosisService diagnosisService;
@@ -226,6 +232,27 @@ public class PharmacyController {
     @PostMapping("/makeMedicine")
     public String makeMedicine(int diagnosis_number) {
         try {
+            //훈 - 결제 처리
+            System.out.println("STARTING GET TOKEN");
+            JSONObject authToken = paymentService.getAuthToken();
+            System.out.println("STARTING PAYING");
+            Diagnosis diagnosis = diagnosisService.getDiaInfo(diagnosis_number);
+            String billkey = diagnosis.getBilling_key();
+            if (billkey.substring(0, 2).equals("!!")) {
+                diagnosis.setBilling_key(billkey.substring(2));
+            } else throw new Exception("이전 결제가 이루저지지 않음");
+            JSONObject payResult = paymentService.pay(authToken.getString("access_token"),
+                    diagnosis.getDiagnosis_number(),
+                    diagnosis.getBilling_key(),
+                    diagnosis.getUser_number(),
+                    1000,
+                    "멀캠약국테스팅");
+            System.out.println("PAY END");
+            if (!payResult.getString("status").equals("paid")) {
+                System.out.println("결제 실패");
+            }
+
+
             pharService.makeMedicine(diagnosis_number);
         } catch (Exception e) {
             e.printStackTrace();

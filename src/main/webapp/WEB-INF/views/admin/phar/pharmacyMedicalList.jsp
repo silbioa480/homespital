@@ -6,62 +6,26 @@
 <head>
     <title>환자 진료 내역</title>
 
-    <link rel="stylesheet" href="/resources/css/myMedicalList.css"/>
-    <!-- 합쳐지고 최소화된 최신 CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
-    <!-- 부가적인 테마 -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-
-    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
+    <link rel="stylesheet" href="/resources/css/pharCustomerDetail.css"/>
     <%-- 구글 아이콘 CDN링크 --%>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <style>
-        .material-icons {
-            font-size: 36px;
-        }
-
-        .list-header {
-            /*background-color: blue;*/
-            height: 200px;
-        }
-
-        th, td, tbody {
-            text-align: center;
-
-        }
-
-        p {
-            font-size: 30px;
-            padding: 10px;
-        }
-
-        .table {
-            height: 500px;
-            overflow: auto;
-        }
-
-
-    </style>
 </head>
 <body>
 <div class="container">
-    <div class="col mt-5">
-        <div class="list-header bg-info text-right">
+    <div class="col mt-3">
+        <div class="list-header bg-info text-center">
             <h1 id="logo">Homespital</h1>
-            <h4 style="float:left; margin-top: 110px; margin-left: 25px;">${pharmacy_name}</h4>
+            <%--            <h4>${diagnosis.pharmacy_name}</h4>--%>
         </div>
 
 
-        <p class="text-right">약사 처방전 내역</p>
+        <p class="text-end fs-4">약사 처방전 내역</p>
 
-        <div class="card">
+        <div class="card p-3">
             <div class="card-body p-4">
                 <div class="text-center table-responsive">
-                    <table class="table fs-3 fst-normal">
+                    <table class="table">
                         <thead>
                         <tr>
                             <th>날짜/시간</th>
@@ -72,6 +36,7 @@
                             <th>배송</th>
                             <th>처방전</th>
                             <th>현황</th>
+                            <th>상세보기</th>
                         </tr>
                         </thead>
                         <tbody id="pharMedicalList">
@@ -137,9 +102,9 @@
                     //진료완료, 진료중 표시 및 대기/예약취소하기 버튼
                     let complete = "";
                     if (item.diagnosis_status == 3) {
-                        complete = "<button type='button' id='makeMediBtn' class='btn btn-danger btn-sm' onclick='makeMediBtn(" + item.diagnosis_number + ");'>처방 접수/조제</button>";
+                        complete = "<button type='button' id='makeMediBtn' class='btn btn-danger btn-sm h-75' onclick='makeMediBtn(" + item.diagnosis_number + ");'>처방 접수/조제</button>";
                     } else if (item.diagnosis_status == 4) {
-                        complete = "<button type='button' id='successMakeBtn' class='btn btn-info btn-sm' onclick='successMadeBtn(" + item.diagnosis_number + ");'>조제 완료/전송</button>";
+                        complete = "<button type='button' id='successMakeBtn' class='btn btn-info btn-sm h-75' onclick='successMadeBtn(" + item.diagnosis_number + ");'>조제 완료/전송</button>";
                     } else if (item.diagnosis_status == 5) {
                         complete = "조제완료";
                     } else if (item.diagnosis_status == 6) {
@@ -165,7 +130,8 @@
                             "<td>" + item.hospital_name + "</td > " +
                             "<td>" + is_delivery + "</td>" +           // 배송or방문
                             "<td>" + receiptFile + "</td > " +  //처방전 다운받기
-                            "<td>" + complete + "</td></tr><br>);"  //현황
+                            "<td>" + complete + "</td>" +
+                            "<td><a href='/pharmacy/customerDetail/" + item.diagnosis_number + "'><span class='material-icons'>search</span></a>" + "</td></tr><br>);"  //현황
                         )
                         ;
                     }
