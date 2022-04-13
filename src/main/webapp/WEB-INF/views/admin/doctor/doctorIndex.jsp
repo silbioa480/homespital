@@ -4,7 +4,7 @@
     <title>Homespital</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
-    <link rel="stylesheet" href="/resources/css/main.css"/>
+    <link rel="stylesheet" href="/resources/css/docMain.css"/>
     <noscript>
         <link rel="stylesheet" href="/resources/css/main2.css"/>
     </noscript>
@@ -15,7 +15,7 @@
     <div class="content">
         <header>
             <h2>Homespital.</h2>
-            <h2>임시 로그인</h2>
+            <h2>임시 로그인(의사)</h2>
             <a href="/doctor/docLogin">임시 로그인</a>
 
         </header>
