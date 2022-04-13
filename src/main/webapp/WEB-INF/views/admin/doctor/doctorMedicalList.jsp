@@ -68,6 +68,7 @@
                             <th>진료영수증</th>
                             <th>처방전</th>
                             <th>진료현황</th>
+                            <th>상세보기</th>
                         </tr>
                         </thead>
                         <tbody id="docMedicalList">
@@ -211,7 +212,8 @@
                         "<td>" + birth + "</td>" +
                         "<td>" + receipt + "</td>" +
                         "<td>" + prescription + "</td>" +
-                        "<td>" + complete + "</td></tr><br>);"
+                        "<td>" + complete + "</td>" +
+                        "<td><a href='/doctor/customerDetail/" + item.diagnosis_number + "'><span class='material-icons'>search</span></a>" + "</td></tr><br>);"
                     )
                     ;
                 }
