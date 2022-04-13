@@ -462,10 +462,11 @@ public class DoctorController {
     @ResponseBody
     @PostMapping("/writeOpinion")
     public ResponseEntity<String> writeOpinion(@RequestParam int diagnosis_number,
-                                               @RequestParam String doctor_opinion) {
+                                               @RequestParam String doctor_opinion,
+                                               @RequestParam int diagnosis_money) {
         ResponseEntity<String> result = null;
         try {
-            diagnosisService.writeDoctorOpinion(diagnosis_number, doctor_opinion);
+            diagnosisService.writeDoctorOpinionAndMoney(diagnosis_number, doctor_opinion, diagnosis_money);
             result = new ResponseEntity<>("SUCCESS", HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();

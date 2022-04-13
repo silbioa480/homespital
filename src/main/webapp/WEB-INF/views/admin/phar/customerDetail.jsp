@@ -187,7 +187,7 @@
 </div>
 
 </body>
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
                     //진료완료, 진료중 표시 및 대기/예약취소하기 버튼
                     let complete = "";
