@@ -117,7 +117,6 @@ function start() {
     // add an event listener to get to know when a connection is open
     socket.onopen = function () {
         log("con ok");
-
         log('WebSocket connection opened to Room: #' + localRoom);
         // send a message to the server to join selected room with Web Socket
         sendToServer({
