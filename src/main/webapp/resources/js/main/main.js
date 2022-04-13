@@ -137,6 +137,7 @@
 							leave:		function() { $(this).addClass('inactive'); }
 						});
 
+					// section별 애니메이션
 					$('.main.style2')
 						.scrollex({
 							mode:		'middle',
@@ -144,10 +145,12 @@
 							initialize:	function() { $(this).addClass('inactive'); },
 							terminate:	function() { $(this).removeClass('inactive'); },
 							enter:		function() { $(this).removeClass('inactive'); },
-							leave:		function() { $(this).addClass('inactive'); }
+
+							leave:		function() { $(this).addClass('inactive'); },
 						});
 
 				// Contact.
+				// 맨아래 say hello 부분
 					$('#contact')
 						.scrollex({
 							top:		'50%',

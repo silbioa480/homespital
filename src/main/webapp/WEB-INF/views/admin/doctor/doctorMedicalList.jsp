@@ -172,7 +172,7 @@
                             '</button>' +
                             '</div><form action="receiptUpload" method="POST" enctype="multipart/form-data"><div class="modal-body">' +
                             "<input type='hidden' name='diagnosis_number' value='" + item.diagnosis_number + "'>" +
-                            '<input type="file" name="receiptFile">사진선택</input></div><div class="modal-footer"><button type="button" class="btn btn-secondary"  data-dismiss="modal">닫기</button><button type="submit" class="btn btn-primary upload-btn' + item.diagnosis_number + '">확인</button></div></form></div></div></div>'
+                            '<input type="file" accept=".gif, .jpg, .png" name="receiptFile">사진선택</input></div><div class="modal-footer"><button type="button" class="btn btn-secondary"  data-dismiss="modal">닫기</button><button type="submit" class="btn btn-primary upload-btn' + item.diagnosis_number + '">확인</button></div></form></div></div></div>'
                     } else if (item.is_diagnosis_upload == 2) {
                         receipt = "업로드완료";
                     }
@@ -198,7 +198,7 @@
                             '</button>' +
                             '</div><form action="prescriptionUpload" method="POST" enctype="multipart/form-data"><div class="modal-body">' +
                             "<input type='hidden' name='diagnosis_number' value='" + item.diagnosis_number + "'>" +
-                            '<input type="file" name="prescriptionFile">사진선택</input></div><div class="modal-footer"><button type="button" class="btn btn-secondary"  data-dismiss="modal">닫기</button><button type="submit" class="btn btn-primary upload-btn' + item.diagnosis_number + '">확인</button></div></form></div></div></div>'
+                            '<input type="file" accept=".gif, .jpg, .png" name="prescriptionFile">사진선택</input></div><div class="modal-footer"><button type="button" class="btn btn-secondary"  data-dismiss="modal">닫기</button><button type="submit" class="btn btn-primary upload-btn' + item.diagnosis_number + '">확인</button></div></form></div></div></div>'
                     } else if (item.is_prescription_upload == 2) {
                         prescription = "업로드완료";
                     } else if (item.is_prescription_upload == 3) {
