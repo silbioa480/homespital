@@ -241,7 +241,7 @@
     function successMadeBtn(e) {
         if (confirm("약을 수령하셨나요? 수령확정 하시겠습니까?") == true) {
             $.ajax({
-                url: "successMadeMedicine",
+                url: "/pharmacy/successMadeMedicine",
                 type: "POST",
                 datatype: "json",
                 data: {
