@@ -25,7 +25,7 @@
         <ul>
             <li><a href="#one" class="active">필수정보입력</a></li>
             <li><a href="#two">주소 입력</a></li>
-            <li><a href="#three">결제 정보 입력</a></li>
+            <%--            <li><a href="#three">결제 정보 입력</a></li>--%>
             <li><a href="#four">약관동의</a></li>
         </ul>
     </nav>
@@ -77,7 +77,8 @@
                         <label for="SocialSecurityNumber1">주민등록번호</label>
                         <div style="display:flex">
                             <input id="SocialSecurityNumber1" name="SocialSecurityNumber1" type="text" maxlength="6">&nbsp__&nbsp
-                            <input type="text" id="SocialSecurityNumber2" name="SocialSecurityNumber2" maxlength="7">
+                            <input type="password" id="SocialSecurityNumber2" name="SocialSecurityNumber2"
+                                   maxlength="7">
                         </div>
                         <div class="error"></div>
                     </div>
