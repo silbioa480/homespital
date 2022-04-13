@@ -16,10 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 //import static jdk.internal.logger.DefaultLoggerFinder.SharedLoggers.system;
 
@@ -157,6 +154,41 @@ public class RootController {
             mv.addObject("user", user);
             System.out.println("user = " + user);
 
+
+            //환자의 주민번호를 가공해서 모델로 넘긴다.(view에서 생년월일, 만 나이를 나타내기 위함)
+            String JuminNo = user.getUser_registration_number();
+            JuminNo = JuminNo.replaceAll("-", ""); //주민번호 - 빼고 숫자만 나오게
+            int year = 0;
+
+            // 주민번호 뒷자리가 1이나 2면 1900년대생, 아니면 2000년대생
+            if (Integer.parseInt(JuminNo.substring(6, 7)) <= 2) {
+                year = Integer.parseInt(JuminNo.substring(0, 2)) + 1900;
+            } else {
+                year = Integer.parseInt(JuminNo.substring(0, 2)) + 2000;
+            }
+
+            int month = Integer.parseInt(JuminNo.substring(2, 4));  //월
+            int date = Integer.parseInt(JuminNo.substring(4, 6));   //일
+            String gender = JuminNo.substring(6, 7);                //성별
+
+            //주민번호 뒷자리로 성별 지정
+            if (gender.equals("1") || gender.equals("3")) {
+                gender = "남";
+            } else if (gender.equals("2") || gender.equals("4")) {
+                gender = "여";
+            }
+            //만 나이
+            GregorianCalendar Gc = new GregorianCalendar();
+            int age = Gc.get(Calendar.YEAR) - year;
+
+            //모델에 각 계산결과 넣기
+            mv.addObject("year", year);
+            mv.addObject("month", month);
+            mv.addObject("date", date);
+            mv.addObject("age", age);
+            mv.addObject("gender", gender);
+
+
             String cardInfo = "";
             Card_Information cardInfoObj = paymentService.getPayment(user.getUser_number(), user.getBilling_key());
             cardInfo = cardInfoObj.getCard_nickname();
@@ -208,15 +240,15 @@ public class RootController {
             mv.setViewName("redirect:/myMedicalList");
 
             //예약이 성공적으로 되었다는 알림 태영
-            Doctor dtc =doctorService.getDocInfo(diagnosis.getDoctor_number());
-            User user123=userService.getUserInfo(diagnosis.getUser_number());
+            Doctor dtc = doctorService.getDocInfo(diagnosis.getDoctor_number());
+            User user123 = userService.getUserInfo(diagnosis.getUser_number());
             String dtcPhone = dtc.getDoctor_phone();
-            String usePhone=user123.getUser_phone();
+            String usePhone = user123.getUser_phone();
             System.out.println("예약되었습니다.");
-            System.out.println("발신전화번호 : "+dtcPhone);
-            System.out.println("수신전화번호 : "+usePhone);
-            System.out.println("담당의사명 : "+dtc.getDoctor_name());
-            System.out.println("진료날짜 : "+dtc.getWorking_time());
+            System.out.println("발신전화번호 : " + dtcPhone);
+            System.out.println("수신전화번호 : " + usePhone);
+            System.out.println("담당의사명 : " + dtc.getDoctor_name());
+            System.out.println("진료날짜 : " + dtc.getWorking_time());
         } catch (Exception e) {
             e.printStackTrace();
             //mv.setViewName();
@@ -246,7 +278,6 @@ public class RootController {
     public ModelAndView termsOfService() {
         return new ModelAndView("common/terms/termsOfService");
     }
-
 
 
     //소연 : 개인정보 처리방침

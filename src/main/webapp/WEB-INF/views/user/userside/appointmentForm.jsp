@@ -177,18 +177,18 @@
                 <hr>
                 <div id="currentPharmacy">
                     <h5>현재 설정된 약국</h5>
-                    <div id="pharmacyName">
+                    <div id="pharmacy_name">
                         -
                     </div>
-                    <div id="pharmacyPhone">
+                    <div id="pharmacy_phone">
                         -
                     </div>
-                    <div id="pharmacyAddress">
+                    <div id="pharmacy_address">
                         -
                     </div>
-                    <input type="hidden" name="pharmacyName">
-                    <input type="hidden" name="pharmacyPhone">
-                    <input type="hidden" name="pharmacyAddress">
+                    <input type="hidden" name="pharmacy_name">
+                    <input type="hidden" name="pharmacy_phone">
+                    <input type="hidden" name="pharmacy_address">
 
                 </div>
                 <hr>
@@ -236,9 +236,9 @@
                     <span class="px-2 pb-2">만 ${age}세(남)</span>
                 </div>
                 <p>배송 방법 : <font id="fouris_delivery">약국으로 직접 방문</font></p>
-                <div>약국 이름 :<p id="pharmacyNamePay"></p></div>
-                <div>약국 전화번호 : <p id="pharmacyPhonePay"></p></div>
-                <div>약국 주소 : <p id="pharmacyAddressPay"></p></div>
+                <div>약국 이름 :<p id="pharmacy_namePay"></p></div>
+                <div>약국 전화번호 : <p id="pharmacy_phonePay"></p></div>
+                <div>약국 주소 : <p id="pharmacy_addressPay"></p></div>
                 <p>받으시는 곳 주소 : [${user.zip_code}] ${user.street_address} ${user.detail_address}</p>
                 <span>핸드폰 번호 : ${user.user_phone}</span>
                 <br>
@@ -439,17 +439,17 @@
         el.innerHTML = itemStr;
         el.className = 'item';
         el.onclick = function () {
-            document.getElementById("pharmacyName").innerText = places.place_name;
-            document.getElementById("pharmacyPhone").innerText = places.phone;
-            document.getElementById("pharmacyAddress").innerText = places.road_address_name ? places.road_address_name : places.address_name;
+            document.getElementById("pharmacy_name").innerText = places.place_name;
+            document.getElementById("pharmacy_phone").innerText = places.phone;
+            document.getElementById("pharmacy_address").innerText = places.road_address_name ? places.road_address_name : places.address_name;
 
-            document.getElementById("pharmacyNamePay").innerText = places.place_name;
-            document.getElementById("pharmacyPhonePay").innerText = places.phone;
-            document.getElementById("pharmacyAddressPay").innerText = places.road_address_name ? places.road_address_name : places.address_name;
+            document.getElementById("pharmacy_namePay").innerText = places.place_name;
+            document.getElementById("pharmacy_phonePay").innerText = places.phone;
+            document.getElementById("pharmacy_addressPay").innerText = places.road_address_name ? places.road_address_name : places.address_name;
 
-            document.getElementsByName('pharmacyName')[0].value = places.place_name;
-            document.getElementsByName('pharmacyPhone')[0].value = places.phone;
-            document.getElementsByName('pharmacyAddress')[0].value = places.road_address_name ? places.road_address_name : places.address_name;
+            document.getElementsByName('pharmacy_name')[0].value = places.place_name;
+            document.getElementsByName('pharmacy_phone')[0].value = places.phone;
+            document.getElementsByName('pharmacy_address')[0].value = places.road_address_name ? places.road_address_name : places.address_name;
         }
         return el;
     }
@@ -746,7 +746,7 @@
     // 인성: 예약하기 버튼 정규성 검사
     $('.appointDo').click(function () {
         // console.log(document.getElementById('is_delivery').value);
-        console.log($('input[name="pharmacyAddress"]').val() == "" || $('input[name="pharmacyAddress"]').val() == null);
+        console.log($('input[name="pharmacy_address"]').val() == "" || $('input[name="pharmacy_address"]').val() == null);
         if (!$("input:checked[name='timeChecked']").is(":checked")) {
             alert("시간약관을 체크하세요.")
             $(".timeChecked").focus();
@@ -764,7 +764,7 @@
             $(".diagnosis_content").focus();
             return false;
 
-        } else if ($('input[name="pharmacyAddress"]').val() == "" || $('input[name="pharmacyAddress"]').val() == null) {
+        } else if ($('input[name="pharmacy_address"]').val() == "" || $('input[name="pharmacy_address"]').val() == null) {
             alert("약국을 선택해주세요.")
             $("#map_wrap").focus();
             return false;
