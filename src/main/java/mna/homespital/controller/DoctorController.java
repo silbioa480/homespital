@@ -115,6 +115,7 @@ public class DoctorController {
         doctor.setDoctor_phone(request.getParameter("doctor_phone"));
         doctor.setDoctor_name(request.getParameter("doctor_name"));
         doctor.setDoctor_valid_number(request.getParameter("doctor_valid_number"));
+        doctor.setDoctor_url(request.getParameter("doctor_url"));
         doctor.setHospital_name(request.getParameter("hospital_name"));
         doctor.setHospital_telephone(request.getParameter("hospital_telephone"));
 
