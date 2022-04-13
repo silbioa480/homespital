@@ -36,10 +36,11 @@ public class DiagnosisServiceImpl implements DiagnosisService {
 
     //훈 : 진료차트 의사소견 작성하기
     @Override
-    public void writeDoctorOpinion(int diagnosis_number, String doctor_opinion) throws Exception {
+    public void writeDoctorOpinionAndMoney(int diagnosis_number, String doctor_opinion, int diagnosis_money) throws Exception {
         Map<String, Object> param = new HashMap<String, Object>();
         param.put("diagnosis_number", diagnosis_number);
         param.put("doctor_opinion", doctor_opinion);
-        diagnosisDAO.writeDoctorOpinion(param);
+        param.put("diagnosis_money", diagnosis_money);
+        diagnosisDAO.writeDoctorOpinionAndMoney(param);
     }
 }

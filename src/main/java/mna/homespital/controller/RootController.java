@@ -6,6 +6,8 @@ import mna.homespital.dto.Doctor;
 import mna.homespital.dto.User;
 import mna.homespital.service.*;
 import org.apache.maven.model.Model;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -204,6 +206,17 @@ public class RootController {
             //의사 스케쥴 객체
             ArrayList<HashMap<String, Object>> ds = doctorService.getDocScheduleInfo(doctor_number);
             mv.addObject("ds", ds);
+
+            // 카운트(준근)
+            ArrayList<HashMap<String, Object>> timeCountArr = memberService.getCount(doctor_number);
+            JSONArray tcArr = new JSONArray();
+            for (HashMap<String, Object> timeCount : timeCountArr) {
+                JSONObject time = new JSONObject(timeCount);
+                tcArr.put(time);
+            }
+
+            System.out.println("tcArr = " + tcArr);
+            mv.addObject("timeCount", tcArr);
 
 
         } catch (Exception e) {

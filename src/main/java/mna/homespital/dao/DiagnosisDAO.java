@@ -22,5 +22,5 @@ public interface DiagnosisDAO {
     public HashMap<String, Object> diagnosisDetail(int diagnosis_number) throws Exception;
 
     // 훈 : 의사 소견 적기
-    public void writeDoctorOpinion(Map<String, Object> params) throws Exception;
+    public void writeDoctorOpinionAndMoney(Map<String, Object> params) throws Exception;
 }
