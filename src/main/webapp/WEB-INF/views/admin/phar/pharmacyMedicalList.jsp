@@ -76,6 +76,10 @@
         })
 
         function next_load(list) {
+            list.sort((a, b) => {
+                return a.diagnosis_status - b.diagnosis_status;
+            })
+
             $.each(list, function (index, item) {
                 if (index >= page * 30 && index < page * 30 + 30) {
                     console.log(index);
