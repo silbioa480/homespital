@@ -86,17 +86,19 @@
                                 <tr>
                                     <th>시간:</th>
                                     <td id="workBtn">
-                                        <c:forEach var="wt" items="${real_work_timeList}">
+                                        <c:forEach var="tt" items="${real_work_timeList}" varStatus="status">
+
                                             <label class="box-radio-input" data-bs-toggle="tooltip"
                                                    data-bs-placement="top"
-                                                   title="테스트">
-                                                <input type="radio" name="diagnosis_time" value="${wt}"
+                                                   id="${status.index}">
+
+                                                <input type="radio" name="diagnosis_time" value="${tt}"
                                                        checked="checked">
-                                                <span>${wt}:00</span>
+                                                <span>${tt}:00</span>
+
                                             </label>
+
                                         </c:forEach>
-
-
                                     </td>
                                 </tr>
                             </table>
@@ -360,7 +362,19 @@
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a69fc7ca725d20c3e61c5b6bb3d32242&libraries=services"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
-    var markers = [];
+    //test(준근)
+    let tcArr = JSON.parse(`${timeCount}`);
+
+
+    console.log(tcArr);
+    console.log(tcArr);
+    for (let i in tcArr) {
+        let msg = tcArr[i].diagnosis_wait_number + "/10";
+        $('#' + i).attr('title', msg)
+    }
+
+    var
+        markers = [];
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         mapOption = {
             center: new kakao.maps.LatLng(37.529521, 126.964540), // 지도의 중심좌표
@@ -815,7 +829,10 @@
     //     bootstrap.ScrollSpy.getInstance(dataSpyEl)
     //         .refresh()
     // })
+
+
 </script>
+
 
 </body>
 </html>
