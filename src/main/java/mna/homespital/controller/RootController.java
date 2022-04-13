@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
+import java.io.PrintWriter;
 import java.util.*;
 
 //import static jdk.internal.logger.DefaultLoggerFinder.SharedLoggers.system;
@@ -132,6 +133,7 @@ public class RootController {
         ModelAndView mv = new ModelAndView("user/userside/appointmentForm");
         String email = (String) session.getAttribute("email");
         try {
+
             //모델에 view 넣기
             //의사 객체
             Doctor doctor = doctorService.getDocInfo(doctor_number);
@@ -151,10 +153,11 @@ public class RootController {
             }
             mv.addObject("real_work_timeList", real_work_timeList);
 
+
             //유저 객체
             System.out.println("email = " + email);
             User user = memberService.findByEmail(email);
-            if (user != null) throw new Exception("로그인 되어있지 않음");
+            if (user == null) throw new Exception("로그인 되어있지 않음");
             mv.addObject("user", user);
             System.out.println("user = " + user);
 
@@ -205,9 +208,9 @@ public class RootController {
             ArrayList<HashMap<String, Object>> ds = doctorService.getDocScheduleInfo(doctor_number);
             mv.addObject("ds", ds);
 
-
         } catch (Exception e) {
             e.printStackTrace();
+            mv.setViewName("redirect:/loginForm");
         }
 
         return mv;
