@@ -81,7 +81,7 @@
 
         <div class="row justify-content-around mb-3">
             <div class="col-lg-6 mb-3">
-                <video id="local_video" autoplay playsinline></video>
+                <video id="local_video" autoplay playsinline muted></video>
             </div>
             <div class="col-lg-6 mb-3">
                 <video id="remote_video" autoplay playsinline></video>
