@@ -33,7 +33,7 @@
 	    	localstream=stream;
 	    	video.onloadedmetadata=function(e){
 				video.play();
-				let ws_cam=new WebSocket("ws://localhost:8080/WebSocketCam/${roomNum}");
+				let ws_cam=new WebSocket("ws://3.219.96.23:8080/WebSocketCam/${roomNum}");
 				ws_cam.binaryType="arraybuffer";//중요!!!
 				ws_cam.onopen=function(){
 					console.log("cam con ok");
@@ -75,7 +75,7 @@
 		});
 		
 
-		let ws=new WebSocket("ws://localhost:8080/WebSocketChat/${roomNum}");
+		let ws=new WebSocket("ws://3.219.96.23:8080/WebSocketChat/${roomNum}");
 		ws.onopen=function(){
 			console.log("con ok");
 		}
