@@ -72,16 +72,14 @@
 <div id="wrapper">
     <div class="medicalList">
         <c:forEach var="data" items="${list}">
-            <div class="databox"
-                 style="background-image: url('/resources/img/design/${data.medical_image}');
-                         width: 200px;height: 200px;background-repeat:no-repeat; display: table">
-                    <%--                <div>--%>
+
+            <a href="/doctorList?doctor_diagnosis_type=${data.medical_name}" class="databox"
+               style="background-image: url('/resources/img/design/${data.medical_image}');
+                       width: 200px;height: 200px;background-repeat:no-repeat; display: table">
+
                 <p class=" medicalLink" style="display:table-cell; vertical-align: bottom">
-                    <a href="/doctorList?doctor_diagnosis_type=${data.medical_name}"
-                       style="">${data.medical_name}</a>
-                </p>
-                    <%--                </div>--%>
-            </div>
+                        ${data.medical_name}</p>
+            </a>
         </c:forEach>
     </div>
 </div>

@@ -8,12 +8,12 @@
     <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/writeMediChartForm.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/sidebar.css">
-<%--    <script src="http://code.jquery.com/jquery-latest.min.js"></script>--%>
-<%--    <script src="${pageContext.request.contextPath}/resources/js/signUp/jquery.scrollex.min.js"></script>--%>
-<%--    <script src="${pageContext.request.contextPath}/resources/js/signUp/jquery.scrolly.min.js"></script>--%>
-<%--    <script src="${pageContext.request.contextPath}/resources/js/signUp/browser.min.js"></script>--%>
-<%--    <script src="${pageContext.request.contextPath}/resources/js/signUp/util.js"></script>--%>
-<%--    <script src="${pageContext.request.contextPath}/resources/js/main/commonSidebarScroll.js"></script>--%>
+    <%--    <script src="http://code.jquery.com/jquery-latest.min.js"></script>--%>
+    <%--    <script src="${pageContext.request.contextPath}/resources/js/signUp/jquery.scrollex.min.js"></script>--%>
+    <%--    <script src="${pageContext.request.contextPath}/resources/js/signUp/jquery.scrolly.min.js"></script>--%>
+    <%--    <script src="${pageContext.request.contextPath}/resources/js/signUp/browser.min.js"></script>--%>
+    <%--    <script src="${pageContext.request.contextPath}/resources/js/signUp/util.js"></script>--%>
+    <%--    <script src="${pageContext.request.contextPath}/resources/js/main/commonSidebarScroll.js"></script>--%>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </head>
@@ -177,23 +177,23 @@
                 <hr>
                 <div id="currentPharmacy">
                     <h5>현재 설정된 약국</h5>
-                    <div id="pharmacyName">
+                    <div id="pharmacy_name">
                         -
                     </div>
-                    <div id="pharmacyPhone">
+                    <div id="pharmacy_phone">
                         -
                     </div>
-                    <div id="pharmacyAddress">
+                    <div id="pharmacy_address">
                         -
                     </div>
-                    <input type="hidden" name="pharmacyName">
-                    <input type="hidden" name="pharmacyPhone">
-                    <input type="hidden" name="pharmacyAddress">
+                    <input type="hidden" name="pharmacy_name">
+                    <input type="hidden" name="pharmacy_phone">
+                    <input type="hidden" name="pharmacy_address">
 
                 </div>
                 <hr>
                 <div class="m-3">
-                    <input type="hidden" name="is_delivery" id="is_delivery" value=0>
+                    <input type="number" name="is_delivery" id="is_delivery" class="d-none" value="0">
                     <button class="btn btn-warning rounded-pill"
                             onclick="toggleDelivery('false'); return false;">약국으로 직접 방문
                     </button>
@@ -220,10 +220,11 @@
             <div id="delivery" class="card p-3" style="display:none;">
                 <div id="currentTargetPlace">
                     <span>현재 배송지 : </span>
-                    <span id="diagnosis_addressSpan">(${user.zip_code}) ${user.street_address}</span>
+                    <span id="diagnosis_addressSpan">(${user.zip_code}) ${user.street_address} ${user.detail_address}</span>
                     <button type="button" id="changePlace" class="btn border-dark" onClick="goPopup()">배송지 변경하기</button>
                 </div>
-                <input type="hidden" name="diagnosis_address" value="(${user.zip_code}) ${user.street_address}">
+                <input type="hidden" name="user_address"
+                       value="(${user.zip_code}) ${user.street_address} ${user.detail_address}">
 
             </div>
 
@@ -235,11 +236,12 @@
                     <h4>${user.user_name}</h4>
                     <span class="px-2 pb-2">만 ${age}세(남)</span>
                 </div>
-                <p>배송 방법 : 집으로 받아보기(배송)</p>
-                <div>약국 이름 :<p id="pharmacyNamePay"></p></div>
-                <div>약국 전화번호 : <p id="pharmacyPhonePay"></p></div>
-                <div>약국 주소 : <p id="pharmacyAddressPay"></p></div>
-                <p>받으시는 곳 주소 : [${user.zip_code}] ${user.street_address} ${user.detail_address}</p>
+                <p>배송 방법 : <font id="fouris_delivery">약국으로 직접 방문</font></p>
+                <div>약국 이름 :<p id="pharmacy_namePay"></p></div>
+                <div>약국 전화번호 : <p id="pharmacy_phonePay"></p></div>
+                <div>약국 주소 : <p id="pharmacy_addressPay"></p></div>
+                <p id="diagnosis_address">받으시는 곳 주소 :
+                    [${user.zip_code}] ${user.street_address} ${user.detail_address}</p>
                 <span>핸드폰 번호 : ${user.user_phone}</span>
                 <br>
                 <div>
@@ -330,6 +332,29 @@
         </div>
     </form>
 </div>
+<script>
+    // 주소찾기API
+
+    function goPopup() {
+        // 호출된 페이지(jusoPopup.jsp)에서 실제 주소검색URL(https://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
+        var pop = window.open("/jusoPopup", "pop", "width=570,height=420, scrollbars=yes, resizable=yes");
+
+        // 모바일 웹인 경우, 호출된 페이지(jusoPopup.jsp)에서 실제 주소검색URL(https://www.juso.go.kr/addrlink/addrMobileLinkUrl.do)를 호출하게 됩니다.
+        //var pop = window.open("/popup/jusoPopup.jsp","pop","scrollbars=yes, resizable=yes");
+    }
+
+    function jusoCallBack(zipNo, roadFullAddr, addrDetail) {
+        // 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
+        var usraddr = "(" + zipNo + ") " + roadFullAddr;
+        document.getElementsByName('user_address').value = usraddr;
+        document.getElementById("diagnosis_address").innerText = usraddr;
+        document.getElementById("diagnosis_addressSpan").innerText = usraddr;
+        // document.form.zipNo.value = zipNo;
+        // document.form.roadFullAddr.value = roadFullAddr;
+        // document.form.addrDetail.value = addrDetail;
+    }
+</script>
+
 <%-- 카카오맵 관련 JS --%>
 <script type="text/javascript"
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a69fc7ca725d20c3e61c5b6bb3d32242&libraries=services"></script>
@@ -356,7 +381,7 @@
             return false;
         }
         // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
-        ps.keywordSearch(keyword, placesSearchCB, {category_group_code: "PM9"});
+        ps.keywordSearch(keyword, placesSearchCB, {category_group_code: "PM9", location: map.getCenter()});
     }
 
     // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
@@ -439,17 +464,17 @@
         el.innerHTML = itemStr;
         el.className = 'item';
         el.onclick = function () {
-            document.getElementById("pharmacyName").innerText = places.place_name;
-            document.getElementById("pharmacyPhone").innerText = places.phone;
-            document.getElementById("pharmacyAddress").innerText = places.road_address_name ? places.road_address_name : places.address_name;
+            document.getElementById("pharmacy_name").innerText = places.place_name;
+            document.getElementById("pharmacy_phone").innerText = places.phone;
+            document.getElementById("pharmacy_address").innerText = places.road_address_name ? places.road_address_name : places.address_name;
 
-            document.getElementById("pharmacyNamePay").innerText = places.place_name;
-            document.getElementById("pharmacyPhonePay").innerText = places.phone;
-            document.getElementById("pharmacyAddressPay").innerText = places.road_address_name ? places.road_address_name : places.address_name;
+            document.getElementById("pharmacy_namePay").innerText = places.place_name;
+            document.getElementById("pharmacy_phonePay").innerText = places.phone;
+            document.getElementById("pharmacy_addressPay").innerText = places.road_address_name ? places.road_address_name : places.address_name;
 
-            document.getElementsByName('pharmacyName')[0].value = places.place_name;
-            document.getElementsByName('pharmacyPhone')[0].value = places.phone;
-            document.getElementsByName('pharmacyAddress')[0].value = places.road_address_name ? places.road_address_name : places.address_name;
+            document.getElementsByName('pharmacy_name')[0].value = places.place_name;
+            document.getElementsByName('pharmacy_phone')[0].value = places.phone;
+            document.getElementsByName('pharmacy_address')[0].value = places.road_address_name ? places.road_address_name : places.address_name;
         }
         return el;
     }
@@ -544,6 +569,7 @@
     // 위치 가져오기 버튼 클릭시
     function getCurrentPosBtn() {
         navigator.geolocation.getCurrentPosition(locationLoadSuccess, locationLoadError);
+
     };
 </script>
 <%-- bootstrap tooltip 설정 --%>
@@ -560,14 +586,18 @@
 <%-- 약국내방/배달받기 설정 --%>
 <script>
     function toggleDelivery(arg) {
-        if (arg == 'true') {
+        console.log(arg);
+        console.log(typeof arg);
+        if (arg === 'true') {
             document.getElementById('is_delivery').value = 1;
             document.getElementById('delivery').style.display = "block";
             document.getElementById('naebang').style.display = "none";
+            document.getElementById('fouris_delivery').innerText = "집까지 배송받기";
         } else {
             document.getElementById('is_delivery').value = 0;
             document.getElementById('delivery').style.display = "none";
             document.getElementById('naebang').style.display = "block";
+            document.getElementById('fouris_delivery').innerText = "약국으로 직접 방문하기";
         }
     }
 </script>
@@ -738,15 +768,16 @@
         })
         return false;
     }
+
     // 인성: 예약하기 버튼 정규성 검사
     $('.appointDo').click(function () {
         // console.log(document.getElementById('is_delivery').value);
-        console.log($('input[name="pharmacyAddress"]').val() == "" || $('input[name="pharmacyAddress"]').val() == null);
+        console.log($('input[name="pharmacy_address"]').val() == "" || $('input[name="pharmacy_address"]').val() == null);
         if (!$("input:checked[name='timeChecked']").is(":checked")) {
             alert("시간약관을 체크하세요.")
             $(".timeChecked").focus();
             return false;
-        }   else if($('#is_delivery').val() == 0 && !$("input:checked[name='naebangChecked']").is(":checked")) {
+        } else if ($('#is_delivery').val() == 0 && !$("input:checked[name='naebangChecked']").is(":checked")) {
             alert("내방약관을 체크하세요.");
             $('.naebangChecked').focus();
             return false;
@@ -759,7 +790,7 @@
             $(".diagnosis_content").focus();
             return false;
 
-        } else if ($('input[name="pharmacyAddress"]').val() == "" || $('input[name="pharmacyAddress"]').val() == null) {
+        } else if ($('input[name="pharmacy_address"]').val() == "" || $('input[name="pharmacy_address"]').val() == null) {
             alert("약국을 선택해주세요.")
             $("#map_wrap").focus();
             return false;
@@ -771,7 +802,6 @@
     <%--$('#test').click(function() {--%>
     <%--  alert( '${doctor.doctor_name} '+ "의사에게 " + $("input:checked[name='diagnosis_time']").val()+ "시에 예약 완료되었습니다.");--%>
     <%--})--%>
-
 
 
 </script>

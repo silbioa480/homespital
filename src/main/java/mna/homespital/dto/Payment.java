@@ -7,24 +7,27 @@ public class Payment {
     String customer_uid;
     int card_owner_number;
     int payment_money;
+    String status;
     Date create_date;
     Date update_date;
 
     public Payment() {
     }
 
-    public Payment(int payment_number, String customer_uid, int card_owner_number, int payment_money) {
+    public Payment(int payment_number, String customer_uid, int card_owner_number, int payment_money, String status) {
         this.payment_number = payment_number;
         this.customer_uid = customer_uid;
         this.card_owner_number = card_owner_number;
         this.payment_money = payment_money;
+        this.status = status;
     }
 
-    public Payment(int payment_number, String customer_uid, int card_owner_number, int payment_money, Date create_date, Date update_date) {
+    public Payment(int payment_number, String customer_uid, int card_owner_number, int payment_money, String status, Date create_date, Date update_date) {
         this.payment_number = payment_number;
         this.customer_uid = customer_uid;
         this.card_owner_number = card_owner_number;
         this.payment_money = payment_money;
+        this.status = status;
         this.create_date = create_date;
         this.update_date = update_date;
     }
@@ -60,6 +63,14 @@ public class Payment {
 
     public void setPayment_money(int payment_money) {
         this.payment_money = payment_money;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public Date getCreate_date() {

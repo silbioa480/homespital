@@ -48,7 +48,7 @@
 <body>
 <div class="container">
     <div class="col my-3">
-        <div class="list-header bg-warning text-center">
+        <div class="bgLogo">
             <h1 id="logo">Homespital</h1>
 
         </div>

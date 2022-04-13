@@ -21,13 +21,15 @@
     <insert id="insertDiagnosis" parameterType="Diagnosis">
         <![CDATA[
         insert into diagnosis(user_number, doctor_number, is_delivery, diagnosis_time, diagnosis_content,
-                              diagnosis_image_name, billing_key, diagnosis_type, diagnosis_wait_number)
-        values (#{user_number}, #{doctor_number}, 1, #{diagnosis_time}, #{diagnosis_content},
+                              diagnosis_image_name, billing_key, diagnosis_type, diagnosis_wait_number,
+                              pharmacy_name, pharmacy_phone, pharmacy_address, user_address)
+        values (#{user_number}, #{doctor_number}, #{is_delivery}, #{diagnosis_time}, #{diagnosis_content},
                 #{diagnosis_image_name}, #{billing_key}, #{diagnosis_type},
                 IFNULL((select MAX(diagnosis_wait_number) + 1
                         from doctor_schedule_view
                         where doctor_number = #{doctor_number}
-                          and diagnosis_time = #{diagnosis_time}), 1));
+                          and diagnosis_time = #{diagnosis_time}), 1),
+                #{pharmacy_name}, #{pharmacy_phone}, #{pharmacy_address}, #{user_address})
         ]]>
     </insert>
 
@@ -111,10 +113,10 @@
                    END)          as gender,
 --                us.user_phone,
                CONCAT(
-                       SUBSTR(us.user_phone, 1,3), '-',
-                       SUBSTR(us.user_phone, 4,4), '-',
-                       SUBSTR(us.user_phone, 8,4)
-                   ) as user_phone,
+                       SUBSTR(us.user_phone, 1, 3), '-',
+                       SUBSTR(us.user_phone, 4, 4), '-',
+                       SUBSTR(us.user_phone, 8, 4)
+                   )             as user_phone,
                us.zip_code       as user_zip_code,
                us.street_address as user_street_address,
                us.detail_address as user_detail_address
