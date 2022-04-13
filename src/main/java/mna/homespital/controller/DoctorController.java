@@ -72,7 +72,7 @@ public class DoctorController {
             doctor.setDoctor_password("");
             System.out.println(3);
             session.setAttribute("doctor", doctor);
-            return "redirect:/doctor/";
+            return "redirect:/doctor/docMedicalList";
         } catch (Exception e) {
             model.addAttribute("err", e.getMessage());
             try {
