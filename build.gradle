@@ -54,8 +54,8 @@ dependencies {
 
     // 소연 : ㅎㅅ
     implementation 'org.springframework.boot:spring-boot-starter-websocket'
-//    implementation 'org.springframework.boot:spring-boot-starter-reactor-netty'
-//    implementation 'org.springframework.boot:spring-boot-starter-amqp'
+    implementation 'org.springframework.boot:spring-boot-starter-reactor-netty'
+    implementation 'org.springframework.boot:spring-boot-starter-amqp'
 
     // 훈 : 화상채팅
     implementation 'com.sun.istack:istack-commons-runtime:3.0.11'

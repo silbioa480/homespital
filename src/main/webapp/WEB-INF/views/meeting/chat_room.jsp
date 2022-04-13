@@ -91,5 +91,21 @@
 </main>
 
 <script src="/resources/js/meeting/webrtc_client.js"></script>
+
+<input type="text" id="chatId" placeholder="채팅 아이디를 입력하세요"><br/>
+<input type="text" id="chatMsg">
+<input type="button" id="msgBtn" value="전송"><br>
+<textarea rows="10" cols="30"></textarea>
 </body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#msgBtn").click(function (e) {
+            sendToServer({from: $("#chatId").val(), type: 'text', data: $("#chatMsg").val()});
+        });
+    });
+
+
+</script>
 </html>
