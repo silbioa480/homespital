@@ -16,6 +16,11 @@
         </header>
         <p>우리집에서 한번에<hr><strong>비대면 진료 </strong><strong>| 처방 </strong><strong>| 약배송까지</strong><br />
             </p>
+        <%--소연: test 나중에 삭제 해야함 --%>
+        <a href="/chat"><button type="button" class="test_btn" id="test_btn" action="test" method="post">진료하기 test</button></a>
+        <%--소연: test 종료 --%>
+
+
         <footer>
             <a href="#one" class="button style2 down">More</a>
         </footer>
