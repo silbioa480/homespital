@@ -73,7 +73,7 @@ body {
   transition: opacity 2s ease-in-out;
   height: 100%;
   left: 0;
-  opacity: 0.375;
+  /*opacity: 0.375;*/
   position: fixed;
   top: 0;
   width: 100%;
@@ -680,29 +680,31 @@ button,
   background-color: #ffffff;
   border-radius: 6px;
   border: 0;
-  color: #ffffff !important;
+  color: #2a2d42 !important;
   cursor: pointer;
   display: inline-block;
   font-weight: 700;
-  width: 285px;
-  height: 2.55em;
+  width: 287px;
+  height: 40px;
   line-height: 2.75em;
   padding: 0 1.125em;
   text-align: center;
   text-decoration: none;
-  white-space: nowrap; }
+  white-space: nowrap;
+  font-size: 15px;
+}
   input[type="submit"]:hover,
   input[type="reset"]:hover,
   input[type="button"]:hover,
   button:hover,
   .button:hover {
-    background-color: #ffffff; }
+    background-color: #ebe9e9; }
   input[type="submit"]:active,
   input[type="reset"]:active,
   input[type="button"]:active,
   button:active,
   .button:active {
-    background-color: #ffffff; }
+    background-color: #e6e2e2; }
   input[type="submit"].disabled, input[type="submit"]:disabled,
   input[type="reset"].disabled,
   input[type="reset"]:disabled,

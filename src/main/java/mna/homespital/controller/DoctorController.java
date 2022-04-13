@@ -72,7 +72,7 @@ public class DoctorController {
             doctor.setDoctor_password("");
             System.out.println(3);
             session.setAttribute("doctor", doctor);
-            return "redirect:/doctor/";
+            return "redirect:/doctor/docMedicalList";
         } catch (Exception e) {
             model.addAttribute("err", e.getMessage());
             try {
@@ -85,6 +85,13 @@ public class DoctorController {
             }
             return "redirect:/doctor/docLogin";
         }
+    }
+
+    //용식: 로그아웃
+    @GetMapping("/logout.do")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/doctor/";
     }
 
     //가영: 의사 회원가입
@@ -401,7 +408,7 @@ public class DoctorController {
                 doctorService.changePrescription(diagnosis_number);
                 return "success";
             }
-            //결제 처리
+            //훈 - 결제 처리
             System.out.println("STARTING GET TOKEN");
             JSONObject authToken = paymentService.getAuthToken();
             System.out.println("STARTING PAYING");
@@ -410,7 +417,7 @@ public class DoctorController {
                     diagnosis.getBilling_key(),
                     diagnosis.getUser_number(),
                     1000,
-                    "멀티캠퍼스화이팅");
+                    "멀캠진료테스팅");
             System.out.println("PAY END");
             if (!payResult.getString("status").equals("paid")) {
                 System.out.println("결제 실패");

@@ -51,6 +51,11 @@ dependencies {
 
     //원 : Unirest
     implementation 'com.konghq:unirest-java:3.11.09'
+
+    // 소연 : ㅎㅅ
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
+    implementation 'org.springframework.boot:spring-boot-starter-reactor-netty'
+    implementation 'org.springframework.boot:spring-boot-starter-amqp'
 }
 
 tasks.named('test') {
