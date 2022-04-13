@@ -1,6 +1,6 @@
 'use strict';
 // create and run Web Socket connection
-const socket = new WebSocket("wss://" + window.location.host + "/signal");
+const socket = new WebSocket("ws://" + window.location.host + "/signal");
 
 // UI elements
 const videoButtonOff = document.querySelector('#video_off');
@@ -64,6 +64,7 @@ function start() {
         let message = JSON.parse(msg.data);
         switch (message.type) {
             case "text":
+
                 log('Text message from ' + message.from + ' received: ' + message.data);
                 let oldMsg = $("textarea").val();
                 $("textarea").val(oldMsg + "\n" + message.from + ":" + message.data);
