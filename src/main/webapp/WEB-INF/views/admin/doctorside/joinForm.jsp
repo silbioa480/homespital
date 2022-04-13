@@ -143,6 +143,13 @@
                         <%--                        </div>--%>
 
                     </div>
+                    <div class="input-control">
+                        <label class="doctor-title" for="doctor_url">줌 회의실 링크(URL)</label>
+
+                            <input id="doctor_url" name="doctor_url" type="text" >
+
+                        <div class="error"></div>
+                    </div>
                     <%--                    <div class="input-control">의사 프로필 등록--%>
                     <%--&lt;%&ndash;                        <span class="doctor-title">의사사진</span>&ndash;%&gt;--%>
                     <%--&lt;%&ndash;                        <div style="display:flex">&ndash;%&gt;--%>
@@ -457,7 +464,7 @@
                         <div class="input-control">
                             <label class="doctor-title" for="Hospital_url">홈페이지(URL)</label>
                             <div style="display:flex">
-                                <input id="Hospital_url" name="hospital_url" type="text" maxlength="6">
+                                <input id="Hospital_url" name="hospital_url" type="text">
                             </div>
                             <div class="error"></div>
                         </div>
@@ -490,7 +497,7 @@
             <section id="four">
                 <div class="container">
                     <div class="">
-                        <div class="">
+                        <div class="input-control">
                             <div style="font-size: 30px">약관동의</div>
                             <hr style="height:3px">
                             <label for="agree_all" style="display:block">
@@ -513,7 +520,7 @@
                                 <input type="checkbox" name="agree2" value="4">
                                 <span>이벤트, 혜택정보 수신동의<strong class="select_disable" style="color: #b2afaf">(선택)</strong></span>
                             </label>
-                            <div class="error" style="color: #ff3860; font-size: 20px;"></div>
+                            <div class="error"></div>
                         </div>
 
                     </div>

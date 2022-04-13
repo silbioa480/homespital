@@ -21,13 +21,15 @@
     <insert id="insertDiagnosis" parameterType="Diagnosis">
         <![CDATA[
         insert into diagnosis(user_number, doctor_number, is_delivery, diagnosis_time, diagnosis_content,
-                              diagnosis_image_name, billing_key, diagnosis_type, diagnosis_wait_number)
+                              diagnosis_image_name, billing_key, diagnosis_type, diagnosis_wait_number,
+                              pharmacy_name, pharmacy_phone, pharmacy_address, user_address, pharmacy_number)
         values (#{user_number}, #{doctor_number}, #{is_delivery}, #{diagnosis_time}, #{diagnosis_content},
                 #{diagnosis_image_name}, #{billing_key}, #{diagnosis_type},
                 IFNULL((select MAX(diagnosis_wait_number) + 1
                         from doctor_schedule_view
                         where doctor_number = #{doctor_number}
-                          and diagnosis_time = #{diagnosis_time}), 1));
+                          and diagnosis_time = #{diagnosis_time}), 1),
+                #{pharmacy_name}, #{pharmacy_phone}, #{pharmacy_address}, #{user_address}, #{pharmacy_number})
         ]]>
     </insert>
 

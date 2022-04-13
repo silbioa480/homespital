@@ -32,4 +32,7 @@ public interface PharService {
 
     //  조제 완료(diagnosis_status 4 -> 5) 준근
     void successMadeMedicine(int diagnosis_number) throws Exception;
+
+    // 훈 - 유저 예약 폼에서 약국번호 잡아주기
+    Integer getPharmacyNumberByName(String pharmacy_name, String pharmacy_address, String pharmacy_phone) throws Exception;
 }

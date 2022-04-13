@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class PharServiceImpl implements PharService {
@@ -85,4 +86,14 @@ public class PharServiceImpl implements PharService {
 //        if (user == null) return false;
 //        return true;
 //    }
+
+    // 훈 - 유저 예약 폼에서 약국번호 잡아주기
+    @Override
+    public Integer getPharmacyNumberByName(String pharmacy_name, String pharmacy_address, String pharmacy_phone) throws Exception {
+        Map<String, String> param = new HashMap<>();
+        param.put("pharmacy_name", pharmacy_name);
+        param.put("pharmacy_address", pharmacy_address);
+        param.put("pharmacy_phone", pharmacy_phone);
+        return pharmacyDAO.getPharNumByName(param);
+    }
 }

@@ -18,10 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 //import static jdk.internal.logger.DefaultLoggerFinder.SharedLoggers.system;
 
@@ -49,6 +46,9 @@ public class RootController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    PharService pharService;
 
     @Autowired
     PaymentService paymentService;
@@ -156,8 +156,44 @@ public class RootController {
             //유저 객체
             System.out.println("email = " + email);
             User user = memberService.findByEmail(email);
+            if (user != null) throw new Exception("로그인 되어있지 않음");
             mv.addObject("user", user);
             System.out.println("user = " + user);
+
+
+            //환자의 주민번호를 가공해서 모델로 넘긴다.(view에서 생년월일, 만 나이를 나타내기 위함)
+            String JuminNo = user.getUser_registration_number();
+            JuminNo = JuminNo.replaceAll("-", ""); //주민번호 - 빼고 숫자만 나오게
+            int year = 0;
+
+            // 주민번호 뒷자리가 1이나 2면 1900년대생, 아니면 2000년대생
+            if (Integer.parseInt(JuminNo.substring(6, 7)) <= 2) {
+                year = Integer.parseInt(JuminNo.substring(0, 2)) + 1900;
+            } else {
+                year = Integer.parseInt(JuminNo.substring(0, 2)) + 2000;
+            }
+
+            int month = Integer.parseInt(JuminNo.substring(2, 4));  //월
+            int date = Integer.parseInt(JuminNo.substring(4, 6));   //일
+            String gender = JuminNo.substring(6, 7);                //성별
+
+            //주민번호 뒷자리로 성별 지정
+            if (gender.equals("1") || gender.equals("3")) {
+                gender = "남";
+            } else if (gender.equals("2") || gender.equals("4")) {
+                gender = "여";
+            }
+            //만 나이
+            GregorianCalendar Gc = new GregorianCalendar();
+            int age = Gc.get(Calendar.YEAR) - year;
+
+            //모델에 각 계산결과 넣기
+            mv.addObject("year", year);
+            mv.addObject("month", month);
+            mv.addObject("date", date);
+            mv.addObject("age", age);
+            mv.addObject("gender", gender);
+
 
             String cardInfo = "";
             Card_Information cardInfoObj = paymentService.getPayment(user.getUser_number(), user.getBilling_key());
@@ -215,6 +251,11 @@ public class RootController {
             if (billkey == null || billkey.equals(""))
                 diagnosis.setBilling_key(user.getBilling_key());
             System.out.println(diagnosis.getBilling_key());
+
+
+            Integer n = pharService.getPharmacyNumberByName(diagnosis.getPharmacy_name(), diagnosis.getPharmacy_address(), diagnosis.getPharmacy_phone());
+            if (n == null) throw new Exception("약국 매칭 불가");
+            diagnosis.setPharmacy_number(n);
             // DB insert
             diagnosis.setDiagnosis_image_name(fileNameArr.toString());
             diagnosisService.insertDiagnosis(diagnosis);

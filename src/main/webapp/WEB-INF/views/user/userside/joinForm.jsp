@@ -25,7 +25,7 @@
         <ul>
             <li><a href="#one" class="active">필수정보입력</a></li>
             <li><a href="#two">주소 입력</a></li>
-            <li><a href="#three">결제 정보 입력</a></li>
+            <%--            <li><a href="#three">결제 정보 입력</a></li>--%>
             <li><a href="#four">약관동의</a></li>
         </ul>
     </nav>
@@ -77,7 +77,8 @@
                         <label for="SocialSecurityNumber1">주민등록번호</label>
                         <div style="display:flex">
                             <input id="SocialSecurityNumber1" name="SocialSecurityNumber1" type="text" maxlength="6">&nbsp__&nbsp
-                            <input type="text" id="SocialSecurityNumber2" name="SocialSecurityNumber2" maxlength="7">
+                            <input type="password" id="SocialSecurityNumber2" name="SocialSecurityNumber2"
+                                   maxlength="7">
                         </div>
                         <div class="error"></div>
                     </div>
@@ -209,7 +210,7 @@
             <section id="four">
                 <div class="container">
                     <div class="">
-                        <div class="">
+                        <div class="input-control">
                             <div style="font-size: 25px">약관동의</div>
                             <hr style="height:3px">
                             <label for="agree_all" style="display:block">
@@ -232,7 +233,7 @@
                                 <input type="checkbox" name="agree2" value="4">
                                 <span>이벤트, 혜택정보 수신동의<strong class="select_disable" style="color: #1abc9c">(선택)</strong></span>
                             </label>
-                            <div class="error" style="color: #ff3860; font-size: 20px;"></div>
+                            <div class="error"></div>
                         </div>
                     </div>
                     <br><br><br>

@@ -65,7 +65,7 @@ change this template use File | Settings | File Templates. --%>
 
 <!-- Header -->
 <header id="header">
-    <h1 style="margin-left: 63px">로 그 인</h1>
+    <h1 style="margin-left: 75px; font-weight: bolder; margin-bottom: 30px">로 그 인</h1>
 </header>
 
 <!-- login Form -->

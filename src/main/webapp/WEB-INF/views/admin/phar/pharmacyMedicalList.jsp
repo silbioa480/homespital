@@ -20,7 +20,7 @@
         </div>
 
 
-        <p class="text-end p-3">약사 처방전 내역</p>
+        <p class="text-end fs-4">약사 처방전 내역</p>
 
         <div class="card p-3">
             <div class="card-body p-4">
@@ -76,6 +76,10 @@
         })
 
         function next_load(list) {
+            list.sort((a, b) => {
+                return a.diagnosis_status - b.diagnosis_status;
+            })
+
             $.each(list, function (index, item) {
                 if (index >= page * 30 && index < page * 30 + 30) {
                     console.log(index);
@@ -102,9 +106,9 @@
                     //진료완료, 진료중 표시 및 대기/예약취소하기 버튼
                     let complete = "";
                     if (item.diagnosis_status == 3) {
-                        complete = "<button type='button' id='makeMediBtn' class='btn btn-danger btn-sm' onclick='makeMediBtn(" + item.diagnosis_number + ");'>처방 접수/조제</button>";
+                        complete = "<button type='button' id='makeMediBtn' class='btn btn-danger btn-sm h-75' onclick='makeMediBtn(" + item.diagnosis_number + ");'>처방 접수/조제</button>";
                     } else if (item.diagnosis_status == 4) {
-                        complete = "<button type='button' id='successMakeBtn' class='btn btn-info btn-sm' onclick='successMadeBtn(" + item.diagnosis_number + ");'>조제 완료/전송</button>";
+                        complete = "<button type='button' id='successMakeBtn' class='btn btn-info btn-sm h-75' onclick='successMadeBtn(" + item.diagnosis_number + ");'>조제 완료/전송</button>";
                     } else if (item.diagnosis_status == 5) {
                         complete = "조제완료";
                     } else if (item.diagnosis_status == 6) {
@@ -114,7 +118,7 @@
                     // 처방전이 있을 때만 버튼 생성, 없으면 빈문자열
                     let receiptFile = "";
                     if (item.is_prescription_upload === 2) {
-                        receiptFile = "<a href='/resources/img/uploadReceipt/" + item.diagnosis_file_name + "' download=''><span class='material-icons'>file_download</span></a>"
+                        receiptFile = "<a href='/resources/img/uploadReceipt/" + item.diagnosis_file_name + "' download='처방전'><span class='material-icons'>file_download</span></a>"
                     }
                     let is_delivery = "방문";
                     if (item.is_delivery === true) {
@@ -176,7 +180,7 @@
     function successMadeBtn(e) {
         if (confirm("약을 수령하셨나요? 수령확정 하시겠습니까?") == true) {
             $.ajax({
-                url: "successMadeMedicine",
+                url: "/pharmacy/successMadeMedicine",
                 type: "POST",
                 datatype: "json",
                 data: {
