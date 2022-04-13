@@ -46,6 +46,9 @@ public class RootController {
     UserService userService;
 
     @Autowired
+    PharService pharService;
+
+    @Autowired
     PaymentService paymentService;
 
     public RootController() {
@@ -151,6 +154,7 @@ public class RootController {
             //유저 객체
             System.out.println("email = " + email);
             User user = memberService.findByEmail(email);
+            if (user != null) throw new Exception("로그인 되어있지 않음");
             mv.addObject("user", user);
             System.out.println("user = " + user);
 
@@ -234,6 +238,11 @@ public class RootController {
             if (billkey == null || billkey.equals(""))
                 diagnosis.setBilling_key(user.getBilling_key());
             System.out.println(diagnosis.getBilling_key());
+
+
+            Integer n = pharService.getPharmacyNumberByName(diagnosis.getPharmacy_name(), diagnosis.getPharmacy_address(), diagnosis.getPharmacy_phone());
+            if (n == null) throw new Exception("약국 매칭 불가");
+            diagnosis.setPharmacy_number(n);
             // DB insert
             diagnosis.setDiagnosis_image_name(fileNameArr.toString());
             diagnosisService.insertDiagnosis(diagnosis);
