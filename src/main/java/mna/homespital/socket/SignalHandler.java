@@ -88,7 +88,11 @@ public class SignalHandler extends TextWebSocketHandler {
                 // text message from client has been received
                 case MSG_TYPE_TEXT:
                     System.out.println("[ws] Text message: {}" + message.getData());
-                    sendMessage(session, new WebSocketMessage("Server", MSG_TYPE_TEXT, "[" + message.getFrom() + "] - " + message.getData(), null, null));
+
+
+                    sendMessage(session, new WebSocketMessage(message.getFrom(), MSG_TYPE_TEXT, message.getData(), null, null));
+
+
                     // message.data is the text sent by client
                     // process text message if needed
                     break;

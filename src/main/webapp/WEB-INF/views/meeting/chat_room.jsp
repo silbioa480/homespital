@@ -102,7 +102,7 @@
 <script>
     $(document).ready(function () {
         $("#msgBtn").click(function (e) {
-            sendToServer({from: localUserName, type: 'text', data: $("#chatId").val() + ":" + $("#chatMsg").val()});
+            sendToServer({from: localUserName, type: 'text', data: $("#chatMsg").val()});
         });
     });
 
