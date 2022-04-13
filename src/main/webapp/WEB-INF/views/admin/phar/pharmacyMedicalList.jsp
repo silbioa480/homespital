@@ -16,7 +16,7 @@
     <div class="col mt-3">
         <div class="list-header bg-info text-center">
             <h1 id="logo">Homespital</h1>
-<%--            <h4>${diagnosis.pharmacy_name}</h4>--%>
+            <%--            <h4>${diagnosis.pharmacy_name}</h4>--%>
         </div>
 
 
@@ -36,6 +36,7 @@
                             <th>배송</th>
                             <th>처방전</th>
                             <th>현황</th>
+                            <th>상세보기</th>
                         </tr>
                         </thead>
                         <tbody id="pharMedicalList">
@@ -129,7 +130,8 @@
                             "<td>" + item.hospital_name + "</td > " +
                             "<td>" + is_delivery + "</td>" +           // 배송or방문
                             "<td>" + receiptFile + "</td > " +  //처방전 다운받기
-                            "<td>" + complete + "</td></tr><br>);"  //현황
+                            "<td>" + complete + "</td>" +
+                            "<td><a href='/pharmacy/customerDetail/" + item.diagnosis_number + "'><span class='material-icons'>search</span></a>" + "</td></tr><br>);"  //현황
                         )
                         ;
                     }
