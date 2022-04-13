@@ -38,10 +38,11 @@ public class CamComponent {
 		try {			
 			session.getBasicRemote().sendBinary(bb,last);
 		} catch (IOException e) {
+			e.printStackTrace();
 			try {
 				session.close();
 			} catch (IOException e1) {
-				
+				e1.printStackTrace();
 			}
 		}
 	}

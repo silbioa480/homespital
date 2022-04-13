@@ -37,10 +37,11 @@
                     ws_cam.binaryType="arraybuffer";//중요!!!
                     ws_cam.onopen=function(){
                        console.log("cam con ok");
-                       cam_loop=setInterval(function(){
-                          ws_cam.send(getByteArray().buffer);//byteArray
-                       },1000/5);
                     }
+                    cam_loop=setInterval(function(){
+                       ws_cam.send(getByteArray().buffer);//byteArray
+                    },1000/5);
+
                     ws_cam.onmessage=function(binary){
                        //console.log(binary);
                        //파란 도화지 위에 받은 바이너리 데이터를 그림
