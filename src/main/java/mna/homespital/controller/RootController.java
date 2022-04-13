@@ -6,6 +6,8 @@ import mna.homespital.dto.Doctor;
 import mna.homespital.dto.User;
 import mna.homespital.service.*;
 import org.apache.maven.model.Model;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -169,6 +171,17 @@ public class RootController {
             ArrayList<HashMap<String, Object>> ds = doctorService.getDocScheduleInfo(doctor_number);
             mv.addObject("ds", ds);
 
+            // 카운트(준근)
+            ArrayList<HashMap<String, Object>> timeCountArr = memberService.getCount(doctor_number);
+            JSONArray tcArr = new JSONArray();
+            for (HashMap<String, Object> timeCount : timeCountArr) {
+                JSONObject time = new JSONObject(timeCount);
+                tcArr.put(time);
+            }
+
+            System.out.println("tcArr = " + tcArr);
+            mv.addObject("timeCount", tcArr);
+
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -208,15 +221,15 @@ public class RootController {
             mv.setViewName("redirect:/myMedicalList");
 
             //예약이 성공적으로 되었다는 알림 태영
-            Doctor dtc =doctorService.getDocInfo(diagnosis.getDoctor_number());
-            User user123=userService.getUserInfo(diagnosis.getUser_number());
+            Doctor dtc = doctorService.getDocInfo(diagnosis.getDoctor_number());
+            User user123 = userService.getUserInfo(diagnosis.getUser_number());
             String dtcPhone = dtc.getDoctor_phone();
-            String usePhone=user123.getUser_phone();
+            String usePhone = user123.getUser_phone();
             System.out.println("예약되었습니다.");
-            System.out.println("발신전화번호 : "+dtcPhone);
-            System.out.println("수신전화번호 : "+usePhone);
-            System.out.println("담당의사명 : "+dtc.getDoctor_name());
-            System.out.println("진료날짜 : "+dtc.getWorking_time());
+            System.out.println("발신전화번호 : " + dtcPhone);
+            System.out.println("수신전화번호 : " + usePhone);
+            System.out.println("담당의사명 : " + dtc.getDoctor_name());
+            System.out.println("진료날짜 : " + dtc.getWorking_time());
         } catch (Exception e) {
             e.printStackTrace();
             //mv.setViewName();
@@ -246,7 +259,6 @@ public class RootController {
     public ModelAndView termsOfService() {
         return new ModelAndView("common/terms/termsOfService");
     }
-
 
 
     //소연 : 개인정보 처리방침

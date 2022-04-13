@@ -4,6 +4,9 @@ import mna.homespital.dto.Doctor;
 import mna.homespital.dto.Pharmacy;
 import mna.homespital.dto.User;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public interface MemberService {
 
 
@@ -41,6 +44,9 @@ public interface MemberService {
     boolean emailCheck(String email) throws Exception;
 
 
-//가영: 비밀번호 확인(회원정보변경 전 페이지)
+    //가영: 비밀번호 확인(회원정보변경 전 페이지)
     User findByEmail(String email) throws Exception;
+
+    //test 각 예약시간에 대한 카운트 가져오기
+    ArrayList<HashMap<String, Object>> getCount(int doctor_number) throws Exception;
 }

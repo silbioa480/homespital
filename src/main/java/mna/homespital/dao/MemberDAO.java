@@ -7,6 +7,9 @@ import mna.homespital.dto.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 @Repository
 @Mapper
 public interface MemberDAO {
@@ -36,4 +39,6 @@ public interface MemberDAO {
     //가영: 회원탈퇴
     void deleteMember(String user_email) throws Exception;
 
+    //test 각 예약시간에 대한 카운트 가져오기
+    ArrayList<HashMap<String, Object>> getCount(int doctor_number) throws Exception;
 }
