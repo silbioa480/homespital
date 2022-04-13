@@ -206,7 +206,7 @@
                     // 처방전이 있을 때만 버튼 생성, 없으면 빈문자열
                     let receiptFile = "";
                     if ((${diagnosis.is_prescription_upload }) === 2) {
-                        receiptFile = "<a href='/resources/img/uploadReceipt/" + "(${diagnosis.diagnosis_file_name })" + "' download=''><span class='material-icons'>file_download</span></a>"
+                        receiptFile = "<a href='/resources/img/uploadReceipt/" + "(${diagnosis.diagnosis_file_name })" + "' download='처방전'><span class='material-icons'>file_download</span></a>"
                     }
                     $('#is_prescription_upload').html(receiptFile);
 
@@ -241,7 +241,7 @@
     function successMadeBtn(e) {
         if (confirm("약을 수령하셨나요? 수령확정 하시겠습니까?") == true) {
             $.ajax({
-                url: "successMadeMedicine",
+                url: "/pharmacy/successMadeMedicine",
                 type: "POST",
                 datatype: "json",
                 data: {
