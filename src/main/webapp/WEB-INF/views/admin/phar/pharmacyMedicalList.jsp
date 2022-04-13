@@ -16,11 +16,11 @@
     <div class="col mt-3">
         <div class="list-header bg-info text-center">
             <h1 id="logo">Homespital</h1>
-<%--            <h4>${diagnosis.pharmacy_name}</h4>--%>
+            <%--            <h4>${diagnosis.pharmacy_name}</h4>--%>
         </div>
 
 
-        <p class="text-end p-3">약사 처방전 내역</p>
+        <p class="text-end fs-4">약사 처방전 내역</p>
 
         <div class="card p-3">
             <div class="card-body p-4">
@@ -36,6 +36,7 @@
                             <th>배송</th>
                             <th>처방전</th>
                             <th>현황</th>
+                            <th>상세보기</th>
                         </tr>
                         </thead>
                         <tbody id="pharMedicalList">
@@ -101,9 +102,9 @@
                     //진료완료, 진료중 표시 및 대기/예약취소하기 버튼
                     let complete = "";
                     if (item.diagnosis_status == 3) {
-                        complete = "<button type='button' id='makeMediBtn' class='btn btn-danger btn-sm' onclick='makeMediBtn(" + item.diagnosis_number + ");'>처방 접수/조제</button>";
+                        complete = "<button type='button' id='makeMediBtn' class='btn btn-danger btn-sm h-75' onclick='makeMediBtn(" + item.diagnosis_number + ");'>처방 접수/조제</button>";
                     } else if (item.diagnosis_status == 4) {
-                        complete = "<button type='button' id='successMakeBtn' class='btn btn-info btn-sm' onclick='successMadeBtn(" + item.diagnosis_number + ");'>조제 완료/전송</button>";
+                        complete = "<button type='button' id='successMakeBtn' class='btn btn-info btn-sm h-75' onclick='successMadeBtn(" + item.diagnosis_number + ");'>조제 완료/전송</button>";
                     } else if (item.diagnosis_status == 5) {
                         complete = "조제완료";
                     } else if (item.diagnosis_status == 6) {
@@ -129,7 +130,8 @@
                             "<td>" + item.hospital_name + "</td > " +
                             "<td>" + is_delivery + "</td>" +           // 배송or방문
                             "<td>" + receiptFile + "</td > " +  //처방전 다운받기
-                            "<td>" + complete + "</td></tr><br>);"  //현황
+                            "<td>" + complete + "</td>" +
+                            "<td><a href='/pharmacy/customerDetail/" + item.diagnosis_number + "'><span class='material-icons'>search</span></a>" + "</td></tr><br>);"  //현황
                         )
                         ;
                     }

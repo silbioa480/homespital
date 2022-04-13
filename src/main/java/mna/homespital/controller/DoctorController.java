@@ -109,6 +109,7 @@ public class DoctorController {
         doctor.setDoctor_valid_number(request.getParameter("doctor_valid_number"));
         doctor.setHospital_name(request.getParameter("hospital_name"));
         doctor.setHospital_telephone(request.getParameter("hospital_telephone"));
+
         //의사프로필업로드
         doctor.setDoctor_profile_image_name(request.getParameter("doctor_profile_image_name"));
 
@@ -137,14 +138,15 @@ public class DoctorController {
         doctor.setWorking_time(openCloseString.substring(1, openCloseString.length() - 1));
 
         // 점심시간 코드
-        openTime = Integer.parseInt(request.getParameter("lunch-st"));
-        closeTime = Integer.parseInt(request.getParameter("lunch-cl"));
-        openClose = new ArrayList<>();
-        for (int i = openTime; i < closeTime; i++) {
-            openClose.add(i);
-        }
-        openCloseString = openClose.toString();
-        doctor.setLunch_time(openCloseString.substring(1, openCloseString.length() - 1));
+        doctor.setLunch_time(request.getParameter("lunch-time"));
+//        openTime = Integer.parseInt(request.getParameter("lunch-st"));
+//        closeTime = Integer.parseInt(request.getParameter("lunch-cl"));
+//        openClose = new ArrayList<>();
+//        for (int i = openTime; i < closeTime; i++) {
+//            openClose.add(i);
+//        }
+//        openCloseString = openClose.toString();
+//        doctor.setLunch_time(openCloseString.substring(1, openCloseString.length() - 1));
 
         String holiday = Arrays.toString(request.getParameterValues("holiday"));
         holiday = holiday.substring(1, holiday.length() - 1).trim();
@@ -157,6 +159,8 @@ public class DoctorController {
 
         ModelAndView mv = new ModelAndView();
         try {
+            System.out.println(hospitalImgNames != null);
+            System.out.println(hospitalImgNames.isEmpty());
             // 의사 프로필 업로드
             String fileNameArr = "";
             String doctorImg = doctorImgNames.getOriginalFilename();
@@ -167,17 +171,21 @@ public class DoctorController {
             doctorImg = filename;
             fileNameArr = doctorImg;
             doctor.setDoctor_profile_image_name(fileNameArr.toString());
-
-            String hospitalfileName = "";
-            String hospitalImg = hospitalImgNames.getOriginalFilename();
-            String hpath = servletContext.getRealPath("/resources/img/hospitalImg/");
-            String hospitalfilename = UUID.randomUUID().toString() + "." + hospitalImg.substring(hospitalImg.lastIndexOf('.') + 1);
-            File hdestFile = new File(hpath + hospitalfilename);
-            hospitalImgNames.transferTo(hdestFile);
-            hospitalImg = hospitalfilename;
-            hospitalfileName = hospitalImg;
-            System.out.println(hospitalfileName);
-            doctor.setHospital_file_name(hospitalfileName.toString());
+            //병원 이미지 업로드
+            if (!hospitalImgNames.isEmpty()) {
+                String hospitalfileName = "";
+                String hospitalImg = hospitalImgNames.getOriginalFilename();
+                System.out.println(hospitalImg);
+                String hpath = servletContext.getRealPath("/resources/img/hospitalImg/");
+                String hospitalfilename = UUID.randomUUID().toString() + "." + hospitalImg.substring(hospitalImg.lastIndexOf('.') + 1);
+                File hdestFile = new File(hpath + hospitalfilename);
+                System.out.println(hdestFile.getAbsolutePath());
+                hospitalImgNames.transferTo(hdestFile);
+                hospitalImg = hospitalfilename;
+                hospitalfileName = hospitalImg;
+                System.out.println(hospitalfileName);
+                doctor.setHospital_file_name(hospitalfileName.toString());
+            }
 
 
             System.out.println("여기들어오라ㅏ ㅇㅇㅇㅇㅇ");
@@ -185,10 +193,19 @@ public class DoctorController {
             mv.setViewName("redirect:/doctor/docLogin");
         } catch (Exception e) {
             e.printStackTrace();
-            mv.setViewName("redirect:/doctorJoin");
+            mv.setViewName("redirect:/doctor/join");
         }
 
         return mv;
+    }
+
+    //용식: 회원가입 문자전송API
+    public String sendSMS(@RequestParam("phone") String userPhoneNumber) { // 휴대폰 문자보내기
+        int randomNumber = (int) ((Math.random() * (9999 - 1000 + 1)) + 1000);//난수 생성
+        PhoneCheckService phoneCheckService = new PhoneCheckService();
+        phoneCheckService.certifiedPhoneNumber(userPhoneNumber, randomNumber);
+        System.out.println(randomNumber);
+        return Integer.toString(randomNumber);
     }
 
 //    가영: 의사 이메일 중복확인

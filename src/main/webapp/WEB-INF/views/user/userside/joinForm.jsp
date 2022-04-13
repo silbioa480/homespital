@@ -84,7 +84,7 @@
                     <div class="input-control">
                         <label for="phone">휴대폰 번호</label>
                         <div style="display:flex">
-                            <input id="phone" type="text" name="pharmacy_mobile" title="전화번호 입력"/>
+                            <input id="phone" type="text" name="phone" title="전화번호 입력"/>
                             <input type="button" id="phoneChk" class="doubleChk" value="인증번호 받기">
                         </div>
                         <div class="error"></div>
@@ -209,7 +209,7 @@
             <section id="four">
                 <div class="container">
                     <div class="">
-                        <div class="">
+                        <div class="input-control">
                             <div style="font-size: 25px">약관동의</div>
                             <hr style="height:3px">
                             <label for="agree_all" style="display:block">
@@ -232,7 +232,7 @@
                                 <input type="checkbox" name="agree2" value="4">
                                 <span>이벤트, 혜택정보 수신동의<strong class="select_disable" style="color: #1abc9c">(선택)</strong></span>
                             </label>
-                            <div class="error" style="color: #ff3860; font-size: 20px;"></div>
+                            <div class="error"></div>
                         </div>
                     </div>
                     <br><br><br>
