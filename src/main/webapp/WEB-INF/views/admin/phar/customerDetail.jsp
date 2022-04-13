@@ -206,7 +206,7 @@
                     // 처방전이 있을 때만 버튼 생성, 없으면 빈문자열
                     let receiptFile = "";
                     if ((${diagnosis.is_prescription_upload }) === 2) {
-                        receiptFile = "<a href='/resources/img/uploadReceipt/" + "(${diagnosis.diagnosis_file_name })" + "' download=''><span class='material-icons'>file_download</span></a>"
+                        receiptFile = "<a href='/resources/img/uploadReceipt/" + "(${diagnosis.diagnosis_file_name })" + "' download='처방전'><span class='material-icons'>file_download</span></a>"
                     }
                     $('#is_prescription_upload').html(receiptFile);
 
