@@ -17,6 +17,7 @@
 <form style="margin-top: 100px; " action="/delete" method="post" id="deleteForm" name="deleteForm" autocomplete="off">
     <input type="hidden" id="user_id" name="user_id" value="${user.user_email}">
     <div class="container" style="margin-top: 150px">
+        <span class="image avatar"><a href="/"><img src="/resources/img/design/logo_U_sideNav.png" alt=""/></a></span>
         <h3>회원탈퇴</h3>
         <hr>
 
