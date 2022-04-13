@@ -154,6 +154,7 @@ public class RootController {
             //유저 객체
             System.out.println("email = " + email);
             User user = memberService.findByEmail(email);
+            if (user != null) throw new Exception("로그인 되어있지 않음");
             mv.addObject("user", user);
             System.out.println("user = " + user);
 
