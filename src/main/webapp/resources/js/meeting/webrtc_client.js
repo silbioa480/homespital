@@ -65,6 +65,8 @@ function start() {
         switch (message.type) {
             case "text":
                 log('Text message from ' + message.from + ' received: ' + message.data);
+                let oldMsg = $("textarea").val();
+                $("textarea").val(oldMsg + "\n" + message.data);
                 break;
 
             case "offer":
@@ -114,6 +116,8 @@ function start() {
      */
     // add an event listener to get to know when a connection is open
     socket.onopen = function () {
+        log("con ok");
+
         log('WebSocket connection opened to Room: #' + localRoom);
         // send a message to the server to join selected room with Web Socket
         sendToServer({
