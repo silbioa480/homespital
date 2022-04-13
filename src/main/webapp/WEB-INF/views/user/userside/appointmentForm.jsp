@@ -341,6 +341,8 @@
     let tcArr = JSON.parse(`${timeCount}`);
 
 
+    console.log(tcArr);
+    console.log(tcArr);
     for (let i in tcArr) {
         let msg = tcArr[i].diagnosis_wait_number + "/10";
         $('#' + i).attr('title', msg)
