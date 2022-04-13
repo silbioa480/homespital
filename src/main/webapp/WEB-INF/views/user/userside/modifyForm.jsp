@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="/resources/css/sidebar.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css"/>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/signUp.css"/>
+    <link rel="stylesheet" href="/resources/css/signUp.css"/>
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <%--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>--%>
     <%--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"/>--%>
@@ -36,9 +36,9 @@
 <body>
 <section id="sidebar">
     <div class="d-flex flex-column align-items-center">
-        <%--        <span class="image avatar"><img src="/resources/img/doctorList/doctor01.jpg" alt=""/></span>--%>
-        <h1 id="logo"><a href="/">Homespital</a></h1>
-        <p>${name}님 안녕하세요.</p>
+        <div style="height: 30px;"></div>
+        <span class="image avatar"><a href="/"><img src="/resources/img/design/logo_U_sideNav.png" alt=""/></a></span>
+        <p class="userName">${user.user_name}님 안녕하세요.</p>
         <p class="py-5"><strong>마이 페이지 > 내 정보 수정</strong></p>
     </div>
     <nav>
