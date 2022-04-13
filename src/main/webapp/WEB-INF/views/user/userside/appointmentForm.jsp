@@ -193,7 +193,7 @@
                 </div>
                 <hr>
                 <div class="m-3">
-                    <input type="checkbox" name="is_delivery" id="is_delivery" class="d-none">
+                    <input type="number" name="is_delivery" id="is_delivery" class="d-none" value="0">
                     <button class="btn btn-warning rounded-pill"
                             onclick="toggleDelivery('false'); return false;">약국으로 직접 방문
                     </button>
@@ -220,10 +220,11 @@
             <div id="delivery" class="card p-3" style="display:none;">
                 <div id="currentTargetPlace">
                     <span>현재 배송지 : </span>
-                    <span id="diagnosis_addressSpan">(${user.zip_code}) ${user.street_address}</span>
+                    <span id="diagnosis_addressSpan">(${user.zip_code}) ${user.street_address} ${user.detail_address}</span>
                     <button type="button" id="changePlace" class="btn border-dark" onClick="goPopup()">배송지 변경하기</button>
                 </div>
-                <input type="hidden" name="diagnosis_address" value="(${user.zip_code}) ${user.street_address}">
+                <input type="hidden" name="user_address"
+                       value="(${user.zip_code}) ${user.street_address} ${user.detail_address}">
 
             </div>
 
@@ -239,7 +240,8 @@
                 <div>약국 이름 :<p id="pharmacy_namePay"></p></div>
                 <div>약국 전화번호 : <p id="pharmacy_phonePay"></p></div>
                 <div>약국 주소 : <p id="pharmacy_addressPay"></p></div>
-                <p>받으시는 곳 주소 : [${user.zip_code}] ${user.street_address} ${user.detail_address}</p>
+                <p id="diagnosis_address">받으시는 곳 주소 :
+                    [${user.zip_code}] ${user.street_address} ${user.detail_address}</p>
                 <span>핸드폰 번호 : ${user.user_phone}</span>
                 <br>
                 <div>
@@ -330,6 +332,29 @@
         </div>
     </form>
 </div>
+<script>
+    // 주소찾기API
+
+    function goPopup() {
+        // 호출된 페이지(jusoPopup.jsp)에서 실제 주소검색URL(https://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
+        var pop = window.open("/jusoPopup", "pop", "width=570,height=420, scrollbars=yes, resizable=yes");
+
+        // 모바일 웹인 경우, 호출된 페이지(jusoPopup.jsp)에서 실제 주소검색URL(https://www.juso.go.kr/addrlink/addrMobileLinkUrl.do)를 호출하게 됩니다.
+        //var pop = window.open("/popup/jusoPopup.jsp","pop","scrollbars=yes, resizable=yes");
+    }
+
+    function jusoCallBack(zipNo, roadFullAddr, addrDetail) {
+        // 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
+        var usraddr = "(" + zipNo + ") " + roadFullAddr;
+        document.getElementsByName('user_address').value = usraddr;
+        document.getElementById("diagnosis_address").innerText = usraddr;
+        document.getElementById("diagnosis_addressSpan").innerText = usraddr;
+        // document.form.zipNo.value = zipNo;
+        // document.form.roadFullAddr.value = roadFullAddr;
+        // document.form.addrDetail.value = addrDetail;
+    }
+</script>
+
 <%-- 카카오맵 관련 JS --%>
 <script type="text/javascript"
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a69fc7ca725d20c3e61c5b6bb3d32242&libraries=services"></script>
@@ -564,14 +589,15 @@
         console.log(arg);
         console.log(typeof arg);
         if (arg === 'true') {
-            document.getElementById('is_delivery').checked = true;
+            document.getElementById('is_delivery').value = 1;
             document.getElementById('delivery').style.display = "block";
             document.getElementById('naebang').style.display = "none";
             document.getElementById('fouris_delivery').innerText = "집까지 배송받기";
         } else {
-            document.getElementById('is_delivery').checked = null;
+            document.getElementById('is_delivery').value = 0;
             document.getElementById('delivery').style.display = "none";
             document.getElementById('naebang').style.display = "block";
+            document.getElementById('fouris_delivery').innerText = "약국으로 직접 방문하기";
         }
     }
 </script>
