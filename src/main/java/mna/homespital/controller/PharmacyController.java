@@ -80,6 +80,13 @@ public class PharmacyController {
         }
     }
 
+    //용식: 로그아웃
+    @GetMapping("/logout.do")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/pharmacy/";
+    }
+
     //용식:약사 회원가입
     @PostMapping("join.do")
     public ModelAndView pharmacyJoin(HttpServletRequest request) {
