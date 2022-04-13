@@ -60,7 +60,7 @@ change this template use File | Settings | File Templates. --%>
 
 <!-- Header -->
 <header id="header">
-    <h1 style="margin-left: 63px">약 사 로 그 인</h1>
+    <h1 style="margin-left: 35px; font-weight: bolder; margin-bottom: 30px">약사 로그인</h1>
 </header>
 
 <!-- login Form -->
@@ -104,7 +104,7 @@ change this template use File | Settings | File Templates. --%>
 <footer id="footer"></footer>
 
 <!-- Scripts -->
-<script src="/resources/js/login/login.js"></script>
+<script src="/resources/js/login/pharLogin.js"></script>
 
 <%--로그인 정규성검사 및 모달창내용--%>
 <script>
