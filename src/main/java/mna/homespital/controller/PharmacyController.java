@@ -1,11 +1,17 @@
 package mna.homespital.controller;
 
 import mna.homespital.dto.Diagnosis;
+import mna.homespital.dto.Doctor;
 import mna.homespital.dto.Pharmacy;
+import mna.homespital.dto.User;
 import mna.homespital.service.DiagnosisService;
 import mna.homespital.service.PaymentService;
-import mna.homespital.service.PharService;
 import org.json.JSONObject;
+import mna.homespital.service.DoctorService;
+import mna.homespital.service.PharService;
+import mna.homespital.service.UserService;
+import net.nurigo.java_sdk.api.Message;
+import net.nurigo.java_sdk.exceptions.CoolsmsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,6 +43,12 @@ public class PharmacyController {
 
     @Autowired
     DiagnosisService diagnosisService;
+
+    @Autowired
+    DoctorService doctorService;
+
+    @Autowired
+    UserService userSerivce;
 
     //약국메인
     @GetMapping({"", "/"})
@@ -143,6 +155,7 @@ public class PharmacyController {
         try {
             Pharmacy pharmacy = (Pharmacy) session.getAttribute("pharmacy");
             int pharmacy_number = pharmacy.getPharmacy_number();
+            System.out.println(pharmacy_number);
             m.addAttribute("pharmacy_number", pharmacy_number);
         } catch (Exception e) {
             e.printStackTrace();
@@ -268,11 +281,41 @@ public class PharmacyController {
     }
 
     // 조제완료하기(diagnosis_status 4- > 5)(준근)
+    // 조제완료시 문자전송 태영
     @ResponseBody
     @PostMapping("/successMadeMedicine")
     public String successMadeMedicine(int diagnosis_number) {
+        String api_key = "NCSK1Q8DMWF4EQYK";
+        String api_secret = "9KEMFM30PPC8NTBR62L9WECLHIRXQJTO";
+        Message coolsms = new Message(api_key, api_secret);
+        HashMap<String, String> params = new HashMap<String, String>();
         try {
             pharService.successMadeMedicine(diagnosis_number);
+            Diagnosis diano=diagnosisService.getDiaInfo(diagnosis_number);
+            Pharmacy phar=pharService.getPharInfo(diano.getPharmacy_number());
+            System.out.println(diagnosis_number);
+            System.out.println(diano);
+            System.out.println(phar);
+            User user=userSerivce.getUserInfo(diano.getUser_number());
+            Doctor dtc=doctorService.getDocInfo(diano.getDoctor_number());
+            System.out.println(user);
+            System.out.println(dtc);
+            String userName=user.getUser_name();
+            String pharName=phar.getPharmacy_name();
+            String pharPhone=phar.getPharmacy_phone();
+            String pharStreet=phar.getStreet_address();
+            String pharDetail=phar.getDetail_address();
+            params.put("to","01089303955");
+            params.put("from","01089303955");
+            params.put("type","LMS");
+            params.put("text","약 조제가 완료되었습니다.\n"+"약국명: "+pharName+"\n"+"약국전화번호: "+pharPhone+"\n"+"약국주소: "+pharStreet+" "+pharDetail+"\n"+"환자이름: "+userName);
+            org.json.simple.JSONObject obj = coolsms.send(params);
+            System.out.println(obj.toString());
+        } catch (CoolsmsException e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+            System.out.println(e.getCode());
+            System.out.println("params = " + params);
         } catch (Exception e) {
             e.printStackTrace();
         }
