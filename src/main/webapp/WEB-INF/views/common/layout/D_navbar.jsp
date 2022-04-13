@@ -54,7 +54,7 @@
                                 <%--                                    <a class="nav-link" href="#">내 정보수정</a>--%>
                                 <%--                                </li>--%>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/logout.do">로그아웃</a>
+                                    <a class="nav-link" href="/doctor/logout.do">로그아웃</a>
                                 </li>
                             </c:when>
                             <c:otherwise>
