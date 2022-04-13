@@ -66,7 +66,7 @@ function start() {
             case "text":
                 log('Text message from ' + message.from + ' received: ' + message.data);
                 let oldMsg = $("textarea").val();
-                $("textarea").val(oldMsg + "\n" + message.data);
+                $("textarea").val(oldMsg + "\n" + message.from + ":" + message.data);
                 break;
 
             case "offer":
