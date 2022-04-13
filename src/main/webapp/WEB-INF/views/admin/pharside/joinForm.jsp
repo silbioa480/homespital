@@ -165,7 +165,7 @@
             <section id="three">
                 <div class="container">
                     <div class="">
-                        <div class="">
+                        <div class="input-control">
                             <div style="font-size: 25px">약관동의</div>
                             <hr style="height:3px">
                             <label for="agree_all" style="display:block">
@@ -188,7 +188,7 @@
                                 <input type="checkbox" name="agree2" value="4">
                                 <span>이벤트, 혜택정보 수신동의<strong class="select_disable" style="color: #1abc9c">(선택)</strong></span>
                             </label>
-                            <div class="error" style="color: #ff3860; font-size: 20px;"></div>
+                            <div class="error"></div>
                         </div>
                     </div>
                     <br><br><br>
