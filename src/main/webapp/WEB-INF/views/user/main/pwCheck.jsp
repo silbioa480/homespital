@@ -9,19 +9,24 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="/resources/css/signUp.css"/>
+    <link rel="stylesheet" href="/resources/css/login.css"/>
+    <script src="/resources/js/login/login.js"></script>
 </head>
-<body>
+<body class="is-preload">
+
+<div class="pw_box" style="margin-top: 500px;">
+    <div class="content">
+
 
 <form style="margin-top: 100px;" action="/pwCheck" method="post" id="pwCheck" name="pwCheck">
     <input type="hidden" id="user_id" name="user_id" value="${user.user_email}">
     <div class="container" style="margin-top: 150px">
-        <h3>회원정보 수정</h3>
-        <hr>
+        <h1 style="margin-left: 20px; font-weight: bolder; margin-bottom: 30px">회원정보 수정</h1>
 
-        <div class="input-control">
-            <label for="password">비밀번호</label>
-            <input type="password" style="width: 100%" id="password" name="password" placeholder="비밀번호를 입력해주세요" value="" minlength="4" maxlength="12" size="15" pattern="[a-zA-Z0-9]{4,12}" title="4~12자의 영문 대소문자와 숫자로만 입력.">
+
+        <div class="input-control" >
+            <label for="password" style="font-weight: bolder; font-size: 15px;">비밀번호 확인</label>
+            <input type="password" style="width: 290px; margin-top: 15px" id="password" name="password" placeholder="비밀번호를 입력해주세요" value="" minlength="4" maxlength="12" size="15" pattern="[a-zA-Z0-9]{4,12}" title="4~12자의 영문 대소문자와 숫자로만 입력.">
             <div class="error"></div>
         </div>
     <%--    <div class="input-control">--%>
@@ -30,11 +35,14 @@
     <%--        <span id="pw_check_msg" style="color: #1abc9c"></span>--%>
     <%--        <div class="error"></div>--%>
     <%--    </div>--%>
-        <input type="submit" id="pwChecked" name="pwChecked" value="확인" style="width: 100%; margin-top: 20px"></input>
+        <button type="submit" id="pwChecked" name="pwChecked" style="margin-top: 20px"> 확 인 </button>
     </div>
 
 
 </form>
+    </div>
+</div>
+</body>
 
 <script type="text/javascript">
 
@@ -93,5 +101,5 @@
 </script>
 
 
-</body>
+
 </html>
