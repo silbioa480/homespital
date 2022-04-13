@@ -87,6 +87,13 @@ public class DoctorController {
         }
     }
 
+    //용식: 로그아웃
+    @GetMapping("/logout.do")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/doctor/";
+    }
+
     //가영: 의사 회원가입
     @GetMapping("/join")
     public ModelAndView doctorJoin() {
