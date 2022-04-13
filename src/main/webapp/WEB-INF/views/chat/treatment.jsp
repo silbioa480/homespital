@@ -20,7 +20,7 @@
    <textarea rows="10" cols="30"></textarea>
 </body>
 
-<%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>--%>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 	$(document).ready(function(){	
 		let localstream;
@@ -33,7 +33,7 @@
 	    	localstream=stream;
 	    	video.onloadedmetadata=function(e){
 				video.play();
-				let ws_cam=new WebSocket("ws://<%=application.getRealPath("/")%>/WebSocketCam/${roomNum}");
+				let ws_cam=new WebSocket("ws://homespital.herokuapp.com/WebSocketCam/${roomNum}");
 				ws_cam.binaryType="arraybuffer";//중요!!!
 				ws_cam.onopen=function(){
 					console.log("cam con ok");
@@ -75,7 +75,7 @@
 		});
 		
 
-		let ws=new WebSocket("ws://<%=application.getRealPath("/")%>/WebSocketChat/${roomNum}");
+		let ws=new WebSocket("ws://homespital.herokuapp.com/WebSocketChat/${roomNum}");
 		ws.onopen=function(){
 			console.log("con ok");
 		}
