@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/css/medicalList.css"/>
     <link rel="stylesheet" href="/resources/css/sidebar.css">
+    <link rel="shortcut icon" href="/resources/img/design/U_fabicon.ico" />
 </head>
 <style>
     a:link, a:visited, a:hover, a:active {
