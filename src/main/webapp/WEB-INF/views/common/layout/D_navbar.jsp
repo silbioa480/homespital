@@ -69,7 +69,7 @@
                             </c:otherwise>
                         </c:choose>
                         <li class="nav-item">
-                            <a class="nav-link btn-sm btn-secondary rounded text-white" href="/">환자 페이지로 이동</a>
+                            <a class="nav-link btn-sm btn rounded text-white" style="background-color:#2A2D42; color: #d4d4d4" href="/">환자 페이지로 이동</a>
                         </li>
                     </ul>
                 </div>

@@ -27,7 +27,7 @@
 <body>
 <!-- Header -->
 <div>
-    <nav class="navbar navbar-expand-md fixed-top w-100" id="navbar">
+    <nav class="navbar navbar-expand-md fixed-top w-100 " id="navbar">
         <div class="">
             <div class="d-flex w-100">
                 <a class="navbar-brand justify-content-start" href="/" style="font-family: 'Y_Spotlight'">
@@ -43,13 +43,13 @@
 <%--    </a>--%>
 
 
-                <button class="navbar-toggler border-dark" type="button" data-bs-toggle="collapse"
+                <button class="navbar-toggler border-dark " type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbars" aria-controls="navbars" aria-expanded="false"
-                        aria-label="Toggle navigation">
+                        aria-label="Toggle navigation" >
                     <span class="fa fa-bars" style="color: black"></span>
                 </button>
 
-                <div class="collapse navbar-collapse justify-content-end" id="navbars">
+                <div class="collapse navbar-collapse justify-content-end" style=" float: right;" id="navbars">
                     <ul class="navbar-nav ml-auto pl-lg-5 pl-0">
                         <li class="nav-item">
                             <a class="nav-link" href="/medicalSearch">예약하기</a>
@@ -97,9 +97,11 @@
                                 <a class="nav-link btn-warning dropdown-toggle" style="background-color:#2A2D42; color: #d4d4d4" data-bs-toggle="dropdown"
                                    href="#" role="button"
                                    aria-haspopup="true" aria-expanded="false">의료 관계자 페이지</a>
-                                <div class="dropdown-menu" style="background-color: #00ff0000; width: 100%">
-                                    <a class="dropdown-item"  href="/doctor/">의사 페이지</a>
-                                    <a class="dropdown-item"  href="/pharmacy/">약국 페이지</a>
+                                <div class="dropdown-menu" style="width: 100%">
+
+                                    <a class="dropdown-item" id="dropdown-item1" style="width: 100%" href="/doctor/">의사 페이지</a>
+
+                                    <a class="dropdown-item"  id="dropdown-item2" style="width: 100%" href="/pharmacy/">약국 페이지</a>
                                 </div>
                             </li>
                         </ul>
