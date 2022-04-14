@@ -39,7 +39,7 @@
     </section>
 
     <!-- Two -->
-    <section id="two" class="main style2 left dark fullscreen">
+    <section id="two" class="main style2 left dark2 fullscreen">
       <div class="content box style2">
         <header>
           <h2>편리함</h2>
@@ -51,7 +51,7 @@
           egestas consectetur magna.
         </p>
       </div>
-      <a href="#work" class="button style2 down anchored">Next</a>
+      <a href="#work" class="button style10 down anchored">Next</a>
     </section>
 
     <!-- Work -->
@@ -163,6 +163,7 @@
 
           if (pageTop >= oneT && pageTop < twoT) {
             $("#logo").attr("src", "/resources/img/design/logo_U_nav.png");
+              $(".nav-Link").css({"color": "#red"});
           } else {
             $("#logo").attr("src", "/resources/img/design/main_base_nav.png");
           }
