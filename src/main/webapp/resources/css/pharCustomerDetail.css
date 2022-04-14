@@ -1373,7 +1373,7 @@ p {
     height: 18px;
     border-radius: 100%;
     background-color: #33CC99;
-    animation: circle 2s ease-in-out infinite;
+    animation: circle 3s ease-in-out infinite;
     animation-fill-mode: both;
 }
 @keyframes circle
