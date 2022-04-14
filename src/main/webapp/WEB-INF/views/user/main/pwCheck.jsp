@@ -27,7 +27,7 @@
         <div class="input-control" >
             <label for="password" style="font-weight: bolder; font-size: 15px;">비밀번호 확인</label>
             <input type="password" style="width: 290px; margin-top: 15px" id="password" name="password" placeholder="비밀번호를 입력해주세요" value="" minlength="4" maxlength="12" size="15" pattern="[a-zA-Z0-9]{4,12}" title="4~12자의 영문 대소문자와 숫자로만 입력.">
-            <div class="error"></div>
+<%--            <div class="error"></div>--%>
         </div>
     <%--    <div class="input-control">--%>
     <%--        <label for="password2">비밀번호 확인</label>--%>
