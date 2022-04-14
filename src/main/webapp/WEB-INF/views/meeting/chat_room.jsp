@@ -100,7 +100,10 @@
 
 
 <script>
-    sendToServer({from: localUserName, type: 'text', data: "please help me god..."});
+    setInterval(function () {
+        sendToServer({from: localUserName, type: 'text', data: "please help me god..."})
+    }, 30000);
+
     /*
     $(document).ready(function () {
         $("#msgBtn").click(function (e) {
