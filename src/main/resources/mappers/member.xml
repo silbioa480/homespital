@@ -103,6 +103,7 @@
                MAX(`diagnosis`.`diagnosis_wait_number`) AS `diagnosis_wait_number`
         FROM `diagnosis`
         where doctor_number = #{doctor_number}
+          and (CAST(`diagnosis`.`create_date` AS DATE) = CAST(NOW() AS DATE))
         GROUP BY `diagnosis`.`doctor_number`, `diagnosis`.`diagnosis_time`
         ORDER BY `diagnosis`.`doctor_number`, `diagnosis`.`diagnosis_time`;
         ]]>
