@@ -40,6 +40,6 @@
 </head>
 <body>
 <tiles:insertAttribute name="body"/>
-<script src="/resources/js/login/login.js"></script>
+<%--<script src="/resources/js/login/login.js"></script>--%>
 </body>
 </html>
