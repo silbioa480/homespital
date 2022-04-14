@@ -68,6 +68,11 @@ change this template use File | Settings | File Templates. --%>
     <h1 style="margin-left: 75px; font-weight: bolder; margin-bottom: 30px">로 그 인</h1>
 </header>
 
+<%--환자로그인 화면 이미지  태영--%>
+<div class="image-box">
+    <img width="250px" height="300px" src="/resources/img/design/u_main_img.png" alt="로그인메인이미지"/>
+</div>
+
 <!-- login Form -->
 <div class="login_box">
     <div class="content">
