@@ -2325,33 +2325,33 @@ input[type="radio"] + label:before {
     object-position: 25% 75%;
 }
 
-.image img {
-    border-radius: 5px;
-    display: block;
-}
+/*.image img {*/
+/*    border-radius: 5px;*/
+/*    display: block;*/
+/*}*/
 
-.image.left {
-    float: left;
-    margin: 0 2.5em 2em 0;
-    top: 0.25em;
-}
+/*.image.left {*/
+/*    float: left;*/
+/*    margin: 0 2.5em 2em 0;*/
+/*    top: 0.25em;*/
+/*}*/
 
-.image.right {
-    float: right;
-    margin: 0 0 2em 2.5em;
-    top: 0.25em;
-}
+/*.image.right {*/
+/*    float: right;*/
+/*    margin: 0 0 2em 2.5em;*/
+/*    top: 0.25em;*/
+/*}*/
 
-.image.fit {
-    display: block;
-    margin: 0 0 2.25em 0;
-    width: 100%;
-}
+/*.image.fit {*/
+/*    display: block;*/
+/*    margin: 0 0 2.25em 0;*/
+/*    width: 100%;*/
+/*}*/
 
-.image.fit img {
-    display: block;
-    width: 100%;
-}
+/*.image.fit img {*/
+/*    display: block;*/
+/*    width: 100%;*/
+/*}*/
 
 .image.avatar {
     /*border-radius: 100%;*/
@@ -2362,6 +2362,8 @@ input[type="radio"] + label:before {
     /*border-radius: 100%;*/
     display: block;
     width: 100%;
+    height: 150px;
+    position: relative;
 }
 
 .image.main {
@@ -2370,9 +2372,6 @@ input[type="radio"] + label:before {
     border-radius: 0;
 }
 
-.image.main img {
-    border-radius: 0;
-}
 
 /* List */
 
@@ -3477,7 +3476,11 @@ input[type="button"]:disabled,
     color: #339966;
     /*font-size: 20px;*/
 }
-
+.userName {
+    color: #2A2D42;
+    font-weight: 600;
+    padding-top: 50px;
+}
 
 /*.terms {*/
 /*    list-style: none;*/

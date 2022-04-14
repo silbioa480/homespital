@@ -16,7 +16,7 @@
 <!-- Header -->
 <section id="header">
     <header>
-        <span class="image avatar"><img src="/resources/img/signUp/main_base_sideNav.png" alt=""/></span>
+        <span class="image avatar"><img src="/resources/img/design/logo_U_sideNav.png" alt=""/></span>
         <h1 id="logo"><a href="#">Homespital</a></h1>
         <p>Hi</p>
 
