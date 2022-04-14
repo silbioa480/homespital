@@ -14,6 +14,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <title>홈스피탈-의료진페이지</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
     <!-- Latest compiled and minified CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -24,6 +25,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
+    <link rel="shortcut icon" href="/resources/img/design/D_fabicon.ico" />
     <%--    <link rel="stylesheet" href="/resources/css/main.css" />--%>
     <%--    <noscript><link rel="stylesheet" href="/resources/css/main2.css" /></noscript>--%>
     <style>
