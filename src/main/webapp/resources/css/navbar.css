@@ -124,3 +124,9 @@ header {
 /*        opacity: 1;*/
 /*    }*/
 /*}*/
+
+#navbars {
+    padding: 16px 16px;
+    position: fixed;
+    right: 50px;
+}
