@@ -28,7 +28,7 @@ public interface PharService {
     Pharmacy getPharInfo(String pharmacy_email) throws Exception;
 
     //  처방접수 및 조제시작(diagnosis_status 3 -> 4) 준근
-    void makeMedicine(int diagnosis_number) throws Exception;
+    void makeMedicine(int diagnosis_number, int prescription_money) throws Exception;
 
     //  조제 완료(diagnosis_status 4 -> 5) 준근
     void successMadeMedicine(int diagnosis_number) throws Exception;
