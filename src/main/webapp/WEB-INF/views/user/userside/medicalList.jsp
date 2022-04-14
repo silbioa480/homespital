@@ -36,8 +36,9 @@
 <%--side-nav 시작 by 소연 4/7--%>
 <div id="sidebar">
     <div class="d-flex flex-column align-items-center">
-        <%--        <span class="image avatar"><img src="/resources/img/doctorList/doctor01.jpg" alt=""/></span>--%>
-        <h1 id="logo"><a href="/">Homespital</a></h1>
+        <div style="height: 30px;"></div>
+        <span class="image avatar"><a href="/"><img src="/resources/img/design/logo_U_sideNav.png" alt=""/></a></span>
+        <div style="height: 50px;"></div>
     </div>
     <nav id="nav">
         <ul>

@@ -17,8 +17,9 @@
     <link rel="stylesheet" href="/resources/css/sidebar.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css"/>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/signUp.css"/>
+    <link rel="stylesheet" href="/resources/css/signUp.css"/>
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <%--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>--%>
     <%--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"/>--%>
 
@@ -36,9 +37,9 @@
 <body>
 <section id="sidebar">
     <div class="d-flex flex-column align-items-center">
-        <%--        <span class="image avatar"><img src="/resources/img/doctorList/doctor01.jpg" alt=""/></span>--%>
-        <h1 id="logo"><a href="/">Homespital</a></h1>
-        <p>${name}님 안녕하세요.</p>
+        <div style="height: 30px;"></div>
+        <span class="image avatar"><a href="/"><img src="/resources/img/design/logo_U_sideNav.png" alt=""/></a></span>
+        <p class="userName">${user.user_name}님 안녕하세요.</p>
         <p class="py-5"><strong>마이 페이지 > 내 정보 수정</strong></p>
     </div>
     <nav>
@@ -127,26 +128,34 @@
                                         <div class="modal-body">
                                             <div class="input-control">
                                                 <div style="display:flex">
-                                                    <input style="width: 100%" id="phone" type="text" name="phone"
-                                                           placeholder="휴대폰번호를 입력해주세요" title="전화번호 입력"/>
-                                                    <input type="button" id="phoneChk" class="doubleChk"
+                                                    <input style="width: 250px; font-size:10px" id="phone" type="text"
+                                                           name="phone"
+                                                           placeholder="휴대폰번호를 입력해 주세요." title="전화번호 입력"/>
+                                                    <input style="width:185px" type="button" id="phoneChk"
+                                                           class="doubleChk"
                                                            value="인증번호 받기">
 
                                                 </div>
                                                 <div class="error"></div>
                                             </div>
-                                            <div style="display:flex">
-                                                <input style="width: 100%" id="phone2" type="text" name="phone2"
-                                                       title="인증번호 입력" disabled/>
-                                                <input style="width: 220px" type="button" id="phoneChk2"
-                                                       class="doubleChk" value="본인인증">
+                                            <div class="input-control">
+                                                <div style="display:flex">
+                                                    <input style="width: 250px;font-size:10px" id="phone2" type="text"
+                                                           name="phone2"
+                                                           placeholder="인증번호를 입력해 주세요."
+                                                           title="인증번호 입력" disabled/>
+                                                    <input style="width: 185px" type="button" id="phoneChk2"
+                                                           class="doubleChk" value="본인인증">
+                                                </div>
+                                                <div class="modal-footer" style="width:470px;">
+                                                    <button class="phonemodibtn btn" id="modalY2"
+                                                            disabled>수정
+                                                    </button>
+                                                    <button class="btn" type="button" data-bs-dismiss="modal">취소
+                                                    </button>
+                                                </div>
+                                                <div class="error" style="width:300px"></div>
                                             </div>
-                                            <div class="modal-footer">
-                                                <a class="btn" id="modalY2" onclick="getParentText()">수정</a>
-                                                <button class="btn" type="button" data-bs-dismiss="modal">취소</button>
-                                            </div>
-
-
                                         </div>
 
                                     </div>
@@ -325,7 +334,8 @@
                     <h5> * 본인명의 카드만 등록 가능 합니다.</h5>
                     <br><br>
                     <div class="d-flex">
-                        <input type="submit" value="수정" style="width: 80%; margin-left:20px; margin-right: 20px;"/>
+                        <input type="button" value="수정" style="width: 80%; margin-left:20px; margin-right: 20px;"
+                               onclick="checkAll()"/>
                         <a class="btn" id="deleteMem" href="/delete" style="margin-right: 0px">회원탈퇴</a>
                     </div>
                 </section>
@@ -356,7 +366,7 @@
 <script src="/resources/js/signUp/breakpoints.min.js"></script>
 <script src="/resources/js/signUp/util.js"></script>
 <script src="/resources/js/signUp/signUp.js"></script>
-<%--<script src="/resources/js/signUp/signUpCheck.js"></script>--%>
+<script src="/resources/js/signUp/modifyForm.js"></script>
 
 <script type="text/javascript">
     $('#pwBtn').click(function (e) {
@@ -384,11 +394,12 @@
         $('#addCardModal').modal("hide");
     });
 
+
     //가영: 휴대폰인증 후 부모창으로 데이터전송하는 함수
-    function getParentText() {
-        $('#phoneModal').modal("hide");
-        document.getElementById("originphone").value = document.getElementById("phone").value
-    }
+    // function getParentText() {
+    //     $('#phoneModal').modal("hide");
+    //     document.getElementById("originphone").value = document.getElementById("phone").value
+    // }
 
     //새로운 비밀번호 입력시 정규성검사(아래에 에러메세지 뜸)
     function check_pw() {
@@ -540,90 +551,7 @@
         return false;
     }
 
-    // //후대폰 문자보내기
-    var code2 = "";
-    $("#phoneChk").click(function () {
-        alert("인증번호 발송이 완료되었습니다.\n휴대폰에서 인증번호 확인을 해주십시오.");
-        var phone = $("#phone").val();
-        $.ajax({
-            type: "GET",
-            url: "phoneCheck?phone=" + phone,
-            cache: false,//cache옵션은 브라우저 캐시를 방지하는 옵션입니다.
-            success: function (data) {
-                if (data == "error") {
-                    alert("휴대폰 번호가 올바르지 않습니다.")
-                    $(".successPhoneChk").text("유효한 번호를 입력해주세요.");
-                    $(".successPhoneChk").css("color", "red");
-                    $("#phone").attr("autofocus", true);
-                } else {
-                    $("#phone2").attr("disabled", false);
-                    $("#phoneChk2").css("display", "inline-block");
-                    $(".successPhoneChk").text("인증번호를 입력한 뒤 본인인증을 눌러주십시오.");
-                    $(".successPhoneChk").css("color", "green");
-                    code2 = data;
-                }
-            }
-        });
-    });
 
-    function goPopup() {
-        // 호출된 페이지(jusoPopup.jsp)에서 실제 주소검색URL(https://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
-        var pop = window.open("/jusoPopup", "pop", "width=570,height=420, scrollbars=yes, resizable=yes");
-
-        // 모바일 웹인 경우, 호출된 페이지(jusoPopup.jsp)에서 실제 주소검색URL(https://www.juso.go.kr/addrlink/addrMobileLinkUrl.do)를 호출하게 됩니다.
-        //var pop = window.open("/popup/jusoPopup.jsp","pop","scrollbars=yes, resizable=yes");
-    }
-
-    function jusoCallBack(zipNo, roadFullAddr, addrDetail) {
-        // 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
-        document.form.zipNo.value = zipNo;
-        document.form.roadFullAddr.value = roadFullAddr;
-        document.form.addrDetail.value = addrDetail;
-    }
-
-    // const password = document.getElementById('password');
-    // const password2 = document.getElementById('password2');
-    // password.addEventListener("change", checkPassword);
-    // password2.addEventListener("change", checkPassword2);
-
-    // function checkAll() {
-    //     checkPassword();
-    //     checkPassword2();
-    //
-    //     if (checkPassword === true && checkPassword2() === true) {
-    //         alert("")
-    //     }
-    // }
-    //
-    // function checkPassword() {
-    //     const passwordValue = password.value.trim();
-    //     var pwPattern = /^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
-    //     if (passwordValue.value === "") {
-    //         setError(password, "필수 정보입니다.");
-    //         return false;
-    //     } else if (!pwPattern.test(passwordValue)) {
-    //         setError(password, "8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.");
-    //         return false;
-    //     } else {
-    //         setSuccess(password);
-    //     }
-    //     return true;
-    // }
-    //
-    // function checkPassword2() {
-    //     const passwordValue = password.value.trim();
-    //     const password2Value = password2.value.trim();
-    //     if (password2Value === "") {
-    //         setError(password2, "필수 정보입니다.");
-    //         return false;
-    //     } else if (password2Value !== passwordValue) {
-    //         setError(password2, "비밀번호가 일치하지 않습니다.");
-    //         return false;
-    //     } else {
-    //         setSuccess(password2);
-    //     }
-    //     return true;
-    // }
 </script>
 
 
