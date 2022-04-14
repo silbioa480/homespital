@@ -5,14 +5,16 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="/resources/css/main.css" />
+    <link rel="stylesheet" href="/resources/css/animation.css" />
     <noscript><link rel="stylesheet" href="/resources/css/main2.css" /></noscript>
 </head>
-<body class="is-preload">
+<body class="is-preload" id="mainBody">
 <!-- Intro -->
 <section id="intro" class="main style1 dark fullscreen">
     <div class="content">
         <header>
             <h2>Homespital.</h2>
+            <h2 class="mainHomespital">Homespital.</h2>
         </header>
         <p>우리집에서 한번에<hr><strong>비대면 진료 </strong><strong>| 처방 </strong><strong>| 약배송까지</strong><br />
             </p>
