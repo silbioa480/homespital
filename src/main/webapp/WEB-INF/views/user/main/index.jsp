@@ -9,29 +9,32 @@
         <link rel="stylesheet" href="/resources/css/main2.css"/>
     </noscript>
 </head>
-<body class="is-preload" id="mainBody">
+<body class="is-preload">
 <!-- Intro -->
-<section id="intro" class="main style1 dark fullscreen">
-    <div class="content">
-        <header>
-
-<%--            <h2>Homespital.</h2>--%>
-<%--            <h2 class="mainHomespital">Homespital.</h2>--%>
-
-            <%--            <h2>Homespital.</h2>--%>
-            <img id="logo" style="width: 500px; height: 100%; text-decoration-line: none" alt=""
-                 src="/resources/img/design/main_base_nav.png"/>
-
-        </header>
-        <h1>우리집에서 한번에
-            <hr>
-            <strong>비대면 진료 </strong><strong>| 처방 </strong><strong>| 배송까지</strong><br/>
-        </h1>
-        <footer>
-            <a href="#one" class="button style2 down">More</a>
-        </footer>
+<%--<section id="intro" class="main style1 dark fullscreen">--%>
+<%--    <div class="content">--%>
+<%--        <header>--%>
+<%--            &lt;%&ndash;            <h2>Homespital.</h2>&ndash;%&gt;--%>
+<%--            <img id="logo" style="width: 500px; height: 100%; text-decoration-line: none" alt=""--%>
+<%--                 src="/resources/img/design/main_base_nav.png"/>--%>
+<%--        </header>--%>
+<section id="banner">
+    <div class="inner">
+        <h2>home + hospital</h2>
+        <p class="textP"><Strong>우리집에서 한번에.</Strong></p>
+        <p><Strong>비대면 진료 | 처방 | 배송까지</Strong></p>
     </div>
+    <a href="#one" class="more scrolly" style="color: #fff;">Learn More</a>
 </section>
+<%--        <h1>우리집에서 한번에--%>
+<%--            <hr>--%>
+<%--            <strong>비대면 진료 </strong><strong>| 처방 </strong><strong>| 배송까지</strong><br/>--%>
+<%--        </h1>--%>
+<%--        <footer>--%>
+<%--            <a href="#one" class="button style2 down">More</a>--%>
+<%--        </footer>--%>
+<%--    </div>--%>
+<%--</section>--%>
 
 <!-- One -->
 <section id="one" class="main style2 right dark fullscreen">
