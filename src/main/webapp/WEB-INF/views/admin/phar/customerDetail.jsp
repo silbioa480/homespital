@@ -12,7 +12,7 @@
 <body>
 <div class="container">
     <div class="col mt-3">
-        <div class="list-header bg-info text-center">
+        <div class="list-header text-center" id="pharBanner">
             <h1 id="logo">Homespital</h1>
 
         </div>
@@ -86,10 +86,10 @@
                     <div class="d-flex">
                         <c:choose>
                         <c:when test="${diangosis.is_delivery}">
-                        <button class="btn-sm btn-warning rounded-pill" type="button">약국으로 직접 방문
+                        <button class="btn-sm rounded-pill" type="button" id="deiliveryBtn">약국으로 직접 방문
                             </c:when>
                             <c:otherwise>
-                            <button class="btn-sm btn-warning rounded-pill" id="deiliveryBtn" type="button">집까지 배송받기</button>
+                            <button class="btn-sm rounded-pill" id="deiliveryBtn" type="button">집까지 배송받기</button>
                             </c:otherwise>
                             </c:choose>
                     </div>
@@ -192,9 +192,9 @@
                     //진료완료, 진료중 표시 및 대기/예약취소하기 버튼
                     let complete = "";
                     if ((${diagnosis.diagnosis_status}) == 3) {
-                        complete = "<button type='button' id='makeMediBtn' class='btn btn-danger btn-sm h-75' onclick='makeMediBtn(" + (${diagnosis.diagnosis_number}) + ");'>처방 접수/조제</button>";
+                        complete = "<button type='button' id='makeMediBtn' class='btn btn-sm h-75' onclick='makeMediBtn(" + (${diagnosis.diagnosis_number}) + ");'>처방 접수/조제</button>";
                     } else if ((${diagnosis.diagnosis_status}) == 4) {
-                        complete = "<button type='button' id='successMakeBtn' class='btn btn-info btn-sm h-75' onclick='successMadeBtn(" + (${diagnosis.diagnosis_number}) + ");'>조제 완료/전송</button>";
+                        complete = "<button type='button' id='successMakeBtn' class='btn btn-sm h-75' onclick='successMadeBtn(" + (${diagnosis.diagnosis_number}) + ");'>조제 완료/전송</button>";
                     } else if ((${diagnosis.diagnosis_status}) == 5) {
                         complete = "조제완료";
                     } else if ((${diagnosis.diagnosis_status}) == 6) {
