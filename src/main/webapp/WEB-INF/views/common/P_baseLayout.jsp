@@ -56,7 +56,7 @@
 <%--<div class="container px-4 px-lg-5 mt-5" style="max-width: 1200px;">--%>
 <tiles:insertAttribute name="body"/>
 <%--</div>--%>
-<tiles:insertAttribute name="footer"/>
+<tiles:insertAttribute name="P_footer"/>
 
 
 <%--<script src="/resources/js/login/login.js"></script>--%>

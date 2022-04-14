@@ -29,7 +29,7 @@
         <put-attribute name="navbar" value="/WEB-INF/views/common/layout/navbar.jsp"/>
         <!--        <put-attribute name="sidebar" value="/WEB-INF/views/common/layout/sidebar.jsp"/>-->
         <put-attribute name="body" value=""/>
-        <put-attribute name="footer" value="/WEB-INF/views/common/layout/footer.jsp"/>
+        <put-attribute name="U_footer" value="/WEB-INF/views/common/layout/U_footer.jsp"/>
     </definition>
     <definition name="user/userside/*" extends="userSideLayout">
         <put-attribute name="body"
@@ -39,32 +39,32 @@
     <definition name="baseLayout" template="/WEB-INF/views/common/baseLayout.jsp">
         <put-attribute name="navbar" value="/WEB-INF/views/common/layout/navbar.jsp"/>
         <put-attribute name="body" value=""/>
-        <put-attribute name="footer" value="/WEB-INF/views/common/layout/footer.jsp"/>
+        <put-attribute name="U_footer" value="/WEB-INF/views/common/layout/U_footer.jsp"/>
     </definition>
 
     <!--  훈 - D_*Layout / P_*Layout 분리  -->
     <definition name="D_baseLayout" template="/WEB-INF/views/common/D_baseLayout.jsp">
         <put-attribute name="navbar" value="/WEB-INF/views/common/layout/D_navbar.jsp"/>
         <put-attribute name="body" value=""/>
-        <put-attribute name="footer" value="/WEB-INF/views/common/layout/footer.jsp"/>
+        <put-attribute name="D_footer" value="/WEB-INF/views/common/layout/D_footer.jsp"/>
     </definition>
 
     <definition name="D_sideLayout" template="/WEB-INF/views/common/D_SideLayout.jsp">
         <put-attribute name="navbar" value="/WEB-INF/views/common/layout/D_navbar.jsp"/>
         <put-attribute name="body" value=""/>
-        <put-attribute name="footer" value="/WEB-INF/views/common/layout/footer.jsp"/>
+        <put-attribute name="D_footer" value="/WEB-INF/views/common/layout/D_footer.jsp"/>
     </definition>
 
     <definition name="P_baseLayout" template="/WEB-INF/views/common/P_baseLayout.jsp">
         <put-attribute name="navbar" value="/WEB-INF/views/common/layout/P_navbar.jsp"/>
         <put-attribute name="body" value=""/>
-        <put-attribute name="footer" value="/WEB-INF/views/common/layout/footer.jsp"/>
+        <put-attribute name="P_footer" value="/WEB-INF/views/common/layout/P_footer.jsp"/>
     </definition>
 
     <definition name="P_sideLayout" template="/WEB-INF/views/common/P_SideLayout.jsp">
         <put-attribute name="navbar" value="/WEB-INF/views/common/layout/P_navbar.jsp"/>
         <put-attribute name="body" value=""/>
-        <put-attribute name="footer" value="/WEB-INF/views/common/layout/footer.jsp"/>
+        <put-attribute name="P_footer" value="/WEB-INF/views/common/layout/P_footer.jsp"/>
     </definition>
 
 
