@@ -143,13 +143,13 @@
                         <%--                        </div>--%>
 
                     </div>
-                    <div class="input-control">
-                        <label class="doctor-title" for="doctor_url">줌 회의실 링크(URL)</label>
+<%--                    <div class="input-control">--%>
+<%--                        <label class="doctor-title" for="doctor_url">줌 회의실 링크(URL)</label>--%>
 
-                            <input id="doctor_url" name="doctor_url" type="text" >
+<%--                            <input id="doctor_url" name="doctor_url" type="text" >--%>
 
-                        <div class="error"></div>
-                    </div>
+<%--                        <div class="error"></div>--%>
+<%--                    </div>--%>
                     <%--                    <div class="input-control">의사 프로필 등록--%>
                     <%--&lt;%&ndash;                        <span class="doctor-title">의사사진</span>&ndash;%&gt;--%>
                     <%--&lt;%&ndash;                        <div style="display:flex">&ndash;%&gt;--%>

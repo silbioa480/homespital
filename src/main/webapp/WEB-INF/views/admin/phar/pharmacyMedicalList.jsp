@@ -14,9 +14,8 @@
 <body>
 <div class="container">
     <div class="col mt-3">
-        <div class="list-header bg-info text-center">
+        <div class="list-header text-center" id="pharBanner">
             <h1 id="logo">Homespital</h1>
-            <%--            <h4>${diagnosis.pharmacy_name}</h4>--%>
         </div>
 
 
@@ -130,9 +129,9 @@
                     //진료완료, 진료중 표시 및 대기/예약취소하기 버튼
                     let complete = "";
                     if (item.diagnosis_status == 3) {
-                        complete = "<button type='button' id='makeMediBtn' class='btn btn-danger btn-sm h-75' onclick='makeMediBtn(" + item.diagnosis_number + ");'>처방 접수/조제</button>";
+                        complete = "<button type='button' id='makeMediBtn' class='btn btn-sm h-75' onclick='makeMediBtn(" + item.diagnosis_number + ");'>처방 접수/조제</button>";
                     } else if (item.diagnosis_status == 4) {
-                        complete = "<button type='button' id='successMakeBtn' class='btn btn-info btn-sm h-75' onclick='successMadeBtn(" + item.diagnosis_number + ");'>조제 완료/전송</button>";
+                        complete = "<button type='button' id='successMakeBtn' class='btn btn-sm h-75' onclick='successMadeBtn(" + item.diagnosis_number + ");'>조제 완료/전송</button>";
                     } else if (item.diagnosis_status == 5) {
                         complete = "조제완료";
                     } else if (item.diagnosis_status == 6) {
