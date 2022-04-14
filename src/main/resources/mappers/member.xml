@@ -78,7 +78,23 @@
         ]]>
     </update>
 
-    <!--  test 각 예약시간에 대한 카운트 가져오기  -->
+
+    <!--    &lt;!&ndash; 준근 : 각 예약시간에 대한 카운트 가져오기(1)  &ndash;&gt;-->
+    <!--    <select id="getCount" resultType="HashMap" parameterType="int">-->
+    <!--        <![CDATA[-->
+    <!--        SELECT `diagnosis`.`doctor_number`              AS `doctor_number`,-->
+    <!--               `diagnosis`.`diagnosis_time`             AS `diagnosis_time`,-->
+    <!--               COUNT(`diagnosis`.`diagnosis_time`)      AS `request_count`,-->
+    <!--               MAX(`diagnosis`.`diagnosis_wait_number`) AS `diagnosis_wait_number`-->
+    <!--        FROM `diagnosis`-->
+    <!--        where doctor_number = #{doctor_number}-->
+    <!--        GROUP BY `diagnosis`.`doctor_number`, `diagnosis`.`diagnosis_time`-->
+    <!--        ORDER BY `diagnosis`.`doctor_number`, `diagnosis`.`diagnosis_time`;-->
+    <!--        ]]>-->
+    <!--    </select>-->
+
+
+    <!-- 준근 : 각 예약시간에 대한 카운트 가져오기 -->
     <select id="getCount" resultType="HashMap" parameterType="int">
         <![CDATA[
         SELECT `diagnosis`.`doctor_number`              AS `doctor_number`,
