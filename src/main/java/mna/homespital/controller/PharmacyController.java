@@ -4,14 +4,10 @@ import mna.homespital.dto.Diagnosis;
 import mna.homespital.dto.Doctor;
 import mna.homespital.dto.Pharmacy;
 import mna.homespital.dto.User;
-import mna.homespital.service.DiagnosisService;
-import mna.homespital.service.PaymentService;
-import org.json.JSONObject;
-import mna.homespital.service.DoctorService;
-import mna.homespital.service.PharService;
-import mna.homespital.service.UserService;
+import mna.homespital.service.*;
 import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -250,30 +246,35 @@ public class PharmacyController {
     // 처방전 접수하기 및 조제 시작하기(diagnosis_status 3- > 4)(준근)
     @ResponseBody
     @PostMapping("/makeMedicine")
-    public String makeMedicine(int diagnosis_number) {
+    public String makeMedicine(int diagnosis_number, int prescription_money) {
+        JSONObject payResult = null;
         try {
             //훈 - 결제 처리
             System.out.println("STARTING GET TOKEN");
             JSONObject authToken = paymentService.getAuthToken();
             System.out.println("STARTING PAYING");
             Diagnosis diagnosis = diagnosisService.getDiaInfo(diagnosis_number);
+            diagnosis.setPrescription_money(prescription_money);
             String billkey = diagnosis.getBilling_key();
             if (billkey.substring(0, 2).equals("!!")) {
-                diagnosis.setBilling_key(billkey.substring(2));
+                if (!billkey.substring(2, 4).equals("!!")) {
+                    diagnosis.setBilling_key(billkey.substring(2));
+                    payResult = paymentService.pay(authToken.getString("access_token"),
+                            diagnosis.getDiagnosis_number(),
+                            diagnosis.getBilling_key(),
+                            diagnosis.getUser_number(),
+                            diagnosis.getPrescription_money(),
+                            "멀캠약국테스팅");
+                } else System.out.println("이미 결제가 이루어짐");
             } else throw new Exception("이전 결제가 이루저지지 않음");
-            JSONObject payResult = paymentService.pay(authToken.getString("access_token"),
-                    diagnosis.getDiagnosis_number(),
-                    diagnosis.getBilling_key(),
-                    diagnosis.getUser_number(),
-                    1000,
-                    "멀캠약국테스팅");
+
             System.out.println("PAY END");
             if (!payResult.getString("status").equals("paid")) {
                 System.out.println("결제 실패");
             }
 
 
-            pharService.makeMedicine(diagnosis_number);
+            pharService.makeMedicine(diagnosis_number, prescription_money);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -291,24 +292,24 @@ public class PharmacyController {
         HashMap<String, String> params = new HashMap<String, String>();
         try {
             pharService.successMadeMedicine(diagnosis_number);
-            Diagnosis diano=diagnosisService.getDiaInfo(diagnosis_number);
-            Pharmacy phar=pharService.getPharInfo(diano.getPharmacy_number());
+            Diagnosis diano = diagnosisService.getDiaInfo(diagnosis_number);
+            Pharmacy phar = pharService.getPharInfo(diano.getPharmacy_number());
             System.out.println(diagnosis_number);
             System.out.println(diano);
             System.out.println(phar);
-            User user=userSerivce.getUserInfo(diano.getUser_number());
-            Doctor dtc=doctorService.getDocInfo(diano.getDoctor_number());
+            User user = userSerivce.getUserInfo(diano.getUser_number());
+            Doctor dtc = doctorService.getDocInfo(diano.getDoctor_number());
             System.out.println(user);
             System.out.println(dtc);
-            String userName=user.getUser_name();
-            String pharName=phar.getPharmacy_name();
-            String pharPhone=phar.getPharmacy_phone();
-            String pharStreet=phar.getStreet_address();
-            String pharDetail=phar.getDetail_address();
-            params.put("to","01089303955");
-            params.put("from","01089303955");
-            params.put("type","LMS");
-            params.put("text","약 조제가 완료되었습니다.\n"+"약국명: "+pharName+"\n"+"약국전화번호: "+pharPhone+"\n"+"약국주소: "+pharStreet+" "+pharDetail+"\n"+"환자이름: "+userName);
+            String userName = user.getUser_name();
+            String pharName = phar.getPharmacy_name();
+            String pharPhone = phar.getPharmacy_phone();
+            String pharStreet = phar.getStreet_address();
+            String pharDetail = phar.getDetail_address();
+            params.put("to", "01089303955");
+            params.put("from", "01089303955");
+            params.put("type", "LMS");
+            params.put("text", "약 조제가 완료되었습니다.\n" + "약국명: " + pharName + "\n" + "약국전화번호: " + pharPhone + "\n" + "약국주소: " + pharStreet + " " + pharDetail + "\n" + "환자이름: " + userName);
             org.json.simple.JSONObject obj = coolsms.send(params);
             System.out.println(obj.toString());
         } catch (CoolsmsException e) {

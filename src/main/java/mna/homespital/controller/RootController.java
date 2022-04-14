@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
+import java.io.PrintWriter;
 import java.util.*;
 
 //import static jdk.internal.logger.DefaultLoggerFinder.SharedLoggers.system;
@@ -134,6 +135,7 @@ public class RootController {
         ModelAndView mv = new ModelAndView("user/userside/appointmentForm");
         String email = (String) session.getAttribute("email");
         try {
+
             //모델에 view 넣기
             //의사 객체
             Doctor doctor = doctorService.getDocInfo(doctor_number);
@@ -152,6 +154,7 @@ public class RootController {
                 }
             }
             mv.addObject("real_work_timeList", real_work_timeList);
+
 
             //유저 객체
             System.out.println("email = " + email);
@@ -218,9 +221,9 @@ public class RootController {
             System.out.println("tcArr = " + tcArr);
             mv.addObject("timeCount", tcArr);
 
-
         } catch (Exception e) {
             e.printStackTrace();
+            mv.setViewName("redirect:/loginForm");
         }
 
         return mv;

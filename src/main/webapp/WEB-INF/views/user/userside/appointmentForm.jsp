@@ -18,12 +18,14 @@
 
 </head>
 <body>
+
 <%--side-nav 시작 by 소연 4/8--%>
 <section id="sidebar">
+    <div style="height:50px;"></div>
     <div class="d-flex flex-column align-items-center">
-        <%--        <span class="image avatar"><img src="/resources/img/doctorList/doctor01.jpg" alt=""/></span>--%>
-        <h1 id="logo"><a href="/">Homespital</a></h1>
-        <p>${name}님 안녕하세요.</p>
+        <span class="image avatar"><a href="/"><img src="/resources/img/design/logo_U_sideNav.png" alt=""/></a></span>
+
+
         <p class="py-5"><strong>비대면 진료 예약하기</strong></p>
     </div>
     <nav>
@@ -832,48 +834,33 @@
 
 
 </script>
+<script>
+    function notify() {
+        // Let's check if the browser supports notifications
+        if (!("Notification" in window)) {
+            alert("This browser does not support desktop notification");
+        }
 
-<%--<script>--%>
-<%--    function notify() {--%>
-<%--        $.ajax({--%>
-<%--            url:"sendNotify",--%>
-<%--            type:"POST",--%>
-<%--            data:{--%>
-<%--                "sendNoti":sendPush()--%>
-<%--            },--%>
-<%--            success:function(data,result){--%>
-<%--                console.log(data);--%>
-<%--                console.log(result);--%>
-<%--            }--%>
-<%--        })--%>
-<%--    }--%>
+        // Let's check whether notification permissions have already been granted
+        else if (Notification.permission === "granted") {
+            // If it's okay let's create a notification
+            var notification = new Notification("Hi there!");
+        }
 
-<%--    function sendPush(){--%>
-<%--        // Let's check if the browser supports notifications--%>
-<%--        if (!("Notification" in window)) {--%>
-<%--            alert("This browser does not support desktop notification");--%>
-<%--        }--%>
+        // Otherwise, we need to ask the user for permission
+        else if (Notification.permission !== 'denied') {
+            Notification.requestPermission(function (permission) {
+                // If the user accepts, let's create a notification
+                if (permission === "granted") {
+                    var notification = new Notification("Hi there!");
+                }
+            });
+        }
 
-<%--        // Let's check whether notification permissions have already been granted--%>
-<%--        else if (Notification.permission === "granted") {--%>
-<%--            // If it's okay let's create a notification--%>
-<%--            var notification = new Notification("Hi there!");--%>
-<%--        }--%>
+        // At last, if the user has denied notifications, and you
+        // want to be respectful there is no need to bother them any more.
+    }
 
-<%--        // Otherwise, we need to ask the user for permission--%>
-<%--        else if (Notification.permission !== 'denied') {--%>
-<%--            Notification.requestPermission(function (permission) {--%>
-<%--                // If the user accepts, let's create a notification--%>
-<%--                if (permission === "granted") {--%>
-<%--                    var notification = new Notification("Hi there!");--%>
-<%--                }--%>
-<%--            });--%>
-<%--        }--%>
-
-<%--        // At last, if the user has denied notifications, and you--%>
-<%--        // want to be respectful there is no need to bother them any more.--%>
-<%--    }--%>
-<%--</script>--%>
-
+</script>
 </body>
 </html>
