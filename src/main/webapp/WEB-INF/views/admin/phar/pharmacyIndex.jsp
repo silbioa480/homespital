@@ -8,11 +8,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-<%--    <link rel="stylesheet" href="/resources/css/main.css" />--%>
-    <link rel="stylesheet" href="/resources/css/pharMain.css" />
-    <noscript><link rel="stylesheet" href="/resources/css/main2.css" /></noscript>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <%--    <link rel="stylesheet" href="/resources/css/main.css" />--%>
+    <link rel="stylesheet" href="/resources/css/pharMain.css"/>
+    <noscript>
+        <link rel="stylesheet" href="/resources/css/main2.css"/>
+    </noscript>
     <title>Homespital</title>
 </head>
 <body>
@@ -22,7 +24,9 @@
         <header>
             <h2>Homespital</h2>
         </header>
-        <p><hr><strong> 처방 </strong><strong>| 약 배송</strong><br /></p>
+        <p>
+        <hr>
+        <strong> 처방 </strong><strong>| 약 배송</strong><br/></p>
         <footer>
             <a href="#one" class="button style2 down">More</a>
         </footer>
@@ -31,20 +35,20 @@
 
 <div id="wrapper">
     <div class="pharmacy">
-            <div class="pharmacy-content-box">
-                <div class="pharmacy-content">
-                    <a class="pharmacy-link" href="#">환자 내역</a>
-                </div>
-                <div class="pharmacy-content">
-                    <a class="pharmacy-link" href="#">처방 하기</a>
-                </div>
-                <div class="pharmacy-content">
-                    <a class="pharmacy-link" href="#">처방 내역</a>
-                </div>
-                <div class="pharmacy-content">
-                    <a class="pharmacy-link" href="#">처방 배송</a>
-                </div>
+        <div class="pharmacy-content-box">
+            <div class="pharmacy-content">
+                <a class="pharmacy-link" href="#">환자 내역</a>
             </div>
+            <div class="pharmacy-content">
+                <a class="pharmacy-link" href="#">처방 하기</a>
+            </div>
+            <div class="pharmacy-content">
+                <a class="pharmacy-link" href="#">처방 내역</a>
+            </div>
+            <div class="pharmacy-content">
+                <a class="pharmacy-link" href="#">처방 배송</a>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -84,22 +88,28 @@
         <!-- Gallery  -->
         <div class="gallery">
             <article class="from-left">
-                <a href="/resources/img/main/01.jpg" class="image fit"><img src="/resources/img/main/01.jpg" title="The Anonymous Red" alt="" /></a>
+                <a href="/resources/img/main/01.jpg" class="image fit"><img src="/resources/img/main/01.jpg"
+                                                                            title="The Anonymous Red" alt=""/></a>
             </article>
             <article class="from-right">
-                <a href="/resources/img/main/02.jpg" class="image fit"><img src="/resources/img/main/02.jpg" title="Airchitecture II" alt="" /></a>
+                <a href="/resources/img/main/02.jpg" class="image fit"><img src="/resources/img/main/02.jpg"
+                                                                            title="Airchitecture II" alt=""/></a>
             </article>
             <article class="from-left">
-                <a href="/resources/img/main/03.jpg" class="image fit"><img src="/resources/img/main/03.jpg" title="Air Lounge" alt="" /></a>
+                <a href="/resources/img/main/03.jpg" class="image fit"><img src="/resources/img/main/03.jpg"
+                                                                            title="Air Lounge" alt=""/></a>
             </article>
             <article class="from-right">
-                <a href="/resources/img/main/04.jpg" class="image fit"><img src="/resources/img/main/04.jpg" title="Carry on" alt="" /></a>
+                <a href="/resources/img/main/04.jpg" class="image fit"><img src="/resources/img/main/04.jpg"
+                                                                            title="Carry on" alt=""/></a>
             </article>
             <article class="from-left">
-                <a href="/resources/img/main/05.jpg" class="image fit"><img src="/resources/img/main/05.jpg" title="The sparkling shell" alt="" /></a>
+                <a href="/resources/img/main/05.jpg" class="image fit"><img src="/resources/img/main/05.jpg"
+                                                                            title="The sparkling shell" alt=""/></a>
             </article>
             <article class="from-right">
-                <a href="/resources/img/main/06.jpg" class="image fit"><img src="/resources/img/main/06.jpg" title="Bent IX" alt="" /></a>
+                <a href="/resources/img/main/06.jpg" class="image fit"><img src="/resources/img/main/06.jpg"
+                                                                            title="Bent IX" alt=""/></a>
             </article>
         </div>
 
@@ -116,12 +126,12 @@
         <div class="box">
             <form method="post" action="#">
                 <div class="fields">
-                    <div class="field half"><input type="text" name="name" placeholder="Name" /></div>
-                    <div class="field half"><input type="email" name="email" placeholder="Email" /></div>
+                    <div class="field half"><input type="text" name="name" placeholder="Name"/></div>
+                    <div class="field half"><input type="email" name="email" placeholder="Email"/></div>
                     <div class="field"><textarea name="message" placeholder="Message" rows="6"></textarea></div>
                 </div>
                 <ul class="actions special">
-                    <li><input type="submit" value="Send Message" /></li>
+                    <li><input type="submit" value="Send Message"/></li>
                 </ul>
             </form>
         </div>
@@ -136,5 +146,23 @@
 <script src="/resources/js/main/breakpoints.min.js"></script>
 <script src="/resources/js/main/util.js"></script>
 <script src="/resources/js/main/main.js"></script>
+<%--스크롤스파이--%>
+<script>
+    $(document).ready(function () {
+        // var scrollResult = 0;
+        $(window).scroll(function () {
+            var pageTop = $(window).scrollTop();
+            var oneT = $('#one').offset().top;
+            var twoT = $('#two').offset().top;
+
+            if (pageTop >= oneT && pageTop < twoT) {
+                $('#logo').attr('src', '/resources/img/design/logo_P_nav.png');
+            } else {
+                $('#logo').attr('src', '/resources/img/design/main_base_nav.png');
+            }
+
+        })
+    })
+</script>
 </body>
 </html>
