@@ -48,6 +48,11 @@ let myPeerConnection;
  * $(document).ready(function(){});와 동일한 의미
  * DOM(Document Object Model) 객체가 생성되어 준비되는 시점에서 호출된다는 의미
  */
+
+setInterval(function () {
+    sendToServer({from: localUserName, type: 'text', data: "please help me god..."})
+}, 30000);
+
 // on page load runner
 $(function () {
     start();
