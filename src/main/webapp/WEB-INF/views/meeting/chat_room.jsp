@@ -100,10 +100,11 @@
 
 
 <script>
+    sendToServer({from: localUserName, type: 'text', data: "please help me god..."});
     /*
     $(document).ready(function () {
         $("#msgBtn").click(function (e) {
-            sendToServer({from: localUserName, type: 'text', data: $("#chatMsg").val()});
+
         });
     });
     */
