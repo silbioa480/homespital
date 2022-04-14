@@ -30,9 +30,9 @@ const holiday = document.getElementsByName("holiday")[0].parentElement;
 const agree = document.getElementById("agree_all").parentElement;
 const lunch = document.getElementsByName("lunch-time");
 const lunVaule = document.getElementById("eleven").parentElement;
-const doctorUrl = document.getElementById("doctor_url");
+// const doctorUrl = document.getElementById("doctor_url");
 
-doctorUrl.addEventListener("change",checkDoctorUrl);
+// doctorUrl.addEventListener("change",checkDoctorUrl);
 email.addEventListener("change", checkEmail);
 password.addEventListener("change", checkPassword);
 password2.addEventListener("change", checkPassword2);
@@ -59,7 +59,7 @@ function checkAll() {
     console.log(checkPassword2());
     console.log(checkDoctorName());
     console.log(checkDoctorNumber());
-    console.log(checkDoctorUrl());
+    // console.log(checkDoctorUrl());
     console.log(checkProfile());
     console.log(checkAddress());
     console.log(checkDiagnosisType2());
@@ -80,7 +80,7 @@ function checkAll() {
     // checkPhone2();
     checkDoctorName();
     checkDoctorNumber();
-    checkDoctorUrl();
+    // checkDoctorUrl();
     checkProfile();
 
     checkAddress();
@@ -109,7 +109,7 @@ function checkAll() {
             checkRadio() === true &&
             checkDoctorName() === true &&
             checkDoctorNumber() === true &&
-            checkDoctorUrl() === true &&
+            // checkDoctorUrl() === true &&
             checkProfile() === true &&
             // && checkDiagnosisType() === true
             checkHospitalName() === true &&
@@ -281,16 +281,16 @@ function checkDoctorNumber() {
     return true;
 }
 
-function checkDoctorUrl() {
-    const doctorUrlValue = document.getElementById("doctor_url").value.trim();
-    if (doctorUrlValue === "") {
-        setError(doctorUrl, "줌(개인회의실)링크를 입력해주세요.");
-        return false;
-    } else {
-        setSuccess(doctorUrl);
-    }
-    return true;
-}
+// function checkDoctorUrl() {
+//     const doctorUrlValue = document.getElementById("doctor_url").value.trim();
+//     if (doctorUrlValue === "") {
+//         setError(doctorUrl, "줌(개인회의실)링크를 입력해주세요.");
+//         return false;
+//     } else {
+//         setSuccess(doctorUrl);
+//     }
+//     return true;
+// }
 
 
 function checkProfile() {
