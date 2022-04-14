@@ -1,4 +1,9 @@
 /*진료차트 CSS*/
+
+.card{
+    margin-top:70.63px;
+}
+
 .chartTable > tbody > tr > th {
     min-width: 100px;
     max-width: 100px;
