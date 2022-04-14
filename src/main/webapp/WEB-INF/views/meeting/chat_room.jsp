@@ -89,7 +89,7 @@
         </div>
     </div>
 </main>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="/resources/js/meeting/webrtc_client.js"></script>
 
 <%--<input type="text" id="chatId" placeholder="채팅 아이디를 입력하세요"><br/>--%>
@@ -98,7 +98,7 @@
 <%--<textarea rows="10" cols="30"></textarea>--%>
 </body>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <script>
     /*
     $(document).ready(function () {

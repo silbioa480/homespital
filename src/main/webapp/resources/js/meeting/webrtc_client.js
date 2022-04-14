@@ -1,6 +1,6 @@
 'use strict';
 // create and run Web Socket connection
-const socket = new WebSocket("wss://" + window.location.host + "/signal");
+const socket = new WebSocket("ws://" + window.location.host + "/signal");
 
 // UI elements
 const videoButtonOff = document.querySelector('#video_off');
@@ -64,13 +64,7 @@ function start() {
         let message = JSON.parse(msg.data);
         switch (message.type) {
             case "text":
-
                 log('Text message from ' + message.from + ' received: ' + message.data);
-                /*
-                let oldMsg = $("textarea").val();
-
-                $("textarea").val(oldMsg + "\n" + message.from + ":" + message.data);
-                */
                 break;
 
             case "offer":
@@ -120,7 +114,6 @@ function start() {
      */
     // add an event listener to get to know when a connection is open
     socket.onopen = function () {
-        log("con ok");
         log('WebSocket connection opened to Room: #' + localRoom);
         // send a message to the server to join selected room with Web Socket
         sendToServer({
@@ -243,13 +236,10 @@ function getMedia(constraints) {
 
 // create peer connection, get media, start negotiating when second participant appears
 function handlePeerConnection(message) {
-    log('동료 연결 준비')
     createPeerConnection();
     getMedia(mediaConstraints);
-    log('동료 연결 무사히 가져옴')
     if (message.data === "true") {
         myPeerConnection.onnegotiationneeded = handleNegotiationNeededEvent;
-        log('동료 연결 완료')
     }
 }
 
@@ -258,7 +248,6 @@ function handlePeerConnection(message) {
  * 로컬 컴퓨터와 원격 피어 간의 WebRTC 연결을 나타낸다. 두 피어 간의 효율적인 데이터 스트리밍을 처리하는데 사용된다.
  */
 function createPeerConnection() {
-    log('동료 연결 시작')
     myPeerConnection = new RTCPeerConnection(peerConnectionConfig);
 
     // event handlers for the ICE negotiation process
