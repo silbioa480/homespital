@@ -60,6 +60,11 @@ change this template use File | Settings | File Templates. --%>
     <h1 style="margin-left: 35px; font-weight: bolder; margin-bottom: 30px">약사 로그인</h1>
 </header>
 
+<%--약국로그인 화면 이미지  태영--%>
+<div class="pharmacy-image-box">
+    <img width="250px" height="300px" src="/resources/img/design/p_main_image1.jpg" alt="로그인메인이미지"/>
+</div>
+
 <!-- login Form -->
 <div class="login_box">
     <div class="content">
