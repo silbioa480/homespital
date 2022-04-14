@@ -1,7 +1,7 @@
 'use strict';
 // create and run Web Socket connection
 const socket = new WebSocket("wss://" + window.location.host + "/signal");
-
+let dataChannel = null;
 // UI elements
 const videoButtonOff = document.querySelector('#video_off');
 const videoButtonOn = document.querySelector('#video_on');
@@ -56,6 +56,10 @@ setInterval(function () {
 setInterval(function () {
     dataChannel.send("제발요...");
 }, 20000);
+
+setInterval(function () {
+    console.log(dataChannel);
+}, 30000);
 
 // on page load runner
 $(function () {
@@ -270,32 +274,32 @@ function createPeerConnection() {
     // myPeerConnection.oniceconnectionstatechange = handleICEConnectionStateChangeEvent;
     // myPeerConnection.onicegatheringstatechange = handleICEGatheringStateChangeEvent;
     // myPeerConnection.onsignalingstatechange = handleSignalingStateChangeEvent;
-}
 
-// 인규 : dataChannel 생성
-let dataChannel = myPeerConnection.createDataChannel("dataChannel", {
-    reliable: true
-});
+    // 인규 : dataChannel 생성
+    dataChannel = myPeerConnection.createDataChannel("dataChannel", {
+        reliable: true
+    });
 
 // 인규 : dataChannel on err 생성
-dataChannel.onerror = function (error) {
-    log("Error occured on datachannel:", error);
-};
+    dataChannel.onerror = function (error) {
+        log("Error occured on datachannel:", error);
+    };
 
 // 인규 : dataChannel on close 생성
-dataChannel.onclose = function () {
-    log("data channel is closed");
-};
+    dataChannel.onclose = function () {
+        log("data channel is closed");
+    };
 
 // 인규 : dataChannel on msg 생성
-dataChannel.onmessage = function (event) {
-    console.log("message:", event.data);
-};
+    dataChannel.onmessage = function (event) {
+        console.log("message:", event.data);
+    };
 
 // 인규 : myPeerConnection ondatachannel 생성
-myPeerConnection.ondatachannel = function (event) {
-    dataChannel = event.channel;
-};
+    myPeerConnection.ondatachannel = function (event) {
+        dataChannel = event.channel;
+    };
+}
 
 
 /**
