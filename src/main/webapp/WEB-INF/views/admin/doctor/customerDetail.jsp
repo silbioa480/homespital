@@ -17,43 +17,20 @@
 <html>
 <head>
     <title>의사 진료리스트</title>
-    <link rel="stylesheet" href="/resources/css/doctorCustomerDetail.css"/>
+    <link rel="stylesheet" href="/resources/css/pharCustomerDetail.css"/>
     <%-- 구글 아이콘 CDN링크 --%>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <style>
-        .material-icons {
-            font-size: 36px;
-        }
-
-        .list-header {
-            /*background-color: blue;*/
-            height: 200px;
-        }
-
-        /*th, td, tbody {*/
-        /*    text-align: center;*/
-        /*}*/
-
-        p {
-            font-size: 30px;
-            padding: 10px;
-        }
-
-        p > a {
-            font-size: 30px;
-        }
-    </style>
 </head>
 <body>
 <div class="container">
     <div class="col my-3">
-        <div class="bgLogo">
+        <div class="list-header text-center" id="doctorBanner">
             <h1 id="logo">Homespital</h1>
 
         </div>
 
-        <p class="text-end"><a href="/doctor/docMedicalList">마이페이지 > 의사 진료 내역</a> > 진료상세내역</p>
+        <p class="text-end fs-4"><a href="/doctor/docMedicalList">환자 진료내역</a> > 진료 상세내역</p>
 
         <div class="card p-3">
             <div class="card-body p-4">
@@ -100,12 +77,13 @@
                     <div>휴대폰 번호 : ${diagnosis.user_phone}</div>
                 </div>
                 <div style="background:#F9F9F9;">
-                    <table class="table table-borderless m-4">
+                    <table class="table table-borderless m-4 fs-5">
                         <tbody>
-                        <tr>
+                        <tr style="height: 40px; margin-bottom: 50px;">
                             <th>증상</th>
                             <td>${diagnosis.diagnosis_content}</td>
                         </tr>
+
                         <tr>
                             <th>이미지</th>
                             <td>
@@ -146,7 +124,7 @@
                 </div>
             </div>
             <div class="card p-3">
-                <h4 class="card-title"><strong>약제 배송 방법</strong></h4>
+                <h4 class="card-title fs-4"><strong>약제 배송 방법</strong></h4>
                 <div class="card-body">
                     <div class="d-flex">
                         <c:choose>
@@ -154,7 +132,7 @@
                         <button class="btn-sm btn-warning rounded-pill" type="button">약국으로 직접 방문
                             </c:when>
                             <c:otherwise>
-                            <button class="btn-sm btn-warning rounded-pill" type="button">집까지 배송받기</button>
+                            <button class="btn-sm btn-warning rounded-pill" id="deiliveryBtn" type="button">집까지 배송받기</button>
                             </c:otherwise>
                             </c:choose>
                     </div>
@@ -279,9 +257,9 @@
     //진료완료, 진료중 표시 및 대기/예약취소하기 버튼
     let complete = "";
     if ((${diagnosis.diagnosis_status}) == 0) {
-        complete = "<button type='button' id='startBtn' class='btn btn-primary btn-sm' onclick='startBtn(" + (${diagnosis.diagnosis_number}) + ");'>진료시작하기</button>";
+        complete = "<button type='button' id='startBtn' class='btn btn-sm h-75' onclick='startBtn(" + (${diagnosis.diagnosis_number}) + ");'>진료시작하기</button>";
     } else if ((${diagnosis.diagnosis_status}) == 1) {
-        complete = "<button type='button' id='finishBtn' class='btn btn-info btn-sm' onclick='finishBtn(" + (${diagnosis.diagnosis_number}) + ");'>진료중/완료하기</button>";
+        complete = "<button type='button' id='finishBtn' class='btn btn-sm h-75' onclick='finishBtn(" + (${diagnosis.diagnosis_number}) + ");'>진료중/완료하기</button>";
     } else if ((${diagnosis.diagnosis_status}) == 2) {
         complete = "예약취소";
     } else if ((${diagnosis.diagnosis_status}) >= 3) {
@@ -297,7 +275,7 @@
     if ((${diagnosis.is_diagnosis_upload}) == 0) {
         receipt = "";
     } else if ((${diagnosis.is_diagnosis_upload}) == 1) {
-        receipt = "<button type='button' data-bs-toggle='modal' data-bs-target='#staticBackdrop" + ${diagnosis.diagnosis_number} +" 'id ='receiptUpload" + ${diagnosis.diagnosis_number} +"' class='btn btn-info btn-sm'>영수증업로드</button><br>" +
+        receipt = "<button type='button' data-bs-toggle='modal' data-bs-target='#staticBackdrop" + ${diagnosis.diagnosis_number} +" 'id ='receiptUpload" + ${diagnosis.diagnosis_number} +"' class='btn btn-info btn-sm h-75'>영수증업로드</button><br>" +
             '<div class="modal fade" id="staticBackdrop' + ${diagnosis.diagnosis_number} +'" data-bs-backdrop="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">' +
             '<div class="modal-dialog" role="document">' +
             '<div class="modal-content">' +
@@ -324,7 +302,7 @@
     if ((${diagnosis.is_prescription_upload}) == 0) {
         prescription = "";
     } else if ((${diagnosis.is_prescription_upload}) == 1) {
-        prescription = "<button type='button' data-bs-toggle='modal' data-bs-target='#staticBackdrop2_" + (${diagnosis.diagnosis_number}) + " 'id ='prescriptionUpload" + (${diagnosis.diagnosis_number}) + "' class='btn btn-info btn-sm'>처방전업로드</button><br>" +
+        prescription = "<button type='button' data-bs-toggle='modal' data-bs-target='#staticBackdrop2_" + (${diagnosis.diagnosis_number}) + " 'id ='prescriptionUpload" + (${diagnosis.diagnosis_number}) + "' class='btn btn-info btn-sm h-75'>처방전업로드</button><br>" +
             '<div class="modal fade" id="staticBackdrop2_' + (${diagnosis.diagnosis_number}) + '" data-bs-backdrop="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">' +
             '<div class="modal-dialog" role="document">' +
             '<div class="modal-content">' +
