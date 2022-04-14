@@ -12,11 +12,16 @@
     <link rel="stylesheet" href="/resources/css/navbar.css"/>
 </head>
 <style>
-    a > i,
-    a:link,
-    a:visited,
-    a:hover,
-    a:active {
+    .navbar > div > div *,
+    .navbar > div > div *:link,
+    .navbar > div > div *:visited,
+    .navbar > div > div *:hover,
+    .navbar > div > div *:active {
+        /*a > i,*/
+        /*a:link,*/
+        /*a:visited,*/
+        /*a:hover,*/
+        /*a:active {*/
         color: #111;
         text-decoration: none;
     }

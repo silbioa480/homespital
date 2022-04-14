@@ -10,17 +10,20 @@
     </definition>
 
     <definition name="loginLayout" template="/WEB-INF/views/common/loginLayout.jsp">
+        <put-attribute name="navbar" value=""/>
         <put-attribute name="body" value=""/>
     </definition>
 
-    <!--  훈 - 로그인 창은 상단 네비바 적용 X  -->
     <definition name="user/main/loginForm" extends="loginLayout">
+        <put-attribute name="navbar" value="/WEB-INF/views/common/layout/navbar.jsp"/>
         <put-attribute name="body" value="/WEB-INF/views/user/main/loginForm.jsp"/>
     </definition>
     <definition name="admin/doctor/loginForm" extends="loginLayout">
+        <put-attribute name="navbar" value="/WEB-INF/views/common/layout/D_navbar.jsp"/>
         <put-attribute name="body" value="/WEB-INF/views/admin/doctor/loginForm.jsp"/>
     </definition>
     <definition name="admin/phar/pharmacyLoginForm" extends="loginLayout">
+        <put-attribute name="navbar" value="/WEB-INF/views/common/layout/P_navbar.jsp"/>
         <put-attribute name="body" value="/WEB-INF/views/admin/phar/pharmacyLoginForm.jsp"/>
     </definition>
 
