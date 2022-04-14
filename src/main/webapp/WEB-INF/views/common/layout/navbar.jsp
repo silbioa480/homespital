@@ -28,12 +28,21 @@
 <!-- Header -->
 <div>
     <nav class="navbar navbar-expand-md fixed-top w-100" id="navbar">
-        <div class="container">
+        <div class="">
             <div class="d-flex w-100">
                 <a class="navbar-brand justify-content-start" href="/" style="font-family: 'Y_Spotlight'">
 <%--                    <i class="fa fa-medkit" aria-hidden="true"></i>--%>
                     <img id="logo" style="width: 120px; height: 100%; text-decoration-line: none" alt="" src="/resources/img/design/main_base_nav.png"/>
                 </a>
+<%--    <a class="logo" href="/">--%>
+<%--        <link class="icon icon-bi" rel="icon" href="/resources/img/design/main_base_nav.ico/">--%>
+
+<%--        <link class="icon icon-bi trans" rel="icon" href="/resources/img/design/main_base_nav.ico/" color="#339966">--%>
+
+
+<%--    </a>--%>
+
+
                 <button class="navbar-toggler border-dark" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbars" aria-controls="navbars" aria-expanded="false"
                         aria-label="Toggle navigation">
@@ -85,12 +94,12 @@
                     <c:if test="${empty email}">
                         <ul class="nav nav-pills">
                             <li class="nav-item dropdown">
-                                <a class="nav-link btn-warning dropdown-toggle active" data-bs-toggle="dropdown"
+                                <a class="nav-link btn-warning dropdown-toggle" style="background-color:#2A2D42; color: #d4d4d4" data-bs-toggle="dropdown"
                                    href="#" role="button"
                                    aria-haspopup="true" aria-expanded="false">의료 관계자 페이지</a>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="/doctor/">의사 페이지</a>
-                                    <a class="dropdown-item" href="/pharmacy/">약국 페이지</a>
+                                <div class="dropdown-menu" style="background-color: #00ff0000; width: 100%">
+                                    <a class="dropdown-item"  href="/doctor/">의사 페이지</a>
+                                    <a class="dropdown-item"  href="/pharmacy/">약국 페이지</a>
                                 </div>
                             </li>
                         </ul>

@@ -1,8 +1,8 @@
 <%-- Created by IntelliJ IDEA. User: InSung Date: 2022-04-01 Time: 오전 12:23 To
-change this template use File | Settings | File Templates. --%> <%@ taglib
-prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> <%@ taglib prefix="fn"
-uri="http://java.sun.com/jsp/jstl/functions" %> <%@ page
-contentType="text/html;charset=UTF-8" language="java" %>
+change this template use File | Settings | File Templates. --%> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -24,20 +24,11 @@ contentType="text/html;charset=UTF-8" language="java" %>
     <link rel="stylesheet" href="/resources/css/signUp.css" />
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <%--
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    --%> <%--
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    --%> <%--
-    <script src="./jquery-3.4.1.min.js"></script>
-    --%> <%--
-    <link rel="stylesheet" href="./bootstrapt/css/bootstrap.min.css" />
-    --%> <%--
-    <script src="./bootstrapt/js/bootstrap.min.js"></script>
-    --%>
+    <%-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script> --%> 
+    <%-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" /> --%> 
+    <%-- <script src="./jquery-3.4.1.min.js"></script> --%> 
+    <%-- <link rel="stylesheet" href="./bootstrapt/css/bootstrap.min.css" /> --%> 
+    <%-- <script src="./bootstrapt/js/bootstrap.min.js"></script> --%>
     <style>
       .addCard,
       .deleteCard {

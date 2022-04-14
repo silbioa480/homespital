@@ -4,9 +4,7 @@ contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
     <title>Title</title>
-    <%--
-    <link rel="stylesheet" href="/resources/css/signUp.css" />
-    --%>
+    <%-- <link rel="stylesheet" href="/resources/css/signUp.css" /> --%>
     <link rel="stylesheet" href="/resources/css/login.css" />
     <script src="/resources/js/login/login.js"></script>
     <script src="resources/jQuery/jquery-3.4.1.min.js"></script>
@@ -124,5 +122,6 @@ contentType="text/html;charset=UTF-8" language="java" %>
         }
       });
     });
+
   </script>
 </html>
