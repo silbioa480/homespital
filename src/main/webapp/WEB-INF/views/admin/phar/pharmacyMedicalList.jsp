@@ -75,6 +75,30 @@
             }
         })
 
+        setInterval(function(){
+            $.ajax({
+                url: '/pharmacy/pharMedicalRecords',
+                type: 'GET',
+                datatype: "json",
+                data: {
+                    "pharmacy_number": ${pharmacy.pharmacy_number}
+                },
+                success: function (data) {
+                    console.log(data);
+                    console.log(list);
+                    if(list.toString() != data.toString()) {
+                        alert("새로운 처방내역이 들어왔습니다. 확인해주세요.");
+                        list = data;
+                        window.location.reload();
+                    }
+
+                },
+                error: function () {
+                    console.log("Error");
+                }
+            })
+        },10000);
+
         function next_load(list) {
             list.sort((a, b) => {
                 return a.diagnosis_status - b.diagnosis_status;
