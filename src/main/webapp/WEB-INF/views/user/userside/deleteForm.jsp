@@ -9,34 +9,41 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="/resources/css/signUp.css"/>
+<%--    <link rel="stylesheet" href="/resources/css/signUp.css"/>--%>
+    <link rel="stylesheet" href="/resources/css/login.css"/>
+    <script src="/resources/js/login/login.js"></script>
     <script src="resources/jQuery/jquery-3.4.1.min.js"></script>
 </head>
-<body>
+<body class="is-preload">
+
+<div class="pw_box">
+    <div class="content">
 
 <form style="margin-top: 100px; " action="/delete" method="post" id="deleteForm" name="deleteForm" autocomplete="off">
     <input type="hidden" id="user_id" name="user_id" value="${user.user_email}">
-    <div class="container" style="margin-top: 150px">
-        <h3>회원탈퇴</h3>
-        <hr>
+    <div class="container">
+        <h1 style="margin-left: 20px; font-weight: bolder; margin-bottom: 30px">회원탈퇴</h1>
+
 
 
                 <div class="input-control">
-
-                    <input  type="password" id = "password" name="password" class="form-control form-control-inline text-center" style="width: 100%" placeholder="비밀번호를 입력해 주세요." />
+                    <label for="password" style="font-weight: bolder; font-size: 15px;">비밀번호 확인</label>
+                    <input  type="password" id = "password" name="password" class="form-control form-control-inline text-center" style="width: 290px;" placeholder="비밀번호를 입력해 주세요." />
                 </div>
 
-                <hr>
 
-                <input type="submit" id="delete" name="delete" style="width: 100%" value="탈퇴"></input>
+
+                <button type="submit" id="delete" name="delete" style="margin-top: 20px" >탈퇴하기</button>
 <%--        <a href="/user/mypage" style="width: 48%" class="btn btn-default">취소</a>--%>
             </div>
-        </div>
-    </div>
+
+
 </form>
+</div>
+</div>
 
 </body>
-</html>
+
 
 <script type="text/javascript">
 
@@ -96,5 +103,5 @@
     });
 
 </script>
-</body>
+
 </html>
