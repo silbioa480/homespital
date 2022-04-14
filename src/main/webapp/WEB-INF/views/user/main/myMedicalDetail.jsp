@@ -13,7 +13,7 @@
 
 </head>
 <body>
-<div class="container">
+<div class="container" style="margin-top:70.63px;">
     <%--헤드라인--%>
     <div><h1><strong>나의 진료 내역 보기</strong></h1></div>
     <%--진료 예약 내역 - 소제목--%>
@@ -27,6 +27,14 @@
                          src="<c:choose><c:when test="${doctor.doctor_profile_image_name}">/img/doctorImg/${doctor.doctor_profile_image_name}</c:when>
                                 <c:otherwise>https://img.freepik.com/free-photo/portrait-of-asian-doctor-woman-cross-arms-standing-in-medical-uniform-and-stethoscope-smiling-at-camera-white-background_1258-83220.jpg</c:otherwise></c:choose>"/>
                 </div>
+                <button class="btn btn-secondary ml-auto"
+                        onclick="location.href='/doctorDetail/${doctor.doctor_number}';">
+                    <i class="fa-solid fa-magnifying-glass">의료진 상세보기</i>
+                </button>
+                <button class="btn ml-auto" style="background-color: #1abc9c; color: white;"
+                        onclick="location.href='/appointmentForm/${doctor.doctor_number}';">
+                    <i class="fa fa-check">재예약 하기</i>
+                </button>
             </div>
             <div class="col-md-8 card-body">
                 <div class="card-title d-flex">
@@ -214,7 +222,7 @@
 
 </div>
 </body>
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 
 

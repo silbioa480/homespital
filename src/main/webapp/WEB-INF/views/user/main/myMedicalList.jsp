@@ -41,7 +41,7 @@
         }
 
         .table {
-            height: 500px;
+            height: 100px;
             overflow: auto;
         }
 
@@ -83,7 +83,7 @@
 </div>
 
 </body>
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 
     // 페이지에 들어오자마자 실행
@@ -144,15 +144,27 @@
                     }
 
                     // 나의 진료 내역 테이블 생성 (리눅스 서버에 올릴때 진단영수증 파일경로 바꿔줘야함)
-                    $("#myMedicalList").append("<tr><td>" + date + " (" + dayOfWeek + ") " + item.diagnosis_time + ":00</td>" +
-                        "<td>" + item.diagnosis_type + "</td>" +
-                        "<td>" + item.doctor_name + "</td>" +
-                        "<td>" + item.hospital_name + "</td>" +
-                        "<td>" + upload + "</td > " +
-                        "<td>" + complete + "</td>" +
-                        "<td><a href='/myMedicalDetail/" + item.diagnosis_number + "'><span class='material-icons'>search</span></a>" + "</td></tr><br>);"
-                    )
-                    ;
+                    if(item.diagnosis_status == 0 || item.diagnosis_status == 1 || item.diagnosis_status == 4){
+                        $("#myMedicalList").append("<tr><td style='background-color:#33cc99'>" + date + " (" + dayOfWeek + ") " + item.diagnosis_time + ":00</td>" +
+                            "<td>" + item.diagnosis_type + "</td>" +
+                            "<td>" + item.doctor_name + "</td>" +
+                            "<td>" + item.hospital_name + "</td>" +
+                            "<td>" + upload + "</td > " +
+                            "<td>" + complete + "</td>" +
+                            "<td><a href='/myMedicalDetail/" + item.diagnosis_number + "'><span class='material-icons'>search</span></a>" + "</td></tr><br>);"
+                        )
+                        ;
+                    }else if(item.diagnosis_status == 2 || item.diagnosis_status == 3 || item.diagnosis_status == 5 || item.diagnosis_status == 6 || item.diagnosis_status == 7){
+                        $("#myMedicalList").append("<tr><td style='background-color:#cccccc'>" + date + " (" + dayOfWeek + ") " + item.diagnosis_time + ":00</td>" +
+                            "<td>" + item.diagnosis_type + "</td>" +
+                            "<td>" + item.doctor_name + "</td>" +
+                            "<td>" + item.hospital_name + "</td>" +
+                            "<td>" + upload + "</td > " +
+                            "<td>" + complete + "</td>" +
+                            "<td><a href='/myMedicalDetail/" + item.diagnosis_number + "'><span class='material-icons'>search</span></a>" + "</td></tr><br>);"
+                        )
+                        ;
+                    }
                 }
             })
             loading = false;

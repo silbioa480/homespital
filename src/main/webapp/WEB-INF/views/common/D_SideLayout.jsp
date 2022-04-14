@@ -24,10 +24,6 @@
     <%--    <link rel="stylesheet" href="/resources/css/main.css" />--%>
     <%--    <noscript><link rel="stylesheet" href="/resources/css/main2.css" /></noscript>--%>
     <style>
-        #headertitle:link, #headertitle:visited, #headertitle:hover, #headertitle:active {
-            color: black;
-        }
-
         @font-face {
             font-family: 'Y_Spotlight';
             src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/Y_Spotlight.woff') format('woff');

@@ -126,6 +126,23 @@
 <script src="/resources/js/main/breakpoints.min.js"></script>
 <script src="/resources/js/main/util.js"></script>
 <script src="/resources/js/main/main.js"></script>
+<%--스크롤스파이--%>
+<script>
+    $(document).ready(function () {
+        // var scrollResult = 0;
+        $(window).scroll(function () {
+            var pageTop = $(window).scrollTop();
+            var oneT = $('#one').offset().top;
+            var twoT = $('#two').offset().top;
 
+            if (pageTop >= oneT && pageTop < twoT) {
+                $('#logo').attr('src', '/resources/img/design/logo_D_nav.png');
+            } else {
+                $('#logo').attr('src', '/resources/img/design/main_base_nav.png');
+            }
+
+        })
+    })
+</script>
 </body>
 </html>

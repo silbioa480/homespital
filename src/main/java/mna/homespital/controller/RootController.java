@@ -134,6 +134,7 @@ public class RootController {
         ModelAndView mv = new ModelAndView("user/userside/appointmentForm");
         String email = (String) session.getAttribute("email");
         try {
+
             //모델에 view 넣기
             //의사 객체
             Doctor doctor = doctorService.getDocInfo(doctor_number);
@@ -153,10 +154,11 @@ public class RootController {
             }
             mv.addObject("real_work_timeList", real_work_timeList);
 
+
             //유저 객체
             System.out.println("email = " + email);
             User user = memberService.findByEmail(email);
-            if (user != null) throw new Exception("로그인 되어있지 않음");
+            if (user == null) throw new Exception("로그인 되어있지 않음");
             mv.addObject("user", user);
             System.out.println("user = " + user);
 
@@ -208,19 +210,23 @@ public class RootController {
             mv.addObject("ds", ds);
 
             // 카운트(준근)
+            // 예약한 시간에 사람이 없을 때 0/10 으로 나와야함. 해결
+            // 예약한 사람이 10명이 되면 해당 시간 disabled, 툴팁에 예약완료, 해결
+            // 예약을 취소하면 해당시간 카운트-1
+            // 현재시간(실제시간)이 예약할 시간과 같거나 초과되면 카운트 상관없이 무조건 disabled 처리, 해결
+            // 
             ArrayList<HashMap<String, Object>> timeCountArr = memberService.getCount(doctor_number);
             JSONArray tcArr = new JSONArray();
             for (HashMap<String, Object> timeCount : timeCountArr) {
                 JSONObject time = new JSONObject(timeCount);
                 tcArr.put(time);
             }
-
             System.out.println("tcArr = " + tcArr);
             mv.addObject("timeCount", tcArr);
 
-
         } catch (Exception e) {
             e.printStackTrace();
+            mv.setViewName("redirect:/loginForm");
         }
 
         return mv;
