@@ -137,6 +137,10 @@
                                 <img alt="의사사진 영역" src="${doctor.doctor_profile_image_name}"
                                      onerror="this.src='https://img.freepik.com/free-photo/portrait-of-asian-doctor-woman-cross-arms-standing-in-medical-uniform-and-stethoscope-smiling-at-camera-white-background_1258-83220.jpg'">
                             </div>
+                            <button class="btn btn-secondary ml-auto"
+                                    onclick="location.href='/doctorDetail/${diagnosis.doctor_number}';">
+                                <i class="fa-solid fa-magnifying-glass">의료진 상세보기</i>
+                            </button>
                         </div>
                         <div class="col-md-8 card-body">
                             <div class="card-title d-flex justify-content-between">

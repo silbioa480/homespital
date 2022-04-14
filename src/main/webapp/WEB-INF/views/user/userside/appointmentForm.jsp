@@ -93,7 +93,7 @@
 
                                             <label class="box-radio-input" data-bs-toggle="tooltip"
                                                    data-bs-placement="top"
-                                                   id="tcTitle${tt}" title="0/10">
+                                                   id="tcTitle${tt}" title="0/5">
 
                                                 <input type="radio" class="tcRadio" id="tcRadio${tt}"
                                                        name="diagnosis_time" value="${tt}"
@@ -384,9 +384,9 @@
     let tcArr = JSON.parse(`${timeCount}`);
     console.log(tcArr);
     for (let i in tcArr) {
-        let msg = "예약만료"
-        if (tcArr[i].diagnosis_wait_number < 10) {
-            msg = tcArr[i].diagnosis_wait_number + "/10";
+        let msg = "5/5"
+        if (tcArr[i].request_count < 5) {
+            msg = tcArr[i].request_count + "/5";
         } else {
             $('#tcRadio' + tcArr[i].diagnosis_time).attr('disabled', true);
             $('#tcSpan' + tcArr[i].diagnosis_time).attr("style", 'background-color:gray;');
@@ -398,7 +398,7 @@
     let hours = new Date().getHours();
     for (let realTime of rtArr) {
         if (hours >= realTime) {
-            let msg = "선택할 수 없는 시간입니다."
+            let msg = "예약 불가능한 시간입니다."
             $('#tcRadio' + realTime).attr('disabled', true);
             $('#tcSpan' + realTime).attr("style", 'background-color:gray;');
             $('#tcTitle' + realTime).attr('title', msg);
