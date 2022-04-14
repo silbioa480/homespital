@@ -41,7 +41,7 @@
         }
 
         .table {
-            height: 500px;
+            height: 100px;
             overflow: auto;
         }
 
