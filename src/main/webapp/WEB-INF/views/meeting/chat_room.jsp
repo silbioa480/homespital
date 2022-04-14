@@ -100,9 +100,7 @@
 
 
 <script>
-    setInterval(function () {
-        sendToServer({from: localUserName, type: 'text', data: "please help me god..."})
-    }, 30000);
+
 
     /*
     $(document).ready(function () {
