@@ -34,17 +34,17 @@
                 <a class="navbar-brand justify-content-start" href="/pharmacy/" style="font-family: 'Y_Spotlight'">
                     <%--                    <i class="fa fa-medkit" aria-hidden="true"></i>--%>
                     <%--                    홈스피탈--%>
-                    <img id="logo" style="width: 120px; height: 100%; text-decoration-line: none" alt=""
+                    <img id="logo" style="width: 120px; height: 100%; margin-left: 15px; text-decoration-line: none" alt=""
                          src="/resources/img/design/main_base_nav.png"/>
                 </a>
-                <a class="fs-6 align-self-center" href="/pharmacy/">약사 페이지</a>
+                <a class="fs-6 align-self-center" style="margin-top: 15px " href="/pharmacy/">약사 페이지</a>
                 <button class="navbar-toggler border-dark" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbars" aria-controls="navbars" aria-expanded="false"
                         aria-label="Toggle navigation">
                     <span class="fa fa-bars" style="color: black"></span>
                 </button>
 
-                <div class="collapse navbar-collapse justify-content-end" id="navbars">
+                <div class="collapse navbar-collapse justify-content-end" style=" padding: 16px 16px; position: fixed; right: 50px" id="navbars">
                     <ul class="navbar-nav ml-auto pl-lg-5 pl-0">
                         <c:choose>
                             <c:when test="${not empty pharmacy}">
@@ -55,15 +55,15 @@
                                 <%--                                    <a class="nav-link" href="#">내 정보수정</a>--%>
                                 <%--                                </li>--%>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/pharmacy/logout.do">로그아웃</a>
+                                    <a class="nav-link" style="padding: 16px;" href="/pharmacy/logout.do">로그아웃</a>
                                 </li>
                             </c:when>
                             <c:otherwise>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/pharmacy/loginForm">로그인</a>
+                                    <a class="nav-link" style="padding: 16px;" href="/pharmacy/loginForm">로그인</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/pharmacy/joinForm">회원가입</a>
+                                    <a class="nav-link" style="padding: 16px;" href="/pharmacy/joinForm">회원가입</a>
                                 </li>
 
                             </c:otherwise>
@@ -91,5 +91,6 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="/resources/js/main/navbar.js"></script>
+
 </body>
 </html>
