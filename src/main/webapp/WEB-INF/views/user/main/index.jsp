@@ -14,6 +14,7 @@
   </head>
   <body class="is-preload" id="mainBody">
     <!-- Intro -->
+    <%--메인 화면 이미지 적용 태영 --%>
     <section id="intro" class="main style1 dark fullscreen">
       <div class="content">
         <header>
@@ -40,6 +41,10 @@
         <footer>
           <a href="#one" class="button style2 down">More</a>
         </footer>
+      </div>
+      <%--환자 메인 화면 이미지 태영      --%>
+      <div class="image-box">
+        <img width="250px" height="300px" src="/resources/img/design/u_main_img.png" alt="로그인메인이미지"/>
       </div>
     </section>
 
@@ -172,6 +177,7 @@
     <script src="/resources/js/main/breakpoints.min.js"></script>
     <script src="/resources/js/main/util.js"></script>
     <script src="/resources/js/main/main.js"></script>
+    <script src="/resources/js/main/mainbg.js"></script>
 
     <%--스크롤스파이--%>
     <script>
