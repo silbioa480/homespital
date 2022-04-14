@@ -100,12 +100,13 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
+    /*
     $(document).ready(function () {
         $("#msgBtn").click(function (e) {
             sendToServer({from: localUserName, type: 'text', data: $("#chatMsg").val()});
         });
     });
-
+    */
 
 </script>
 </html>
