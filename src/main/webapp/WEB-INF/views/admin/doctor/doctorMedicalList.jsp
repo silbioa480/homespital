@@ -4,61 +4,24 @@
 <html>
 <head>
     <title>의사 진료리스트</title>
-    <link rel="stylesheet" href="/resources/css/myMedicalList.css"/>
-    <!-- 합쳐지고 최소화된 최신 CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
-    <!-- 부가적인 테마 -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-
-    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
+    <link rel="stylesheet" href="/resources/css/pharCustomerDetail.css"/>
     <%-- 구글 아이콘 CDN링크 --%>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <style>
-        .material-icons {
-            font-size: 36px;
-        }
-
-        .list-header {
-            /*background-color: blue;*/
-            height: 200px;
-        }
-
-        th, td, tbody {
-            text-align: center;
-
-        }
-
-        p {
-            font-size: 30px;
-            padding: 10px;
-        }
-
-        .table {
-            height: 100px;
-            overflow: auto;
-        }
-
-
-    </style>
 </head>
 <body>
 <div class="container">
-    <div class="col mt-5">
-        <div class="list-header bg-info text-right">
+    <div class="col mt-3">
+        <div class="list-header text-center" id="doctorBanner">
             <h1 id="logo">Homespital</h1>
-
         </div>
 
-        <p class="text-right">마이페이지 > 의사진료내역</p>
+        <p class="text-end fs-4">환자 진료내역</p>
 
-        <div class="card">
+        <div class="card p-3">
             <div class="card-body p-4">
                 <div class="text-center table-responsive">
-                    <table class="table fs-3 fst-normal">
+                    <table class="table">
                         <thead>
                         <tr>
                             <th>날짜/시간</th>
@@ -165,9 +128,9 @@
                     //진료완료, 진료중 표시 및 대기/예약취소하기 버튼
                     let complete = "";
                     if (item.diagnosis_status == 0) {
-                        complete = "<button type='button' id='startBtn' class='btn btn-primary btn-sm' onclick='startBtn(" + item.diagnosis_number + ");'>진료시작하기</button>";
+                        complete = "<button type='button' id='startBtn' class='btn btn-sm h-75' onclick='startBtn(" + item.diagnosis_number + ");'>진료시작하기</button>";
                     } else if (item.diagnosis_status == 1) {
-                        complete = "<button type='button' id='finishBtn' class='btn btn-info btn-sm' onclick='finishBtn(" + item.diagnosis_number + ");'>진료중/완료하기</button>";
+                        complete = "<button type='button' id='finishBtn' class='btn btn-sm h-75' onclick='finishBtn(" + item.diagnosis_number + ");'>진료중/완료하기</button>";
                     } else if (item.diagnosis_status == 2) {
                         complete = "예약취소";
                     } else if (item.diagnosis_status == 3) {
@@ -191,7 +154,7 @@
                     if (item.is_diagnosis_upload == 0) {
                         receipt = "";
                     } else if (item.is_diagnosis_upload == 1) {
-                        receipt = "<button type='button' data-toggle='modal' data-target='#staticBackdrop" + item.diagnosis_number + " 'id ='receiptUpload" + item.diagnosis_number + "' class='btn btn-info btn-sm'>영수증업로드</button><br>" +
+                        receipt = "<button type='button' data-toggle='modal' data-target='#staticBackdrop" + item.diagnosis_number + " 'id ='receiptUpload" + item.diagnosis_number + "' class='btn btn-sm h-75'>영수증업로드</button><br>" +
                             '<div class="modal fade" id="staticBackdrop' + item.diagnosis_number + '" data-backdrop="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">' +
                             '<div class="modal-dialog" role="document">' +
                             '<div class="modal-content">' +
@@ -217,7 +180,7 @@
                     if (item.is_prescription_upload == 0) {
                         prescription = "";
                     } else if (item.is_prescription_upload == 1) {
-                        prescription = "<button type='button' data-toggle='modal' data-target='#staticBackdrop2_" + item.diagnosis_number + " 'id ='prescriptionUpload" + item.diagnosis_number + "' class='btn btn-info btn-sm'>처방전업로드</button><br>" +
+                        prescription = "<button type='button' data-toggle='modal' data-target='#staticBackdrop2_" + item.diagnosis_number + " 'id ='prescriptionUpload" + item.diagnosis_number + "' class='btn btn-sm h-75'>처방전업로드</button><br>" +
                             '<div class="modal fade" id="staticBackdrop2_' + item.diagnosis_number + '" data-backdrop="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">' +
                             '<div class="modal-dialog" role="document">' +
                             '<div class="modal-content">' +

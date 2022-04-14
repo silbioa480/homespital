@@ -1042,3 +1042,46 @@ p {
     margin-top: 20px;
     margin-left: 15px;
 }
+
+.image-box{
+  width:47.5%;
+  height:80%;
+  box-sizing: border-box;
+  position:absolute;
+  right:0;
+  bottom:0;
+}
+
+.image-box img{
+  min-height:100%;
+  min-width:100%;
+}
+
+.doctor-image-box{
+  width:52.5%;
+  height:100%;
+  position: absolute;
+  top:0;
+  right:0;
+}
+
+.doctor-image-box img{
+    min-width:100%;
+    min-height:100%;
+  border:none;
+}
+
+.pharmacy-image-box{
+  width:55%;
+  height:100%;
+  position: absolute;
+  top:0;
+  right:0;
+}
+
+.pharmacy-image-box img{
+  min-width:100%;
+  min-height:100%;
+  border:none;
+}
+
