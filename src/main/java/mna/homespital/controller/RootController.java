@@ -208,13 +208,16 @@ public class RootController {
             mv.addObject("ds", ds);
 
             // 카운트(준근)
+            // 예약한 시간에 사람이 없을 때 0/10 으로 나와야함.
+            // 예약한 사람이 10명이 되면 해당 시간 disabled, 툴팁에 예약완료
+            // 예약을 취소하면 해당시간 카운트-1
+            // 현재시간(실제시간)이 예약할 시간과 같거나 초과되면 카운트 상관없이 무조건 disabled 처리
             ArrayList<HashMap<String, Object>> timeCountArr = memberService.getCount(doctor_number);
             JSONArray tcArr = new JSONArray();
             for (HashMap<String, Object> timeCount : timeCountArr) {
                 JSONObject time = new JSONObject(timeCount);
                 tcArr.put(time);
             }
-
             System.out.println("tcArr = " + tcArr);
             mv.addObject("timeCount", tcArr);
 
