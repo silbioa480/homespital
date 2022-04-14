@@ -151,17 +151,32 @@
 
                     if (item.diagnosis_status >= 3 && item.diagnosis_status <= 6) {
                         //나의 진료 내역 테이블 생성 (리눅스 서버에 올릴때 진단영수증 파일경로 바꿔줘야함)
-                        $("#pharMedicalList").append("<tr><td>" + date + " (" + dayOfWeek + ") " + item.diagnosis_time + ":00</td>" +
-                            "<td>" + item.user_name + "</td>" +
-                            "<td>" + gender + "</td>" +
-                            "<td>" + birth + "</td>" +
-                            "<td>" + item.hospital_name + "</td > " +
-                            "<td>" + is_delivery + "</td>" +           // 배송or방문
-                            "<td>" + receiptFile + "</td > " +  //처방전 다운받기
-                            "<td>" + complete + "</td>" +
-                            "<td><a href='/pharmacy/customerDetail/" + item.diagnosis_number + "'><span class='material-icons'>search</span></a>" + "</td></tr><br>);"  //현황
-                        )
-                        ;
+                        // 조제시작 조제중 / 조제완료상태거나 종료일때  색깔 적용 태영
+                        if(item.diagnosis_status == 3 || item.diagnosis_status == 4){
+                            $("#pharMedicalList").append("<tr><td style='background-color:#FFCD4A'>" + date + " (" + dayOfWeek + ") " + item.diagnosis_time + ":00</td>" +
+                                "<td>" + item.user_name + "</td>" +
+                                "<td>" + gender + "</td>" +
+                                "<td>" + birth + "</td>" +
+                                "<td>" + item.hospital_name + "</td > " +
+                                "<td>" + is_delivery + "</td>" +           // 배송or방문
+                                "<td>" + receiptFile + "</td > " +  //처방전 다운받기
+                                "<td>" + complete + "</td>" +
+                                "<td><a href='/pharmacy/customerDetail/" + item.diagnosis_number + "'><span class='material-icons'>search</span></a>" + "</td></tr><br>);"  //현황
+                            )
+                            ;
+                        }else if(item.diagnosis_status == 5 || item.diagnosis_status == 6 ){
+                            $("#pharMedicalList").append("<tr><td style='background-color:#cccccc'>" + date + " (" + dayOfWeek + ") " + item.diagnosis_time + ":00</td>" +
+                                "<td>" + item.user_name + "</td>" +
+                                "<td>" + gender + "</td>" +
+                                "<td>" + birth + "</td>" +
+                                "<td>" + item.hospital_name + "</td > " +
+                                "<td>" + is_delivery + "</td>" +           // 배송or방문
+                                "<td>" + receiptFile + "</td > " +  //처방전 다운받기
+                                "<td>" + complete + "</td>" +
+                                "<td><a href='/pharmacy/customerDetail/" + item.diagnosis_number + "'><span class='material-icons'>search</span></a>" + "</td></tr><br>);"  //현황
+                            )
+                            ;
+                        }
                     }
                 }
             })
