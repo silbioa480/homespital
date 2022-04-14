@@ -49,7 +49,7 @@
                     <span class="fa fa-bars" style="color: black"></span>
                 </button>
 
-                <div class="collapse navbar-collapse justify-content-end" style=" float: right;" id="navbars">
+                <div class="collapse navbar-collapse justify-content-end" style=" position: fixed; right: 50px" id="navbars">
                     <ul class="navbar-nav ml-auto pl-lg-5 pl-0">
                         <li class="nav-item">
                             <a class="nav-link" href="/medicalSearch">예약하기</a>

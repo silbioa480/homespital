@@ -33,7 +33,7 @@ li, a, button {
 }
 
 #dropdown-item2:hover{
-    background-color: #FD9F28
+    background-color: #FFCD4A
 }
 
 header {
@@ -51,7 +51,7 @@ header {
 }
 
 .nav-up {
-    background-color: rgba(0, 255, 0, 0);
+    background-color: rgb(255, 255, 255);
     -webkit-transition-duration: 0.4s;
     -webkit-transition-timing-function: ease-in-out;
     transition-duration: 0.4s;
