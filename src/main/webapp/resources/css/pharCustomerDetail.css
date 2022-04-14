@@ -1341,11 +1341,34 @@ p {
     margin-bottom: 30px;
     position: relative;
 }
-.myMediList::before {
+.circle3 {
+    position: absolute;
+    top: 12px;
+    left: 300px;
+    width: 18px;
+    height: 18px;
+    border-radius: 100%;
+    background-color: #33CC99;
+    animation: circle 2s ease-in-out infinite;
+    animation-fill-mode: both;
+}
+.circle3::before {
     content: "";
     position: absolute;
-    top: 9px;
-    left: 300px;
+    top: 0px;
+    left: 30px;
+    width: 18px;
+    height: 18px;
+    border-radius: 100%;
+    background-color: #33CC99;
+    animation: circle 2s ease-in-out infinite;
+    animation-fill-mode: both;
+}
+.circle3::after {
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 60px;
     width: 18px;
     height: 18px;
     border-radius: 100%;
@@ -1368,4 +1391,13 @@ p {
         opacity: 1;
         scale: 1.5;
     }
+}
+circle:nth-child(1) {
+    animation-delay: 0.16s;
+}
+circle:nth-child(2) {
+    animation-delay: 1.26s;
+}
+circle:nth-child(3) {
+    animation-delay: 2.00s;
 }
