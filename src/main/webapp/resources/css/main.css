@@ -655,8 +655,8 @@ button {
     -webkit-transition: background-color 0.2s ease-in-out;
     -ms-transition: background-color 0.2s ease-in-out;
     transition: background-color 0.2s ease-in-out;
-    background-color: #98c593;
-    border: 0;
+    background-color: transparent;
+    border: 2px solid #fff;
     border-radius: 3.5em;
     color: #ffffff;
     cursor: pointer;
@@ -2105,7 +2105,7 @@ body.is-touch .poptrox-popup .closer {
 }
 
 .main.dark .button.style2 {
-    border-color: #ffffff;
+    border-color: #111;
 }
 
 .main.dark .button.style2:hover {
@@ -2117,9 +2117,34 @@ body.is-touch .poptrox-popup .closer {
 }
 
 .main.dark .button.style2.down {
-    background-image: url("/resources/img/main/dark-arrow.svg");
+    background-image: url("/resources/img/main/downArrorw.png");
 }
 
+
+
+.main.dark2 {
+    color: #ffffff;
+    background-color: #ffffff;
+}
+
+.main.dark2 a {
+    color: inherit;
+}
+.main.dark2 .button.style10 {
+    border-color: #ffffff;
+}
+
+.main.dark2 .button.style10:hover {
+    background-color: rgba(255, 255, 255, 0.125);
+}
+
+.main.dark2 .button.style10:active {
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+.main.dark2 .button.style10.down {
+    background-image: url("/resources/img/main/dark-arrow.svg");
+}
 /*body.is-touch .main {*/
 /*    background-attachment: scroll !important;*/
 /*}*/

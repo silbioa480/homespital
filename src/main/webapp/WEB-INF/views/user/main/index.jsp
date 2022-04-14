@@ -130,6 +130,7 @@
     <%--    <a href="#work" class="button style2 down anchored">Next</a>--%>
 </section>
 
+
 <!-- Work -->
 <section id="Five">
     <div class="gallery" style="height:1400px">
@@ -311,15 +312,16 @@
     $(document).ready(function () {
         // var scrollResult = 0;
         $(window).scroll(function () {
-            var pageTop = $(window).scrollTop();
-            var oneT = $("#one").offset().top;
-            var twoT = $("#two").offset().top;
+          var pageTop = $(window).scrollTop();
+          var oneT = $("#one").offset().top;
+          var twoT = $("#two").offset().top;
 
-            if (pageTop >= oneT && pageTop < twoT) {
-                $("#logo").attr("src", "/resources/img/design/logo_U_nav.png");
-            } else {
-                $("#logo").attr("src", "/resources/img/design/main_base_nav.png");
-            }
+          if (pageTop >= oneT && pageTop < twoT) {
+            $("#logo").attr("src", "/resources/img/design/logo_U_nav.png");
+              $(".nav-Link").css({"color": "#red"});
+          } else {
+            $("#logo").attr("src", "/resources/img/design/main_base_nav.png");
+          }
         });
     });
 </script>
