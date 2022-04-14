@@ -76,20 +76,25 @@ public class SignalHandler extends TextWebSocketHandler {
     protected void handleTextMessage(final WebSocketSession session, final TextMessage textMessage) {
         // a message has been received
         try {
-            System.out.println(textMessage);
+            //
+            //System.out.println(textMessage);
             WebSocketMessage message = objectMapper.readValue(textMessage.getPayload(), WebSocketMessage.class);
-            System.out.println("[ws] Message of {} type from {} received" + message.getType() + message.getFrom());
+            //
+            //System.out.println("[ws] Message of {} type from {} received" + message.getType() + message.getFrom());
             String userName = message.getFrom(); // origin of the message
             String data = message.getData(); // payload // room id가 들어온다
-            System.out.println("userName =>>>" + userName);
-            System.out.println("data =>>>" + data);
+            //
+            //System.out.println("userName =>>>" + userName);
+            //
+            //System.out.println("data =>>>" + data);
             Room room;
             switch (message.getType()) {
                 // text message from client has been received
                 case MSG_TYPE_TEXT:
-                    System.out.println("[ws] Text message: {}" + message.getData());
-
-                    sendMessage(session, message);
+                    //
+                    // System.out.println("[ws] Text message: {}" + message.getData());
+                    //
+                    // sendMessage(session, message);
 
 
                     // message.data is the text sent by client
@@ -163,7 +168,8 @@ public class SignalHandler extends TextWebSocketHandler {
 
     private void sendMessage(WebSocketSession session, WebSocketMessage message) {
         try {
-            System.out.println("===========>" + message);
+            //
+            // System.out.println("===========>" + message);
             String json = objectMapper.writeValueAsString(message);
             session.sendMessage(new TextMessage(json));
         } catch (IOException e) {
