@@ -66,8 +66,11 @@ function start() {
             case "text":
 
                 log('Text message from ' + message.from + ' received: ' + message.data);
+                /*
                 let oldMsg = $("textarea").val();
+
                 $("textarea").val(oldMsg + "\n" + message.from + ":" + message.data);
+                */
                 break;
 
             case "offer":
@@ -240,10 +243,13 @@ function getMedia(constraints) {
 
 // create peer connection, get media, start negotiating when second participant appears
 function handlePeerConnection(message) {
+    log('동료 연결 준비')
     createPeerConnection();
     getMedia(mediaConstraints);
+    log('동료 연결 무사히 가져옴')
     if (message.data === "true") {
         myPeerConnection.onnegotiationneeded = handleNegotiationNeededEvent;
+        log('동료 연결 완료')
     }
 }
 
@@ -252,6 +258,7 @@ function handlePeerConnection(message) {
  * 로컬 컴퓨터와 원격 피어 간의 WebRTC 연결을 나타낸다. 두 피어 간의 효율적인 데이터 스트리밍을 처리하는데 사용된다.
  */
 function createPeerConnection() {
+    log('동료 연결 시작')
     myPeerConnection = new RTCPeerConnection(peerConnectionConfig);
 
     // event handlers for the ICE negotiation process
