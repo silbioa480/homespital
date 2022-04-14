@@ -13,7 +13,7 @@
 
 </head>
 <body>
-<div class="container">
+<div class="container" style="margin-top:70.63px;">
     <%--헤드라인--%>
     <div><h1><strong>나의 진료 내역 보기</strong></h1></div>
     <%--진료 예약 내역 - 소제목--%>
