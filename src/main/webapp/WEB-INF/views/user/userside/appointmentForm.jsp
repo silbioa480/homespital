@@ -331,7 +331,7 @@
         </section>
 
         <div class="appoint-out">
-            <label for="appointDo" class="appointBtn" onClick="notify()">예약하기</label>
+            <label for="appointDo" class="appointBtn">예약하기</label>
             <input type="submit" id="appointDo" class="appointDo" style="display: none"/>
         </div>
     </form>
@@ -834,7 +834,6 @@
 
 
 </script>
-
 <script>
     function notify() {
         // Let's check if the browser supports notifications
