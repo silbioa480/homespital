@@ -538,19 +538,4 @@ public class DoctorController {
 
         return "redirect:/doctor/docMedicalList";
     }
-//    //카톡링크문자 보내기 태영
-//    @ResponseBody
-//    @PostMapping("/sendOpenTalk")
-//    public String sendOpenTalk(int doctor_number){
-//
-//        try{
-//            Doctor dtc =doctorService.getDocInfo(doctor_number);
-//            String userPhoneNumber=dtc.getDoctor_phone();
-//
-//        }catch(Exception e){
-//            e.printStackTrace();
-//        }
-//
-//        return "success";
-//    }
 }
