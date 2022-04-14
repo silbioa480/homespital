@@ -132,46 +132,30 @@
                                             id="docType">의사 / ${doctor.doctor_diagnosis_type}</span>
                                 </div>
                                 <div class="d-flex">
-                                    <button class="btn btn-secondary ml-auto"
+                                    <button class="btn btn-secondary ml-auto" id="detailBtn"
                                             onclick="location.href='/doctorDetail/${doctor.doctor_number}';">
-                                        <i class="detailBtn">의료진 상세보기</i>
+                                        <i class="fa-solid fa-magnifying-glass">의료진 상세보기</i>
                                     </button>
-                                    <button class="btn ml-auto" style="background-color: #1abc9c; color: white;"
+                                    <button class="btn ml-auto" id="appBtn"
                                             onclick="location.href='/appointmentForm/${doctor.doctor_number}';">
                                         <i class="fa fa-check">비대면 진료 예약하기</i>
                                     </button>
 
                                 </div>
                             </div>
-                            <div class="card-text">
+                            <div class="card-text" style="margin-top: -40px; margin-left: 30px;">
                                 <p class="card-text">
-                                <table class="table table-borderless">
-                                    <tr>
-                                        <th>병원이름:</th>
-                                        <td>${doctor.hospital_name}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>주소 :</th>
-                                        <td>${doctor.zip_code} ${doctor.street_address} ${doctor.detail_address}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>진료시간:</th>
-                                        <td>
-                                                ${doctor.working_time}
 
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>점심시간:</th>
-                                        <td>
-                                                ${doctor.lunch_time}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>휴진:</th>
-                                        <td>매주 ${doctor.holiday}요일</td>
-                                    </tr>
-                                </table>
+                                        <p class="context">병원이름:</p>
+                                        <p class="context">${doctor.hospital_name}</p>
+                                        <p class="context">주소 :</p>
+                                        <p class="context">${doctor.zip_code} ${doctor.street_address} ${doctor.detail_address}</p>
+                                        <p class="context">진료시간:</p>
+                                        <p class="context">${doctor.working_time}</p>
+                                        <p class="context">점심시간:</p>
+                                        <p class="context">${doctor.lunch_time}</p>
+                                        <p class="context">휴진:</p>
+                                        <p class="context">매주 ${doctor.holiday}요일</p>
                                 </p>
                             </div>
                         </div>

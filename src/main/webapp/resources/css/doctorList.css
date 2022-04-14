@@ -3063,7 +3063,23 @@ input[type="button"]:disabled,
     color: #2A2D42;
     font-weight: bold;
 }
-.detailBtn {
-    width: 130px;
-    height: 40px;
+#detailBtn {
+    width: 160px;
+    height: 43px;
+    font-size: 13px;
+    background-color: #0058A8;
+}
+#appBtn {
+    width: 180px;
+    height: 43px;
+    font-size: 13px;
+    background-color: #2A2D42;
+    color: #fff;
+}
+
+.context {
+    margin: -13px ;
+    font-size: 15px;
+    font-weight: bold;
+    color: #2A2D42;
 }
