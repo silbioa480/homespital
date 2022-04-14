@@ -9,14 +9,19 @@
         <link rel="stylesheet" href="/resources/css/main2.css"/>
     </noscript>
 </head>
-<body class="is-preload">
+<body class="is-preload" id="mainBody">
 <!-- Intro -->
 <section id="intro" class="main style1 dark fullscreen">
     <div class="content">
         <header>
+
+<%--            <h2>Homespital.</h2>--%>
+<%--            <h2 class="mainHomespital">Homespital.</h2>--%>
+
             <%--            <h2>Homespital.</h2>--%>
             <img id="logo" style="width: 500px; height: 100%; text-decoration-line: none" alt=""
                  src="/resources/img/design/main_base_nav.png"/>
+
         </header>
         <h1>우리집에서 한번에
             <hr>
