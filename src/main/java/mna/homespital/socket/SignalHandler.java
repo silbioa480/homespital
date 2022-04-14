@@ -86,6 +86,7 @@ public class SignalHandler extends TextWebSocketHandler {
                 // text message from client has been received
                 case MSG_TYPE_TEXT:
                     logger.debug("[ws] Text message: {}", message.getData());
+
                     // message.data is the text sent by client
                     // process text message if needed
                     break;
