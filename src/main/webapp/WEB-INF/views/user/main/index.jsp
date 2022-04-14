@@ -12,15 +12,11 @@
 <section id="intro" class="main style1 dark fullscreen">
     <div class="content">
         <header>
-            <h2>Homespital.</h2>
+<%--            <h2>Homespital.</h2>--%>
+    <img id="logo" style="width: 500px; height: 100%; text-decoration-line: none" alt="" src="/resources/img/design/main_base_nav.png"/>
         </header>
-        <p>우리집에서 한번에<hr><strong>비대면 진료 </strong><strong>| 처방 </strong><strong>| 약배송까지</strong><br />
-            </p>
-        <%--소연: test 나중에 삭제 해야함 --%>
-        <a href="/chat"><button type="button" class="test_btn" id="test_btn" action="test" method="post">진료하기 test</button></a>
-        <%--소연: test 종료 --%>
-
-
+        <h1>우리집에서 한번에<hr><strong>비대면 진료 </strong><strong>| 처방 </strong><strong>| 배송까지</strong><br />
+            </h1>
         <footer>
             <a href="#one" class="button style2 down">More</a>
         </footer>
