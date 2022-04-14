@@ -14,11 +14,13 @@ section, summary, time, mark, audio, video {
     border: 0;
     font-size: 100%;
     font: inherit;
-    vertical-align: baseline;}
+    vertical-align: baseline;
+}
 
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
-    display: block;}
+    display: block;
+}
 
 body {
     line-height: 1;
@@ -659,7 +661,7 @@ button {
     color: #ffffff;
     cursor: pointer;
     display: inline-block;
-    height: 3.5em;
+    /*height: 3.5em;*/
     line-height: 3.5em;
     outline: 0;
     padding: 0 2em 0 2em;
@@ -796,7 +798,7 @@ form > .fields > .field.half {
 }
 
 form > .fields > .field.third {
-    width: calc(100%/3 - 0.5em);
+    width: calc(100% / 3 - 0.5em);
 }
 
 form > .fields > .field.quarter {

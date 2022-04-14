@@ -9,7 +9,7 @@
 <head>
     <meta charset="UTF-8"/>
     <title>홈스피탈</title>
-    <link rel="stylesheet" href="../../../../resources/css/navbar.css"/>
+    <link rel="stylesheet" href="/resources/css/navbar.css"/>
 </head>
 <style>
     a > i,
@@ -29,12 +29,13 @@
 <!-- Header -->
 <div>
     <nav class="navbar navbar-expand-md fixed-top w-100" id="navbar">
-        <div class="container">
+        <div>
             <div class="d-flex w-100">
                 <a class="navbar-brand justify-content-start" href="/doctor/"
                    style="font-family: 'Y_Spotlight'">
-<%--                    <i class="fa fa-medkit" aria-hidden="true"></i>--%>
-    <img id="logo" style="width: 120px; height: 100%; text-decoration-line: none" alt="" src="/resources/img/design/main_base_nav.png"/>
+                    <%--                    <i class="fa fa-medkit" aria-hidden="true"></i>--%>
+                    <img id="logo" style="width: 120px; height: 100%; text-decoration-line: none" alt=""
+                         src="/resources/img/design/main_base_nav.png"/>
                 </a>
                 <a class="fs-6 align-self-center" href="/doctor/">의사 페이지</a>
                 <button class="navbar-toggler border-dark" type="button"
@@ -69,7 +70,8 @@
                             </c:otherwise>
                         </c:choose>
                         <li class="nav-item">
-                            <a class="nav-link btn-sm btn rounded text-white" style="background-color:#2A2D42; color: #d4d4d4" href="/">환자 페이지로 이동</a>
+                            <a class="nav-link btn-sm btn rounded text-white"
+                               style="background-color:#2A2D42; color: #d4d4d4" href="/">환자 페이지로 이동</a>
                         </li>
                     </ul>
                 </div>
