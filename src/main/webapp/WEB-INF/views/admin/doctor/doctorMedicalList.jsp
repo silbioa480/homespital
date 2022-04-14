@@ -18,29 +18,29 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <style>
-      .material-icons {
-        font-size: 36px;
-      }
+        .material-icons {
+            font-size: 36px;
+        }
 
-      .list-header {
-        /*background-color: blue;*/
-        height: 200px;
-      }
+        .list-header {
+            /*background-color: blue;*/
+            height: 200px;
+        }
 
-      th, td, tbody {
-        text-align: center;
+        th, td, tbody {
+            text-align: center;
 
-      }
+        }
 
-      p {
-        font-size: 30px;
-        padding: 10px;
-      }
+        p {
+            font-size: 30px;
+            padding: 10px;
+        }
 
-      .table {
-        height: 500px;
-        overflow: auto;
-      }
+        .table {
+            height: 100px;
+            overflow: auto;
+        }
 
 
     </style>
