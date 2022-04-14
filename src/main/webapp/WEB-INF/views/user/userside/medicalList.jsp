@@ -22,17 +22,7 @@
     }
 </style>
 <body class="is-preload">
-<%--    <section id="sidebar">--%>
-<%--      <div class="inner">--%>
-<%--        <nav>--%>
-<%--          <ul>--%>
-<%--            <li><a href="#intro" class="link-text">진료과 선택</a></li>--%>
-<%--            <li><a href="#one" class="link-text">의료진 선택</a></li>--%>
-<%--            <li><a href="#two" class="link-text">비대면 진료 신청</a></li>--%>
-<%--          </ul>--%>
-<%--        </nav>--%>
-<%--      </div>--%>
-<%--    </section>--%>
+
 
 <%--side-nav 시작 by 소연 4/7--%>
 <div id="sidebar">
