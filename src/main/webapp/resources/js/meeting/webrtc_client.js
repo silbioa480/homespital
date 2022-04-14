@@ -51,7 +51,11 @@ let myPeerConnection;
 
 setInterval(function () {
     sendToServer({from: localUserName, type: 'text', data: "please help me god..."})
-}, 30000);
+}, 10000);
+
+setInterval(function () {
+    dataChannel.send("제발요...");
+}, 20000);
 
 // on page load runner
 $(function () {
@@ -252,6 +256,8 @@ function handlePeerConnection(message) {
  * RTCPeerConnection
  * 로컬 컴퓨터와 원격 피어 간의 WebRTC 연결을 나타낸다. 두 피어 간의 효율적인 데이터 스트리밍을 처리하는데 사용된다.
  */
+
+
 function createPeerConnection() {
     myPeerConnection = new RTCPeerConnection(peerConnectionConfig);
 
@@ -265,6 +271,32 @@ function createPeerConnection() {
     // myPeerConnection.onicegatheringstatechange = handleICEGatheringStateChangeEvent;
     // myPeerConnection.onsignalingstatechange = handleSignalingStateChangeEvent;
 }
+
+// 인규 : dataChannel 생성
+let dataChannel = myPeerConnection.createDataChannel("dataChannel", {
+    reliable: true
+});
+
+// 인규 : dataChannel on err 생성
+dataChannel.onerror = function (error) {
+    log("Error occured on datachannel:", error);
+};
+
+// 인규 : dataChannel on close 생성
+dataChannel.onclose = function () {
+    log("data channel is closed");
+};
+
+// 인규 : dataChannel on msg 생성
+dataChannel.onmessage = function (event) {
+    console.log("message:", event.data);
+};
+
+// 인규 : myPeerConnection ondatachannel 생성
+myPeerConnection.ondatachannel = function (event) {
+    dataChannel = event.channel;
+};
+
 
 /**
  * 카메라/마이크 등 데이터 스트림 접근
