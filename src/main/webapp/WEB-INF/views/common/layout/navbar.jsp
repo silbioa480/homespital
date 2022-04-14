@@ -32,7 +32,7 @@
             <div class="d-flex w-100">
                 <a class="navbar-brand justify-content-start" href="/" style="font-family: 'Y_Spotlight'">
 <%--                    <i class="fa fa-medkit" aria-hidden="true"></i>--%>
-                    <img id="logo" style="width: 120px; height: 100%; text-decoration-line: none" alt="" src="/resources/img/design/main_base_nav.png"/>
+                    <img id="logo" style="width: 120px; height: 100%; margin-left: 15px; text-decoration-line: none" alt="" src="/resources/img/design/main_base_nav.png"/>
                 </a>
 <%--    <a class="logo" href="/">--%>
 <%--        <link class="icon icon-bi" rel="icon" href="/resources/img/design/main_base_nav.ico/">--%>
@@ -49,7 +49,7 @@
                     <span class="fa fa-bars" style="color: black"></span>
                 </button>
 
-                <div class="collapse navbar-collapse justify-content-end" style=" position: fixed; right: 50px" id="navbars">
+                <div class="collapse navbar-collapse justify-content-end" style=" padding: 16px 16px; position: fixed; right: 50px" id="navbars">
                     <ul class="navbar-nav ml-auto pl-lg-5 pl-0">
                         <li class="nav-item">
                             <a class="nav-link" href="/medicalSearch">예약하기</a>
