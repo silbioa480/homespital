@@ -179,61 +179,62 @@ public class PaymentServiceImpl implements PaymentService {
         JSONObject result = null;
         Integer merchant_uid_int = null;
         try {
-            merchant_uid_int = cardDAO.getLastPaymentReceiptNo();
-            if (merchant_uid_int == null) merchant_uid_int = 0;
-            merchant_uid_int += 1;
-            String merchant_uid = "RECEIPT" + String.format("%08d", merchant_uid_int);
-            System.out.println(merchant_uid);
+            if (amount > 0) {
+                merchant_uid_int = cardDAO.getLastPaymentReceiptNo();
+                if (merchant_uid_int == null) merchant_uid_int = 0;
+                merchant_uid_int += 1;
+                String merchant_uid = "RECEIPT" + String.format("%08d", merchant_uid_int);
+                System.out.println(merchant_uid);
 
-            URL url = new URL("https://api.iamport.kr/subscribe/payments/again");
-            conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("POST");
+                URL url = new URL("https://api.iamport.kr/subscribe/payments/again");
+                conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("POST");
 //            conn.setRequestProperty("Accept", "application/json");
-            conn.setRequestProperty("Content-Type", "application/json");
-            conn.setRequestProperty("Authorization", authToken);
-            conn.setDoInput(true);
-            conn.setDoOutput(true); //OutputStream을 사용해서 카드정보 데이터 전송
-            JSONObject data = new JSONObject();
-            data.put("customer_uid", customer_uid);
-            data.put("merchant_uid", merchant_uid);
-            data.put("amount", amount);
-            data.put("name", name);
-            System.out.println("PREPARED");
-            try (OutputStream os = conn.getOutputStream()) {
-                byte request_data[] = data.toString().getBytes("utf-8");
-                os.write(request_data);
-            } catch (Exception e) {
-                throw new Exception();
-            }
-
-            int code = conn.getResponseCode();
-            System.out.println(code);
-            if (code == 401) throw new Exception("REQUEST TOKEN NOT VALID");
-
-            try { // 결제 요청 데이터를 받아옴
-                StringBuilder sb = new StringBuilder();
-                BufferedReader br = new BufferedReader(
-                        new InputStreamReader(
-                                conn.getInputStream(), "utf-8"));
-                String s = null;
-                while ((s = br.readLine()) != null) {
-                    sb.append(s);
+                conn.setRequestProperty("Content-Type", "application/json");
+                conn.setRequestProperty("Authorization", authToken);
+                conn.setDoInput(true);
+                conn.setDoOutput(true); //OutputStream을 사용해서 카드정보 데이터 전송
+                JSONObject data = new JSONObject();
+                data.put("customer_uid", customer_uid);
+                data.put("merchant_uid", merchant_uid);
+                data.put("amount", amount);
+                data.put("name", name);
+                System.out.println("PREPARED");
+                try (OutputStream os = conn.getOutputStream()) {
+                    byte request_data[] = data.toString().getBytes("utf-8");
+                    os.write(request_data);
+                } catch (Exception e) {
+                    throw new Exception();
                 }
-                br.close();
-                result = new JSONObject(sb.toString());
-                JSONObject resp = result.getJSONObject("response");
-                Payment receipt = new Payment(merchant_uid_int, customer_uid, user_number, amount, resp.getString("status"));
-                cardDAO.issueReceipt(receipt);
-                if (resp.getString("status").equals("paid"))
-                    cardDAO.changeDiagBKUsed(diagnosis_number);
-                else throw new Exception("결제 실패");
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            if (result.getInt("code") != 0)
-                throw new Exception("code " + result.getInt("code") + ": " + result.getString("message"));
+                int code = conn.getResponseCode();
+                System.out.println(code);
+                if (code == 401) throw new Exception("REQUEST TOKEN NOT VALID");
 
+                try { // 결제 요청 데이터를 받아옴
+                    StringBuilder sb = new StringBuilder();
+                    BufferedReader br = new BufferedReader(
+                            new InputStreamReader(
+                                    conn.getInputStream(), "utf-8"));
+                    String s = null;
+                    while ((s = br.readLine()) != null) {
+                        sb.append(s);
+                    }
+                    br.close();
+                    result = new JSONObject(sb.toString());
+                    JSONObject resp = result.getJSONObject("response");
+                    Payment receipt = new Payment(merchant_uid_int, customer_uid, user_number, amount, resp.getString("status"));
+                    cardDAO.issueReceipt(receipt);
+                    if (resp.getString("status").equals("paid"))
+                        cardDAO.changeDiagBKUsed(diagnosis_number);
+                    else throw new Exception("결제 실패");
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                if (result.getInt("code") != 0)
+                    throw new Exception("code " + result.getInt("code") + ": " + result.getString("message"));
+            } else cardDAO.changeDiagBKUsed(diagnosis_number);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

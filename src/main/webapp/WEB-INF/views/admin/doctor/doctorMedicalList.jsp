@@ -55,6 +55,7 @@
 
 
         console.log("ready");
+
         $.ajax({
             url: '/doctor/docMedicalRecords',
             type: 'GET',
@@ -68,9 +69,34 @@
                 next_load(list);
             },
             error: function () {
-                console.log("Error");
+
             }
         })
+
+        //10초마다 새로운 예약이 들어오면 데이터 갱신 태영
+        setInterval(function() {
+            $.ajax({
+                url: '/doctor/docMedicalRecords',
+                type: 'GET',
+                datatype: "json",
+                data: {
+                    "doctor_number": ${doctor.doctor_number}
+                },
+                success: function (data) {
+                    console.log(list);
+                    console.log(data);
+                    if (list.toString() != data.toString()) {
+                        alert("새로운 예약이 있습니다. 확인하세요");
+                        list = data;
+                        window.location.reload();
+                    }
+                },
+                error: function () {
+
+                }
+            })
+        }, 10000);
+
 
         function next_load(list) {
             list.sort((a, b) => {
@@ -173,15 +199,28 @@
                     }
 
                     // 나의 진료 내역 테이블 생성 (리눅스 서버에 올릴때 진단영수증 파일경로 바꿔줘야함)
-                    $("#docMedicalList").append("<tr><td><a href='/doctor/customerDetail/" + item.diagnosis_number + "'>" + date + " (" + dayOfWeek + ") " + item.diagnosis_time + ":00</a></td>" +
-                        "<td><a href='/doctor/customerDetail/" + item.diagnosis_number + "'>" + item.user_name + "</a></td>" +
-                        "<td>" + gender + "</td>" +
-                        "<td>" + birth + "</td>" +
-                        "<td>" + receipt + "</td>" +
-                        "<td>" + prescription + "</td>" +
-                        "<td>" + complete + "</td>" +
-                        "<td><a href='/doctor/customerDetail/" + item.diagnosis_number + "'><span class='material-icons'>search</span></a>" + "</td></tr><br>);"
-                    )
+                    // 진료시작이거나 진료중일때  / 진료완료상태일때 색깔 적용 태영
+                    if(item.diagnosis_status == 0 || item.diagnosis_status == 1){
+                        $("#docMedicalList").append("<tr><td style='background-color:#00B6EE'><a href='/doctor/customerDetail/" + item.diagnosis_number + "'>" + date + " (" + dayOfWeek + ") " + item.diagnosis_time + ":00</a></td>" +
+                            "<td><a href='/doctor/customerDetail/" + item.diagnosis_number + "'>" + item.user_name + "</a></td>" +
+                            "<td>" + gender + "</td>" +
+                            "<td>" + birth + "</td>" +
+                            "<td>" + receipt + "</td>" +
+                            "<td>" + prescription + "</td>" +
+                            "<td>" + complete + "</td>" +
+                            "<td><a href='/doctor/customerDetail/" + item.diagnosis_number + "'><span class='material-icons'>search</span></a>" + "</td></tr><br>);"
+                        )
+                    }else if(item.diagnosis_status >=3 && item.diagnosis_status <=7){
+                        $("#docMedicalList").append("<tr><td style='background-color:#cccccc'><a href='/doctor/customerDetail/" + item.diagnosis_number + "'>" + date + " (" + dayOfWeek + ") " + item.diagnosis_time + ":00</a></td>" +
+                            "<td><a href='/doctor/customerDetail/" + item.diagnosis_number + "'>" + item.user_name + "</a></td>" +
+                            "<td>" + gender + "</td>" +
+                            "<td>" + birth + "</td>" +
+                            "<td>" + receipt + "</td>" +
+                            "<td>" + prescription + "</td>" +
+                            "<td>" + complete + "</td>" +
+                            "<td><a href='/doctor/customerDetail/" + item.diagnosis_number + "'><span class='material-icons'>search</span></a>" + "</td></tr><br>);"
+                        )
+                    }
                     ;
                 }
             })

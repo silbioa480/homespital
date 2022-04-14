@@ -27,10 +27,6 @@
     <%--    <link rel="stylesheet" href="/resources/css/main.css" />--%>
     <%--    <noscript><link rel="stylesheet" href="/resources/css/main2.css" /></noscript>--%>
     <style>
-        #headertitle:link, #headertitle:visited, #headertitle:hover, #headertitle:active {
-            color: black;
-        }
-
         @font-face {
             font-family: 'Yeongdo-Rg';
             src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/Yeongdo-Rg.woff') format('woff');
@@ -56,7 +52,7 @@
 <%--<div class="container px-4 px-lg-5 mt-5" style="max-width: 1200px;">--%>
 <tiles:insertAttribute name="body"/>
 <%--</div>--%>
-<tiles:insertAttribute name="footer"/>
+<tiles:insertAttribute name="U_footer"/>
 
 
 <%--<script src="/resources/js/login/login.js"></script>--%>
