@@ -681,3 +681,8 @@ ul.icons a {
 .image.main img {
     border-radius: 0;
 }
+
+/*약국방문버튼 배송받기 버튼 색깔 변경 태영*/
+.rounded-pill{
+    background-color:#33CC99;
+}
