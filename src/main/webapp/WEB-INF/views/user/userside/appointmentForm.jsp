@@ -329,7 +329,7 @@
         </section>
 
         <div class="appoint-out">
-            <label for="appointDo" class="appointBtn" onClick="notify()">예약하기</label>
+            <label for="appointDo" class="appointBtn">예약하기</label>
             <input type="submit" id="appointDo" class="appointDo" style="display: none"/>
         </div>
     </form>
@@ -833,34 +833,47 @@
 
 </script>
 
-<script>
-    function notify() {
-        // Let's check if the browser supports notifications
-        if (!("Notification" in window)) {
-            alert("This browser does not support desktop notification");
-        }
+<%--<script>--%>
+<%--    function notify() {--%>
+<%--        $.ajax({--%>
+<%--            url:"sendNotify",--%>
+<%--            type:"POST",--%>
+<%--            data:{--%>
+<%--                "sendNoti":sendPush()--%>
+<%--            },--%>
+<%--            success:function(data,result){--%>
+<%--                console.log(data);--%>
+<%--                console.log(result);--%>
+<%--            }--%>
+<%--        })--%>
+<%--    }--%>
 
-        // Let's check whether notification permissions have already been granted
-        else if (Notification.permission === "granted") {
-            // If it's okay let's create a notification
-            var notification = new Notification("Hi there!");
-        }
+<%--    function sendPush(){--%>
+<%--        // Let's check if the browser supports notifications--%>
+<%--        if (!("Notification" in window)) {--%>
+<%--            alert("This browser does not support desktop notification");--%>
+<%--        }--%>
 
-        // Otherwise, we need to ask the user for permission
-        else if (Notification.permission !== 'denied') {
-            Notification.requestPermission(function (permission) {
-                // If the user accepts, let's create a notification
-                if (permission === "granted") {
-                    var notification = new Notification("Hi there!");
-                }
-            });
-        }
+<%--        // Let's check whether notification permissions have already been granted--%>
+<%--        else if (Notification.permission === "granted") {--%>
+<%--            // If it's okay let's create a notification--%>
+<%--            var notification = new Notification("Hi there!");--%>
+<%--        }--%>
 
-        // At last, if the user has denied notifications, and you
-        // want to be respectful there is no need to bother them any more.
-    }
+<%--        // Otherwise, we need to ask the user for permission--%>
+<%--        else if (Notification.permission !== 'denied') {--%>
+<%--            Notification.requestPermission(function (permission) {--%>
+<%--                // If the user accepts, let's create a notification--%>
+<%--                if (permission === "granted") {--%>
+<%--                    var notification = new Notification("Hi there!");--%>
+<%--                }--%>
+<%--            });--%>
+<%--        }--%>
 
-</script>
+<%--        // At last, if the user has denied notifications, and you--%>
+<%--        // want to be respectful there is no need to bother them any more.--%>
+<%--    }--%>
+<%--</script>--%>
 
 </body>
 </html>
