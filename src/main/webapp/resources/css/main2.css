@@ -6,6 +6,7 @@
 
 /* Loader */
 
-	body:before, body:after {
-		display: none;
-	}
+
+body:before, body:after {
+	display: none;
+}
