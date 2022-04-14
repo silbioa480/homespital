@@ -182,13 +182,18 @@
 
     // 처방접수/조제 시작
     function makeMediBtn(e) {
-        if (confirm("처방 접수하시겠습니까?") == true) {
+        var price = Number(prompt("처방을 접수하시겠습니까? 조제비용(약값)을 입력해주세요."));
+        if (isNaN(price)) {
+            alert("금액을 입력해주세요.");
+            return false;
+        } else if (confirm("처방전 금액을 " + price + "로 하고 처방을" + " 접수하시겠습니까?") == true) {
             $.ajax({
-                url: "makeMedicine",
+                url: "/pharmacy/makeMedicine",
                 type: "POST",
                 datatype: "json",
                 data: {
                     "diagnosis_number": e,
+                    "prescription_money": price,
                 },
                 success: function (data) {
                     console.log("처방 접수 성공 : " + e)

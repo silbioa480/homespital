@@ -69,8 +69,11 @@ public class PharServiceImpl implements PharService {
 
     //  처방접수 및 조제시작(diagnosis_status 3 -> 4) 준근
     @Override
-    public void makeMedicine(int diagnosis_number) throws Exception {
-        pharmacyDAO.makeMedicine(diagnosis_number);
+    public void makeMedicine(int diagnosis_number, int prescription_money) throws Exception {
+        Map<String, Object> param = new HashMap<>();
+        param.put("diagnosis_number", diagnosis_number);
+        param.put("prescription_money", prescription_money);
+        pharmacyDAO.makeMedicine(param);
     }
 
     //  조제 완료(diagnosis_status 4 -> 5) 준근
