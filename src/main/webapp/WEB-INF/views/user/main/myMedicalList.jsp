@@ -5,63 +5,25 @@
 <head>
     <title>나의 진료 내역</title>
 
-    <link rel="stylesheet" href="/resources/css/myMedicalList.css"/>
-    <!-- 합쳐지고 최소화된 최신 CSS -->
-    <%--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">--%>
-
-    <%--    <!-- 부가적인 테마 -->--%>
-    <%--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">--%>
-
-    <%--    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->--%>
-    <%--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>--%>
-
+    <link rel="stylesheet" href="/resources/css/pharCustomerDetail.css"/>
     <%-- 구글 아이콘 CDN링크 --%>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <style>
-        .material-icons {
-            /*font-size: 36px;*/
-            font-size: 1.5rem;
-        }
 
-        .list-header {
-            /*background-color: blue;*/
-            height: 200px;
-        }
-
-        th, td, tbody {
-            text-align: center;
-
-        }
-
-        p {
-            /*font-size: 30px;*/
-            font-size: 1rem;
-            padding: 10px;
-        }
-
-        .table {
-            height: 500px;
-            overflow: auto;
-        }
-
-
-    </style>
 </head>
 <body>
 <div class="container">
-    <div class="col">
-        <div class="list-header bg-info text-right">
+    <div class="col mt-3">
+        <div class="list-header text-center" id="userBanner">
             <h1 id="logo">Homespital</h1>
-
         </div>
 
-        <p class="text-right">마이페이지 > 나의진료내역</p>
+        <p class="text-end fs-4">마이페이지 > 나의진료내역</p>
 
-        <div class="card">
+        <div class="card p-3">
             <div class="card-body p-4">
                 <div class="text-center table-responsive">
-                    <table class="table fs-6 fst-normal">
+                    <table class="table">
                         <thead>
                         <tr>
                             <th>날짜/시간</th>
@@ -118,7 +80,7 @@
                     //진료완료, 진료중 표시 및 대기/예약취소하기 버튼
                     let complete = "";
                     if (item.diagnosis_status == 0) {
-                        complete = "<button type='button' id='cancelBtn' class='btn btn-danger btn-sm' onclick='cancelBtn(" + item.diagnosis_number + ");'>대기/예약취소</button>";
+                        complete = "<button type='button' id='cancelBtn' class='btn btn-sm h-75' onclick='cancelBtn(" + item.diagnosis_number + ");'>대기/예약취소</button>";
                     } else if (item.diagnosis_status == 1) {
                         complete = "진료중";
                     } else if (item.diagnosis_status == 2) {
@@ -128,7 +90,7 @@
                     } else if (item.diagnosis_status == 4) {
                         complete = "조제중";
                     } else if (item.diagnosis_status == 5) {
-                        complete = "<button type='button' id='successBtn' class='btn btn-info btn-sm' onclick='successBtn(" + item.diagnosis_number + ");'>약 수령 확정</button>";
+                        complete = "<button type='button' id='successBtn' class='btn btn-sm h-75' onclick='successBtn(" + item.diagnosis_number + ");'>약 수령 확정</button>";
                     } else if (item.diagnosis_status == 6) {
                         complete = "종료";
                     } else if (item.diagnosis_status == 7) {
