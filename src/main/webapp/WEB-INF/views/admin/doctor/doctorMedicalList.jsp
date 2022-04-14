@@ -92,6 +92,7 @@
 
 
         console.log("ready");
+
         $.ajax({
             url: '/doctor/docMedicalRecords',
             type: 'GET',
@@ -105,9 +106,34 @@
                 next_load(list);
             },
             error: function () {
-                console.log("Error");
+
             }
         })
+
+        //10초마다 새로운 예약이 들어오면 데이터 갱신 태영
+        setInterval(function() {
+            $.ajax({
+                url: '/doctor/docMedicalRecords',
+                type: 'GET',
+                datatype: "json",
+                data: {
+                    "doctor_number": ${doctor.doctor_number}
+                },
+                success: function (data) {
+                    console.log(list);
+                    console.log(data);
+                    if (list.toString() != data.toString()) {
+                        alert("새로운 예약이 있습니다. 확인하세요");
+                        list = data;
+                        window.location.reload();
+                    }
+                },
+                error: function () {
+
+                }
+            })
+        }, 10000);
+
 
         function next_load(list) {
             list.sort((a, b) => {
