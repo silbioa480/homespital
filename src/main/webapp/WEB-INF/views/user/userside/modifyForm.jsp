@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="/resources/css/sidebar.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css"/>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/signUp.css"/>
+    <link rel="stylesheet" href="/resources/css/signUp.css"/>
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <%--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>--%>
     <%--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"/>--%>
@@ -36,9 +36,9 @@
 <body>
 <section id="sidebar">
     <div class="d-flex flex-column align-items-center">
-        <%--        <span class="image avatar"><img src="/resources/img/doctorList/doctor01.jpg" alt=""/></span>--%>
-        <h1 id="logo"><a href="/">Homespital</a></h1>
-        <p>${name}님 안녕하세요.</p>
+        <div style="height: 30px;"></div>
+        <span class="image avatar"><a href="/"><img src="/resources/img/design/logo_U_sideNav.png" alt=""/></a></span>
+        <p class="userName">${user.user_name}님 안녕하세요.</p>
         <p class="py-5"><strong>마이 페이지 > 내 정보 수정</strong></p>
     </div>
     <nav>
@@ -64,8 +64,8 @@
 
         <!-- Main -->
         <div id="main">
-            <form id="form" style="margin-left: 100px" name="form" action="/modifyMember.do" method="post">
-                <input type="hidden" id="user_email" name="user_email" value="${email}">
+            <form id="form" style="margin-left: 100px" action="/modifyMember.do" method="post">
+                <input type="hidden" id="user_email" name="user_email" value="${user.user_email}">
                 <!-- One -->
                 <section id="one">
                     <div class="container" style="margin-top: 150px">
@@ -73,21 +73,21 @@
                         <hr>
                         <div class="input-control">
                             <label for="email">이메일</label>
-                            <input class="modi-input" style="width: 100%" type="text" id="email" name="id"
-                                   value="${email}" readonly="readonly">
+                            <input class="modi-input" style="width: 100%" type="text" id="email" name="email"
+                                   value="${user.user_email}" readonly="readonly">
                         </div>
 
                         <div class="input-control">
                             <label for="password">새 비밀번호</label>
                             <input type="password" style="width: 100%" id="password" name="password"
                                    placeholder="비밀번호를 입력해주세요" value="" minlength="4" maxlength="12" size="15"
-                                   pattern="[a-zA-Z0-9]{4,12}" title="4~12자의 영문 대소문자와 숫자로만 입력.">
+                            >
                             <div class="error"></div>
                         </div>
                         <div class="input-control">
                             <label for="password2">새 비밀번호 확인</label>
                             <input type="password" style="width: 100%" id="password2" name="password2"
-                                   placeholder="비밀번호를 입력해주세요" onkeyup="check_pw()" value="" maxlength="12" size="15">
+                                   placeholder="비밀번호를 입력해주세요" value="" maxlength="12" size="15">
                             <span id="pw_check_msg" style="color: #1abc9c"></span>
                             <div class="error"></div>
                         </div>
@@ -95,7 +95,7 @@
                         <div class="input-control">
                             <label for="name">이름</label>
                             <input class="modi-input" style="width: 100%" type="text" id="name" name="name"
-                                   value="${name}" readonly="readonly">
+                                   value="${user.user_name}" readonly="readonly">
                         </div>
 
                         <div class="input-control">
@@ -103,7 +103,7 @@
 
                             <div id="SocialSecurityNumber" name="SocialSecurityNumber" style="display:flex">
                                 <input class="modi-input" style="width: 100%" type="text"
-                                       value="${registration_number}" readonly="readonly">
+                                       value="${user.user_registration_number}" readonly="readonly">
 
                             </div>
                         </div>
@@ -111,7 +111,7 @@
                             <label for="phone">휴대폰 번호</label>
                             <div style="display:flex">
                                 <input class="modi-input" style="width:100%" id="originphone" type="text" name="phone"
-                                       value="${user_phone}" readonly="readonly"/>
+                                       value="${user.user_phone}" readonly="readonly"/>
                                 <input type="button" id="phoneBtn" class="doubleChk" value="휴대폰번호변경">
                             </div>
 
@@ -127,25 +127,38 @@
                                         <div class="modal-body">
                                             <div class="input-control">
                                                 <div style="display:flex">
-                                                    <input style="width: 100%" id="phone" type="text" name="phone"
-                                                           placeholder="휴대폰번호를 입력해주세요" title="전화번호 입력"/>
-                                                    <input type="button" id="phoneChk" class="doubleChk"
+                                                    <input style="width: 250px; font-size:10px" id="phone" type="text"
+                                                           name="phone"
+                                                           placeholder="휴대폰번호를 입력해 주세요." title="전화번호 입력"/>
+                                                    <input style="width:185px" type="button" id="phoneChk"
+                                                           class="doubleChk"
                                                            value="인증번호 받기">
 
                                                 </div>
                                                 <div class="error"></div>
                                             </div>
-                                            <div class="modal-footer">
-                                                <a class="btn" id="modalY2" onclick="getParentText()">수정</a>
-                                                <button class="btn" type="button" data-bs-dismiss="modal">취소</button>
+                                            <div class="input-control">
+                                                <div style="display:flex">
+                                                    <input style="width: 250px;font-size:10px" id="phone2" type="text"
+                                                           name="phone2"
+                                                           placeholder="인증번호를 입력해 주세요."
+                                                           title="인증번호 입력" disabled/>
+                                                    <input style="width: 185px" type="button" id="phoneChk2"
+                                                           class="doubleChk" value="본인인증">
+                                                </div>
+                                                <div class="modal-footer" style="width:470px;">
+                                                    <button class="phonemodibtn btn" id="modalY2"
+                                                            disabled>수정
+                                                    </button>
+                                                    <button class="btn" type="button" data-bs-dismiss="modal">취소
+                                                    </button>
+                                                </div>
+                                                <div class="error" style="width:300px"></div>
                                             </div>
 
+
                                         </div>
-                                        <div class="modal-footer">
-                                            <a class="btn" id="modalY2" href="/modifyForm"
-                                               onclick="getParentText()">수정</a>
-                                            <button class="btn" type="button" data-bs-dismiss="modal">취소</button>
-                                        </div>
+
                                     </div>
                                     <%--가영: 여기까지 휴대폰 번호변경 인증번호 모달창 시작--%>
                                     <div class="error"></div>
@@ -322,7 +335,8 @@
                     <h5> * 본인명의 카드만 등록 가능 합니다.</h5>
                     <br><br>
                     <div class="d-flex">
-                        <input type="submit" value="수정" style="width: 80%; margin-left:20px; margin-right: 20px;"/>
+                        <input type="button" value="수정" style="width: 80%; margin-left:20px; margin-right: 20px;"
+                               onclick="checkAll()"/>
                         <a class="btn" id="deleteMem" href="/delete" style="margin-right: 0px">회원탈퇴</a>
                     </div>
                 </section>
@@ -353,9 +367,7 @@
 <script src="/resources/js/signUp/breakpoints.min.js"></script>
 <script src="/resources/js/signUp/util.js"></script>
 <script src="/resources/js/signUp/signUp.js"></script>
-<script src="/resources/js/signUp/signUpCheck.js"></script>
-
-<script src="/resources/js/signUp/signUpCheck.js"></script>
+<script src="/resources/js/signUp/modifyForm.js"></script>
 
 <script type="text/javascript">
     $('#pwBtn').click(function (e) {
@@ -383,11 +395,12 @@
         $('#addCardModal').modal("hide");
     });
 
+
     //가영: 휴대폰인증 후 부모창으로 데이터전송하는 함수
-    function getParentText() {
-        $('#phoneModal').modal("hide");
-        document.getElementById("originphone").value = document.getElementById("phone").value
-    }
+    // function getParentText() {
+    //     $('#phoneModal').modal("hide");
+    //     document.getElementById("originphone").value = document.getElementById("phone").value
+    // }
 
     //새로운 비밀번호 입력시 정규성검사(아래에 에러메세지 뜸)
     function check_pw() {
@@ -538,6 +551,8 @@
         })
         return false;
     }
+
+
 </script>
 
 

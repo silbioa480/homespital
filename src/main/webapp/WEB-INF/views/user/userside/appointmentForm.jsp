@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/writeMediChartForm.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/sidebar.css">
-    <%--    <script src="http://code.jquery.com/jquery-latest.min.js"></script>--%>
+    <%--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>--%>
     <%--    <script src="${pageContext.request.contextPath}/resources/js/signUp/jquery.scrollex.min.js"></script>--%>
     <%--    <script src="${pageContext.request.contextPath}/resources/js/signUp/jquery.scrolly.min.js"></script>--%>
     <%--    <script src="${pageContext.request.contextPath}/resources/js/signUp/browser.min.js"></script>--%>
@@ -18,12 +18,14 @@
 
 </head>
 <body>
+
 <%--side-nav 시작 by 소연 4/8--%>
 <section id="sidebar">
+    <div style="height:50px;"></div>
     <div class="d-flex flex-column align-items-center">
-        <%--        <span class="image avatar"><img src="/resources/img/doctorList/doctor01.jpg" alt=""/></span>--%>
-        <h1 id="logo"><a href="/">Homespital</a></h1>
-        <p>${name}님 안녕하세요.</p>
+        <span class="image avatar"><a href="/"><img src="/resources/img/design/logo_U_sideNav.png" alt=""/></a></span>
+
+
         <p class="py-5"><strong>비대면 진료 예약하기</strong></p>
     </div>
     <nav>
@@ -360,7 +362,7 @@
 <%-- 카카오맵 관련 JS --%>
 <script type="text/javascript"
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a69fc7ca725d20c3e61c5b6bb3d32242&libraries=services"></script>
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
     //test(준근)
     let tcArr = JSON.parse(`${timeCount}`);
@@ -372,9 +374,9 @@
         let msg = tcArr[i].diagnosis_wait_number + "/10";
         $('#' + i).attr('title', msg)
     }
-
-    var
-        markers = [];
+</script>
+<script>
+    var markers = [];
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         mapOption = {
             center: new kakao.maps.LatLng(37.529521, 126.964540), // 지도의 중심좌표
@@ -834,33 +836,32 @@
 </script>
 
 <script>
-        function notify(){
-            // Let's check if the browser supports notifications
-            if (!("Notification" in window)) {
-                alert("This browser does not support desktop notification");
-            }
-
-            // Let's check whether notification permissions have already been granted
-            else if (Notification.permission === "granted") {
-                // If it's okay let's create a notification
-                var notification = new Notification("Hi there!");
-            }
-
-            // Otherwise, we need to ask the user for permission
-            else if (Notification.permission !== 'denied') {
-                Notification.requestPermission(function (permission) {
-                    // If the user accepts, let's create a notification
-                    if (permission === "granted") {
-                        var notification = new Notification("Hi there!");
-                    }
-                });
-            }
-
-            // At last, if the user has denied notifications, and you
-            // want to be respectful there is no need to bother them any more.
+    function notify() {
+        // Let's check if the browser supports notifications
+        if (!("Notification" in window)) {
+            alert("This browser does not support desktop notification");
         }
 
-</script>
+        // Let's check whether notification permissions have already been granted
+        else if (Notification.permission === "granted") {
+            // If it's okay let's create a notification
+            var notification = new Notification("Hi there!");
+        }
 
+        // Otherwise, we need to ask the user for permission
+        else if (Notification.permission !== 'denied') {
+            Notification.requestPermission(function (permission) {
+                // If the user accepts, let's create a notification
+                if (permission === "granted") {
+                    var notification = new Notification("Hi there!");
+                }
+            });
+        }
+
+        // At last, if the user has denied notifications, and you
+        // want to be respectful there is no need to bother them any more.
+    }
+
+</script>
 </body>
 </html>
