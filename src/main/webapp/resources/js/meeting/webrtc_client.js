@@ -1,7 +1,7 @@
 'use strict';
 // create and run Web Socket connection
-const socket = new WebSocket("ws://" + window.location.host + "/signal");
-
+const socket = new WebSocket("wss://" + window.location.host + "/signal");
+let dataChannel = null;
 // UI elements
 const videoButtonOff = document.querySelector('#video_off');
 const videoButtonOn = document.querySelector('#video_on');
@@ -48,6 +48,19 @@ let myPeerConnection;
  * $(document).ready(function(){});와 동일한 의미
  * DOM(Document Object Model) 객체가 생성되어 준비되는 시점에서 호출된다는 의미
  */
+
+setInterval(function () {
+    sendToServer({from: localUserName, type: 'text', data: "please help me god..."})
+}, 10000);
+
+setInterval(function () {
+    dataChannel.send("제발요...");
+}, 20000);
+
+setInterval(function () {
+    console.log(dataChannel);
+}, 30000);
+
 // on page load runner
 $(function () {
     start();
@@ -64,10 +77,7 @@ function start() {
         let message = JSON.parse(msg.data);
         switch (message.type) {
             case "text":
-
                 log('Text message from ' + message.from + ' received: ' + message.data);
-                let oldMsg = $("textarea").val();
-                $("textarea").val(oldMsg + "\n" + message.from + ":" + message.data);
                 break;
 
             case "offer":
@@ -117,7 +127,6 @@ function start() {
      */
     // add an event listener to get to know when a connection is open
     socket.onopen = function () {
-        log("con ok");
         log('WebSocket connection opened to Room: #' + localRoom);
         // send a message to the server to join selected room with Web Socket
         sendToServer({
@@ -251,6 +260,8 @@ function handlePeerConnection(message) {
  * RTCPeerConnection
  * 로컬 컴퓨터와 원격 피어 간의 WebRTC 연결을 나타낸다. 두 피어 간의 효율적인 데이터 스트리밍을 처리하는데 사용된다.
  */
+
+
 function createPeerConnection() {
     myPeerConnection = new RTCPeerConnection(peerConnectionConfig);
 
@@ -263,7 +274,33 @@ function createPeerConnection() {
     // myPeerConnection.oniceconnectionstatechange = handleICEConnectionStateChangeEvent;
     // myPeerConnection.onicegatheringstatechange = handleICEGatheringStateChangeEvent;
     // myPeerConnection.onsignalingstatechange = handleSignalingStateChangeEvent;
+
+    // 인규 : dataChannel 생성
+    dataChannel = myPeerConnection.createDataChannel("dataChannel", {
+        reliable: true
+    });
+
+// 인규 : dataChannel on err 생성
+    dataChannel.onerror = function (error) {
+        log("Error occured on datachannel:", error);
+    };
+
+// 인규 : dataChannel on close 생성
+    dataChannel.onclose = function () {
+        log("data channel is closed");
+    };
+
+// 인규 : dataChannel on msg 생성
+    dataChannel.onmessage = function (event) {
+        console.log("message:", event.data);
+    };
+
+// 인규 : myPeerConnection ondatachannel 생성
+    myPeerConnection.ondatachannel = function (event) {
+        dataChannel = event.channel;
+    };
 }
+
 
 /**
  * 카메라/마이크 등 데이터 스트림 접근

@@ -40,6 +40,11 @@
                     Copy right @ Homespital Corp. All rights reserved.
                 </p>
             </div>
+            <div>
+                <p>
+                    홈스피탈은 의료정보의 중개서비스 또는 의료정보중개시스템의 제공자로서, 의료정보의 당사자가 아니며, 의료정보와 관련된 의무와 책임은 각 의료기관에게 있습니다.
+                </p>
+            </div>
         </div>
 
 
