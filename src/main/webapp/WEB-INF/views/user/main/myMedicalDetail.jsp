@@ -16,7 +16,7 @@
 <div class="container" style="margin-top:70.63px;">
     <%--헤드라인--%>
     <div style="height: 100px;"></div>
-    <div class="circle myMediList"><h2><strong>나의 진료 내역 보기</strong></h2></div>
+        <div class="myMediList"><h2><strong>나의 진료 내역 보기</strong><span class="circle3"></span></h2></div>
     <%--진료 예약 내역 - 소제목--%>
     <div><h4><strong>진료 예약 내역</strong></h4></div>
     <%--doctor detail 넣고--%>
