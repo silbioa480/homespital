@@ -10,11 +10,16 @@
     <title>홈스피탈</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/navbar.css"/>
     <style>
-        a > i,
-        a:link,
-        a:visited,
-        a:hover,
-        a:active {
+        .navbar > div > div *,
+        .navbar > div > div *:link,
+        .navbar > div > div *:visited,
+        .navbar > div > div *:hover,
+        .navbar > div > div *:active {
+            /*a > i,*/
+            /*a:link,*/
+            /*a:visited,*/
+            /*a:hover,*/
+            /*a:active {*/
             color: #111;
             text-decoration: none;
         }
@@ -31,25 +36,27 @@
         <div class="">
             <div class="d-flex w-100">
                 <a class="navbar-brand justify-content-start" href="/" style="font-family: 'Y_Spotlight'">
-<%--                    <i class="fa fa-medkit" aria-hidden="true"></i>--%>
-                    <img id="logo" style="width: 120px; height: 100%; margin-left: 15px; text-decoration-line: none" alt="" src="/resources/img/design/main_base_nav.png"/>
+                    <%--                    <i class="fa fa-medkit" aria-hidden="true"></i>--%>
+                    <img id="logo" style="width: 120px; height: 100%; margin-left: 15px; text-decoration-line: none"
+                         alt="" src="/resources/img/design/main_base_nav.png"/>
                 </a>
-<%--    <a class="logo" href="/">--%>
-<%--        <link class="icon icon-bi" rel="icon" href="/resources/img/design/main_base_nav.ico/">--%>
+                <%--    <a class="logo" href="/">--%>
+                <%--        <link class="icon icon-bi" rel="icon" href="/resources/img/design/main_base_nav.ico/">--%>
 
-<%--        <link class="icon icon-bi trans" rel="icon" href="/resources/img/design/main_base_nav.ico/" color="#339966">--%>
+                <%--        <link class="icon icon-bi trans" rel="icon" href="/resources/img/design/main_base_nav.ico/" color="#339966">--%>
 
 
-<%--    </a>--%>
+                <%--    </a>--%>
 
 
                 <button class="navbar-toggler border-dark " type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbars" aria-controls="navbars" aria-expanded="false"
-                        aria-label="Toggle navigation" >
+                        aria-label="Toggle navigation">
                     <span class="fa fa-bars" style="color: black"></span>
                 </button>
 
-                <div class="collapse navbar-collapse justify-content-end" style=" padding: 16px 16px; position: fixed; right: 50px" id="navbars">
+                <div class="collapse navbar-collapse justify-content-end"
+                     style=" padding: 16px 16px; position: fixed; right: 50px" id="navbars">
                     <ul class="navbar-nav ml-auto pl-lg-5 pl-0">
                         <li class="nav-item">
                             <a class="nav-link" href="/medicalSearch">예약하기</a>
@@ -94,14 +101,17 @@
                     <c:if test="${empty email}">
                         <ul class="nav nav-pills">
                             <li class="nav-item dropdown">
-                                <a class="nav-link btn-warning dropdown-toggle" style="background-color:#2A2D42; color: #d4d4d4" data-bs-toggle="dropdown"
+                                <a class="nav-link btn-warning dropdown-toggle"
+                                   style="background-color:#2A2D42; color: #d4d4d4" data-bs-toggle="dropdown"
                                    href="#" role="button"
                                    aria-haspopup="true" aria-expanded="false">의료 관계자 페이지</a>
                                 <div class="dropdown-menu" style="width: 100%">
 
-                                    <a class="dropdown-item" id="dropdown-item1" style="width: 100%" href="/doctor/">의사 페이지</a>
+                                    <a class="dropdown-item" id="dropdown-item1" style="width: 100%" href="/doctor/">의사
+                                        페이지</a>
 
-                                    <a class="dropdown-item"  id="dropdown-item2" style="width: 100%" href="/pharmacy/">약국 페이지</a>
+                                    <a class="dropdown-item" id="dropdown-item2" style="width: 100%" href="/pharmacy/">약국
+                                        페이지</a>
                                 </div>
                             </li>
                         </ul>
