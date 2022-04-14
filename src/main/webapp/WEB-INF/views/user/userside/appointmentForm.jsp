@@ -16,6 +16,7 @@
     <%--    <script src="${pageContext.request.contextPath}/resources/js/main/commonSidebarScroll.js"></script>--%>
     <%--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>--%>
 
+
 </head>
 <body>
 
@@ -92,11 +93,12 @@
 
                                             <label class="box-radio-input" data-bs-toggle="tooltip"
                                                    data-bs-placement="top"
-                                                   id="${status.index}">
+                                                   id="tcTitle${tt}" title="0/10">
 
-                                                <input type="radio" name="diagnosis_time" value="${tt}"
-                                                       checked="checked">
-                                                <span>${tt}:00</span>
+                                                <input type="radio" class="tcRadio" id="tcRadio${tt}"
+                                                       name="diagnosis_time" value="${tt}"
+                                                >
+                                                <span id="tcSpan${tt}">${tt}:00</span>
 
                                             </label>
 
@@ -364,17 +366,45 @@
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a69fc7ca725d20c3e61c5b6bb3d32242&libraries=services"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
+    <%--
+    <td id="workBtn">
+        <c:forEach var="tt" items="${real_work_timeList}" varStatus="status">
+            <label class="box-radio-input" data-bs-toggle="tooltip" data-bs-placement="top" id="tcTitle${tt}" title="0/10">
+            <input type="radio" class="tcRadio" id="tcRadio${tt}" name="diagnosis_time" value="${tt}" checked="checked">
+            <span>${tt}:00</span>
+            </label>
+        </c:forEach>
+    </td>
+    --%>
 
-    //test(준근)
+    //test(준근) 타임카운트
+    console.log('리얼타임');
+
     let tcArr = JSON.parse(`${timeCount}`);
-
-
-    console.log(tcArr);
     console.log(tcArr);
     for (let i in tcArr) {
-        let msg = tcArr[i].diagnosis_wait_number + "/10";
-        $('#' + i).attr('title', msg)
+        let msg = "예약만료"
+        if (tcArr[i].diagnosis_wait_number < 10) {
+            msg = tcArr[i].diagnosis_wait_number + "/10";
+        } else {
+            $('#tcRadio' + tcArr[i].diagnosis_time).attr('disabled', true);
+            $('#tcSpan' + tcArr[i].diagnosis_time).attr("style", 'background-color:gray;');
+
+        }
+        $('#tcTitle' + tcArr[i].diagnosis_time).attr('title', msg);
     }
+    let rtArr = JSON.parse(`${real_work_timeList}`);
+    let hours = new Date().getHours();
+    for (let realTime of rtArr) {
+        if (hours >= realTime) {
+            let msg = "선택할 수 없는 시간입니다."
+            $('#tcRadio' + realTime).attr('disabled', true);
+            $('#tcSpan' + realTime).attr("style", 'background-color:gray;');
+            $('#tcTitle' + realTime).attr('title', msg);
+        }
+    }
+
+
 </script>
 <script>
 
@@ -863,18 +893,6 @@
         // At last, if the user has denied notifications, and you
         // want to be respectful there is no need to bother them any more.
     }
-
-    <
-    <
-    <
-    <
-    <
-    << HEAD
-
-</script>
-=======
->>>>>>> fda07944b82859b5a97ff036b2758cc47d2886a3
-
 </script>
 </body>
 </html>
