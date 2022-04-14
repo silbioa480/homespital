@@ -54,7 +54,6 @@
             </div>
 
 
-
             <div class="card p-3">
                 <h4 class="card-title"><strong>진료 차트</strong></h4>
                 <div class="card-body" style="padding: 5px; line-height: 33px;">
@@ -70,7 +69,8 @@
                         <tr>
                             <th>진단 소견서</th>
                             <td>
-                                <textarea name="doctor_opinion" style="width: 100%; min-height: 100px; font-size: 18px;" readonly="readonly"
+                                <textarea name="doctor_opinion" style="width: 100%; min-height: 100px; font-size: 18px;"
+                                          readonly="readonly"
                                           maxlength="500">${diagnosis.doctor_opinion}</textarea>
                             </td>
                         </tr>
@@ -89,7 +89,8 @@
                         <button class="btn-sm btn-warning rounded-pill" type="button">약국으로 직접 방문
                             </c:when>
                             <c:otherwise>
-                            <button class="btn-sm btn-warning rounded-pill" id="deiliveryBtn" type="button">집까지 배송받기</button>
+                            <button class="btn-sm btn-warning rounded-pill" id="deiliveryBtn" type="button">집까지 배송받기
+                            </button>
                             </c:otherwise>
                             </c:choose>
                     </div>
@@ -189,43 +190,48 @@
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-                    //진료완료, 진료중 표시 및 대기/예약취소하기 버튼
-                    let complete = "";
-                    if ((${diagnosis.diagnosis_status}) == 3) {
-                        complete = "<button type='button' id='makeMediBtn' class='btn btn-danger btn-sm h-75' onclick='makeMediBtn(" + (${diagnosis.diagnosis_number}) + ");'>처방 접수/조제</button>";
-                    } else if ((${diagnosis.diagnosis_status}) == 4) {
-                        complete = "<button type='button' id='successMakeBtn' class='btn btn-info btn-sm h-75' onclick='successMadeBtn(" + (${diagnosis.diagnosis_number}) + ");'>조제 완료/전송</button>";
-                    } else if ((${diagnosis.diagnosis_status}) == 5) {
-                        complete = "조제완료";
-                    } else if ((${diagnosis.diagnosis_status}) == 6) {
-                        complete = "종료";
-                    }
-                    $('#diagnosis_status').html(complete);
+    //진료완료, 진료중 표시 및 대기/예약취소하기 버튼
+    let complete = "";
+    if ((${diagnosis.diagnosis_status}) == 3) {
+        complete = "<button type='button' id='makeMediBtn' class='btn btn-danger btn-sm h-75' onclick='makeMediBtn(" + (${diagnosis.diagnosis_number}) + ");'>처방 접수/조제</button>";
+    } else if ((${diagnosis.diagnosis_status}) == 4) {
+        complete = "<button type='button' id='successMakeBtn' class='btn btn-info btn-sm h-75' onclick='successMadeBtn(" + (${diagnosis.diagnosis_number}) + ");'>조제 완료/전송</button>";
+    } else if ((${diagnosis.diagnosis_status}) == 5) {
+        complete = "조제완료";
+    } else if ((${diagnosis.diagnosis_status}) == 6) {
+        complete = "종료";
+    }
+    $('#diagnosis_status').html(complete);
 
 
-                    // 처방전이 있을 때만 버튼 생성, 없으면 빈문자열
-                    let receiptFile = "";
-                    if ((${diagnosis.is_prescription_upload }) === 2) {
-                        receiptFile = "<a href='/resources/img/uploadReceipt/" + "(${diagnosis.diagnosis_file_name })" + "' download='처방전'><span class='material-icons'>file_download</span></a>"
-                    }
-                    $('#is_prescription_upload').html(receiptFile);
+    // 처방전이 있을 때만 버튼 생성, 없으면 빈문자열
+    let receiptFile = "";
+    if ((${diagnosis.is_prescription_upload }) === 2) {
+        receiptFile = "<a href='/resources/img/uploadReceipt/" + "(${diagnosis.diagnosis_file_name })" + "' download='처방전'><span class='material-icons'>file_download</span></a>"
+    }
+    $('#is_prescription_upload').html(receiptFile);
 
-                    let is_delivery = "방문";
-                    if ((${diagnosis.is_delivery }) === true) {
-                        is_delivery = "배송"
-                    }
-                    $('#is_delivery').html(is_delivery);
+    let is_delivery = "방문";
+    if ((${diagnosis.is_delivery }) === true) {
+        is_delivery = "배송"
+    }
+    $('#is_delivery').html(is_delivery);
 </script>
 <script>
     // 처방접수/조제 시작
     function makeMediBtn(e) {
-        if (confirm("처방 접수하시겠습니까?") == true) {
+        var price = Number(prompt("처방을 접수하시겠습니까? 조제비용(약값)을 입력해주세요."));
+        if (isNaN(price)) {
+            alert("금액을 입력해주세요.");
+            return false;
+        } else if (confirm("처방전 금액을 " + price + "로 하고 처방을" + " 접수하시겠습니까?") == true) {
             $.ajax({
-                url: "makeMedicine",
+                url: "/pharmacy/makeMedicine",
                 type: "POST",
                 datatype: "json",
                 data: {
                     "diagnosis_number": e,
+                    "prescription_money": price,
                 },
                 success: function (data) {
                     console.log("처방 접수 성공 : " + e)
