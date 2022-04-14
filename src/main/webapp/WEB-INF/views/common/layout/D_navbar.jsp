@@ -34,17 +34,17 @@
                 <a class="navbar-brand justify-content-start" href="/doctor/"
                    style="font-family: 'Y_Spotlight'">
                     <%--                    <i class="fa fa-medkit" aria-hidden="true"></i>--%>
-                    <img id="logo" style="width: 120px; height: 100%; text-decoration-line: none" alt=""
+                    <img id="logo" style="width: 120px; height: 100%; margin-left: 15px; text-decoration-line: none" alt=""
                          src="/resources/img/design/main_base_nav.png"/>
                 </a>
-                <a class="fs-6 align-self-center" href="/doctor/">의사 페이지</a>
+                <a class="fs-6 align-self-center" style="margin-top: 15px" href="/doctor/">의사 페이지</a>
                 <button class="navbar-toggler border-dark" type="button"
                         data-bs-toggle="collapse" data-bs-target="#navbars" aria-controls="navbars"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="fa fa-bars" style="color: black"></span>
                 </button>
 
-                <div class="collapse navbar-collapse justify-content-end" id="navbars">
+                <div class="collapse navbar-collapse justify-content-end"  style=" padding: 16px 16px; position: fixed; right: 50px"id="navbars">
                     <ul class="navbar-nav ml-auto pl-lg-5 pl-0">
                         <c:choose>
                             <c:when test="${not empty doctor}">
@@ -60,11 +60,11 @@
                             </c:when>
                             <c:otherwise>
                                 <li class="nav-item">
-                                    <a class="nav-link"
+                                    <a class="nav-link" style="padding: 16px;"
                                        href="${pageContext.request.contextPath}/doctor/docLogin">로그인</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="${pageContext.request.contextPath}/doctor/join">회원가입</a>
+                                    <a class="nav-link" style="padding: 16px;" href="${pageContext.request.contextPath}/doctor/join">회원가입</a>
                                 </li>
 
                             </c:otherwise>
