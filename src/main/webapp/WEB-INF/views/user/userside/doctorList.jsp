@@ -76,29 +76,33 @@
 <%--</section>--%>
 
 <!-- Wrapper -->
-<div style="background:#34495e; color: white;">
-    <h3>최고의 의료진을 소개합니다!</h3>
-    <p>약국 내방을 할 예정 이신가요 ? -> 거리순으로<br>
-        지금 당장 비대면 진료가 가능한 선생님을 찾으시나요 ?-> 실시간 진료순<br>
-        원하시는 병원이 있으신가요 ? 검색도 있어야 ??<br>
-        그럼 처음에 병원을 서치 할수 있어야 하네 순서가 동일 선상에 있음<br>
-        지금 대면 진료일것 같다고 예상? 거리순 </p>
-</div>
+
 
 <%--의사 및 병원 검색 태영--%>
-<div id="searcharea">
-    <div class="search">
-        <form action="dohSearch" method="post">
-            <input type="search" placeholder="원하시는 의사 및 병원을 입력하세요" name="dhSearch" id="dhSearch"/>
-            <button type="submit" id="searchMedical" class="btn border-dark">검색</button>
-        </form>
-    </div>
-</div>
+<%--<div id="searcharea">--%>
+<%--    <div class="search">--%>
+<%--        <form action="dohSearch" method="post">--%>
+<%--            <input type="search" placeholder="원하시는 의사 및 병원을 입력하세요" name="dhSearch" id="dhSearch"/>--%>
+<%--            <button type="submit" id="searchMedical" class="btn border-dark">검색</button>--%>
+<%--        </form>--%>
+<%--    </div>--%>
+<%--</div>--%>
 
+<div class="introOut">
+    <h4>의료진을 소개합니다!</h4>
+</div>
 
 <div style="padding-right: 40px;">
     <div class="d-flex m-3 justify-content-between">
         <span class="my-auto">총 ${not empty doctorList? fn:length(doctorList) : 0}명</span>
+        <div id="searcharea">
+            <div class="search">
+                <form action="dohSearch" method="post">
+                    <input type="search" placeholder="원하시는 의사 및 병원을 입력하세요" name="dhSearch" id="dhSearch"/>
+                    <button type="submit" id="searchMedical" class="btn border-dark">검색</button>
+                </form>
+            </div>
+        </div>
         <div>
             <input type="hidden" name="docListSortOption" id="docListSortOption" value="false">
             <%--            <button class="btn btn-secondary rounded-pill">실시간 진료</button>--%>
@@ -110,8 +114,8 @@
             <c:when test="${not empty doctorList && fn:length(doctorList) != 0}">
                 <c:forEach var="doctor" items="${doctorList}" varStatus="status">
 
-                    <div class="row g-0">
-                        <div class="col-md-4" style="min-width: 200px; max-width: 200px;">
+                    <div class="row">
+                        <div class="col" style="min-width: 200px; max-width: 200px;">
                             <div class="img-wrapper">
                                     <%--                            <img alt="의사사진 영역"--%>
                                     <%--                                 src="<c:choose><c:when test="${not empty doctor.doctor_profile_image_name || doctor.doctor_profile_image_name eq ''}">/img/doctorImg/${doctor.doctor_profile_image_name}</c:when>--%>
@@ -123,14 +127,14 @@
                         <div class="col-md-8 card-body">
                             <div class="card-title d-flex justify-content-between">
                                 <div class="d-flex">
-                                    <h4 class="pr-3 font-weight-bolder">${doctor.doctor_name}</h4>
+                                    <h4 id="docName">${doctor.doctor_name}</h4>
                                     <span
-                                            class="pl-3 font-weight-normal align-text-bottom">의사 / ${doctor.doctor_diagnosis_type}</span>
+                                            id="docType">의사 / ${doctor.doctor_diagnosis_type}</span>
                                 </div>
                                 <div class="d-flex">
                                     <button class="btn btn-secondary ml-auto"
                                             onclick="location.href='/doctorDetail/${doctor.doctor_number}';">
-                                        <i class="fa-solid fa-magnifying-glass">의료진 상세보기</i>
+                                        <i class="detailBtn">의료진 상세보기</i>
                                     </button>
                                     <button class="btn ml-auto" style="background-color: #1abc9c; color: white;"
                                             onclick="location.href='/appointmentForm/${doctor.doctor_number}';">
