@@ -1,7 +1,9 @@
 package mna.homespital.controller;
 
+import mna.homespital.dto.Doctor;
 import mna.homespital.model.Room;
 import mna.homespital.model.RoomService;
+import mna.homespital.service.MemberService;
 import mna.homespital.util.Parser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
 import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
@@ -19,6 +22,12 @@ import java.util.concurrent.ThreadLocalRandom;
 @ControllerAdvice
 @RequestMapping("/meeting")
 public class MeetingController {
+
+    @Autowired
+    HttpSession session;
+
+    @Autowired
+    MemberService memberService;
 
     @Autowired
     RoomService roomService;
@@ -95,6 +104,18 @@ public class MeetingController {
                 mav = new ModelAndView("meeting/chat_room", "id", sid);
                 mav.addObject("uuid", uuid);
             }
+        }
+        try {
+            String currentuser = null;
+            if (session.getAttribute("doctor") != null) {
+                currentuser = ((Doctor) session.getAttribute("doctor")).getDoctor_name();
+            } else if (session.getAttribute("email") != null) {
+                currentuser = memberService.queryMember((String) session.getAttribute("email")).getUser_name();
+            }
+
+            if (currentuser != null) mav.addObject("name", currentuser);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return mav;
     }
