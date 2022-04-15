@@ -11,7 +11,6 @@
     </noscript>
 
     <style>
-
         .grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(800px, 1fr));
@@ -47,7 +46,6 @@
             opacity: 1;
             color: white;
         }
-
     </style>
 </head>
 <body class="is-preload">
@@ -204,40 +202,36 @@
         <p>Lorem ipsum dolor sit amet et sapien sed elementum egestas dolore condimentum.
             Fusce blandit ultrices sapien, in accumsan orci rhoncus eu. Sed sodales venenatis arcu,
             id varius justo euismod in. Curabitur egestas consectetur magna.
-
-            <%--        케러셸 시작부분 (준근)--%>
-
-        <div>
-            <div class="position-relative" style="width:243px;">
-                <img style="position:relative; z-index: 4;" src="resources/img/design/아이폰.png"/>
-                <div id="carouselExampleSlidesOnly" class="carousel slide position-absolute top-0 start-0"
-                     data-bs-ride="carousel"
-                     style="width:243px; ">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active" data-bs-interval="3000">
-                            <img src="resources/img/design/슬라이드1.png" class="d-block w-100" alt="..."
-                                 style="z-index: 1;">
-                        </div>
-                        <div class="carousel-item" data-bs-interval="3000">
-                            <img src="resources/img/design/슬라이드2.png" class="d-block w-100" alt="..."
-                                 style="z-index: 2;">
-                        </div>
-                        <div class="carousel-item" data-bs-interval="3000">
-                            <img src="resources/img/design/슬라이드3.png" class="d-block w-100" alt="..."
-                                 style="z-index: 3;">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
         </p>
     </div>
     <a href="#two" class="button style2 down anchored">Next</a>
 </section>
 
-
+<%--        케러셸 시작부분 (준근)--%>
+<div>
+    <div class="position-relative" style="width:243px;">
+        <img style="position:relative; z-index: 4;" src="resources/img/design/아이폰.png"/>
+        <div id="carouselExampleSlidesOnly" class="carousel slide position-absolute top-0 start-0"
+             data-bs-ride="carousel"
+             style="width:243px; ">
+            <div class="carousel-inner">
+                <div class="carousel-item active" data-bs-interval="3000">
+                    <img src="resources/img/design/슬라이드1.png" class="d-block w-100" alt="..."
+                         style="z-index: 1;">
+                </div>
+                <div class="carousel-item" data-bs-interval="3000">
+                    <img src="resources/img/design/슬라이드2.png" class="d-block w-100" alt="..."
+                         style="z-index: 2;">
+                </div>
+                <div class="carousel-item" data-bs-interval="3000">
+                    <img src="resources/img/design/슬라이드3.png" class="d-block w-100" alt="..."
+                         style="z-index: 3;">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%-- 케러셸 끝부분 (준근)--%>
 <!--텍스트 스크롤(준근)-->
 
 <div class="grid-container">
@@ -249,6 +243,7 @@
     <p class="grid-item">몸이 아파서 병원까지 이동이 어려울 때</p>
     <p class="grid-item">간단한 병원 상담이 필요할 때</p>
 </div>
+<%--텍스트 스크롤 끝부분(준근)--%>
 
 
 <%--<!-- Contact -->--%>
@@ -424,7 +419,7 @@
 </script>
 
 
-<%--텍스트 스크롤(준근)--%>
+<%--텍스트 스크롤 스크립트 시작부분(준근)--%>
 <script>
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
@@ -444,6 +439,6 @@
         observer.observe(item, index);
     });
 </script>
-
+<%--텍스트 스크롤 스크립트 끝부분(준근)--%>
 </body>
 </html>
