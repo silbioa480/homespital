@@ -1416,13 +1416,13 @@ body.is-touch .poptrox-popup .closer {
     display: -webkit-flex;
     display: -ms-flex;
     display: flex;
-    -moz-flex-wrap: wrap;
-    -webkit-flex-wrap: wrap;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    width: 45em;
-    max-width: 100%;
-    margin: 0 auto 2em auto;
+    /*-moz-flex-wrap: wrap;*/
+    /*-webkit-flex-wrap: wrap;*/
+    /*-ms-flex-wrap: wrap;*/
+    /*flex-wrap: wrap;*/
+    /*width: 45em;*/
+    /*max-width: 100%;*/
+    /*margin: 0 auto 2em auto;*/
 }
 
 .gallery article {
@@ -1777,12 +1777,12 @@ body.is-touch .poptrox-popup .closer {
     transform: translateX(-14em);
 }
 
-.gallery.inactive article.from-right {
-    -moz-transform: translateX(14em);
-    -webkit-transform: translateX(14em);
-    -ms-transform: translateX(14em);
-    transform: translateX(14em);
-}
+/*.gallery.inactive article.from-right {*/
+/*    -moz-transform: translateX(14em);*/
+/*    -webkit-transform: translateX(14em);*/
+/*    -ms-transform: translateX(14em);*/
+/*    transform: translateX(14em);*/
+/*}*/
 
 .gallery.inactive article.from-top {
     -moz-transform: translateY(-7em);
@@ -1796,6 +1796,44 @@ body.is-touch .poptrox-popup .closer {
     -webkit-transform: translateY(7em);
     -ms-transform: translateY(7em);
     transform: translateY(7em);
+}
+
+.gallery {
+    height: 100%;
+}
+
+.from-left {
+    display: table;
+}
+
+.from-right {
+    display: table;
+}
+
+.information-left {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.information-right {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.information-left-in p {
+    color: black;
+}
+
+.information-right-in p {
+    color: black;
+}
+
+.information-left-in {
+    margin-left: 300px;
+}
+
+.information-right-in {
+    width: 450px;
 }
 
 @media screen and (max-width: 480px) {
@@ -2253,16 +2291,40 @@ body.is-touch .poptrox-popup .closer {
     background-size: 256px 256px, cover;
     background-attachment: fixed, fixed;
     background-position: top left, center center;
+    height: 1200px
 }
 
 /* Two */
 
 #two {
     /*background: url("/resources/img/main/overlay.png"), url("/resources/img/main/two.jpg");*/
-    background: #FFCD4A;
+    background: #FFFFFF;
     background-size: 256px 256px, cover;
     background-attachment: fixed, fixed;
     background-position: top left, center center;
+    height: 1200px
+}
+
+/* Three */
+
+#Three {
+    /*background: url("/resources/img/main/overlay.png"), url("/resources/img/main/two.jpg");*/
+    background: #FFFFFF;
+    background-size: 256px 256px, cover;
+    background-attachment: fixed, fixed;
+    background-position: top left, center center;
+    height: 1200px
+}
+
+/* Four */
+
+#Four {
+    /*background: url("/resources/img/main/overlay.png"), url("/resources/img/main/two.jpg");*/
+    background: #FFFFFF;
+    background-size: 256px 256px, cover;
+    background-attachment: fixed, fixed;
+    background-position: top left, center center;
+    height: 1200px
 }
 
 /* Contact */
@@ -2343,7 +2405,7 @@ body.is-touch .poptrox-popup .closer {
     }
 }
 
-#banner .main-text{
+#banner .main-text {
     -moz-transform: scale(1);
     -webkit-transform: scale(1);
     -ms-transform: scale(1);
@@ -2359,9 +2421,10 @@ body.is-touch .poptrox-popup .closer {
     padding: 0.35em 1em;
     position: relative;
     z-index: 4;
-    letter-spacing:5px;
+    letter-spacing: 5px;
 }
-#banner .sub-text{
+
+#banner .sub-text {
     -moz-transform: scale(1);
     -webkit-transform: scale(1);
     -ms-transform: scale(1);
@@ -2370,16 +2433,16 @@ body.is-touch .poptrox-popup .closer {
     -webkit-transition: -webkit-transform 1s ease, opacity 1s ease;
     -ms-transition: -ms-transform 1s ease, opacity 1s ease;
     transition: transform 1s ease;
-    animation:cutScene 2s ease-in-out both;
-    display:block;
+    animation: cutScene 2s ease-in-out both;
+    display: block;
     font-size: 1.2em;
     opacity: 0;
     padding: 0.5em 1em 0.35em;
-    margin-left:13px;
+    margin-left: 13px;
     position: relative;
     z-index: 5;
-    letter-spacing:.85em;
-    color:#fff;
+    letter-spacing: .85em;
+    color: #fff;
 }
 
 #banner .main-text:before, #banner .main-text:after {
@@ -2447,7 +2510,7 @@ body.is-touch .poptrox-popup .closer {
     text-align: center;
     text-transform: uppercase;
     width: 16em;
-    z-index:3;
+    z-index: 3;
 }
 
 #banner .more:after {
@@ -2484,7 +2547,7 @@ body.is-touch .poptrox-popup .closer {
     left: 0;
     top: 0;
     opacity: 0;
-    z-index:3;
+    z-index: 3;
 }
 
 @media screen and (max-width: 736px) {
@@ -2570,11 +2633,11 @@ body.is-preload #banner:after {
     height: 100%;
     box-sizing: border-box;
     position: absolute;
-    top:20%;
+    top: 20%;
     right: 0;
     bottom: 0;
-    overflow:visible;
-    z-index:2;
+    overflow: visible;
+    z-index: 2;
 }
 
 .image-box img {
