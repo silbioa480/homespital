@@ -8,9 +8,9 @@
     <meta charset="UTF-8">
     <title>Main Page</title>
     <!-- Latest minified Bootstrap & JQuery-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <%--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">--%>
+    <%--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>--%>
     <%--    <link rel="stylesheet" href="/resources/css/main.css"/>--%>
     <%--    <link rel="stylesheet" href="/resources/css/main2.css"/>--%>
 
@@ -18,27 +18,27 @@
 </head>
 <body>
 <!-- Begin page content -->
-<div id="container mt-5 pt-5">
+<div class="container mt-5 pt-5">
     <form method="post" action="/meeting/room" object="${id}" id="form">
         <input type="hidden" id="uuid" name="uuid" value="${uuid}"/>
         <div class="row justify-content-md-center">
-            <div class="input-group col-md-6 mb-3 justify-content-md-center">
-
-                <div class="mb-3">
+            <div class="col-md-6 mb-3 justify-content-center">
+                <div class="row mb-3">
                     <label for="rooms-list">Select one of the rooms created:</label><br>
-                    <h4>
+                    <div class="d-block">
                         <span id="rooms-list">
                             <c:forEach items="${rooms}" var="r">
                             <a href="/meeting/room/${r.id}" id="button-link-${r.id}">
                                 <button type="button" name="action" value="${r.id}"
-                                        class="btn badge badge-primary" onclick="addUuidToButtonLink(this);">${r.id}
+                                        class="btn btn-primary badge badge-primary"
+                                        onclick="addUuidToButtonLink(this);">${r.id}
                                 </button>
                             </a>
                             </c:forEach>
                         </span>
-                    </h4>
+                    </div>
                 </div>
-                <div class="mb-3">
+                <div class="row mb-3">
                     <label for="id">새로운 방을 만드시려면 아래에 원하는 숫자를 입력하시거나,
                         'Random #' 버튼을 눌러 랜덤 숫자를 정할 수 있습니다.</label>
                     <input class="form-control" name="id" id="id" type="number" placeholder="최소: 0, 최대: 99"

@@ -10,7 +10,7 @@ public class Doctor {
     private String doctor_phone;
     private String doctor_name;
     private String doctor_valid_number;
-    private String doctor_url;
+//    private String doctor_url;
     private String doctor_profile_image_name;
     private String hospital_name;
     private String hospital_telephone;
@@ -30,13 +30,13 @@ public class Doctor {
     private Date update_date;
     //가영: 의사정보 추가
 
-    public String getDoctor_url() {
-        return doctor_url;
-    }
-
-    public void setDoctor_url(String doctor_url) {
-        this.doctor_url = doctor_url;
-    }
+//    public String getDoctor_url() {
+//        return doctor_url;
+//    }
+//
+//    public void setDoctor_url(String doctor_url) {
+//        this.doctor_url = doctor_url;
+//    }
 
 
     public int getDoctor_number() {

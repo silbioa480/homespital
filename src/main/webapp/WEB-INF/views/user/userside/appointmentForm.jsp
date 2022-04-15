@@ -200,10 +200,11 @@
                 <hr>
                 <div class="m-3">
                     <input type="number" name="is_delivery" id="is_delivery" class="d-none" value="0">
-                    <button class="btn btn-warning rounded-pill"
+                    <%-- 버튼색깔 변경 태영 기존부트스트랩 버튼색깔 삭제--%>
+                    <button class="btn rounded-pill"
                             onclick="toggleDelivery('false'); return false;">약국으로 직접 방문
                     </button>
-                    <button class="btn btn-secondary rounded-pill"
+                    <button class="btn rounded-pill"
                             onclick="toggleDelivery('true'); return false;">집까지 배송받기
                     </button>
                 </div>
@@ -333,7 +334,7 @@
         </section>
 
         <div class="appoint-out">
-            <label for="appointDo" class="appointBtn" onClick="notify()">예약하기</label>
+            <label for="appointDo" class="appointBtn">예약하기</label>
             <input type="submit" id="appointDo" class="appointDo" style="display: none"/>
         </div>
     </form>
@@ -866,7 +867,6 @@
 
 
 </script>
-
 <script>
     function notify() {
         // Let's check if the browser supports notifications

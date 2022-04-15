@@ -138,18 +138,18 @@
                     <div class="input-control">
                         <label class="doctor-title" for="doctorNumber">의사면허번호</label>
                         <%--                        <div style="display:flex">--%>
-                        <input id="doctorNumber" name="doctor_valid_number" type="text" maxlength="6">
+                        <input id="doctorNumber" name="doctor_valid_number" type="text" maxlength="20">
                         <div class="error"></div>
                         <%--                        </div>--%>
 
                     </div>
-                    <div class="input-control">
-                        <label class="doctor-title" for="doctor_url">줌 회의실 링크(URL)</label>
+<%--                    <div class="input-control">--%>
+<%--                        <label class="doctor-title" for="doctor_url">줌 회의실 링크(URL)</label>--%>
 
-                            <input id="doctor_url" name="doctor_url" type="text" >
+<%--                            <input id="doctor_url" name="doctor_url" type="text" >--%>
 
-                        <div class="error"></div>
-                    </div>
+<%--                        <div class="error"></div>--%>
+<%--                    </div>--%>
                     <%--                    <div class="input-control">의사 프로필 등록--%>
                     <%--&lt;%&ndash;                        <span class="doctor-title">의사사진</span>&ndash;%&gt;--%>
                     <%--&lt;%&ndash;                        <div style="display:flex">&ndash;%&gt;--%>
@@ -189,7 +189,7 @@
                     <div class="input-control">
                         <label class="doctor-title" for="doctorNumber">병원 전화번호</label>
 
-                        <input id="hospitalTelephone" name="hospital_telephone" type="text" maxlength="6">
+                        <input id="hospitalTelephone" name="hospital_telephone" type="text" maxlength="20">
                         <div class="error"></div>
 
 
@@ -457,7 +457,7 @@
                         <div class="input-control">
                             <label class="doctor-title" for="hospital_fax">팩스번호</label>
                             <div style="display:flex">
-                                <input id="Hospital_fax" name="hospital_fax" type="text" maxlength="6">
+                                <input id="Hospital_fax" name="hospital_fax" type="text" maxlength="20">
                             </div>
                             <div class="error"></div>
                         </div>

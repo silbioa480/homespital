@@ -8,20 +8,21 @@
     <%--  파일 업로드 CSS  --%>
     <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css"/>
-    <link rel="stylesheet" href="/resources/css/writeMediChartForm.css"/>
+    <link rel="stylesheet" href="/resources/css/pharCustomerDetail.css"/>
 
 
 </head>
 <body>
-<div class="container">
+<div class="container" style="margin-top:70.63px;">
     <%--헤드라인--%>
-    <div><h1><strong>나의 진료 내역 보기</strong></h1></div>
+    <div style="height: 100px;"></div>
+        <div class="myMediList"><h2><strong>나의 진료 내역 보기</strong><span class="circle3"></span></h2></div>
     <%--진료 예약 내역 - 소제목--%>
     <div><h4><strong>진료 예약 내역</strong></h4></div>
     <%--doctor detail 넣고--%>
-    <div class="card p-3">
-        <div class="row g-0">
-            <div class="col-md-4" style="min-width: 200px; max-width: 200px;">
+    <div class="card p-3" id="cardBorder">
+        <div class="row">
+            <div class="col-md-4">
                 <div class="img-wrapper">
                     <img alt="의사사진 영역"
                          src="<c:choose><c:when test="${doctor.doctor_profile_image_name}">/img/doctorImg/${doctor.doctor_profile_image_name}</c:when>
@@ -36,7 +37,7 @@
                     <i class="fa fa-check">재예약 하기</i>
                 </button>
             </div>
-            <div class="col-md-8 card-body">
+            <div class="col-md-8 card-body" id="card">
                 <div class="card-title d-flex">
                     <h4 class="pr-3 font-weight-bolder">${doctor.doctor_name}</h4> &nbsp;&nbsp;
                     <span class="pl-3 font-weight-normal align-text-bottom">의사/${doctor.doctor_diagnosis_type}</span>
@@ -81,7 +82,7 @@
     <%--진료 챠트-소제목 --%>
     <div><h4><strong>진료 차트</strong></h4></div>
     <%--(위와 form비슷하게) 환자의 정보 출력하는 창 만든다 from 환자의 정보 DB--%>
-    <div class="card p-3">
+    <div class="card p-3" id="cardBorder">
         <div class="row g-0">
             <div class="col-md-8 card-body">
                 <div class="card-title d-flex">
@@ -120,12 +121,11 @@
         </div>
     </div>
     <%--appointmentForm에서 쓴 증상, 이미지 출력 --%>
-
-    <div class="card-body">
+        <h4><strong>증상</strong></h4>
+    <div class="card-body" id="cardBorder">
         <div class="card border-right">
             <div class="card-header justify-content-between">
                 <div>
-                    <h4><strong>증상</strong></h4>
                     <p>${diagnosis.diagnosis_content}</p>
                 </div>
                 <%-- 증상 출력--%>
@@ -153,9 +153,9 @@
 
     <c:choose>
         <c:when test="${diagnosis.is_delivery == 0}">
-            <div class="card-body">
+            <div class="card-body" id="cardBorder" style="margin-bottom: 50px;">
                 <div class="card border-right">
-                    <div class="card-header justify-content-between">
+                    <div class="card-header justify-content-between" style="background-color: #fff;">
                         <div class="row mb-2">
                             <div class="col-sm-3">
                                 <button type="button" class="btn btn-secondary">약국내방</button>
@@ -165,7 +165,7 @@
                         <label>약국 주소</label>
                         <hr>
                         <div><h5><strong>${pharmacy.pharmacy_name}</strong></h5></div>
-                        <p>${pharmacy.zip_code} ${pharmacy.street_address} ${pharmacy.detail_address}</p>
+                        <p class="userAdrress">${pharmacy.zip_code} ${pharmacy.street_address} ${pharmacy.detail_address}</p>
                         <br>
 
 

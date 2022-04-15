@@ -29,7 +29,7 @@ public interface PharmacyDAO {
     void insertPharmacyMember(Pharmacy pharmacy) throws Exception;
 
     //  처방접수 및 조제시작(diagnosis_status 3 -> 4)
-    void makeMedicine(int diagnosis_number) throws Exception;
+    void makeMedicine(Map<String, Object> param) throws Exception;
 
     //  조제 완료(diagnosis_status 4 -> 5) 준근
     void successMadeMedicine(int diagnosis_number) throws Exception;

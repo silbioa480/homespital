@@ -73,12 +73,11 @@
         var settings = {
 
             // Images (in the format of 'url': 'alignment').
-            // images: {
-            //     '/resources/img/login/bg01.jpg': 'center',
-            //     '/resources/img/login/bg02.jpg': 'center',
-            //     '/resources/img/login/bg03.jpg': 'center'
-            // },
-
+            images: {
+                '/resources/img/design/D_bg01.jpg': 'center',
+                '/resources/img/design/D_bg02.jpg': 'center',
+                '/resources/img/design/D_bg03.jpg': 'center'
+            },
             // Delay.
             delay: 6000
 

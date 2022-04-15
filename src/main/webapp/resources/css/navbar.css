@@ -3,11 +3,19 @@
 * {
     box-sizing: border-box;
     margin: 0;
-    padding: 0;
+    /*padding: 0;*/
+}
+
+@font-face {
+    font-family: 'TmonMonsori';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/TmonMonsori.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
 
 li > a,
 i {
+    /*font-family: 'TmonMonsori';*/
     font-size: 15px;
     letter-spacing: 1px;
 }
@@ -16,12 +24,28 @@ li, a, button {
     font-family: "Montserrat", sans-serif;
     font-weight: 500;
     font-size: 16px;
-    color: #edf0f1;
+    /*color: #edf0f1;*/
     text-decoration: none;
+
+}
+
+/*a:hover {*/
+/*    color: #FFFFFF;*/
+/*}*/
+
+
+#dropdown-item1:hover {
+    background-color: #0058A8
+}
+
+#dropdown-item2:hover {
+    background-color: #FFCD4A
 }
 
 header {
-    display: flex;
+
+    /*display: flex;*/
+    position: fixed;
     justify-content: flex-end;
     align-items: center;
     padding: 30px 10%;
@@ -33,13 +57,21 @@ header {
 }
 
 .nav-up {
-    background-color: rgba(255, 255, 255, 1);
+    background-color: rgb(255, 255, 255);
     -webkit-transition-duration: 0.4s;
     -webkit-transition-timing-function: ease-in-out;
     transition-duration: 0.4s;
     transition-timing-function: ease-in-out;
     /*헤더 높이와 같게*/
 }
+
+/*.nav-link btn-warning dropdown-toggle {*/
+/*    background-color: #2a2d42;*/
+/*}*/
+.nav-Link {
+    background-color: #2A2D42 !important
+}
+
 
 .nav-down {
     background-color: rgba(255, 255, 255, 0);
@@ -48,4 +80,10 @@ header {
     transition-duration: 0.4s;
     transition-timing-function: ease-in-out;
     /*헤더 높이와 같게*/
+}
+
+#navbars {
+    padding: 16px 16px;
+    /*position: fixed;*/
+    right: 50px;
 }

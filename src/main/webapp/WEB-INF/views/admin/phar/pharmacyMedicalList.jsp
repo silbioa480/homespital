@@ -14,9 +14,8 @@
 <body>
 <div class="container">
     <div class="col mt-3">
-        <div class="list-header bg-info text-center">
+        <div class="list-header text-center" id="pharBanner">
             <h1 id="logo">Homespital</h1>
-            <%--            <h4>${diagnosis.pharmacy_name}</h4>--%>
         </div>
 
 
@@ -75,6 +74,30 @@
             }
         })
 
+        setInterval(function(){
+            $.ajax({
+                url: '/pharmacy/pharMedicalRecords',
+                type: 'GET',
+                datatype: "json",
+                data: {
+                    "pharmacy_number": ${pharmacy.pharmacy_number}
+                },
+                success: function (data) {
+                    console.log(data);
+                    console.log(list);
+                    if(list.toString() != data.toString()) {
+                        alert("새로운 처방내역이 들어왔습니다. 확인해주세요.");
+                        list = data;
+                        window.location.reload();
+                    }
+
+                },
+                error: function () {
+                    console.log("Error");
+                }
+            })
+        },10000);
+
         function next_load(list) {
             list.sort((a, b) => {
                 return a.diagnosis_status - b.diagnosis_status;
@@ -106,9 +129,9 @@
                     //진료완료, 진료중 표시 및 대기/예약취소하기 버튼
                     let complete = "";
                     if (item.diagnosis_status == 3) {
-                        complete = "<button type='button' id='makeMediBtn' class='btn btn-danger btn-sm h-75' onclick='makeMediBtn(" + item.diagnosis_number + ");'>처방 접수/조제</button>";
+                        complete = "<button type='button' id='makeMediBtn' class='btn btn-sm h-75' onclick='makeMediBtn(" + item.diagnosis_number + ");'>처방 접수/조제</button>";
                     } else if (item.diagnosis_status == 4) {
-                        complete = "<button type='button' id='successMakeBtn' class='btn btn-info btn-sm h-75' onclick='successMadeBtn(" + item.diagnosis_number + ");'>조제 완료/전송</button>";
+                        complete = "<button type='button' id='successMakeBtn' class='btn btn-sm h-75' onclick='successMadeBtn(" + item.diagnosis_number + ");'>조제 완료/전송</button>";
                     } else if (item.diagnosis_status == 5) {
                         complete = "조제완료";
                     } else if (item.diagnosis_status == 6) {
@@ -127,17 +150,32 @@
 
                     if (item.diagnosis_status >= 3 && item.diagnosis_status <= 6) {
                         //나의 진료 내역 테이블 생성 (리눅스 서버에 올릴때 진단영수증 파일경로 바꿔줘야함)
-                        $("#pharMedicalList").append("<tr><td>" + date + " (" + dayOfWeek + ") " + item.diagnosis_time + ":00</td>" +
-                            "<td>" + item.user_name + "</td>" +
-                            "<td>" + gender + "</td>" +
-                            "<td>" + birth + "</td>" +
-                            "<td>" + item.hospital_name + "</td > " +
-                            "<td>" + is_delivery + "</td>" +           // 배송or방문
-                            "<td>" + receiptFile + "</td > " +  //처방전 다운받기
-                            "<td>" + complete + "</td>" +
-                            "<td><a href='/pharmacy/customerDetail/" + item.diagnosis_number + "'><span class='material-icons'>search</span></a>" + "</td></tr><br>);"  //현황
-                        )
-                        ;
+                        // 조제시작 조제중 / 조제완료상태거나 종료일때  색깔 적용 태영
+                        if(item.diagnosis_status == 3 || item.diagnosis_status == 4){
+                            $("#pharMedicalList").append("<tr><td style='background-color:#FFCD4A'>" + date + " (" + dayOfWeek + ") " + item.diagnosis_time + ":00</td>" +
+                                "<td>" + item.user_name + "</td>" +
+                                "<td>" + gender + "</td>" +
+                                "<td>" + birth + "</td>" +
+                                "<td>" + item.hospital_name + "</td > " +
+                                "<td>" + is_delivery + "</td>" +           // 배송or방문
+                                "<td>" + receiptFile + "</td > " +  //처방전 다운받기
+                                "<td>" + complete + "</td>" +
+                                "<td><a href='/pharmacy/customerDetail/" + item.diagnosis_number + "'><span class='material-icons'>search</span></a>" + "</td></tr><br>);"  //현황
+                            )
+                            ;
+                        }else if(item.diagnosis_status == 5 || item.diagnosis_status == 6 ){
+                            $("#pharMedicalList").append("<tr><td style='background-color:#cccccc'>" + date + " (" + dayOfWeek + ") " + item.diagnosis_time + ":00</td>" +
+                                "<td>" + item.user_name + "</td>" +
+                                "<td>" + gender + "</td>" +
+                                "<td>" + birth + "</td>" +
+                                "<td>" + item.hospital_name + "</td > " +
+                                "<td>" + is_delivery + "</td>" +           // 배송or방문
+                                "<td>" + receiptFile + "</td > " +  //처방전 다운받기
+                                "<td>" + complete + "</td>" +
+                                "<td><a href='/pharmacy/customerDetail/" + item.diagnosis_number + "'><span class='material-icons'>search</span></a>" + "</td></tr><br>);"  //현황
+                            )
+                            ;
+                        }
                     }
                 }
             })
@@ -158,13 +196,18 @@
 
     // 처방접수/조제 시작
     function makeMediBtn(e) {
-        if (confirm("처방 접수하시겠습니까?") == true) {
+        var price = Number(prompt("처방을 접수하시겠습니까? 조제비용(약값)을 입력해주세요."));
+        if (isNaN(price)) {
+            alert("금액을 입력해주세요.");
+            return false;
+        } else if (confirm("처방전 금액을 " + price + "로 하고 처방을" + " 접수하시겠습니까?") == true) {
             $.ajax({
-                url: "makeMedicine",
+                url: "/pharmacy/makeMedicine",
                 type: "POST",
                 datatype: "json",
                 data: {
                     "diagnosis_number": e,
+                    "prescription_money": price,
                 },
                 success: function (data) {
                     console.log("처방 접수 성공 : " + e)

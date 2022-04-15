@@ -115,7 +115,7 @@ public class DoctorController {
         doctor.setDoctor_phone(request.getParameter("doctor_phone"));
         doctor.setDoctor_name(request.getParameter("doctor_name"));
         doctor.setDoctor_valid_number(request.getParameter("doctor_valid_number"));
-        doctor.setDoctor_url(request.getParameter("doctor_url"));
+//        doctor.setDoctor_url(request.getParameter("doctor_url"));
         doctor.setHospital_name(request.getParameter("hospital_name"));
         doctor.setHospital_telephone(request.getParameter("hospital_telephone"));
 
@@ -414,7 +414,7 @@ public class DoctorController {
             String dtcName = dtc.getDoctor_name();
             String userName = user.getUser_name();
             String dtcPhone = dtc.getDoctor_phone();
-            String userPhone=user.getUser_phone();
+            String userPhone = user.getUser_phone();
             //is_diagnosis_upload가 2(업로드완료) 인지 확인
             Diagnosis diagnosis = doctorService.checkDiagnosisUpload(diagnosis_number);
             if (diagnosis.getIs_diagnosis_upload() != 2) {
@@ -424,10 +424,10 @@ public class DoctorController {
             // is_prescription_upload = 3(처방전없음) and diagnosis_status = 7 (처방전 없이 진료 완료) 처리
             if (diagnosis.getIs_prescription_upload() == 1) {
                 doctorService.changePrescription(diagnosis_number);
-                params.put("to","01089303955");
-                params.put("from","01089303955");
-                params.put("type","LMS");
-                params.put("text","진료가 완료되었습니다. 좋은 하루 보내시길 바랍니다.");
+                params.put("to", "01089303955");
+                params.put("from", "01089303955");
+                params.put("type", "LMS");
+                params.put("text", "진료가 완료되었습니다. 좋은 하루 보내시길 바랍니다.");
                 org.json.simple.JSONObject obj = coolsms.send(params);
                 System.out.println(obj.toString());
                 return "success";
@@ -440,12 +440,13 @@ public class DoctorController {
                     diagnosis.getDiagnosis_number(),
                     diagnosis.getBilling_key(),
                     diagnosis.getUser_number(),
-                    1000,
+                    diagnosis.getDiagnosis_money(),
                     "멀캠진료테스팅");
             System.out.println("PAY END");
             if (!payResult.getString("status").equals("paid")) {
                 System.out.println("결제 실패");
             }
+
             //진료완료 처리
             doctorService.finishDiagnosis(diagnosis_number);
         } catch (CoolsmsException e) {
@@ -538,19 +539,4 @@ public class DoctorController {
 
         return "redirect:/doctor/docMedicalList";
     }
-//    //카톡링크문자 보내기 태영
-//    @ResponseBody
-//    @PostMapping("/sendOpenTalk")
-//    public String sendOpenTalk(int doctor_number){
-//
-//        try{
-//            Doctor dtc =doctorService.getDocInfo(doctor_number);
-//            String userPhoneNumber=dtc.getDoctor_phone();
-//
-//        }catch(Exception e){
-//            e.printStackTrace();
-//        }
-//
-//        return "success";
-//    }
 }

@@ -15,14 +15,14 @@ change this template use File | Settings | File Templates. --%>
     <link rel="stylesheet" href="/resources/css/login.css"/>
 
     <%--    <!-- Bootstrap -->--%>
-    <link
-            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-            rel="stylesheet"
-            type="text/css"
-    />
+    <%--    <link--%>
+    <%--            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"--%>
+    <%--            rel="stylesheet"--%>
+    <%--            type="text/css"--%>
+    <%--    />--%>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <%--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>--%>
+    <%--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">--%>
 
     <style>
         .msg {
@@ -32,7 +32,7 @@ change this template use File | Settings | File Templates. --%>
         }
     </style>
 </head>
-<body class="is-preload">
+<body class="is-preload" id="doctor-bg">
 <!-- 모달창 -->
 <div class="modal fade" id="defaultModal">
     <div class="modal-dialog">
@@ -73,6 +73,12 @@ change this template use File | Settings | File Templates. --%>
 <header id="header">
     <h1 style="margin-left: 35px; font-weight: bolder; margin-bottom: 30px">의사 로그인</h1>
 </header>
+
+<%--의사로그인 화면 이미지  태영--%>
+<div class="doctor-image-box">
+    <img width="250px" height="300px" src="/resources/img/design/d_main_image.jpg" alt="로그인메인이미지"/>
+</div>
+
 
 <!-- login Form -->
 <div class="login_box">

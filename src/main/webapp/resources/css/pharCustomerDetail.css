@@ -963,11 +963,12 @@ table.default tbody tr:nth-child(2n+2) {
 /*    padding: 0.5em 1em 0.5em 1em;*/
 /*}*/
 
-/*table.default th {*/
-/*    text-align: left;*/
-/*    font-weight: 900;*/
-/*    padding: 0.5em 1em 0.5em 1em;*/
-/*}*/
+table.default th {
+    text-align: left;
+    font-weight: 900;
+    padding: 0.5em 1em 0.5em 1em;
+    font-size: 20px;
+}
 
 table.default thead {
     background: #39454b;
@@ -1218,8 +1219,9 @@ body {
 /*시간 선택하기 영역의 의사 사진 CSS*/
 .img-wrapper {
     position: relative;
-    width: 200px;
-    height: 200px;
+    width: 300px;
+    height: 300px;
+
 }
 
 .img-wrapper img {
@@ -1231,6 +1233,7 @@ body {
     height: 100%;
     object-fit: cover;
     margin: auto;
+    border-radius: 20px;
 }
 
 .timetable > tbody > tr > th {
@@ -1242,10 +1245,14 @@ body {
     height: 38px;
     line-height:35px;
     font-weight:520;
+    color: #fff;
+    background-color: #2A2D42;
+
 }
 
 #logo {
     line-height: 200px;
+    color: #fff;
 }
 #bgLogo {
     background-color: #00B6EE;
@@ -1267,4 +1274,130 @@ successMakeBtn {
 p {
     font-size: 30px;
     padding: 10px;
+}
+/*의사, 약사 환자 배너*/
+#doctorBanner,
+#pharBanner,
+#userBanner {
+    width: 100%;
+    height: 200px;
+}
+#doctorBanner {
+    background-color: #0058A8;
+}
+#pharBanner {
+    background-color: #FFCD4A;
+}
+#userBanner {
+    background-color: #33CC99;
+}
+
+/*의사 진료 시작, 끝내기 버튼*/
+#startBtn,
+#finishBtn {
+    background-color: #0058A8;
+    color: #fff;
+}
+/*약사 제조버튼, 제조완료 버튼*/
+#makeMediBtn,
+#successMakeBtn {
+    background-color: #FFCD4A; !important;
+    color: #fff; !important;
+}
+/*환자 진료취소, 버튼*/
+#cancelBtn,
+#successBtn {
+    background-color: #33CC99; !important;
+    color: #fff; !important;
+}
+/*의사 진료 영수증, 처방전 업로드 버튼*/
+#receiptUpload79 {
+    background-color: #0058A8; !important;
+    color: #fff; !important;
+}
+
+#prescriptionUpload79 {
+    background-color: #0058A8; !important;
+    color: #fff; !important;
+}
+/*의사 Detail에서 제출하기 버튼*/
+#submitDoctorOpinion {
+    height: 38px;
+    line-height: 38px;
+    background-color: #0058A8;
+}
+/*환자 -> 나의 진료리스트 카드 border*/
+#cardBorder {
+    border: 1px solid #33CC99;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+/*환자 -> 나의 진료리스트 주소 폰트*/
+.userAdrress {
+    font-size: 20px;
+}
+/*환자 -> 나의 진료리스트 -> O 애니메이션*/
+.myMediList {
+    margin-bottom: 30px;
+    position: relative;
+}
+.circle3 {
+    position: absolute;
+    top: 12px;
+    left: 300px;
+    width: 18px;
+    height: 18px;
+    border-radius: 100%;
+    background-color: #33CC99;
+    animation: circle 2s ease-in-out infinite;
+    animation-fill-mode: both;
+}
+.circle3::before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 30px;
+    width: 18px;
+    height: 18px;
+    border-radius: 100%;
+    background-color: #33CC99;
+    animation: circle 2s ease-in-out infinite;
+    animation-fill-mode: both;
+}
+.circle3::after {
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 60px;
+    width: 18px;
+    height: 18px;
+    border-radius: 100%;
+    background-color: #33CC99;
+    animation: circle 3s ease-in-out infinite;
+    animation-fill-mode: both;
+}
+@keyframes circle
+{   0%, 100%
+    {
+        opacity: 0;
+        scale: 0;
+    }
+    10%
+    {
+        opacity: 0;
+        scale: 0;
+    }
+    50% {
+        opacity: 1;
+        scale: 1.5;
+    }
+}
+circle:nth-child(1) {
+    animation-delay: 0.16s;
+}
+circle:nth-child(2) {
+    animation-delay: 1.26s;
+}
+circle:nth-child(3) {
+    animation-delay: 2.00s;
 }
