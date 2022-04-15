@@ -300,7 +300,7 @@ change this template use File | Settings | File Templates. --%>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <a
-                                                            class="w-btnphonemodibtn"
+                                                            class="w-btn phonemodibtn"
                                                             style="text-align: center"
                                                             id="modalY2"
                                                             href="/modifyForm"
