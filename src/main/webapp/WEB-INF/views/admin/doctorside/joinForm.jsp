@@ -83,50 +83,71 @@
 
                     <div style="font-size: 30px">로그인 정보에 사용됩니다<strong style="color: #0058A8">(필수)</strong></div>
                     <br>
-                    <div class="input-control">
-                        <label for="email" class="doctor-title">이메일</label>
-                        <%--                        <div style="display:flex">--%>
-                        <input class="signup_inputs doctor_border" type="email" id="email" name="doctor_email"
-                               placeholder="이메일을 입력해주세요">
-
-                        <%--                            <input type="button" id="doctorEmailoverlap" class="doubleChk" value="중복확인">--%>
-                        <%--                        </div>--%>
-                        <div class="error"></div>
-                    </div>
-                    <div class="input-control">
-                        <label for="password" class="doctor-title">비밀번호</label>
-                        <input class="signup_inputs doctor_border" type="password" id="password" name="doctor_password"
-                               placeholder="비밀번호를 입력해주세요">
-                        <div class="error"></div>
-                    </div>
-                    <div class="input-control" id="divPassword2">
-                        <label for="password2" class="doctor-title">비밀번호 확인</label>
-                        <input class="signup_inputs doctor_border" type="password" id="password2" name="password2"
-                               placeholder="비밀번호를 입력해주세요">
-                        <div class="error"></div>
-                    </div>
-                    <div class="input-control">
-                        <label for="phone" class="doctor-title">휴대폰 번호</label>
-                        <div style="display:flex">
-                            <input class="signup_inputs doctor_border" id="phone" type="text" name="doctor_phone"
-                                   title="전화번호 입력" style=""/>
-                            <input type="button" id="phoneChk" class="w-btn" value="인증번호 받기">
-                        </div>
-                        <div class="error"></div>
-                        <br/>
-                    </div>
-                    <div class="input-control" id="divPhone2">
-                        <div style="display:flex">
-                            <input class="signup_inputs doctor_border" id="phone2" type="text" name="phone2"
-                                   title="인증번호 입력"
-                                   disabled style=""/>
-                            <input type="button" id="phoneChk2" class="w-btn" value="본인인증">
-                        </div>
-                        <div class="error"></div>
-                        <span class="point successPhoneChk" style="color: #0058A8; font-size: 15px">※ 휴대폰 번호 입력후 인증번호 보내기를 해주십시오.</span>
-                        <input type="hidden" id="phoneDoubleChk"/>
-
-                    </div>
+                    <table>
+                        <tr>
+                            <th>
+                                <label for="email" style="width: 120px">이메일</label>
+                            </th>
+                            <%--                        <div style="display:flex">--%>
+                            <td>
+                                <input class="signup_inputs doctor_border" type="email" id="email" name="doctor_email"
+                                       placeholder="이메일을 입력해주세요">
+                                <div class="error"></div>
+                            </td>
+                            <%--                            <input type="button" id="doctorEmailoverlap" class="doubleChk" value="중복확인">--%>
+                            <%--                        </div>--%>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label for="password">비밀번호</label>
+                            </th>
+                            <td>
+                                <input class="signup_inputs doctor_border" type="password" id="password"
+                                       name="doctor_password"
+                                       placeholder="비밀번호를 입력해주세요">
+                                <div class="error"></div>
+                            </td>
+                        </tr>
+                        <tr id="divPassword2">
+                            <th>
+                                <label for="password2">비밀번호 확인</label>
+                            </th>
+                            <td>
+                                <input class="signup_inputs doctor_border" type="password" id="password2"
+                                       name="password2"
+                                       placeholder="비밀번호를 입력해주세요">
+                                <div class="error"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label for="phone">휴대폰 번호</label>
+                            </th>
+                            <td>
+                                <div style="display:flex">
+                                    <input class="signup_inputs doctor_border" id="phone" type="text"
+                                           name="doctor_phone"
+                                           title="전화번호 입력" style=""/>
+                                    <input type="button" id="phoneChk" class="w-btn" value="인증번호 받기">
+                                </div>
+                                <div class="error"></div>
+                            </td>
+                        </tr>
+                        <tr id="divPhone2">
+                            <th></th>
+                            <td>
+                                <div style="display:flex">
+                                    <input class="signup_inputs doctor_border" id="phone2" type="text" name="phone2"
+                                           title="인증번호 입력"
+                                           disabled style=""/>
+                                    <input type="button" id="phoneChk2" class="w-btn" value="본인인증">
+                                </div>
+                                <div class="error"></div>
+                                <span class="point successPhoneChk" style="color: #0058A8; font-size: 15px">※ 휴대폰 번호 입력후 인증번호 보내기를 해주십시오.</span>
+                                <input type="hidden" id="phoneDoubleChk"/>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </section>
 
@@ -137,98 +158,114 @@
                 <div class="container">
                     <div style="font-size: 30px">의사/병원정보<strong style="color: #0058A8">(필수)</strong></div>
                     <br>
-                    <div class="input-control">
-                        <label class="doctor-title" for="doctorName">의사이름</label>
-                        <input class="signup_inputs doctor_border" type="text" id="doctorName" name="doctor_name"
-                               placeholder="이름을 입력해주세요">
-                        <div class="error"></div>
-                    </div>
-                    <div class="input-control">
-                        <label class="doctor-title" for="doctorNumber">의사면허번호</label>
-                        <%--                        <div style="display:flex">--%>
-                        <input class="signup_inputs doctor_border" id="doctorNumber" name="doctor_valid_number"
-                               type="text"
-                               maxlength="20">
-                        <div class="error"></div>
+                    <table>
+                        <tr>
+                            <th>
+                                <label style="width: 120px" for="doctorName">의사이름</label>
+                            </th>
+                            <td>
+                                <input class="signup_inputs doctor_border" type="text" id="doctorName"
+                                       name="doctor_name"
+                                       placeholder="이름을 입력해주세요">
+                                <div class="error"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label for="doctorNumber">의사면허번호</label>
+                            </th>
+                            <%--                        <div style="display:flex">--%>
+                            <td>
+                                <input class="signup_inputs doctor_border" id="doctorNumber" name="doctor_valid_number"
+                                       type="text"
+                                       maxlength="20">
+                                <div class="error"></div>
+                            </td>
+                            <%--                        </div>--%>
+                        </tr>
+                        <%--                    <div class="input-control">--%>
+                        <%--                        <label  for="doctor_url">줌 회의실 링크(URL)</label>--%>
+
+                        <%--                            <input id="doctor_url" name="doctor_url" type="text" >--%>
+
+                        <%--                        <div class="error"></div>--%>
+                        <%--                    </div>--%>
+                        <%--                    <div class="input-control">의사 프로필 등록--%>
+                        <%--&lt;%&ndash;                        <span >의사사진</span>&ndash;%&gt;--%>
+                        <%--&lt;%&ndash;                        <div style="display:flex">&ndash;%&gt;--%>
+                        <%--                        <label for="doctorProfile" id="filebtn">사진 등록</label>--%>
+                        <%--                            <input id="doctorProfile" name="doctorImgNames" type="file"  accept=".gif, .jpg, .png">--%>
+                        <%--                        <div id='attZone'>--%>
                         <%--                        </div>--%>
+                        <%--&lt;%&ndash;                        </div>&ndash;%&gt;--%>
+                        <%--                        <div class="error"></div>--%>
+                        <%--                    </div>--%>
 
-                    </div>
-                    <%--                    <div class="input-control">--%>
-                    <%--                        <label class="doctor-title" for="doctor_url">줌 회의실 링크(URL)</label>--%>
-
-                    <%--                            <input id="doctor_url" name="doctor_url" type="text" >--%>
-
-                    <%--                        <div class="error"></div>--%>
-                    <%--                    </div>--%>
-                    <%--                    <div class="input-control">의사 프로필 등록--%>
-                    <%--&lt;%&ndash;                        <span class="doctor-title">의사사진</span>&ndash;%&gt;--%>
-                    <%--&lt;%&ndash;                        <div style="display:flex">&ndash;%&gt;--%>
-                    <%--                        <label for="doctorProfile" id="filebtn">사진 등록</label>--%>
-                    <%--                            <input id="doctorProfile" name="doctorImgNames" type="file"  accept=".gif, .jpg, .png">--%>
-                    <%--                        <div id='attZone'>--%>
-                    <%--                        </div>--%>
-                    <%--&lt;%&ndash;                        </div>&ndash;%&gt;--%>
-                    <%--                        <div class="error"></div>--%>
-                    <%--                    </div>--%>
-
-                    <div class="input-control">
-                        <label>의사 프로필 등록</label>
-                        <table class="table table=borderless chartTable" style="width: 90%">
-                            <tr>
-                                <%--                                <th>이미지 첨부</th>--%>
-                                <td>
-                                    <div id="preview" align="center"></div>
-                                    <div align="center" class="filebox" style="padding:10px">
-                                        <label id="filebtn" for="doctorProfile">사진 등록</label>
-                                        <input id="doctorProfile" name="doctorImgNames" type="file"
-                                               style="display: none" accept=".gif, .jpg, .png">
-                                        <div id='attZone'>
-                                        </div>
+                        <tr>
+                            <%--                                <th>이미지 첨부</th>--%>
+                            <td colspan="2">
+                                <label style="display: block; text-align: center">의사 프로필 등록</label>
+                                <div id="preview" align="center"></div>
+                                <div align="center" class="filebox" style="padding:10px">
+                                    <label id="filebtn" for="doctorProfile">사진 등록</label>
+                                    <input id="doctorProfile" name="doctorImgNames" type="file"
+                                           style="display: none" accept=".gif, .jpg, .png">
+                                    <div id='attZone'>
                                     </div>
-                                </td>
-                            </tr>
-                        </table>
-                        <div class="error"></div>
-                    </div>
+                                </div>
+                                <div class="error"></div>
+                            </td>
+                        </tr>
 
-                    <div class="input-control">
-                        <label class="doctor-title" for="hospitalName">병원이름</label>
-                        <input class="signup_inputs doctor_border" type="text" id="hospitalName" name="hospital_name"
-                               placeholder="병원이름을 입력해주세요">
-                        <div class="error"></div>
-                    </div>
-                    <div class="input-control">
-                        <label class="doctor-title" for="doctorNumber">병원 전화번호</label>
+                        <tr>
+                            <th>
+                                <label for="hospitalName">병원이름</label>
+                            </th>
+                            <td>
+                                <input class="signup_inputs doctor_border" type="text" id="hospitalName"
+                                       name="hospital_name"
+                                       placeholder="병원이름을 입력해주세요">
+                                <div class="error"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label for="doctorNumber">병원 전화번호</label>
+                            </th>
+                            <td>
+                                <input class="signup_inputs doctor_border" id="hospitalTelephone"
+                                       name="hospital_telephone"
+                                       type="text"
+                                       maxlength="20">
+                                <div class="error"></div>
+                            </td>
+                        </tr>
 
-                        <input class="signup_inputs doctor_border" id="hospitalTelephone" name="hospital_telephone"
-                               type="text"
-                               maxlength="20">
-                        <div class="error"></div>
+                        <tr>
+                            <th>
+                                <label for="businessNumber">사업자번호</label>
+                            </th>
+                            <td>
+                                <div style="display:flex; flex-flow : wrap ">
+                                    <input class="signup_inputs doctor_border" id="businessNumber"
+                                           style=" width: 70%"
+                                           name="hospital_business_number" type="text"
+                                           maxlength="10">
 
-
-                    </div>
-
-                    <div class="input-control">
-                        <label class="doctor-title" for="businessNumber">사업자번호</label>
-                        <div style="display:flex; flex-flow : wrap ">
-                            <input class="signup_inputs doctor_border" id="businessNumber"
-                                   style=" width: 70%"
-                                   name="hospital_business_number" type="text"
-                                   maxlength="10">
-
-                            <input type="button" id="businessNumCheck" class="w-btn" style="width: 15%"
-                                   value="조회">
-                            <div class="error"></div>
-                        </div>
-
-                    </div>
+                                    <input type="button" id="businessNumCheck" class="w-btn" style="width: 15%"
+                                           value="조회">
+                                    <div class="error"></div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
 
 
                     <br>
 
 
                     <div class="input-control">
-                        <label class="doctor-title">병원주소</label>
+                        <label>병원주소</label>
                         <table style="width: 90%">
                             <colgroup>
                                 <col style="width:20%">
@@ -279,7 +316,7 @@
                     </div>
 
                     <div>
-                        <label class="doctor-title" style="margin-top: 20px">진료과 선택</label>
+                        <label style="margin-top: 20px">진료과 선택</label>
                     </div>
 
                     <div>
@@ -311,7 +348,7 @@
 
 
                     <div>
-                        <label class="doctor-title" style="margin-top: 20px;">진료 시간 선택</label>
+                        <label style="margin-top: 20px;">진료 시간 선택</label>
                         <label style="font-size: 10pt;">단위: 시간</label>
 
                         <div style="display:flex; flex-flow : wrap">
@@ -344,7 +381,7 @@
                     </div>
                     <br>
                     <div>
-                        <label class="doctor-title" style="margin-top: 20px">점심 시간 선택</label>
+                        <label style="margin-top: 20px">점심 시간 선택</label>
                         <label style="font-size: 10pt;">단위: 1시간</label>
                         <div class="input-control">
                             <label for="eleven" style="font-size: 20px; color: #000000; cursor:pointer"> <input
@@ -404,7 +441,7 @@
                         <%--                        </script>--%>
                         <br>
 
-                        <label class="doctor-title">병원 정기 휴무 선택</label><label style="font-size: 10pt;">(다중선택가능)</label>
+                        <label>병원 정기 휴무 선택</label><label style="font-size: 10pt;">(다중선택가능)</label>
 
                         <div class="rest-day">
                             <%--                            히든추가--%>
@@ -476,45 +513,47 @@
                     <div style="font-size: 30px">추가 정보 입력<strong style="color: #bcb9b9">(선택)</strong></div>
                     <div style="font-size: 15px; color: #0058A8">* 진료예약시 환자에게 제공되는 정보입니다.</div>
 
-                    <div class="input-control">
-                        <div class="input-control">
-                            <label class="doctor-title" for="hospital_fax">팩스번호</label>
-                            <div style="display:flex">
-                                <input class="signup_inputs doctor_border" id="Hospital_fax" name="hospital_fax"
-                                       type="text"
-                                       maxlength="20">
-                            </div>
-                            <div class="error"></div>
-                        </div>
-                        <div class="input-control">
-                            <label class="doctor-title" for="Hospital_url">홈페이지(URL)</label>
-                            <div style="display:flex">
-                                <input class="signup_inputs doctor_border" id="Hospital_url" name="hospital_url"
-                                       type="text">
-                            </div>
-                            <div class="error"></div>
-                        </div>
-                        <div class="input-control">
-                            <label>병원 소개 사진 등록</label>
-                            <table class="table table=borderless chartTable" style="width: 90%">
-                                <tr>
-                                    <%--                                    <th>이미지 첨부</th>--%>
-                                    <td>
-                                        <div id="preview1" align="center"></div>
-                                        <div align="center" class="filebox" style="padding:10px">
-                                            <label for="hospitalProfile" id="filebtn1">사진 등록</label>
-                                            <input id="hospitalProfile" name="hospitalImgNames" type="file"
-                                                   style="display: none" accept=".gif, .jpg, .png">
-                                            <div id='attZone1'>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
-
-                        </div>
-
-                    </div>
+                    <table>
+                        <tr>
+                            <th>
+                                <label style="width: 120px" for="hospital_fax">팩스번호</label>
+                            </th>
+                            <td>
+                                <div style="display:flex">
+                                    <input class="signup_inputs doctor_border" id="Hospital_fax" name="hospital_fax"
+                                           type="text"
+                                           maxlength="20">
+                                </div>
+                                <div class="error"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label for="Hospital_url">홈페이지(URL)</label>
+                            </th>
+                            <td>
+                                <div style="display:flex">
+                                    <input class="signup_inputs doctor_border" id="Hospital_url" name="hospital_url"
+                                           type="text">
+                                </div>
+                                <div class="error"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <%--                                    <th>이미지 첨부</th>--%>
+                            <td colspan="2">
+                                <label style="display: block; text-align: center">병원 소개 사진 등록</label>
+                                <div id="preview1" align="center"></div>
+                                <div align="center" class="filebox" style="padding:10px">
+                                    <label for="hospitalProfile" id="filebtn1">사진 등록</label>
+                                    <input id="hospitalProfile" name="hospitalImgNames" type="file"
+                                           style="display: none" accept=".gif, .jpg, .png">
+                                    <div id='attZone1'>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </section>
             <br><br><br><br>
