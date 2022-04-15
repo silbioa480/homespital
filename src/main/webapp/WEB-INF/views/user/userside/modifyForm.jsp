@@ -85,7 +85,6 @@ change this template use File | Settings | File Templates. --%>
         <div id="main">
             <form
                     id="form"
-                    style="margin-left: 100px"
                     name="form"
                     action="/modifyMember.do"
                     method="post"
@@ -101,207 +100,232 @@ change this template use File | Settings | File Templates. --%>
                     <div class="container" style="margin-top: 150px">
                         <h3>필수 회원정보 수정</h3>
                         <hr/>
-                        <div class="input-control">
-                            <label for="email">이메일</label>
-                            <input
-                                    class="signup_inputs user_border"
-                                    style="width: 100%"
-                                    type="text"
-                                    id="email"
-                                    name="email"
-                                    value="${email}"
-                                    readonly="readonly"
-                            />
-                        </div>
+                        <table>
+                            <tr>
+                                <th>
+                                    <label style="width: 140px" for="email">이메일</label>
+                                </th>
+                                <td>
+                                    <input
+                                            class="signup_inputs user_border"
+                                            style="width: 100%"
+                                            type="text"
+                                            id="email"
+                                            name="email"
+                                            value="${email}"
+                                            readonly="readonly"
+                                    />
+                                </td>
+                            </tr>
 
-                        <div class="input-control">
-                            <label for="password">새 비밀번호</label>
-                            <input
-                                    class="signup_inputs user_border"
-                                    type="password"
-                                    style="width: 100%"
-                                    id="password"
-                                    name="password"
-                                    placeholder="비밀번호를 입력해주세요"
-                                    value=""
-                                    minlength="4"
-                                    maxlength="12"
-                                    size="15"
-                                    pattern="[a-zA-Z0-9]{4,12}"
-                                    title="4~12자의 영문 대소문자와 숫자로만 입력."
-                            />
-                            <div class="error"></div>
-                        </div>
-                        <div class="input-control">
-                            <label for="password2">새 비밀번호 확인</label>
-                            <input
-                                    class="signup_inputs user_border"
-                                    type="password"
-                                    style="width: 100%"
-                                    id="password2"
-                                    name="password2"
-                                    placeholder="비밀번호를 입력해주세요"
-                                    onkeyup="check_pw()"
-                                    value=""
-                                    maxlength="12"
-                                    size="15"
-                            />
-                            <span id="pw_check_msg" style="color: #1abc9c"></span>
-                            <div class="error"></div>
-                        </div>
+                            <tr>
+                                <th>
+                                    <label for="password">새 비밀번호</label>
+                                </th>
+                                <td>
+                                    <input
+                                            class="signup_inputs user_border"
+                                            type="password"
+                                            style="width: 100%"
+                                            id="password"
+                                            name="password"
+                                            placeholder="비밀번호를 입력해주세요"
+                                            value=""
+                                            minlength="4"
+                                            maxlength="12"
+                                            size="15"
+                                            pattern="[a-zA-Z0-9]{4,12}"
+                                            title="4~12자의 영문 대소문자와 숫자로만 입력."
+                                    />
+                                    <div class="error"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <label for="password2">새 비밀번호 확인</label>
+                                </th>
+                                <td>
+                                    <input
+                                            class="signup_inputs user_border"
+                                            type="password"
+                                            style="width: 100%"
+                                            id="password2"
+                                            name="password2"
+                                            placeholder="비밀번호를 입력해주세요"
+                                            onkeyup="check_pw()"
+                                            value=""
+                                            maxlength="12"
+                                            size="15"
+                                    />
+                                    <span id="pw_check_msg" style="color: #1abc9c"></span>
+                                    <div class="error"></div>
+                                </td>
+                            </tr>
 
-                        <div class="input-control">
-                            <label for="name">이름</label>
-                            <input
-                                    class="signup_inputs user_border"
-                                    style="width: 100%"
-                                    type="text"
-                                    id="name"
-                                    name="name"
-                                    value="${user.user_name}"
-                                    readonly="readonly"
-                            />
-                        </div>
+                            <tr>
+                                <th>
+                                    <label for="name">이름</label>
+                                </th>
+                                <td>
+                                    <input
+                                            class="signup_inputs user_border"
+                                            style="width: 100%"
+                                            type="text"
+                                            id="name"
+                                            name="name"
+                                            value="${user.user_name}"
+                                            readonly="readonly"
+                                    />
+                                </td>
+                            </tr>
 
-                        <div class="input-control">
-                            <label for="SocialSecurityNumber">주민등록번호</label>
-
-                            <div
-                                    id="SocialSecurityNumber"
-                                    name="SocialSecurityNumber"
-                                    style="display: flex"
-                            >
-                                <input
-                                        class="signup_inputs user_border"
-                                        style="width: 100%"
-                                        type="text"
-                                        value="${user.user_registration_number}"
-                                        readonly="readonly"
-                                />
-                            </div>
-                        </div>
-                        <div class="input-control">
-                            <label for="phone">휴대폰 번호</label>
-                            <div style="display: flex">
-                                <input
-                                        class="signup_inputs user_border"
-                                        style="width: 100%"
-                                        id="originphone"
-                                        type="text"
-                                        name="phone"
-                                        value="${user.user_phone}"
-                                        readonly="readonly"
-                                />
-                                <input
-                                        type="button"
-                                        id="phoneBtn"
-                                        class="w-btn"
-                                        value="휴대폰번호변경"
-                                />
-                            </div>
-
-                            <%--가영: 여기서부터 휴대폰 번호변경 인증번호 모달창 시작--%>
-                            <div
-                                    class="modal fade"
-                                    id="phoneModal"
-                                    tabindex="-1"
-                                    role="dialog"
-                                    aria-labelledby="exampleModalLabel"
-                                    aria-hidden="true"
-                            >
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="phoneModalLabel">
-                                                휴대폰번호 수정
-                                            </h5>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="input-control">
-                                                <div style="display: flex">
-                                                    <input
-                                                            class="signup_inputs user_border"
-                                                            id="phone"
-                                                            type="text"
-                                                            name="phone"
-                                                            placeholder="휴대폰번호를 입력해 주세요."
-                                                            title="전화번호 입력"
-                                                    />
-                                                    <input
-                                                            style="width: 185px"
-                                                            type="button"
-                                                            id="phoneChk"
-                                                            class="w-btn"
-                                                            value="인증번호 받기"
-                                                    />
-                                                </div>
-                                                <div class="error"></div>
-                                            </div>
-                                            <div class="input-control">
-                                                <div style="display: flex">
-                                                    <input
-                                                            class="signup_inputs user_border"
-                                                            id="phone2"
-                                                            type="text"
-                                                            name="phone2"
-                                                            placeholder="인증번호를 입력해 주세요."
-                                                            title="인증번호 입력"
-                                                            disabled
-                                                    />
-                                                    <input
-                                                            style="width: 185px"
-                                                            type="button"
-                                                            id="phoneChk2"
-                                                            class="w-btn"
-                                                            value="본인인증"
-                                                    />
-                                                </div>
-                                                <%--                                                <div class="modal-footer" style="width: 470px">--%>
-                                                <%--                                                    <button--%>
-                                                <%--                                                            class="phonemodibtn btn"--%>
-                                                <%--                                                            id="modalY2"--%>
-                                                <%--                                                            disabled--%>
-                                                <%--                                                    >--%>
-                                                <%--                                                        수정--%>
-                                                <%--                                                    </button>--%>
-                                                <%--                                                    <button--%>
-                                                <%--                                                            class="btn"--%>
-                                                <%--                                                            type="button"--%>
-                                                <%--                                                            data-bs-dismiss="modal"--%>
-                                                <%--                                                    >--%>
-                                                <%--                                                        취소--%>
-                                                <%--                                                    </button>--%>
-                                                <%--                                                </div>--%>
-                                                <%--                                                <div class="error" style="width: 300px"></div>--%>
-                                                <%--                                            </div>--%>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <a
-                                                        class="w-btn"
-                                                        style="text-align: center"
-                                                        id="modalY2"
-                                                        href="/modifyForm"
-                                                        onclick="getParentText()"
-                                                >수정</a
-                                                >
-                                                <button
-                                                        class="w-btn"
-                                                        type="button"
-                                                        data-bs-dismiss="modal"
-                                                >
-                                                    취소
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <%--가영: 여기까지 휴대폰 번호변경 인증번호 모달창
-                                        시작--%>
-                                        <div class="error"></div>
+                            <tr>
+                                <th>
+                                    <label for="SocialSecurityNumber">주민등록번호</label>
+                                </th>
+                                <td>
+                                    <div
+                                            id="SocialSecurityNumber"
+                                            name="SocialSecurityNumber"
+                                            style="display: flex"
+                                    >
+                                        <input
+                                                class="signup_inputs user_border"
+                                                style="width: 100%"
+                                                type="text"
+                                                value="${user.user_registration_number}"
+                                                readonly="readonly"
+                                        />
                                     </div>
-                                </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <label for="phone">휴대폰 번호</label>
+                                </th>
+                                <td>
+                                    <div style="display: flex">
+                                        <input
+                                                class="signup_inputs user_border"
+                                                style="width: 100%"
+                                                id="originphone"
+                                                type="text"
+                                                name="phone"
+                                                value="${user.user_phone}"
+                                                readonly="readonly"
+                                        />
+                                        <input
+                                                type="button"
+                                                id="phoneBtn"
+                                                class="w-btn"
+                                                value="휴대폰번호변경"
+                                        />
+                                    </div>
+                                </td>
 
-                                <div class="error"></div>
-                            </div>
-                        </div>
+                                <%--가영: 여기서부터 휴대폰 번호변경 인증번호 모달창 시작--%>
+                                <div
+                                        class="modal fade"
+                                        id="phoneModal"
+                                        tabindex="-1"
+                                        role="dialog"
+                                        aria-labelledby="exampleModalLabel"
+                                        aria-hidden="true"
+                                >
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="phoneModalLabel">
+                                                    휴대폰번호 수정
+                                                </h5>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="input-control">
+                                                    <div style="display: flex">
+                                                        <input
+                                                                class="signup_inputs user_border"
+                                                                id="phone"
+                                                                type="text"
+                                                                name="phone"
+                                                                placeholder="휴대폰번호를 입력해 주세요."
+                                                                title="전화번호 입력"
+                                                        />
+                                                        <input
+                                                                style="width: 185px"
+                                                                type="button"
+                                                                id="phoneChk"
+                                                                class="w-btn"
+                                                                value="인증번호 받기"
+                                                        />
+                                                    </div>
+                                                    <div class="error"></div>
+                                                </div>
+                                                <div class="input-control">
+                                                    <div style="display: flex">
+                                                        <input
+                                                                class="signup_inputs user_border"
+                                                                id="phone2"
+                                                                type="text"
+                                                                name="phone2"
+                                                                placeholder="인증번호를 입력해 주세요."
+                                                                title="인증번호 입력"
+                                                                disabled
+                                                        />
+                                                        <input
+                                                                style="width: 185px"
+                                                                type="button"
+                                                                id="phoneChk2"
+                                                                class="w-btn"
+                                                                value="본인인증"
+                                                        />
+                                                    </div>
+                                                    <%--                                                <div class="modal-footer" style="width: 470px">--%>
+                                                    <%--                                                    <button--%>
+                                                    <%--                                                            class="phonemodibtn btn"--%>
+                                                    <%--                                                            id="modalY2"--%>
+                                                    <%--                                                            disabled--%>
+                                                    <%--                                                    >--%>
+                                                    <%--                                                        수정--%>
+                                                    <%--                                                    </button>--%>
+                                                    <%--                                                    <button--%>
+                                                    <%--                                                            class="btn"--%>
+                                                    <%--                                                            type="button"--%>
+                                                    <%--                                                            data-bs-dismiss="modal"--%>
+                                                    <%--                                                    >--%>
+                                                    <%--                                                        취소--%>
+                                                    <%--                                                    </button>--%>
+                                                    <%--                                                </div>--%>
+                                                    <%--                                                <div class="error" style="width: 300px"></div>--%>
+                                                    <%--                                            </div>--%>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a
+                                                            class="w-btn"
+                                                            style="text-align: center"
+                                                            id="modalY2"
+                                                            href="/modifyForm"
+                                                            onclick="getParentText()"
+                                                    >수정</a
+                                                    >
+                                                    <button
+                                                            class="w-btn"
+                                                            type="button"
+                                                            data-bs-dismiss="modal"
+                                                    >
+                                                        취소
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <%--가영: 여기까지 휴대폰 번호변경 인증번호 모달창
+                                            시작--%>
+                                            <div class="error"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="error"></div>
+                                </div>
+                            </tr>
+                        </table>
                     </div>
                 </section>
 
