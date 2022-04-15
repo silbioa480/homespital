@@ -8,6 +8,7 @@ const socket = new WebSocket("wss://" + window.location.host + "/signal");
 // const audioButtonOn = document.querySelector('#audio_on');
 const exitButton = document.querySelector('#exit');
 const localRoom = document.querySelector('input#id').value;
+const chatBox = document.querySelector('#chatBox');
 /**
  * localVideo가 Video 스트림 가져온다
  * remoteVideo가 원격의 video 스트림 가져온다
@@ -49,12 +50,9 @@ let myPeerConnection;
  */
 
 function sendChat() {
-    sendToServer({
-        from: localUserName,
-        type: 'text',
-        data: $('#chatMsg').val(),
-        sdp: myPeerConnection.localDescription
-    })
+    dataChannel.send($('#chatMsg').val());
+
+    chatBox.innerHTML += ($('#chatMsg').val() + "</br>");
     $('#chatMsg').val("");
 }
 
@@ -114,6 +112,12 @@ function start() {
             case "join":
                 log('Client is starting to ' + (message.data === "true)" ? 'negotiate' : 'wait for a peer'));
                 handlePeerConnection(message);
+                dataChannel.onopen = function (event) {
+                    dataChannel.send('어서와요');
+                }
+                dataChannel.onmessage = function (event) {
+                    console.log(event.data);
+                }
                 break;
 
             default:
@@ -246,6 +250,8 @@ function getMedia(constraints) {
         .then(getLocalMediaStream).catch(handleGetUserMediaError);
 }
 
+let dataChannel;
+
 // create peer connection, get media, start negotiating when second participant appears
 function handlePeerConnection(message) {
     createPeerConnection();
@@ -253,6 +259,8 @@ function handlePeerConnection(message) {
     if (message.data === "true") {
         myPeerConnection.onnegotiationneeded = handleNegotiationNeededEvent;
     }
+    dataChannel = myPeerConnection.createDataChannel('chatRoom');
+
 }
 
 /**
@@ -267,7 +275,15 @@ function createPeerConnection() {
     // event handlers for the ICE negotiation process
     myPeerConnection.onicecandidate = handleICECandidateEvent;
     myPeerConnection.ontrack = handleTrackEvent;
-
+    myPeerConnection.ondatachannel = function (event) {
+        let channel = event.channel;
+        channel.onopen = function (event) {
+            console.log(event)
+        }
+        channel.onmessage = function (event) {
+            chatBox.innerHTML += (event.data + "</br>");
+        }
+    }
     // the following events are optional and could be realized later if needed
     // myPeerConnection.onremovetrack = handleRemoveTrackEvent;
     // myPeerConnection.oniceconnectionstatechange = handleICEConnectionStateChangeEvent;
