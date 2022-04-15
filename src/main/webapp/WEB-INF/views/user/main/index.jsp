@@ -69,7 +69,8 @@
             </div>
         </div>
         <%--캐러셀 끝부분 --%>
-        
+        <%--캐러셀 끝부분 --%>
+
         </p>
     </div>
     <a href="#two" class="button style2 down anchored">Next</a>
