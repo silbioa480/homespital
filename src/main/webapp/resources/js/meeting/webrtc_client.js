@@ -48,9 +48,16 @@ let myPeerConnection;
  * DOM(Document Object Model) 객체가 생성되어 준비되는 시점에서 호출된다는 의미
  */
 
-setInterval(function () {
-    sendToServer({from: localUserName, type: 'text', data: "please help me god..."})
-}, 10000);
+function sendChat() {
+    sendToServer({
+        from: localUserName,
+        type: 'text',
+        data: $('#chatMsg').val(),
+        sdp: myPeerConnection.localDescription
+    })
+    $('#chatMsg').val("");
+}
+
 
 // on page load runner
 $(function () {
@@ -66,6 +73,7 @@ function start() {
     // add an event listener for a message being received
     socket.onmessage = function (msg) {
         let message = JSON.parse(msg.data);
+        log(msg);
         switch (message.type) {
             case "text":
                 log('Text message from ' + message.from + ' received: ' + message.data);
