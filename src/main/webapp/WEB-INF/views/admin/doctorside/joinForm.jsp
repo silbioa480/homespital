@@ -22,7 +22,7 @@
 </head>
 
 <body class="is-preload">
-<section id="sidebar" style="background-color: #0058A8;">
+<div id="sidebar" style="background-color: #0058A8;">
     <header>
         <span class="image avatar">
             <a href="/doctor/"><img src="/resources/img/design/logo_white.png"></a>
@@ -30,10 +30,10 @@
     </header>
     <nav id="nav">
         <ul>
-            <li><a href="#one" class="active">로그인 정보 입력<font color="red">(필수)</font></a></li>
-            <li><a href="#two" class="active">의사 정보 입력<font color="red">(필수)</font></a></li>
-            <li><a href="#three" class="active">추가 정보 입력(선택)</a></li>
-            <li><a href="#four">약관동의</a></li>
+            <li class="nav-item"><a href="#one" class="nav-link active">로그인 정보 입력<font color="red">(필수)</font></a></li>
+            <li class="nav-item"><a href="#two" class="nav-link ">의사 정보 입력<font color="red">(필수)</font></a></li>
+            <li class="nav-item"><a href="#three" class="nav-link ">추가 정보 입력(선택)</a></li>
+            <li class="nav-item"><a href="#four" class="nav-link ">약관동의</a></li>
         </ul>
     </nav>
     <footer>
@@ -45,7 +45,7 @@
             <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
         </ul>
     </footer>
-</section>
+</div>
 
 
 <!-- Wrapper -->
@@ -71,12 +71,13 @@
 
     <!-- Main -->
     <div id="main">
-        <form id="form" name="form" action="/doctor/doctorJoin.do" method="post" enctype="multipart/form-data">
+        <form id="form" name="form" action="/doctor/doctorJoin.do" method="post" enctype="multipart/form-data"
+              data-bs-spy="scroll" data-bs-target="#nav" data-bs-offset="0" tabindex="0">
             <!-- One -->
             <section id="one">
                 <div class="container">
 
-                    <h3 style="margin-top: 100px">의사 회원가입</h3>
+                    <h3>의사 회원가입</h3>
 
                     <hr>
 
@@ -573,11 +574,11 @@
 
 <!-- Scripts -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="/resources/js/signUp/jquery.scrollex.min.js"></script>
-<script src="/resources/js/signUp/jquery.scrolly.min.js"></script>
-<script src="/resources/js/signUp/browser.min.js"></script>
-<script src="/resources/js/signUp/breakpoints.min.js"></script>
-<script src="/resources/js/signUp/util.js"></script>
+<%--<script src="/resources/js/signUp/jquery.scrollex.min.js"></script>--%>
+<%--<script src="/resources/js/signUp/jquery.scrolly.min.js"></script>--%>
+<%--<script src="/resources/js/signUp/browser.min.js"></script>--%>
+<%--<script src="/resources/js/signUp/breakpoints.min.js"></script>--%>
+<%--<script src="/resources/js/signUp/util.js"></script>--%>
 <script src="/resources/js/signUp/signUp.js"></script>
 <%--<script src="/resources/js/signUp/signUpCheck.js"></script>--%>
 
@@ -687,7 +688,11 @@
     // }
 
 </script>
-
+<script>
+    var scrollSpy = new bootstrap.ScrollSpy(document.body, {
+        target: '#nav'
+    })
+</script>
 
 </body>
 </html>

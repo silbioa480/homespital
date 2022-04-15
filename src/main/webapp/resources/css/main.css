@@ -2434,7 +2434,7 @@ body.is-touch .poptrox-popup .closer {
     }
 }
 
-#banner h2 {
+#banner .main-text{
     -moz-transform: scale(1);
     -webkit-transform: scale(1);
     -ms-transform: scale(1);
@@ -2450,9 +2450,30 @@ body.is-touch .poptrox-popup .closer {
     padding: 0.35em 1em;
     position: relative;
     z-index: 1;
+    letter-spacing:5px;
+}
+#banner .sub-text{
+    -moz-transform: scale(1);
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+    -moz-transition: -moz-transform 1s ease, opacity 1s ease;
+    -webkit-transition: -webkit-transform 1s ease, opacity 1s ease;
+    -ms-transition: -ms-transform 1s ease, opacity 1s ease;
+    transition: transform 1s ease;
+    animation:cutScene 2s ease-in-out both;
+    display:block;
+    font-size: 1.2em;
+    opacity: 0;
+    padding: 0.5em 1em 0.35em;
+    margin-left:13px;
+    position: relative;
+    z-index: 1;
+    letter-spacing:.85em;
+    color:#fff;
 }
 
-#banner h2:before, #banner h2:after {
+#banner .main-text:before, #banner .main-text:after {
     -moz-transition: width 0.85s ease;
     -webkit-transition: width 0.85s ease;
     -ms-transition: width 0.85s ease;
@@ -2467,14 +2488,15 @@ body.is-touch .poptrox-popup .closer {
     height: 2px;
     position: absolute;
     width: 100%;
+
 }
 
-#banner h2:before {
+#banner .main-text:before {
     top: 0;
     left: 0;
 }
 
-#banner h2:after {
+#banner .main-text:after {
     bottom: 0;
     right: 0;
 }
@@ -2563,7 +2585,7 @@ body.is-touch .poptrox-popup .closer {
         min-height: 0;
     }
 
-    #banner h2 {
+    #banner .main-text {
         font-size: 1.25em;
     }
 
@@ -2577,7 +2599,7 @@ body.is-touch .poptrox-popup .closer {
 
 }
 
-body.is-preload #banner h2 {
+body.is-preload #banner .main-text {
     -moz-transform: scale(0.95);
     -webkit-transform: scale(0.95);
     -ms-transform: scale(0.95);
@@ -2587,7 +2609,7 @@ body.is-preload #banner h2 {
 
 }
 
-body.is-preload #banner h2:before, body.is-preload #banner h2:after {
+body.is-preload #banner .main-text:before, body.is-preload #banner .main-text:after {
     width: 0;
 }
 
@@ -2607,7 +2629,7 @@ body.is-preload #banner:after {
     margin-top: 50px;
 }
 
-#banner h2 {
+#banner .main-text, p {
     color: #fff;
 }
 

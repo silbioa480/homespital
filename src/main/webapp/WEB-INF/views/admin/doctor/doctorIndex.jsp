@@ -5,28 +5,30 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <link rel="stylesheet" href="/resources/css/docMain.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap" rel="stylesheet">
     <noscript>
         <link rel="stylesheet" href="/resources/css/main2.css"/>
     </noscript>
 </head>
 <body class="is-preload">
 <!-- Intro -->
-<section id="intro" class="main style1 dark fullscreen">
-    <div class="content">
-        <header>
-            <h2>Homespital.</h2>
-            <h2>임시 로그인(의사)</h2>
-            <a href="/doctor/docLogin">임시 로그인</a>
-
-        </header>
-        <p>우리집에서 한번에
-        <hr>
-        <strong>비대면 진료 </strong><strong>| 처방 </strong><strong>| 약배송까지</strong><br/>
-        </p>
-        <footer>
-            <a href="#one" class="button style2 down">More</a>
-        </footer>
+<section id="banner">
+    <div class="inner">
+        <div class="inner-text">
+            <h2 class="main-text">home+hospital</h2>
+            <h2 class="sub-text">홈스피탈</h2>
+        </div>
+        <div class="inner-side">
+            <p class="textP">병원이 행복해지는</p>
+            <p>편리한 방법을 제공합니다.</p>
+            <p>홈스피탈</p>
+        </div>
     </div>
+    <%--환자 메인 화면 이미지 태영      --%>
+    <div class="image-box">
+        <img width="250px" height="300px" src="/resources/img/design/d_main_image.jpg" alt="로그인메인이미지"/>
+    </div>
+    <a href="#one" class="more scrolly" style="color: #fff;">Learn More</a>
 </section>
 
 <!-- One -->
