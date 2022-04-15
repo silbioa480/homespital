@@ -113,7 +113,7 @@ public class MeetingController {
                 currentuser = memberService.queryMember((String) session.getAttribute("email")).getUser_name();
             }
 
-            if (currentuser != null) mav.addObject("name", currentuser);
+            if (currentuser != null) mav.addObject("currentuser", currentuser);
         } catch (Exception e) {
             e.printStackTrace();
         }
