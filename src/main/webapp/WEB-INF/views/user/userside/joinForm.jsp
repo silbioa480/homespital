@@ -19,7 +19,6 @@
         <span class="image avatar">
             <a href="/"><img src="/resources/img/design/logo_U_sideNav.png"></a></span>
         <%--        <h1 id="logo"><a href="#">Homespital</a></h1>--%>
-        <p>회원가입</p>
 
     </header>
     <nav id="nav">
@@ -50,16 +49,16 @@
             <!-- One -->
             <section id="one">
                 <div class="container">
-                    <h3 style="margin-top: 100px">환자 회원가입</h3>
+                    <h3 style="margin-top: 100px; color: navy">홈스피탈 회원가입</h3>
                     <br>
                     <div style="font-size: 25px">로그인 정보에 사용됩니다<strong style="color: #1abc9c">(필수)</strong></div>
                     <hr style="height:3px">
-                    <diu class="input-control">
+                    <div class="input-control">
                         <label for="email">이메일</label>
                         <input class="signup_inputs user_border" type="email" id="email" name="email"
                                placeholder="이메일을 입력해주세요">
                         <div class="error"></div>
-                    </diu>
+                    </div>
                     <div class="input-control">
                         <label for="password">비밀번호</label>
                         <input class="signup_inputs user_border" type="password" id="password" name="password"
@@ -82,10 +81,10 @@
                         <label for="SocialSecurityNumber1">주민등록번호</label>
                         <div style="display:flex">
                             <input class="signup_inputs user_border" id="SocialSecurityNumber1"
-                                   name="SocialSecurityNumber1" type="text" maxlength="6">&nbsp__&nbsp
+                                   name="SocialSecurityNumber1" type="text" maxlength="6" style="width: 285px">&nbsp__&nbsp
                             <input class="signup_inputs user_border" type="password" id="SocialSecurityNumber2"
                                    name="SocialSecurityNumber2"
-                                   maxlength="7">
+                                   maxlength="7" style="width: 285px">
                         </div>
                         <div class="error"></div>
                     </div>
@@ -94,7 +93,7 @@
                         <div style="display:flex">
                             <input class="signup_inputs user_border" id="phone" type="text" name="phone"
                                    title="전화번호 입력" style=""/>
-                            <input type="button" id="phoneChk" class="w-btn w-btn-green" value="인증번호 받기">
+                            <input type="button" id="phoneChk" class="w-btn" value="인증번호 받기">
                         </div>
                         <div class="error"></div>
                         <br/>
@@ -102,7 +101,7 @@
                             <div style="display:flex">
                                 <input class="signup_inputs user_border" id="phone2" type="text" name="phone2"
                                        title="인증번호 입력" disabled style=""/>
-                                <input type="button" id="phoneChk2" class="w-btn w-btn-blue" value="본인인증">
+                                <input type="button" id="phoneChk2" class="w-btn" value="본인인증">
                             </div>
                             <div class="error"></div>
                             <span class="point successPhoneChk">휴대폰 번호 입력후 인증번호 보내기를 해주십시오.</span>
@@ -134,7 +133,7 @@
                                         <input class="signup_inputs user_border" type="text" id="zipNo" name="zipNo"
                                                readonly style=" width:200px">
                                         <input type="button" value="주소검색" onclick="goPopup()"
-                                               class="w-btn w-btn-green">
+                                               class="w-btn">
                                     </div>
                                 </td>
                             </tr>
@@ -249,7 +248,7 @@
                         </div>
                     </div>
                     <br><br><br>
-                    <input id="subbtn" class="w-btn w-btn-green" type="button" value="회원가입" style="width: 100%;"
+                    <input id="subbtn" class="w-btn" type="button" value="회원가입" style="width: 100%;"
                            onClick="checkAll()"></input>
                 </div>
             </section>

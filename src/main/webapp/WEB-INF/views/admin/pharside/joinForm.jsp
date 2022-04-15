@@ -70,7 +70,7 @@
                         <div style="display:flex">
                             <input class="signup_inputs pharmacy_border" id="phone" type="text" name="pharmacy_mobile"
                                    title="전화번호 입력" style=""/>
-                            <input type="button" id="phoneChk" class="w-btn w-btn-green" value="인증번호 받기">
+                            <input type="button" id="phoneChk" class="w-btn" value="인증번호 받기">
                         </div>
                         <div class="error"></div>
                         <br/>
@@ -78,7 +78,7 @@
                             <div style="display:flex">
                                 <input class="signup_inputs pharmacy_border" id="phone2" type="text" name="phone2"
                                        title="인증번호 입력" style="" disabled/>
-                                <input type="button" id="phoneChk2" class="w-btn w-btn-blue" value="본인인증">
+                                <input type="button" id="phoneChk2" class="w-btn" value="본인인증">
                             </div>
                             <div class="error"></div>
                             <span class="point successPhoneChk">휴대폰 번호 입력후 인증번호 보내기를 해주십시오.</span>
@@ -101,7 +101,7 @@
                             <input class="signup_inputs pharmacy_border" type="text" id="businessNumber"
                                    name="pharmacy_business"
                                    placeholder="사업자 번호를 입력해주세요" style=" width:370px">
-                            <input type="button" id="businessNumCheck" class="w-btn w-btn-yellow" value="사업자 조회"
+                            <input type="button" id="businessNumCheck" class="w-btn" value="사업자 조회"
                                    style="margin-left: 30px;"/>
                         </div>
                         <div class="error"></div>
@@ -144,7 +144,7 @@
                                         <input class="signup_inputs pharmacy_border" type="text" id="zipNo" name="zipNo"
                                                style=" width:200px">
                                         <input type="button" value="주소검색" onclick="goPopup()"
-                                               class="w-btn w-btn-yellow">
+                                               class="w-btn">
                                     </div>
                                 </td>
                             </tr>
@@ -201,7 +201,7 @@
                         </div>
                     </div>
                     <br><br><br>
-                    <input id="subbtn" class="w-btn w-btn-yellow" type="button" value="회원가입" style="width: 100%;"
+                    <input id="subbtn" class="w-btn" type="button" value="회원가입" style="width: 100%;"
                            onClick="checkAll()"></input>
                 </div>
             </section>
