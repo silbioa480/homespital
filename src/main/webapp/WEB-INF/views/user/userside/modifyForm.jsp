@@ -34,7 +34,6 @@ change this template use File | Settings | File Templates. --%>
         <span class="image avatar">
             <a href="/"><img src="/resources/img/design/logo_U_sideNav.png" alt=""/></a></span>
         <p class="userName">${user.user_name}님 안녕하세요.</p>
-        <p class="py-5"><strong>마이 페이지 > 내 정보 수정</strong></p>
     </div>
     <nav>
         <ul id="nav">
@@ -196,7 +195,7 @@ change this template use File | Settings | File Templates. --%>
                                 <input
                                         type="button"
                                         id="phoneBtn"
-                                        class="w-btn w-btn-green"
+                                        class="w-btn"
                                         value="휴대폰번호변경"
                                 />
                             </div>
@@ -232,7 +231,7 @@ change this template use File | Settings | File Templates. --%>
                                                             style="width: 185px"
                                                             type="button"
                                                             id="phoneChk"
-                                                            class="w-btn w-btn-blue"
+                                                            class="w-btn"
                                                             value="인증번호 받기"
                                                     />
                                                 </div>
@@ -253,7 +252,7 @@ change this template use File | Settings | File Templates. --%>
                                                             style="width: 185px"
                                                             type="button"
                                                             id="phoneChk2"
-                                                            class="w-btn w-btn-blue"
+                                                            class="w-btn"
                                                             value="본인인증"
                                                     />
                                                 </div>
@@ -278,7 +277,7 @@ change this template use File | Settings | File Templates. --%>
                                             </div>
                                             <div class="modal-footer">
                                                 <a
-                                                        class="w-btn w-btn-green"
+                                                        class="w-btn"
                                                         style="text-align: center"
                                                         id="modalY2"
                                                         href="/modifyForm"
@@ -286,7 +285,7 @@ change this template use File | Settings | File Templates. --%>
                                                 >수정</a
                                                 >
                                                 <button
-                                                        class="w-btn w-btn-yellow"
+                                                        class="w-btn"
                                                         type="button"
                                                         data-bs-dismiss="modal"
                                                 >
@@ -303,6 +302,7 @@ change this template use File | Settings | File Templates. --%>
                                 <div class="error"></div>
                             </div>
                         </div>
+                    </div>
                 </section>
 
                 <br/><br/><br/><br/>
@@ -339,7 +339,7 @@ change this template use File | Settings | File Templates. --%>
                                                     value="${user.zip_code}"
                                             />
                                             <input
-                                                    class="w-btn w-btn-green"
+                                                    class="w-btn"
                                                     type="button"
                                                     value="주소변경"
                                                     onclick="goPopup()"
@@ -397,7 +397,7 @@ change this template use File | Settings | File Templates. --%>
                             />
                             <button
                                     id="writeCard"
-                                    class="w-btn w-btn-green"
+                                    class="w-btn button"
                                     style="width: fit-content !important"
                                     onclick="return false;"
                             >
@@ -466,7 +466,7 @@ change this template use File | Settings | File Templates. --%>
                                     <div class="modal-footer">
                                         <a class="btn" id="modalY3" onclick="">확인</a>
                                         <button
-                                                class="w-btn w-btn-yellow"
+                                                class="w-btn"
                                                 type="button"
                                                 data-bs-dismiss="modal"
                                         >
@@ -591,14 +591,14 @@ change this template use File | Settings | File Templates. --%>
                                 </div>
                                 <div class="modal-footer">
                                     <button
-                                            class="w-btn w-btn-green"
+                                            class="w-btn"
                                             type="button"
                                             id="submitNewCard"
                                             onclick="submitNewCardId(); return false;"
                                     >
                                         변경
                                     </button>
-                                    <button class="w-btn w-btn-yellow" type="button" data-bs-dismiss="modal">
+                                    <button class="w-btn" type="button" data-bs-dismiss="modal">
                                         취소
                                     </button>
                                 </div>
@@ -608,16 +608,16 @@ change this template use File | Settings | File Templates. --%>
 
                     <h5 style="margin-left: 60px">* 본인명의 카드만 등록 가능 합니다.</h5>
                     <br/><br/>
-                    <div class="d-flex">
+                    <div class="d-flex" style="justify-content: center">
                         <input
                                 type="button"
                                 value="수정"
-                                class="w-btn w-btn-green"
-                                style="width: 80%; margin-left: 20px; margin-right: 20px"
+                                class="w-btn"
+                                style="margin-left: 20px; margin-right: 20px"
                                 onclick="checkAll()"
                         />
                         <a
-                                class="w-btn w-btn-yellow"
+                                class="w-btn button"
                                 style="text-align: center"
                                 id="deleteMem"
                                 href="/delete"
