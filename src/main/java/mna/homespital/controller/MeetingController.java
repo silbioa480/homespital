@@ -9,6 +9,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
 import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -58,6 +61,24 @@ public class MeetingController {
 
         mav = displayMainPage(optionalId.orElse(null), uuid);
         return mav;
+    }
+
+    @GetMapping("/room/{sid}")
+    public void getUUIDandGoToRoom(@PathVariable("sid") final String sid, HttpServletResponse response, HttpServletRequest request) throws Exception {
+        response.setContentType("text/html; charset=euc-kr");
+        PrintWriter out = response.getWriter();
+        out.println("<script>function guid() {\n" +
+                "        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {\n" +
+                "            let r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);\n" +
+                "            return v.toString(16);\n" +
+                "        });\n" +
+                "    }\n" +
+                "\n" +
+                "    if (localStorage.getItem(\"uuid\") === null) {\n" +
+                "        localStorage.setItem(\"uuid\", guid());\n" +
+                "    }" +
+                "var str ='/meeting/room/" + sid + "/user/' + localStorage.getItem(\"uuid\"); location.href=str;</script>");
+        out.flush();
     }
 
     /**

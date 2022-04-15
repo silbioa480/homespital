@@ -76,29 +76,33 @@
 <%--</section>--%>
 
 <!-- Wrapper -->
-<div style="background:#34495e; color: white;">
-    <h3>최고의 의료진을 소개합니다!</h3>
-    <p>약국 내방을 할 예정 이신가요 ? -> 거리순으로<br>
-        지금 당장 비대면 진료가 가능한 선생님을 찾으시나요 ?-> 실시간 진료순<br>
-        원하시는 병원이 있으신가요 ? 검색도 있어야 ??<br>
-        그럼 처음에 병원을 서치 할수 있어야 하네 순서가 동일 선상에 있음<br>
-        지금 대면 진료일것 같다고 예상? 거리순 </p>
-</div>
+
 
 <%--의사 및 병원 검색 태영--%>
-<div id="searcharea">
-    <div class="search">
-        <form action="dohSearch" method="post">
-            <input type="search" placeholder="원하시는 의사 및 병원을 입력하세요" name="dhSearch" id="dhSearch"/>
-            <button type="submit" id="searchMedical" class="btn border-dark">검색</button>
-        </form>
-    </div>
-</div>
+<%--<div id="searcharea">--%>
+<%--    <div class="search">--%>
+<%--        <form action="dohSearch" method="post">--%>
+<%--            <input type="search" placeholder="원하시는 의사 및 병원을 입력하세요" name="dhSearch" id="dhSearch"/>--%>
+<%--            <button type="submit" id="searchMedical" class="btn border-dark">검색</button>--%>
+<%--        </form>--%>
+<%--    </div>--%>
+<%--</div>--%>
 
+<div class="introOut">
+    <h4>의료진을 소개합니다!</h4>
+</div>
 
 <div style="padding-right: 40px;">
     <div class="d-flex m-3 justify-content-between">
         <span class="my-auto">총 ${not empty doctorList? fn:length(doctorList) : 0}명</span>
+        <div id="searcharea">
+            <div class="search">
+                <form action="dohSearch" method="post">
+                    <input type="search" placeholder="원하시는 의사 및 병원을 입력하세요" name="dhSearch" id="dhSearch"/>
+                    <button type="submit" id="searchMedical" class="btn border-dark">검색</button>
+                </form>
+            </div>
+        </div>
         <div>
             <input type="hidden" name="docListSortOption" id="docListSortOption" value="false">
             <%--            <button class="btn btn-secondary rounded-pill">실시간 진료</button>--%>
@@ -110,64 +114,48 @@
             <c:when test="${not empty doctorList && fn:length(doctorList) != 0}">
                 <c:forEach var="doctor" items="${doctorList}" varStatus="status">
 
-                    <div class="row g-0">
-                        <div class="col-md-4" style="min-width: 200px; max-width: 200px;">
+                    <div class="row">
+                        <div class="col" style="min-width: 200px; max-width: 200px;">
                             <div class="img-wrapper">
                                     <%--                            <img alt="의사사진 영역"--%>
                                     <%--                                 src="<c:choose><c:when test="${not empty doctor.doctor_profile_image_name || doctor.doctor_profile_image_name eq ''}">/img/doctorImg/${doctor.doctor_profile_image_name}</c:when>--%>
                                     <%--                                            <c:otherwise>https://img.freepik.com/free-photo/portrait-of-asian-doctor-woman-cross-arms-standing-in-medical-uniform-and-stethoscope-smiling-at-camera-white-background_1258-83220.jpg</c:otherwise></c:choose>"/>--%>
-                                <img alt="의사사진 영역" src="${doctor.doctor_profile_image_name}"
+                                <img alt="의사사진 영역" src="/resources/img/doctorImg/${doctor.doctor_profile_image_name}"
                                      onerror="this.src='https://img.freepik.com/free-photo/portrait-of-asian-doctor-woman-cross-arms-standing-in-medical-uniform-and-stethoscope-smiling-at-camera-white-background_1258-83220.jpg'">
                             </div>
                         </div>
                         <div class="col-md-8 card-body">
                             <div class="card-title d-flex justify-content-between">
                                 <div class="d-flex">
-                                    <h4 class="pr-3 font-weight-bolder">${doctor.doctor_name}</h4>
+                                    <h4 id="docName">${doctor.doctor_name}</h4>
                                     <span
-                                            class="pl-3 font-weight-normal align-text-bottom">의사 / ${doctor.doctor_diagnosis_type}</span>
+                                            id="docType">의사 / ${doctor.doctor_diagnosis_type}</span>
                                 </div>
                                 <div class="d-flex">
-                                    <button class="btn btn-secondary ml-auto"
+                                    <button class="btn btn-secondary ml-auto" id="detailBtn"
                                             onclick="location.href='/doctorDetail/${doctor.doctor_number}';">
                                         <i class="fa-solid fa-magnifying-glass">의료진 상세보기</i>
                                     </button>
-                                    <button class="btn ml-auto" style="background-color: #1abc9c; color: white;"
+                                    <button class="btn ml-auto" id="appBtn"
                                             onclick="location.href='/appointmentForm/${doctor.doctor_number}';">
                                         <i class="fa fa-check">비대면 진료 예약하기</i>
                                     </button>
 
                                 </div>
                             </div>
-                            <div class="card-text">
+                            <div class="card-text" style="margin-top: -40px; margin-left: 30px;">
                                 <p class="card-text">
-                                <table class="table table-borderless">
-                                    <tr>
-                                        <th>병원이름:</th>
-                                        <td>${doctor.hospital_name}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>주소 :</th>
-                                        <td>${doctor.zip_code} ${doctor.street_address} ${doctor.detail_address}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>진료시간:</th>
-                                        <td>
-                                                ${doctor.working_time}
 
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>점심시간:</th>
-                                        <td>
-                                                ${doctor.lunch_time}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>휴진:</th>
-                                        <td>매주 ${doctor.holiday}요일</td>
-                                    </tr>
-                                </table>
+                                        <p class="context">병원이름: ${doctor.hospital_name}</p>
+
+                                        <p class="context">주소 : ${doctor.zip_code} ${doctor.street_address} ${doctor.detail_address}</p>
+
+                                        <p class="context">진료시간 : ${doctor.working_time}</p>
+
+                                        <p class="context">점심시간 : ${doctor.lunch_time}</p>
+
+                                        <p class="context">휴진 : 매주 ${doctor.holiday}요일</p>
+                                        <p class="context"></p>
                                 </p>
                             </div>
                         </div>
