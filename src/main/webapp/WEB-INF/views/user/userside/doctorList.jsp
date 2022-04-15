@@ -120,7 +120,7 @@
                                     <%--                            <img alt="의사사진 영역"--%>
                                     <%--                                 src="<c:choose><c:when test="${not empty doctor.doctor_profile_image_name || doctor.doctor_profile_image_name eq ''}">/img/doctorImg/${doctor.doctor_profile_image_name}</c:when>--%>
                                     <%--                                            <c:otherwise>https://img.freepik.com/free-photo/portrait-of-asian-doctor-woman-cross-arms-standing-in-medical-uniform-and-stethoscope-smiling-at-camera-white-background_1258-83220.jpg</c:otherwise></c:choose>"/>--%>
-                                <img alt="의사사진 영역" src="${doctor.doctor_profile_image_name}"
+                                <img alt="의사사진 영역" src="/resources/img/doctorImg/${doctor.doctor_profile_image_name}"
                                      onerror="this.src='https://img.freepik.com/free-photo/portrait-of-asian-doctor-woman-cross-arms-standing-in-medical-uniform-and-stethoscope-smiling-at-camera-white-background_1258-83220.jpg'">
                             </div>
                         </div>
@@ -146,16 +146,16 @@
                             <div class="card-text" style="margin-top: -40px; margin-left: 30px;">
                                 <p class="card-text">
 
-                                        <p class="context">병원이름:</p>
-                                        <p class="context">${doctor.hospital_name}</p>
-                                        <p class="context">주소 :</p>
-                                        <p class="context">${doctor.zip_code} ${doctor.street_address} ${doctor.detail_address}</p>
-                                        <p class="context">진료시간:</p>
-                                        <p class="context">${doctor.working_time}</p>
-                                        <p class="context">점심시간:</p>
-                                        <p class="context">${doctor.lunch_time}</p>
-                                        <p class="context">휴진:</p>
-                                        <p class="context">매주 ${doctor.holiday}요일</p>
+                                        <p class="context">병원이름: ${doctor.hospital_name}</p>
+
+                                        <p class="context">주소 : ${doctor.zip_code} ${doctor.street_address} ${doctor.detail_address}</p>
+
+                                        <p class="context">진료시간 : ${doctor.working_time}</p>
+
+                                        <p class="context">점심시간 : ${doctor.lunch_time}</p>
+
+                                        <p class="context">휴진 : 매주 ${doctor.holiday}요일</p>
+                                        <p class="context"></p>
                                 </p>
                             </div>
                         </div>

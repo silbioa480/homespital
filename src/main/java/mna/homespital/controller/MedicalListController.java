@@ -109,6 +109,7 @@ public class MedicalListController {
         PageInfo pageInfo = new PageInfo();
         List<Doctor> doctorList = doctorService.getDocList(doctor_diagnosis_type, page, pageInfo);
 
+
         for (Doctor d : doctorList) {
             System.out.println(d.getDoctor_diagnosis_type());
         }
