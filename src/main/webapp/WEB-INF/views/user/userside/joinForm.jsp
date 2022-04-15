@@ -24,10 +24,10 @@
     </header>
     <nav id="nav">
         <ul>
-            <li><a href="#one" class="active">필수정보입력</a></li>
-            <li><a href="#two">주소 입력</a></li>
+            <li class="nav-item"><a href="#one" class="nav-link active">필수정보입력</a></li>
+            <li class="nav-item"><a href="#two" class="nav-link">주소 입력</a></li>
             <%--            <li><a href="#three">결제 정보 입력</a></li>--%>
-            <li><a href="#four">약관동의</a></li>
+            <li class="nav-item"><a href="#four" class="nav-link">약관동의</a></li>
         </ul>
     </nav>
     <footer>
@@ -46,7 +46,8 @@
 
     <!-- Main -->
     <div id="main">
-        <form id="form" name="form" action="/join.do" method="post">
+        <form id="form" name="form" action="/join.do" method="post" data-bs-spy="scroll" data-bs-target="#nav"
+              data-bs-offset="0" tabindex="0">
             <!-- One -->
             <section id="one">
                 <div class="container">
@@ -279,7 +280,11 @@
 <script src="/resources/js/signUp/util.js"></script>
 <script src="/resources/js/signUp/signUp.js"></script>
 <script src="/resources/js/signUp/signUpCheck.js"></script>
-
+<script>
+    var scrollSpy = new bootstrap.ScrollSpy(document.body, {
+        target: '#nav'
+    })
+</script>
 </body>
 
 </html>
