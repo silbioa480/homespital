@@ -85,13 +85,14 @@
                     if (item.diagnosis_status == 0) {
                         complete = "<button type='button' id='cancelBtn' class='btn btn-sm h-75' onclick='cancelBtn(" + item.diagnosis_number + ");'>대기/예약취소</button>";
                     } else if (item.diagnosis_status == 1) {
-                        complete = "진료중";
+                        complete = "<strong style='color:#33CC99'>진료중</strong>";
+
                     } else if (item.diagnosis_status == 2) {
                         complete = "예약취소완료";
                     } else if (item.diagnosis_status == 3) {
-                        complete = "진료완료/조제대기";
+                        complete = "<strong style='color:#0058A8'>진료완료/조제대기</strong>";
                     } else if (item.diagnosis_status == 4) {
-                        complete = "조제중";
+                        complete = "<strong style='color:#FFCD4A'>조제중</strong>";
                     } else if (item.diagnosis_status == 5) {
                         complete = "<button type='button' id='successBtn' class='btn btn-sm h-75' onclick='successBtn(" + item.diagnosis_number + ");'>약 수령 확정</button>";
                     } else if (item.diagnosis_status == 6) {
