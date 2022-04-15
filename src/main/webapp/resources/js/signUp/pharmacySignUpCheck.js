@@ -9,7 +9,7 @@ const phone2 = document.getElementById("phone2").parentElement
 const businessNumber = document.getElementById("businessNumber").parentElement;
 const pharmacyName = document.getElementById("pharmacyName");
 const pharmacyPhone = document.getElementById("pharmacyPhone");
-const address = document.getElementById("zipNo").parentElement.parentElement.parentElement.parentElement.parentElement;
+const address = document.getElementById("addrDetail")
 const agree = document.getElementById("agree_all").parentElement
 
 email.addEventListener("change", checkEmail);
@@ -46,6 +46,7 @@ function checkAll() {
     checkPharmacyPhone();
     checkAddress();
     checkRadio();
+    console.log(address);
     if (confirm("회원가입을하시겠습니까?")) {
         console.log(checkEmail(), "이메일 체크")
         console.log(checkPassword(), "비번 체크")
@@ -83,8 +84,8 @@ const setError = (element, message) => {
     const inputControl = element.parentElement;
     const errorDisplay = inputControl.querySelector('.error');
     errorDisplay.innerText = message;
-    inputControl.classList.add('error');
-    inputControl.classList.remove('success');
+    // inputControl.classList.add('error');
+    // inputControl.classList.remove('success');
 }
 
 //성공시 에러메시지 삭제
@@ -93,8 +94,8 @@ const setSuccess = element => {
     const errorDisplay = inputControl.querySelector('.error');
 
     errorDisplay.innerText = '';
-    inputControl.classList.add('success');
-    inputControl.classList.remove('error');
+    // inputControl.classList.add('success');
+    // inputControl.classList.remove('error');
 }
 
 function checkEmail() {

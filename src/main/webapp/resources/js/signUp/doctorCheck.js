@@ -11,8 +11,7 @@ const password2 = document.getElementById("password2");
 const doctorName = document.getElementById("doctorName");
 const doctorNumber = document.getElementById("doctorNumber");
 const doctorProfile =
-    document.getElementById("doctorProfile").parentElement.parentElement
-        .parentElement.parentElement.parentElement;
+    document.getElementById("doctorProfile").parentElement.parentElement;
 const hospitalName = document.getElementById("hospitalName");
 const businessNumber = document.getElementById("businessNumber");
 const address =
@@ -142,8 +141,8 @@ function setError(element, message) {
     const inputControl = element.parentElement;
     const errorDisplay = inputControl.querySelector(".error");
     errorDisplay.innerText = message;
-    inputControl.classList.add("error");
-    inputControl.classList.remove("success");
+    // inputControl.classList.add("error");
+    // inputControl.classList.remove("success");
 }
 
 //성공시 에러메시지 삭제
@@ -160,8 +159,8 @@ function setSuccess(element) {
     const errorDisplay = inputControl.querySelector(".error");
 
     errorDisplay.innerText = "";
-    inputControl.classList.add("success");
-    inputControl.classList.remove("error");
+    // inputControl.classList.add("success");
+    // inputControl.classList.remove("error");
 }
 
 function checkEmail() {
