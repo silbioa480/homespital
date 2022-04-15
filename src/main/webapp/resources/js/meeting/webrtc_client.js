@@ -48,9 +48,16 @@ let myPeerConnection;
  * DOM(Document Object Model) 객체가 생성되어 준비되는 시점에서 호출된다는 의미
  */
 
-setInterval(function () {
-    sendToServer({from: localUserName, type: 'text', data: "please help me god..."})
-}, 10000);
+function sendChat() {
+    sendToServer({
+        from: localUserName,
+        type: 'text',
+        data: $('#chatMsg').val(),
+        sdp: myPeerConnection.localDescription
+    })
+    $('#chatMsg').val("");
+}
+
 
 // on page load runner
 $(function () {
@@ -66,6 +73,7 @@ function start() {
     // add an event listener for a message being received
     socket.onmessage = function (msg) {
         let message = JSON.parse(msg.data);
+        log(msg);
         switch (message.type) {
             case "text":
                 log('Text message from ' + message.from + ' received: ' + message.data);
@@ -266,179 +274,180 @@ function createPeerConnection() {
     // myPeerConnection.onicegatheringstatechange = handleICEGatheringStateChangeEvent;
     // myPeerConnection.onsignalingstatechange = handleSignalingStateChangeEvent;
 
+}
 
-    /**
-     * 카메라/마이크 등 데이터 스트림 접근
-     * @param mediaStream
-     */
+/**
+ * 카메라/마이크 등 데이터 스트림 접근
+ * @param mediaStream
+ */
 // add MediaStream to local video element and to the Peer
-    function getLocalMediaStream(mediaStream) {
-        localStream = mediaStream;
-        localVideo.srcObject = mediaStream;
-        localStream.getTracks().forEach(track => myPeerConnection.addTrack(track, localStream));
-    }
+function getLocalMediaStream(mediaStream) {
+    localStream = mediaStream;
+    localVideo.srcObject = mediaStream;
+    localStream.getTracks().forEach(track => myPeerConnection.addTrack(track, localStream));
+}
 
 // handle get media error
-    function handleGetUserMediaError(error) {
-        log('navigator.getUserMedia error: ', error);
-        switch (error.name) {
-            case "NotFoundError":
-                alert("Unable to open your call because no camera and/or microphone were found.");
-                break;
-            case "SecurityError":
-            case "PermissionDeniedError":
-                // Do nothing; this is the same as the user canceling the call.
-                break;
-            default:
-                alert("Error opening your camera and/or microphone: " + error.message);
-                break;
-        }
-
-        stop();
+function handleGetUserMediaError(error) {
+    log('navigator.getUserMedia error: ', error);
+    switch (error.name) {
+        case "NotFoundError":
+            alert("Unable to open your call because no camera and/or microphone were found.");
+            break;
+        case "SecurityError":
+        case "PermissionDeniedError":
+            // Do nothing; this is the same as the user canceling the call.
+            break;
+        default:
+            alert("Error opening your camera and/or microphone: " + error.message);
+            break;
     }
+
+    stop();
+}
 
 // send ICE candidate to the peer through the server
-    function handleICECandidateEvent(event) {
-        if (event.candidate) {
-            sendToServer({
-                from: localUserName,
-                type: 'ice',
-                candidate: event.candidate
-            });
-            log('ICE Candidate Event: ICE candidate sent');
-        }
+function handleICECandidateEvent(event) {
+    if (event.candidate) {
+        sendToServer({
+            from: localUserName,
+            type: 'ice',
+            candidate: event.candidate
+        });
+        log('ICE Candidate Event: ICE candidate sent');
     }
+}
 
-    function handleTrackEvent(event) {
-        log('Track Event: set stream to remote video element');
-        remoteVideo.srcObject = event.streams[0];
-    }
+function handleTrackEvent(event) {
+    log('Track Event: set stream to remote video element');
+    remoteVideo.srcObject = event.streams[0];
+}
 
-    /**
-     * Client1이 시그널링 서버를 호출 = createOffer()를 통해 SDP 생성
-     * SDP와 함께 setLocalDescription() 호출
-     */
+/**
+ * Client1이 시그널링 서버를 호출 = createOffer()를 통해 SDP 생성
+ * SDP와 함께 setLocalDescription() 호출
+ */
 // WebRTC called handler to begin ICE negotiation
 // 1. create a WebRTC offer
 // 2. set local media description
 // 3. send the description as an offer on media format, resolution, etc
-    function handleNegotiationNeededEvent() {
-        myPeerConnection.createOffer().then(function (offer) {
-            return myPeerConnection.setLocalDescription(offer);
+function handleNegotiationNeededEvent() {
+    myPeerConnection.createOffer().then(function (offer) {
+        return myPeerConnection.setLocalDescription(offer);
+    })
+        .then(function () {
+            sendToServer({
+                from: localUserName,
+                type: 'offer',
+                sdp: myPeerConnection.localDescription
+            });
+            log('Negotiation Needed Event: SDP offer sent');
         })
+        .catch(function (reason) {
+            // an error occurred, so handle the failure to connect
+            handleErrorMessage('failure to connect error: ', reason);
+        });
+}
+
+/**
+ * RTCSessionDescription
+ * 세션의 매개 변수를 나타냅니다.
+ * 각 RTCSessionDescription는 세션의  SDP 기술자(descriptor)의 기술 제안
+ * / 응답 협상 과정의 일부를 나타내는 설명  type으로 구성되어 있습니다.
+ *
+ * Client2 가 Client1의 SDP를 가지고 setRemoteDescription()를 호출
+ * -> Client1은 Client2의 설정을 알게된다.
+ */
+function handleOfferMessage(message) {
+    log('Accepting Offer Message');
+    log(message);
+    let desc = new RTCSessionDescription(message.sdp);
+    //TODO test this
+    if (desc != null && message.sdp != null) {
+        log('RTC Signalling state: ' + myPeerConnection.signalingState);
+        myPeerConnection.setRemoteDescription(desc).then(function () {
+            log("Set up local media stream");
+            return navigator.mediaDevices.getUserMedia(mediaConstraints);
+        })
+            .then(function (stream) {
+                log("-- Local video stream obtained");
+                localStream = stream;
+                try {
+                    localVideo.srcObject = localStream;
+                } catch (error) {
+                    localVideo.src = window.URL.createObjectURL(stream);
+                }
+
+                log("-- Adding stream to the RTCPeerConnection");
+                localStream.getTracks().forEach(track => myPeerConnection.addTrack(track, localStream));
+            })
             .then(function () {
+                /**
+                 * Client2는 응답을 인자로 전달하는 성공 콜백 함수 createAnswer()를 호출
+                 */
+                log("-- Creating answer");
+                // Now that we've successfully set the remote description, we need to
+                // start our stream up locally then create an SDP answer. This SDP
+                // data describes the local end of our call, including the codec
+                // information, options agreed upon, and so forth.
+                return myPeerConnection.createAnswer();
+            })
+            .then(function (answer) {
+                /**
+                 * Client2는 setLocalDescription()의 호출을 통해
+                 * Client2의 응답을 로컬 기술(Description)으로 설정합니다.
+                 */
+                log("-- Setting local description after creating answer");
+                // We now have our answer, so establish that as the local description.
+                // This actually configures our end of the call to match the settings
+                // specified in the SDP.
+                return myPeerConnection.setLocalDescription(answer);
+            })
+            .then(function () {
+                /**
+                 * Client2는 시그널링 메커니즘을 사용하여 자신의 문자열화된 응답을 Client1에게 다시 전송합니다.
+                 */
+                log("Sending answer packet back to other peer");
                 sendToServer({
                     from: localUserName,
-                    type: 'offer',
+                    type: 'answer',
                     sdp: myPeerConnection.localDescription
                 });
-                log('Negotiation Needed Event: SDP offer sent');
+
             })
-            .catch(function (reason) {
-                // an error occurred, so handle the failure to connect
-                handleErrorMessage('failure to connect error: ', reason);
-            });
-    }
-
-    /**
-     * RTCSessionDescription
-     * 세션의 매개 변수를 나타냅니다.
-     * 각 RTCSessionDescription는 세션의  SDP 기술자(descriptor)의 기술 제안
-     * / 응답 협상 과정의 일부를 나타내는 설명  type으로 구성되어 있습니다.
-     *
-     * Client2 가 Client1의 SDP를 가지고 setRemoteDescription()를 호출
-     * -> Client1은 Client2의 설정을 알게된다.
-     */
-    function handleOfferMessage(message) {
-        log('Accepting Offer Message');
-        log(message);
-        let desc = new RTCSessionDescription(message.sdp);
-        //TODO test this
-        if (desc != null && message.sdp != null) {
-            log('RTC Signalling state: ' + myPeerConnection.signalingState);
-            myPeerConnection.setRemoteDescription(desc).then(function () {
-                log("Set up local media stream");
-                return navigator.mediaDevices.getUserMedia(mediaConstraints);
-            })
-                .then(function (stream) {
-                    log("-- Local video stream obtained");
-                    localStream = stream;
-                    try {
-                        localVideo.srcObject = localStream;
-                    } catch (error) {
-                        localVideo.src = window.URL.createObjectURL(stream);
-                    }
-
-                    log("-- Adding stream to the RTCPeerConnection");
-                    localStream.getTracks().forEach(track => myPeerConnection.addTrack(track, localStream));
-                })
-                .then(function () {
-                    /**
-                     * Client2는 응답을 인자로 전달하는 성공 콜백 함수 createAnswer()를 호출
-                     */
-                    log("-- Creating answer");
-                    // Now that we've successfully set the remote description, we need to
-                    // start our stream up locally then create an SDP answer. This SDP
-                    // data describes the local end of our call, including the codec
-                    // information, options agreed upon, and so forth.
-                    return myPeerConnection.createAnswer();
-                })
-                .then(function (answer) {
-                    /**
-                     * Client2는 setLocalDescription()의 호출을 통해
-                     * Client2의 응답을 로컬 기술(Description)으로 설정합니다.
-                     */
-                    log("-- Setting local description after creating answer");
-                    // We now have our answer, so establish that as the local description.
-                    // This actually configures our end of the call to match the settings
-                    // specified in the SDP.
-                    return myPeerConnection.setLocalDescription(answer);
-                })
-                .then(function () {
-                    /**
-                     * Client2는 시그널링 메커니즘을 사용하여 자신의 문자열화된 응답을 Client1에게 다시 전송합니다.
-                     */
-                    log("Sending answer packet back to other peer");
-                    sendToServer({
-                        from: localUserName,
-                        type: 'answer',
-                        sdp: myPeerConnection.localDescription
-                    });
-
-                })
-                // .catch(handleGetUserMediaError);
-                .catch(handleErrorMessage)
-        }
-    }
-
-    /**
-     * 시작피어는 응답을 받고 원격설명으로 설정
-     * 이를 통해 WebRTC는 성공적인 연결을 설정합니다.
-     * 이제 시그널링 서버없이 두 피어간에 직접 데이터를주고받을 수 있습니다 .
-     * @param message
-     *
-     * Client1은 setRemoteDescription()을 사용하여 Client2의 응답을 원격 세션 기술(Description)으로 설정 */
-    function handleAnswerMessage(message) {
-        log("The peer has accepted request");
-
-        // Configure the remote description, which is the SDP payload
-        // in our "video-answer" message.
-        // myPeerConnection.setRemoteDescription(new RTCSessionDescription(message.sdp)).catch(handleErrorMessage);
-        myPeerConnection.setRemoteDescription(message.sdp).catch(handleErrorMessage);
-    }
-
-    /**
-     * RTCIceCandidate
-     * RTCPeerConnection 설정을 위한 후보 인터넷 연결 설정
-     * (ICE; internet connectivity establishment) 서버를 나타냅니다.
-     *
-     * 다른 피어가 보낸 ICE 후보를 처리해야합니다.
-     * 이 후보 를 수신 한 원격 피어 는 후보를 후보 풀에 추가해야합니다.
-     * @param message
-     */
-    function handleNewICECandidateMessage(message) {
-        let candidate = new RTCIceCandidate(message.candidate);
-        log("Adding received ICE candidate: " + JSON.stringify(candidate));
-        myPeerConnection.addIceCandidate(candidate).catch(handleErrorMessage);
+            // .catch(handleGetUserMediaError);
+            .catch(handleErrorMessage)
     }
 }
+
+/**
+ * 시작피어는 응답을 받고 원격설명으로 설정
+ * 이를 통해 WebRTC는 성공적인 연결을 설정합니다.
+ * 이제 시그널링 서버없이 두 피어간에 직접 데이터를주고받을 수 있습니다 .
+ * @param message
+ *
+ * Client1은 setRemoteDescription()을 사용하여 Client2의 응답을 원격 세션 기술(Description)으로 설정 */
+function handleAnswerMessage(message) {
+    log("The peer has accepted request");
+
+    // Configure the remote description, which is the SDP payload
+    // in our "video-answer" message.
+    // myPeerConnection.setRemoteDescription(new RTCSessionDescription(message.sdp)).catch(handleErrorMessage);
+    myPeerConnection.setRemoteDescription(message.sdp).catch(handleErrorMessage);
+}
+
+/**
+ * RTCIceCandidate
+ * RTCPeerConnection 설정을 위한 후보 인터넷 연결 설정
+ * (ICE; internet connectivity establishment) 서버를 나타냅니다.
+ *
+ * 다른 피어가 보낸 ICE 후보를 처리해야합니다.
+ * 이 후보 를 수신 한 원격 피어 는 후보를 후보 풀에 추가해야합니다.
+ * @param message
+ */
+function handleNewICECandidateMessage(message) {
+    let candidate = new RTCIceCandidate(message.candidate);
+    log("Adding received ICE candidate: " + JSON.stringify(candidate));
+    myPeerConnection.addIceCandidate(candidate).catch(handleErrorMessage);
+}
+

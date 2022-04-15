@@ -102,6 +102,9 @@
                 <video id="remote_video" autoplay playsinline></video>
             </div>
         </div>
+
+        <input type="text" id="chatMsg">
+        <button id="sendBtn" onclick="sendChat()">전송</button>
     </div>
 </main>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
