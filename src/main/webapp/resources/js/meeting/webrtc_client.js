@@ -8,6 +8,7 @@ const socket = new WebSocket("wss://" + window.location.host + "/signal");
 // const audioButtonOn = document.querySelector('#audio_on');
 const exitButton = document.querySelector('#exit');
 const localRoom = document.querySelector('input#id').value;
+const chatBox = document.querySelector('#chatBox');
 /**
  * localVideo가 Video 스트림 가져온다
  * remoteVideo가 원격의 video 스트림 가져온다
@@ -50,6 +51,8 @@ let myPeerConnection;
 
 function sendChat() {
     dataChannel.send($('#chatMsg').val());
+
+    chatBox.innerHTML += ($('#chatMsg').val() + "</br>");
     $('#chatMsg').val("");
 }
 
@@ -113,7 +116,7 @@ function start() {
                     dataChannel.send('어서와요');
                 }
                 dataChannel.onmessage = function (event) {
-                    console.log(event.data + "보냅니다");
+                    console.log(event.data);
                 }
                 break;
 
@@ -278,7 +281,7 @@ function createPeerConnection() {
             console.log(event)
         }
         channel.onmessage = function (event) {
-            console.log(event.data);
+            chatBox.innerHTML += (event.data + "</br>");
         }
     }
     // the following events are optional and could be realized later if needed
