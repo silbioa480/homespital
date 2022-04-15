@@ -7,14 +7,14 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <link rel="stylesheet" href="/resources/css/signUp.css"/>
-
+    <link rel="stylesheet" href="/resources/css/sidebar.css"/>
 
 </head>
 
 <body class="is-preload">
 
 <!-- Header -->
-<section id="header">
+<section id="sidebar">
     <header>
         <span class="image avatar"><img src="/resources/img/design/logo_U_sideNav.png" alt=""/></span>
         <h1 id="logo"><a href="#">Homespital</a></h1>

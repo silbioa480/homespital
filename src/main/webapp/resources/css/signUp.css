@@ -24,8 +24,25 @@ footer, header, hgroup, menu, nav, section {
 }
 
 /*화살표 가영 */
-.css-arrow-left { border-color: transparent #205e40 transparent transparent; border-style: solid; border-width: 10px 20px 10px 0; float: left; height: 0; margin: 0 10px; width: 0;}
-.css-arrow-right { border-color: transparent transparent transparent #205e40; border-style: solid; border-width: 10px 0 10px 20px; float: left; height: 0; margin: 0 10px; width: 0;}
+.css-arrow-left {
+    border-color: transparent #205e40 transparent transparent;
+    border-style: solid;
+    border-width: 10px 20px 10px 0;
+    float: left;
+    height: 0;
+    margin: 0 10px;
+    width: 0;
+}
+
+.css-arrow-right {
+    border-color: transparent transparent transparent #205e40;
+    border-style: solid;
+    border-width: 10px 0 10px 20px;
+    float: left;
+    height: 0;
+    margin: 0 10px;
+    width: 0;
+}
 
 /* 증상 이미지 첨부 btn ( 인성 ) */
 /*병원 이미지 업로드 btn*/
@@ -239,7 +256,7 @@ a {
     -webkit-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
     -ms-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
     transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
-    border-bottom: solid 1px #e4e4e4;
+    /*border-bottom: solid 1px #e4e4e4;*/
     color: inherit;
     text-decoration: none;
 }
@@ -3476,6 +3493,7 @@ input[type="button"]:disabled,
     color: #339966;
     /*font-size: 20px;*/
 }
+
 .userName {
     color: #2A2D42;
     font-weight: 600;

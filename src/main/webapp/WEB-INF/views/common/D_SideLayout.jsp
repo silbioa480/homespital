@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
-    <link rel="shortcut icon" href="/resources/img/design/U_fabicon.ico" />
+    <link rel="shortcut icon" href="/resources/img/design/U_fabicon.ico"/>
     <%--    <link rel="stylesheet" href="/resources/css/main.css" />--%>
     <%--    <noscript><link rel="stylesheet" href="/resources/css/main2.css" /></noscript>--%>
     <style>
@@ -50,13 +50,25 @@
         body {
             font-family: 'SUIT-Regular';
         }
+
+        #mainsection {
+            margin-left: 18em;
+            width: calc(100vw - 18em);
+        }
+
+        @media screen and (max-width: 768px) {
+            #mainsection {
+                margin: 0 0;
+                width: 100vw;
+            }
+        }
     </style>
 </head>
 <body>
 <%--<div style="background-color:#1abc9c; position: absolute; width: 100%; height:400px;"></div>--%>
 
 <%--<tiles:insertAttribute name="sidebar"/> 소연 삭제 by 4/7--%>
-<div class="container" style="margin-left: 18em; width: calc(100vw - 18em);">
+<div class="container" id="mainsection">
     <tiles:insertAttribute name="navbar"/>
     <tiles:insertAttribute name="body"/>
 </div>

@@ -57,6 +57,6 @@
 
 <!--adapter.js sticks the code to the different browser implementations of WebRTC-->
 <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
-<script src="/js/sdp_offer.js" async></script>
+<script src="/resources/js/meeting/sdp_offer.js" async></script>
 </body>
 </html>

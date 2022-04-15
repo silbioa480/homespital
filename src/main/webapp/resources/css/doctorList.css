@@ -106,7 +106,7 @@ a {
     -webkit-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
     -ms-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
     transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
-    border-bottom: solid 1px #e4e4e4;
+    /*border-bottom: solid 1px #e4e4e4;*/
     color: inherit;
     text-decoration: none;
 }
@@ -1210,7 +1210,7 @@ pre code {
 
 }
 
-@media screen and (max-width: 736px) {
+@media screen and (max-width: 768px) {
 
     .row {
         display: flex;
@@ -2655,7 +2655,7 @@ input[type="button"]:disabled,
 
 /* Small */
 
-@media screen and (max-width: 736px) {
+@media screen and (max-width: 768px) {
 
     /* Basic */
     body, input, select, textarea {
@@ -2981,7 +2981,8 @@ input[type="button"]:disabled,
 }
 
 .d-flex flex-column align-items-center {
-    position: absolute; !important;
+    position: absolute;
+!important;
 
 }
 
@@ -3004,6 +3005,7 @@ input[type="button"]:disabled,
 .image.main img {
     border-radius: 0;
 }
+
 .introOut {
     margin-top: 10px;
     width: 28%;
@@ -3011,6 +3013,7 @@ input[type="button"]:disabled,
     border-radius: 30px;
     border: 1px solid #111;
 }
+
 .introOut h4 {
     padding: 8px;
     text-align: center;
@@ -3018,19 +3021,23 @@ input[type="button"]:disabled,
     font-size: 20px;
     line-height: 20px;
 }
+
 #searcharea {
-    margin-left: 1000px;
+    margin-left: auto;
 }
+
 #dhSearch {
     height: 35px;
     font-size: 15px;
 }
+
 #searchMedical {
     height: 35px;
     position: relative;
     overflow: hidden;
     color: #111;
 }
+
 #searchMedical::before {
     content: "";
     top: 0;
@@ -3038,18 +3045,21 @@ input[type="button"]:disabled,
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color:#111;
+    background-color: #111;
     transform: translateX(-100%);
     transition: all 0.4s ease-in-out;
     z-index: -1;
 }
+
 #searchMedical:hover {
     color: #fff;
 
 }
+
 #searchMedical:hover:before {
     transform: translateX(0);
 }
+
 #docName {
     font-size: 20px;
     margin-top: 10px;
@@ -3057,18 +3067,21 @@ input[type="button"]:disabled,
     margin-right: 30px;
     color: #2A2D42;
 }
+
 #docType {
     margin-top: 0.35em;
     font-size: 0.8em;
     color: #2A2D42;
     font-weight: bold;
 }
+
 #detailBtn {
     width: 160px;
     height: 43px;
     font-size: 13px;
     background-color: #0058A8;
 }
+
 #appBtn {
     width: 180px;
     height: 43px;
@@ -3078,8 +3091,8 @@ input[type="button"]:disabled,
 }
 
 .context {
-    margin: -10px ;
+    margin: -10px;
     font-size: 15px;
     color: #2A2D42;
-    font-weight:580;
+    font-weight: 580;
 }

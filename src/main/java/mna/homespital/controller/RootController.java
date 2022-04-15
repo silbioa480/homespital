@@ -91,8 +91,10 @@ public class RootController {
                 mav.addObject("user", user);
                 System.out.println(user.toString());
                 Card_Information cardInfoObj = paymentService.getPayment(user.getUser_number(), user.getBilling_key());
-                String cardInfo = cardInfoObj.getCard_nickname() + " (" + cardInfoObj.getCard_number().substring(cardInfoObj.getCard_number().length() - 4, cardInfoObj.getCard_number().length()) + ")";
-                mav.addObject("cardInfo", cardInfo);
+                if (cardInfoObj != null) {
+                    String cardInfo = cardInfoObj.getCard_nickname() + " (" + cardInfoObj.getCard_number().substring(cardInfoObj.getCard_number().length() - 4, cardInfoObj.getCard_number().length()) + ")";
+                    mav.addObject("cardInfo", cardInfo);
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
