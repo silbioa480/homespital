@@ -36,7 +36,8 @@
 <section id="banner">
     <div class="inner">
         <div class="inner-text">
-            <h2>home + hospital</h2>
+            <h2 class="main-text">home+hospital</h2>
+            <h2 class="sub-text">내손안에작은병원</h2>
         </div>
         <div class="inner-side">
             <p class="textP">화상진료부터ㅡ</p>
