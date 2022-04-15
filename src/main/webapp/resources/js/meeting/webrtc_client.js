@@ -49,7 +49,7 @@ let myPeerConnection;
  */
 
 function sendChat() {
-    dataChannel.send('Hi you!');
+    dataChannel.send($('#chatMsg').val());
     $('#chatMsg').val("");
 }
 
@@ -110,7 +110,7 @@ function start() {
                 log('Client is starting to ' + (message.data === "true)" ? 'negotiate' : 'wait for a peer'));
                 handlePeerConnection(message);
                 dataChannel.onopen = function (event) {
-                    dataChannel.send('Hi you!');
+                    dataChannel.send('어서와요');
                 }
                 dataChannel.onmessage = function (event) {
                     console.log(event.data + "보냅니다");
@@ -275,10 +275,10 @@ function createPeerConnection() {
     myPeerConnection.ondatachannel = function (event) {
         let channel = event.channel;
         channel.onopen = function (event) {
-            channel.send('Hi back!');
+            console.log(event)
         }
         channel.onmessage = function (event) {
-            console.log(event.data + "답장인듯");
+            console.log(event.data);
         }
     }
     // the following events are optional and could be realized later if needed
