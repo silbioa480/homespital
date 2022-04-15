@@ -103,6 +103,9 @@
             </div>
         </div>
 
+        <div id="chatBox">
+        </div>
+
         <input type="text" id="chatMsg">
         <button id="sendBtn" onclick="sendChat()">전송</button>
     </div>

@@ -12,45 +12,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <%--    <link rel="stylesheet" href="/resources/css/main.css" />--%>
     <link rel="stylesheet" href="/resources/css/pharMain.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap" rel="stylesheet">
     <noscript>
         <link rel="stylesheet" href="/resources/css/main2.css"/>
     </noscript>
     <title>Homespital</title>
 </head>
-<body>
-<%--약국 메인 section 태영--%>
-<section id="intro" class="main style1 dark fullscreen">
-    <div class="content">
-        <header>
-            <h2>Homespital</h2>
-        </header>
-        <p>
-        <hr>
-        <strong> 처방 </strong><strong>| 약 배송</strong><br/></p>
-        <footer>
-            <a href="#one" class="button style2 down">More</a>
-        </footer>
-    </div>
-</section>
-
-<div id="wrapper">
-    <div class="pharmacy">
-        <div class="pharmacy-content-box">
-            <div class="pharmacy-content">
-                <a class="pharmacy-link" href="#">환자 내역</a>
-            </div>
-            <div class="pharmacy-content">
-                <a class="pharmacy-link" href="#">처방 하기</a>
-            </div>
-            <div class="pharmacy-content">
-                <a class="pharmacy-link" href="#">처방 내역</a>
-            </div>
-            <div class="pharmacy-content">
-                <a class="pharmacy-link" href="#">처방 배송</a>
-            </div>
+<body class="is-preload">
+<%--&lt;%&ndash;약국 메인 section 태영&ndash;%&gt;--%>
+<%--<section id="intro" class="main style1 dark fullscreen">--%>
+<%--    <div class="content">--%>
+<%--        <header>--%>
+<%--            <h2>Homespital</h2>--%>
+<%--        </header>--%>
+<%--        <p>--%>
+<%--        <hr>--%>
+<%--        <strong> 처방 </strong><strong>| 약 배송</strong><br/></p>--%>
+<%--        <footer>--%>
+<%--            <a href="#one" class="button style2 down">More</a>--%>
+<%--        </footer>--%>
+<%--    </div>--%>
+<%--</section>--%>
+<%--약국메인 배너 수정 태영--%>
+<section id="banner">
+    <div class="inner">
+        <div class="inner-text">
+            <h2 class="main-text">home+hospital</h2>
+            <h2 class="sub-text">홈스피탈</h2>
+        </div>
+        <div class="inner-side">
+            <p class="textP">약국이 행복해지는</p>
+            <p>편리한 방법을 제공합니다.</p>
+            <p>홈스피탈</p>
         </div>
     </div>
-</div>
+    <%--약국 메인 화면 이미지 태영      --%>
+    <div class="image-box">
+        <img width="250px" height="300px" src="/resources/img/design/p_main_image1.jpg" alt="로그인메인이미지"/>
+    </div>
+    <a href="#one" class="more scrolly" style="color: #fff;">Learn More</a>
+</section>
+
+
+<%--<div id="wrapper">--%>
+<%--    <div class="pharmacy">--%>
+<%--        <div class="pharmacy-content-box">--%>
+<%--            <div class="pharmacy-content">--%>
+<%--                <a class="pharmacy-link" href="#">환자 내역</a>--%>
+<%--            </div>--%>
+<%--            <div class="pharmacy-content">--%>
+<%--                <a class="pharmacy-link" href="#">처방 하기</a>--%>
+<%--            </div>--%>
+<%--            <div class="pharmacy-content">--%>
+<%--                <a class="pharmacy-link" href="#">처방 내역</a>--%>
+<%--            </div>--%>
+<%--            <div class="pharmacy-content">--%>
+<%--                <a class="pharmacy-link" href="#">처방 배송</a>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--</div>--%>
 
 <section id="one" class="main style2 right dark fullscreen">
     <div class="content box style2">
