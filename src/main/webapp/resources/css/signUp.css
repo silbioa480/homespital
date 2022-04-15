@@ -2089,12 +2089,15 @@ label {
   position: relative;
   border: none;
   display: inline-block;
-  padding: 15px 30px;
+  padding: 2px 5px;
   margin: 0 30px;
   border-radius: 15px;
   font-family: "paybooc-Light", sans-serif;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.01);
   text-decoration: none;
+  font-size: 16px;
+  width: 150px;
+  height: 40px;
   font-weight: 600;
   transition: 0.25s;
 }
