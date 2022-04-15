@@ -241,7 +241,7 @@
             <div class="card p-3">
                 <div class="d-flex align-items-end">
                     <h4>${user.user_name}</h4>
-                    <span class="px-2 pb-2">만 ${age}세(남)</span>
+                    <span class="px-2 pb-2">만 ${age}세(${gender})</span>
                 </div>
                 <p>배송 방법 : <font id="fouris_delivery">약국으로 직접 방문</font></p>
                 <div>약국 이름 :<p id="pharmacy_namePay"></p></div>
@@ -254,8 +254,8 @@
                 <div>
                     카드 정보
                     <input type="text" id="default_card" value="${cardInfo}" disabled="disabled"/>
-                    <input type="hidden" id="billing_key"
-                           name="billing_key"> <%-- 비어있으면 유저의 billing_key 따라가게, 카드 추가했으면 여기에 값 담겨서 전송됨 --%>
+                    <input type="hidden" id="billing_key" name="billing_key">
+                    <%-- 비어있으면 유저의 billing_key 따라가게, 카드 추가했으면 여기에 값 담겨서 전송됨 --%>
                     <button id="writeCard" class="btn" onclick="return false;">카드 변경</button>
                     <%--                        모달 --%>
                     <%--                        <span><input type="button" id="deleteCard" name="deleteCard" class="deleteCard" value="삭제" /></span>--%>
@@ -843,6 +843,10 @@
             alert("약국을 선택해주세요.")
             $("#map_wrap").focus();
             return false;
+        } else if ((${empty cardInfo}) && (($('#billing_key').val() == "") || ($('#billing_key').val() == null))) {
+            alert("결제 카드를 입력해주세요.");
+            $('#writeCard').focus();
+            return false;
         } else {
             alert('${doctor.doctor_name} ' + "의사에게 " + $("input:checked[name='diagnosis_time']").val() + "시에 예약 완료되었습니다.");
         }
@@ -858,14 +862,11 @@
     var scrollSpy = new bootstrap.ScrollSpy(document.body, {
         target: '#nav'
     })
-    //
-    // var dataSpyList = [].slice.call(document.querySelectorAll('[data-bs-spy="scroll"]'))
-    // dataSpyList.forEach(function (dataSpyEl) {
-    //     bootstrap.ScrollSpy.getInstance(dataSpyEl)
-    //         .refresh()
-    // })
-
-
+</script>
+<script>
+    if (${empty cardInfo}) {
+        alert('기본 카드를 등록하지 않으셨습니다. 마이페이지에서 기본 카드를 등록해놓지 않았다면 예약 시마다 카드 정보를 새로 넣어주셔야 하며, 카드 정보를 넣지 않은 경우 예약되지 않습니다.')
+    }
 </script>
 <script>
     function notify() {
