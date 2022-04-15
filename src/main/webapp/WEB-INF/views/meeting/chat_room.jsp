@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -102,9 +101,9 @@
             </div>
             <div class="input-group">
                 <input type="text" id="chatMsg" class="form-control"
-                       onkeyup="if(window.event.keyCode==13){sendChat('${not empty currentuser ? currentuser : '익명'}')}"/>
+                       onkeyup="if(window.event.keyCode==13){sendChat('${not empty username ? username : '익명'}')}"/>
                 <button id="sendBtn" class="btn border border-dark"
-                        onclick="sendChat('${not empty currentuser ? currentuser : '익명'}')">전송
+                        onclick="sendChat('${not empty username ? username : '익명'}')">전송
                 </button>
             </div>
         </div>

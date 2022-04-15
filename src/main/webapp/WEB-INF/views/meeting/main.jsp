@@ -24,7 +24,7 @@
         <div class="row justify-content-md-center">
             <div class="col-md-6 mb-3 justify-content-center">
                 <div class="row mb-3">
-                    <label for="rooms-list">Select one of the rooms created:</label><br>
+                    <label for="rooms-list">현재 생성된 방 목록입니다. 들어가실 방을 선택해주세요.</label><br>
                     <div class="d-block">
                         <span id="rooms-list">
                             <c:forEach items="${rooms}" var="r">
