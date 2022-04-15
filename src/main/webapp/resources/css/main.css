@@ -2483,7 +2483,7 @@ body.is-touch .poptrox-popup .closer {
 }
 
 #banner p {
-    letter-spacing: 0.225em;
+    /*letter-spacing: 0.225em;*/
     text-transform: uppercase;
 }
 
@@ -2585,6 +2585,7 @@ body.is-preload #banner h2 {
     -webkit-transform: scale(0.95);
     -ms-transform: scale(0.95);
     transform: scale(0.95);
+    transition: opacity 3s ease-in-out;
     opacity: 0;
 
 }
@@ -2610,4 +2611,40 @@ body.is-preload #banner:after {
 }
 #banner h2, p {
     color: #fff;
+}
+
+.inner{
+    display:flex;
+    flex-direction: column;
+    align-items:flex-start;
+
+}
+
+.inner-text{
+
+    align-self: center;
+}
+
+.inner-side{
+    margin-left:10%;
+}
+
+.inner-side p{
+    text-align:left;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 38px;
+}
+
+.image-box{
+    width:47.5%;
+    height:80%;
+    box-sizing: border-box;
+    position:absolute;
+    right:0;
+    bottom:0;
+}
+
+.image-box img{
+    min-height:100%;
+    min-width:100%;
 }
