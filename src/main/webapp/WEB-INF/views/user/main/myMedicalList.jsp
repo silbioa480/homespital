@@ -67,6 +67,10 @@
         })
 
         function next_load(list) {
+            list.sort((a, b) => {
+                return a.diagnosis_status - b.diagnosis_status;
+            })
+
             $.each(list, function (index, item) {
                 if (index >= page * 30 && index < page * 30 + 30) {
                     console.log(index);
@@ -105,7 +109,7 @@
                     }
 
                     // 나의 진료 내역 테이블 생성 (리눅스 서버에 올릴때 진단영수증 파일경로 바꿔줘야함)
-                    if(item.diagnosis_status == 0 || item.diagnosis_status == 1 || item.diagnosis_status == 4){
+                    if (item.diagnosis_status == 0 || item.diagnosis_status == 1 || item.diagnosis_status == 4) {
                         $("#myMedicalList").append("<tr><td style='background-color:#33cc99'>" + date + " (" + dayOfWeek + ") " + item.diagnosis_time + ":00</td>" +
                             "<td>" + item.diagnosis_type + "</td>" +
                             "<td>" + item.doctor_name + "</td>" +
@@ -115,7 +119,7 @@
                             "<td><a href='/myMedicalDetail/" + item.diagnosis_number + "'><span class='material-icons'>search</span></a>" + "</td></tr><br>);"
                         )
                         ;
-                    }else if(item.diagnosis_status == 2 || item.diagnosis_status == 3 || item.diagnosis_status == 5 || item.diagnosis_status == 6 || item.diagnosis_status == 7){
+                    } else if (item.diagnosis_status == 2 || item.diagnosis_status == 3 || item.diagnosis_status == 5 || item.diagnosis_status == 6 || item.diagnosis_status == 7) {
                         $("#myMedicalList").append("<tr><td style='background-color:#cccccc'>" + date + " (" + dayOfWeek + ") " + item.diagnosis_time + ":00</td>" +
                             "<td>" + item.diagnosis_type + "</td>" +
                             "<td>" + item.doctor_name + "</td>" +
