@@ -201,12 +201,13 @@ public class RootController {
 
             String cardInfo = "";
             Card_Information cardInfoObj = paymentService.getPayment(user.getUser_number(), user.getBilling_key());
-            cardInfo = cardInfoObj.getCard_nickname();
-            cardInfo += " (";
-            cardInfo += cardInfoObj.getCard_number().substring(cardInfoObj.getCard_number().length() - 4, cardInfoObj.getCard_number().length());
-            cardInfo += ")";
-            mv.addObject("cardInfo", cardInfo);
-
+            if (cardInfoObj != null) {
+                cardInfo = cardInfoObj.getCard_nickname();
+                cardInfo += " (";
+                cardInfo += cardInfoObj.getCard_number().substring(cardInfoObj.getCard_number().length() - 4, cardInfoObj.getCard_number().length());
+                cardInfo += ")";
+                mv.addObject("cardInfo", cardInfo);
+            }
             //의사 스케쥴 객체
             ArrayList<HashMap<String, Object>> ds = doctorService.getDocScheduleInfo(doctor_number);
             mv.addObject("ds", ds);
