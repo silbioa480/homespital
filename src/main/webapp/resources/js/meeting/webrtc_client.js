@@ -49,12 +49,7 @@ let myPeerConnection;
  */
 
 function sendChat() {
-    sendToServer({
-        from: localUserName,
-        type: 'text',
-        data: $('#chatMsg').val(),
-        sdp: myPeerConnection.localDescription
-    })
+    dataChannel.send('Hi you!);
     $('#chatMsg').val("");
 }
 
@@ -118,7 +113,7 @@ function start() {
                     dataChannel.send('Hi you!');
                 }
                 dataChannel.onmessage = function (event) {
-                    console.log(event.data);
+                    console.log(event.data + "보냅니다");
                 }
                 break;
 
@@ -278,7 +273,13 @@ function createPeerConnection() {
     myPeerConnection.onicecandidate = handleICECandidateEvent;
     myPeerConnection.ontrack = handleTrackEvent;
     myPeerConnection.ondatachannel = function (event) {
-        console.log(event);
+        let channel = event.channel;
+        channel.onopen = function (event) {
+            channel.send('Hi back!');
+        }
+        channel.onmessage = function (event) {
+            console.log(event.data + "답장인듯");
+        }
     }
     // the following events are optional and could be realized later if needed
     // myPeerConnection.onremovetrack = handleRemoveTrackEvent;
