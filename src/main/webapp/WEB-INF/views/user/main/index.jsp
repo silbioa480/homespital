@@ -6,6 +6,9 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <link rel="stylesheet" href="/resources/css/main.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap" rel="stylesheet">
     <noscript>
         <link rel="stylesheet" href="/resources/css/main2.css"/>
     </noscript>
@@ -33,12 +36,24 @@
 <%--        </footer>--%>
 <section id="banner">
     <div class="inner">
-        <h2>home + hospital</h2>
-        <p class="textP"><Strong>우리집에서 한번에.</Strong></p>
-        <p><Strong>비대면 진료 | 처방 | 배송까지</Strong></p>
+        <div class="inner-text">
+            <h2>home + hospital</h2>
+        </div>
+        <div class="inner-side">
+            <p class="textP">화상진료부터ㅡ</p>
+            <p>처방약 배달까지 우리집에서 한번에</p>
+            <p>내손안의 작은병원,</p>
+            <p>홈스피탈</p>
+        </div>
+    </div>
+    <%--환자 메인 화면 이미지 태영      --%>
+    <div class="image-box">
+        <img width="250px" height="300px" src="/resources/img/design/u_main_img.png" alt="로그인메인이미지"/>
     </div>
     <a href="#one" class="more scrolly" style="color: #fff;">Learn More</a>
 </section>
+
+
 <%--    </div>--%>
 <%--</section>--%>
 
