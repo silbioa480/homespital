@@ -54,61 +54,87 @@
                     <br>
                     <div style="font-size: 25px">로그인 정보에 사용됩니다<strong style="color: #1abc9c">(필수)</strong></div>
                     <hr style="height:3px">
-                    <div class="input-control">
-                        <label for="email">이메일</label>
-                        <input class="signup_inputs user_border" type="email" id="email" name="email"
-                               placeholder="이메일을 입력해주세요">
-                        <div class="error"></div>
-                    </div>
-                    <div class="input-control">
-                        <label for="password">비밀번호</label>
-                        <input class="signup_inputs user_border" type="password" id="password" name="password"
-                               placeholder="비밀번호를 입력해주세요">
-                        <div class="error"></div>
-                    </div>
-                    <div class="input-control">
-                        <label for="password2">비밀번호 확인</label>
-                        <input class="signup_inputs user_border" type="password" id="password2" name="password2"
-                               placeholder="비밀번호를 입력해주세요">
-                        <div class="error"></div>
-                    </div>
-                    <div class="input-control">
-                        <label for="name">이름</label>
-                        <input class="signup_inputs user_border" type="text" id="name" name="name"
-                               placeholder="이름을 입력해주세요">
-                        <div class="error"></div>
-                    </div>
-                    <div class="input-control">
-                        <label for="SocialSecurityNumber1">주민등록번호</label>
-                        <div style="display:flex">
-                            <input class="signup_inputs user_border" id="SocialSecurityNumber1"
-                                   name="SocialSecurityNumber1" type="text" maxlength="6" style="width: 285px">&nbsp__&nbsp
-                            <input class="signup_inputs user_border" type="password" id="SocialSecurityNumber2"
-                                   name="SocialSecurityNumber2"
-                                   maxlength="7" style="width: 285px">
-                        </div>
-                        <div class="error"></div>
-                    </div>
-                    <div class="input-control">
-                        <label for="phone">휴대폰 번호</label>
-                        <div style="display:flex">
-                            <input class="signup_inputs user_border" id="phone" type="text" name="phone"
-                                   title="전화번호 입력" style=""/>
-                            <input type="button" id="phoneChk" class="w-btn" value="인증번호 받기">
-                        </div>
-                        <div class="error"></div>
-                        <br/>
-                        <div class="input-control">
-                            <div style="display:flex">
-                                <input class="signup_inputs user_border" id="phone2" type="text" name="phone2"
-                                       title="인증번호 입력" disabled style=""/>
-                                <input type="button" id="phoneChk2" class="w-btn" value="본인인증">
-                            </div>
-                            <div class="error"></div>
-                            <span class="point successPhoneChk">휴대폰 번호 입력후 인증번호 보내기를 해주십시오.</span>
-                            <input type="hidden" id="phoneDoubleChk"/>
-                        </div>
-                    </div>
+                    <table>
+                        <tr>
+                            <th>
+                                <label style="width: 110px" for="email">이메일</label>
+                            </th>
+                            <td>
+                                <input class="signup_inputs user_border" type="email" id="email" name="email"
+                                       placeholder="이메일을 입력해주세요">
+                                <div class="error"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label for="password">비밀번호</label>
+                            </th>
+                            <td>
+                                <input class="signup_inputs user_border" type="password" id="password" name="password"
+                                       placeholder="비밀번호를 입력해주세요">
+                                <div class="error"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label for="password2">비밀번호 확인</label>
+                            </th>
+                            <td>
+                                <input class="signup_inputs user_border" type="password" id="password2" name="password2"
+                                       placeholder="비밀번호를 입력해주세요">
+                                <div class="error"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label for="name">이름</label>
+                            </th>
+                            <td>
+                                <input class="signup_inputs user_border" type="text" id="name" name="name"
+                                       placeholder="이름을 입력해주세요">
+                                <div class="error"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label for="SocialSecurityNumber1">주민등록번호</label>
+                            </th>
+                            <td>
+                                <div style="display:flex">
+                                    <input class="signup_inputs user_border" id="SocialSecurityNumber1"
+                                           name="SocialSecurityNumber1" type="text" maxlength="6" style="width: 285px">&nbsp__&nbsp
+                                    <input class="signup_inputs user_border" type="password" id="SocialSecurityNumber2"
+                                           name="SocialSecurityNumber2"
+                                           maxlength="7" style="width: 285px">
+                                </div>
+                                <div class="error"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label for="phone">휴대폰 번호</label>
+                            </th>
+                            <td>
+                                <div style="display:flex">
+                                    <input class="signup_inputs user_border" id="phone" type="text" name="phone"
+                                           title="전화번호 입력" style=""/>
+                                    <input type="button" id="phoneChk" class="w-btn" value="인증번호 받기">
+                                </div>
+                                <div class="error"></div>
+                                <br/>
+                                <div class="input-control">
+                                    <div style="display:flex">
+                                        <input class="signup_inputs user_border" id="phone2" type="text" name="phone2"
+                                               title="인증번호 입력" disabled style=""/>
+                                        <input type="button" id="phoneChk2" class="w-btn" value="본인인증">
+                                    </div>
+                                    <div class="error"></div>
+                                    <span class="point successPhoneChk">휴대폰 번호 입력후 인증번호 보내기를 해주십시오.</span>
+                                    <input type="hidden" id="phoneDoubleChk"/>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </section>
 
@@ -119,42 +145,40 @@
                 <div class="container">
                     <div style="font-size: 25px">배송 정보에 사용됩니다<strong style="color: #1abc9c">(선택)</strong></div>
                     <hr style="height:3px">
-                    <div class="input-control">
-                        <table>
-                            <colgroup>
-                                <col style="width:20%">
-                                <col>
-                            </colgroup>
-                            <tbody>
-                            <tr>
-                                <th>우편번호</th>
-                                <td>
-                                    <div style="display:flex">
-                                        <input type="hidden" id="confmKey" name="confmKey" value="">
-                                        <input class="signup_inputs user_border" type="text" id="zipNo" name="zipNo"
-                                               readonly style=" width:200px">
-                                        <input type="button" value="주소검색" onclick="goPopup()"
-                                               class="w-btn">
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>도로명주소</th>
-                                <td><input class="signup_inputs user_border" type="text" id="roadFullAddr"
-                                           name="roadFullAddr" style="width:85%"></td>
-                            </tr>
-                            <tr>
-                                <th>상세주소</th>
-                                <td>
-                                    <input class="signup_inputs user_border" type="text" id="addrDetail"
-                                           name="addrDetail" style="width:40%" value="">
+                    <table>
+                        <colgroup>
+                            <col style="width:20%">
+                            <col>
+                        </colgroup>
+                        <tbody>
+                        <tr>
+                            <th>우편번호</th>
+                            <td>
+                                <div style="display:flex">
+                                    <input type="hidden" id="confmKey" name="confmKey" value="">
+                                    <input class="signup_inputs user_border" type="text" id="zipNo" name="zipNo"
+                                           readonly style=" width:200px">
+                                    <input type="button" value="주소검색" onclick="goPopup()"
+                                           class="w-btn">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>도로명주소</th>
+                            <td><input class="signup_inputs user_border" type="text" id="roadFullAddr"
+                                       name="roadFullAddr" style="width:85%"></td>
+                        </tr>
+                        <tr>
+                            <th>상세주소</th>
+                            <td>
+                                <input class="signup_inputs user_border" type="text" id="addrDetail"
+                                       name="addrDetail" style="width:40%" value="">
 
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <div class="error"></div>
-                    </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="error"></div>
                 </div>
             </section>
             <br><br><br>
