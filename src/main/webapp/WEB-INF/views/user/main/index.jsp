@@ -1,6 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/taeyoung4
 <head>
     <title>Homespital</title>
     <meta charset="utf-8"/>
