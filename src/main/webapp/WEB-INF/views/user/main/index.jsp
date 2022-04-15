@@ -59,112 +59,121 @@
 
 <!-- One -->
 <section id="one">
-    <div class="gallery" style="height:1400px">
-        <article2 class="from-left-exp">
-            <div class="content box style2">
-                <img src="/resources/img/main/진료과보기_모바일.png" width="500" height="1000"
-                     style="margin-left:400px; margin-top:100px;"/>
+    <div class="gallery">
+        <article class="from-left" style="display:table">
+            <div class="content box style2 information-left">
+                <img class="information-left-in" src="/resources/img/main/진료과보기_모바일.png" width="300" height="600"/>
             </div>
-        </article2>
-        <article2 class="from-right-exp">
-            <div class="content box style2" style="margin-top:400px">
-                <h1 style="color:#33CC99; font-size: 50px">비대면 진료</h1><br>
-                <h2>어디가 불편하세요?</h2><br>
-                <div>
-                    <p>지금 당장 예약 가능 한<br><br> 동네 최고 전문의에게 안전하고 신속하게 진료 받으세요.<br><br>
-                        내 위치를 중심으로 가까운 병원 순으로 검색이 가능합니다.</p>
+        </article>
+        <article class="from-right" style="display:table">
+            <div class="content box style2 information-right">
+                <div class="information-right-in">
+                    <h1 style="color:#33CC99; font-size: 50px">비대면 진료</h1><br>
+                    <h2>어디가 불편하세요?</h2><br>
+                    <div>
+                        <p>지금 당장 예약 가능 한<br><br> 동네 최고 전문의에게 안전하고 신속하게 진료 받으세요.<br><br>
+                            내 위치를 중심으로 가까운 병원 순으로 검색이 가능합니다.</p>
+                    </div>
                 </div>
             </div>
-        </article2>
+        </article>
     </div>
     <%--    <a href="#two" class="button style2 down anchored">Next</a>--%>
 </section>
 
 <!-- Two -->
 <section id="two">
-    <div class="gallery" style="height:1400px">
-        <article2 class="from-left-exp">
-            <div class="content box style2" style="margin-left:400px;margin-top:400px">
-                <h1 style="color:#33CC99;font-size: 50px">화상채팅</h1><br>
-                <h2>안전하고 정확하게<br>진료 받으세요</h2><br>
-                <div>
-                    <p>어디서나 편하게 홈스피탈에서<br><br>제공하는 화상 서비스로<br><br>
-                        보다 안전하고 정확하게<br><br>진료 받으세요.</p>
+    <div class="gallery">
+        <article class="from-left">
+            <div class="content box style2 information-left">
+                <div class="information-left-in">
+                    <h1 style="color:#33CC99;font-size: 50px">화상채팅</h1><br>
+                    <h2>안전하고 정확하게<br>진료 받으세요</h2><br>
+                    <div>
+                        <p>어디서나 편하게 홈스피탈에서<br><br>제공하는 화상 서비스로<br><br>
+                            보다 안전하고 정확하게<br><br>진료 받으세요.</p>
+                    </div>
                 </div>
             </div>
-        </article2>
-        <article2 class="from-right-exp">
-            <div class="content box style2">
-                <img src="/resources/img/main/진료과보기_모바일.png" width="500" height="1000"
-                     style="margin-right:400px; margin-top:100px;"/>
+        </article>
+        <article class="from-right">
+            <div class="content box style2 information-right">
+                <div class="information-right-in">
+                    <img src="/resources/img/main/진료과보기_모바일.png" width="300" height="600"/>
+                </div>
             </div>
-        </article2>
+        </article>
     </div>
     <%--    <a href="#work" class="button style2 down anchored">Next</a>--%>
 </section>
 
-<!-- Work -->
+<%--<!-- Work -->--%>
 <section id="Three">
-    <div class="gallery" style="height:1400px">
-        <article2 class="from-left-exp">
-            <div class="content box style2">
-                <img src="/resources/img/main/진료과보기_모바일.png" width="500" height="1000"
-                     style="margin-left:400px; margin-top:100px;"/>
+    <div class="gallery">
+        <article class="from-left">
+            <div class="content box style2 information-left">
+                <img class="information-left-in" src="/resources/img/main/진료과보기_모바일.png" width="300" height="600"/>
             </div>
-        </article2>
-        <article2 class="from-right-exp">
-            <div class="content box style2" style="margin-top:400px">
-                <h1 style="color:#33CC99;font-size: 50px">약 배달/약국내방</h1><br>
-                <h2>처방약 배달을<br>쉽고 빠르게</h2><br>
-                <div>
-                    <p>약국에서 안전하고 신속하게 처방약을 배달합니다.<br><br>처방약 조제가 끝나면 라이더가 내 위치까지 안전하게<br><br>
-                        배달 해 드립니다.<br><br>직접 약국에 들러 약제를 받아가시 수도 있어요.<br><br>내 위치를 중심으로 근처 약국을 검색 해 보세요.</p>
+        </article>
+        <article class="from-right">
+            <div class="content box style2 information-right">
+                <div class="information-right-in">
+                    <h1 style="color:#33CC99;font-size: 50px">약 배달/약국내방</h1><br>
+                    <h2>처방약 배달을<br>쉽고 빠르게</h2><br>
+                    <div>
+                        <p>약국에서 안전하고 신속하게 처방약을 배달합니다.<br><br>처방약 조제가 끝나면 라이더가 내 위치까지 안전하게<br><br>
+                            배달 해 드립니다.<br><br>직접 약국에 들러 약제를 받아가시 수도 있어요.<br><br>내 위치를 중심으로 근처 약국을 검색 해 보세요.</p>
+                    </div>
                 </div>
             </div>
-        </article2>
+        </article>
     </div>
 </section>
 <section id="Four">
-    <div class="gallery" style="height:1400px">
-        <article2 class="from-left-exp">
-            <div class="content box style2" style="margin-left:400px;margin-top:400px">
-                <h1 style="color:#33CC99;font-size: 50px">간편결제</h1><br>
-                <h2>결제를 <br>쉽고 안전하게</h2><br>
-                <div>
-                    <p>카드만 등록하면 진료비,약제비가 안전하게 결제 됩니다.</p>
+    <div class="gallery">
+        <article class="from-left">
+            <div class="content box style2 information-left">
+                <div class="information-left-in">
+                    <h1 style="color:#33CC99;font-size: 50px">간편결제</h1><br>
+                    <h2>결제를 <br>쉽고 안전하게</h2><br>
+                    <div>
+                        <p>카드만 등록하면 진료비 약제비가<br><br> 안전하게 결제 됩니다.</p>
+                    </div>
                 </div>
             </div>
-        </article2>
-        <article2 class="from-right-exp">
-            <div class="content box style2">
-                <img src="/resources/img/main/진료과보기_모바일.png" width="500" height="1000"
-                     style="margin-right:400px; margin-top:100px;"/>
+        </article>
+        <article class="from-right">
+            <div class="content box style2 information-right">
+                <div class="information-right-in">
+                    <img src="/resources/img/main/진료과보기_모바일.png" width="300" height="600"/>
+                </div>
             </div>
-        </article2>
+        </article>
     </div>
     <%--    <a href="#work" class="button style2 down anchored">Next</a>--%>
 </section>
 
 
-<!-- Work -->
+<%--<!-- Work -->--%>
 <section id="Five">
-    <div class="gallery" style="height:1400px">
-        <article2 class="from-left-exp">
-            <div class="content box style2">
-                <img src="/resources/img/main/진료과보기_모바일.png" width="500" height="1000"
-                     style="margin-left:400px; margin-top:100px;"/>
+    <div class="gallery">
+        <article class="from-left">
+            <div class="content box style2 information-left">
+                <img class="information-left-in" src="/resources/img/main/진료과보기_모바일.png" width="300" height="600"/>
             </div>
-        </article2>
-        <article2 class="from-right-exp">
-            <div class="content box style2" style="margin-top:400px">
-                <h1 style="color:#33CC99;font-size: 50px">진료 영수증 저장</h1><br>
-                <h2>진료영수증 관리를<br>쉽고 간편하게</h2><br>
-                <div>
-                    <p>내가 받은 비대면 진료의 진료영수증을 모바일에서 쉽게<br><br>
-                        쉽게 확인이 가능합니다.</p>
+        </article>
+        <article class="from-right">
+            <div class="content box style2 information-right">
+                <div class="information-right-in">
+                    <h1 style="color:#33CC99;font-size: 50px">진료 영수증 저장</h1><br>
+                    <h2>진료영수증 관리를<br>쉽고 간편하게</h2><br>
+                    <div>
+                        <p>내가 받은 비대면 진료의 진료영수증을 모바일에서 쉽게<br><br>
+                            쉽게 확인이 가능합니다.</p>
+                    </div>
                 </div>
             </div>
-        </article2>
+        </article>
     </div>
 </section>
 

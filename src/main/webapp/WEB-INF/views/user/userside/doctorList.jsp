@@ -27,9 +27,7 @@
 <%--side-nav 시작 by 소연 4/7--%>
 <div id="sidebar">
     <div class="d-flex flex-column align-items-center">
-        <div style="height:30px;"></div>
         <span class="image avatar"><a href="/"><img src="/resources/img/design/logo_U_sideNav.png" alt=""/></a></span>
-        <div style="height:50px;"></div>
     </div>
     <nav id="nav">
         <ul>
@@ -88,7 +86,7 @@
 <%--    </div>--%>
 <%--</div>--%>
 
-<div class="introOut">
+<div>
     <h4>의료진을 소개합니다!</h4>
 </div>
 
@@ -97,9 +95,9 @@
         <span class="my-auto">총 ${not empty doctorList? fn:length(doctorList) : 0}명</span>
         <div id="searcharea">
             <div class="search">
-                <form action="dohSearch" method="post">
+                <form action="dohSearch" method="post" class="pr-2">
                     <input type="search" placeholder="원하시는 의사 및 병원을 입력하세요" name="dhSearch" id="dhSearch"/>
-                    <button type="submit" id="searchMedical" class="btn border-dark">검색</button>
+                    <button type="submit" id="searchMedical" class="btn border border-dark">검색</button>
                 </form>
             </div>
         </div>
@@ -146,16 +144,17 @@
                             <div class="card-text" style="margin-top: -40px; margin-left: 30px;">
                                 <p class="card-text">
 
-                                        <p class="context">병원이름: ${doctor.hospital_name}</p>
+                                <p class="context">병원이름: ${doctor.hospital_name}</p>
 
-                                        <p class="context">주소 : ${doctor.zip_code} ${doctor.street_address} ${doctor.detail_address}</p>
+                                <p class="context">주소
+                                    : ${doctor.zip_code} ${doctor.street_address} ${doctor.detail_address}</p>
 
-                                        <p class="context">진료시간 : ${doctor.working_time}</p>
+                                <p class="context">진료시간 : ${doctor.working_time}</p>
 
-                                        <p class="context">점심시간 : ${doctor.lunch_time}</p>
+                                <p class="context">점심시간 : ${doctor.lunch_time}</p>
 
-                                        <p class="context">휴진 : 매주 ${doctor.holiday}요일</p>
-                                        <p class="context"></p>
+                                <p class="context">휴진 : 매주 ${doctor.holiday}요일</p>
+                                <p class="context"></p>
                                 </p>
                             </div>
                         </div>

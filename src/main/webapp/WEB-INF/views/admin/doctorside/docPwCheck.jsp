@@ -8,7 +8,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
     <link rel="stylesheet" href="/resources/css/signUp.css"/>
 </head>
 <body>
@@ -21,7 +20,8 @@
 
         <div class="input-control">
             <label for="password">비밀번호</label>
-            <input type="password" style="width: 100%" id="password" name="password" placeholder="비밀번호를 입력해주세요" value="" minlength="4" maxlength="12" size="15" pattern="[a-zA-Z0-9]{4,12}" title="4~12자의 영문 대소문자와 숫자로만 입력.">
+            <input type="password" style="width: 100%" id="password" name="password" placeholder="비밀번호를 입력해주세요" value=""
+                   minlength="4" maxlength="12" size="15" pattern="[a-zA-Z0-9]{4,12}" title="4~12자의 영문 대소문자와 숫자로만 입력.">
             <div class="error"></div>
         </div>
 
@@ -34,34 +34,29 @@
 <script type="text/javascript">
 
 
-    $(document).ready(function(){
+    $(document).ready(function () {
 
-        $("#pwChecked").on("click", function(){
+        $("#pwChecked").on("click", function () {
 
 
             $.ajax({
-                url : "/docPwCheck",
-                type : "POST",
+                url: "/docPwCheck",
+                type: "POST",
                 // dataType : "json",
-                data : {
-                    "password" : $('#password').val()
+                data: {
+                    "password": $('#password').val()
                 },
-                beforeSend: function (xhr){
+                beforeSend: function (xhr) {
                     xhr.setRequestHeader("AJAX", "true");
                 },
-                success: function(response){
+                success: function (response) {
                     console.log(response);
-                    if(response == '비밀번호일치')
-                    {
+                    if (response == '비밀번호일치') {
                         location.href = "/modifyForm";
-                    }
-                    else if(response == "비밀번호틀림")
-                    {
+                    } else if (response == "비밀번호틀림") {
                         alert("비밀번호를 확인해주세요!");
                         location.href = "/docPwCheck";
-                    }
-                    else
-                    {
+                    } else {
                         alert("비밀번호를 확인해주세요!");
                         location.href = "/docPwCheck";
                     }

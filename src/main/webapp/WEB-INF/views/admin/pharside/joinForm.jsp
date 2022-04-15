@@ -15,15 +15,14 @@
 <!-- Header -->
 <section id="sidebar" style="background-color: #FFCD4A;">
     <header>
-        <span class="image avatar"><img src="/resources/img/design/logo_white.png" alt=""/></span>
-        <p>Hi</p>
-
+        <span class="image avatar">
+            <a href="/pharmacy/"><img src="/resources/img/design/logo_white.png" alt=""/></a></span>
     </header>
     <nav id="nav">
         <ul>
-            <li><a href="#one" class="active">로그인 정보 입력<font color="red">(필수)</font></a></li>
-            <li><a href="#two" class="active">약국 정보 입력<font color="red">(필수)</font></a></li>
-            <li><a href="#three">약관동의</a></li>
+            <li class="nav-item"><a href="#one" class="nav-link active">로그인 정보 입력<font color="red">(필수)</font></a></li>
+            <li class="nav-item"><a href="#two" class="nav-link ">약국 정보 입력<font color="red">(필수)</font></a></li>
+            <li class="nav-item"><a href="#three" class="nav-link ">약관동의</a></li>
         </ul>
     </nav>
     <footer>
@@ -41,10 +40,11 @@
 <div id="wrapper">
     <div id="main">
         <!-- One -->
-        <form id="form" name="form" action="/pharmacy/join.do" method="post">
+        <form id="form" name="form" action="/pharmacy/join.do" method="post" data-bs-spy="scroll" data-bs-target="#nav"
+              data-bs-offset="0" tabindex="0">
             <section id="one">
-                <div class="container">
-                    <h3 style="margin-top: 100px">약사 회원가입</h3>
+                <div>
+                    <h3>약사 회원가입</h3>
                     <hr>
                     <div style="font-size: 25px">로그인 정보에 사용됩니다<strong style="color: #1abc9c">(필수)</strong></div>
                     <hr style="height:3px">
@@ -88,7 +88,7 @@
 
             <!-- Two -->
             <section id="two">
-                <div class="container">
+                <div>
                     <div style="font-size: 25px">약국정보입력<strong style="color: #1abc9c">(필수)</strong></div>
                     <hr style="height:3px">
                     <div class="input-control">
@@ -162,7 +162,7 @@
 
             <!-- Three -->
             <section id="three">
-                <div class="container">
+                <div>
                     <div class="">
                         <div class="input-control">
                             <div style="font-size: 25px">약관동의</div>
