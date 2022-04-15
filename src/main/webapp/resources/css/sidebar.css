@@ -168,7 +168,7 @@
 }
 
 #sidebar > nav ul li {
-    border-top: solid 2px #5ccfb1;
+    /*border-top: solid 2px white;*/
     display: block;
     padding: 0;
 }
@@ -187,7 +187,7 @@
 
 #sidebar > nav ul li a.active {
     background: #fff;
-    color: #4acaa8 !important;
+    color: #2A2D42 !important;
 }
 
 #sidebar > nav ul li:first-child {
