@@ -114,6 +114,10 @@ function start() {
             case "join":
                 log('Client is starting to ' + (message.data === "true)" ? 'negotiate' : 'wait for a peer'));
                 handlePeerConnection(message);
+                dataChannel.send('hi');
+                dataChannel.onmessage = function (event) {
+                    console.log(event.data);
+                }
                 break;
 
             default:
@@ -246,6 +250,8 @@ function getMedia(constraints) {
         .then(getLocalMediaStream).catch(handleGetUserMediaError);
 }
 
+let dataChannel;
+
 // create peer connection, get media, start negotiating when second participant appears
 function handlePeerConnection(message) {
     createPeerConnection();
@@ -253,6 +259,7 @@ function handlePeerConnection(message) {
     if (message.data === "true") {
         myPeerConnection.onnegotiationneeded = handleNegotiationNeededEvent;
     }
+    dataChannel = myPeerConnection.createDataChannel('chatRoom');
 }
 
 /**
@@ -267,7 +274,9 @@ function createPeerConnection() {
     // event handlers for the ICE negotiation process
     myPeerConnection.onicecandidate = handleICECandidateEvent;
     myPeerConnection.ontrack = handleTrackEvent;
-
+    myPeerConnection.ondatachannel = function (event) {
+        console.log(event);
+    }
     // the following events are optional and could be realized later if needed
     // myPeerConnection.onremovetrack = handleRemoveTrackEvent;
     // myPeerConnection.oniceconnectionstatechange = handleICEConnectionStateChangeEvent;
