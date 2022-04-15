@@ -1813,6 +1813,14 @@ body.is-touch .poptrox-popup .closer {
     vertical-align: middle;
 }
 
+.information-left-in p {
+    color: black;
+}
+
+.information-right-in p {
+    color: black;
+}
+
 .information-left-in {
     margin-left: 300px;
     width: 300px;
@@ -2434,7 +2442,7 @@ body.is-touch .poptrox-popup .closer {
     }
 }
 
-#banner .main-text{
+#banner .main-text {
     -moz-transform: scale(1);
     -webkit-transform: scale(1);
     -ms-transform: scale(1);
@@ -2450,9 +2458,10 @@ body.is-touch .poptrox-popup .closer {
     padding: 0.35em 1em;
     position: relative;
     z-index: 1;
-    letter-spacing:5px;
+    letter-spacing: 5px;
 }
-#banner .sub-text{
+
+#banner .sub-text {
     -moz-transform: scale(1);
     -webkit-transform: scale(1);
     -ms-transform: scale(1);
@@ -2461,16 +2470,16 @@ body.is-touch .poptrox-popup .closer {
     -webkit-transition: -webkit-transform 1s ease, opacity 1s ease;
     -ms-transition: -ms-transform 1s ease, opacity 1s ease;
     transition: transform 1s ease;
-    animation:cutScene 2s ease-in-out both;
-    display:block;
+    animation: cutScene 2s ease-in-out both;
+    display: block;
     font-size: 1.2em;
     opacity: 0;
     padding: 0.5em 1em 0.35em;
-    margin-left:13px;
+    margin-left: 13px;
     position: relative;
     z-index: 1;
-    letter-spacing:.85em;
-    color:#fff;
+    letter-spacing: .85em;
+    color: #fff;
 }
 
 #banner .main-text:before, #banner .main-text:after {
