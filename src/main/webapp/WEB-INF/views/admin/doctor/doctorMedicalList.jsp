@@ -74,7 +74,7 @@
         })
 
         //10초마다 새로운 예약이 들어오면 데이터 갱신 태영
-        setInterval(function() {
+        setInterval(function () {
             $.ajax({
                 url: '/doctor/docMedicalRecords',
                 type: 'GET',
@@ -154,18 +154,18 @@
                     if (item.is_diagnosis_upload == 0) {
                         receipt = "";
                     } else if (item.is_diagnosis_upload == 1) {
-                        receipt = "<button type='button' data-toggle='modal' data-target='#staticBackdrop" + item.diagnosis_number + " 'id ='receiptUpload" + item.diagnosis_number + "' class='btn btn-sm h-75'>영수증업로드</button><br>" +
-                            '<div class="modal fade" id="staticBackdrop' + item.diagnosis_number + '" data-backdrop="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">' +
+                        receipt = "<button type='button' data-bs-toggle='modal' data-bs-target='#staticBackdrop" + item.diagnosis_number + " 'id ='receiptUpload" + item.diagnosis_number + "' class='btn btn-sm h-75'>영수증업로드</button><br>" +
+                            '<div class="modal fade" id="staticBackdrop' + item.diagnosis_number + '" data-bs-backdrop="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">' +
                             '<div class="modal-dialog" role="document">' +
                             '<div class="modal-content">' +
                             '<div class="modal-header">' +
                             '<h5 class="modal-title" id="staticBackdropLabel">진료 영수증 업로드</h5>' +
-                            '<button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
+                            '<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">' +
                             '<span aria-hidden="true">&times;</span>' +
                             '</button>' +
                             '</div><form action="receiptUpload" method="POST" enctype="multipart/form-data"><div class="modal-body">' +
                             "<input type='hidden' name='diagnosis_number' value='" + item.diagnosis_number + "'>" +
-                            '<input type="file" accept=".gif, .jpg, .png" name="receiptFile">사진선택</input></div><div class="modal-footer"><button type="button" class="btn btn-secondary"  data-dismiss="modal">닫기</button><button type="submit" class="btn btn-primary upload-btn' + item.diagnosis_number + '">확인</button></div></form></div></div></div>'
+                            '<input type="file" accept=".gif, .jpg, .png" name="receiptFile">사진선택</input></div><div class="modal-footer"><button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">닫기</button><button type="submit" class="btn btn-primary upload-btn' + item.diagnosis_number + '">확인</button></div></form></div></div></div>'
                     } else if (item.is_diagnosis_upload == 2) {
                         receipt = "업로드완료";
                     }
@@ -180,18 +180,18 @@
                     if (item.is_prescription_upload == 0) {
                         prescription = "";
                     } else if (item.is_prescription_upload == 1) {
-                        prescription = "<button type='button' data-toggle='modal' data-target='#staticBackdrop2_" + item.diagnosis_number + " 'id ='prescriptionUpload" + item.diagnosis_number + "' class='btn btn-sm h-75'>처방전업로드</button><br>" +
-                            '<div class="modal fade" id="staticBackdrop2_' + item.diagnosis_number + '" data-backdrop="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">' +
+                        prescription = "<button type='button' data-bs-toggle='modal' data-bs-target='#staticBackdrop2_" + item.diagnosis_number + " 'id ='prescriptionUpload" + item.diagnosis_number + "' class='btn btn-sm h-75'>처방전업로드</button><br>" +
+                            '<div class="modal fade" id="staticBackdrop2_' + item.diagnosis_number + '" data-bs-backdrop="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">' +
                             '<div class="modal-dialog" role="document">' +
                             '<div class="modal-content">' +
                             '<div class="modal-header">' +
                             '<h5 class="modal-title" id="staticBackdropLabel">처방전 업로드</h5>' +
-                            '<button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
+                            '<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">' +
                             '<span aria-hidden="true">&times;</span>' +
                             '</button>' +
                             '</div><form action="prescriptionUpload" method="POST" enctype="multipart/form-data"><div class="modal-body">' +
                             "<input type='hidden' name='diagnosis_number' value='" + item.diagnosis_number + "'>" +
-                            '<input type="file" accept=".gif, .jpg, .png" name="prescriptionFile">사진선택</input></div><div class="modal-footer"><button type="button" class="btn btn-secondary"  data-dismiss="modal">닫기</button><button type="submit" class="btn btn-primary upload-btn' + item.diagnosis_number + '">확인</button></div></form></div></div></div>'
+                            '<input type="file" accept=".gif, .jpg, .png" name="prescriptionFile">사진선택</input></div><div class="modal-footer"><button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">닫기</button><button type="submit" class="btn btn-primary upload-btn' + item.diagnosis_number + '">확인</button></div></form></div></div></div>'
                     } else if (item.is_prescription_upload == 2) {
                         prescription = "업로드완료";
                     } else if (item.is_prescription_upload == 3) {
@@ -200,7 +200,7 @@
 
                     // 나의 진료 내역 테이블 생성 (리눅스 서버에 올릴때 진단영수증 파일경로 바꿔줘야함)
                     // 진료시작이거나 진료중일때  / 진료완료상태일때 색깔 적용 태영
-                    if(item.diagnosis_status == 0 || item.diagnosis_status == 1){
+                    if (item.diagnosis_status == 0 || item.diagnosis_status == 1) {
                         $("#docMedicalList").append("<tr><td style='background-color:#00B6EE'><a href='/doctor/customerDetail/" + item.diagnosis_number + "'>" + date + " (" + dayOfWeek + ") " + item.diagnosis_time + ":00</a></td>" +
                             "<td><a href='/doctor/customerDetail/" + item.diagnosis_number + "'>" + item.user_name + "</a></td>" +
                             "<td>" + gender + "</td>" +
@@ -210,7 +210,7 @@
                             "<td>" + complete + "</td>" +
                             "<td><a href='/doctor/customerDetail/" + item.diagnosis_number + "'><span class='material-icons'>search</span></a>" + "</td></tr><br>);"
                         )
-                    }else if(item.diagnosis_status >=3 && item.diagnosis_status <=7){
+                    } else if (item.diagnosis_status >= 3 && item.diagnosis_status <= 7) {
                         $("#docMedicalList").append("<tr><td style='background-color:#cccccc'><a href='/doctor/customerDetail/" + item.diagnosis_number + "'>" + date + " (" + dayOfWeek + ") " + item.diagnosis_time + ":00</a></td>" +
                             "<td><a href='/doctor/customerDetail/" + item.diagnosis_number + "'>" + item.user_name + "</a></td>" +
                             "<td>" + gender + "</td>" +

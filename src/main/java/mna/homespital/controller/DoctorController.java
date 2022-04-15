@@ -506,7 +506,7 @@ public class DoctorController {
         }
         doctorService.uploadReceipt(diagnosis_number, receiptFileName);
 
-        return "redirect:/doctor/docMedicalList";
+        return "redirect:/doctor/customerDetail/" + String.valueOf(diagnosis_number);
     }
 
     // 처방전 업로드(준근)
@@ -537,6 +537,6 @@ public class DoctorController {
         }
         doctorService.uploadPrescription(diagnosis_number, prescriptionFileName);
 
-        return "redirect:/doctor/docMedicalList";
+        return "redirect:/doctor/customerDetail/" + String.valueOf(diagnosis_number);
     }
 }
