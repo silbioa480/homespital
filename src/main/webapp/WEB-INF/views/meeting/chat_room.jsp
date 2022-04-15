@@ -47,6 +47,11 @@
             overflow-y: auto;
         }
 
+        #local_video, #remote_video {
+            max-width: 100%;
+            width: 100%;
+        }
+
     </style>
     <%--    <link rel="stylesheet" type="text/css" href="/css/main.css"/>--%>
 </head>
