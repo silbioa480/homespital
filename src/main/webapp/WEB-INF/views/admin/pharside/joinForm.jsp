@@ -199,7 +199,7 @@
 
     <!-- Footer -->
     <section id="footer">
-        <div>
+        <div class="container">
             <ul class="copyright">
                 <li>&copy; Untitled. All rights reserved.</li>
                 <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
@@ -210,18 +210,15 @@
 </div>
 <!-- Scripts -->
 <script src="/resources/js/signUp/jquery.min.js"></script>
-<%--<script src="/resources/js/signUp/jquery.scrollex.min.js"></script>--%>
-<%--<script src="/resources/js/signUp/jquery.scrolly.min.js"></script>--%>
-<%--<script src="/resources/js/signUp/browser.min.js"></script>--%>
-<%--<script src="/resources/js/signUp/breakpoints.min.js"></script>--%>
-<%--<script src="/resources/js/signUp/util.js"></script>--%>
+<script src="/resources/js/signUp/jquery.scrollex.min.js"></script>
+<script src="/resources/js/signUp/jquery.scrolly.min.js"></script>
+<script src="/resources/js/signUp/browser.min.js"></script>
+<script src="/resources/js/signUp/breakpoints.min.js"></script>
+<script src="/resources/js/signUp/util.js"></script>
 <script src="/resources/js/signUp/signUp.js"></script>
 <script src="/resources/js/signUp/pharmacySignUpCheck.js"></script>
-<script>
-    var scrollSpy = new bootstrap.ScrollSpy(document.body, {
-        target: '#nav'
-    })
-</script>
+
+
 </body>
 
 </html>
