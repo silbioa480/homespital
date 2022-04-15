@@ -10,8 +10,8 @@ const setError = (element, message,) => {
     const inputControl = element.parentElement;
     const errorDisplay = inputControl.querySelector('.error');
     errorDisplay.innerText = message;
-    inputControl.classList.add('error');
-    inputControl.classList.remove('success');
+    // inputControl.classList.add('error');
+    // inputControl.classList.remove('success');
 }
 //성공시 에러메시지 삭제
 const setSuccess = element => {
@@ -19,8 +19,8 @@ const setSuccess = element => {
     const errorDisplay = inputControl.querySelector('.error');
 
     errorDisplay.innerText = '';
-    inputControl.classList.add('success');
-    inputControl.classList.remove('error');
+    // inputControl.classList.add('success');
+    // inputControl.classList.remove('error');
 }
 
 function checkAll() {
