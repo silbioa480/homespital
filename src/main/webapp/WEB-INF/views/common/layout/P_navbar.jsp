@@ -47,15 +47,15 @@
                             <%--                                    <a class="nav-link" href="#">내 정보수정</a>--%>
                             <%--                                </li>--%>
                             <li class="nav-item">
-                                <a class="nav-link" style="padding: 16px;" href="/pharmacy/logout.do">로그아웃</a>
+                                <a class="nav-link" href="/pharmacy/logout.do">로그아웃</a>
                             </li>
                         </c:when>
                         <c:otherwise>
                             <li class="nav-item">
-                                <a class="nav-link" style="padding: 16px;" href="/pharmacy/loginForm">로그인</a>
+                                <a class="nav-link" href="/pharmacy/loginForm">로그인</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" style="padding: 16px;" href="/pharmacy/joinForm">회원가입</a>
+                                <a class="nav-link" href="/pharmacy/joinForm">회원가입</a>
                             </li>
 
                         </c:otherwise>
