@@ -15,9 +15,8 @@
 <!-- Header -->
 <section id="sidebar" style="background-color: #FFCD4A;">
     <header>
-        <span class="image avatar"><img src="/resources/img/design/logo_white.png" alt=""/></span>
-        <p>Hi</p>
-
+        <span class="image avatar">
+            <a href="/pharmacy/"><img src="/resources/img/design/logo_white.png" alt=""/></a></span>
     </header>
     <nav id="nav">
         <ul>

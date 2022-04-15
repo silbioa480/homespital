@@ -9,9 +9,9 @@ a {
 
 .medicalList {
     height: auto;
-    width: 60%;
+    /*width: 60%;*/
     position: absolute;
-    right: 10%;
+    /*right: 10%;*/
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
