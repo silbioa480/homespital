@@ -106,7 +106,8 @@
         <div id="chatBox">
         </div>
 
-        <input type="text" id="chatMsg">
+        <input type="text" id="chatMsg" onkeyup="if(window.event.keyCode==13){sendChat()}"/>
+
         <button id="sendBtn" onclick="sendChat()">전송</button>
     </div>
 </main>
@@ -121,15 +122,11 @@
 
 
 <script>
-
-
     /*
-    $(document).ready(function () {
-        $("#msgBtn").click(function (e) {
-
-        });
-    });
-    */
-
+    * 채팅 박스 만들기
+    * 그리고 대화명 앞으로 가져오기
+    * ws 로 s 떼고 로컬에서 작업 가능한지 확인 되면 진짜 로또
+    *
+    * */
 </script>
 </html>
