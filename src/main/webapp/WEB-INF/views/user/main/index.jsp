@@ -11,6 +11,44 @@
     <noscript>
         <link rel="stylesheet" href="/resources/css/main2.css"/>
     </noscript>
+
+    <style>
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(800px, 1fr));
+            grid-auto-rows: minmax(150px, 0.5fr);
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .grid-row,
+        .grid-item {
+            font-size: 40px;
+            display: block;
+            overflow: hidden;
+
+        }
+
+        .grid-item img {
+            object-fit: cover;
+            object-position: center;
+
+        }
+
+        .grid-item {
+            transform: translateY(-10%);
+            opacity: 0;
+            color: black;
+            transition: 1000ms transform cubic-bezier(0.55, 0.055, 0.675, 0.19), 1000ms opacity cubic-bezier(0.55, 0.055, 0.675, 0.19) 600ms;
+        }
+
+        .grid-item.inview {
+            transform: translateY(0);
+            opacity: 1;
+            color: white;
+        }
+    </style>
 </head>
 <body class="is-preload">
 <!-- Intro -->
@@ -178,6 +216,60 @@
 </section>
 
 
+<!-- One -->
+<section id="six" class="main style2 right dark fullscreen">
+
+    <div class="content box style2">
+        <header>
+            <h2>안내</h2>
+        </header>
+        <p>Lorem ipsum dolor sit amet et sapien sed elementum egestas dolore condimentum.
+            Fusce blandit ultrices sapien, in accumsan orci rhoncus eu. Sed sodales venenatis arcu,
+            id varius justo euismod in. Curabitur egestas consectetur magna.
+        </p>
+    </div>
+    <a href="#two" class="button style2 down anchored">Next</a>
+</section>
+
+<%--        케러셸 시작부분 (준근)--%>
+<div>
+    <div class="position-relative" style="width:243px;">
+        <img style="position:relative; z-index: 4;" src="resources/img/design/아이폰.png"/>
+        <div id="carouselExampleSlidesOnly" class="carousel slide position-absolute top-0 start-0"
+             data-bs-ride="carousel"
+             style="width:243px; ">
+            <div class="carousel-inner">
+                <div class="carousel-item active" data-bs-interval="3000">
+                    <img src="resources/img/design/슬라이드1.png" class="d-block w-100" alt="..."
+                         style="z-index: 1;">
+                </div>
+                <div class="carousel-item" data-bs-interval="3000">
+                    <img src="resources/img/design/슬라이드2.png" class="d-block w-100" alt="..."
+                         style="z-index: 2;">
+                </div>
+                <div class="carousel-item" data-bs-interval="3000">
+                    <img src="resources/img/design/슬라이드3.png" class="d-block w-100" alt="..."
+                         style="z-index: 3;">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%-- 케러셸 끝부분 (준근)--%>
+<!--텍스트 스크롤(준근)-->
+
+<div class="grid-container">
+    <p class="grid-item">이럴때 사용하세요! </p>
+    <p class="grid-item">자가격리로 외출을 하지 못 할 때</p>
+    <p class="grid-item">만성질환으로 매번 처방약을 받으러 병원 갈 때</p>
+    <p class="grid-item">아이, 노인을 모시고 병원까지 이동이 힘들 때</p>
+    <p class="grid-item">바쁜 회사 생활로 병원 갈 시간이 없을 때</p>
+    <p class="grid-item">몸이 아파서 병원까지 이동이 어려울 때</p>
+    <p class="grid-item">간단한 병원 상담이 필요할 때</p>
+</div>
+<%--텍스트 스크롤 끝부분(준근)--%>
+
+
 <%--<!-- Contact -->--%>
 <%--<section id="contact" class="main style3 secondary">--%>
 <%--    <div class="content">--%>
@@ -339,6 +431,7 @@
             var pageTop = $(window).scrollTop();
             var oneT = $("#one").offset().top;
             var twoT = $("#two").offset().top;
+            
             if (pageTop >= oneT && pageTop < twoT) {
                 $("#logo").attr("src", "/resources/img/design/logo_U_nav.png");
                 $(".nav-Link").css({"color": "#red"});
@@ -349,5 +442,27 @@
     });
 </script>
 
+
+<%--텍스트 스크롤 스크립트 시작부분(준근)--%>
+<script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            const rand = Math.floor(Math.random() * 30);
+            if (entry.isIntersecting === true) {
+                const img = entry.target.querySelector("img");
+                entry.target.classList.add("inview");
+                img.src = `https://source.unsplash.com/random/960x540/?${rand}`;
+            } else {
+                entry.target.classList.remove("inview");
+            }
+        });
+    });
+    const items = document.querySelectorAll(".grid-item");
+
+    items.forEach((item, index) => {
+        observer.observe(item, index);
+    });
+</script>
+<%--텍스트 스크롤 스크립트 끝부분(준근)--%>
 </body>
 </html>

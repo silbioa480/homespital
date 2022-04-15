@@ -2056,6 +2056,18 @@ label {
 
 .input-control {
   padding: 10px 0px 0px 0px;
+  margin-bottom: 30px;
+}
+
+.one-line {
+  width: 100%;
+  display: flex;
+}
+
+#deleteMem:hover {
+  background-color: grey;
+  opacity: 0.5;
+  color: black !important;
 }
 
 /*로그인정보*/
@@ -2087,7 +2099,6 @@ label {
 
 .w-btn {
   position: relative;
-  border: none;
   display: inline-block;
   padding: 2px 5px;
   margin: 0 30px;
@@ -2100,6 +2111,8 @@ label {
   height: 40px;
   font-weight: 600;
   transition: 0.25s;
+  background-color: white;
+  border: 1px solid;
 }
 
 .w-btn-green {
@@ -3658,6 +3671,7 @@ input[type="button"]:disabled,
 .userName {
   color: #2a2d42;
   font-weight: 600;
+  font-size: 12px;
   padding-top: 50px;
 }
 
