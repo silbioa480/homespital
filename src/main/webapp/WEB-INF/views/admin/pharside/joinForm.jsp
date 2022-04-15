@@ -69,7 +69,7 @@
                         <label for="phone">휴대폰 번호</label>
                         <div style="display:flex">
                             <input class="signup_inputs pharmacy_border" id="phone" type="text" name="pharmacy_mobile"
-                                   title="전화번호 입력" style="margin-top: 25px;"/>
+                                   title="전화번호 입력" style=""/>
                             <input type="button" id="phoneChk" class="w-btn w-btn-green" value="인증번호 받기">
                         </div>
                         <div class="error"></div>
@@ -77,7 +77,7 @@
                         <div class="input-control">
                             <div style="display:flex">
                                 <input class="signup_inputs pharmacy_border" id="phone2" type="text" name="phone2"
-                                       title="인증번호 입력" style="margin-top: 25px;" disabled/>
+                                       title="인증번호 입력" style="" disabled/>
                                 <input type="button" id="phoneChk2" class="w-btn w-btn-blue" value="본인인증">
                             </div>
                             <div class="error"></div>
@@ -100,9 +100,9 @@
                         <div style="display:flex;">
                             <input class="signup_inputs pharmacy_border" type="text" id="businessNumber"
                                    name="pharmacy_business"
-                                   placeholder="사업자 번호를 입력해주세요" style="margin-top: 25px; width:370px">
+                                   placeholder="사업자 번호를 입력해주세요" style=" width:370px">
                             <input type="button" id="businessNumCheck" class="w-btn w-btn-yellow" value="사업자 조회"
-                                   style="margin-left: 30px; width: 200px"/>
+                                   style="margin-left: 30px;"/>
                         </div>
                         <div class="error"></div>
                     </div>
@@ -142,7 +142,7 @@
                                     <div style="display:flex">
                                         <input type="hidden" id="confmKey" name="confmKey" value="">
                                         <input class="signup_inputs pharmacy_border" type="text" id="zipNo" name="zipNo"
-                                               style="margin-top: 25px; width:200px">
+                                               style=" width:200px">
                                         <input type="button" value="주소검색" onclick="goPopup()"
                                                class="w-btn w-btn-yellow">
                                     </div>

@@ -108,7 +108,7 @@
                         <label for="phone" class="doctor-title">휴대폰 번호</label>
                         <div style="display:flex">
                             <input class="signup_inputs doctor_border" id="phone" type="text" name="doctor_phone"
-                                   title="전화번호 입력" style="margin-top: 25px;"/>
+                                   title="전화번호 입력" style=""/>
                             <input type="button" id="phoneChk" class="w-btn w-btn-green" value="인증번호 받기">
                         </div>
                         <div class="error"></div>
@@ -118,7 +118,7 @@
                         <div style="display:flex">
                             <input class="signup_inputs doctor_border" id="phone2" type="text" name="phone2"
                                    title="인증번호 입력"
-                                   disabled style="margin-top: 25px;"/>
+                                   disabled style=""/>
                             <input type="button" id="phoneChk2" class="w-btn w-btn-blue" value="본인인증">
                         </div>
                         <div class="error"></div>
@@ -211,7 +211,7 @@
                         <label class="doctor-title" for="businessNumber">사업자번호</label>
                         <div style="display:flex; flex-flow : wrap ">
                             <input class="signup_inputs doctor_border" id="businessNumber"
-                                   style="margin-top: 25px; width: 70%"
+                                   style=" width: 70%"
                                    name="hospital_business_number" type="text"
                                    maxlength="10">
 
@@ -243,7 +243,7 @@
                                                value="">
                                         <input class="signup_inputs doctor_border" type="text" id="zipNo" name="zipNo"
                                                readonly
-                                               style="margin-top: 25px; width:100%">
+                                               style=" width:100%">
                                         <input type="button" value="주소검색" onclick="goPopup()"
                                                class="w-btn w-btn-blue">
                                     </div>
