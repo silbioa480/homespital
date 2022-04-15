@@ -49,7 +49,7 @@ let myPeerConnection;
  */
 
 function sendChat() {
-    dataChannel.send('Hi you!);
+    dataChannel.send('Hi you!');
     $('#chatMsg').val("");
 }
 
