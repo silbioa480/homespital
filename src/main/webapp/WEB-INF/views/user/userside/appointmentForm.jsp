@@ -254,8 +254,8 @@
                 <div>
                     카드 정보
                     <input type="text" id="default_card" value="${cardInfo}" disabled="disabled"/>
-                    <input type="hidden" id="billing_key"
-                           name="billing_key"> <%-- 비어있으면 유저의 billing_key 따라가게, 카드 추가했으면 여기에 값 담겨서 전송됨 --%>
+                    <input type="hidden" id="billing_key" name="billing_key">
+                    <%-- 비어있으면 유저의 billing_key 따라가게, 카드 추가했으면 여기에 값 담겨서 전송됨 --%>
                     <button id="writeCard" class="btn" onclick="return false;">카드 변경</button>
                     <%--                        모달 --%>
                     <%--                        <span><input type="button" id="deleteCard" name="deleteCard" class="deleteCard" value="삭제" /></span>--%>
