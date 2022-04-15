@@ -55,29 +55,35 @@
                     <hr style="height:3px">
                     <diu class="input-control">
                         <label for="email">이메일</label>
-                        <input type="email" id="email" name="email" placeholder="이메일을 입력해주세요">
+                        <input class="signup_inputs user_border" type="email" id="email" name="email"
+                               placeholder="이메일을 입력해주세요">
                         <div class="error"></div>
                     </diu>
                     <div class="input-control">
                         <label for="password">비밀번호</label>
-                        <input type="password" id="password" name="password" placeholder="비밀번호를 입력해주세요">
+                        <input class="signup_inputs user_border" type="password" id="password" name="password"
+                               placeholder="비밀번호를 입력해주세요">
                         <div class="error"></div>
                     </div>
                     <div class="input-control">
                         <label for="password2">비밀번호 확인</label>
-                        <input type="password" id="password2" name="password2" placeholder="비밀번호를 입력해주세요">
+                        <input class="signup_inputs user_border" type="password" id="password2" name="password2"
+                               placeholder="비밀번호를 입력해주세요">
                         <div class="error"></div>
                     </div>
                     <div class="input-control">
                         <label for="name">이름</label>
-                        <input type="text" id="name" name="name" placeholder="이름을 입력해주세요">
+                        <input class="signup_inputs user_border" type="text" id="name" name="name"
+                               placeholder="이름을 입력해주세요">
                         <div class="error"></div>
                     </div>
                     <div class="input-control">
                         <label for="SocialSecurityNumber1">주민등록번호</label>
                         <div style="display:flex">
-                            <input id="SocialSecurityNumber1" name="SocialSecurityNumber1" type="text" maxlength="6">&nbsp__&nbsp
-                            <input type="password" id="SocialSecurityNumber2" name="SocialSecurityNumber2"
+                            <input class="signup_inputs user_border" id="SocialSecurityNumber1"
+                                   name="SocialSecurityNumber1" type="text" maxlength="6">&nbsp__&nbsp
+                            <input class="signup_inputs user_border" type="password" id="SocialSecurityNumber2"
+                                   name="SocialSecurityNumber2"
                                    maxlength="7">
                         </div>
                         <div class="error"></div>
@@ -85,15 +91,17 @@
                     <div class="input-control">
                         <label for="phone">휴대폰 번호</label>
                         <div style="display:flex">
-                            <input id="phone" type="text" name="phone" title="전화번호 입력"/>
-                            <input type="button" id="phoneChk" class="doubleChk" value="인증번호 받기">
+                            <input class="signup_inputs user_border" id="phone" type="text" name="phone"
+                                   title="전화번호 입력" style="margin-top: 25px;"/>
+                            <input type="button" id="phoneChk" class="w-btn w-btn-green" value="인증번호 받기">
                         </div>
                         <div class="error"></div>
                         <br/>
                         <div class="input-control">
                             <div style="display:flex">
-                                <input id="phone2" type="text" name="phone2" title="인증번호 입력" disabled/>
-                                <input type="button" id="phoneChk2" class="doubleChk" value="본인인증">
+                                <input class="signup_inputs user_border" id="phone2" type="text" name="phone2"
+                                       title="인증번호 입력" disabled style="margin-top: 25px;"/>
+                                <input type="button" id="phoneChk2" class="w-btn w-btn-blue" value="본인인증">
                             </div>
                             <div class="error"></div>
                             <span class="point successPhoneChk">휴대폰 번호 입력후 인증번호 보내기를 해주십시오.</span>
@@ -122,20 +130,23 @@
                                 <td>
                                     <div style="display:flex">
                                         <input type="hidden" id="confmKey" name="confmKey" value="">
-                                        <input type="text" id="zipNo" name="zipNo" readonly style="width:200px">
+                                        <input class="signup_inputs user_border" type="text" id="zipNo" name="zipNo"
+                                               readonly style="margin-top: 25px; width:200px">
                                         <input type="button" value="주소검색" onclick="goPopup()"
-                                               style=" margin-left:30px;">
+                                               class="w-btn w-btn-green">
                                     </div>
                                 </td>
                             </tr>
                             <tr>
                                 <th>도로명주소</th>
-                                <td><input type="text" id="roadFullAddr" name="roadFullAddr" style="width:85%"></td>
+                                <td><input class="signup_inputs user_border" type="text" id="roadFullAddr"
+                                           name="roadFullAddr" style="width:85%"></td>
                             </tr>
                             <tr>
                                 <th>상세주소</th>
                                 <td>
-                                    <input type="text" id="addrDetail" name="addrDetail" style="width:40%" value="">
+                                    <input class="signup_inputs user_border" type="text" id="addrDetail"
+                                           name="addrDetail" style="width:40%" value="">
 
                                 </td>
                             </tr>
@@ -237,7 +248,8 @@
                         </div>
                     </div>
                     <br><br><br>
-                    <input id="subbtn" type="button" value="회원가입" style="width: 100%;" onClick="checkAll()"></input>
+                    <input id="subbtn" class="w-btn w-btn-green" type="button" value="회원가입" style="width: 100%;"
+                           onClick="checkAll()"></input>
                 </div>
             </section>
         </form>
