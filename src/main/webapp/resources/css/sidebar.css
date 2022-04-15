@@ -3,10 +3,8 @@
 #logo {
     min-width: 200px;
     max-width: 200px;
-    min-height: 200px;
-    max-height: 200px;
     margin: 0 auto;
-    display: flex;
+    display: none;
     align-items: center;
 }
 
@@ -258,7 +256,7 @@
     /*}*/
 }
 
-@media screen and (max-width: 736px) {
+@media screen and (max-width: 768px) {
     #sidebar br {
         display: none;
     }
@@ -271,8 +269,13 @@
         font-size: 1.5em;
     }
 
+    #logo {
+        display: block;
+    }
+
     /* #sidebar */
     #sidebar {
+        display: none !important;
         width: 17em;
         /*-moz-transform: translateX(17em);*/
         /*-webkit-transform: translateX(17em);*/
