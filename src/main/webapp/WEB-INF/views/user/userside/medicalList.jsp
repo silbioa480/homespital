@@ -27,14 +27,12 @@
 <%--side-nav 시작 by 소연 4/7--%>
 <div id="sidebar">
     <div class="d-flex flex-column align-items-center">
-        <div style="height: 30px;"></div>
         <span class="image avatar"><a href="/"><img src="/resources/img/design/logo_U_sideNav.png" alt=""/></a></span>
-        <div style="height: 50px;"></div>
     </div>
     <nav id="nav">
         <ul>
-            <li><a href="/list" class="active">진료과선택</a></li>
-            <li><a href="/doctorList">의료진선택</a></li>
+            <li><a href="/list" class="active">진료과 선택</a></li>
+            <li><a href="/doctorList">의료진 선택</a></li>
         </ul>
     </nav>
     <footer>
@@ -52,9 +50,9 @@
 <%--진료과 검색 태영--%>
 <div id="searcharea">
     <div class="search">
-        <form action="medicalSearch" method="post">
-            <input type="search" placeholder="원하시는 진료과를 입력하세요" name="mediSearch" id="mediSearch"/>
-            <button type="submit" id="searchMedical">검색</button>
+        <form action="/medicalSearch" method="post" class="pr-2">
+            <input type="search" placeholder="원하시는 의사 및 병원을 입력하세요" name="dhSearch" id="dhSearch"/>
+            <button type="submit" id="searchMedical" class="btn border border-dark">검색</button>
         </form>
     </div>
 </div>
@@ -108,17 +106,5 @@
 <%--        })--%>
 <%--    })--%>
 <%--</script>--%>
-<script>
-    // $(function () {
-    //     var w = $(window).width();
-    //     if (w > 736) {
-    //         $('#logo').addClass("d-none");
-    //     } else {
-    //         $('#logo').removeClass("d-none");
-    //     }
-    // })
-
-
-</script>
 </body>
 </html>

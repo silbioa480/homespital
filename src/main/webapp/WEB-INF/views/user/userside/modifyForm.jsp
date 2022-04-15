@@ -7,20 +7,10 @@ change this template use File | Settings | File Templates. --%>
 <html>
 <head>
     <meta charset="utf-8"/>
-    <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, user-scalable=no"
-    />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <link rel="stylesheet" href="/resources/css/sidebar.css"/>
-    <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css"
-    />
-    <link
-            rel="stylesheet"
-            href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
-    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css"/>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
     <link rel="stylesheet" href="/resources/css/signUp.css"/>
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -30,21 +20,19 @@ change this template use File | Settings | File Templates. --%>
     <%-- <link rel="stylesheet" href="./bootstrapt/css/bootstrap.min.css" /> --%>
     <%-- <script src="./bootstrapt/js/bootstrap.min.js"></script> --%>
     <style>
-        .addCard,
-        .deleteCard {
-            background-color: white;
-            color: black;
-        }
+      .addCard,
+      .deleteCard {
+        background-color: white;
+        color: black;
+      }
     </style>
 </head>
 <body>
 <section id="sidebar">
     <div class="d-flex flex-column align-items-center">
         <div style="height: 30px"></div>
-        <span class="image avatar"
-        ><a href="/"
-        ><img src="/resources/img/design/logo_U_sideNav.png" alt=""/></a
-        ></span>
+        <span class="image avatar">
+            <a href="/"><img src="/resources/img/design/logo_U_sideNav.png" alt=""/></a></span>
         <p class="userName">${user.user_name}님 안녕하세요.</p>
         <p class="py-5"><strong>마이 페이지 > 내 정보 수정</strong></p>
     </div>
@@ -117,11 +105,11 @@ change this template use File | Settings | File Templates. --%>
                         <div class="input-control">
                             <label for="email">이메일</label>
                             <input
-                                    class="modi-input"
+                                    class="signup_inputs user_border"
                                     style="width: 100%"
                                     type="text"
                                     id="email"
-                                    name="id"
+                                    name="email"
                                     value="${email}"
                                     readonly="readonly"
                             />
@@ -130,6 +118,7 @@ change this template use File | Settings | File Templates. --%>
                         <div class="input-control">
                             <label for="password">새 비밀번호</label>
                             <input
+                                    class="signup_inputs user_border"
                                     type="password"
                                     style="width: 100%"
                                     id="password"
@@ -147,6 +136,7 @@ change this template use File | Settings | File Templates. --%>
                         <div class="input-control">
                             <label for="password2">새 비밀번호 확인</label>
                             <input
+                                    class="signup_inputs user_border"
                                     type="password"
                                     style="width: 100%"
                                     id="password2"
@@ -164,7 +154,7 @@ change this template use File | Settings | File Templates. --%>
                         <div class="input-control">
                             <label for="name">이름</label>
                             <input
-                                    class="modi-input"
+                                    class="signup_inputs user_border"
                                     style="width: 100%"
                                     type="text"
                                     id="name"
@@ -183,7 +173,7 @@ change this template use File | Settings | File Templates. --%>
                                     style="display: flex"
                             >
                                 <input
-                                        class="modi-input"
+                                        class="signup_inputs user_border"
                                         style="width: 100%"
                                         type="text"
                                         value="${user.user_registration_number}"
@@ -195,7 +185,7 @@ change this template use File | Settings | File Templates. --%>
                             <label for="phone">휴대폰 번호</label>
                             <div style="display: flex">
                                 <input
-                                        class="modi-input"
+                                        class="signup_inputs user_border"
                                         style="width: 100%"
                                         id="originphone"
                                         type="text"
@@ -206,7 +196,7 @@ change this template use File | Settings | File Templates. --%>
                                 <input
                                         type="button"
                                         id="phoneBtn"
-                                        class="doubleChk"
+                                        class="w-btn w-btn-green"
                                         value="휴대폰번호변경"
                                 />
                             </div>
@@ -231,7 +221,7 @@ change this template use File | Settings | File Templates. --%>
                                             <div class="input-control">
                                                 <div style="display: flex">
                                                     <input
-                                                            style="width: 250px; font-size: 10px"
+                                                            class="signup_inputs user_border"
                                                             id="phone"
                                                             type="text"
                                                             name="phone"
@@ -242,7 +232,7 @@ change this template use File | Settings | File Templates. --%>
                                                             style="width: 185px"
                                                             type="button"
                                                             id="phoneChk"
-                                                            class="doubleChk"
+                                                            class="w-btn w-btn-blue"
                                                             value="인증번호 받기"
                                                     />
                                                 </div>
@@ -251,7 +241,7 @@ change this template use File | Settings | File Templates. --%>
                                             <div class="input-control">
                                                 <div style="display: flex">
                                                     <input
-                                                            style="width: 250px; font-size: 10px"
+                                                            class="signup_inputs user_border"
                                                             id="phone2"
                                                             type="text"
                                                             name="phone2"
@@ -263,55 +253,56 @@ change this template use File | Settings | File Templates. --%>
                                                             style="width: 185px"
                                                             type="button"
                                                             id="phoneChk2"
-                                                            class="doubleChk"
+                                                            class="w-btn w-btn-blue"
                                                             value="본인인증"
                                                     />
                                                 </div>
-                                                <div class="modal-footer" style="width: 470px">
-                                                    <button
-                                                            class="phonemodibtn btn"
-                                                            id="modalY2"
-                                                            disabled
-                                                    >
-                                                        수정
-                                                    </button>
-                                                    <button
-                                                            class="btn"
-                                                            type="button"
-                                                            data-bs-dismiss="modal"
-                                                    >
-                                                        취소
-                                                    </button>
-                                                </div>
-                                                <div class="error" style="width: 300px"></div>
+                                                <%--                                                <div class="modal-footer" style="width: 470px">--%>
+                                                <%--                                                    <button--%>
+                                                <%--                                                            class="phonemodibtn btn"--%>
+                                                <%--                                                            id="modalY2"--%>
+                                                <%--                                                            disabled--%>
+                                                <%--                                                    >--%>
+                                                <%--                                                        수정--%>
+                                                <%--                                                    </button>--%>
+                                                <%--                                                    <button--%>
+                                                <%--                                                            class="btn"--%>
+                                                <%--                                                            type="button"--%>
+                                                <%--                                                            data-bs-dismiss="modal"--%>
+                                                <%--                                                    >--%>
+                                                <%--                                                        취소--%>
+                                                <%--                                                    </button>--%>
+                                                <%--                                                </div>--%>
+                                                <%--                                                <div class="error" style="width: 300px"></div>--%>
+                                                <%--                                            </div>--%>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <a
+                                                        class="w-btn w-btn-green"
+                                                        style="text-align: center"
+                                                        id="modalY2"
+                                                        href="/modifyForm"
+                                                        onclick="getParentText()"
+                                                >수정</a
+                                                >
+                                                <button
+                                                        class="w-btn w-btn-yellow"
+                                                        type="button"
+                                                        data-bs-dismiss="modal"
+                                                >
+                                                    취소
+                                                </button>
                                             </div>
                                         </div>
-                                        <div class="modal-footer">
-                                            <a
-                                                    class="btn"
-                                                    id="modalY2"
-                                                    href="/modifyForm"
-                                                    onclick="getParentText()"
-                                            >수정</a
-                                            >
-                                            <button
-                                                    class="btn"
-                                                    type="button"
-                                                    data-bs-dismiss="modal"
-                                            >
-                                                취소
-                                            </button>
-                                        </div>
+                                        <%--가영: 여기까지 휴대폰 번호변경 인증번호 모달창
+                                        시작--%>
+                                        <div class="error"></div>
                                     </div>
-                                    <%--가영: 여기까지 휴대폰 번호변경 인증번호 모달창
-                                    시작--%>
-                                    <div class="error"></div>
                                 </div>
-                            </div>
 
-                            <div class="error"></div>
+                                <div class="error"></div>
+                            </div>
                         </div>
-                    </div>
                 </section>
 
                 <br/><br/><br/><br/>
@@ -339,6 +330,7 @@ change this template use File | Settings | File Templates. --%>
                                                     value=""
                                             />
                                             <input
+                                                    class="signup_inputs user_border"
                                                     type="text"
                                                     id="zipNo"
                                                     name="zipNo"
@@ -347,10 +339,10 @@ change this template use File | Settings | File Templates. --%>
                                                     value="${user.zip_code}"
                                             />
                                             <input
+                                                    class="w-btn w-btn-green"
                                                     type="button"
                                                     value="주소변경"
                                                     onclick="goPopup()"
-                                                    style="margin-left: 30px"
                                             />
                                         </div>
                                     </td>
@@ -359,6 +351,7 @@ change this template use File | Settings | File Templates. --%>
                                     <th>도로명주소</th>
                                     <td>
                                         <input
+                                                class="signup_inputs user_border"
                                                 type="text"
                                                 id="roadFullAddr"
                                                 name="roadFullAddr"
@@ -371,6 +364,7 @@ change this template use File | Settings | File Templates. --%>
                                     <th>상세주소</th>
                                     <td>
                                         <input
+                                                class="signup_inputs user_border"
                                                 type="text"
                                                 id="addrDetail"
                                                 name="addrDetail"
@@ -393,6 +387,8 @@ change this template use File | Settings | File Templates. --%>
                         <hr/>
                         <div class="input-group">
                             <input
+                                    class="signup_inputs user_border"
+                                    style="width: 70%"
                                     type="text"
                                     class="form-control"
                                     id="default_card"
@@ -401,7 +397,7 @@ change this template use File | Settings | File Templates. --%>
                             />
                             <button
                                     id="writeCard"
-                                    class="btn"
+                                    class="w-btn w-btn-green"
                                     style="width: fit-content !important"
                                     onclick="return false;"
                             >
@@ -470,7 +466,7 @@ change this template use File | Settings | File Templates. --%>
                                     <div class="modal-footer">
                                         <a class="btn" id="modalY3" onclick="">확인</a>
                                         <button
-                                                class="btn"
+                                                class="w-btn w-btn-yellow"
                                                 type="button"
                                                 data-bs-dismiss="modal"
                                         >
@@ -507,7 +503,7 @@ change this template use File | Settings | File Templates. --%>
                                         <h6 class="modal-title">카드 별칭</h6>
                                         <div style="display: flex">
                                             <input
-                                                    style="width: 100%"
+                                                    class="signup_inputs user_border"
                                                     id="cardNameModal"
                                                     type="text"
                                                     name="cardNameModal"
@@ -522,6 +518,7 @@ change this template use File | Settings | File Templates. --%>
                                         <h6 class="modal-title">카드 번호</h6>
                                         <div style="display: flex">
                                             <input
+                                                    class="signup_inputs user_border"
                                                     style="width: 23%; height: 40px"
                                                     id="cardNumModal1"
                                                     type="text"
@@ -531,6 +528,7 @@ change this template use File | Settings | File Templates. --%>
                                             />
                                             <span style="line-height: 40px">-</span>
                                             <input
+                                                    class="signup_inputs user_border"
                                                     style="width: 23%; height: 40px"
                                                     id="cardNumModal2"
                                                     type="password"
@@ -540,6 +538,7 @@ change this template use File | Settings | File Templates. --%>
                                             />
                                             <span style="line-height: 40px">-</span>
                                             <input
+                                                    class="signup_inputs user_border"
                                                     style="width: 23%; height: 40px"
                                                     id="cardNumModal3"
                                                     type="password"
@@ -549,6 +548,7 @@ change this template use File | Settings | File Templates. --%>
                                             />
                                             <span style="line-height: 40px">-</span>
                                             <input
+                                                    class="signup_inputs user_border"
                                                     style="width: 23%; height: 40px"
                                                     id="cardNumModal4"
                                                     type="text"
@@ -562,7 +562,7 @@ change this template use File | Settings | File Templates. --%>
                                     <div class="input-control">
                                         <div style="display: flex">
                                             <input
-                                                    style="width: 100%"
+                                                    class="signup_inputs user_border"
                                                     id="cardMMYYNumModal"
                                                     type="text"
                                                     name="cardMMYYNumModal"
@@ -577,7 +577,7 @@ change this template use File | Settings | File Templates. --%>
                                     <div class="input-control">
                                         <div style="display: flex">
                                             <input
-                                                    style="width: 100%"
+                                                    class="signup_inputs user_border"
                                                     id="cardPassword"
                                                     type="password"
                                                     name="cardPassword"
@@ -591,14 +591,14 @@ change this template use File | Settings | File Templates. --%>
                                 </div>
                                 <div class="modal-footer">
                                     <button
-                                            class="btn border-dark"
+                                            class="w-btn w-btn-green"
                                             type="button"
                                             id="submitNewCard"
                                             onclick="submitNewCardId(); return false;"
                                     >
                                         변경
                                     </button>
-                                    <button class="btn" type="button" data-bs-dismiss="modal">
+                                    <button class="w-btn w-btn-yellow" type="button" data-bs-dismiss="modal">
                                         취소
                                     </button>
                                 </div>
@@ -606,21 +606,23 @@ change this template use File | Settings | File Templates. --%>
                         </div>
                     </div>
 
-                    <h5>* 본인명의 카드만 등록 가능 합니다.</h5>
+                    <h5 style="margin-left: 60px">* 본인명의 카드만 등록 가능 합니다.</h5>
                     <br/><br/>
                     <div class="d-flex">
                         <input
                                 type="button"
                                 value="수정"
+                                class="w-btn w-btn-green"
                                 style="width: 80%; margin-left: 20px; margin-right: 20px"
                                 onclick="checkAll()"
                         />
                         <a
-                                class="btn"
+                                class="w-btn w-btn-yellow"
+                                style="text-align: center"
                                 id="deleteMem"
                                 href="/delete"
                                 style="margin-right: 0px"
-                        >회원탈퇴</a
+                        > 회원탈퇴</a
                         >
                     </div>
                 </section>
@@ -649,7 +651,7 @@ change this template use File | Settings | File Templates. --%>
 <script src="/resources/js/signUp/util.js"></script>
 <script src="/resources/js/signUp/signUp.js"></script>
 <script src="/resources/js/signUp/modifyForm.js"></script>
-<script src="/resources/js/signUp/signUpCheck.js"></script>
+<%--<script src="/resources/js/signUp/signUpCheck.js"></script>--%>
 
 <script type="text/javascript">
     $("#pwBtn").click(function (e) {

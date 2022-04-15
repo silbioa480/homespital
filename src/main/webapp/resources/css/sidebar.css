@@ -151,7 +151,7 @@
 }
 
 #sidebar > footer .icons li a {
-    color: #b7eadc;
+    color: white;
 }
 
 #sidebar > nav {
@@ -304,4 +304,8 @@
     #sidebar > footer {
         padding: 1.5em;
     }
+}
+
+.avatar {
+    padding: 50px 0;
 }
