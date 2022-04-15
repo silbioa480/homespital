@@ -1777,45 +1777,6 @@ body.is-touch .poptrox-popup .closer {
     transform: translateX(-14em);
 }
 
-.gallery.inactive article.from-right {
-    -moz-transform: translateX(14em);
-    -webkit-transform: translateX(14em);
-    -ms-transform: translateX(14em);
-    transform: translateX(14em);
-}
-
-/*섹션1*/
-.gallery article2 {
-    -moz-transition: -moz-transform 1s ease, opacity 1s ease;
-    -webkit-transition: -webkit-transform 1s ease, opacity 1s ease;
-    -ms-transition: -ms-transform 1s ease, opacity 1s ease;
-    transition: transform 1s ease, opacity 1s ease;
-    -moz-transform: translateX(0);
-    -webkit-transform: translateX(0%);
-    -ms-transform: translateX(0);
-    transform: translateX(0);
-    width: 50%;
-    position: relative;
-    opacity: 1.0;
-}
-
-
-.gallery.inactive article2.from-left-exp {
-    -moz-transform: translateX(-100%);
-    -webkit-transform: translateX(-100%);
-    -ms-transform: translateX(-100%);
-    transform: translateX(-100%);
-}
-
-.gallery.inactive article2.from-right-exp {
-    -moz-transform: translateX(100%);
-    -webkit-transform: translateX(100%);
-    -ms-transform: translateX(100%);
-    transform: translateX(100%);
-}
-
-
-/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
 .gallery.inactive article.from-top {
     -moz-transform: translateY(-7em);
     -webkit-transform: translateY(-7em);
@@ -1829,20 +1790,6 @@ body.is-touch .poptrox-popup .closer {
     -ms-transform: translateY(7em);
     transform: translateY(7em);
 }
-
-/*.gallery.inactive article2.from-top {*/
-/*    -moz-transform: translateY(-7em);*/
-/*    -webkit-transform: translateY(-7em);*/
-/*    -ms-transform: translateY(-7em);*/
-/*    transform: translateY(-7em);*/
-/*}*/
-
-/*.gallery.inactive article2.from-bottom {*/
-/*    -moz-transform: translateY(7em);*/
-/*    -webkit-transform: translateY(7em);*/
-/*    -ms-transform: translateY(7em);*/
-/*    transform: translateY(7em);*/
-/*}*/
 
 @media screen and (max-width: 480px) {
 
@@ -2121,7 +2068,6 @@ body.is-touch .poptrox-popup .closer {
 }
 
 
-
 .main.dark2 {
     color: #ffffff;
     background-color: #ffffff;
@@ -2130,6 +2076,7 @@ body.is-touch .poptrox-popup .closer {
 .main.dark2 a {
     color: inherit;
 }
+
 .main.dark2 .button.style10 {
     border-color: #ffffff;
 }
@@ -2145,6 +2092,7 @@ body.is-touch .poptrox-popup .closer {
 .main.dark2 .button.style10.down {
     background-image: url("/resources/img/main/dark-arrow.svg");
 }
+
 /*body.is-touch .main {*/
 /*    background-attachment: scroll !important;*/
 /*}*/
@@ -2574,7 +2522,7 @@ body.is-touch .poptrox-popup .closer {
 @media screen and (max-width: 736px) {
 
     #banner {
-        padding: 7em 3em 5em 3em ;
+        padding: 7em 3em 5em 3em;
         height: auto;
         min-height: 0;
     }
@@ -2622,7 +2570,8 @@ body.is-preload #banner:after {
 .textP {
     margin-top: 50px;
 }
-#banner h2, p {
+
+#banner h2 {
     color: #fff;
 }
 

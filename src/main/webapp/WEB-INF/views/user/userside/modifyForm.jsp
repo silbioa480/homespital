@@ -121,7 +121,7 @@ change this template use File | Settings | File Templates. --%>
                                     style="width: 100%"
                                     type="text"
                                     id="email"
-                                    name="id"
+                                    name="email"
                                     value="${email}"
                                     readonly="readonly"
                             />
@@ -649,7 +649,7 @@ change this template use File | Settings | File Templates. --%>
 <script src="/resources/js/signUp/util.js"></script>
 <script src="/resources/js/signUp/signUp.js"></script>
 <script src="/resources/js/signUp/modifyForm.js"></script>
-<script src="/resources/js/signUp/signUpCheck.js"></script>
+<%--<script src="/resources/js/signUp/signUpCheck.js"></script>--%>
 
 <script type="text/javascript">
     $("#pwBtn").click(function (e) {
