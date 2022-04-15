@@ -11,11 +11,11 @@
     <link rel="stylesheet" href="/resources/css/sidebar.css"/>
 
     <style>
-        .doctor-title {
-            font-size: 23px;
-            color: #545252;
-            margin-top: 10px;
-        }
+      .doctor-title {
+        font-size: 23px;
+        color: #545252;
+        margin-top: 10px;
+      }
     </style>
 
 
@@ -80,12 +80,13 @@
 
                     <hr>
 
-                    <div style="font-size: 30px">로그인 정보에 사용됩니다<strong style="color: #1abc9c">(필수)</strong></div>
+                    <div style="font-size: 30px">로그인 정보에 사용됩니다<strong style="color: #0058A8">(필수)</strong></div>
                     <br>
                     <div class="input-control">
                         <label for="email" class="doctor-title">이메일</label>
                         <%--                        <div style="display:flex">--%>
-                        <input type="email" id="email" name="doctor_email" placeholder="이메일을 입력해주세요">
+                        <input class="signup_inputs doctor_border" type="email" id="email" name="doctor_email"
+                               placeholder="이메일을 입력해주세요">
 
                         <%--                            <input type="button" id="doctorEmailoverlap" class="doubleChk" value="중복확인">--%>
                         <%--                        </div>--%>
@@ -93,30 +94,35 @@
                     </div>
                     <div class="input-control">
                         <label for="password" class="doctor-title">비밀번호</label>
-                        <input type="password" id="password" name="doctor_password" placeholder="비밀번호를 입력해주세요">
+                        <input class="signup_inputs doctor_border" type="password" id="password" name="doctor_password"
+                               placeholder="비밀번호를 입력해주세요">
                         <div class="error"></div>
                     </div>
                     <div class="input-control" id="divPassword2">
                         <label for="password2" class="doctor-title">비밀번호 확인</label>
-                        <input type="password" id="password2" name="password2" placeholder="비밀번호를 입력해주세요">
+                        <input class="signup_inputs doctor_border" type="password" id="password2" name="password2"
+                               placeholder="비밀번호를 입력해주세요">
                         <div class="error"></div>
                     </div>
                     <div class="input-control">
                         <label for="phone" class="doctor-title">휴대폰 번호</label>
                         <div style="display:flex">
-                            <input id="phone" type="text" name="doctor_phone" title="전화번호 입력"/>
-                            <input type="button" id="phoneChk" class="doubleChk" value="인증번호 받기">
+                            <input class="signup_inputs doctor_border" id="phone" type="text" name="doctor_phone"
+                                   title="전화번호 입력" style="margin-top: 25px;"/>
+                            <input type="button" id="phoneChk" class="w-btn w-btn-green" value="인증번호 받기">
                         </div>
                         <div class="error"></div>
                         <br/>
                     </div>
                     <div class="input-control" id="divPhone2">
                         <div style="display:flex">
-                            <input id="phone2" type="text" name="phone2" title="인증번호 입력" disabled/>
-                            <input type="button" id="phoneChk2" class="doubleChk" value="본인인증">
+                            <input class="signup_inputs doctor_border" id="phone2" type="text" name="phone2"
+                                   title="인증번호 입력"
+                                   disabled style="margin-top: 25px;"/>
+                            <input type="button" id="phoneChk2" class="w-btn w-btn-blue" value="본인인증">
                         </div>
                         <div class="error"></div>
-                        <span class="point successPhoneChk" style="color: #1abc9c; font-size: 15px">※ 휴대폰 번호 입력후 인증번호 보내기를 해주십시오.</span>
+                        <span class="point successPhoneChk" style="color: #0058A8; font-size: 15px">※ 휴대폰 번호 입력후 인증번호 보내기를 해주십시오.</span>
                         <input type="hidden" id="phoneDoubleChk"/>
 
                     </div>
@@ -128,17 +134,20 @@
             <!-- Two -->
             <section id="two">
                 <div class="container">
-                    <div style="font-size: 30px">의사/병원정보<strong style="color: #1abc9c">(필수)</strong></div>
+                    <div style="font-size: 30px">의사/병원정보<strong style="color: #0058A8">(필수)</strong></div>
                     <br>
                     <div class="input-control">
                         <label class="doctor-title" for="doctorName">의사이름</label>
-                        <input type="text" id="doctorName" name="doctor_name" placeholder="이름을 입력해주세요">
+                        <input class="signup_inputs doctor_border" type="text" id="doctorName" name="doctor_name"
+                               placeholder="이름을 입력해주세요">
                         <div class="error"></div>
                     </div>
                     <div class="input-control">
                         <label class="doctor-title" for="doctorNumber">의사면허번호</label>
                         <%--                        <div style="display:flex">--%>
-                        <input id="doctorNumber" name="doctor_valid_number" type="text" maxlength="20">
+                        <input class="signup_inputs doctor_border" id="doctorNumber" name="doctor_valid_number"
+                               type="text"
+                               maxlength="20">
                         <div class="error"></div>
                         <%--                        </div>--%>
 
@@ -183,13 +192,16 @@
 
                     <div class="input-control">
                         <label class="doctor-title" for="hospitalName">병원이름</label>
-                        <input type="text" id="hospitalName" name="hospital_name" placeholder="병원이름을 입력해주세요">
+                        <input class="signup_inputs doctor_border" type="text" id="hospitalName" name="hospital_name"
+                               placeholder="병원이름을 입력해주세요">
                         <div class="error"></div>
                     </div>
                     <div class="input-control">
                         <label class="doctor-title" for="doctorNumber">병원 전화번호</label>
 
-                        <input id="hospitalTelephone" name="hospital_telephone" type="text" maxlength="20">
+                        <input class="signup_inputs doctor_border" id="hospitalTelephone" name="hospital_telephone"
+                               type="text"
+                               maxlength="20">
                         <div class="error"></div>
 
 
@@ -198,10 +210,13 @@
                     <div class="input-control">
                         <label class="doctor-title" for="businessNumber">사업자번호</label>
                         <div style="display:flex; flex-flow : wrap ">
-                            <input id="businessNumber" style="width: 70%" name="hospital_business_number" type="text"
+                            <input class="signup_inputs doctor_border" id="businessNumber"
+                                   style="margin-top: 25px; width: 70%"
+                                   name="hospital_business_number" type="text"
                                    maxlength="10">
 
-                            <input type="button" id="businessNumCheck" class="doubleChk" style="width: 15%" value="조회">
+                            <input type="button" id="businessNumCheck" class="w-btn w-btn-blue" style="width: 15%"
+                                   value="조회">
                             <div class="error"></div>
                         </div>
 
@@ -224,10 +239,13 @@
                                 <td>
 
                                     <div style="display:flex">
-                                        <input type="hidden" id="confmKey" name="confmKey" value="">
-                                        <input type="text" id="zipNo" name="zipNo" readonly style="width:100%">
+                                        <input type="hidden" id="confmKey" name="confmKey"
+                                               value="">
+                                        <input class="signup_inputs doctor_border" type="text" id="zipNo" name="zipNo"
+                                               readonly
+                                               style="margin-top: 25px; width:100%">
                                         <input type="button" value="주소검색" onclick="goPopup()"
-                                               style=" margin-left:30px;">
+                                               class="w-btn w-btn-blue">
                                     </div>
 
 
@@ -236,7 +254,9 @@
                             <tr>
 
                                 <th>도로명</th>
-                                <td><input type="text" id="roadFullAddr" name="roadFullAddr" style="width:100%">
+                                <td><input class="signup_inputs doctor_border" type="text" id="roadFullAddr"
+                                           name="roadFullAddr"
+                                           style="width:100%">
                                 </td>
 
                             </tr>
@@ -244,7 +264,9 @@
 
                                 <th>상세주소</th>
                                 <td>
-                                    <input type="text" id="addrDetail" name="addrDetail" style="width:100%"
+                                    <input class="signup_inputs doctor_border" type="text" id="addrDetail"
+                                           name="addrDetail"
+                                           style="width:100%"
                                            value="">
 
                                 </td>
@@ -434,12 +456,12 @@
                         </div>
                         <div style="font-size: 15px; color: #4e4e4b">* 병원 운영시간을 기반으로 비대면 진료 예약을 받을 수 있습니다.</div>
 
-                        <div style="font-size: 15px; color: #4e4e4b"> 시간당 <strong style="color: #1abc9c">최대 10명</strong>
+                        <div style="font-size: 15px; color: #4e4e4b"> 시간당 <strong style="color: #0058A8">최대 10명</strong>
                             예약이 가능합니다.
                         </div>
 
-                        <div style="font-size: 15px; color: #4e4e4b"><strong style="color: #1abc9c">예약시간 관리</strong>는
-                            <strong style="color: #1abc9c">환자리스트</strong>에서 확인 가능합니다.
+                        <div style="font-size: 15px; color: #4e4e4b"><strong style="color: #0058A8">예약시간 관리</strong>는
+                            <strong style="color: #0058A8">환자리스트</strong>에서 확인 가능합니다.
                         </div>
                     </div>
 
@@ -451,20 +473,23 @@
             <section id="three">
                 <div class="container">
                     <div style="font-size: 30px">추가 정보 입력<strong style="color: #bcb9b9">(선택)</strong></div>
-                    <div style="font-size: 15px; color: #1abc9c">* 진료예약시 환자에게 제공되는 정보입니다.</div>
+                    <div style="font-size: 15px; color: #0058A8">* 진료예약시 환자에게 제공되는 정보입니다.</div>
 
                     <div class="input-control">
                         <div class="input-control">
                             <label class="doctor-title" for="hospital_fax">팩스번호</label>
                             <div style="display:flex">
-                                <input id="Hospital_fax" name="hospital_fax" type="text" maxlength="20">
+                                <input class="signup_inputs doctor_border" id="Hospital_fax" name="hospital_fax"
+                                       type="text"
+                                       maxlength="20">
                             </div>
                             <div class="error"></div>
                         </div>
                         <div class="input-control">
                             <label class="doctor-title" for="Hospital_url">홈페이지(URL)</label>
                             <div style="display:flex">
-                                <input id="Hospital_url" name="hospital_url" type="text">
+                                <input class="signup_inputs doctor_border" id="Hospital_url" name="hospital_url"
+                                       type="text">
                             </div>
                             <div class="error"></div>
                         </div>
@@ -506,15 +531,15 @@
                             </label>
                             <label style="display:block">
                                 <input type="checkbox" name="agree" value="1">
-                                <span>이용약관 동의<strong style="color: #1abc9c">(필수)</strong></span>
+                                <span>이용약관 동의<strong style="color: #0058A8">(필수)</strong></span>
                             </label>
                             <label style="display:block">
                                 <input type="checkbox" name="agree" value="2">
-                                <span>개인정보 수집, 이용 동의<strong style="color: #1abc9c">(필수)</strong></span>
+                                <span>개인정보 수집, 이용 동의<strong style="color: #0058A8">(필수)</strong></span>
                             </label>
                             <label style="display:block">
                                 <input type="checkbox" name="agree" value="3">
-                                <span>개인정보 이용 동의<strong style="color: #1abc9c">(필수)</strong></span>
+                                <span>개인정보 이용 동의<strong style="color: #0058A8">(필수)</strong></span>
                             </label>
                             <label style="display:block;">
                                 <input type="checkbox" name="agree2" value="4">
@@ -525,7 +550,8 @@
 
                     </div>
                     <br><br><br>
-                    <input id="subbtn" type="button" value="회원가입" style="width: 95%;" onClick="checkAll()"></input>
+                    <input id="subbtn" type="button" value="회원가입" class="w-btn w-btn-blue" style="width:100%"
+                           onClick="checkAll()"></input>
                 </div>
             </section>
         </form>
