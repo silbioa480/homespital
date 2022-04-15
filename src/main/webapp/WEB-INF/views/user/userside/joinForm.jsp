@@ -16,9 +16,10 @@
 <!-- Header -->
 <section id="sidebar">
     <header>
-        <span class="image avatar"><img src="/resources/img/design/logo_U_sideNav.png" alt=""/></span>
-        <h1 id="logo"><a href="#">Homespital</a></h1>
-        <p>Hi</p>
+        <span class="image avatar">
+            <a href="/"><img src="/resources/img/design/logo_U_sideNav.png"></a></span>
+        <%--        <h1 id="logo"><a href="#">Homespital</a></h1>--%>
+        <p>회원가입</p>
 
     </header>
     <nav id="nav">

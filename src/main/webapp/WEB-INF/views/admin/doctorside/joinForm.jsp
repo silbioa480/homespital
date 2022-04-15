@@ -25,13 +25,8 @@
 <section id="sidebar" style="background-color: #0058A8;">
     <header>
         <span class="image avatar">
-<%--            <img src="/resources/img/signUp/avatar.jpg" alt=""/>--%>
-            <img src="/resources/img/design/logo_white.png" alt="">
+            <a href="/doctor/"><img src="/resources/img/design/logo_white.png"></a>
         </span>
-
-        <%--        <h1 id="logo"><a href="#">Homespital</a></h1>--%>
-        <p>Hi</p>
-
     </header>
     <nav id="nav">
         <ul>

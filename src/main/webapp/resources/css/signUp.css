@@ -1855,7 +1855,7 @@ pre code {
 .container {
     margin: 0 auto;
     max-width: calc(100% - 4.5em);
-    width: 700px;
+    /*width: 700px;*/
 }
 
 .container.xsmall {
