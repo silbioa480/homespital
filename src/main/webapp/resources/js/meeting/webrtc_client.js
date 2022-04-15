@@ -114,7 +114,9 @@ function start() {
             case "join":
                 log('Client is starting to ' + (message.data === "true)" ? 'negotiate' : 'wait for a peer'));
                 handlePeerConnection(message);
-                dataChannel.send('hi');
+                dataChannel.onopen = function (event) {
+                    dataChannel.send('Hi you!');
+                }
                 dataChannel.onmessage = function (event) {
                     console.log(event.data);
                 }
@@ -260,6 +262,7 @@ function handlePeerConnection(message) {
         myPeerConnection.onnegotiationneeded = handleNegotiationNeededEvent;
     }
     dataChannel = myPeerConnection.createDataChannel('chatRoom');
+
 }
 
 /**
