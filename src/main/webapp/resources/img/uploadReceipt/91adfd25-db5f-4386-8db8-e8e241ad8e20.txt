@@ -1,0 +1,7 @@
+APIGW Invoke URL: https://2bnftxujy7.apigw.ntruss.com/custom/v1/6590/5e232ff0022aa18b9341c54d9d8c5647f6fd76ab7064f6ba28b9121fe356f1a3
+
+
+Secret Key : WmV0cG1KRm1hV0F3dU5sVklreXROVEhWSVVSYnNMaGw=
+
+
+

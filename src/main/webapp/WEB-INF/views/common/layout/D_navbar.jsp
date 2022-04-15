@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8"/>
     <title>홈스피탈</title>
-    <link rel="stylesheet" href="/resources/css/navbar.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/navbar.css"/>
 </head>
 <style>
     .navbar > div *,

@@ -65,7 +65,7 @@
                     <div class="col-md-4" style="min-width: 200px; max-width: 200px;">
                         <div class="img-wrapper">
                             <img alt="의사사진 영역"
-                                 src="<c:choose><c:when test="${doctor.doctor_profile_image_name}">/img/doctorImg/${doctor.doctor_profile_image_name}</c:when>
+                                 src="<c:choose><c:when test="${not empty doctor.doctor_profile_image_name}">/resources/img/doctorImg/${doctor.doctor_profile_image_name}</c:when>
                                 <c:otherwise>https://img.freepik.com/free-photo/portrait-of-asian-doctor-woman-cross-arms-standing-in-medical-uniform-and-stethoscope-smiling-at-camera-white-background_1258-83220.jpg</c:otherwise></c:choose>"/>
                         </div>
                     </div>

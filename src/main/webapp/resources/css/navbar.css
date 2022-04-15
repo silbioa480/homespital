@@ -42,19 +42,19 @@ li, a, button {
     background-color: #FFCD4A
 }
 
-header {
+/*header {*/
 
-    /*display: flex;*/
-    position: fixed;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 30px 10%;
-    background-color: rgba(255, 255, 255, 0);
-    -webkit-transition-duration: 0.4s;
-    -webkit-transition-timing-function: ease-out;
-    transition-duration: 0.4s;
-    transition-timing-function: ease-out;
-}
+/*    !*display: flex;*!*/
+/*    position: fixed;*/
+/*    justify-content: flex-end;*/
+/*    align-items: center;*/
+/*    padding: 30px 10%;*/
+/*    background-color: rgba(255, 255, 255, 0);*/
+/*    -webkit-transition-duration: 0.4s;*/
+/*    -webkit-transition-timing-function: ease-out;*/
+/*    transition-duration: 0.4s;*/
+/*    transition-timing-function: ease-out;*/
+/*}*/
 
 .nav-up {
     background-color: rgb(255, 255, 255);
@@ -68,9 +68,9 @@ header {
 /*.nav-link btn-warning dropdown-toggle {*/
 /*    background-color: #2a2d42;*/
 /*}*/
-.nav-Link {
-    background-color: #2A2D42 !important
-}
+/*.nav-Link {*/
+/*    background-color: #2A2D42 !important*/
+/*}*/
 
 
 .nav-down {

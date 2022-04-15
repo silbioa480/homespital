@@ -8,6 +8,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <link rel="stylesheet" href="/resources/css/signUp.css"/>
+    <link rel="stylesheet" href="/resources/css/sidebar.css"/>
 
     <style>
         .doctor-title {
@@ -21,10 +22,14 @@
 </head>
 
 <body class="is-preload">
-<section id="header">
+<section id="sidebar" style="background-color: #0058A8;">
     <header>
-        <span class="image avatar"><img src="/resources/img/signUp/avatar.jpg" alt=""/></span>
-        <h1 id="logo"><a href="#">Homespital</a></h1>
+        <span class="image avatar">
+<%--            <img src="/resources/img/signUp/avatar.jpg" alt=""/>--%>
+            <img src="/resources/img/design/logo_white.png" alt="">
+        </span>
+
+        <%--        <h1 id="logo"><a href="#">Homespital</a></h1>--%>
         <p>Hi</p>
 
     </header>
@@ -143,13 +148,13 @@
                         <%--                        </div>--%>
 
                     </div>
-<%--                    <div class="input-control">--%>
-<%--                        <label class="doctor-title" for="doctor_url">줌 회의실 링크(URL)</label>--%>
+                    <%--                    <div class="input-control">--%>
+                    <%--                        <label class="doctor-title" for="doctor_url">줌 회의실 링크(URL)</label>--%>
 
-<%--                            <input id="doctor_url" name="doctor_url" type="text" >--%>
+                    <%--                            <input id="doctor_url" name="doctor_url" type="text" >--%>
 
-<%--                        <div class="error"></div>--%>
-<%--                    </div>--%>
+                    <%--                        <div class="error"></div>--%>
+                    <%--                    </div>--%>
                     <%--                    <div class="input-control">의사 프로필 등록--%>
                     <%--&lt;%&ndash;                        <span class="doctor-title">의사사진</span>&ndash;%&gt;--%>
                     <%--&lt;%&ndash;                        <div style="display:flex">&ndash;%&gt;--%>

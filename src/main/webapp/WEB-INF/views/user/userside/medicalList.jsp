@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/css/medicalList.css"/>
     <link rel="stylesheet" href="/resources/css/sidebar.css">
-    <link rel="shortcut icon" href="/resources/img/design/U_fabicon.ico" />
+    <link rel="shortcut icon" href="/resources/img/design/U_fabicon.ico"/>
 </head>
 <style>
     a:link, a:visited, a:hover, a:active {
@@ -22,17 +22,7 @@
     }
 </style>
 <body class="is-preload">
-<%--    <section id="sidebar">--%>
-<%--      <div class="inner">--%>
-<%--        <nav>--%>
-<%--          <ul>--%>
-<%--            <li><a href="#intro" class="link-text">진료과 선택</a></li>--%>
-<%--            <li><a href="#one" class="link-text">의료진 선택</a></li>--%>
-<%--            <li><a href="#two" class="link-text">비대면 진료 신청</a></li>--%>
-<%--          </ul>--%>
-<%--        </nav>--%>
-<%--      </div>--%>
-<%--    </section>--%>
+
 
 <%--side-nav 시작 by 소연 4/7--%>
 <div id="sidebar">
@@ -118,5 +108,17 @@
 <%--        })--%>
 <%--    })--%>
 <%--</script>--%>
+<script>
+    // $(function () {
+    //     var w = $(window).width();
+    //     if (w > 736) {
+    //         $('#logo').addClass("d-none");
+    //     } else {
+    //         $('#logo').removeClass("d-none");
+    //     }
+    // })
+
+
+</script>
 </body>
 </html>
