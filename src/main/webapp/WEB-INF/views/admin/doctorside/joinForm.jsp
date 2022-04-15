@@ -110,7 +110,7 @@
                         <div style="display:flex">
                             <input class="signup_inputs doctor_border" id="phone" type="text" name="doctor_phone"
                                    title="전화번호 입력" style=""/>
-                            <input type="button" id="phoneChk" class="w-btn w-btn-green" value="인증번호 받기">
+                            <input type="button" id="phoneChk" class="w-btn" value="인증번호 받기">
                         </div>
                         <div class="error"></div>
                         <br/>
@@ -120,7 +120,7 @@
                             <input class="signup_inputs doctor_border" id="phone2" type="text" name="phone2"
                                    title="인증번호 입력"
                                    disabled style=""/>
-                            <input type="button" id="phoneChk2" class="w-btn w-btn-blue" value="본인인증">
+                            <input type="button" id="phoneChk2" class="w-btn" value="본인인증">
                         </div>
                         <div class="error"></div>
                         <span class="point successPhoneChk" style="color: #0058A8; font-size: 15px">※ 휴대폰 번호 입력후 인증번호 보내기를 해주십시오.</span>
@@ -216,7 +216,7 @@
                                    name="hospital_business_number" type="text"
                                    maxlength="10">
 
-                            <input type="button" id="businessNumCheck" class="w-btn w-btn-blue" style="width: 15%"
+                            <input type="button" id="businessNumCheck" class="w-btn" style="width: 15%"
                                    value="조회">
                             <div class="error"></div>
                         </div>
@@ -246,7 +246,7 @@
                                                readonly
                                                style=" width:100%">
                                         <input type="button" value="주소검색" onclick="goPopup()"
-                                               class="w-btn w-btn-blue">
+                                               class="w-btn">
                                     </div>
 
 
@@ -551,7 +551,7 @@
 
                     </div>
                     <br><br><br>
-                    <input id="subbtn" type="button" value="회원가입" class="w-btn w-btn-blue" style="width:100%"
+                    <input id="subbtn" type="button" value="회원가입" class="w-btn" style="width:100%"
                            onClick="checkAll()"></input>
                 </div>
             </section>

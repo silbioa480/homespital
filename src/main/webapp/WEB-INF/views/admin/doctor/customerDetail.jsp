@@ -132,7 +132,8 @@
                         <button class="btn-sm btn-warning rounded-pill" type="button">약국으로 직접 방문
                             </c:when>
                             <c:otherwise>
-                            <button class="btn-sm btn-warning rounded-pill" id="deiliveryBtn" type="button">집까지 배송받기</button>
+                            <button class="btn-sm btn-warning rounded-pill" id="deiliveryBtn" type="button">집까지 배송받기
+                            </button>
                             </c:otherwise>
                             </c:choose>
                     </div>
@@ -288,7 +289,7 @@
             '<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">' +
             '<span aria-hidden="true">&times;</span>' +
             '</button>' +
-            '</div><form action="receiptUpload" method="POST" enctype="multipart/form-data"><div class="modal-body">' +
+            '</div><form action="/doctor/receiptUpload" method="POST" enctype="multipart/form-data"><div class="modal-body">' +
             "<input type='hidden' name='diagnosis_number' value='" + ${diagnosis.diagnosis_number} +"'>" +
             '<input type="file" accept=".gif, .jpg, .png" name="receiptFile">사진선택</input></div><div class="modal-footer"><button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">닫기</button><button type="submit" class="btn btn-primary upload-btn' + (${diagnosis.diagnosis_number}) + '">확인</button></div></form></div></div></div>'
     } else if ((${diagnosis.is_diagnosis_upload}) == 2) {
@@ -315,7 +316,7 @@
             '<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">' +
             '<span aria-hidden="true">&times;</span>' +
             '</button>' +
-            '</div><form action="prescriptionUpload" method="POST" enctype="multipart/form-data"><div class="modal-body">' +
+            '</div><form action="/doctor/prescriptionUpload" method="POST" enctype="multipart/form-data"><div class="modal-body">' +
             "<input type='hidden' name='diagnosis_number' value='" + (${diagnosis.diagnosis_number}) + "'>" +
             '<input type="file" accept=".gif, .jpg, .png" name="prescriptionFile">사진선택</input></div><div class="modal-footer"><button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">닫기</button><button type="submit" class="btn btn-primary upload-btn' + (${diagnosis.diagnosis_number}) + '">확인</button></div></form></div></div></div>';
     } else if ((${diagnosis.is_prescription_upload}) == 2) {

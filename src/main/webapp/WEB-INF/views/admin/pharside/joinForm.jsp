@@ -66,15 +66,17 @@
                     <div class="input-control">
                         <label for="phone">휴대폰 번호</label>
                         <div style="display:flex">
-                            <input id="phone" type="text" name="pharmacy_mobile" title="전화번호 입력"/>
-                            <input type="button" id="phoneChk" class="doubleChk" value="인증번호 받기">
+                            <input class="signup_inputs pharmacy_border" id="phone" type="text" name="pharmacy_mobile"
+                                   title="전화번호 입력" style=""/>
+                            <input type="button" id="phoneChk" class="w-btn" value="인증번호 받기">
                         </div>
                         <div class="error"></div>
                         <br/>
                         <div class="input-control">
                             <div style="display:flex">
-                                <input id="phone2" type="text" name="phone2" title="인증번호 입력" disabled/>
-                                <input type="button" id="phoneChk2" class="doubleChk" value="본인인증">
+                                <input class="signup_inputs pharmacy_border" id="phone2" type="text" name="phone2"
+                                       title="인증번호 입력" style="" disabled/>
+                                <input type="button" id="phoneChk2" class="w-btn" value="본인인증">
                             </div>
                             <div class="error"></div>
                             <span class="point successPhoneChk">휴대폰 번호 입력후 인증번호 보내기를 해주십시오.</span>
@@ -94,10 +96,11 @@
                     <div class="input-control">
                         <label for="businessNumber">사업자 번호</label>
                         <div style="display:flex;">
-                            <input type="text" id="businessNumber" name="pharmacy_business"
-                                   placeholder="사업자 번호를 입력해주세요" style="width:370px">
-                            <input type="button" id="businessNumCheck" class="businessBtn" value="사업자 조회"
-                                   style="margin-left: 30px; width: 200px"/>
+                            <input class="signup_inputs pharmacy_border" type="text" id="businessNumber"
+                                   name="pharmacy_business"
+                                   placeholder="사업자 번호를 입력해주세요" style=" width:370px">
+                            <input type="button" id="businessNumCheck" class="w-btn" value="사업자 조회"
+                                   style="margin-left: 30px;"/>
                         </div>
                         <div class="error"></div>
                     </div>
@@ -136,7 +139,7 @@
                                         <input type="hidden" id="confmKey" name="confmKey" value="">
                                         <input type="text" id="zipNo" name="zipNo" style="width:200px">
                                         <input type="button" value="주소검색" onclick="goPopup()"
-                                               style=" margin-left:30px;">
+                                               class="w-btn">
                                     </div>
                                 </td>
                             </tr>
@@ -191,7 +194,8 @@
                         </div>
                     </div>
                     <br><br><br>
-                    <input id="subbtn" type="button" value="회원가입" style="width: 100%;" onClick="checkAll()"></input>
+                    <input id="subbtn" class="w-btn" type="button" value="회원가입" style="width: 100%;"
+                           onClick="checkAll()"></input>
                 </div>
             </section>
         </form>
