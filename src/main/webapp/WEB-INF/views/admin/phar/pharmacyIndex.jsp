@@ -50,7 +50,7 @@
     <div class="image-box">
         <img width="250px" height="300px" src="/resources/img/design/p_main_image1.jpg" alt="로그인메인이미지"/>
     </div>
-    <a href="#one" class="more scrolly" style="color: #fff;">Learn More</a>
+    <a href="#one" class="more scrolly" style="color: #fff;"></a>
 </section>
 
 
