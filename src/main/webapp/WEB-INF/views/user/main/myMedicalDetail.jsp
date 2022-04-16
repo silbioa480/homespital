@@ -1,20 +1,40 @@
+<%@ page import="java.util.HashMap" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Arrays" %>
+<%@ page import="mna.homespital.dto.Diagnosis" %>
 <%-- 소연 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+    Diagnosis diagnosis = (Diagnosis) request.getAttribute("diagnosis");
+    String imageStr = (String) diagnosis.getDiagnosis_image_name();
+    List<String> images = new ArrayList<>(Arrays.asList(imageStr.split(",")));
+    List<String> sorted = new ArrayList<>();
+    for (int i = 0; i < images.size(); i++) {
+        if (!(images.get(i).trim().equals("") || images.get(i).trim().equals(" ") || images.get(i).trim().isEmpty()))
+            sorted.add(images.get(i));
+    }
+    pageContext.setAttribute("images", sorted);
+%>
+
 <html>
 <head>
     <title>나의 진료 내역 보기</title>
     <%--  파일 업로드 CSS  --%>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css"/>
     <link rel="stylesheet" href="/resources/css/pharCustomerDetail.css"/>
-    <%--    <link rel="stylesheet" href="/resources/css/myMedicalDetail.css"/>--%>
-
-
+    <style>
+        .btn {
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
-<div class="container">
+
+
+<div class="container" style="margin-top:70.63px;">
     <%--헤드라인--%>
     <div style="height: 100px;"></div>
     <div class="myMediList"><h2><strong>나의 진료 내역 보기</strong><span class="circle3"></span></h2></div>
@@ -25,8 +45,8 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="img-wrapper">
-                    <img alt="의사사진 영역"
-                         src="<c:choose><c:when test="${not empty doctor.doctor_profile_image_name}">/resources//img/doctorImg/${doctor.doctor_profile_image_name}</c:when>
+                    <img alt="의사사진 영역" style="max-width:270px;"
+                         src="<c:choose><c:when test="${not empty doctor.doctor_profile_image_name}">/resources/img/doctorImg/${doctor.doctor_profile_image_name}</c:when>
                                 <c:otherwise>https://img.freepik.com/free-photo/portrait-of-asian-doctor-woman-cross-arms-standing-in-medical-uniform-and-stethoscope-smiling-at-camera-white-background_1258-83220.jpg</c:otherwise></c:choose>"/>
                 </div>
                 <button class="btn btn-secondary ml-auto"
@@ -51,7 +71,7 @@
                             <td>${doctor.hospital_name}</td>
                         </tr>
                         <tr>
-                            <th>주소 :</th>
+                            <th>주소:</th>
                             <td>${doctor.zip_code} ${doctor.street_address} ${doctor.detail_address}</td>
                         </tr>
                         <tr>
@@ -87,8 +107,11 @@
         <div class="row g-0">
             <div class="col-md-8 card-body">
                 <div class="card-title d-flex">
-                    <h5><strong>비대면 진료시간 : </strong>${confirmTime} (${diagnosis.diagnosis_wait_number}번째)</h5> &nbsp;&nbsp;
-                    <%--                    <span><h5></h5></span>--%>
+                    <h5><strong>비대면 진료시간 : </strong></h5>
+                    <span>&nbsp;${confirmTime} : 00 </span>&emsp;
+                    <h5><strong>순번 : </strong></h5>
+                    <span>&nbsp;${diagnosis.diagnosis_wait_number}</span>
+
                 </div>
                 <hr>
                 <div class="card-title d-flex p-1">
@@ -106,11 +129,11 @@
                             </td>
                         </tr>
                         <tr>
-                            <th>주소 :</th>
+                            <th>주소:</th>
                             <td>${user.zip_code} ${user.street_address} ${user.detail_address}</td>
                         </tr>
                         <tr>
-                            <th>핸드폰 번호:</th>
+                            <th>휴대번호:</th>
                             <td>
                                 ${user.user_phone}
                             </td>

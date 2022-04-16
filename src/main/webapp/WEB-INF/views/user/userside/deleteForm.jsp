@@ -5,7 +5,6 @@ change this template use File | Settings | File Templates. --%>
 <html>
 <head>
     <title>Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <%-- <link rel="stylesheet" href="/resources/css/signUp.css" /> --%>
     <link rel="stylesheet" href="/resources/css/login.css"/>
     <script src="/resources/js/login/login.js"></script>
@@ -14,28 +13,56 @@ change this template use File | Settings | File Templates. --%>
 <body class="is-preload">
 <div class="pw_box">
     <div class="content">
-        <form style="margin-top: 100px" action="/delete" method="post" id="deleteForm" name="deleteForm"
-              autocomplete="off">
-            <input type="hidden" id="user_id" name="user_id" value="${user.user_email}"/>
-            <div class="container" style="margin-top: 150px">
-                <span class="image avatar">
-                    <a href="/">
-                        <img src="/resources/img/design/logo_U_sideNav.png" alt=""/>
-                    </a>
-                </span>
-                <h3 style="
+        <form
+                style="margin-top: 100px"
+                action="/delete"
+                method="post"
+                id="deleteForm"
+                name="deleteForm"
+                autocomplete="off"
+        >
+            <input
+                    type="hidden"
+                    id="user_id"
+                    name="user_id"
+                    value="${user.user_email}"
+            />
+            <div class="container" style="margin-top: 150px;">
+
+                <h3
+                        style="
                 margin-left: 20px;
                 font-weight: bolder;
                 margin-bottom: 30px;
-  ">회원탈퇴</h3>
-                <hr/>
+              "
+                >
+                    회원탈퇴
+                </h3>
+                <hr style="width:290px;"/>
+
                 <div class="input-control">
-                    <label for="password" style="font-weight: bolder; font-size: 15px">비밀번호 확인</label>
-                    <input type="password" id="password" name="password" style="width: 290px"
-                           class="form-control form-control-inline text-center" placeholder="비밀번호를 입력해 주세요."/>
+                    <label for="password" style="font-weight: bolder; font-size: 15px"
+                    >비밀번호 확인</label
+                    >
+                    <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            class="form-control form-control-inline text-center"
+                            style="width: 290px"
+                            placeholder="비밀번호를 입력해 주세요."
+                    />
                 </div>
 
-                <button type="submit" id="delete" name="delete" style="margin-top: 20px">탈퇴하기</button>
+                <button
+                        type="submit"
+                        id="delete"
+                        name="delete"
+                        class="btn-login"
+                        style="margin-top: 20px; width:290px;"
+                >
+                    탈퇴하기
+                </button>
                 <%--
                 <a href="/user/mypage" style="width: 48%" class="btn btn-default"
                   >취소</a
