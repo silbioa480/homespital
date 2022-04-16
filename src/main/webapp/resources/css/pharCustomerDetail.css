@@ -1237,7 +1237,7 @@ body {
 }
 
 .timetable > tbody > tr > th {
-    width: 80px;
+    width: fit-content;
 }
 
 #deiliveryBtn {

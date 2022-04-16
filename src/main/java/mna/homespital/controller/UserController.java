@@ -1,13 +1,7 @@
 package mna.homespital.controller;
 
-import mna.homespital.dto.Diagnosis;
-import mna.homespital.dto.Doctor;
-import mna.homespital.dto.Pharmacy;
-import mna.homespital.dto.User;
-import mna.homespital.service.DoctorService;
-import mna.homespital.service.MedicalListService;
-import mna.homespital.service.PharService;
-import mna.homespital.service.UserService;
+import mna.homespital.dto.*;
+import mna.homespital.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,6 +26,10 @@ public class UserController {
     PharService pharService;
     @Autowired
     UserService userService;
+
+    @Autowired
+    PaymentService paymentService;
+
     @Autowired
     private MedicalListService medicalListService;
     @Autowired
@@ -203,20 +201,33 @@ public class UserController {
             }
 
             //소연 : 비대면 진료시간
-
-
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일 E요일");
             String strNowDate = simpleDateFormat.format(diagnosis.getCreate_date());
 
             String confirmTime = strNowDate + " " + diagnosis.getDiagnosis_time();
 
-            mav.addObject("confirmTime" + ":00", confirmTime);
+            mav.addObject("confirmTime", confirmTime + ":00");
+
+            // 훈: 진단서 카드정보 불러오기
+            String billingkey = diagnosis.getBilling_key();
+            if (billingkey.substring(0, 2).equals("!!")) {
+                if (billingkey.substring(0, 4).equals("!!!!"))
+                    billingkey = billingkey.substring(4, billingkey.length());
+                else billingkey = billingkey.substring(2, billingkey.length());
+            }
+            Card_Information cardInfoObj = paymentService.getPayment(diagnosis.getUser_number(), billingkey);
+
+            HashMap<String, String> cardInfo = new HashMap<>();
+            String card = cardInfoObj.getCard_number();
+            cardInfo.put("card_number", card.substring(card.length() - 4));
+            cardInfo.put("card_nickname", cardInfoObj.getCard_nickname());
 
             //저장된 각 객체들 model에 전부 저장(diagnosis -진료내역, doctor - 의사정보, user - 환자정보)
             mav.addObject("diagnosis", diagnosis);
             mav.addObject("doctor", doctor);
             mav.addObject("user", user);
             mav.addObject("pharmacy", pharmacy);
+            mav.addObject("cardInfo", cardInfo);
             mav.setViewName("/user/main/myMedicalDetail");
 
 
