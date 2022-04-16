@@ -1930,6 +1930,86 @@ body.is-touch .poptrox-popup .closer {
     font-size: 24px;
 }
 
+.information-right-in {
+    text-align: center;
+}
+
+.information-left-in h1 {
+    color: #33CC99;
+    font-size: 50px;
+}
+
+.information-right-in h1 {
+    color: #33CC99;
+    font-size: 50px;
+}
+
+@media screen and (max-width: 800px) {
+    .information-left-in {
+        margin-left: 10px;
+        width: 300px;
+    }
+
+    .information-left img {
+        width: 300px;
+        height: 300px;
+    }
+
+    .information-right-in {
+        text-align: left;
+    }
+
+    .information-right-in img {
+        width: 300px;
+        height: 300px;
+    }
+
+    .information-right-in h1 {
+        font-size: 30px;
+    }
+
+    .information-right-in h2 {
+        font-size: 20px;
+    }
+
+    .information-right-in p {
+        font-size: 12px;
+    }
+
+    .information-left-in h1 {
+        font-size: 30px;
+    }
+
+    .information-left-in h2 {
+        font-size: 20px;
+    }
+
+    .information-left-in p {
+        font-size: 12px;
+    }
+
+    #one {
+        height: 600px;
+    }
+
+    #two {
+        height: 600px;
+    }
+
+    #three {
+        height: 600px;
+    }
+
+    #four {
+        height: 600px;
+    }
+
+    #five {
+        height: 600px;
+    }
+
+}
+
 @media screen and (max-width: 480px) {
     .gallery {
         -moz-flex-wrap: nowrap;
@@ -2128,14 +2208,14 @@ body.is-touch .poptrox-popup .closer {
 
 .main.style2.left {
     -moz-justify-content: -moz-flex-start;
-    -webkit-justify-content: -webkit-flex-start;
+    /*-webkit-justify-content: -webkit-flex-start;*/
     -ms-justify-content: -ms-flex-start;
     justify-content: flex-start;
 }
 
 .main.style2.right {
     -moz-justify-content: -moz-flex-end;
-    -webkit-justify-content: -webkit-flex-end;
+    /*-webkit-justify-content: -webkit-flex-end;*/
     -ms-justify-content: -ms-flex-end;
     justify-content: flex-end;
 }
@@ -2411,40 +2491,40 @@ body.is-touch .poptrox-popup .closer {
     background-size: 256px 256px, cover;
     background-attachment: fixed, fixed;
     background-position: top left, center center;
-    height: 1200px;
+    height: 1000px;
 }
 
 /* Three */
 
-#Three {
+#three {
     /*background: url("/resources/img/main/overlay.png"), url("/resources/img/main/two.jpg");*/
     background: #ffffff;
     background-size: 256px 256px, cover;
     background-attachment: fixed, fixed;
     background-position: top left, center center;
-    height: 1200px;
+    height: 1000px;
 }
 
 /* Four */
 
-#Four {
+#four {
     /*background: url("/resources/img/main/overlay.png"), url("/resources/img/main/two.jpg");*/
     background: #ffffff;
     background-size: 256px 256px, cover;
     background-attachment: fixed, fixed;
     background-position: top left, center center;
-    height: 1200px;
+    height: 1000px;
 }
 
 /* Five */
 
-#Five {
+#five {
     /*background: url("/resources/img/main/overlay.png"), url("/resources/img/main/two.jpg");*/
     background: #ffffff;
     background-size: 256px 256px, cover;
     background-attachment: fixed, fixed;
     background-position: top left, center center;
-    height: 1200px;
+    height: 1000px;
 }
 
 #Six {

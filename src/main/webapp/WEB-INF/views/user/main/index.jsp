@@ -99,14 +99,14 @@
 <section id="one">
     <div class="gallery">
         <article class="from-left" style="display:table">
-            <div class="content box style2 information-left">
-                <img class="information-left-in" src="/resources/img/main/test_mobile.png" width="300" height="600"/>
+            <div class="content box style2 information-left" style="text-align: center">
+                <img src="/resources/img/design/u_01.png" width="600" height="600"/>
             </div>
         </article>
         <article class="from-right" style="display:table">
             <div class="content box style2 information-right">
                 <div class="information-right-in">
-                    <h1 style="color:#33CC99; font-size: 50px">비대면 진료</h1><br>
+                    <h1>비대면 진료</h1><br>
                     <h2>어디가 불편하세요?</h2><br>
                     <div>
                         <p>지금 당장 예약 가능 한<br><br> 동네 최고 전문의에게 안전하고 신속하게 진료 받으세요.<br><br>
@@ -125,7 +125,7 @@
         <article class="from-left">
             <div class="content box style2 information-left">
                 <div class="information-left-in">
-                    <h1 style="color:#33CC99;font-size: 50px">화상채팅</h1><br>
+                    <h1>화상채팅</h1><br>
                     <h2>안전하고 정확하게<br>진료 받으세요</h2><br>
                     <div>
                         <p>어디서나 편하게 홈스피탈에서<br><br>제공하는 화상 서비스로<br><br>
@@ -136,27 +136,27 @@
         </article>
         <article class="from-right">
             <div class="content box style2 information-right">
-                <div class="information-right-in">
-                    <img src="/resources/img/main/test_mobile.png" width="300" height="600"/>
-                </div>
+                <div class="information-right-in"/>
+                <img src="/resources/img/design/u_02.png" width="600" height="600">
             </div>
-        </article>
+    </div>
+    </article>
     </div>
     <%--    <a href="#work" class="button style2 down anchored">Next</a>--%>
 </section>
 
 <%--<!-- Work -->--%>
-<section id="Three">
+<section id="three">
     <div class="gallery">
         <article class="from-left">
-            <div class="content box style2 information-left">
-                <img class="information-left-in" src="/resources/img/main/test_mobile.png" width="300" height="600"/>
+            <div class="content box style2 information-left" style="text-align: center">
+                <img src="/resources/img/design/u_03.png" width="600" height="600"/>
             </div>
         </article>
         <article class="from-right">
             <div class="content box style2 information-right">
                 <div class="information-right-in">
-                    <h1 style="color:#33CC99;font-size: 50px">약 배달/약국내방</h1><br>
+                    <h1>약 배달/약국내방</h1><br>
                     <h2>처방약 배달을<br>쉽고 빠르게</h2><br>
                     <div>
                         <p>약국에서 안전하고 신속하게 처방약을 배달합니다.<br><br>처방약 조제가 끝나면 라이더가 내 위치까지 안전하게<br><br>
@@ -167,7 +167,7 @@
         </article>
     </div>
 </section>
-<section id="Four">
+<section id="four">
     <div class="gallery">
         <article class="from-left">
             <div class="content box style2 information-left">
@@ -183,7 +183,7 @@
         <article class="from-right">
             <div class="content box style2 information-right">
                 <div class="information-right-in">
-                    <img src="/resources/img/main/test_mobile.png" width="300" height="600"/>
+                    <img src="/resources/img/design/u_04.png" width="500" height="600"/>
                 </div>
             </div>
         </article>
@@ -193,17 +193,17 @@
 
 
 <%--<!-- Work -->--%>
-<section id="Five">
+<section id="five">
     <div class="gallery">
         <article class="from-left">
-            <div class="content box style2 information-left">
-                <img class="information-left-in" src="/resources/img/main/test_mobile.png" width="300" height="600"/>
+            <div class="content box style2 information-left" style="text-align: center">
+                <img src="/resources/img/design/u_05.png" width="500" height="600"/>
             </div>
         </article>
         <article class="from-right">
             <div class="content box style2 information-right">
                 <div class="information-right-in">
-                    <h1 style="color:#33CC99;font-size: 50px">진료 영수증 저장</h1><br>
+                    <h1>진료 영수증 저장</h1><br>
                     <h2>진료영수증 관리를<br>쉽고 간편하게</h2><br>
                     <div>
                         <p>내가 받은 비대면 진료의 진료영수증을 모바일에서 쉽게<br><br>
