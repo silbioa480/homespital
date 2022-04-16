@@ -37,13 +37,14 @@
             </button>
 
             <div class="collapse navbar-collapse justify-content-end" id="navbars">
-                <ul class="navbar-nav ml-auto pl-lg-5 pl-0">
+                <%--                <ul class="navbar-nav ml-auto pl-lg-5 pl-0">--%>
+
+                <%--                </ul>--%>
+
+                <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="/medicalSearch">예약하기</a>
                     </li>
-                </ul>
-
-                <ul class="navbar-nav ml-auto">
                     <c:choose>
                         <c:when test="${not empty email}">
                             <li class="nav-item dropdown">
