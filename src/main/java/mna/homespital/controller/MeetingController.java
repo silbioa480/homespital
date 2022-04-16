@@ -47,6 +47,11 @@ public class MeetingController {
     public ModelAndView displayMainPage(final Long id, final String uuid) {
         ModelAndView mav = new ModelAndView("meeting/main");
 
+        Doctor doctor = (Doctor) session.getAttribute("doctor");
+        if (doctor != null) {
+            mav.addObject("doctor", "doctor");
+        }
+
         mav.addObject("id", id);
         mav.addObject("rooms", roomService.getRooms());
         mav.addObject("uuid", uuid);
@@ -84,7 +89,10 @@ public class MeetingController {
                 username = user.getUser_name();
             }
 
-            if (username != null) mav.addObject("username", username);
+            if (username != null) {
+                mav.addObject("username", username);
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }

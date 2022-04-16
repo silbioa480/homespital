@@ -88,7 +88,7 @@
     <div class="image-box">
         <img width="250px" height="300px" src="/resources/img/design/u_main_img.png" alt="로그인메인이미지"/>
     </div>
-    <a href="#one" class="more scrolly" style="color: #fff;">Learn More</a>
+    <a href="#one" class="more scrolly" style="color: #fff;"></a>
 </section>
 
 

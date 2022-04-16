@@ -55,7 +55,7 @@ public class MedicalListController {
 
     // 진료항목출력 태영
     @RequestMapping("/medicalSearch")
-    public ModelAndView medicalSearch(@RequestParam(required = false) String mediSearch) {
+    public ModelAndView medicalSearch(@RequestParam(value="dhSearch",required=false) String mediSearch) {
         ModelAndView mv = new ModelAndView();
         try {
             List<AllMedical> searchmd = allmedListService.searchMed(mediSearch);
