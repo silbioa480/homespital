@@ -199,7 +199,7 @@
                     }
 
                     // 나의 진료 내역 테이블 생성 (리눅스 서버에 올릴때 진단영수증 파일경로 바꿔줘야함)
-                    // 진료시작이거나 진료중일때  / 진료완료상태일때 색깔 적용 태영
+                    // 진료시작이거나 진료중일때  /예약취소 / 진료완료상태일때 색깔 적용 태영
                     if (item.diagnosis_status == 0 || item.diagnosis_status == 1) {
                         $("#docMedicalList").append("<tr><td style='background-color:#00B6EE'><a href='/doctor/customerDetail/" + item.diagnosis_number + "'>" + date + " (" + dayOfWeek + ") " + item.diagnosis_time + ":00</a></td>" +
                             "<td><a href='/doctor/customerDetail/" + item.diagnosis_number + "'>" + item.user_name + "</a></td>" +
