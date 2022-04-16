@@ -65,9 +65,7 @@ public class DoctorController {
     public String docLogin(@RequestParam("email") String doctor_email, @RequestParam("password") String doctor_password, HttpServletResponse response, Model model) {
 
         try {
-            System.out.println(1);
             doctorService.docLogin(doctor_email, doctor_password);
-            System.out.println(2);
             Doctor doctor = doctorService.searchDocId(doctor_email);
             doctor.setDoctor_password("");
             System.out.println(3);

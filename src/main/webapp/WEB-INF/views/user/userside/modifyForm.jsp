@@ -20,11 +20,11 @@ change this template use File | Settings | File Templates. --%>
     <%-- <link rel="stylesheet" href="./bootstrapt/css/bootstrap.min.css" /> --%>
     <%-- <script src="./bootstrapt/js/bootstrap.min.js"></script> --%>
     <style>
-      .addCard,
-      .deleteCard {
-        background-color: white;
-        color: black;
-      }
+        .addCard,
+        .deleteCard {
+            background-color: white;
+            color: black;
+        }
     </style>
 </head>
 <body>
@@ -48,35 +48,35 @@ change this template use File | Settings | File Templates. --%>
             </li>
         </ul>
     </nav>
-    <footer>
-        <ul class="icons">
-            <li>
-                <a href="#" class="icon brands fa-twitter"
-                ><span class="label">Twitter</span></a
-                >
-            </li>
-            <li>
-                <a href="#" class="icon brands fa-facebook-f"
-                ><span class="label">Facebook</span></a
-                >
-            </li>
-            <li>
-                <a href="#" class="icon brands fa-instagram"
-                ><span class="label">Instagram</span></a
-                >
-            </li>
-            <li>
-                <a href="#" class="icon brands fa-github"
-                ><span class="label">Github</span></a
-                >
-            </li>
-            <li>
-                <a href="#" class="icon solid fa-envelope"
-                ><span class="label">Email</span></a
-                >
-            </li>
-        </ul>
-    </footer>
+    <%--    <footer>--%>
+    <%--        <ul class="icons">--%>
+    <%--            <li>--%>
+    <%--                <a href="#" class="icon brands fa-twitter"--%>
+    <%--                ><span class="label">Twitter</span></a--%>
+    <%--                >--%>
+    <%--            </li>--%>
+    <%--            <li>--%>
+    <%--                <a href="#" class="icon brands fa-facebook-f"--%>
+    <%--                ><span class="label">Facebook</span></a--%>
+    <%--                >--%>
+    <%--            </li>--%>
+    <%--            <li>--%>
+    <%--                <a href="#" class="icon brands fa-instagram"--%>
+    <%--                ><span class="label">Instagram</span></a--%>
+    <%--                >--%>
+    <%--            </li>--%>
+    <%--            <li>--%>
+    <%--                <a href="#" class="icon brands fa-github"--%>
+    <%--                ><span class="label">Github</span></a--%>
+    <%--                >--%>
+    <%--            </li>--%>
+    <%--            <li>--%>
+    <%--                <a href="#" class="icon solid fa-envelope"--%>
+    <%--                ><span class="label">Email</span></a--%>
+    <%--                >--%>
+    <%--            </li>--%>
+    <%--        </ul>--%>
+    <%--    </footer>--%>
 </section>
 <div class="is-preload">
     <!-- Wrapper -->
@@ -300,11 +300,10 @@ change this template use File | Settings | File Templates. --%>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <a
-                                                            class="w-btn"
+                                                            class="w-btn phonemodibtn"
                                                             style="text-align: center"
                                                             id="modalY2"
                                                             href="/modifyForm"
-                                                            onclick="getParentText()"
                                                     >수정</a
                                                     >
                                                     <button
@@ -656,14 +655,14 @@ change this template use File | Settings | File Templates. --%>
     </div>
 
     <!-- Footer -->
-    <section id="footer">
-        <div class="container">
-            <ul class="copyright">
-                <li>&copy; Untitled. All rights reserved.</li>
-                <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-            </ul>
-        </div>
-    </section>
+    <%--    <section id="footer">--%>
+    <%--        <div class="container">--%>
+    <%--            <ul class="copyright">--%>
+    <%--                <li>&copy; Untitled. All rights reserved.</li>--%>
+    <%--                <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>--%>
+    <%--            </ul>--%>
+    <%--        </div>--%>
+    <%--    </section>--%>
 </div>
 
 <!-- Scripts -->

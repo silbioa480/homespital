@@ -25,15 +25,15 @@
             <li class="nav-item"><a href="#three" class="nav-link ">약관동의</a></li>
         </ul>
     </nav>
-    <footer>
-        <ul class="icons">
-            <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-            <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-            <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-            <li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
-            <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-        </ul>
-    </footer>
+    <%--    <footer>--%>
+    <%--        <ul class="icons">--%>
+    <%--            <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>--%>
+    <%--            <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>--%>
+    <%--            <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>--%>
+    <%--            <li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>--%>
+    <%--            <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>--%>
+    <%--        </ul>--%>
+    <%--    </footer>--%>
 </section>
 
 <!-- Wrapper -->
@@ -157,16 +157,6 @@
 
                         <%--                    </div>--%>
                         <tr>
-                            <th>
-                                <label for="pharmacyPhone">약국 전화번호</label>
-                            </th>
-                            <td>
-                                <input class="signup_inputs pharmacy_border" type="text" id="pharmacyPhone"
-                                       name="pharmacy_phone" placeholder="약국 전화번호를 입력해주세요">
-                                <div class="error"></div>
-                            </td>
-                        </tr>
-                        <tr>
                             <th>우편번호</th>
                             <td>
                                 <div style="display:flex">
@@ -189,10 +179,11 @@
                             <td>
                                 <input class="signup_inputs pharmacy_border" type="text" id="addrDetail"
                                        name="addrDetail" value="">
+                                <div class="error"></div>
 
                             </td>
                         </tr>
-                        <div class="error"></div>
+
                     </table>
                 </div>
             </section>
@@ -237,14 +228,14 @@
     </div>
 
     <!-- Footer -->
-    <section id="footer">
-        <div class="container">
-            <ul class="copyright">
-                <li>&copy; Untitled. All rights reserved.</li>
-                <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-            </ul>
-        </div>
-    </section>
+    <%--    <section id="footer">--%>
+    <%--        <div class="container">--%>
+    <%--            <ul class="copyright">--%>
+    <%--                <li>&copy; Untitled. All rights reserved.</li>--%>
+    <%--                <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>--%>
+    <%--            </ul>--%>
+    <%--        </div>--%>
+    <%--    </section>--%>
 
 </div>
 <!-- Scripts -->

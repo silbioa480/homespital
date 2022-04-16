@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -37,6 +36,21 @@
         .btn.active span:last-child {
             display: none;
         }
+
+        #chatBox {
+            width: 100%;
+            height: 300px;
+            border: 1px solid rgb(222, 226, 230);
+            border-radius: 5px;
+            padding: 10px;
+            overflow-y: auto;
+        }
+
+        #local_video, #remote_video {
+            max-width: 100%;
+            width: 100%;
+        }
+
     </style>
     <%--    <link rel="stylesheet" type="text/css" href="/css/main.css"/>--%>
 </head>
@@ -63,28 +77,6 @@
         <div class="col-lg-12 mb-3">
             <div class="d-flex justify-content-around mb-3">
                 <div id="buttons" class="row">
-                    <%--                    <div class="btn-group mr-2" role="group">--%>
-                    <%--                        <div class="mr-2" data-toggle="buttons">--%>
-                    <%--                            <label class="btn btn-outline-success" id="video_off">--%>
-                    <%--                                <input type="radio" name="options" style="display:none" autocomplete="off">Video On--%>
-                    <%--                            </label>--%>
-                    <%--                            <label class="btn btn-outline-warning active" id="video_on">--%>
-                    <%--                                <input type="radio" name="options" style="display:none" autocomplete="off" checked>Video--%>
-                    <%--                                Off--%>
-                    <%--                            </label>--%>
-                    <%--                        </div>--%>
-                    <%--                        <div class="mr-2" data-toggle="buttons">--%>
-                    <%--                            <label class="btn btn-outline-success" id="audio_off">--%>
-                    <%--                                <input type="radio" name="options" style="display:none" autocomplete="off">Audio On--%>
-                    <%--                            </label>--%>
-                    <%--                            <label class="btn btn-outline-warning active" id="audio_on">--%>
-                    <%--                                <input type="radio" name="options" style="display:none" autocomplete="off" checked>Audio--%>
-                    <%--                                Off--%>
-                    <%--                            </label>--%>
-                    <%--                        </div>--%>
-                    <%--                    </div>--%>
-
-                    <!--<button type="button" class="btn btn-outline-success" id="audio" data-toggle="button">Audio</button>-->
                     <a href="/meeting/room/${id}/user/${uuid}/exit">
                         <button type="button" class="btn btn-outline-dark" id="exit" name="exit">
                             진료실 퇴장
@@ -94,21 +86,28 @@
             </div>
         </div>
 
-        <div class="row justify-content-around mb-3 mx-2">
-            <div class="col-lg-6 mb-3 border rounded-3 border-dark">
+        <div class="row justify-content-around mb-3 mx-2 border">
+            <div class="col-md-6 bg-light border-end">
+                <h1>나</h1>
                 <video id="local_video" autoplay playsinline muted></video>
             </div>
-            <div class="col-lg-6 mb-3 border rounded-3 border-dark">
+            <div class="col-md-6 bg-light">
+                <h1>상대방</h1>
                 <video id="remote_video" autoplay playsinline></video>
             </div>
         </div>
-
-        <div id="chatBox">
+        <div class="row justify-content-around mb-3 mx-2">
+            <div id="chatBox" class="text-start">
+            </div>
+            <div class="input-group">
+                <input type="text" id="chatMsg" class="form-control"
+                       onkeyup="if(window.event.keyCode==13){sendChat('${not empty username ? username : '익명'}')}"/>
+                <button id="sendBtn" class="btn border border-dark"
+                        onclick="sendChat('${not empty username ? username : '익명'}')">전송
+                </button>
+            </div>
         </div>
 
-        <input type="text" id="chatMsg" onkeyup="if(window.event.keyCode==13){sendChat()}"/>
-
-        <button id="sendBtn" onclick="sendChat()">전송</button>
     </div>
 </main>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -128,5 +127,16 @@
     * ws 로 s 떼고 로컬에서 작업 가능한지 확인 되면 진짜 로또
     *
     * */
+</script>
+<script>
+    // function sendChat(currentusername) {
+    //     const chatBox = document.querySelector('#chatBox');
+    //     var chat = null;
+    //     chat = "[" + currentusername + "] : " + $('#chatMsg').val();
+    //     // dataChannel.send(chat);
+    //     chatBox.innerHTML += (chat + "</br>");
+    //     $('#chatMsg').val("");
+    //     $('#chatBox').scrollTop($('#chatBox')[0].scrollHeight);
+    // }
 </script>
 </html>

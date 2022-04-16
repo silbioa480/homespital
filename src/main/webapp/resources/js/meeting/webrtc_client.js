@@ -36,7 +36,11 @@ const peerConnectionConfig = {
 // WebRTC media
 const mediaConstraints = {
     audio: true,
-    video: true
+    // video: true
+    video: {
+        width: 480,
+        height: 480
+    }
 };
 
 // WebRTC variables
@@ -49,11 +53,13 @@ let myPeerConnection;
  * DOM(Document Object Model) 객체가 생성되어 준비되는 시점에서 호출된다는 의미
  */
 
-function sendChat() {
-    dataChannel.send($('#chatMsg').val());
-
-    chatBox.innerHTML += ($('#chatMsg').val() + "</br>");
+function sendChat(currentusername) {
+    var chat = null;
+    chat = "[" + currentusername + "] : " + $('#chatMsg').val();
+    dataChannel.send(chat);
+    chatBox.innerHTML += (chat + "</br>");
     $('#chatMsg').val("");
+    $('#chatBox').scrollTop($('#chatBox')[0].scrollHeight);
 }
 
 

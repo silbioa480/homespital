@@ -1,7 +1,11 @@
 package mna.homespital.controller;
 
+import mna.homespital.dto.Doctor;
+import mna.homespital.dto.User;
 import mna.homespital.model.Room;
 import mna.homespital.model.RoomService;
+import mna.homespital.service.DoctorService;
+import mna.homespital.service.MemberService;
 import mna.homespital.util.Parser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
 import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
@@ -19,6 +24,15 @@ import java.util.concurrent.ThreadLocalRandom;
 @ControllerAdvice
 @RequestMapping("/meeting")
 public class MeetingController {
+
+    @Autowired
+    HttpSession session;
+
+    @Autowired
+    MemberService memberService;
+
+    @Autowired
+    DoctorService doctorService;
 
     @Autowired
     RoomService roomService;
@@ -32,6 +46,11 @@ public class MeetingController {
     @GetMapping({"", "/", "/index", "/home"})
     public ModelAndView displayMainPage(final Long id, final String uuid) {
         ModelAndView mav = new ModelAndView("meeting/main");
+
+        Doctor doctor = (Doctor) session.getAttribute("doctor");
+        if (doctor != null) {
+            mav.addObject("doctor", "doctor");
+        }
 
         mav.addObject("id", id);
         mav.addObject("rooms", roomService.getRooms());
@@ -60,6 +79,23 @@ public class MeetingController {
         optionalId.ifPresent(id -> Optional.ofNullable(uuid).ifPresent(name -> roomService.addRoom(new Room(id))));
 
         mav = displayMainPage(optionalId.orElse(null), uuid);
+        try {
+            String username = null;
+            Doctor doctor = (Doctor) session.getAttribute("doctor");
+            User user = memberService.queryMember((String) session.getAttribute("email"));
+            if (doctor != null) {
+                username = doctor.getDoctor_name();
+            } else if (user != null) {
+                username = user.getUser_name();
+            }
+
+            if (username != null) {
+                mav.addObject("username", username);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return mav;
     }
 
@@ -95,6 +131,21 @@ public class MeetingController {
                 mav = new ModelAndView("meeting/chat_room", "id", sid);
                 mav.addObject("uuid", uuid);
             }
+        }
+        try {
+            String username = null;
+            Doctor doctor =
+                    doctorService.getDocInfo(((Doctor) session.getAttribute("doctor")).getDoctor_number());
+            User user = memberService.queryMember((String) session.getAttribute("email"));
+            if (doctor != null) {
+                username = doctor.getDoctor_name();
+            } else if (user != null) {
+                username = user.getUser_name();
+            }
+
+            if (username != null) mav.addObject("username", username);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return mav;
     }

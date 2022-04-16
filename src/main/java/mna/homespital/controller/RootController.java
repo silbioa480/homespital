@@ -5,6 +5,8 @@ import mna.homespital.dto.Diagnosis;
 import mna.homespital.dto.Doctor;
 import mna.homespital.dto.User;
 import mna.homespital.service.*;
+import net.nurigo.java_sdk.api.Message;
+import net.nurigo.java_sdk.exceptions.CoolsmsException;
 import org.apache.maven.model.Model;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -236,10 +238,15 @@ public class RootController {
     }
 
     //진료예약   ( 훈, 인성 )
+    //예약하기 누를시 문자전송 태영
     @PostMapping("/appointmentForm")
     public ModelAndView appointment(Diagnosis diagnosis, MultipartFile[] diagnosisImgNames,
                                     Model model, HttpServletRequest request, HttpServletResponse response) {
         ModelAndView mv = new ModelAndView();
+        String api_key = "NCSK1Q8DMWF4EQYK";
+        String api_secret = "9KEMFM30PPC8NTBR62L9WECLHIRXQJTO";
+        Message coolsms = new Message(api_key, api_secret);
+        HashMap<String, String> params = new HashMap<String, String>();
         try {
             String fileNameArr = "";
             // 사진 업로드
@@ -294,13 +301,21 @@ public class RootController {
             //예약이 성공적으로 되었다는 알림 태영
             Doctor dtc = doctorService.getDocInfo(diagnosis.getDoctor_number());
             User user123 = userService.getUserInfo(diagnosis.getUser_number());
-            String dtcPhone = dtc.getDoctor_phone();
-            String usePhone = user123.getUser_phone();
-            System.out.println("예약되었습니다.");
-            System.out.println("발신전화번호 : " + dtcPhone);
-            System.out.println("수신전화번호 : " + usePhone);
-            System.out.println("담당의사명 : " + dtc.getDoctor_name());
-            System.out.println("진료날짜 : " + dtc.getWorking_time());
+            String dtcName=dtc.getDoctor_name();
+            String userName=user123.getUser_name();
+            int diaTime=diagnosis.getDiagnosis_time();
+            int waitNumber=diagnosis.getDiagnosis_wait_number();
+            params.put("to","01051757554");
+            params.put("from","01089303955");
+            params.put("type","LMS");
+            params.put("text","예약이 정상적으로 완료되었습니다.\n"+ "담당의사명 : "+  dtcName+"\n" + "환자명: "+userName + "\n"+ "진료예약시간: "+diaTime + "\n"+ "대기순번: "+waitNumber);
+            org.json.simple.JSONObject obj = coolsms.send(params);
+            System.out.println(obj.toString());
+        }catch (CoolsmsException e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+            System.out.println(e.getCode());
+            System.out.println("params = " + params);
         } catch (Exception e) {
             e.printStackTrace();
             //mv.setViewName();

@@ -28,9 +28,7 @@
     <style>
         .btn {
             margin-top: 10px;
-
         }
-
     </style>
 </head>
 <body>
@@ -47,8 +45,9 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="img-wrapper">
-                    <img alt="의사사진 영역"
-                         src="/resources/img/doctorImg/${doctor.doctor_profile_image_name}" style="max-width:270px;">
+                    <img alt="의사사진 영역" style="max-width:270px;"
+                         src="<c:choose><c:when test="${not empty doctor.doctor_profile_image_name}">/resources/img/doctorImg/${doctor.doctor_profile_image_name}</c:when>
+                                <c:otherwise>https://img.freepik.com/free-photo/portrait-of-asian-doctor-woman-cross-arms-standing-in-medical-uniform-and-stethoscope-smiling-at-camera-white-background_1258-83220.jpg</c:otherwise></c:choose>"/>
                 </div>
                 <button class="btn btn-secondary ml-auto"
                         onclick="location.href='/doctorDetail/${doctor.doctor_number}';">
@@ -112,14 +111,15 @@
                     <span>&nbsp;${confirmTime} : 00 </span>&emsp;
                     <h5><strong>순번 : </strong></h5>
                     <span>&nbsp;${diagnosis.diagnosis_wait_number}</span>
+
                 </div>
+                <hr>
                 <div class="card-title d-flex p-1">
                     <h3 class="pr-3 font-weight-bolder">${user.user_name}</h3> &nbsp;&nbsp;
                     <span class="pl-3 font-weight-normal align-text-bottom"> 만 ${age}세/ ${gender}</span>
                 </div>
 
                 <div class="card-text">
-                    <p class="card-text">
                     <table class="table table-borderless timetable">
                         <tr>
                             <th>생년월일:</th>
@@ -139,7 +139,6 @@
                             </td>
                         </tr>
                     </table>
-                    </p>
                 </div>
             </div>
         </div>
@@ -147,32 +146,48 @@
     <%--appointmentForm에서 쓴 증상, 이미지 출력 --%>
     <h4><strong>증상</strong></h4>
     <div class="card-body" id="cardBorder">
-        <table class="table table-borderless m-4 fs-5">
-            <tbody>
-            <tr style="height: 40px; margin-bottom: 50px;">
-                <th>증상</th>
-                <td>${diagnosis.diagnosis_content}</td>
-            </tr>
+        <div class="card border-right">
+            <div class="card-header justify-content-between">
+                <div>
+                    <h4><strong>증상 내용</strong></h4>
+                    <p class="fs-6">${diagnosis.diagnosis_content}</p>
+                </div>
+                <%-- 증상 출력--%>
 
-            <tr>
-                <th>증상 이미지</th>
-                <td>
-                    <c:forEach var="image" items="${images}">
-                        <img src="/resources/img/uploadImg/${image}"
-                             style="max-width:270px; max-height:600px;"
-                             onerror="this.src='https://via.placeholder.com/500/000000/FFFFFF/?text=Error...+NoImgSelected'">
-                    </c:forEach>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+                <div>
+                    <h4><strong>증상 이미지</strong></h4>
+
+                    <%-- 증상 이미지 출력--%>
+                    <c:choose>
+                        <c:when test="${not empty diagnosis.diagnosis_image_name && diagnosis.diagnosis_image_name ne ''}">
+                            <img src="/resources/img/symptomsImg/${diagnosis.diagnosis_image_name}">
+                        </c:when>
+                        <c:otherwise>
+                            이미지 없음
+                        </c:otherwise>
+                    </c:choose>
+                </div>
+
+
+            </div>
+        </div>
     </div>
 
 
-    <%--의사가 쓴 진단 소견서 내용을 출력--%>
-    <div><h4><strong>진단 소견서</strong></h4></div>
-    <%--진단 소견서 출력--%>
-    <p>${diagnosis.diagnosis_file_name}</p>
+    <%--의사가 쓴 의사 소견 내용을 출력--%>
+    <div><h4><strong>의사 소견</strong></h4></div>
+    <div class="card-body" id="cardBorder">
+        <%--진단 소견서 출력--%>
+        <p>
+            <c:choose>
+                <c:when test="${not empty diagnosis.doctor_opinion && diagnosis.doctor_opinion ne ''}">
+                    <i class="fa fa-commenting" aria-hidden="true">${diagnogsis.doctor_opinion}</i>
+                </c:when>
+                <c:otherwise>아직 등록되지 않음</c:otherwise>
+            </c:choose>
+
+        </p>
+    </div>
 
 
     <%--약제 배송 방법-소제목--%>
@@ -194,11 +209,18 @@
                         <div><h5><strong>${pharmacy.pharmacy_name}</strong></h5></div>
                         <p class="userAdrress">${pharmacy.zip_code} ${pharmacy.street_address} ${pharmacy.detail_address}</p>
                         <br>
-
-
-                        <div><h4><strong>결제정보</strong></h4></div>
-                            <%-- 결제정보 출력--%>
-
+                        <div>
+                            <label>결제정보</label>
+                            <hr>
+                                <%-- 결제정보 출력--%>
+                            <p class="fs-6">결제 정보 : ${cardInfo.card_nickname} (${cardInfo.card_number})</p>
+                            <c:if test="${not empty diagnosis.diagnosis_money}">
+                                <p class="fs-6">진료 금액 : ${diagnosis.diagnosis_money}원</p>
+                            </c:if>
+                            <c:if test="${not empty diagnosis.prescription_money}">
+                                <p class="fs-6">처방전 금액 : ${diagnosis.prescription_money}원</p>
+                            </c:if>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -206,7 +228,7 @@
 
         </c:when>
         <c:when test="${diagnosis.is_delivery == 1}">
-            <div class="card-body">
+            <div class="card-body" id="cardBorder">
                 <div class="card border-right">
                     <div class="card-header justify-content-between">
                         <div class="row mb-2">
@@ -225,12 +247,21 @@
                         <label>받으신 곳 주소</label>
                         <hr>
                         <div><h5><strong>${user.user_name}</strong></h5></div>
-                        <p>${user.zip_code} ${user.street_address} ${user.detail_address}</p> <br>
+                        <p class="userAdrress">${user.zip_code} ${user.street_address} ${user.detail_address}</p> <br>
 
 
-                        <div><h4><strong>결제정보</strong></h4></div>
-                            <%-- 결제정보 출력--%>
-
+                        <div>
+                            <label>결제정보</label>
+                            <hr>
+                                <%-- 결제정보 출력--%>
+                            <p class="fs-6">결제 정보 : ${cardInfo.card_nickname} (${cardInfo.card_number})</p>
+                            <c:if test="${not empty diagnosis.diagnosis_money}">
+                                <p class="fs-6">진료 금액 : ${diagnosis.diagnosis_money}원</p>
+                            </c:if>
+                            <c:if test="${not empty diagnosis.prescription_money}">
+                                <p class="fs-6">처방전 금액 : ${diagnosis.prescription_money}원</p>
+                            </c:if>
+                        </div>
                     </div>
                 </div>
             </div>

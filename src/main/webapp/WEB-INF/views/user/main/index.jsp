@@ -50,7 +50,7 @@
         }
     </style>
 </head>
-<body class="is-preload">
+<body class="is-preload" style="overflow-x: hidden;">
 <!-- Intro -->
 <%--<section id="intro" class="main style1 dark fullscreen">--%>
 <%--    <div class="content">--%>
@@ -88,7 +88,7 @@
     <div class="image-box">
         <img width="250px" height="300px" src="/resources/img/design/u_main_img.png" alt="로그인메인이미지"/>
     </div>
-    <a href="#one" class="more scrolly" style="color: #fff;">Learn More</a>
+    <a href="#one" class="more scrolly" style="color: #fff;"></a>
 </section>
 
 
@@ -100,7 +100,7 @@
     <div class="gallery">
         <article class="from-left" style="display:table">
             <div class="content box style2 information-left">
-                <img class="information-left-in" src="/resources/img/main/진료과보기_모바일.png" width="300" height="600"/>
+                <img class="information-left-in" src="/resources/img/main/test_mobile.png" width="300" height="600"/>
             </div>
         </article>
         <article class="from-right" style="display:table">
@@ -137,7 +137,7 @@
         <article class="from-right">
             <div class="content box style2 information-right">
                 <div class="information-right-in">
-                    <img src="/resources/img/main/진료과보기_모바일.png" width="300" height="600"/>
+                    <img src="/resources/img/main/test_mobile.png" width="300" height="600"/>
                 </div>
             </div>
         </article>
@@ -150,7 +150,7 @@
     <div class="gallery">
         <article class="from-left">
             <div class="content box style2 information-left">
-                <img class="information-left-in" src="/resources/img/main/진료과보기_모바일.png" width="300" height="600"/>
+                <img class="information-left-in" src="/resources/img/main/test_mobile.png" width="300" height="600"/>
             </div>
         </article>
         <article class="from-right">
@@ -183,7 +183,7 @@
         <article class="from-right">
             <div class="content box style2 information-right">
                 <div class="information-right-in">
-                    <img src="/resources/img/main/진료과보기_모바일.png" width="300" height="600"/>
+                    <img src="/resources/img/main/test_mobile.png" width="300" height="600"/>
                 </div>
             </div>
         </article>
@@ -197,7 +197,7 @@
     <div class="gallery">
         <article class="from-left">
             <div class="content box style2 information-left">
-                <img class="information-left-in" src="/resources/img/main/진료과보기_모바일.png" width="300" height="600"/>
+                <img class="information-left-in" src="/resources/img/main/test_mobile.png" width="300" height="600"/>
             </div>
         </article>
         <article class="from-right">
@@ -251,7 +251,6 @@
                         </div>
 
                     </div>
-
                 </div>
 
             </div>
@@ -274,6 +273,7 @@
     <p class="grid-item">간단한 병원 상담이 필요할 때</p>
 </div>
 <%--텍스트 스크롤 끝부분(준근)--%>
+
 
 
 <%--<!-- Contact -->--%>
@@ -436,9 +436,10 @@
         $(window).scroll(function () {
             var pageTop = $(window).scrollTop();
             var oneT = $("#one").offset().top;
-            var twoT = $("#two").offset().top;
+            var sixT = $("#six").offset().top;
+            var sevenT = $("#Seven").offset().top;
 
-            if (pageTop >= oneT && pageTop < twoT) {
+            if (pageTop >= oneT && pageTop < sixT || pageTop >= sevenT) {
                 $("#logo").attr("src", "/resources/img/design/logo_U_nav.png");
                 $(".nav-Link").css({"color": "#red"});
             } else {
