@@ -253,14 +253,31 @@ public class RootController {
 
             for (int i = 0; i < diagnosisImgNames.length; i++) {
                 String diagnosisImg = diagnosisImgNames[i].getOriginalFilename();
+                System.out.println("diagnosisImg = " + diagnosisImg);
                 String path = servletContext.getRealPath("/resources/img/uploadImg/");
+                System.out.println("path = " + path);
                 String filename = UUID.randomUUID().toString() + "." + diagnosisImg.substring(diagnosisImg.lastIndexOf('.') + 1);
+                System.out.println("filename = " + filename);
                 File destFile = new File(path + filename);
+                System.out.println("destFile = " + destFile);
                 diagnosisImgNames[i].transferTo(destFile);
+
+                // filename = faee4984-573b-4bf3-820f-c50351a2395d.jpeg
+                // filename = 215c77a4-7bf2-421b-86d7-1a0421662619.png
+
+                // faee4984-573b-4bf3-820f-c50351a2395d.jpeg, 215c77a4-7bf2-421b-86d7-1a0421662619.png
+
+                if (i == 0) {
+                    fileNameArr += filename;
+                } else {
+                    fileNameArr += "," + filename;
+                }
+                System.out.println("fileNameArr = " + fileNameArr);
                 // 이 두대땜시 자동업로드댐
 //                diagnosisImg = filename;
 //                fileNameArr += (diagnosisImg + ", ");
             }
+
             User user = memberService.findByEmail((String) session.getAttribute("email"));
             System.out.println(user.getUser_name() + " : " + user.getUser_number() + " :: " + user.getUser_registration_number());
             String billkey = diagnosis.getBilling_key();
@@ -273,7 +290,11 @@ public class RootController {
             if (n == null) throw new Exception("약국 매칭 불가");
             diagnosis.setPharmacy_number(n);
             // DB insert
-            diagnosis.setDiagnosis_image_name(fileNameArr.toString());
+            diagnosis.setDiagnosis_image_name(fileNameArr);
+
+            String img = diagnosis.getDiagnosis_image_name();
+            System.out.println("img = " + img);
+
             diagnosisService.insertDiagnosis(diagnosis);
             mv.setViewName("redirect:/myMedicalList");
 

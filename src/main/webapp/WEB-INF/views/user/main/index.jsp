@@ -216,48 +216,64 @@
 </section>
 
 
-<!--텍스트 스크롤(준근)-->
-<section id="Six">
-    <div style="padding-top:130px">
-        <div class="grid-container">
-            <p class="grid-item" style="color:#2A2D42; font-size: 36px;"><strong>이럴때 사용하세요!</strong></p>
-            <p class="grid-item">자가격리로 외출을 하지 못 할 때</p>
-            <p class="grid-item">만성질환으로 매번 처방약을 받으러 병원 갈 때</p>
-            <p class="grid-item">아이, 노인을 모시고 병원까지 이동이 힘들 때</p>
-            <p class="grid-item">바쁜 회사 생활로 병원 갈 시간이 없을 때</p>
-            <p class="grid-item">몸이 아파서 병원까지 이동이 어려울 때</p>
-            <p class="grid-item">간단한 병원 상담이 필요할 때</p>
-        </div>
-    </div>
-</section>
-<%--텍스트 스크롤 끝부분(준근)--%>
-<%--        케러셸 시작부분 (준근)--%>
-<section id="Seven">
-    <div>
-        <div class="position-relative" style="width:243px; margin:0 auto;">
-            <img style="position:relative; z-index: 4; margin-top:300px;" src="resources/img/design/iphone.png"/>
-            <div id="carouselExampleSlidesOnly" class="carousel slide position-absolute top-0 start-0"
-                 data-bs-ride="carousel"
-                 style="width:243px; margin-top:300px;">
-                <div class="carousel-inner">
-                    <div class="carousel-item active" data-bs-interval="3000">
-                        <img src="resources/img/design/slide1.png" class="d-block w-100" alt="..."
-                             style="z-index: 1;">
-                    </div>
-                    <div class="carousel-item" data-bs-interval="3000">
-                        <img src="resources/img/design/slide2.png" class="d-block w-100" alt="..."
-                             style="z-index: 2;">
-                    </div>
-                    <div class="carousel-item" data-bs-interval="3000">
-                        <img src="resources/img/design/slide3.png" class="d-block w-100" alt="..."
-                             style="z-index: 3;">
+<!-- One -->
+<section id="six" class="main style2 right dark fullscreen">
+
+    <div class="content box style2 right dark">
+        <header>
+            <h2>안내</h2>
+        </header>
+        <%--        케러셸 시작부분 (준근)--%>
+        <div>
+            <div class="position-relative" style="width:486px;">
+                <img style="position:relative; z-index: 5;" src="resources/img/design/iphone.png"/>
+
+                <div id="carouselExampleSlidesOnly" class="carousel slide position-absolute top-0 start-0"
+                     data-bs-ride="carousel"
+                     style="width:243px; ">
+
+                    <div class="carousel-inner">
+                        <div class="carousel-item active" data-bs-interval="3000">
+                            <img src="resources/img/design/carousel_slide1.png" class="d-block w-100" alt="..."
+                                 style="z-index: 1;">
+                        </div>
+                        <div class="carousel-item" data-bs-interval="3000">
+                            <img src="resources/img/design/carousel_slide2.png" class="d-block w-100" alt="..."
+                                 style="z-index: 2;">
+                        </div>
+                        <div class="carousel-item" data-bs-interval="3000">
+                            <img src="resources/img/design/carousel_slide3.png" class="d-block w-100" alt="..."
+                                 style="z-index: 3;">
+                        </div>
+                        <div class="carousel-item" data-bs-interval="3000">
+                            <img src="resources/img/design/carousel_slide4.png" class="d-block w-100" alt="..."
+                                 style="z-index: 4;">
+                        </div>
+
                     </div>
                 </div>
+
             </div>
         </div>
+        <%-- 케러셸 끝부분 (준근)--%>
     </div>
+    <a href="#one" class="button style2 down anchored">prev</a>
 </section>
-<%-- 케러셸 끝부분 (준근)--%>
+
+
+<!--텍스트 스크롤(준근)-->
+
+<div class="grid-container">
+    <p class="grid-item">이럴때 사용하세요! </p>
+    <p class="grid-item">자가격리로 외출을 하지 못 할 때</p>
+    <p class="grid-item">만성질환으로 매번 처방약을 받으러 병원 갈 때</p>
+    <p class="grid-item">아이, 노인을 모시고 병원까지 이동이 힘들 때</p>
+    <p class="grid-item">바쁜 회사 생활로 병원 갈 시간이 없을 때</p>
+    <p class="grid-item">몸이 아파서 병원까지 이동이 어려울 때</p>
+    <p class="grid-item">간단한 병원 상담이 필요할 때</p>
+</div>
+<%--텍스트 스크롤 끝부분(준근)--%>
+
 
 
 <%--<!-- Contact -->--%>
@@ -420,7 +436,7 @@
         $(window).scroll(function () {
             var pageTop = $(window).scrollTop();
             var oneT = $("#one").offset().top;
-            var sixT = $("#Six").offset().top;
+            var sixT = $("#six").offset().top;
             var sevenT = $("#Seven").offset().top;
 
             if (pageTop >= oneT && pageTop < sixT || pageTop >= sevenT) {

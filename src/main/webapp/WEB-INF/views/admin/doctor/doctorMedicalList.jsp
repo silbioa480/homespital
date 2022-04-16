@@ -25,6 +25,7 @@
                         <thead>
                         <tr>
                             <th>날짜/시간</th>
+                            <th>순번</th>
                             <th>환자성함</th>
                             <th>성별</th>
                             <th>생년월일</th>
@@ -202,6 +203,7 @@
                     // 진료시작이거나 진료중일때  /예약취소 / 진료완료상태일때 색깔 적용 태영
                     if (item.diagnosis_status == 0 || item.diagnosis_status == 1) {
                         $("#docMedicalList").append("<tr><td style='background-color:#00B6EE'><a href='/doctor/customerDetail/" + item.diagnosis_number + "'>" + date + " (" + dayOfWeek + ") " + item.diagnosis_time + ":00</a></td>" +
+                            "<td>" + item.diagnosis_wait_number + "</td>" +
                             "<td><a href='/doctor/customerDetail/" + item.diagnosis_number + "'>" + item.user_name + "</a></td>" +
                             "<td>" + gender + "</td>" +
                             "<td>" + birth + "</td>" +
@@ -212,6 +214,7 @@
                         )
                     } else if (item.diagnosis_status >= 3 && item.diagnosis_status <= 7) {
                         $("#docMedicalList").append("<tr><td style='background-color:#cccccc'><a href='/doctor/customerDetail/" + item.diagnosis_number + "'>" + date + " (" + dayOfWeek + ") " + item.diagnosis_time + ":00</a></td>" +
+                            "<td>" + item.diagnosis_wait_number + "</td>" +
                             "<td><a href='/doctor/customerDetail/" + item.diagnosis_number + "'>" + item.user_name + "</a></td>" +
                             "<td>" + gender + "</td>" +
                             "<td>" + birth + "</td>" +
