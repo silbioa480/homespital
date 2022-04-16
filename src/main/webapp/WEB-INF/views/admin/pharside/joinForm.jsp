@@ -157,16 +157,6 @@
 
                         <%--                    </div>--%>
                         <tr>
-                            <th>
-                                <label for="pharmacyPhone">약국 전화번호</label>
-                            </th>
-                            <td>
-                                <input class="signup_inputs pharmacy_border" type="text" id="pharmacyPhone"
-                                       name="pharmacy_phone" placeholder="약국 전화번호를 입력해주세요">
-                                <div class="error"></div>
-                            </td>
-                        </tr>
-                        <tr>
                             <th>우편번호</th>
                             <td>
                                 <div style="display:flex">
@@ -189,10 +179,11 @@
                             <td>
                                 <input class="signup_inputs pharmacy_border" type="text" id="addrDetail"
                                        name="addrDetail" value="">
+                                <div class="error"></div>
 
                             </td>
                         </tr>
-                        <div class="error"></div>
+
                     </table>
                 </div>
             </section>

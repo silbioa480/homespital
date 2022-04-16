@@ -57,7 +57,7 @@ change this template use File | Settings | File Templates. --%>
 
 <!-- Header -->
 <header id="header">
-    <h1 style="margin-left: 35px; font-weight: bolder; margin-bottom: 30px">약사 로그인</h1>
+    <h1 style="margin-left: 60px; font-weight: bolder; margin-bottom: 30px">약사 로그인</h1>
 </header>
 
 <%--약국로그인 화면 이미지  태영--%>
@@ -96,7 +96,7 @@ change this template use File | Settings | File Templates. --%>
             </div>
         </form>
 
-        <span><a style="color: white; margin-left: 45px" href="#">비밀번호 찾기</a></span>
+        <span><a style="color: white; margin-left:100px" href="#">비밀번호 찾기</a></span>
         <span><a style="color: white; margin-left: 10px" href="/pharmacy/joinForm">회원가입</a></span>
 
     </div>

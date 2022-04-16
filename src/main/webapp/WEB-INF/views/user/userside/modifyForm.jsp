@@ -20,11 +20,11 @@ change this template use File | Settings | File Templates. --%>
     <%-- <link rel="stylesheet" href="./bootstrapt/css/bootstrap.min.css" /> --%>
     <%-- <script src="./bootstrapt/js/bootstrap.min.js"></script> --%>
     <style>
-      .addCard,
-      .deleteCard {
-        background-color: white;
-        color: black;
-      }
+        .addCard,
+        .deleteCard {
+            background-color: white;
+            color: black;
+        }
     </style>
 </head>
 <body>
@@ -300,11 +300,10 @@ change this template use File | Settings | File Templates. --%>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <a
-                                                            class="w-btn"
+                                                            class="w-btn phonemodibtn"
                                                             style="text-align: center"
                                                             id="modalY2"
                                                             href="/modifyForm"
-                                                            onclick="getParentText()"
                                                     >수정</a
                                                     >
                                                     <button
