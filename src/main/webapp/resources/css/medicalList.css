@@ -58,3 +58,10 @@ a {
     font-size: 1vw;
     padding: 4px 10px;
 }
+
+@media screen and (max-width: 768px) {
+    .databox {
+        width: 100px !important;
+        height: 100px !important;
+    }
+}
