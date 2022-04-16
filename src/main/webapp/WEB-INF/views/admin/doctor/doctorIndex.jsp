@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="/resources/css/main2.css"/>
     </noscript>
 </head>
-<body class="is-preload">
+<body class="is-preload" style="overflow-x: hidden;">
 <!-- Intro -->
 <section id="banner">
     <div class="inner">
@@ -160,9 +160,9 @@
         $(window).scroll(function () {
             var pageTop = $(window).scrollTop();
             var oneT = $('#one').offset().top;
-            var twoT = $('#two').offset().top;
+            // var twoT = $('#two').offset().top;
 
-            if (pageTop >= oneT && pageTop < twoT) {
+            if (pageTop >= oneT) {
                 $('#logo').attr('src', '/resources/img/design/logo_D_nav.png');
             } else {
                 $('#logo').attr('src', '/resources/img/design/main_base_nav.png');

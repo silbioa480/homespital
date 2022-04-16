@@ -18,7 +18,7 @@
     </noscript>
     <title>Homespital</title>
 </head>
-<body class="is-preload">
+<body class="is-preload" style="overflow-x: hidden;">
 <%--&lt;%&ndash;약국 메인 section 태영&ndash;%&gt;--%>
 <%--<section id="intro" class="main style1 dark fullscreen">--%>
 <%--    <div class="content">--%>
@@ -194,9 +194,9 @@
         $(window).scroll(function () {
             var pageTop = $(window).scrollTop();
             var oneT = $('#one').offset().top;
-            var twoT = $('#two').offset().top;
+            // var twoT = $('#two').offset().top;
 
-            if (pageTop >= oneT && pageTop < twoT) {
+            if (pageTop >= oneT) {
                 $('#logo').attr('src', '/resources/img/design/logo_P_nav.png');
             } else {
                 $('#logo').attr('src', '/resources/img/design/main_base_nav.png');

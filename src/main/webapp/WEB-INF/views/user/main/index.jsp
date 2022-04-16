@@ -13,44 +13,44 @@
     </noscript>
 
     <style>
-      .grid-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(800px, 1fr));
-        grid-auto-rows: minmax(150px, 0.5fr);
-        max-width: 800px;
-        margin: 0 auto;
-        text-align: center;
-      }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(800px, 1fr));
+            grid-auto-rows: minmax(150px, 0.5fr);
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
 
-      .grid-row,
-      .grid-item {
-        font-size: 40px;
-        display: block;
-        overflow: hidden;
+        .grid-row,
+        .grid-item {
+            font-size: 40px;
+            display: block;
+            overflow: hidden;
 
-      }
+        }
 
-      .grid-item img {
-        object-fit: cover;
-        object-position: center;
+        .grid-item img {
+            object-fit: cover;
+            object-position: center;
 
-      }
+        }
 
-      .grid-item {
-        transform: translateY(-10%);
-        opacity: 0;
-        color: black;
-        transition: 1000ms transform cubic-bezier(0.55, 0.055, 0.675, 0.19), 1000ms opacity cubic-bezier(0.55, 0.055, 0.675, 0.19) 600ms;
-      }
+        .grid-item {
+            transform: translateY(-10%);
+            opacity: 0;
+            color: black;
+            transition: 1000ms transform cubic-bezier(0.55, 0.055, 0.675, 0.19), 1000ms opacity cubic-bezier(0.55, 0.055, 0.675, 0.19) 600ms;
+        }
 
-      .grid-item.inview {
-        transform: translateY(0);
-        opacity: 1;
-        color: white;
-      }
+        .grid-item.inview {
+            transform: translateY(0);
+            opacity: 1;
+            color: white;
+        }
     </style>
 </head>
-<body class="is-preload">
+<body class="is-preload" style="overflow-x: hidden;">
 <!-- Intro -->
 <%--<section id="intro" class="main style1 dark fullscreen">--%>
 <%--    <div class="content">--%>
@@ -218,7 +218,7 @@
 
 <!--텍스트 스크롤(준근)-->
 <section id="Six">
-    <div style="margin-top:130px">
+    <div style="padding-top:130px">
         <div class="grid-container">
             <p class="grid-item" style="color:#2A2D42; font-size: 36px;"><strong>이럴때 사용하세요!</strong></p>
             <p class="grid-item">자가격리로 외출을 하지 못 할 때</p>
@@ -420,9 +420,10 @@
         $(window).scroll(function () {
             var pageTop = $(window).scrollTop();
             var oneT = $("#one").offset().top;
-            var twoT = $("#two").offset().top;
+            var sixT = $("#Six").offset().top;
+            var sevenT = $("#Seven").offset().top;
 
-            if (pageTop >= oneT && pageTop < twoT) {
+            if (pageTop >= oneT && pageTop < sixT || pageTop >= sevenT) {
                 $("#logo").attr("src", "/resources/img/design/logo_U_nav.png");
                 $(".nav-Link").css({"color": "#red"});
             } else {
