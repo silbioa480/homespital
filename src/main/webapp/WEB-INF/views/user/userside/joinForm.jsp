@@ -147,32 +147,38 @@
                     <hr style="height:3px">
                     <table>
                         <colgroup>
-                            <col style="width:20%">
+                            <col>
                             <col>
                         </colgroup>
                         <tbody>
                         <tr>
-                            <th>우편번호</th>
+                            <th>
+                                <div style="width: 110px;">우편번호</div>
+                            </th>
                             <td>
                                 <div style="display:flex">
                                     <input type="hidden" id="confmKey" name="confmKey" value="">
                                     <input class="signup_inputs user_border" type="text" id="zipNo" name="zipNo"
-                                           readonly style=" width:200px">
+                                           readonly>
                                     <input type="button" value="주소검색" onclick="goPopup()"
                                            class="w-btn">
                                 </div>
                             </td>
                         </tr>
                         <tr>
-                            <th>도로명주소</th>
+                            <th>
+                                <div>도로명주소</div>
+                            </th>
                             <td><input class="signup_inputs user_border" type="text" id="roadFullAddr"
-                                       name="roadFullAddr" style="width:85%"></td>
+                                       name="roadFullAddr"></td>
                         </tr>
                         <tr>
-                            <th>상세주소</th>
+                            <th>
+                                <div>상세주소</div>
+                            </th>
                             <td>
                                 <input class="signup_inputs user_border" type="text" id="addrDetail"
-                                       name="addrDetail" style="width:40%" value="">
+                                       name="addrDetail" value="">
 
                             </td>
                         </tr>
