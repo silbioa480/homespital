@@ -30,31 +30,35 @@
 
 <%--</header>--%>
 
-<div class="pw_box" style="margin-top: 500px;">
+<div class="pw_box" style="margin-top:100px">
     <div class="content">
 
         <form id="pw-form" method="post">
             <h1 style="font-weight: bolder; margin-bottom: 40px; margin-left: 15px">비밀번호 찾기</h1>
-<%--            <hr style="margin-bottom: 30px; width: 280px;">--%>
+            <%--            <hr style="margin-bottom: 30px; width: 280px;">--%>
 
             <div class="form-group" id="divEmail">
-                <input style="width: 290px" class="pw-email" type="email" name="email" id="email" placeholder="Email Address"/>
+                <input style="width: 290px" class="pw-email" type="email" name="email" id="email"
+                       placeholder="Email Address"/>
             </div>
 
             <div class="form-group" style="margin-top: 15px">
-<%--                <input type="button" id="emailCheck" value="인증번호 받기">--%>
-    <button type="button" id="emailCheck" class="btn-login">인증번호 받기</button>
+                <%--                <input type="button" id="emailCheck" value="인증번호 받기">--%>
+                <button type="button" id="emailCheck" class="btn-login" style="width:290px">인증번호 받기</button>
 
             </div>
 
             <div class="form-group" id="divVaildnum" style="margin-top: 30px">
-                <input style="width: 290px" class="validnum" type="text" name="validnum" id="vailidnum" placeholder="인증번호 6글자 입력해주세요"/>
+                <input style="width: 290px" class="validnum" type="text" name="validnum" id="vailidnum"
+                       placeholder="인증번호 6글자 입력해주세요"/>
             </div>
 
 
             <div class="form-group" style="margin-top: 15px">
-<%--                <input type="button" id="certificationBtn" value="인증번호 확인" disabled/>--%>
-    <button type="button" id="certificationBtn" class="btn-login" disabled>인증번호 확인</button>
+                <%--                <input type="button" id="certificationBtn" value="인증번호 확인" disabled/>--%>
+                <button type="button" id="certificationBtn" class="btn-login" style="width:290px;" disabled>
+                    인증번호 확인
+                </button>
             </div>
 
 

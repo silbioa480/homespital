@@ -306,7 +306,7 @@ public class PharmacyController {
             String pharPhone = phar.getPharmacy_phone();
             String pharStreet = phar.getStreet_address();
             String pharDetail = phar.getDetail_address();
-            params.put("to", "01089303955");
+            params.put("to", "01051757554");
             params.put("from", "01089303955");
             params.put("type", "LMS");
             params.put("text", "약 조제가 완료되었습니다.\n" + "약국명: " + pharName + "\n" + "약국전화번호: " + pharPhone + "\n" + "약국주소: " + pharStreet + " " + pharDetail + "\n" + "환자이름: " + userName);
