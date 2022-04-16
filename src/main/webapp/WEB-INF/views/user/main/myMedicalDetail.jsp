@@ -1,7 +1,7 @@
 <%-- 소연 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <html>
 <head>
     <title>나의 진료 내역 보기</title>
@@ -16,7 +16,7 @@
 <div class="container" style="margin-top:70.63px;">
     <%--헤드라인--%>
     <div style="height: 100px;"></div>
-        <div class="myMediList"><h2><strong>나의 진료 내역 보기</strong><span class="circle3"></span></h2></div>
+    <div class="myMediList"><h2><strong>나의 진료 내역 보기</strong><span class="circle3"></span></h2></div>
     <%--진료 예약 내역 - 소제목--%>
     <div><h4><strong>진료 예약 내역</strong></h4></div>
     <%--doctor detail 넣고--%>
@@ -121,7 +121,7 @@
         </div>
     </div>
     <%--appointmentForm에서 쓴 증상, 이미지 출력 --%>
-        <h4><strong>증상</strong></h4>
+    <h4><strong>증상</strong></h4>
     <div class="card-body" id="cardBorder">
         <div class="card border-right">
             <div class="card-header justify-content-between">
