@@ -154,14 +154,14 @@
                     if (item.is_diagnosis_upload == 0) {
                         receipt = "";
                     } else if (item.is_diagnosis_upload == 1) {
-                        receipt = "<button type='button' data-bs-toggle='modal' data-bs-target='#staticBackdrop" + item.diagnosis_number + " 'id ='receiptUpload" + item.diagnosis_number + "' class='btn btn-sm h-75'>영수증업로드</button><br>" +
+                        receipt = "<button type='button' data-bs-toggle='modal' data-bs-target='#staticBackdrop" + item.diagnosis_number + " 'id ='receiptUpload" + item.diagnosis_number + "' class='btn btn-info btn-sm h-75'>영수증업로드</button><br>" +
                             '<div class="modal fade" id="staticBackdrop' + item.diagnosis_number + '" data-bs-backdrop="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">' +
                             '<div class="modal-dialog" role="document">' +
                             '<div class="modal-content">' +
                             '<div class="modal-header">' +
                             '<h5 class="modal-title" id="staticBackdropLabel">진료 영수증 업로드</h5>' +
-                            '<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">' +
-                            '<span aria-hidden="true">&times;</span>' +
+                            // '<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">' +
+                            // '<span aria-hidden="true">&times;</span>' +
                             '</button>' +
                             '</div><form action="receiptUpload" method="POST" enctype="multipart/form-data"><div class="modal-body">' +
                             "<input type='hidden' name='diagnosis_number' value='" + item.diagnosis_number + "'>" +
@@ -180,14 +180,14 @@
                     if (item.is_prescription_upload == 0) {
                         prescription = "";
                     } else if (item.is_prescription_upload == 1) {
-                        prescription = "<button type='button' data-bs-toggle='modal' data-bs-target='#staticBackdrop2_" + item.diagnosis_number + " 'id ='prescriptionUpload" + item.diagnosis_number + "' class='btn btn-sm h-75'>처방전업로드</button><br>" +
+                        prescription = "<button type='button' data-bs-toggle='modal' data-bs-target='#staticBackdrop2_" + item.diagnosis_number + " 'id ='prescriptionUpload" + item.diagnosis_number + "' class='btn btn-info btn-sm h-75'>처방전업로드</button><br>" +
                             '<div class="modal fade" id="staticBackdrop2_' + item.diagnosis_number + '" data-bs-backdrop="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">' +
                             '<div class="modal-dialog" role="document">' +
                             '<div class="modal-content">' +
                             '<div class="modal-header">' +
                             '<h5 class="modal-title" id="staticBackdropLabel">처방전 업로드</h5>' +
-                            '<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">' +
-                            '<span aria-hidden="true">&times;</span>' +
+                            // '<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">' +
+                            // '<span aria-hidden="true">&times;</span>' +
                             '</button>' +
                             '</div><form action="prescriptionUpload" method="POST" enctype="multipart/form-data"><div class="modal-body">' +
                             "<input type='hidden' name='diagnosis_number' value='" + item.diagnosis_number + "'>" +
