@@ -13,41 +13,41 @@
     </noscript>
 
     <style>
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(800px, 1fr));
-            grid-auto-rows: minmax(150px, 0.5fr);
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
+      .grid-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(800px, 1fr));
+        grid-auto-rows: minmax(150px, 0.5fr);
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+      }
 
-        .grid-row,
-        .grid-item {
-            font-size: 40px;
-            display: block;
-            overflow: hidden;
+      .grid-row,
+      .grid-item {
+        font-size: 40px;
+        display: block;
+        overflow: hidden;
 
-        }
+      }
 
-        .grid-item img {
-            object-fit: cover;
-            object-position: center;
+      .grid-item img {
+        object-fit: cover;
+        object-position: center;
 
-        }
+      }
 
-        .grid-item {
-            transform: translateY(-10%);
-            opacity: 0;
-            color: black;
-            transition: 1000ms transform cubic-bezier(0.55, 0.055, 0.675, 0.19), 1000ms opacity cubic-bezier(0.55, 0.055, 0.675, 0.19) 600ms;
-        }
+      .grid-item {
+        transform: translateY(-10%);
+        opacity: 0;
+        color: black;
+        transition: 1000ms transform cubic-bezier(0.55, 0.055, 0.675, 0.19), 1000ms opacity cubic-bezier(0.55, 0.055, 0.675, 0.19) 600ms;
+      }
 
-        .grid-item.inview {
-            transform: translateY(0);
-            opacity: 1;
-            color: white;
-        }
+      .grid-item.inview {
+        transform: translateY(0);
+        opacity: 1;
+        color: white;
+      }
     </style>
 </head>
 <body class="is-preload">
@@ -100,7 +100,7 @@
     <div class="gallery">
         <article class="from-left" style="display:table">
             <div class="content box style2 information-left">
-                <img class="information-left-in" src="/resources/img/main/진료과보기_모바일.png" width="300" height="600"/>
+                <img class="information-left-in" src="/resources/img/main/test_mobile.png" width="300" height="600"/>
             </div>
         </article>
         <article class="from-right" style="display:table">
@@ -137,7 +137,7 @@
         <article class="from-right">
             <div class="content box style2 information-right">
                 <div class="information-right-in">
-                    <img src="/resources/img/main/진료과보기_모바일.png" width="300" height="600"/>
+                    <img src="/resources/img/main/test_mobile.png" width="300" height="600"/>
                 </div>
             </div>
         </article>
@@ -150,7 +150,7 @@
     <div class="gallery">
         <article class="from-left">
             <div class="content box style2 information-left">
-                <img class="information-left-in" src="/resources/img/main/진료과보기_모바일.png" width="300" height="600"/>
+                <img class="information-left-in" src="/resources/img/main/test_mobile.png" width="300" height="600"/>
             </div>
         </article>
         <article class="from-right">
@@ -183,7 +183,7 @@
         <article class="from-right">
             <div class="content box style2 information-right">
                 <div class="information-right-in">
-                    <img src="/resources/img/main/진료과보기_모바일.png" width="300" height="600"/>
+                    <img src="/resources/img/main/test_mobile.png" width="300" height="600"/>
                 </div>
             </div>
         </article>
@@ -197,7 +197,7 @@
     <div class="gallery">
         <article class="from-left">
             <div class="content box style2 information-left">
-                <img class="information-left-in" src="/resources/img/main/진료과보기_모바일.png" width="300" height="600"/>
+                <img class="information-left-in" src="/resources/img/main/test_mobile.png" width="300" height="600"/>
             </div>
         </article>
         <article class="from-right">
