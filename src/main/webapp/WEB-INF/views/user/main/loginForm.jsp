@@ -29,15 +29,7 @@ change this template use File | Settings | File Templates. --%>
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button
-                        type="button"
-                        class="close"
-                        data-dismiss="modal"
-                        aria-hidden="true"
-                >
-                    ×
-                </button>
-                <h4 class="modal-title" style="color: #1cb495">알림</h4>
+                <h4 class="modal-title" style="color: #1cb495; margin:0 auto;">알림</h4>
             </div>
             <div class="modal-body">
                 <p class="modal-contents"></p>
@@ -45,7 +37,7 @@ change this template use File | Settings | File Templates. --%>
             <div class="modal-footer">
                 <button
                         type="button"
-                        class="btn-modal"
+                        class="btn-modal btn-login"
                         style="width: 100%"
                         data-bs-dismiss="modal"
                 >
