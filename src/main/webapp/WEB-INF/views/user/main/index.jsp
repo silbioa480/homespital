@@ -235,21 +235,21 @@
 <section id="Seven">
     <div>
         <div class="position-relative" style="width:243px; margin:0 auto;">
-            <img style="position:relative; z-index: 4; margin-top:300px;" src="resources/img/design/아이폰.png"/>
+            <img style="position:relative; z-index: 4; margin-top:300px;" src="resources/img/design/iphone.png"/>
             <div id="carouselExampleSlidesOnly" class="carousel slide position-absolute top-0 start-0"
                  data-bs-ride="carousel"
                  style="width:243px; margin-top:300px;">
                 <div class="carousel-inner">
                     <div class="carousel-item active" data-bs-interval="3000">
-                        <img src="resources/img/design/슬라이드1.png" class="d-block w-100" alt="..."
+                        <img src="resources/img/design/slide1.png" class="d-block w-100" alt="..."
                              style="z-index: 1;">
                     </div>
                     <div class="carousel-item" data-bs-interval="3000">
-                        <img src="resources/img/design/슬라이드2.png" class="d-block w-100" alt="..."
+                        <img src="resources/img/design/slide2.png" class="d-block w-100" alt="..."
                              style="z-index: 2;">
                     </div>
                     <div class="carousel-item" data-bs-interval="3000">
-                        <img src="resources/img/design/슬라이드3.png" class="d-block w-100" alt="..."
+                        <img src="resources/img/design/slide3.png" class="d-block w-100" alt="..."
                              style="z-index: 3;">
                     </div>
                 </div>
