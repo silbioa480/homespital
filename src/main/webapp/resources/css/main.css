@@ -2008,6 +2008,12 @@ body.is-touch .poptrox-popup .closer {
         height: 600px;
     }
 
+    .grid-container > p {
+        font-size: 18px;
+        width: 370px;
+        text-align: center;
+
+    }
 }
 
 @media screen and (max-width: 480px) {
