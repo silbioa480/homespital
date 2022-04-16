@@ -36,6 +36,11 @@
         <put-attribute name="navbar" value="/WEB-INF/views/common/layout/navbar.jsp"/>
         <put-attribute name="body" value="/WEB-INF/views/user/main/findpwForm.jsp"/>
     </definition>
+    <!--회원탈퇴-->
+    <definition name="user/userside/deleteForm" extends="loginLayout">
+        <put-attribute name="navbar" value="/WEB-INF/views/common/layout/navbar.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/views/user/userside/deleteForm.jsp"/>
+    </definition>
 
     <!--  훈.  소연 updated 4/7 sidenav tiles에서 삭제. 각 jsp마다 내용 다르게 넣을예정-->
     <definition name="userSideLayout" template="/WEB-INF/views/common/userSideLayout.jsp">
