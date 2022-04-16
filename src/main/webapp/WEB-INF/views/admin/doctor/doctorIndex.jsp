@@ -26,9 +26,8 @@
     </div>
     <%--환자 메인 화면 이미지 태영      --%>
     <div class="image-box">
-        <img width="250px" height="300px" src="/resources/img/design/d_main_image.jpg" alt="로그인메인이미지"/>
+        <img width="250px" height="300px" src="/resources/img/design/d_main_image_round.png" alt="로그인메인이미지"/>
     </div>
-    <a href="#one" class="more scrolly" style="color: #fff;"></a>
 </section>
 
 <!-- One -->
