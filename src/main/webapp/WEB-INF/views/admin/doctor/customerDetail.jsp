@@ -85,7 +85,7 @@
                         </tr>
 
                         <tr>
-                            <th>이미지</th>
+                            <th>증상 이미지</th>
                             <td>
                                 <c:forEach var="image" items="${images}">
                                     <img src="/resources/img/uploadImg/${image}"

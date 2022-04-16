@@ -1,6 +1,22 @@
+<%@ page import="java.util.HashMap" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Arrays" %>
+<%@ page import="mna.homespital.dto.Diagnosis" %>
 <%-- 소연 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+    Diagnosis diagnosis = (Diagnosis) request.getAttribute("diagnosis");
+    String imageStr = (String) diagnosis.getDiagnosis_image_name();
+    List<String> images = new ArrayList<>(Arrays.asList(imageStr.split(",")));
+    List<String> sorted = new ArrayList<>();
+    for (int i = 0; i < images.size(); i++) {
+        if (!(images.get(i).trim().equals("") || images.get(i).trim().equals(" ") || images.get(i).trim().isEmpty()))
+            sorted.add(images.get(i));
+    }
+    pageContext.setAttribute("images", sorted);
+%>
 
 <html>
 <head>
@@ -18,6 +34,8 @@
     </style>
 </head>
 <body>
+
+
 <div class="container" style="margin-top:70.63px;">
     <%--헤드라인--%>
     <div style="height: 100px;"></div>
@@ -129,22 +147,25 @@
     <%--appointmentForm에서 쓴 증상, 이미지 출력 --%>
     <h4><strong>증상</strong></h4>
     <div class="card-body" id="cardBorder">
-        <div class="card border-right">
-            <div class="card-header justify-content-between">
-                <div>
-                    <p>${diagnosis.diagnosis_content}</p>
-                </div>
-                <%-- 증상 출력--%>
+        <table class="table table-borderless m-4 fs-5">
+            <tbody>
+            <tr style="height: 40px; margin-bottom: 50px;">
+                <th>증상</th>
+                <td>${diagnosis.diagnosis_content}</td>
+            </tr>
 
-                <div>
-                    <h4><strong>증상 이미지</strong></h4>
-
-
-                </div>
-                <%-- 증상 이미지 출력--%>
-                <img src="/resources/img/symptomsImg/${diagnosis.diagnosis_image_name}">
-            </div>
-        </div>
+            <tr>
+                <th>증상 이미지</th>
+                <td>
+                    <c:forEach var="image" items="${images}">
+                        <img src="/resources/img/uploadImg/${image}"
+                             style="max-width:270px; max-height:600px;"
+                             onerror="this.src='https://via.placeholder.com/500/000000/FFFFFF/?text=Error...+NoImgSelected'">
+                    </c:forEach>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 
 
