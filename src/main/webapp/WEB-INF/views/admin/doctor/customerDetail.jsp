@@ -30,7 +30,7 @@
 
         </div>
 
-        <p class="text-end fs-4">환자 진료내역 > 진료 상세내역</p>
+        <p class="text-end fs-4">진료 상세내역</p>
 
         <div class="card p-3">
             <div class="card-body p-4">
@@ -88,7 +88,8 @@
                             <th>이미지</th>
                             <td>
                                 <c:forEach var="image" items="${images}">
-                                    <img src="/resources/img/uploadImg/${image}" max-width="100%"
+                                    <img src="/resources/img/uploadImg/${image}"
+                                         style="max-width:270px; max-height:600px;"
                                          onerror="this.src='https://via.placeholder.com/500/000000/FFFFFF/?text=Error...+NoImgSelected'">
                                 </c:forEach>
                             </td>

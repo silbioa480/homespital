@@ -9,8 +9,13 @@
     <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css"/>
     <link rel="stylesheet" href="/resources/css/pharCustomerDetail.css"/>
+    <style>
+        .btn {
+            margin-top: 10px;
 
+        }
 
+    </style>
 </head>
 <body>
 <div class="container" style="margin-top:70.63px;">
@@ -25,8 +30,7 @@
             <div class="col-md-4">
                 <div class="img-wrapper">
                     <img alt="의사사진 영역"
-                         src="<c:choose><c:when test="${doctor.doctor_profile_image_name}">/img/doctorImg/${doctor.doctor_profile_image_name}</c:when>
-                                <c:otherwise>https://img.freepik.com/free-photo/portrait-of-asian-doctor-woman-cross-arms-standing-in-medical-uniform-and-stethoscope-smiling-at-camera-white-background_1258-83220.jpg</c:otherwise></c:choose>"/>
+                         src="/resources/img/doctorImg/${doctor.doctor_profile_image_name}" style="max-width:270px;">
                 </div>
                 <button class="btn btn-secondary ml-auto"
                         onclick="location.href='/doctorDetail/${doctor.doctor_number}';">
