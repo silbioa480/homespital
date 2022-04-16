@@ -4,6 +4,7 @@
 <head>
     <title>비대면 진료 예약하기</title>
     <%--  파일 업로드 CSS  --%>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/writeMediChartForm.css"/>

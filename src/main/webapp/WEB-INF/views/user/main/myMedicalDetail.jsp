@@ -1,11 +1,11 @@
 <%-- 소연 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>나의 진료 내역 보기</title>
     <%--  파일 업로드 CSS  --%>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css"/>
     <link rel="stylesheet" href="/resources/css/pharCustomerDetail.css"/>
@@ -14,7 +14,7 @@
 
 </head>
 <body>
-<div class="container" style="margin-top:70.63px;">
+<div class="container">
     <%--헤드라인--%>
     <div style="height: 100px;"></div>
     <div class="myMediList"><h2><strong>나의 진료 내역 보기</strong><span class="circle3"></span></h2></div>
