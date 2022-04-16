@@ -220,7 +220,7 @@
 <section id="Six">
     <div style="padding-top:130px">
         <div class="grid-container">
-            <p class="grid-item" style="color:#2A2D42; font-size: 36px;"><strong>이럴때 사용하세요!</strong></p>
+            <p class="grid-item" style="color:#2A2D42"><strong>이럴때 사용하세요!</strong></p>
             <p class="grid-item">자가격리로 외출을 하지 못 할 때</p>
             <p class="grid-item">만성질환으로 매번 처방약을 받으러 병원 갈 때</p>
             <p class="grid-item">아이, 노인을 모시고 병원까지 이동이 힘들 때</p>
