@@ -247,7 +247,11 @@
 <script src="/resources/js/signUp/util.js"></script>
 <script src="/resources/js/signUp/signUp.js"></script>
 <script src="/resources/js/signUp/pharmacySignUpCheck.js"></script>
-
+<script>
+    var scrollSpy = new bootstrap.ScrollSpy(document.body, {
+        target: '#nav'
+    })
+</script>
 
 </body>
 

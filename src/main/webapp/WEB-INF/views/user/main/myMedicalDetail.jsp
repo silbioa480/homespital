@@ -108,7 +108,7 @@
             <div class="col-md-8 card-body">
                 <div class="card-title d-flex">
                     <h5><strong>비대면 진료시간 : </strong></h5>
-                    <span>&nbsp;${confirmTime} : 00 </span>&emsp;
+                    <span>&nbsp;${confirmTime}</span>&emsp;
                     <h5><strong>순번 : </strong></h5>
                     <span>&nbsp;${diagnosis.diagnosis_wait_number}</span>
 
