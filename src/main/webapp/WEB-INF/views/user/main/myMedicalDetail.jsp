@@ -50,7 +50,7 @@
                             <td>${doctor.hospital_name}</td>
                         </tr>
                         <tr>
-                            <th>주소 :</th>
+                            <th>주소:</th>
                             <td>${doctor.zip_code} ${doctor.street_address} ${doctor.detail_address}</td>
                         </tr>
                         <tr>
@@ -86,8 +86,10 @@
         <div class="row g-0">
             <div class="col-md-8 card-body">
                 <div class="card-title d-flex">
-                    <h5><strong>비대면 진료시간 : </strong></h5> &nbsp;&nbsp;
-                    <span><h5>${confirmTime}</h5></span>
+                    <h5><strong>비대면 진료시간 : </strong></h5>
+                    <span>&nbsp;${confirmTime} : 00 </span>&emsp;
+                    <h5><strong>순번 : </strong></h5>
+                    <span>&nbsp;${diagnosis.diagnosis_wait_number}</span>
                 </div>
                 <div class="card-title d-flex p-1">
                     <h3 class="pr-3 font-weight-bolder">${user.user_name}</h3> &nbsp;&nbsp;
@@ -105,11 +107,11 @@
                             </td>
                         </tr>
                         <tr>
-                            <th>주소 :</th>
+                            <th>주소:</th>
                             <td>${user.zip_code} ${user.street_address} ${user.detail_address}</td>
                         </tr>
                         <tr>
-                            <th>핸드폰 번호:</th>
+                            <th>휴대번호:</th>
                             <td>
                                 ${user.user_phone}
                             </td>

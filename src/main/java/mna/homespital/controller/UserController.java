@@ -210,7 +210,8 @@ public class UserController {
 
             String confirmTime = strNowDate + " " + diagnosis.getDiagnosis_time();
 
-            mav.addObject("confirmTime" + ":00", confirmTime);
+            mav.addObject("confirmTime", confirmTime);
+            System.out.println("confirmTime = " + confirmTime);
 
             //저장된 각 객체들 model에 전부 저장(diagnosis -진료내역, doctor - 의사정보, user - 환자정보)
             mav.addObject("diagnosis", diagnosis);
