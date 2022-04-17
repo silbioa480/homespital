@@ -513,6 +513,8 @@ public class DoctorController {
         //넘어온 파일의 이름
         String prescriptionFileName = prescriptionFile.getOriginalFilename();
         try {
+            System.out.println(prescriptionFile.isEmpty());
+            System.out.println(prescriptionFile.isEmpty());
             String path = servletContext.getRealPath("/resources/img/uploadPrescription/");
             String filename = UUID.randomUUID().toString() + "." + prescriptionFileName.substring(prescriptionFileName.lastIndexOf('.') + 1);
             File destFile = new File(path + filename);
