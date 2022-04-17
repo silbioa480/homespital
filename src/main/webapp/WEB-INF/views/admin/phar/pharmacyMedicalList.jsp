@@ -15,7 +15,8 @@
 <div class="container">
     <div class="col mt-3">
         <div class="list-header text-center" id="pharBanner">
-            <h1 id="logo">Homespital</h1>
+            <img src="/resources/img/design/p_banner.png" />
+<%--            <h1 id="logo">Homespital</h1>--%>
         </div>
 
 
