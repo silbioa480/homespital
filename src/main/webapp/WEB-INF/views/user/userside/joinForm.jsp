@@ -57,7 +57,7 @@
                     <table>
                         <tr>
                             <th>
-                                <label style="width: 110px" for="email">이메일</label>
+                                <label for="email">이메일</label>
                             </th>
                             <td>
                                 <input class="signup_inputs user_border" type="email" id="email" name="email"
@@ -100,12 +100,11 @@
                                 <label for="SocialSecurityNumber1">주민등록번호</label>
                             </th>
                             <td>
-                                <div style="display:flex">
+                                <div>
                                     <input class="signup_inputs user_border" id="SocialSecurityNumber1"
-                                           name="SocialSecurityNumber1" type="text" maxlength="6" style="width: 285px">&nbsp__&nbsp
+                                           name="SocialSecurityNumber1" type="text" maxlength="6">&nbsp__&nbsp
                                     <input class="signup_inputs user_border" type="password" id="SocialSecurityNumber2"
-                                           name="SocialSecurityNumber2"
-                                           maxlength="7" style="width: 285px">
+                                           name="SocialSecurityNumber2" maxlength="7">
                                 </div>
                                 <div class="error"></div>
                             </td>
@@ -115,7 +114,7 @@
                                 <label for="phone">휴대폰 번호</label>
                             </th>
                             <td>
-                                <div style="display:flex">
+                                <div>
                                     <input class="signup_inputs user_border" id="phone" type="text" name="phone"
                                            title="전화번호 입력" style=""/>
                                     <input type="button" id="phoneChk" class="w-btn" value="인증번호 받기">
