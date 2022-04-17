@@ -86,7 +86,7 @@
                     console.log(list);
                     console.log(data);
                     if (list.toString() != data.toString()) {
-                        alert("새로운 예약이 있습니다. 확인하세요");
+                        alert("비대면 진료가 예약되었습니다.");
                         list = data;
                         window.location.reload();
                     }
