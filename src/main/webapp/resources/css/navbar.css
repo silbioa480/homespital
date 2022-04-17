@@ -65,14 +65,6 @@ li, a, button {
     /*헤더 높이와 같게*/
 }
 
-/*.nav-link btn-warning dropdown-toggle {*/
-/*    background-color: #2a2d42;*/
-/*}*/
-/*.nav-Link {*/
-/*    background-color: #2A2D42 !important*/
-/*}*/
-
-
 .nav-down {
     background-color: rgba(255, 255, 255, 0);
     -webkit-transition-duration: 0.4s;
@@ -80,6 +72,16 @@ li, a, button {
     transition-duration: 0.4s;
     transition-timing-function: ease-in-out;
     /*헤더 높이와 같게*/
+}
+
+@media screen and (min-width: 769px) {
+    .nav-up {
+        background-color: rgb(255, 255, 255, 0);
+        -webkit-transition-duration: 0.4s;
+        -webkit-transition-timing-function: ease-in-out;
+        transition-duration: 0.4s;
+        transition-timing-function: ease-in-out;
+    }
 }
 
 #navbars {
