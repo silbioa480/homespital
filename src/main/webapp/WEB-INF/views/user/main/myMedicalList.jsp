@@ -14,7 +14,8 @@
 <div class="container">
     <div class="col mt-5">
         <div class="list-header text-center" id="userBanner">
-            <h1 id="logo">Homespital</h1>
+            <img src="/resources/img/design/u_banner.png" />
+<%--            <h1 id="logo">Homespital</h1>--%>
         </div>
 
         <p class="text-end fs-4">마이페이지 > 나의진료내역</p>
