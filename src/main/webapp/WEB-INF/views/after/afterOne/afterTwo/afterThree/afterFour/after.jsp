@@ -137,6 +137,7 @@
             <div class="lastImg">
                 <img src="/resources/img/after/taeyB.jpg" class="lastImg" />
             </div>
+        <h1 class="credits" style="margin-top: 150px;">Real Thank You!!!</h1>
         </div>
 
     </div>
