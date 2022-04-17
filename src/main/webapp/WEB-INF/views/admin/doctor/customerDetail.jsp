@@ -94,7 +94,7 @@
                                 </c:forEach>
                             </td>
                         </tr>
-                        <c:if test="${diagnosis.diagnosis_status >=3}">
+                        <c:if test="${diagnosis.diagnosis_status eq 1 || diagnosis.diagnosis_status >=3}">
                             <tr>
                                 <th>진단 소견서</th>
                                 <td>
@@ -112,7 +112,7 @@
                                     </div>
                                 </td>
                             </tr
-                            <c:if test="${diagnosis.diagnosis_status eq 3}">
+                            <c:if test="${diagnosis.diagnosis_status eq 1}">
                                 <tr>
                                     <th>
                                         진단 소견서 / 검진 비용 제출
