@@ -17,10 +17,14 @@
 <style>
     a:link, a:visited, a:hover, a:active {
         color: grey;
-        text-decoration: none;
-    !important
+        text-decoration: none !important;
     }
 
+    @media screen and (max-width: 768px) {
+        .doctorBtn {
+            flex-direction: column;
+        }
+    }
 </style>
 
 <body class="is-preload">
@@ -129,7 +133,7 @@
                                     <span
                                             id="docType">의사 / ${doctor.doctor_diagnosis_type}</span>
                                 </div>
-                                <div class="d-flex">
+                                <div class="d-flex doctorBtn">
                                     <button class="btn btn-secondary ml-auto" id="detailBtn"
                                             onclick="location.href='/doctorDetail/${doctor.doctor_number}';">
                                         <i class="fa-solid fa-magnifying-glass">의료진 상세보기</i>

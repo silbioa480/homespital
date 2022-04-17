@@ -113,7 +113,7 @@
                         </tr>
                         <tr>
                             <th>
-                                진단 소견서 / 검진 비용 등록/변경
+                                진단 소견서 / 검진 비용 제출
                             </th>
                             <td>
                                 <button type="button" id="submitDoctorOpinion">제출하기</button>
@@ -190,8 +190,8 @@
                 },
                 async: false,
                 success: function (data) {
-
                     alert("소견 및 금액 등록 완료");
+                    window.location.reload();
                 },
                 error: function () {
                     alert("소견 및 금액 등록 실패");
@@ -295,6 +295,10 @@
 
     // 진료 완료하기
     function finishBtn(e) {
+        if (${empty diagnosis.diagnosis_money || empty diagnosis.doctor_opinion}) {
+            alert('진단 소견서와 검진 비용이 등록되지 않았습니다.');
+            return;
+        }
         if (confirm("진료를 완료하시겠습니까?") == true) {
             $.ajax({
                 url: "/doctor/finishDiagnosis",
