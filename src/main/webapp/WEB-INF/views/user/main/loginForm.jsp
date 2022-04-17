@@ -92,9 +92,10 @@ change this template use File | Settings | File Templates. --%>
                 <button type="submit" class="btn-login">로 그 인</button>
             </div>
         </form>
-
-        <span><a style="color: white; margin-left:100px;" href="/findpwForm">비밀번호 찾기</a></span>
-        <span><a style="color: white; margin-left:10px;" href="/joinForm">회원가입</a></span>
+        <div class="a-pw_join">
+            <span><a href="/findpwForm">비밀번호 찾기</a></span>
+            <span><a href="/joinForm">회원가입</a></span>
+        </div>
     </div>
 </div>
 
