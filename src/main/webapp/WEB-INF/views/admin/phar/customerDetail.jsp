@@ -133,7 +133,7 @@
                                 <%--                            <img alt="의사사진 영역"--%>
                                 <%--                                 src="<c:choose><c:when test="${not empty doctor.doctor_profile_image_name || doctor.doctor_profile_image_name eq ''}">/img/doctorImg/${doctor.doctor_profile_image_name}</c:when>--%>
                                 <%--                                            <c:otherwise>https://img.freepik.com/free-photo/portrait-of-asian-doctor-woman-cross-arms-standing-in-medical-uniform-and-stethoscope-smiling-at-camera-white-background_1258-83220.jpg</c:otherwise></c:choose>"/>--%>
-                                <img alt="의사사진 영역" src="${doctor.doctor_profile_image_name}"
+                                <img alt="의사사진 영역" src="/resources/img/uploadImg/${doctor.doctor_profile_image_name}"
                                      onerror="this.src='https://img.freepik.com/free-photo/portrait-of-asian-doctor-woman-cross-arms-standing-in-medical-uniform-and-stethoscope-smiling-at-camera-white-background_1258-83220.jpg'">
                             </div>
                             <button class="btn btn-secondary ml-auto"
@@ -211,7 +211,7 @@
     // 처방전이 있을 때만 버튼 생성, 없으면 빈문자열
     let receiptFile = "";
     if ((${diagnosis.is_prescription_upload }) === 2) {
-        receiptFile = "<a href='/resources/img/uploadReceipt/" + "(${diagnosis.diagnosis_file_name })" + "' download='처방전'><span class='material-icons'>file_download</span></a>"
+        receiptFile = "<a href='/resources/img/uploadPrescription/" + "(${diagnosis.diagnosis_file_name })" + "' download><span class='material-icons'>file_download</span></a>"
     }
     $('#is_prescription_upload').html(receiptFile);
 

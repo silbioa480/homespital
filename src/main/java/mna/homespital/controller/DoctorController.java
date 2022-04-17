@@ -516,7 +516,8 @@ public class DoctorController {
             String path = servletContext.getRealPath("/resources/img/uploadPrescription/");
             String filename = UUID.randomUUID().toString() + "." + prescriptionFileName.substring(prescriptionFileName.lastIndexOf('.') + 1);
             File destFile = new File(path + filename);
-
+            System.out.println(path);
+            System.out.println(prescriptionFile.isEmpty());
             PrintWriter writer = null;
             JSONObject json = new JSONObject();
 
