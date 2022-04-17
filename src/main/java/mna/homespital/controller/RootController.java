@@ -299,19 +299,20 @@ public class RootController {
             mv.setViewName("redirect:/myMedicalList");
 
             //예약이 성공적으로 되었다는 알림 태영
+            diagnosis = diagnosisService.getDiaInfo(diagnosis.getDiagnosis_number());
             Doctor dtc = doctorService.getDocInfo(diagnosis.getDoctor_number());
             User user123 = userService.getUserInfo(diagnosis.getUser_number());
-            String dtcName=dtc.getDoctor_name();
-            String userName=user123.getUser_name();
-            int diaTime=diagnosis.getDiagnosis_time();
-            int waitNumber=diagnosis.getDiagnosis_wait_number();
-            params.put("to","01051757554");
-            params.put("from","01089303955");
-            params.put("type","LMS");
-            params.put("text","예약이 정상적으로 완료되었습니다.\n"+ "담당의사명 : "+  dtcName+"\n" + "환자명: "+userName + "\n"+ "진료예약시간: "+diaTime + "\n"+ "대기순번: "+waitNumber);
+            String dtcName = dtc.getDoctor_name();
+            String userName = user123.getUser_name();
+            int diaTime = diagnosis.getDiagnosis_time();
+            int waitNumber = diagnosis.getDiagnosis_wait_number();
+            params.put("to", "01051757554");
+            params.put("from", "01089303955");
+            params.put("type", "LMS");
+            params.put("text", "예약이 정상적으로 완료되었습니다.\n" + "담당의사명 : " + dtcName + "\n" + "환자명: " + userName + "\n" + "진료예약시간: " + diaTime + "\n" + "대기순번: " + waitNumber);
             org.json.simple.JSONObject obj = coolsms.send(params);
             System.out.println(obj.toString());
-        }catch (CoolsmsException e) {
+        } catch (CoolsmsException e) {
             e.printStackTrace();
             System.out.println(e.getMessage());
             System.out.println(e.getCode());

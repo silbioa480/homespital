@@ -94,32 +94,35 @@
                                 </c:forEach>
                             </td>
                         </tr>
-                        <tr>
-                            <th>진단 소견서</th>
-                            <td>
+                        <c:if test="${diagnosis.diagnosis_status eq 1 || diagnosis.diagnosis_status >=3}">
+                            <tr>
+                                <th>진단 소견서</th>
+                                <td>
                                 <textarea name="doctor_opinion" style="width: 100%; min-height: 100px;"
                                           maxlength="500">${diagnosis.doctor_opinion}</textarea>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>검진 비용</th>
-                            <td>
-                                <div class="input-group">
-                                    <span class="input-group-text">비용</span>
-                                    <input type="number" class="form-control" name="diagnosis_money"
-                                           value="${diagnosis_money}" min="0">
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>
-                                진단 소견서 / 검진 비용 등록/변경
-                            </th>
-                            <td>
-                                <button type="button" id="submitDoctorOpinion">제출하기</button>
-                            </td>
-                        </tr>
-
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>검진 비용</th>
+                                <td>
+                                    <div class="input-group">
+                                        <span class="input-group-text">비용</span>
+                                        <input type="number" class="form-control" name="diagnosis_money"
+                                               value="${diagnosis_money}" min="0">
+                                    </div>
+                                </td>
+                            </tr
+                            <c:if test="${diagnosis.diagnosis_status eq 1}">
+                                <tr>
+                                    <th>
+                                        진단 소견서 / 검진 비용 제출
+                                    </th>
+                                    <td>
+                                        <button type="button" id="submitDoctorOpinion">제출하기</button>
+                                    </td>
+                                </tr>
+                            </c:if>
+                        </c:if>
                         </tbody>
                     </table>
                 </div>
@@ -190,8 +193,8 @@
                 },
                 async: false,
                 success: function (data) {
-
                     alert("소견 및 금액 등록 완료");
+                    window.location.reload();
                 },
                 error: function () {
                     alert("소견 및 금액 등록 실패");
@@ -228,8 +231,8 @@
             '<div class="modal-content">' +
             '<div class="modal-header">' +
             '<h5 class="modal-title" id="staticBackdropLabel">진료 영수증 업로드</h5>' +
-            '<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">' +
-            '<span aria-hidden="true">&times;</span>' +
+            // '<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">' +
+            // '<span aria-hidden="true">&times;</span>' +
             '</button>' +
             '</div><form action="/doctor/receiptUpload" method="POST" enctype="multipart/form-data"><div class="modal-body">' +
             "<input type='hidden' name='diagnosis_number' value='" + ${diagnosis.diagnosis_number} +"'>" +
@@ -255,8 +258,8 @@
             '<div class="modal-content">' +
             '<div class="modal-header">' +
             '<h5 class="modal-title" id="staticBackdropLabel">처방전 업로드</h5>' +
-            '<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">' +
-            '<span aria-hidden="true">&times;</span>' +
+            // '<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">' +
+            // '<span aria-hidden="true">&times;</span>' +
             '</button>' +
             '</div><form action="/doctor/prescriptionUpload" method="POST" enctype="multipart/form-data"><div class="modal-body">' +
             "<input type='hidden' name='diagnosis_number' value='" + (${diagnosis.diagnosis_number}) + "'>" +
@@ -283,8 +286,8 @@
                 },
                 success: function (data) {
                     console.log(data);
-
                     console.log("진료 시작 성공 : " + e)
+                    window.open("https://homespital.herokuapp.com/meeting");
                     location.href = "${pageContext.request.contextPath}/doctor/customerDetail/${diagnosis.diagnosis_number}";
                 },
             })
@@ -295,6 +298,10 @@
 
     // 진료 완료하기
     function finishBtn(e) {
+        if (${empty diagnosis.diagnosis_money || empty diagnosis.doctor_opinion}) {
+            alert('진단 소견서와 검진 비용이 등록되지 않았습니다.');
+            return;
+        }
         if (confirm("진료를 완료하시겠습니까?") == true) {
             $.ajax({
                 url: "/doctor/finishDiagnosis",

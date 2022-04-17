@@ -24,19 +24,14 @@ import java.util.concurrent.ThreadLocalRandom;
 @ControllerAdvice
 @RequestMapping("/meeting")
 public class MeetingController {
-
     @Autowired
     HttpSession session;
-
     @Autowired
     MemberService memberService;
-
     @Autowired
     DoctorService doctorService;
-
     @Autowired
     RoomService roomService;
-
     @Autowired
     Parser parser;
 
@@ -48,9 +43,7 @@ public class MeetingController {
         ModelAndView mav = new ModelAndView("meeting/main");
 
         Doctor doctor = (Doctor) session.getAttribute("doctor");
-        if (doctor != null) {
-            mav.addObject("doctor", "doctor");
-        }
+        if (doctor != null) mav.addObject("doctor", "doctor");
 
         mav.addObject("id", id);
         mav.addObject("rooms", roomService.getRooms());

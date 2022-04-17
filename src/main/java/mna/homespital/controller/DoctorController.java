@@ -428,7 +428,7 @@ public class DoctorController {
                 params.put("text", "진료가 완료되었습니다. 좋은 하루 보내시길 바랍니다.");
                 org.json.simple.JSONObject obj = coolsms.send(params);
                 System.out.println(obj.toString());
-                return "success";
+//                return "success";
             }
             //훈 - 결제 처리
             System.out.println("STARTING GET TOKEN");

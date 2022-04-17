@@ -119,7 +119,7 @@ function start() {
                 log('Client is starting to ' + (message.data === "true)" ? 'negotiate' : 'wait for a peer'));
                 handlePeerConnection(message);
                 dataChannel.onopen = function (event) {
-                    dataChannel.send('어서와요');
+                    dataChannel.send('상대방이 입장했습니다. 비대면 화상진료를 시작합니다.');
                 }
                 dataChannel.onmessage = function (event) {
                     console.log(event.data);

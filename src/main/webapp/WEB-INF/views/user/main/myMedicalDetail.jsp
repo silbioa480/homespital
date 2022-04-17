@@ -108,7 +108,7 @@
             <div class="col-md-8 card-body">
                 <div class="card-title d-flex">
                     <h5><strong>비대면 진료시간 : </strong></h5>
-                    <span>&nbsp;${confirmTime}</span>&emsp;
+                    <span>&nbsp;${confirmTime}:00</span>&emsp;
                     <h5><strong>순번 : </strong></h5>
                     <span>&nbsp;${diagnosis.diagnosis_wait_number}</span>
 
@@ -130,7 +130,7 @@
                         </tr>
                         <tr>
                             <th>주소:</th>
-                            <td>${user.zip_code} ${user.street_address} ${user.detail_address}</td>
+                            <td>(${user.zip_code}) ${user.street_address} ${user.detail_address}</td>
                         </tr>
                         <tr>
                             <th>휴대번호:</th>
@@ -160,7 +160,7 @@
                     <%-- 증상 이미지 출력--%>
                     <c:choose>
                         <c:when test="${not empty diagnosis.diagnosis_image_name && diagnosis.diagnosis_image_name ne ''}">
-                            <img src="/resources/img/symptomsImg/${diagnosis.diagnosis_image_name}">
+                            <img src="/resources/img/uploadImg/${diagnosis.diagnosis_image_name}">
                         </c:when>
                         <c:otherwise>
                             이미지 없음
@@ -207,7 +207,8 @@
                         <label>약국 주소</label>
                         <hr>
                         <div><h5><strong>${pharmacy.pharmacy_name}</strong></h5></div>
-                        <p class="userAdrress">${pharmacy.zip_code} ${pharmacy.street_address} ${pharmacy.detail_address}</p>
+                        <p class="userAdrress">
+                            (${pharmacy.zip_code}) ${pharmacy.street_address} ${pharmacy.detail_address}</p>
                         <br>
                         <div>
                             <label>결제정보</label>
