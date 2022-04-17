@@ -83,13 +83,72 @@
                     "pharmacy_number": ${pharmacy.pharmacy_number}
                 },
                 success: function (data) {
-                    console.log(data);
-                    console.log(list);
-                    if(list.toString() != data.toString()) {
-                        alert("새로운 처방내역이 들어왔습니다. 확인해주세요.");
-                        list = data;
+                    var beforeCount=0;
+                    var afterCount=0;
+                    var before = list.map((element)=>{
+                        if(element.diagnosis_status >= 3){
+                            return element;
+                        }
+                    });
+                    var after= data.map((element)=>{
+                        if(element.diagnosis_status >= 3 )
+                        {
+                            return element;
+                        }
+                    });
+
+                    for(let i=0;i<before.length;i++){
+                        if(before[i] != undefined){
+                            if(before[i].diagnosis_status >= 3){
+                                ++beforeCount;
+                            }
+                        }
+                    }
+
+                    for(let i=0;i<after.length;i++){
+                        if(after[i] != undefined){
+                            if(after[i].diagnosis_status >= 3){
+                                ++afterCount;
+                            }
+                        }
+                    }
+                    // console.log(before);
+                    console.log(beforeCount);
+                    console.log(afterCount);
+
+                    if(beforeCount != afterCount){
+                        alert("처방전이 들어왔습니다.");
+                        list=data;
                         window.location.reload();
                     }
+
+                    // if(data.diagnosis_status >=3){
+                    //     if(list.toString() != data.toString()){
+                    //         alert("새로운 처방내역이 들어왔습니다. 확인해주세요.");
+                    //         list=data;
+                    //         window.location.reload();
+                    //         console.log(data.sort());
+                    //         console.log(list.sort());
+                    //     }
+                    // }
+                    // for(let i=0; i <data.length ;i++){
+                    //     if(data[i] != list[i]){
+                    //         alert("새로운 처방내역이 들어왔습니다. 확인해주세요.");
+                    //     }
+                    //     break;
+                    // }
+                    // if(data.length != list.length){
+                    //     list=data;
+                    //     window.location.reload();
+                    //     console.log(data.length);
+                    //     console.log(list.length);
+                    // }
+
+                    // if(list.toString().length != data.toString().length) {
+                    //     alert("새로운 처방내역이 들어왔습니다. 확인해주세요.");
+                    //     list = data;
+                    //     window.location.reload();
+                    // }
 
                 },
                 error: function () {
