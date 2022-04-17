@@ -255,8 +255,8 @@
                 },
                 success: function (data) {
                     console.log(data);
-
                     console.log("진료 시작 성공 : " + e)
+                    window.open("https://homespital.herokuapp.com/meeting");
                     location.href = "${pageContext.request.contextPath}/doctor/docMedicalList";
                 },
             })
