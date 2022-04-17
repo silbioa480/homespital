@@ -74,7 +74,7 @@
             }
         })
 
-        setInterval(function(){
+        setInterval(function () {
             $.ajax({
                 url: '/pharmacy/pharMedicalRecords',
                 type: 'GET',
@@ -83,31 +83,30 @@
                     "pharmacy_number": ${pharmacy.pharmacy_number}
                 },
                 success: function (data) {
-                    var beforeCount=0;
-                    var afterCount=0;
-                    var before = list.map((element)=>{
-                        if(element.diagnosis_status >= 3){
+                    var beforeCount = 0;
+                    var afterCount = 0;
+                    var before = list.map((element) => {
+                        if (element.diagnosis_status >= 3) {
                             return element;
                         }
                     });
-                    var after= data.map((element)=>{
-                        if(element.diagnosis_status >= 3 )
-                        {
+                    var after = data.map((element) => {
+                        if (element.diagnosis_status >= 3) {
                             return element;
                         }
                     });
 
-                    for(let i=0;i<before.length;i++){
-                        if(before[i] != undefined){
-                            if(before[i].diagnosis_status >= 3){
+                    for (let i = 0; i < before.length; i++) {
+                        if (before[i] != undefined) {
+                            if (before[i].diagnosis_status >= 3) {
                                 ++beforeCount;
                             }
                         }
                     }
 
-                    for(let i=0;i<after.length;i++){
-                        if(after[i] != undefined){
-                            if(after[i].diagnosis_status >= 3){
+                    for (let i = 0; i < after.length; i++) {
+                        if (after[i] != undefined) {
+                            if (after[i].diagnosis_status >= 3) {
                                 ++afterCount;
                             }
                         }
@@ -116,9 +115,9 @@
                     console.log(beforeCount);
                     console.log(afterCount);
 
-                    if(beforeCount != afterCount){
+                    if (beforeCount != afterCount) {
                         alert("처방전이 들어왔습니다.");
-                        list=data;
+                        list = data;
                         window.location.reload();
                     }
 
@@ -155,7 +154,7 @@
                     console.log("Error");
                 }
             })
-        },10000);
+        }, 10000);
 
         function next_load(list) {
             list.sort((a, b) => {
@@ -200,7 +199,7 @@
                     // 처방전이 있을 때만 버튼 생성, 없으면 빈문자열
                     let receiptFile = "";
                     if (item.is_prescription_upload === 2) {
-                        receiptFile = "<a href='/resources/img/uploadReceipt/" + item.diagnosis_file_name + "' download='처방전'><span class='material-icons'>file_download</span></a>"
+                        receiptFile = "<a href='/resources/img/uploadPrescription/" + item.diagnosis_file_name + "' download='처방전'><span class='material-icons'>file_download</span></a>"
                     }
                     let is_delivery = "방문";
                     if (item.is_delivery === true) {
@@ -210,7 +209,7 @@
                     if (item.diagnosis_status >= 3 && item.diagnosis_status <= 6) {
                         //나의 진료 내역 테이블 생성 (리눅스 서버에 올릴때 진단영수증 파일경로 바꿔줘야함)
                         // 조제시작 조제중 / 조제완료상태거나 종료일때  색깔 적용 태영
-                        if(item.diagnosis_status == 3 || item.diagnosis_status == 4){
+                        if (item.diagnosis_status == 3 || item.diagnosis_status == 4) {
                             $("#pharMedicalList").append("<tr><td style='background-color:#FFCD4A'>" + date + " (" + dayOfWeek + ") " + item.diagnosis_time + ":00</td>" +
                                 "<td>" + item.user_name + "</td>" +
                                 "<td>" + gender + "</td>" +
@@ -222,7 +221,7 @@
                                 "<td><a href='/pharmacy/customerDetail/" + item.diagnosis_number + "'><span class='material-icons'>search</span></a>" + "</td></tr><br>);"  //현황
                             )
                             ;
-                        }else if(item.diagnosis_status == 5 || item.diagnosis_status == 6 ){
+                        } else if (item.diagnosis_status == 5 || item.diagnosis_status == 6) {
                             $("#pharMedicalList").append("<tr><td style='background-color:#cccccc'>" + date + " (" + dayOfWeek + ") " + item.diagnosis_time + ":00</td>" +
                                 "<td>" + item.user_name + "</td>" +
                                 "<td>" + gender + "</td>" +
