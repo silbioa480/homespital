@@ -228,8 +228,8 @@
             '<div class="modal-content">' +
             '<div class="modal-header">' +
             '<h5 class="modal-title" id="staticBackdropLabel">진료 영수증 업로드</h5>' +
-            '<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">' +
-            '<span aria-hidden="true">&times;</span>' +
+            // '<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">' +
+            // '<span aria-hidden="true">&times;</span>' +
             '</button>' +
             '</div><form action="/doctor/receiptUpload" method="POST" enctype="multipart/form-data"><div class="modal-body">' +
             "<input type='hidden' name='diagnosis_number' value='" + ${diagnosis.diagnosis_number} +"'>" +
@@ -255,8 +255,8 @@
             '<div class="modal-content">' +
             '<div class="modal-header">' +
             '<h5 class="modal-title" id="staticBackdropLabel">처방전 업로드</h5>' +
-            '<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">' +
-            '<span aria-hidden="true">&times;</span>' +
+            // '<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">' +
+            // '<span aria-hidden="true">&times;</span>' +
             '</button>' +
             '</div><form action="/doctor/prescriptionUpload" method="POST" enctype="multipart/form-data"><div class="modal-body">' +
             "<input type='hidden' name='diagnosis_number' value='" + (${diagnosis.diagnosis_number}) + "'>" +
