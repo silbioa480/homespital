@@ -228,7 +228,7 @@
         if (isNaN(price)) {
             alert("금액을 입력해주세요.");
             return false;
-        } else if (confirm("처방전 금액을 " + price + "로 하고 처방을" + " 접수하시겠습니까?") == true) {
+        } else if (confirm("처방전 금액을 " + price + "원으로 하고 처방을" + " 접수하시겠습니까?") == true) {
             $.ajax({
                 url: "/pharmacy/makeMedicine",
                 type: "POST",
