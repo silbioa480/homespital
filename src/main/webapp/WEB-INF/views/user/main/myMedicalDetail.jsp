@@ -160,7 +160,7 @@
                     <%-- 증상 이미지 출력--%>
                     <c:choose>
                         <c:when test="${not empty diagnosis.diagnosis_image_name && diagnosis.diagnosis_image_name ne ''}">
-                            <img src="/resources/img/symptomsImg/${diagnosis.diagnosis_image_name}">
+                            <img src="/resources/img/uploadImg/${diagnosis.diagnosis_image_name}">
                         </c:when>
                         <c:otherwise>
                             이미지 없음
