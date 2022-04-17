@@ -206,7 +206,8 @@ public class UserController {
 
             String confirmTime = strNowDate + " " + diagnosis.getDiagnosis_time();
 
-            mav.addObject("confirmTime", confirmTime + ":00");
+            mav.addObject("confirmTime", confirmTime);
+            System.out.println("confirmTime = " + confirmTime);
 
             // 훈: 진단서 카드정보 불러오기
             String billingkey = diagnosis.getBilling_key();

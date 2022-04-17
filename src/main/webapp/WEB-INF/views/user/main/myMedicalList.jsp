@@ -4,7 +4,7 @@
 <html>
 <head>
     <title>나의 진료 내역</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <link rel="stylesheet" href="/resources/css/pharCustomerDetail.css"/>
     <%-- 구글 아이콘 CDN링크 --%>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -12,7 +12,7 @@
 </head>
 <body>
 <div class="container">
-    <div class="col mt-3">
+    <div class="col mt-5">
         <div class="list-header text-center" id="userBanner">
             <h1 id="logo">Homespital</h1>
         </div>
@@ -20,7 +20,7 @@
         <p class="text-end fs-4">마이페이지 > 나의진료내역</p>
 
         <div class="card p-3">
-            <div class="card-body p-4">
+            <div class="card-body">
                 <div class="text-center table-responsive">
                     <table class="table">
                         <thead>

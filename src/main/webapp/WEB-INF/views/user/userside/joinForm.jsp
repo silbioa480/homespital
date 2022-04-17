@@ -57,7 +57,7 @@
                     <table>
                         <tr>
                             <th>
-                                <label style="width: 110px" for="email">이메일</label>
+                                <label for="email">이메일</label>
                             </th>
                             <td>
                                 <input class="signup_inputs user_border" type="email" id="email" name="email"
@@ -100,12 +100,11 @@
                                 <label for="SocialSecurityNumber1">주민등록번호</label>
                             </th>
                             <td>
-                                <div style="display:flex">
+                                <div>
                                     <input class="signup_inputs user_border" id="SocialSecurityNumber1"
-                                           name="SocialSecurityNumber1" type="text" maxlength="6" style="width: 285px">&nbsp__&nbsp
+                                           name="SocialSecurityNumber1" type="text" maxlength="6">&nbsp__&nbsp
                                     <input class="signup_inputs user_border" type="password" id="SocialSecurityNumber2"
-                                           name="SocialSecurityNumber2"
-                                           maxlength="7" style="width: 285px">
+                                           name="SocialSecurityNumber2" maxlength="7">
                                 </div>
                                 <div class="error"></div>
                             </td>
@@ -115,7 +114,7 @@
                                 <label for="phone">휴대폰 번호</label>
                             </th>
                             <td>
-                                <div style="display:flex">
+                                <div>
                                     <input class="signup_inputs user_border" id="phone" type="text" name="phone"
                                            title="전화번호 입력" style=""/>
                                     <input type="button" id="phoneChk" class="w-btn" value="인증번호 받기">
@@ -147,32 +146,38 @@
                     <hr style="height:3px">
                     <table>
                         <colgroup>
-                            <col style="width:20%">
+                            <col>
                             <col>
                         </colgroup>
                         <tbody>
                         <tr>
-                            <th>우편번호</th>
+                            <th>
+                                <div style="width: 110px;">우편번호</div>
+                            </th>
                             <td>
                                 <div style="display:flex">
                                     <input type="hidden" id="confmKey" name="confmKey" value="">
                                     <input class="signup_inputs user_border" type="text" id="zipNo" name="zipNo"
-                                           readonly style=" width:200px">
+                                           readonly>
                                     <input type="button" value="주소검색" onclick="goPopup()"
                                            class="w-btn">
                                 </div>
                             </td>
                         </tr>
                         <tr>
-                            <th>도로명주소</th>
+                            <th>
+                                <div>도로명주소</div>
+                            </th>
                             <td><input class="signup_inputs user_border" type="text" id="roadFullAddr"
-                                       name="roadFullAddr" style="width:85%"></td>
+                                       name="roadFullAddr"></td>
                         </tr>
                         <tr>
-                            <th>상세주소</th>
+                            <th>
+                                <div>상세주소</div>
+                            </th>
                             <td>
                                 <input class="signup_inputs user_border" type="text" id="addrDetail"
-                                       name="addrDetail" style="width:40%" value="">
+                                       name="addrDetail" value="">
 
                             </td>
                         </tr>

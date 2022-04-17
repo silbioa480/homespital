@@ -18,7 +18,7 @@
     </noscript>
     <title>Homespital</title>
 </head>
-<body class="is-preload">
+<body class="is-preload" style="overflow-x: hidden;">
 <%--&lt;%&ndash;약국 메인 section 태영&ndash;%&gt;--%>
 <%--<section id="intro" class="main style1 dark fullscreen">--%>
 <%--    <div class="content">--%>
@@ -48,9 +48,8 @@
     </div>
     <%--약국 메인 화면 이미지 태영      --%>
     <div class="image-box">
-        <img width="250px" height="300px" src="/resources/img/design/p_main_image1.jpg" alt="로그인메인이미지"/>
+        <img width="250px" height="300px" src="/resources/img/design/p_main_image_round.png" alt="로그인메인이미지"/>
     </div>
-    <a href="#one" class="more scrolly" style="color: #fff;"></a>
 </section>
 
 
@@ -194,9 +193,9 @@
         $(window).scroll(function () {
             var pageTop = $(window).scrollTop();
             var oneT = $('#one').offset().top;
-            var twoT = $('#two').offset().top;
+            // var twoT = $('#two').offset().top;
 
-            if (pageTop >= oneT && pageTop < twoT) {
+            if (pageTop >= oneT) {
                 $('#logo').attr('src', '/resources/img/design/logo_P_nav.png');
             } else {
                 $('#logo').attr('src', '/resources/img/design/main_base_nav.png');

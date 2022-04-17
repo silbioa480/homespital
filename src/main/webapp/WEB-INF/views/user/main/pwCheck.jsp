@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <link rel="stylesheet" href="/resources/css/login.css"/>
     <script src="/resources/js/login/login.js"></script>
 </head>

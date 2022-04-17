@@ -178,7 +178,7 @@ public class PharmacyController {
     // 인성 : 환자에 대한 진료내역과 의사의 데이터
     @GetMapping("/customerDetail/{diagnosis_number}")
     public ModelAndView customerDetail(@PathVariable int diagnosis_number) {
-        ModelAndView mv = new ModelAndView("/admin/phar/customerDetail");
+        ModelAndView mv = new ModelAndView("admin/phar/customerDetail");
         try {
             if (session.getAttribute("pharmacy") == null) throw new Exception("로그인 되어있지 않음");
             Pharmacy pharmacy = (Pharmacy) session.getAttribute("pharmacy");

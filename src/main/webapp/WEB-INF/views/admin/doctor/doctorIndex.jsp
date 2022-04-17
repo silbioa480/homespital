@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="/resources/css/main2.css"/>
     </noscript>
 </head>
-<body class="is-preload">
+<body class="is-preload" style="overflow-x: hidden;">
 <!-- Intro -->
 <section id="banner">
     <div class="inner">
@@ -26,9 +26,8 @@
     </div>
     <%--환자 메인 화면 이미지 태영      --%>
     <div class="image-box">
-        <img width="250px" height="300px" src="/resources/img/design/d_main_image.jpg" alt="로그인메인이미지"/>
+        <img width="250px" height="300px" src="/resources/img/design/d_main_image_round.png" alt="로그인메인이미지"/>
     </div>
-    <a href="#one" class="more scrolly" style="color: #fff;"></a>
 </section>
 
 <!-- One -->
@@ -160,9 +159,9 @@
         $(window).scroll(function () {
             var pageTop = $(window).scrollTop();
             var oneT = $('#one').offset().top;
-            var twoT = $('#two').offset().top;
+            // var twoT = $('#two').offset().top;
 
-            if (pageTop >= oneT && pageTop < twoT) {
+            if (pageTop >= oneT) {
                 $('#logo').attr('src', '/resources/img/design/logo_D_nav.png');
             } else {
                 $('#logo').attr('src', '/resources/img/design/main_base_nav.png');
