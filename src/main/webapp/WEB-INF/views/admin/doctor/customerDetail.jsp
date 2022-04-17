@@ -30,7 +30,7 @@
 
         </div>
 
-        <p class="text-end fs-4"><a href="/doctor/docMedicalList">환자 진료내역</a> > 진료 상세내역</p>
+        <p class="text-end fs-4">진료 상세내역</p>
 
         <div class="card p-3">
             <div class="card-body p-4">
@@ -85,10 +85,11 @@
                         </tr>
 
                         <tr>
-                            <th>이미지</th>
+                            <th>증상 이미지</th>
                             <td>
                                 <c:forEach var="image" items="${images}">
-                                    <img src="/resources/img/uploadImg/${image}" max-width="100%"
+                                    <img src="/resources/img/uploadImg/${image}"
+                                         style="max-width:270px; max-height:600px;"
                                          onerror="this.src='https://via.placeholder.com/500/000000/FFFFFF/?text=Error...+NoImgSelected'">
                                 </c:forEach>
                             </td>
@@ -112,7 +113,7 @@
                         </tr>
                         <tr>
                             <th>
-                                진단 소견서 / 검진 비용 등록/변경
+                                진단 소견서 / 검진 비용 제출
                             </th>
                             <td>
                                 <button type="button" id="submitDoctorOpinion">제출하기</button>
@@ -166,66 +167,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card p-3">
-                <h4 class="card-title"><strong>진료 예약 내역</strong></h4>
-                <div class="card-body">
-                    <div class="row g-0">
-                        <div class="col-md-4" style="min-width: 200px; max-width: 200px;">
-                            <div class="img-wrapper">
-                                <%--                            <img alt="의사사진 영역"--%>
-                                <%--                                 src="<c:choose><c:when test="${not empty doctor.doctor_profile_image_name || doctor.doctor_profile_image_name eq ''}">/img/doctorImg/${doctor.doctor_profile_image_name}</c:when>--%>
-                                <%--                                            <c:otherwise>https://img.freepik.com/free-photo/portrait-of-asian-doctor-woman-cross-arms-standing-in-medical-uniform-and-stethoscope-smiling-at-camera-white-background_1258-83220.jpg</c:otherwise></c:choose>"/>--%>
-                                <img alt="의사사진 영역" src="${doctor.doctor_profile_image_name}"
-                                     onerror="this.src='https://img.freepik.com/free-photo/portrait-of-asian-doctor-woman-cross-arms-standing-in-medical-uniform-and-stethoscope-smiling-at-camera-white-background_1258-83220.jpg'">
-                            </div>
-                            <button class="btn btn-secondary ml-auto"
-                                    onclick="location.href='/doctorDetail/${doctor.doctor_number}';">
-                                <i class="fa-solid fa-magnifying-glass">의료진 상세보기</i>
-                            </button>
-                        </div>
-                        <div class="col-md-8 card-body">
-                            <div class="card-title d-flex justify-content-between">
-                                <div class="d-flex">
-                                    <h4 class="font-weight-bolder"
-                                        style="padding-right: 10px !important;">${diagnosis.doctor_name}</h4>
-                                    <span class="font-weight-normal align-text-bottom">의사 / ${diagnosis.doctor_diagnosis_type}</span>
-                                </div>
-                            </div>
-                            <div class="card-text">
-                                <p class="card-text">
-                                <table class="table table-borderless timetable">
-                                    <tr>
-                                        <th>병원이름:</th>
-                                        <td>${diagnosis.hospital_name}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>주소 :</th>
-                                        <td>${diagnosis.zip_code} ${diagnosis.street_address} ${diagnosis.detail_address}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>진료시간:</th>
-                                        <td>
-                                            ${diagnosis.working_time}
 
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>점심시간:</th>
-                                        <td>
-                                            ${diagnosis.lunch_time}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>휴진:</th>
-                                        <td>매주 ${diagnosis.holiday}요일</td>
-                                    </tr>
-                                </table>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>
@@ -248,8 +190,8 @@
                 },
                 async: false,
                 success: function (data) {
-
                     alert("소견 및 금액 등록 완료");
+                    window.location.reload();
                 },
                 error: function () {
                     alert("소견 및 금액 등록 실패");
@@ -286,8 +228,8 @@
             '<div class="modal-content">' +
             '<div class="modal-header">' +
             '<h5 class="modal-title" id="staticBackdropLabel">진료 영수증 업로드</h5>' +
-            '<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">' +
-            '<span aria-hidden="true">&times;</span>' +
+            // '<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">' +
+            // '<span aria-hidden="true">&times;</span>' +
             '</button>' +
             '</div><form action="/doctor/receiptUpload" method="POST" enctype="multipart/form-data"><div class="modal-body">' +
             "<input type='hidden' name='diagnosis_number' value='" + ${diagnosis.diagnosis_number} +"'>" +
@@ -313,8 +255,8 @@
             '<div class="modal-content">' +
             '<div class="modal-header">' +
             '<h5 class="modal-title" id="staticBackdropLabel">처방전 업로드</h5>' +
-            '<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">' +
-            '<span aria-hidden="true">&times;</span>' +
+            // '<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">' +
+            // '<span aria-hidden="true">&times;</span>' +
             '</button>' +
             '</div><form action="/doctor/prescriptionUpload" method="POST" enctype="multipart/form-data"><div class="modal-body">' +
             "<input type='hidden' name='diagnosis_number' value='" + (${diagnosis.diagnosis_number}) + "'>" +
@@ -353,6 +295,10 @@
 
     // 진료 완료하기
     function finishBtn(e) {
+        if (${empty diagnosis.diagnosis_money || empty diagnosis.doctor_opinion}) {
+            alert('진단 소견서와 검진 비용이 등록되지 않았습니다.');
+            return;
+        }
         if (confirm("진료를 완료하시겠습니까?") == true) {
             $.ajax({
                 url: "/doctor/finishDiagnosis",

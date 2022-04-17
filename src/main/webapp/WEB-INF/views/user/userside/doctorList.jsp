@@ -17,10 +17,14 @@
 <style>
     a:link, a:visited, a:hover, a:active {
         color: grey;
-        text-decoration: none;
-    !important
+        text-decoration: none !important;
     }
 
+    @media screen and (max-width: 768px) {
+        .doctorBtn {
+            flex-direction: column;
+        }
+    }
 </style>
 
 <body class="is-preload">
@@ -35,15 +39,15 @@
             <li><a href="/doctorList" class="active">의료진 선택</a></li>
         </ul>
     </nav>
-    <footer>
-        <ul class="icons">
-            <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-            <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-            <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-            <li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
-            <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-        </ul>
-    </footer>
+    <%--    <footer>--%>
+    <%--        <ul class="icons">--%>
+    <%--            <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>--%>
+    <%--            <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>--%>
+    <%--            <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>--%>
+    <%--            <li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>--%>
+    <%--            <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>--%>
+    <%--        </ul>--%>
+    <%--    </footer>--%>
 </div>
 <%--side-nav 끝 by 소연 4/7--%>
 <!-- Header -->
@@ -129,7 +133,7 @@
                                     <span
                                             id="docType">의사 / ${doctor.doctor_diagnosis_type}</span>
                                 </div>
-                                <div class="d-flex">
+                                <div class="d-flex doctorBtn">
                                     <button class="btn btn-secondary ml-auto" id="detailBtn"
                                             onclick="location.href='/doctorDetail/${doctor.doctor_number}';">
                                         <i class="fa-solid fa-magnifying-glass">의료진 상세보기</i>

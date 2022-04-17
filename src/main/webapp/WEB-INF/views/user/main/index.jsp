@@ -13,44 +13,44 @@
     </noscript>
 
     <style>
-      .grid-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(800px, 1fr));
-        grid-auto-rows: minmax(150px, 0.5fr);
-        max-width: 800px;
-        margin: 0 auto;
-        text-align: center;
-      }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(800px, 1fr));
+            grid-auto-rows: minmax(150px, 0.5fr);
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
 
-      .grid-row,
-      .grid-item {
-        font-size: 40px;
-        display: block;
-        overflow: hidden;
+        .grid-row,
+        .grid-item {
+            font-size: 40px;
+            display: block;
+            overflow: hidden;
 
-      }
+        }
 
-      .grid-item img {
-        object-fit: cover;
-        object-position: center;
+        .grid-item img {
+            object-fit: cover;
+            object-position: center;
 
-      }
+        }
 
-      .grid-item {
-        transform: translateY(-10%);
-        opacity: 0;
-        color: black;
-        transition: 1000ms transform cubic-bezier(0.55, 0.055, 0.675, 0.19), 1000ms opacity cubic-bezier(0.55, 0.055, 0.675, 0.19) 600ms;
-      }
+        .grid-item {
+            transform: translateY(-10%);
+            opacity: 0;
+            color: black;
+            transition: 1000ms transform cubic-bezier(0.55, 0.055, 0.675, 0.19), 1000ms opacity cubic-bezier(0.55, 0.055, 0.675, 0.19) 600ms;
+        }
 
-      .grid-item.inview {
-        transform: translateY(0);
-        opacity: 1;
-        color: white;
-      }
+        .grid-item.inview {
+            transform: translateY(0);
+            opacity: 1;
+            color: white;
+        }
     </style>
 </head>
-<body class="is-preload">
+<body class="is-preload" style="overflow-x: hidden;">
 <!-- Intro -->
 <%--<section id="intro" class="main style1 dark fullscreen">--%>
 <%--    <div class="content">--%>
@@ -88,7 +88,7 @@
     <div class="image-box">
         <img width="250px" height="300px" src="/resources/img/design/u_main_img.png" alt="로그인메인이미지"/>
     </div>
-    <a href="#one" class="more scrolly" style="color: #fff;">Learn More</a>
+    <a href="#one" class="more scrolly" style="color: #fff;"></a>
 </section>
 
 
@@ -99,18 +99,18 @@
 <section id="one">
     <div class="gallery">
         <article class="from-left" style="display:table">
-            <div class="content box style2 information-left">
-                <img class="information-left-in" src="/resources/img/main/test_mobile.png" width="300" height="600"/>
+            <div class="content box style2 information-left" style="text-align: center">
+                <img src="/resources/img/design/u_01.png" width="600" height="600"/>
             </div>
         </article>
         <article class="from-right" style="display:table">
             <div class="content box style2 information-right">
                 <div class="information-right-in">
-                    <h1 style="color:#33CC99; font-size: 50px">비대면 진료</h1><br>
+                    <h1>비대면 진료</h1><br>
                     <h2>어디가 불편하세요?</h2><br>
                     <div>
-                        <p>지금 당장 예약 가능 한<br><br> 동네 최고 전문의에게 안전하고 신속하게 진료 받으세요.<br><br>
-                            내 위치를 중심으로 가까운 병원 순으로 검색이 가능합니다.</p>
+                        <p>지금 당장 예약 가능 한<br><br> 동네 최고 전문의에게<br><br> 안전하고 신속하게 진료 받으세요.<br><br>
+                            내 위치를 중심으로 가까운 병원 순으로<br><br> 검색이 가능합니다.</p>
                     </div>
                 </div>
             </div>
@@ -125,7 +125,7 @@
         <article class="from-left">
             <div class="content box style2 information-left">
                 <div class="information-left-in">
-                    <h1 style="color:#33CC99;font-size: 50px">화상채팅</h1><br>
+                    <h1>화상채팅</h1><br>
                     <h2>안전하고 정확하게<br>진료 받으세요</h2><br>
                     <div>
                         <p>어디서나 편하게 홈스피탈에서<br><br>제공하는 화상 서비스로<br><br>
@@ -136,27 +136,27 @@
         </article>
         <article class="from-right">
             <div class="content box style2 information-right">
-                <div class="information-right-in">
-                    <img src="/resources/img/main/test_mobile.png" width="300" height="600"/>
-                </div>
+                <div class="information-right-in"/>
+                <img src="/resources/img/design/u_02.png" width="600" height="600">
             </div>
-        </article>
+    </div>
+    </article>
     </div>
     <%--    <a href="#work" class="button style2 down anchored">Next</a>--%>
 </section>
 
 <%--<!-- Work -->--%>
-<section id="Three">
+<section id="three">
     <div class="gallery">
         <article class="from-left">
-            <div class="content box style2 information-left">
-                <img class="information-left-in" src="/resources/img/main/test_mobile.png" width="300" height="600"/>
+            <div class="content box style2 information-left" style="text-align: center">
+                <img src="/resources/img/design/u_03.png" width="600" height="600"/>
             </div>
         </article>
         <article class="from-right">
             <div class="content box style2 information-right">
                 <div class="information-right-in">
-                    <h1 style="color:#33CC99;font-size: 50px">약 배달/약국내방</h1><br>
+                    <h1>약 배달/약국내방</h1><br>
                     <h2>처방약 배달을<br>쉽고 빠르게</h2><br>
                     <div>
                         <p>약국에서 안전하고 신속하게 처방약을 배달합니다.<br><br>처방약 조제가 끝나면 라이더가 내 위치까지 안전하게<br><br>
@@ -167,7 +167,7 @@
         </article>
     </div>
 </section>
-<section id="Four">
+<section id="four">
     <div class="gallery">
         <article class="from-left">
             <div class="content box style2 information-left">
@@ -183,7 +183,7 @@
         <article class="from-right">
             <div class="content box style2 information-right">
                 <div class="information-right-in">
-                    <img src="/resources/img/main/test_mobile.png" width="300" height="600"/>
+                    <img src="/resources/img/design/u_04.png" width="500" height="600"/>
                 </div>
             </div>
         </article>
@@ -193,20 +193,20 @@
 
 
 <%--<!-- Work -->--%>
-<section id="Five">
+<section id="five">
     <div class="gallery">
         <article class="from-left">
-            <div class="content box style2 information-left">
-                <img class="information-left-in" src="/resources/img/main/test_mobile.png" width="300" height="600"/>
+            <div class="content box style2 information-left" style="text-align: center">
+                <img src="/resources/img/design/u_05.png" width="500" height="600"/>
             </div>
         </article>
         <article class="from-right">
             <div class="content box style2 information-right">
                 <div class="information-right-in">
-                    <h1 style="color:#33CC99;font-size: 50px">진료 영수증 저장</h1><br>
+                    <h1>진료 영수증 저장</h1><br>
                     <h2>진료영수증 관리를<br>쉽고 간편하게</h2><br>
                     <div>
-                        <p>내가 받은 비대면 진료의 진료영수증을 모바일에서 쉽게<br><br>
+                        <p>내가 받은 비대면 진료의 진료영수증을 모바일에서<br><br>
                             쉽게 확인이 가능합니다.</p>
                     </div>
                 </div>
@@ -218,9 +218,9 @@
 
 <!--텍스트 스크롤(준근)-->
 <section id="Six">
-    <div style="margin-top:130px">
+    <div style="padding-top:130px">
         <div class="grid-container">
-            <p class="grid-item" style="color:#2A2D42; font-size: 36px;"><strong>이럴때 사용하세요!</strong></p>
+            <p class="grid-item" style="color:#2A2D42"><strong>이럴때 사용하세요!</strong></p>
             <p class="grid-item">자가격리로 외출을 하지 못 할 때</p>
             <p class="grid-item">만성질환으로 매번 처방약을 받으러 병원 갈 때</p>
             <p class="grid-item">아이, 노인을 모시고 병원까지 이동이 힘들 때</p>
@@ -420,9 +420,10 @@
         $(window).scroll(function () {
             var pageTop = $(window).scrollTop();
             var oneT = $("#one").offset().top;
-            var twoT = $("#two").offset().top;
+            var sixT = $("#Six").offset().top;
+            var sevenT = $("#Seven").offset().top;
 
-            if (pageTop >= oneT && pageTop < twoT) {
+            if (pageTop >= oneT && pageTop < sixT || pageTop >= sevenT) {
                 $("#logo").attr("src", "/resources/img/design/logo_U_nav.png");
                 $(".nav-Link").css({"color": "#red"});
             } else {

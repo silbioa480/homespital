@@ -129,7 +129,7 @@ public class MemberServiceImpl implements MemberService {
         int checkNum = random.nextInt(999999);
         String setFrom = "dlsdydtlr@gmail.com";
         String toMail = email;
-        String title = ("인증이메일입니다.");
+        String title = ("[홈스피탈]인증이메일입니다.");
         String content = "<h1>인증번호는" + checkNum + "입니다</h1>";
 
         MimeMessage message = mailSender.createMimeMessage();

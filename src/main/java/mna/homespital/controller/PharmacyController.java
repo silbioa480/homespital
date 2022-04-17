@@ -178,7 +178,7 @@ public class PharmacyController {
     // 인성 : 환자에 대한 진료내역과 의사의 데이터
     @GetMapping("/customerDetail/{diagnosis_number}")
     public ModelAndView customerDetail(@PathVariable int diagnosis_number) {
-        ModelAndView mv = new ModelAndView("/admin/phar/customerDetail");
+        ModelAndView mv = new ModelAndView("admin/phar/customerDetail");
         try {
             if (session.getAttribute("pharmacy") == null) throw new Exception("로그인 되어있지 않음");
             Pharmacy pharmacy = (Pharmacy) session.getAttribute("pharmacy");
@@ -306,7 +306,7 @@ public class PharmacyController {
             String pharPhone = phar.getPharmacy_phone();
             String pharStreet = phar.getStreet_address();
             String pharDetail = phar.getDetail_address();
-            params.put("to", "01089303955");
+            params.put("to", "01051757554");
             params.put("from", "01089303955");
             params.put("type", "LMS");
             params.put("text", "약 조제가 완료되었습니다.\n" + "약국명: " + pharName + "\n" + "약국전화번호: " + pharPhone + "\n" + "약국주소: " + pharStreet + " " + pharDetail + "\n" + "환자이름: " + userName);

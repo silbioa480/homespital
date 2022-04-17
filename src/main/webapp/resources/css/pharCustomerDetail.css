@@ -949,6 +949,8 @@ footer {
 
 table {
     width: 100%;
+    min-width: 480px;
+    overflow-x: scroll;
 }
 
 table.default {
@@ -1237,7 +1239,7 @@ body {
 }
 
 .timetable > tbody > tr > th {
-    width: 80px;
+    width: fit-content;
 }
 
 #deiliveryBtn {
@@ -1310,9 +1312,15 @@ p {
 }
 
 /*약사 제조버튼, 제조완료 버튼*/
-#makeMediBtn,
-#successMakeBtn {
+#makeMediBtn {
     background-color: #FFCD4A;
+!important;
+    color: #fff;
+!important;
+}
+
+#successMakeBtn {
+    background-color: #FD9F28;
 !important;
     color: #fff;
 !important;
