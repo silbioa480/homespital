@@ -94,7 +94,7 @@
                                 </c:forEach>
                             </td>
                         </tr>
-                        <c:if test="${diagnosis.diagnosis_number >=3}">
+                        <c:if test="${diagnosis.diagnosis_status >=3}">
                             <tr>
                                 <th>진단 소견서</th>
                                 <td>
@@ -111,15 +111,17 @@
                                                value="${diagnosis_money}" min="0">
                                     </div>
                                 </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    진단 소견서 / 검진 비용 제출
-                                </th>
-                                <td>
-                                    <button type="button" id="submitDoctorOpinion">제출하기</button>
-                                </td>
-                            </tr>
+                            </tr
+                            <c:if test="${diagnosis.diagnosis_status eq 3}">
+                                <tr>
+                                    <th>
+                                        진단 소견서 / 검진 비용 제출
+                                    </th>
+                                    <td>
+                                        <button type="button" id="submitDoctorOpinion">제출하기</button>
+                                    </td>
+                                </tr>
+                            </c:if>
                         </c:if>
                         </tbody>
                     </table>
