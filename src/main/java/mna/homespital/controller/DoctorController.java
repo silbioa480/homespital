@@ -374,11 +374,6 @@ public class DoctorController {
             params.put("type", "LMS");
             params.put("text", "진료를 시작합니다.\n" +
                     "1대1 전용화상진료실\n" +
-                    "\n" +
-                    "회의 ID: 210 810 8130\n" +
-                    "비밀번호: 904132\n" +
-                    "\n" +
-                    "https://whaleon.us/o/CSpZOC/d9db5b8d345a45f292d255273158bcf4\n" + "\n" +
                     "의사명:" + dtcName + "\n" +
                     "환자명:" + userName + "\n"); // 문자 내용 입력 ,담당의사 이름,환자이름
             params.put("app_version", "test app 1.2"); // application name and version
