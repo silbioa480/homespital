@@ -369,16 +369,16 @@ public class DoctorController {
             String dtcName = dtc.getDoctor_name();
             String userName = user.getUser_name();
             String dtcPhone = dtc.getDoctor_phone();
-            params.put("to", "01033633089\n");// 수신전화번호
+            params.put("to", user.getUser_phone());// 수신전화번호
             params.put("from", "01089303955");// 발신전화번호
             params.put("type", "LMS");
             params.put("text", "진료를 시작합니다.\n" +
                     "1대1 전용화상진료실\n" +
                     "\n" +
-                    "회의 ID: 210 810 8130\n" +
-                    "비밀번호: 904132\n" +
+                    "https://homespital.herokuapp.com/meeting\n" +
                     "\n" +
-                    "https://whaleon.us/o/CSpZOC/d9db5b8d345a45f292d255273158bcf4\n" + "\n" +
+                    dig.getDiagnosis_wait_number() + "번 방으로 들어가주세요.\n" +
+                    "\n" +
                     "의사명:" + dtcName + "\n" +
                     "환자명:" + userName + "\n"); // 문자 내용 입력 ,담당의사 이름,환자이름
             params.put("app_version", "test app 1.2"); // application name and version
