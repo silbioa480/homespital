@@ -65,13 +65,11 @@
     </insert>
 
     <update id="changeDiagBKUsed" parameterType="int">
-        SELECT *
-        FROM homespital.diagnosis;
         update diagnosis
         set billing_key = concat(
                 case
                     when (left(billing_key,2) = "!!") then "!!!!"
-                    else then "!!"
+                    else "!!"
                     end
             , RIGHT(billing_key, 80))
         where diagnosis_number = #{diagnosis_number}

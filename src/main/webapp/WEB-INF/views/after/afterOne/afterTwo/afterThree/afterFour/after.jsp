@@ -60,27 +60,26 @@
                 <div class="content__item-imgwrap"><div class="content__item-img" style="background-image: url(/resources/img/after/YS.jpg);"></div></div>
                 <div class="content__item-deco"></div>
                 <h2 class="content__item-title" style="margin-left: 880px;">YS</h2>
-                <p class="content__item-description" style="font-weight: 550;">새로운 팀원 분들과 함께 작업한 이 프로젝트는 배운 것이 많은 매우 유익한 시간이었습니다.
-                    프로젝트를 진행하면서 다른 팀원 분들이 작성한 SQL 쿼리문 등을 보면서 배우는 등, 제가 잘 모르는 분야에 대한 이해도가 늘었습니다.
-                    또한 팀원 분들이 서로 소통하고, 서로 부족한 부분을 도움으로써, 커뮤니케이션의 중요성에 대해 다시 한 번 확인 할 수 있었습니다.</p>
+                <p class="content__item-description" style="font-weight: 550;">이번 프로젝트를 통해 협업하는 방법을 배웠고 기술적인 부분에서도 향상 되었음을 느꼈습니다.<br>
+                    열심히 해주신 팀원분들 고생하셨고 감사합니다.
+                </p>
             </div>
             <div class="content__item content__item--wide">
                 <span class="content__item-number" style="top: -14vw;">taey</span>
                 <div class="content__item-imgwrap"><div class="content__item-img" style="background-image: url(/resources/img/after/taey.png);"></div></div>
                 <div class="content__item-deco"></div>
                 <h2 class="content__item-title" style="margin-left: -550px; margin-top: -300px;">taey</h2>
-                <p class="content__item-description" style="font-weight: 550;">새로운 팀원 분들과 함께 작업한 이 프로젝트는 배운 것이 많은 매우 유익한 시간이었습니다.<br>
-                    프로젝트를 진행하면서 다른 팀원 분들이 작성한 SQL 쿼리문 등을 보면서 배우는 등,<br> 제가 잘 모르는 분야에 대한 이해도가 늘었습니다.
-                    또한 팀원 분들이 서로 소통하고,<br> 서로 부족한 부분을 도움으로써, 커뮤니케이션의 중요성에 대해 다시 한 번 확인 할 수 있었습니다.</p>
+                <p class="content__item-description" style="font-weight: 550;">이번프로젝트 개발초반에  코로나로 인해  거의 참여를 못해서 제자신의  아쉬움과<br>
+                    팀원분들한테  미안함을 느꼈습니다. 그래도 제가 맡은 역할들을 달성하기 위해<br>
+                    많이 노력을 하였고 팀원들의 많은 노력이  있었기에  좋은 결과가 나왔다고 생각합니다.<br>
+                    이상입니다.</p>
             </div>
             <div class="content__item content__item--wide">
                 <span class="content__item-number" style="top: -11vw; right: 20vw;">CJK</span>
                 <div class="content__item-imgwrap"><div class="content__item-img" style="background-image: url(/resources/img/after/CJK.png);"></div></div>
                 <div class="content__item-deco"></div>
                 <h2 class="content__item-title" style="margin-left: 920px;">CJK</h2>
-                <p class="content__item-description" style="font-weight: 550;">새로운 팀원 분들과 함께 작업한 이 프로젝트는 배운 것이 많은 매우 유익한 시간이었습니다.
-                    프로젝트를 진행하면서 다른 팀원 분들이 작성한 SQL 쿼리문 등을 보면서 배우는 등, 제가 잘 모르는 분야에 대한 이해도가 늘었습니다.
-                    또한 팀원 분들이 서로 소통하고, 서로 부족한 부분을 도움으로써, 커뮤니케이션의 중요성에 대해 다시 한 번 확인 할 수 있었습니다.</p>
+                <p class="content__item-description" style="font-weight: 550;">준근님 느낀점 짧게라도</p>
             </div>
 
             <div class="content__item content__item--wide">
