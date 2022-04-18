@@ -63,9 +63,9 @@ public class DoctorServiceImpl implements DoctorService {
         // 현재 페이지에 보여줄 마지막 페이지 수(10,20,30,..)
         int endPage = startPage + 10 - 1;
 
-        System.out.println("the end page : "+ endPage);
+        System.out.println("the end page : " + endPage);
         if (endPage > maxPage) endPage = maxPage;
-        System.out.println("the real end page : "+ endPage);
+        System.out.println("the real end page : " + endPage);
         pageInfo.setStartPage(startPage);
         pageInfo.setEndPage(endPage);
         pageInfo.setMaxPage(maxPage);
@@ -79,7 +79,7 @@ public class DoctorServiceImpl implements DoctorService {
         Map<String, Object> param = new HashMap<>();
         param.put("doctor_diagnosis_type", doctor_diagnosis_type);
         param.put("startrow", startrow);
-        System.out.println("tstartrow"+ startrow);
+        System.out.println("tstartrow" + startrow);
         return doctorDAO.queryDoctor(param);
         //return list;
     }
@@ -170,13 +170,19 @@ public class DoctorServiceImpl implements DoctorService {
     //진료영수증 업로드(준근)
     @Override
     public void uploadReceipt(int diagnosis_number, String receiptFileName) throws Exception {
-        doctorDAO.uploadReceipt(diagnosis_number, receiptFileName);
+        Map<String, Object> param = new HashMap<>();
+        param.put("diagnosis_number", diagnosis_number);
+        param.put("diagnosis_file_name", receiptFileName);
+        doctorDAO.uploadReceipt(param);
     }
 
     // 처방전 업로드(준근)
     @Override
     public void uploadPrescription(int diagnosis_number, String prescriptionFileName) throws Exception {
-        doctorDAO.uploadPrescription(diagnosis_number, prescriptionFileName);
+        Map<String, Object> param = new HashMap<>();
+        param.put("diagnosis_number", diagnosis_number);
+        param.put("prescription_file_name", prescriptionFileName);
+        doctorDAO.uploadPrescription(param);
     }
 
     @Override
