@@ -35,7 +35,7 @@
     <div class="gallery">
         <article class="from-left" style="display:table">
             <div class="content box style2 information-left">
-                <img class="information-left-in" src="/resources/img/main/진료과보기_모바일.png" width="300" height="600"/>
+                <img class="information-left-in" src="/resources/img/design/D_01.png" width="300" />
             </div>
         </article>
         <article class="from-right" style="display:table">
@@ -80,7 +80,7 @@
         <article class="from-right">
             <div class="content box style2 information-right">
                 <div class="information-right-in">
-                    <img src="/resources/img/main/진료과보기_모바일.png" width="300" height="600"/>
+                    <img src="/resources/img/design/d_02.png" width="600px;" />
                 </div>
             </div>
         </article>
@@ -93,7 +93,7 @@
     <div class="gallery">
         <article class="from-left">
             <div class="content box style2 information-left">
-                <img class="information-left-in" src="/resources/img/main/진료과보기_모바일.png" width="300" height="600"/>
+                <img class="information-left-in" src="/resources/img/design/d_03.png" width="600px;" />
             </div>
         </article>
         <article class="from-right">
@@ -134,7 +134,7 @@
         <article class="from-right">
             <div class="content box style2 information-right">
                 <div class="information-right-in">
-                    <img src="/resources/img/main/진료과보기_모바일.png" width="300" height="600"/>
+                    <img src="/resources/img/design/p_04.png" width="600px;" />
                 </div>
             </div>
         </article>
