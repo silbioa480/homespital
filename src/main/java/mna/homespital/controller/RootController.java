@@ -354,4 +354,10 @@ public class RootController {
         return new ModelAndView("common/terms/privacyPolicy");
     }
 
+    // 인성: 소감 jsp
+    @GetMapping("/after")
+    public ModelAndView after() {
+        return new ModelAndView("after/afterOne/afterTwo/afterThree/afterFour/after");
+    }
+
 }

@@ -13,7 +13,8 @@
 <div class="container">
     <div class="col mt-3">
         <div class="list-header text-center" id="doctorBanner">
-            <h1 id="logo">Homespital</h1>
+            <img src="/resources/img/design/d_banner.png" />
+<%--            <h1 id="logo">Homespital</h1>--%>
         </div>
 
         <p class="text-end fs-4">환자 진료내역</p>
