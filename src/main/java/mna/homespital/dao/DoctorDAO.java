@@ -3,7 +3,6 @@ package mna.homespital.dao;
 import mna.homespital.dto.Diagnosis;
 import mna.homespital.dto.Doctor;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -52,10 +51,10 @@ public interface DoctorDAO {
     void finishDiagnosis(int diagnosis_number) throws Exception;
 
     // 진료영수증 업로드(준근)
-    void uploadReceipt(@Param("diagnosis_number") int diagnosis_number, @Param("diagnosis_file_name") String receiptFileName) throws Exception;
+    void uploadReceipt(Map<String, Object> param) throws Exception;
 
     // 처방전 업로드(준근)
-    void uploadPrescription(@Param("diagnosis_number") int diagnosis_number, @Param("prescription_file_name") String prescriptionFileName) throws Exception;
+    void uploadPrescription(Map<String, Object> param) throws Exception;
 
     //의사번호를 통해서 환자 전화번호 갖고오기 태영
     String getUserPhone(int doctor_number) throws Exception;

@@ -71,7 +71,7 @@
         set billing_key = concat(
                 case
                     when (left(billing_key,2) = "!!") then "!!!!"
-                    else "!!"
+                    else then "!!"
                     end
             , RIGHT(billing_key, 80))
         where diagnosis_number = #{diagnosis_number}

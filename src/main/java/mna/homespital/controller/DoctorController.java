@@ -369,7 +369,7 @@ public class DoctorController {
             String dtcName = dtc.getDoctor_name();
             String userName = user.getUser_name();
             String dtcPhone = dtc.getDoctor_phone();
-            params.put("to", user.getUser_phone());// 수신전화번호
+            params.put("to", "01051757554");// 수신전화번호
             params.put("from", "01089303955");// 발신전화번호
             params.put("type", "LMS");
             params.put("text", "진료를 시작합니다.\n" +
