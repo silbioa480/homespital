@@ -79,7 +79,11 @@
                 <div class="content__item-imgwrap"><div class="content__item-img" style="background-image: url(/resources/img/after/CJK.png);"></div></div>
                 <div class="content__item-deco"></div>
                 <h2 class="content__item-title" style="margin-left: 920px;">CJK</h2>
-                <p class="content__item-description" style="font-weight: 550;">준근님 느낀점 짧게라도</p>
+                <p class="content__item-description" style="font-weight: 550;">
+                    생각보다 프로젝트 규모를 크게 잡은 느낌이 있지만 그로인해 정말 많은 실력 향상이 이루어졌습니다.<br>
+                    또한 프로젝트를 진행하면서 개발실력 뿐만 아닌 내 자신을 한단계 성장시킨 계기가 된 것 같습니다.<br>
+                    같이 프로젝트 하며 부족한 점을 메꿔준 팀원과 강사님들 모두 감사합니다.
+                </p>
             </div>
 
             <div class="content__item content__item--wide">

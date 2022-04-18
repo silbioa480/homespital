@@ -227,7 +227,7 @@ public class PaymentServiceImpl implements PaymentService {
                     cardDAO.issueReceipt(receipt);
                     if (resp.getString("status").equals("paid"))
                         cardDAO.changeDiagBKUsed(diagnosis_number);
-                    else throw new Exception("결제 실패");
+                    else throw new Exception("결제 실패: " + resp.toString());
 
                 } catch (Exception e) {
                     e.printStackTrace();
