@@ -15,8 +15,8 @@
 <div class="container">
     <div class="col mt-3">
         <div class="list-header text-center" id="pharBanner">
-            <img src="/resources/img/design/p_banner.png" />
-<%--            <h1 id="logo">Homespital</h1>--%>
+            <img src="/resources/img/design/p_banner.png"/>
+            <%--            <h1 id="logo">Homespital</h1>--%>
         </div>
 
 
@@ -200,7 +200,7 @@
                     // 처방전이 있을 때만 버튼 생성, 없으면 빈문자열
                     let receiptFile = "";
                     if (item.is_prescription_upload === 2) {
-                        receiptFile = "<a href='/resources/img/uploadPrescription/" + item.diagnosis_file_name + "' download><span class='material-icons'>file_download</span></a>"
+                        receiptFile = "<a href='/resources/img/uploadPrescription/" + item.prescription_file_name + "' download><span class='material-icons'>file_download</span></a>"
                     }
                     let is_delivery = "방문";
                     if (item.is_delivery === true) {
