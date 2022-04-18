@@ -1,8 +1,10 @@
 package mna.homespital.controller;
 
 import mna.homespital.dto.Doctor;
+import mna.homespital.dto.User;
 import mna.homespital.model.Room;
 import mna.homespital.model.RoomService;
+import mna.homespital.service.DoctorService;
 import mna.homespital.service.MemberService;
 import mna.homespital.util.Parser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,9 @@ public class MeetingController {
 
     @Autowired
     MemberService memberService;
+
+    @Autowired
+    DoctorService doctorService;
 
     @Autowired
     RoomService roomService;
@@ -69,6 +74,20 @@ public class MeetingController {
         optionalId.ifPresent(id -> Optional.ofNullable(uuid).ifPresent(name -> roomService.addRoom(new Room(id))));
 
         mav = displayMainPage(optionalId.orElse(null), uuid);
+        try {
+            String username = null;
+            Doctor doctor = (Doctor) session.getAttribute("doctor");
+            User user = memberService.queryMember((String) session.getAttribute("email"));
+            if (doctor != null) {
+                username = doctor.getDoctor_name();
+            } else if (user != null) {
+                username = user.getUser_name();
+            }
+
+            if (username != null) mav.addObject("username", username);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return mav;
     }
 
@@ -106,14 +125,17 @@ public class MeetingController {
             }
         }
         try {
-            String currentuser = null;
-            if (session.getAttribute("doctor") != null) {
-                currentuser = ((Doctor) session.getAttribute("doctor")).getDoctor_name();
-            } else if (session.getAttribute("email") != null) {
-                currentuser = memberService.queryMember((String) session.getAttribute("email")).getUser_name();
+            String username = null;
+            Doctor doctor =
+                    doctorService.getDocInfo(((Doctor) session.getAttribute("doctor")).getDoctor_number());
+            User user = memberService.queryMember((String) session.getAttribute("email"));
+            if (doctor != null) {
+                username = doctor.getDoctor_name();
+            } else if (user != null) {
+                username = user.getUser_name();
             }
 
-            if (currentuser != null) mav.addObject("currentuser", currentuser);
+            if (username != null) mav.addObject("username", username);
         } catch (Exception e) {
             e.printStackTrace();
         }

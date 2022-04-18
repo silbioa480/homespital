@@ -141,7 +141,7 @@
                     // 처방전이 있을 때만 버튼 생성, 없으면 빈문자열
                     let receiptFile = "";
                     if (item.is_prescription_upload === 2) {
-                        receiptFile = "<a href='/resources/img/uploadReceipt/" + item.diagnosis_file_name + "' download='처방전'><span class='material-icons'>file_download</span></a>"
+                        receiptFile = "<a href='/resources/img/uploadPrescription/" + item.prescription_file_name + "' download='처방전'><span class='material-icons'>file_download</span></a>"
                     }
                     let is_delivery = "방문";
                     if (item.is_delivery === true) {
