@@ -180,7 +180,17 @@ https://ovenapp.io/project/r4Wlvg8gvXDtp1XVYSAlFtnwvhguqDXf#xtFHs
 
 
 ### 황인성
+- 예약하기 다중 파일 업로드 및 미리보기 및 삭제
+- 의사 리스트
+- 약국 진료리스트
+- 약국 상세보기(진료 내역)
+- 소감페이지
 
+### 의사 리스트, 예약하기
+![image](https://user-images.githubusercontent.com/97017840/164226954-6243bc52-7326-45b7-8166-e8d042a66969.png)
+![image](https://user-images.githubusercontent.com/97017840/164227364-ad55b153-4aef-4171-ad6e-72cf3c134680.png)
+![image](https://user-images.githubusercontent.com/97017840/164227754-a9e2bb7b-47f4-48d7-a599-3fa09a04264c.png)
+![image](https://user-images.githubusercontent.com/97017840/164229121-aeb6a5d7-2f57-4c24-b75c-beb3f15459cb.png)
 
 
 # 사이트 배포
