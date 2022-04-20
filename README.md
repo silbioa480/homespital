@@ -111,9 +111,12 @@ https://ovenapp.io/project/r4Wlvg8gvXDtp1XVYSAlFtnwvhguqDXf#xtFHs
 - 환자 진료리스트 상세보기
 - tiles
 
+### 진료 내역 상세보기, 원격 화상 진료
 ![image](https://user-images.githubusercontent.com/97017840/164219013-85aa9cc9-3bb5-448c-b428-5bc615af3445.png)
 ![image](https://user-images.githubusercontent.com/97017840/164219490-42262188-286f-455b-a9c5-2cbdcd6ec36a.png)
-![image](https://user-images.githubusercontent.com/97017840/164220278-3f6e302d-ade2-4294-8b5f-92170e2e099e.png)
+![image](https://user-images.githubusercontent.com/97017840/164220217-82a5e0ec-3b72-454c-a9d3-b0e7f186245c.png)
+
+
 
 ### 송가영, 인용식 
 ##### 공통부분
