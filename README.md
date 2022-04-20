@@ -119,7 +119,7 @@ https://www.yakup.com/news/index.html?mode=view&cat=11&nid=262238
 
 ##### 송가영
 - 노션 작업일지 및 관리
-- 발표 자 ppt 준비
+- 발표 자료 ppt 준비
 
 [//]: # (- 로그인 페이지 # Naver API 활용 로그인)
 [//]: # (- 로그인 페이지 # Google API 활용 로그인)
