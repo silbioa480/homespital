@@ -127,7 +127,7 @@ https://www.yakup.com/news/index.html?mode=view&cat=11&nid=262238
 
 ### 회원가입, 로그인, 마이페이지
 ![image](https://user-images.githubusercontent.com/97017840/164183686-7816744d-ca40-4b8a-9771-35b7d744d81e.png)
-![image](https://user-images.githubusercontent.com/97017840/164182333-bd20c011-5b3f-46ea-a3c0-d75e25f4ec59.png)
+![image](https://user-images.githubusercontent.com/97017840/164189377-6b06a696-30ee-49e1-9700-7da73be2280b.png)
 ![image](https://user-images.githubusercontent.com/97017840/164169980-74a10290-1cc0-4c11-9f27-4cccdf4589ac.png)
 ![image](https://user-images.githubusercontent.com/97017840/164170004-4a0665fb-bfe5-40a4-aedd-df23d29fc7e8.png)
 
@@ -143,6 +143,17 @@ https://www.yakup.com/news/index.html?mode=view&cat=11&nid=262238
 ### 이훈
 
 ### 최준근
+- 환자,의사,약사 진료리스트 && 진료리스트 상세보기
+- 예약하기(시간대별 예약인원 제한/카운트 기능)
+- 화상진료 영상제작
+- 발표
+
+### 진료리스트 && 상세보기
+![image](https://user-images.githubusercontent.com/97017840/164198346-bda5f8bf-63da-4c9b-a4c1-37a6d90236bc.png)
+![image](https://user-images.githubusercontent.com/97017840/164196918-5bcdd32e-f7d5-4992-abb8-767538b4d5d7.png)
+![image](https://user-images.githubusercontent.com/97017840/164196870-46b1ba5a-8453-49aa-9803-a090f36d0925.png)
+![image](https://user-images.githubusercontent.com/97017840/164196985-83c79193-7738-40d6-836f-e20881ff150e.png)
+
 
 ### 황인성
 
