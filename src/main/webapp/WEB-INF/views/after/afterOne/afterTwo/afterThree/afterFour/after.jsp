@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Smooth Scrolling Image Effects | Demo 1 | Codrops</title>
+    <title>After MNA</title>
     <meta name="description" content="A set of ideas of animating images and other elements while smooth scrolling a page." />
     <meta name="keywords" content="smooth scrolling, animation, scroll, website, images, web development, javascript" />
     <meta name="author" content="Codrops" />
